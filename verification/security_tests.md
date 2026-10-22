@@ -53,3 +53,29 @@ It cannot tell you whether a seller is **lying**. It proves the site faithfully 
 seller's page said on the capture date — nothing more. That is why the hallmarks are blank, why the
 weights are blank where the seller publishes none, and why the checklist ends with an independent
 jeweler and an XRF reading.
+
+## Security tests — verification suite (`tools/security_test.py`)
+
+Run after every review. Each test plants one error into the dataset or the rendered HTML, runs
+`tools/check_report.py`, and asserts that the error is caught and named.
+
+| # | Planted error | Caught by |
+|---|---|---|
+| 1 | Invented price in the data (A01 `$1,085` → `$999`) | evidence match: price has no token containing it |
+| 2 | Invented weight for a row that publishes none (A07 → 4.2 g) | evidence match: weight has no token |
+| 3 | Row points at a flag that does not exist (`G-MADE-UP`) | flag cross-reference |
+| 4 | `priceText` silently changed on the EUR row (A09 → `$950.00`) | prose amount not on the captured page |
+| 5 | Evidence token removed (the 2.3 g claim) | weight has no token |
+| 6 | Product URL replaced with `example.com` | URL outside the official allowlist |
+| 7 | Hand-typed price injected into the HTML (`$999.99`) | money audit: amount not traceable to data |
+| 8 | Flag text invents an amount (`$20` restocking → `$420`) | flag amount not documented in the evidence corpus |
+| 9 | Reference quote that is not on the cited page | quote fragment not found in its capture |
+
+Latest run: **9/9 planted errors caught**, clean-state check PASS.
+
+Two rules learned from these tests and kept in the checker:
+
+- A price is not "verified" because it appears in the dataset — it must appear in the saved capture of
+  that page. That is why test 4 (a changed `priceText` on a row with no numeric price) is caught.
+- Flag prose is part of the audit surface. A flag that quotes an amount with no capture behind it fails
+  the build, so a flag cannot quietly introduce a number the rest of the project never verified.
