@@ -186,5 +186,15 @@
     "title": "Sample is small and not exhaustive",
     "detail": "Only listings that could be captured live on 2026-10-22 from seller sites are included (11 captured, 10 with a price). It is a verified sample, not the entire market. Large retailers not captured (e.g. Costco, Kay, Zales, Tiffany, James Allen) are simply not included — not judged.",
     "links": []
+  },
+  {
+    "id": "G-SAME-WEIGHT",
+    "status": "needs review",
+    "title": "R09 and R10 list the identical weight and karat (2.3 g, 14K) from two different sellers",
+    "detail": "Avianne & Co (R25893) and The Jewelry Master (Style 149700) both state 2.3 grams of 14K on different rings with different diamond weights. This may be coincidence, but confirm each seller's figure independently (written confirmation + weigh on arrival).",
+    "links": [
+      "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+      "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html"
+    ]
   }
 ]
