@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checklist — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>The 12-point online gold ring checklist</h2>
+  <p class="note">Each point lists its official source and what this project actually found when verifying the listings above. <b>No hallucinations</b>: every claim below is linked; re-run <code>python3 scripts/verify.py</code> after any review.</p>
+  <div id="cl"></div>
+  <div class="flag info">
+    <h4>The key (restated): a 14K or 18K stamp by itself does NOT prove the ring is that purity.</h4>
+    <p style="font-size:13.5px;margin:6px 0">Safest approach: reputable seller with real contact info + proper markings (karat <b>and</b> maker's mark) + reasonable price vs. gold value + return window + credit-card purchase + <b>independent XRF/acid-free test after delivery, before resizing or wearing</b>. If the seller won't let you independently verify or return it: don't buy it.</p>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5, D = G.D;
+  G.chrome("checklist");
+  const items = [
+    ["Confirm the karat (10K/14K/18K)", "FTC: 14K = 14 parts gold + 10 parts other; 18K = 18 + 6. Higher karat = more gold.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "All 13 listings above state their karat explicitly in the title/option list; 10K/14K/18K option prices are recorded where offered."],
+    ["Require 'solid gold' — reject plated/vermeil/gold-filled/overlay/tone", "FTC defines gold plated, gold filled, gold overlay, RGP, gold electroplate, vermeil, gold flashed.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Every included listing says 'Solid Gold' or '14K/18K gold' in its title. Note: the Cittali design is also sold as vermeil/silver on other listings — buy the specific 14K listing URL."],
+    ["Hallmark: karat stamp PLUS maker's/manufacturer's mark", "FTC: 'Near the karat quality mark, look for the name or the U.S. registered trademark of the company that will stand behind the mark. If you don't see a trademark along with the karat mark, don't buy it.'", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Most listings do not show hallmark photos (flagged blank). One adela band's buyer photo shows engraving '585 AFJ' (fineness + maker initials). Ask sellers for a macro photo of the inner stamp before paying."],
+    ["Get the weight in grams", "A legitimate seller should provide it; it enables the price test below.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Only 2 of 13 listings publish grams (VeraByEden 3.70 g via snippet; case-study 7 g). All others flagged F3 — ask before purchase; weigh independently on arrival."],
+    ["Check seller reputation: independent reviews & complaints", "FTC 'Before You Buy': search the seller's name + 'complaint' or 'review'; don't rely only on what you see online.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Blue Nile: BBB A+ since 1999 but 121 complaints/3 yrs, BBB reviews 1/5 (25), ConsumerAffairs 1.7/5 (172) — see F4. Etsy shops: Star Seller 5.0 on listings checked."],
+    ["Verify real business contact info", "FTC 'Before You Buy': find the store's refund/return policies and get them in writing.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Blue Nile: 1-800-242-2728, service@bluenile.com, Seattle WA (BBB). Etsy shops: Etsy-mediated contact; one shop's listing photos show a LA street address in a chat screenshot (F2)."],
+    ["Price vs. gold weight & current gold value", "Compare price to metal value (calculator). Unusually cheap = red flag.", "https://www.kitco.com/charts/gold",
+     "14K metal ≈ $75.49/g, 18K ≈ $97.06/g at the verified spot. Case study at 0.84× metal value = F1 red flag. Settings-only prices (Blue Nile) are not comparable to stone-included prices (F10)."],
+    ["Return policy: return allowed after inspection; check resized/custom exclusions", "FTC: get return policies in writing.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "Blue Nile: 30 days BUT resized/engraved/custom excluded (F5). Etsy: per-seller 30-day tabs + Etsy Purchase Protection for not-arrived/damaged/late/mismatched."],
+    ["Pay with a credit card; avoid irreversible methods", "Card chargebacks + seller programs (Etsy Purchase Protection) are your recourse.", "https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program",
+     "Blue Nile checkout takes credit cards (+ store card financing). Etsy checkout takes cards/PayPal/Klarna. Keep orders inside the platform — off-platform payment voids protection (F2)."],
+    ["Keep documentation", "Retain listing, receipt, description, and seller's purity claims.", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "This site stores the exact listing URLs + check dates + quoted policy text (see Sources page). Screenshot the listing before it changes; listings observed with 'only 1 left' and expiring promos."],
+    ["On arrival: independent jeweler verification before wearing/resizing", "Project rule; FTC points to JVC mediation if disputes arise.", "https://jvclegal.org/mediation-services/",
+     "Do this before any resize — Blue Nile's one free resize ends return eligibility (F5). Ask the jeweler to verify purity AND weight."],
+    ["Best verification: XRF or professional purity test; don't rely on the stamp", "Stamp = claim, not proof (16 CFR Part 23 makes misrepresentation illegal, but you still verify).", "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
+     "If the seller refuses independent verification or returns: don't buy it. Report fraud to ReportFraud.ftc.gov / state AG.", "https://reportfraud.ftc.gov/"]
+  ];
+  document.getElementById("cl").innerHTML = items.map((it, i) => `
+    <div class="check">
+      <div class="n">${i + 1}</div>
+      <div>
+        <h4>${G.esc(it[0])}</h4>
+        <p><b>Official basis:</b> ${G.esc(it[1])} — <a href="${G.esc(it[2])}" target="_blank" rel="noopener">${G.esc(it[2])}</a>${it[4] ? ' · <a href="' + G.esc(it[4]) + '" target="_blank" rel="noopener">' + G.esc(it[4]) + '</a>' : ""}</p>
+        <p class="found"><b>Found in this project:</b> ${G.esc(it[3])}</p>
+      </div>
+    </div>`).join("");
+})();
+</script>
+</body>
+</html>
