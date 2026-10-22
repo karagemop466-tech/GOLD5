@@ -949,14 +949,20 @@ seller reputation, price, returns, payment, documentation, on-arrival, XRF, calc
 <a href="pages/gold-purity.html">example subpage ↗</a></td></tr>
 <tr><td><b>guide/</b> — session 3c8bb7ee (PR #4)</td><td>A checklist site with research notes: 13 pages plus <code>research/*.md</code> and a
 machine-readable <code>entries.json</code>. Preserved with its original relative links intact.</td><td><a href="guide/index.html">guide/index.html ↗</a></td></tr>
+<tr><td><b>verified/</b> — session 84be683f (PR #9)</td><td>A fourth independent delivery: 12 rows across 5 retailers
+(Blue Nile, Brilliant Earth, Ross-Simons, Mejuri, Costco), 3 dated spot quotes, 5 seller profiles and 17 flags, with its own
+8-pass harness (896 assertions). Includes a critical Costco policy contradiction (F-009: "precious metals are non-refundable"
+vs a returns FAQ) that this dashboard does not cover.</td><td><a href="verified/index.html">verified/index.html ↗</a> ·
+<a href="verified/pages/flagged.html">its Flagged page ↗</a></td></tr>
 <tr><td><b>data/</b></td><td>The unified dataset (<code>unified.json</code>), the fetch log (<code>live_check.json</code>), and the earlier sessions'
 data files with their evidence.</td><td><a href="sources.html">source registry ↗</a></td></tr>
 </tbody></table></div>
-<h2>Why keep three sites?</h2>
+<h2>Why keep four sites?</h2>
 <p class="small">Because the brief for this project says not to discard other sessions' work, and because each archive contains
 material this dashboard summarises: the <code>docs/</code> site holds verbatim page excerpts captured at read time, the
-<code>pages/</code> site walks each checklist point in more depth, and <code>guide/</code> adds formal citations and research
-notes. The dashboard does not duplicate their evidence files — it links to them.</p>
+<code>pages/</code> site walks each checklist point in more depth, <code>guide/</code> adds formal citations and research
+notes, and <code>verified/</code> adds retailers this dashboard does not price (Ross-Simons, Mejuri, Costco) plus its own
+independent harness. The dashboard does not duplicate their evidence files — it links to them.</p>
 <p class="small">The security checks still cover the archives: <code>python3 tools/check_hallucinations.py</code> audits the
 <code>docs/</code> dataset, and <code>python3 scripts/verify.py</code> audits this dashboard and cross-checks the archived links resolve.</p>
 """

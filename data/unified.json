@@ -1131,8 +1131,8 @@
       "metalColor": "Yellow / White / Rose Gold",
       "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
       "price": 969.0,
-      "priceLabel": "14K option $969.00 (10K $783.00; 18K $1,233.00; was $1,044.00, 25% off) — prior capture",
-      "priceBasis": "variant-from",
+      "priceLabel": "14K option $969.00 — re-read live in pass 2 (10K $783.00; 18K $1,233.00; page headline $783.00+ is the 10K option, 25% off $1,044.00+)",
+      "priceBasis": "variant-14k",
       "grams": 3.7,
       "gramsNote": "'Gold grams: 3.70 gr' in the listing description (re-read in pass 2).",
       "solid": "'Material: Solid Gold (not gold plated or gold filled)'; 'Karat: 14 K (585)'",
@@ -1152,7 +1152,7 @@
         "short-return-window",
         "sale-price-expires"
       ],
-      "note": "Karat, solid-gold statement, 3.70 g weight and the 7-day return window were re-read in pass 2; the price is an earlier same-day capture (labelled 'prior').",
+      "note": "Karat, solid-gold statement, 3.70 g weight and the 7-day return window were re-read in pass 2, and the 14K price ($969.00) was re-read live: the listing shows per-metal options, and its 'from' headline ($783.00+) is the 10K option, not the 14K ring.",
       "checkedOn": "2026-10-22",
       "gold_g": 2.1582,
       "metal_value": 279.42,
@@ -1308,7 +1308,7 @@
       "id": "F1",
       "severity": "high",
       "title": "Price is BELOW the computed gold metal value (classic fraud signal)",
-      "detail": "Case study etsy-576343849: a 7 g '14K solid' band listed at $444.80. At the verified pass-2 Kitco spot, 7 g x 58.33% = 4.083 g of pure gold, which at the verified spot is worth more than the asking price. The price is ~84% of melt value. No legitimate jeweler sells solid gold below melt. The listing is now unavailable — retained as an example of the check.",
+      "detail": "Case study etsy-576343849: a 7 g '14K solid' band listed at $444.80. At the verified pass-2 Kitco spot, 7 g x 58.33% = 4.083 g of pure gold, which at the verified spot is worth more than the asking price. The price is ~84% of melt value. No legitimate jeweler sells solid gold below melt. Re-checked live on 2026-10-22: the page now reads 'Sorry, this item is sold out' and 'Sold', so the price is a dated prior capture, not a live quote — retained as an example of the check.",
       "entries": [
         "etsy-576343849"
       ],
@@ -1427,7 +1427,7 @@
       "id": "F14",
       "severity": "medium",
       "title": "Brilliant Earth Secret Halo page served a EUR price at re-check",
-      "detail": "The pass-2 fetch of the Secret Halo 1.5mm page rendered 'EUR 1,250.00 (Setting Only)' with a European currency selector active, even though the URL is the US 14K yellow gold product. The USD price could not be confirmed, so the USD cell is blank. An earlier same-day capture recorded $1,090 — not restated as verified. Re-open with a US session and record the USD price before buying.",
+      "detail": "The pass-2 fetch of the Secret Halo 1.5mm page rendered 'EUR 1,250.00 (Setting Only)' with a European currency selector active, even though the URL is the US 14K yellow gold product. The USD price could not be confirmed, so the USD cell is blank (re-confirmed on a second fetch at 23:52 UTC). An earlier same-day capture recorded $1,090 — not restated as verified. Re-open with a US session and record the USD price before buying.",
       "entries": [
         "be-secret-halo-15"
       ],
@@ -1473,6 +1473,19 @@
       "detail": "Blue Nile's detailed return exclusions, ForeverForLove's 30-day terms, Cittali's and adela's listing policies, and the Etsy Purchase Protection text were captured earlier on 2026-10-22 and are labelled 'prior capture'. They are not presented as re-verified. Sellers can change policies — re-read the page before buying.",
       "entries": [],
       "source": "https://www.bluenile.com/policies/returns"
+    },
+    {
+      "id": "F20",
+      "severity": "medium",
+      "title": "Etsy's headline 'from' price is the cheapest variant, not the 14K price",
+      "detail": "Two listings were read field by field on 2026-10-22: VeraByEden shows '$783.00+' while the 14K option costs $969.00 (10K is $783.00), and RAKSHAKJEWELS shows '$1,202.08+' while the 14K option is $1,891.78 (sterling silver is the $1,202.08 option). The '+' price is the lowest-priced metal, so comparing it with a 14K row's price looks like a discount that did not happen. Select 14K in the variant selector and compare that number.",
+      "entries": [
+        "etsy-4426190660",
+        "etsy-1151446373",
+        "etsy-1566052947",
+        "etsy-1433905613"
+      ],
+      "source": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant"
     },
     {
       "id": "F19",
@@ -1649,7 +1662,7 @@
     "withHallmarkProof": 0,
     "reverified": 22,
     "priorCapture": 2,
-    "flags": 19,
+    "flags": 20,
     "sources": 48
   }
 }

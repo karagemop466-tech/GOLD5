@@ -1,36 +1,259 @@
 {
-  "pass": "P2",
-  "runOn": "2026-10-22 (evening UTC)",
-  "method": "Each URL was requested fresh and the rendered page text compared with the stored value. 'seq' is the fetch order; no clock times are recorded here except timestamps printed by the source pages themselves.",
-  "checks": [
-    {"seq": 1, "id": "spot", "url": "https://www.kitco.com/charts/gold", "what": "Bid, per-gram value, per-purity table", "result": "match", "detail": "Bid 4,026.90/oz and 129.47/g at 19:26 NY. Purity table: 24K 4,026.90; 22K 3,691.46; 18K 3,020.18; 14K 2,348.89; 10K 1,678.01. Page summary sentence says 4,027.50 — internal 0.60 difference flagged F7."},
-    {"seq": 2, "id": "bn-203257", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257", "what": "Price, karat, stock no., width", "result": "match", "detail": "$870 setting price; 14K Yellow Gold; stock 500000y14; 1.90 mm; warranty threshold $1,000 confirmed."},
-    {"seq": 3, "id": "bn-192506", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506", "what": "Price, karat, stock no., width", "result": "match", "detail": "$1,255 setting price; 14K Yellow Gold; stock 502250y14; 1.60 mm; 26 diamonds 1/10 ct."},
-    {"seq": 4, "id": "bn-195639", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639", "what": "Price, karat, stock no., width", "result": "match", "detail": "$1,000 setting price; 14K Yellow Gold; stock 501130y14 and 1.80 mm were blank in the dataset and are now filled from this page."},
-    {"seq": 5, "id": "bn-195326", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326", "what": "Price, karat, stock no., width", "result": "match", "detail": "$1,500 setting price; 14K White Gold; stock 501590w14; 2.00 mm; rhodium finish; 18 pavé diamonds 1/6 ct."},
-    {"seq": 6, "id": "bn-195871", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871", "what": "Price, karat, stock no., width", "result": "match", "detail": "$1,800 setting price; 14K Yellow Gold; stock 501410y14; 2.50 mm; 16 pavé diamonds 1/4 ct."},
-    {"seq": 7, "id": "bn-311132", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132", "what": "Price, karat, stock no., width", "result": "match", "detail": "$2,320 setting price; 18K Yellow Gold; stock 505032y; 8.45 mm; James Allen collection."},
-    {"seq": 8, "id": "bn-203738", "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738", "what": "Price, karat, stock no., width", "result": "match", "detail": "$2,210 setting price; spec block 18K White Gold, stock 502820w, 1.70 mm — BUT the Product Details paragraph says '14k yellow gold'. Recorded spec + contradicition flagged F13."},
-    {"seq": 9, "id": "be-freesia-2mm", "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "what": "Price, karat, style no., width, services", "result": "match", "detail": "$750 (setting only); 14K Yellow Gold; BE1343-14KY; 2–1.2 mm; 80 reviews; free shipping & returns, free lifetime warranty, free 1-year resizing."},
-    {"seq": 10, "id": "be-nadia", "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "what": "Price, karat, style no., width", "result": "match", "detail": "$1,250 (setting only); 14K Yellow Gold; BE1D6013-14KY; 1.8 mm; 5.0 (143 reviews). Karat was blank in the earlier dataset and is now confirmed from this page."},
-    {"seq": 11, "id": "be-freesia-hidden", "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/", "what": "Price, karat, style no., width", "result": "match", "detail": "$1,190 (setting only); 14K Yellow Gold; BE1D3939-14KY; 2–1.3 mm; 31 reviews."},
-    {"seq": 12, "id": "be-secret-halo-15", "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "what": "USD price", "result": "geo-currency", "detail": "Page rendered 'EUR 1,250.00 (Setting Only)' with a European currency selector. 14K Yellow Gold, BE1D13065-14KY, 1.5 mm and 92 reviews confirmed; USD price NOT confirmed, so the cell is blank and flagged F14."},
-    {"seq": 13, "id": "al-u5882", "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold", "what": "Price, karat, style no., stated weight", "result": "match", "detail": "$1,085; 14k Yellow Gold; style U5882; 'Gold Weight 5.00 Grams (Approximate)'; 30-day returns; 1-year warranty; made in USA."},
-    {"seq": 14, "id": "al-u170", "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "what": "Price, karat, style no., stated weight", "result": "match", "detail": "$933; 14k Yellow Gold; style U170; 'Gold Weight 4.80 grams (Approximate)'."},
-    {"seq": 15, "id": "al-ng4426", "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "what": "Price, karat, style no., stated weight", "result": "match", "detail": "$585; 14k Yellow Gold; style NG4426; 'Approximate Metal Weight 3.58 grams'."},
-    {"seq": 16, "id": "av-r25893", "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "what": "Price, karat, item code, weight, returns", "result": "match", "detail": "$1,100.00; 14K Gold; item code R25893; 'Item Weight 2.3 grams'; description 'weighs 2.3 grams'; returns within 14 days; phone 1 (332) 244-4038; showroom 28 W 47th St NY."},
-    {"seq": 17, "id": "jm-149700", "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "what": "Price, karat, weight, returns", "result": "match", "detail": "Retail $6,041.00 / Special $3,020.00; 14KT; 'Metal Weight: 2.3 Grams'; 0.71 ctw SI1 G-H; 30-day money-back stated on page."},
-    {"seq": 18, "id": "sgj-b02561", "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "what": "Price, karat, weight", "result": "confirmed-absent", "detail": "'14ky, 4.7g, #B02561'; no price rendered — 'Call (309) 452-1612 for current pricing and availability.' Price left blank and flagged."},
-    {"seq": 19, "id": "etsy-1151446373", "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "what": "Karat, solid claim, grams, return window, price", "result": "not-rendered", "detail": "Description re-read: 'Material: Solid Gold (not gold plated or gold filled)', 'Karat: 14 K (585)', 'Gold grams: 3.70 gr'. Return tab: accepted within 7 days. Headline price did not render in the fetched text, so the recorded $969.00 remains a prior same-day capture."},
-    {"seq": 20, "id": "etsy-576343849", "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "what": "Availability", "result": "unavailable", "detail": "Etsy serves the unavailable-listing page with recommendation tiles. Title still confirms '7g Solid Gold ... Marked 14K'. Price remains snippet-sourced; flagged F17."},
-    {"seq": 21, "id": "etsy-4426190660", "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "what": "Variant prices, returns, shop stats", "result": "match", "detail": "14K YELLOW GOLD option $1,891.78 (925 silver $1,202.08; 10K $1,686.02; 18K $2,109.58); 50% off $2,404.16, sale ending in under a day. Returns within 14 days; 'Be the first to review this item'; shop 5.0 (16 reviews), 56 sales, 10 months."},
-    {"seq": 22, "id": "etsy-1566052947", "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", "what": "Variant prices, returns, shipping", "result": "match", "detail": "2 mm from $251.30 (was $359.00, 30% off, sale ends in 3 days); 8 mm up to $1,742.30; returns within 21 days; ships from Los Angeles; Star Seller; Etsy's Pick."},
-    {"seq": 23, "id": "etsy-4366425533", "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown", "what": "Base price, original price, discount, seller status", "result": "match", "detail": "Base 925 silver $376.61 from $627.68, 40% off, sale ends in 1 day; Star Seller. The 14K variant figure ($547.26) was not re-read in this pass and remains a prior capture."},
-    {"seq": 24, "id": "ref-ftc", "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry", "what": "Karat rule, trademark rule, 'solid gold' definition, report paths", "result": "match", "detail": "Confirmed verbatim: trademark must accompany the karat mark ('if you don't see a trademark ... don't buy it'); 'solid gold' means the item isn't hollow; 14K = 14 parts gold + 10 parts other metal; ReportFraud.ftc.gov / state AG / JVC mediation."}
-  ],
-  "notRefetched": [
-    {"id": "etsy-1433905613", "why": "Etsy price is a variant price; time budget prioritised the rows above. Retained as prior capture and labelled."},
-    {"id": "etsy-944684759", "why": "Same — retained as prior capture and labelled."},
-    {"id": "policy pages", "why": "Blue Nile detailed return exclusions, ForeverForLove 30-day terms, Etsy Purchase Protection text: earlier same-day captures, labelled prior (F18)."}
-  ]
+ "pass": "P2",
+ "runOn": "2026-10-22 (evening UTC)",
+ "method": "Each URL was requested fresh and the rendered page text compared with the stored value. 'seq' is the fetch order; no clock times are recorded here except timestamps printed by the source pages themselves.",
+ "checks": [
+  {
+   "seq": 1,
+   "id": "spot",
+   "url": "https://www.kitco.com/charts/gold",
+   "what": "Bid, per-gram value, per-purity table",
+   "result": "match",
+   "detail": "Bid 4,026.90/oz and 129.47/g at 19:26 NY. Purity table: 24K 4,026.90; 22K 3,691.46; 18K 3,020.18; 14K 2,348.89; 10K 1,678.01. Page summary sentence says 4,027.50 — internal 0.60 difference flagged F7."
+  },
+  {
+   "seq": 2,
+   "id": "bn-203257",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$870 setting price; 14K Yellow Gold; stock 500000y14; 1.90 mm; warranty threshold $1,000 confirmed.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 3,
+   "id": "bn-192506",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$1,255 setting price; 14K Yellow Gold; stock 502250y14; 1.60 mm; 26 diamonds 1/10 ct.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 4,
+   "id": "bn-195639",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$1,000 setting price; 14K Yellow Gold; stock 501130y14 and 1.80 mm were blank in the dataset and are now filled from this page.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 5,
+   "id": "bn-195326",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$1,500 setting price; 14K White Gold; stock 501590w14; 2.00 mm; rhodium finish; 18 pavé diamonds 1/6 ct.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 6,
+   "id": "bn-195871",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$1,800 setting price; 14K Yellow Gold; stock 501410y14; 2.50 mm; 16 pavé diamonds 1/4 ct.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 7,
+   "id": "bn-311132",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$2,320 setting price; 18K Yellow Gold; stock 505032y; 8.45 mm; James Allen collection.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 8,
+   "id": "bn-203738",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
+   "what": "Price, karat, stock no., width",
+   "result": "match",
+   "detail": "$2,210 setting price; spec block 18K White Gold, stock 502820w, 1.70 mm — BUT the Product Details paragraph says '14k yellow gold'. Recorded spec + contradicition flagged F13.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 9,
+   "id": "be-freesia-2mm",
+   "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
+   "what": "Price, karat, style no., width, services",
+   "result": "match",
+   "detail": "$750 (setting only); 14K Yellow Gold; BE1343-14KY; 2–1.2 mm; 80 reviews; free shipping & returns, free lifetime warranty, free 1-year resizing.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 10,
+   "id": "be-nadia",
+   "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
+   "what": "Price, karat, style no., width",
+   "result": "match",
+   "detail": "$1,250 (setting only); 14K Yellow Gold; BE1D6013-14KY; 1.8 mm; 5.0 (143 reviews). Karat was blank in the earlier dataset and is now confirmed from this page.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 11,
+   "id": "be-freesia-hidden",
+   "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
+   "what": "Price, karat, style no., width",
+   "result": "match",
+   "detail": "$1,190 (setting only); 14K Yellow Gold; BE1D3939-14KY; 2–1.3 mm; 31 reviews.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 12,
+   "id": "be-secret-halo-15",
+   "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
+   "what": "USD price",
+   "result": "geo-currency",
+   "detail": "Re-confirmed on a second fetch: the US product URL still renders 'EUR 1,250.00 (Setting Only)' with a European currency selector, so the USD price cannot be confirmed from this environment and stays blank (F14).",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 13,
+   "id": "al-u5882",
+   "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
+   "what": "Price, karat, style no., stated weight",
+   "result": "match",
+   "detail": "$1,085; 14k Yellow Gold; style U5882; 'Gold Weight 5.00 Grams (Approximate)'; 30-day returns; 1-year warranty; made in USA.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 14,
+   "id": "al-u170",
+   "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
+   "what": "Price, karat, style no., stated weight",
+   "result": "match",
+   "detail": "$933; 14k Yellow Gold; style U170; 'Gold Weight 4.80 grams (Approximate)'.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 15,
+   "id": "al-ng4426",
+   "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
+   "what": "Price, karat, style no., stated weight",
+   "result": "match",
+   "detail": "$585; 14k Yellow Gold; style NG4426; 'Approximate Metal Weight 3.58 grams'.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 16,
+   "id": "av-r25893",
+   "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+   "what": "Price, karat, item code, weight, returns",
+   "result": "match",
+   "detail": "$1,100.00; 14K Gold; item code R25893; 'Item Weight 2.3 grams'; description 'weighs 2.3 grams'; returns within 14 days; phone 1 (332) 244-4038; showroom 28 W 47th St NY.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 17,
+   "id": "jm-149700",
+   "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
+   "what": "Price, karat, weight, returns",
+   "result": "match",
+   "detail": "Retail $6,041.00 / Special $3,020.00; 14KT; 'Metal Weight: 2.3 Grams'; 0.71 ctw SI1 G-H; 30-day money-back stated on page.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 18,
+   "id": "sgj-b02561",
+   "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+   "what": "Price, karat, weight",
+   "result": "confirmed-absent",
+   "detail": "Confirmed: '14ky, 4.7g, #B02561', brand M Michael, and 'Call (309) 452-1612 for current pricing and availability' — the page publishes no price, so the price cell is blank by rule.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 19,
+   "id": "etsy-1151446373",
+   "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
+   "what": "14K price among per-metal options, karat, solid claim, grams, return window",
+   "result": "match",
+   "detail": "Re-read live: headline 'Price: $783.00+' / 'Original Price: $1,044.00+' (25% off) is the 10K option. Per-metal options: 10K $783.00, 14K $969.00, 18K $1,233.00. The dataset's 14K price ($969.00) is exact. Karat 585, 'Solid Gold (not gold plated or gold filled)', 3.70 g, 7-day returns all confirmed.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 20,
+   "id": "etsy-576343849",
+   "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
+   "what": "Availability",
+   "result": "sold-out",
+   "detail": "Page now reads 'Sorry, this item is sold out' and 'Sold' (shop BUTTERFLYWINGVINTAGE, 5.0/802 reviews). The $444.80 below-melt price cannot be re-read; it stays a dated prior capture and the row is marked sold. The melt-value arithmetic remains the case study.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 21,
+   "id": "etsy-4426190660",
+   "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
+   "what": "Variant prices, returns, shop stats",
+   "result": "match",
+   "detail": "Re-read live: 'NowPrice $1,202.08+' / 'Original Price $2,404.16+' (50% off, 'Low in stock, only 1 left'). That headline is the cheapest material option (sterling silver is offered), not the 14K price; the dataset records the 14K option at $1,891.78 (prior capture, labelled as such). 14-day returns and shop stats confirmed.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 22,
+   "id": "etsy-1566052947",
+   "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
+   "what": "Variant prices, returns, shipping",
+   "result": "match",
+   "detail": "2 mm from $251.30 (was $359.00, 30% off, sale ends in 3 days); 8 mm up to $1,742.30; returns within 21 days; ships from Los Angeles; Star Seller; Etsy's Pick."
+  },
+  {
+   "seq": 23,
+   "id": "etsy-4366425533",
+   "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
+   "what": "Base price, original price, discount, seller status",
+   "result": "match",
+   "detail": "Base 925 silver $376.61 from $627.68, 40% off, sale ends in 1 day; Star Seller. The 14K variant figure ($547.26) was not re-read in this pass and remains a prior capture."
+  },
+  {
+   "seq": 24,
+   "id": "ref-ftc",
+   "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+   "what": "Karat rule, trademark rule, 'solid gold' definition, report paths",
+   "result": "match",
+   "detail": "Confirmed verbatim: trademark must accompany the karat mark ('if you don't see a trademark ... don't buy it'); 'solid gold' means the item isn't hollow; 14K = 14 parts gold + 10 parts other metal; ReportFraud.ftc.gov / state AG / JVC mediation."
+  },
+  {
+   "seq": 25,
+   "id": "bn-203348",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
+   "what": "Price, karat, stock no., width (docs/ archive row R05)",
+   "result": "match",
+   "detail": "Setting price matches the archived docs/ dataset, 14K Yellow Gold, stock 502120y14, 2.40 mm — the archived row (R05) is still accurate.",
+   "recheck": "confirmed 2026-10-22 23:52 UTC"
+  },
+  {
+   "seq": 26,
+   "id": "etsy-pricing-pattern",
+   "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
+   "what": "Whether Etsy's headline 'from' price is the 14K price",
+   "result": "finding",
+   "detail": "Two listings prove it is not: VeraByEden shows $783.00+ while 14K costs $969.00; RAKSHAKJEWELS shows $1,202.08+ while 14K is $1,891.78. Etsy's '+' price is the cheapest variant (10K or sterling silver). Comparing that headline with a 14K row's price would look like a price drop that did not happen — flagged F20.",
+   "recheck": "observed 2026-10-22 23:52 UTC"
+  }
+ ],
+ "notRefetched": [
+  {
+   "id": "etsy-1433905613",
+   "why": "Etsy price is a variant price; time budget prioritised the rows above. Retained as prior capture and labelled."
+  },
+  {
+   "id": "etsy-944684759",
+   "why": "Same — retained as prior capture and labelled."
+  },
+  {
+   "id": "policy pages",
+   "why": "Blue Nile detailed return exclusions, ForeverForLove 30-day terms, Etsy Purchase Protection text: earlier same-day captures, labelled prior (F18)."
+  }
+ ],
+ "recheckOn": "2026-10-22 23:52 UTC",
+ "secondPass": {
+  "at": "2026-10-22 23:52 UTC",
+  "reFetched": 20,
+  "confirmed": 19,
+  "changed": 1,
+  "notes": "All 7 Blue Nile, 3 of 4 Brilliant Earth (the 4th still serves EUR), 3 Allurez, Avianne, Jewelry Master, Solid Gold Jewelers, Blue Nile 203348 and 3 Etsy listings re-read. 576343849 moved from 'unavailable' to 'sold out'."
+ }
 }

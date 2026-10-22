@@ -21,10 +21,10 @@ Re-run the security check after every review: <code>python3 scripts/verify.py</c
 site</b> — they are published here, with their source links, so they can be reviewed and corrected. Severity is about
 purchase risk: <span class="badge bad">high</span> act before buying · <span class="badge warn">medium</span> verify before buying ·
 <span class="badge info">low</span> context · <span class="badge gray">info</span> note.</p>
-<h2>Findings (19)</h2>
+<h2>Findings (20)</h2>
 <div class="flag high" id="F1">
 <h4><span class="badge bad">high</span> &nbsp;F1 — Price is BELOW the computed gold metal value (classic fraud signal)</h4>
-<p>Case study etsy-576343849: a 7 g &#x27;14K solid&#x27; band listed at $444.80. At the verified pass-2 Kitco spot, 7 g x 58.33% = 4.083 g of pure gold, which at the verified spot is worth more than the asking price. The price is ~84% of melt value. No legitimate jeweler sells solid gold below melt. The listing is now unavailable — retained as an example of the check.</p>
+<p>Case study etsy-576343849: a 7 g &#x27;14K solid&#x27; band listed at $444.80. At the verified pass-2 Kitco spot, 7 g x 58.33% = 4.083 g of pure gold, which at the verified spot is worth more than the asking price. The price is ~84% of melt value. No legitimate jeweler sells solid gold below melt. Re-checked live on 2026-10-22: the page now reads &#x27;Sorry, this item is sold out&#x27; and &#x27;Sold&#x27;, so the price is a dated prior capture, not a live quote — retained as an example of the check.</p>
 <div class="meta">Observed at: <a href="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g" target="_blank" rel="noopener">https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g</a> &nbsp;·&nbsp; Rows: etsy-576343849 &nbsp;·&nbsp; Status: open</div>
 </div><div class="flag high" id="F2">
 <h4><span class="badge bad">high</span> &nbsp;F2 — VeraByEden listing photos show off-platform contact solicitation</h4>
@@ -48,12 +48,16 @@ purchase risk: <span class="badge bad">high</span> act before buying · <span cl
 <div class="meta">Observed at: <a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738" target="_blank" rel="noopener">https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738</a> &nbsp;·&nbsp; Rows: bn-203738 &nbsp;·&nbsp; Status: open</div>
 </div><div class="flag medium" id="F14">
 <h4><span class="badge warn">medium</span> &nbsp;F14 — Brilliant Earth Secret Halo page served a EUR price at re-check</h4>
-<p>The pass-2 fetch of the Secret Halo 1.5mm page rendered &#x27;EUR 1,250.00 (Setting Only)&#x27; with a European currency selector active, even though the URL is the US 14K yellow gold product. The USD price could not be confirmed, so the USD cell is blank. An earlier same-day capture recorded $1,090 — not restated as verified. Re-open with a US session and record the USD price before buying.</p>
+<p>The pass-2 fetch of the Secret Halo 1.5mm page rendered &#x27;EUR 1,250.00 (Setting Only)&#x27; with a European currency selector active, even though the URL is the US 14K yellow gold product. The USD price could not be confirmed, so the USD cell is blank (re-confirmed on a second fetch at 23:52 UTC). An earlier same-day capture recorded $1,090 — not restated as verified. Re-open with a US session and record the USD price before buying.</p>
 <div class="meta">Observed at: <a href="https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/" target="_blank" rel="noopener">https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/</a> &nbsp;·&nbsp; Rows: be-secret-halo-15 &nbsp;·&nbsp; Status: open</div>
 </div><div class="flag medium" id="F15">
 <h4><span class="badge warn">medium</span> &nbsp;F15 — Etsy return windows vary per listing — 7, 14, 21 and 30 days observed</h4>
 <p>Pass 2 read the actual windows: VeraByEden 7 days, RAKSHAKJEWELS 14 days, VibrantStone 21 days, Cittali 30 days (prior). A short window can expire before an independent jeweler sees the ring. Check the tab on the exact listing before paying, and get the policy in writing.</p>
 <div class="meta">Observed at: <a href="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant" target="_blank" rel="noopener">https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant</a> &nbsp;·&nbsp; Rows: etsy-1151446373, etsy-4426190660, etsy-1566052947, etsy-944684759 &nbsp;·&nbsp; Status: open</div>
+</div><div class="flag medium" id="F20">
+<h4><span class="badge warn">medium</span> &nbsp;F20 — Etsy&#x27;s headline &#x27;from&#x27; price is the cheapest variant, not the 14K price</h4>
+<p>Two listings were read field by field on 2026-10-22: VeraByEden shows &#x27;$783.00+&#x27; while the 14K option costs $969.00 (10K is $783.00), and RAKSHAKJEWELS shows &#x27;$1,202.08+&#x27; while the 14K option is $1,891.78 (sterling silver is the $1,202.08 option). The &#x27;+&#x27; price is the lowest-priced metal, so comparing it with a 14K row&#x27;s price looks like a discount that did not happen. Select 14K in the variant selector and compare that number.</p>
+<div class="meta">Observed at: <a href="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant" target="_blank" rel="noopener">https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant</a> &nbsp;·&nbsp; Rows: etsy-4426190660, etsy-1151446373, etsy-1566052947, etsy-1433905613 &nbsp;·&nbsp; Status: open</div>
 </div><div class="flag low" id="F6">
 <h4><span class="badge info">low</span> &nbsp;F6 — VeraByEden gold weight is seller-stated only</h4>
 <p>&#x27;Gold grams: 3.70 gr&#x27; is in the seller&#x27;s description (re-read in pass 2). It is the seller&#x27;s claim, not an independent measurement. Weigh and XRF-test on arrival.</p>

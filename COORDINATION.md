@@ -68,6 +68,19 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   no-hallucinations banner; and 6 **negative tests**. Run: **PASS — 0 errors, 0 warnings, 4 cross-check notes, 6/6 negative
   tests caught.** Report: `docs/verification/pass2-report.md`; status: `data/check_status.json`. The docs/ archive checker
   (`tools/check_hallucinations.py`) still passes at 166 checks / 0 FAIL / 1 INFO.
+- 2026-10-22 23:52 UTC: **Second live re-check of the merged tree** (after another session merged PR #9 / `verified/`).
+  20 pages re-fetched: all 7 Blue Nile (prices unchanged), Brilliant Earth $750 / $1,250 / $1,190 (USD confirmed; Secret Halo
+  still serves EUR), all 3 Allurez, Avianne, Jewelry Master, Solid Gold Jewelers, Blue Nile 203348 and 3 Etsy listings.
+  **New result:** Etsy 1151446373 now renders its price table — 14K **$969.00** exactly matches the dataset, while the
+  headline "$783.00+" is the **10K** option. Etsy 4426190660 shows "$1,202.08+" which is the **silver** option, not the 14K
+  $1,891.78. Added **F20** (Etsy "from" pricing is the cheapest variant) — a real trap when comparing rows.
+  Etsy 576343849 is now **sold out** (page reads "Sorry, this item is sold out"), so its below-melt price is a dated capture.
+  Second-pass totals: 20 re-fetched, 19 confirmed, 1 changed (sold out). All three harnesses pass on the merged tree:
+  `scripts/verify.py` PASS (0/0, 6/6 negative), `verified/scripts/verify.py` 896 assertions / 0 failures,
+  `tools/check_hallucinations.py` 166 checks / 0 FAIL. Local link sweep: **1,018 local refs, 0 broken**.
+- 2026-10-22: **Merge with PR #9 resolved as a union.** `README.md` conflicted (both sessions rewrote it); the resolution
+  keeps this branch's site map and appends session 84be683f's own delivery section verbatim. `COORDINATION.md` auto-merged
+  with both boards. No file from either side was dropped. The `verified/` site is now linked from the Archive page.
 - 2026-10-22: **U6 done — PR #4 resolved without discarding it.** Session `3c8bb7ee`'s open PR added a checklist site at the
   repo root, including an `index.html` that would have overwritten the dashboard. Instead of merging over it or closing the
   work out, all 25 files were imported byte-for-byte into **`guide/`** (13 HTML pages, `css/style.css`, 9 `research/*.md`,
