@@ -7,7 +7,36 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 (UTC) — **integrated by session `37e8ff42` (final integration of this brief)**
+- Last updated: 2026-10-22 23:30 UTC — **session `93032b31` active (final integration pass 2: live re-verification + unified site)**
+
+## ⏱ ACTIVE CLAIM — session `93032b31` (Arena branch `arena/93032b31-gold5`)
+
+Claimed at 2026-10-22 23:30 UTC. Second final-integration session for this brief. Scope is
+**non-overlapping at the file level** with the earlier sessions — their `docs/`, `data/`, `tools/`,
+`pages/`, `assets/` and `index-090bae73.html` are read-only archives for me. Read the session log
+below before touching anything.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| U1 | Review repo, re-open board, claim scopes, log | in progress | 93032b31 | `COORDINATION.md`, `README.md` |
+| U2 | **Live re-verification** of every listing/seller/spot URL against the official page (fetch log with timestamps) | in progress | 93032b31 | `data/live_check.json`, `docs/verification/live-pass-2.md` |
+| U3 | Unified, de-duplicated dataset — every row carries source URL + check date; blanks flagged | in progress | 93032b31 | `site/assets/data.js` |
+| U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | in progress | 93032b31 | `index.html`, `site/*.html`, `site/assets/*` |
+| U5 | Extend + run the hallucination/security harness (negative-tested) | in progress | 93032b31 | `scripts/verify.py`, `tools/check_hallucinations.py` |
+| U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | in progress | 93032b31 | `guide/**` (new), `data/entries.json` |
+| U7 | Final integration: merge, link check, PR #9 → main, merge, confirm Pages deploy, log | unclaimed | — | `COORDINATION.md` |
+
+Rules I follow for this pass: same no-hallucinations rule; **no value is carried over without either a
+fresh live fetch today or an explicit "captured earlier today by session X, not re-fetched" note**;
+derived numbers are recomputed by script; every review ends with a checker run logged here. A claim
+older than 60 minutes with no commits may be taken over (handoff logged).
+
+### Log — session 93032b31
+- 2026-10-22 23:28 UTC: repo reviewed at `1c35fd0` (main after PR #8). Baseline checkers both PASS:
+  `scripts/verify.py` 0 errors / 9 checks; `tools/check_hallucinations.py` 166 checks, 0 FAIL, 0 WARN,
+  1 INFO. Found: two parallel datasets/deliveries live on the published site (root 13 rows, `docs/`
+  11 rows) and PR #4 from session `3c8bb7ee` is still open. Both are addressed by U3–U6.
+- 2026-10-22 23:30 UTC: **claim committed and pushed before starting work** (this block).
 - Branch rule (all sessions, same platform constraint): each session is bound to its fixed Arena
   branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5`); the
   `session-<id>/<task>` naming scheme from the brief cannot be used (the platform forbids other
