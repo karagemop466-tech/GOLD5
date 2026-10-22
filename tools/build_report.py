@@ -223,6 +223,9 @@ def page_index():
      for r in LIST if r["_d"] and r["priceUsd"]],
 )}
 <p class="note">Ordered as catalogued. A row with "Solid stated: no" is not a rejection of the ring — it means the seller never made the claim, so the claim cannot be verified from the page.</p>
+<div class="callout" style="margin:18px 0"><h3 style="margin:0 0 8px">Read the top rows with the seller check beside them</h3>
+<p style="margin:0">The four highest-scoring rows (A01–A04) are Allurez settings. Allurez is BBB-accredited, A+, since 2/24/2011 — and its BBB complaints page also shows <b>49 complaints in the last 3 years</b> and <b>8 in the last 12 months</b> (23 product issues, 13 service or repair, 7 delivery). Its "Design Your Own" engagement rings are <b>exchange-only</b>, so a refund is not the remedy if the ring is not what you expected. That is why the score reads the listing, not the seller: <a href="flagged.html#G-ALLUREZ-COMPLAINTS">G-ALLUREZ-COMPLAINTS</a> · <a href="flagged.html#G-EXCHANGE-ONLY">G-EXCHANGE-ONLY</a>.</p></div>
+
 <p class="note">"Price ÷ metal value" is arithmetic, not a verdict: it compares the asking price with the gold content alone. Stones, labour and brand sit on top of that, so a high multiple is normal for a diamond ring and is <i>not</i> evidence of overcharging. The direction that matters for fraud is the other one — a price <b>below</b> the metal value. No row in this catalogue is below it.</p>
 </section>
 
@@ -485,10 +488,10 @@ def page_checklist():
          "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
          "advice",
          "This repo stores the verbatim page text of every row (verification/evidence/), which is the same discipline: keep what the page said, with the date."),
-        ("10", "On arrival: independent jeweler", "Before wearing or resizing, have an independent jeweler verify purity and weight.",
-         "https://jvclegal.org/mediation-services/",
+        ("10", "On arrival: independent jeweler", "Before wearing or resizing, have an independent jeweler read the stamp and weigh the ring. A hallmark is a claim struck in metal; only an inspection turns it into evidence.",
+         "https://www.law.cornell.edu/cfr/text/16/23.10",
          "not yet applicable",
-         "No purchase has been made in this project. Nothing here substitutes for that inspection."),
+         "No purchase has been made in this project, so nothing here is a completed inspection. This test is the project's own control, not a rule the seller is legally bound to offer."),
         ("11", "Best verification: XRF", "A stamp is a claim; XRF or another professional assay is evidence.",
          "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
          "not yet applicable",
