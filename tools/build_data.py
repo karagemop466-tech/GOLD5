@@ -693,7 +693,7 @@ flags = [
      "listingIds": ["A01", "A02", "A03", "A04"],
      "sources": ["https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold"]},
     {"id": "G-ALLUREZ-COMPLAINTS", "severity": "high",
-     "title": "The four best-scoring rows come from a seller with 49 BBB complaints in three years",
+     "title": "The seller behind four of the best-scoring rows has 49 BBB complaints in three years",
      "detail": "Allurez is BBB-accredited (A+, since 2/24/2011), and its BBB complaints page shows 49 complaints in the last 3 years and 8 in the last 12 months: 23 product issues, 13 service or repair, 7 delivery, 3 order, 2 sales and advertising, 1 customer service; 40 answered and 9 resolved. One displayed complaint describes a ring whose colour did not match the photo; the buyer was refunded after BBB involvement, less a shipping charge the business later refunded as a goodwill gesture. A published review also says the business asked the reviewer to remove a negative review to get the ring back. None of this proves any particular ring is defective — it does change how much the 4-of-6 score on A01-A04 should be leaned on, and it is why the exchange-only policy on 'Design Your Own' rings matters more here.",
      "listingIds": ["A01", "A02", "A03", "A04"],
      "sources": ["https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895/complaints",
