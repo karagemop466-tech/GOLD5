@@ -1,0 +1,21 @@
+{
+  "metal": "Gold (XAU/USD)",
+  "source_name": "Kitco Metals Inc. — Live Gold Price",
+  "source_url": "https://www.kitco.com/charts/gold",
+  "captured_date": "2026-10-22",
+  "kitco_timestamp": "Oct 22, 2026 - 19:11 NY Time (page footnote: as of October 22, 2026 at 7:10 p.m. EDT)",
+  "evidence": "spot_kitco",
+  "usd_per_troy_oz_bid": 4025.0,
+  "usd_per_troy_oz_bid_text": "4,025.00",
+  "usd_per_gram_kitco_text": "129.41",
+  "grams_per_troy_oz": 31.1034768,
+  "grams_per_troy_oz_text": "31.1034768",
+  "kitco_value_by_purity_per_oz": {
+    "24K": "$4,025.00",
+    "22K": "$3,689.72",
+    "18K": "$3,018.75",
+    "14K": "$2,347.78",
+    "10K": "$1,677.22"
+  },
+  "note": "Spot moves continuously. This is a snapshot, not a live feed. The calculator lets you type a newer spot price (from kitco.com) — anything you type is your input, not site data."
+}
