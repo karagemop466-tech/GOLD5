@@ -13,7 +13,9 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "verification", "data.json")
-INDEX = os.path.join(ROOT, "index.html")
+# the suite's landing page moved to report/index.html when the integrated root dashboard
+# took over the repo root; plant the HTML error there, where the checker looks
+INDEX = os.path.join(ROOT, "report", "index.html")
 CHECK = [sys.executable, os.path.join(ROOT, "tools", "check_report.py")]
 
 
@@ -72,6 +74,18 @@ def t_bad_url(d):
     d["listings"][0]["url"] = "https://example.com/fake-ring"
 
 
+def t_flag_amount(d):
+    for f in d["flags"]:
+        if f["id"] == "G-VERA-RETURN-FEES":
+            f["detail"] = f["detail"].replace("$20", "$420")
+
+
+def t_ref_quote(d):
+    for r in d["references"]:
+        if r["id"] == "R-FTC":
+            r["quotes"][0] = "Nobody ever made a rule about karat marks"
+
+
 def t_html():
     shutil.copy(INDEX, INDEX + ".bak")
     try:
@@ -94,6 +108,8 @@ TESTS = [
     ("Evidence token removed (the 2.3 g claim)", lambda: with_data(t_drop_token, "token")),
     ("Product URL replaced with a non-official domain", lambda: with_data(t_bad_url, "url")),
     ("Hand-typed price in the HTML ($999.99)", lambda: t_html()),
+    ("Flag detail invents an amount ($20 restocking → $420)", lambda: with_data(t_flag_amount, "flagamount")),
+    ("Reference quote that is not on the cited page", lambda: with_data(t_ref_quote, "refquote")),
 ]
 
 
