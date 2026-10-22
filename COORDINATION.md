@@ -184,13 +184,13 @@ deviation already logged by the earlier sessions).
 
 | ID | Task | Status | Owner | File scope (exclusive to this session) |
 |----|------|--------|-------|----------------------------------------|
-| G1 | Claim board + fresh live re-verification of every row used by the new site | **in progress** | `arena-60c4b9c3` | `COORDINATION.md` (append-only section below), `verification/**` |
-| G2 | Evidence store: verbatim captures with URL + UTC timestamp per value | **in progress** | `arena-60c4b9c3` | `verification/evidence/*.txt` |
-| G3 | Consolidated verified dataset (listings, sellers, references, flags, spot) | unclaimed→in progress | `arena-60c4b9c3` | `verification/*.json` |
-| G4 | New dashboard site (landing + category subpages + calculator) at repo root | in progress | `arena-60c4b9c3` | `index.html`, `report/**` |
-| G5 | Hallucination/security checker for the new dataset (`tools/check_report.py`) | in progress | `arena-60c4b9c3` | `tools/check_report.py` |
-| G6 | Run verification passes after each review; log results | in progress | `arena-60c4b9c3` | `verification/passes.json`, this file |
-| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | in progress | `arena-60c4b9c3` | this file (log) |
+| G1 | Claim board + fresh live re-verification of every row used by the new site | **done** | `arena-60c4b9c3` | `COORDINATION.md` (append-only section), `verification/**` |
+| G2 | Evidence store: verbatim captures with URL + UTC timestamp per value | **done** (21 captures) | `arena-60c4b9c3` | `verification/evidence/*.txt` |
+| G3 | Consolidated verified dataset (listings, sellers, references, flags, spot) | **done** (27 listings / 9 sellers / 7 refs / 26 flags) | `arena-60c4b9c3` | `verification/data.json`, `tools/build_data.py` |
+| G4 | New dashboard site (landing + 8 category subpages + calculator) at repo root | **done** | `arena-60c4b9c3` | `index.html`, `report/**` |
+| G5 | Hallucination/security checker + negative tests | **done** (1,622 assertions; 7/7 planted errors caught) | `arena-60c4b9c3` | `tools/check_report.py`, `tools/security_test.py` |
+| G6 | Run verification passes after each review; log results | **done** (pass log on Method page) | `arena-60c4b9c3` | `verification/passes.json`, this file |
+| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | **in progress** | `arena-60c4b9c3` | this file (log) |
 
 **Files this session will NOT edit** (owned by earlier sessions, preserved byte-for-byte):
 `docs/**` (638c9614), `pages/**` + `assets/**` + `index-090bae73.html` (090bae73),
@@ -202,3 +202,71 @@ root `index.html`; the previous root dashboard is preserved as `index-37e8ff42.h
 - 2026-10-22 23:31 UTC: repo read; both existing checkers run clean at baseline
   (`scripts/verify.py` PASS 0 errors; `tools/check_hallucinations.py` 166 checks / 0 FAIL / 1 INFO).
   Live re-verification started. Prices/policies are being re-read from the sellers' own pages today.
+
+### Log — session `arena-60c4b9c3` (verification + dashboard pass)
+
+**What was done, in order**
+
+1. **Baseline** — both existing checkers run before touching anything: `scripts/verify.py` PASS (0 errors,
+   9 checks); `tools/check_hallucinations.py` 166 checks / 0 FAIL / 1 INFO. Nothing from the earlier
+   sessions was edited: `docs/**`, `pages/**`, `assets/**`, `site/**`, `data/**`, `index-090bae73.html`
+   are byte-identical. The previous root dashboard was copied to `index-37e8ff42.html` by the builder
+   before `index.html` was regenerated, so that delivery is also preserved verbatim.
+2. **Live re-verification** — 21 page captures, 2026-10-22 23:26 → 2026-10-23 00:07 UTC, each saved with
+   its URL and timestamp in `verification/evidence/`:
+   Kitco spot; Brilliant Earth Freesia 14K + Freesia 18K + the yellow-gold category listing; Blue Nile
+   product + returns + BBB profile; Allurez U5882, U170, NG4426, U5885 (18K) + return policy; Avianne
+   R25893; Jewelry Master 149700; Solid Gold Jewelers B02561; Etsy VeraByEden (2 chunks) + the sold-out
+   BUTTERFLYWING band + Etsy Purchase Protection; FTC consumer guide; 16 CFR 23.3 / 23.4 / 23.10.
+3. **Dataset** — `verification/data.json` via `tools/build_data.py`: 27 listings (12 re-read live today =
+   provenance **A**; 15 captured earlier the same day by another session = provenance **B**), 9 sellers,
+   7 reference documents, 26 flags, one spot snapshot. Every row carries `tokens`: the literal strings
+   that must exist in its capture.
+4. **Site** — `index.html` (dashboard) + `report/`: All listings, By karat, Gold value & calculator,
+   Sellers, Checklist, Flagged for review, Sources, Method. No framework, no external assets, no build
+   step; the calculator runs entirely in the browser from inputs the reader can see.
+5. **Gate** — `tools/check_report.py`: 10 check groups, **1,622 assertions, 0 FAIL, 0 WARN, 0 INFO**.
+   `tools/security_test.py` plants 7 fake values (invented price, invented weight, fake flag, swapped
+   price text, deleted evidence token, off-allowlist URL, hand-typed HTML price) — **7/7 caught**.
+   Two of those tests were added *because an earlier version of the checker missed them*; both holes
+   are documented in `verification/security_tests.md`.
+6. **Pass log** — 3 passes recorded in `verification/passes.json`, rendered on the Method page.
+
+**Findings that changed the picture**
+
+- **No listing can clear the checklist.** Best score is 4 of 6. Not one of 27 listings states a hallmark
+  *and* a maker's mark; 19 of 27 publish no gram weight, so the price-vs-gold test cannot be run from the
+  page at all. Only 2 listings state "solid gold" *and* publish both weight and price.
+- **A previous pass's headline "below melt value" case study is withdrawn.** It rested on a $444.80 price
+  taken from a search snippet. The live listing today says "Sorry, this item is sold out" with no price.
+  The weight (7 g) and the "Marked 14K" claim do come from the live title and are kept; the price is now
+  blank and the conclusion withdrawn (`G-PRICE-BLANK-SOLD`, `verification/evidence/withdrawn_444_80.txt`).
+- **Allurez's engagement rings are exchange-only.** Its return policy carves out "Design Your Own
+  engagement rings ... May be exchanged for items of the same or higher value" — and all three Allurez
+  settings are sold through that flow. Flagged high (`G-EXCHANGE-ONLY`).
+- **VeraByEden: 7-day return with a 10% restocking fee**, not the open-ended "returns accepted" the Etsy
+  tab suggests; and one listing *photo* asks the buyer to share contact details off-platform
+  (`G-VERA-RETURN-FEES`, `G-OFFPLATFORM-CONTACT`).
+- **Brilliant Earth's 18K page was served in euros** minutes after the same product's 14K page came back
+  in USD. No conversion was performed; the 18K USD price is blank (`G-PRICE-EUR`).
+- **Kitco disagreed with itself inside one capture**: 4,026.90 / 4,027.50 / 4,028.21 per ounce, and
+  129.47 / 129.49 per gram. The lowest per-gram figure (129.47) is used so metal values stay
+  conservative (`G-SPOT-SPREAD`).
+- **Blue Nile reputation is real but mixed**: BBB "A+Rated", accredited since 3/1/1999, 700 employees —
+  and the three most recent review excerpts on that profile describe a missed deadline, a manufacturing
+  dispute and a $7,500 ring "a nightmare from the start". Complaint counts were not displayed today, so
+  they are blank rather than quoted from the earlier pass.
+- **One Etsy listing in the catalogue sells vermeil in the same design family** as its solid-gold
+  options (`G-CITTALI-VERMEIL`) — the exact plated-vs-solid trap the checklist warns about.
+
+**Sources** — see `report/sources.html` (published) and `verification/evidence/`. Reference documents:
+FTC consumer guide; 16 CFR § 23.3 / § 23.4 / § 23.10 (e-CFR text via Cornell LII); Etsy Purchase
+Protection; BBB Blue Nile profile; Kitco.
+
+**Deviations logged** — (a) the platform binds this session to `arena/60c4b9c3-gold5`, so the
+`session-<id>/<task>` branch naming from the brief was not used (same deviation the earlier sessions
+recorded); non-overlapping file scopes were used instead. (b) `sandbox curl` cannot reach seller hosts,
+so every capture was taken with the page-fetch tool and stored verbatim; the limitation is published on
+the Method page. (c) Running the pre-existing `scripts/verify.py` rewrites its auto-generated
+`docs/verification/report.md` timestamp; that one-line timestamp change was reverted before committing
+so the other session's file is untouched.

@@ -55,6 +55,10 @@
     }
     var fine = grams * karat / 24;
     var melt = fine * spot;
+    if (!(melt > 0)) {
+      out.innerHTML = '<div class="cell"><div class="k">Enter a weight above zero</div><div class="v">—</div></div>';
+      return;
+    }
     calc.fine = fine; calc.melt = melt; calc.premium = null;
     var cells = [
       ["Fine gold", fine.toFixed(4) + " g", ""],

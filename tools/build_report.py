@@ -421,7 +421,7 @@ def page_sellers():
             + ("" if c.get("verified") else ' <span class="tiny">(number seen on page, contact page not opened)</span>') + "</li>"
             for c in s["contact"])
         rep = "".join(f'<li>{esc(x["text"])} — <a href="{esc(x["source"])}" rel="noopener">source</a></li>' for x in s["reputation"])
-        rep_block = f'<ul class="tight">{rep}</ul>' if rep else f'<p class="blankline">No independent reputation source verified. {esc(s["reputationNote"])}</p>'
+        rep_block = f'<ul class="tight">{rep}</ul>' if rep else f'<p class="blankline">{esc(s["reputationNote"] or "No independent reputation source verified.")}</p>'
         blocks.append(f"""
 <section class="seller" id="{esc(s["id"])}">
   <h2>{esc(s["name"])} <span class="tag">{esc(s["type"])}</span></h2>
