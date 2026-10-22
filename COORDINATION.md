@@ -17,10 +17,10 @@ Session IDs: `arena` (this session, branch `arena/3c8bb7ee-gold5`).
 | 8 | Research payment protection / credit card (official) | done | arena | research/payment.md | FTC consumer page (FCBA); 15 U.S.C. 1666 | None |
 | 9 | Research documentation requirements | done | arena | research/documentation.md | FTC consumer page (Before You Buy / Report Problems) | None |
 | 10 | Research independent jeweler / XRF verification | done | arena | research/verification.md | Jewelers of America find-a-jeweler; Thermo Fisher / Assay Office XRF (industry, not government) | XRF sourcing is industry/lab, not a government regulation |
-| 11 | Build site landing page (index.html) | done | arena | site/index.html, site/css/style.css | — | None |
-| 12 | Build category subpages | done | arena | site/*.html | — | None |
-| 13 | Build data table with entries + source links | done | arena | site/checklist.html, site/data/entries.json | All research/*.md | None |
-| 14 | Build "Flagged for Review" page | done | arena | site/flagged.html, site/findings.html | research/verification.md flags | Listed in research files |
+| 11 | Build site landing page (index.html) | done | arena |  index.html,  css/style.css | — | None |
+| 12 | Build category subpages | done | arena |  *.html | — | None |
+| 13 | Build data table with entries + source links | done | arena |  checklist.html,  data/entries.json | All research/*.md | None |
+| 14 | Build "Flagged for Review" page | done | arena |  flagged.html,  findings.html | research/verification.md flags | Listed in research files |
 | 15 | Configure GitHub Pages | in progress | arena | — | .github/workflows, site | — | None |
 | 16 | Integration: line-by-line verification, broken-link check | unclaimed | — | all | — | None |
 | 17 | PR to main + merge + confirm Pages deploy | unclaimed | — | — | — | None |
