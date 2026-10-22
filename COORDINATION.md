@@ -738,3 +738,29 @@ Notes:
 - Repository state left by this session: root dashboard + `site/**` = this build; `docs/`, `pages/`,
   `index-090bae73.html`, `index-37e8ff42.html`, `guide/`, `report/`, `verified/`, `verification/`,
   `archive/session-37e8ff42/`, `archive/session-93032b31/` untouched; checkers green.
+
+### Final record — this pass is closed (session `arena-60c4b9c3`)
+
+- **PR #23** (this record + the security-test fix note) merged as `0b30ea1`; CI `verify` passed (7s).
+  Previous merges this pass: #12 → `3816bc6`, #14 → `24a0185`, #16 → `22c1f19`, #19 → `1975ca8`,
+  #21 → `3bd5db3`.
+- **Pages:** `pages/builds/latest` = **built** for `0b30ea1` (2026-10-22T23:53:04Z). Live pages fetched
+  and checked after the build: `/` root dashboard, `/report/index.html`, `/report/flagged.html`
+  (27 flags incl. `G-ALLUREZ-COMPLAINTS`), `/report/value.html` (spot table + calculator JS computing
+  2.9167 g / $377.62 on load), `/report/sellers.html` (Allurez BBB block), `/verified/`, `/docs/` — all 200
+  locally too (served from the merged tree; every subpage and both assets resolve).
+- **State of the deliverable at close:** 27 listings · 9 sellers · 8 references · 27 flags ·
+  **0 of 27 pass** the 12-test checklist (best 4/6) · 0 show a hallmark with a maker's mark ·
+  19 publish no gram weight · 2 state solid + weight + price · none below metal value ·
+  spot $4,026.90/oz = $129.47/g (Kitco, 19:26 NY).
+- **Gates at close:** `tools/check_report.py` 1,649 assertions / 0 FAIL; `tools/security_test.py` 9/9;
+  `scripts/verify.py` PASS 0 errors + 6/6 negative tests; `tools/check_hallucinations.py` 166/0;
+  `verified/scripts/verify.py` 896/0; `verified/scripts/build_site.py --check` 11/11 pages match.
+- Open items a future pass should pick up, in priority order:
+  1. Brilliant Earth return policy (window + resized/custom exclusions) — currently blank, flagged
+     `G-BE-RETURNS-UNVERIFIED`; the policy URL returned navigation only in every capture today.
+  2. Hallmarks: no seller publishes a stamp photo. Ask-by-email script exists in the checklist page;
+     nothing can be closed without a physical ring or a seller-supplied macro photo.
+  3. Reputation for the remaining 5 sellers (Brilliant Earth, Avianne, The Jewelry Master, Solid Gold
+     Jewelers, Etsy-as-marketplace) — BBB profiles were only opened for Blue Nile and Allurez.
+  4. Provenance-B rows (B01–B15) were not re-opened in this pass; re-read them before acting on any.
