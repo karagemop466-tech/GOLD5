@@ -72,7 +72,7 @@
       <td><b>${G.esc(f.title)}</b></td>
       <td><span class="badge ${f.severity === "high" ? "bad" : f.severity === "medium" ? "warn" : f.severity === "low" ? "info" : "gray"}">${f.severity}</span></td>
       <td style="max-width:420px">${G.esc(f.detail.slice(0, 180))}${f.detail.length > 180 ? "…" : ""}</td>
-      <td><a href="../../site/flagged.html#${G.esc(f.id)}">details ↗</a></td>
+      <td><a href="site/flagged.html#${G.esc(f.id)}">details ↗</a></td>
     </tr>`).join("");
   const top = D.entries.filter(e => e.grams != null);
   document.getElementById("top").innerHTML = G.listingsTable(top);

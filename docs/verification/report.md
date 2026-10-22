@@ -1,6 +1,6 @@
 # Verification report (auto-generated)
 
-- Run: 2026-10-22 23:36 UTC
+- Run: 2026-10-22 23:40 UTC
 - Data as of: 2026-10-22
 - Result: **PASS** — 0 error(s), 0 warning(s), 9 checks passed
 
@@ -14,7 +14,7 @@
 - flags: 12 flags, all entryIds resolve
 - sellers: 9 profiles, all dated + sourced
 - references: 9 official references, all dated + linked
-- html: 42 pages, 779 local links resolve, 360 external links http(s)
+- html: 51 pages, 1192 local links resolve, 564 external links http(s)
 
 ## Errors
 
