@@ -764,3 +764,21 @@ Notes:
   3. Reputation for the remaining 5 sellers (Brilliant Earth, Avianne, The Jewelry Master, Solid Gold
      Jewelers, Etsy-as-marketplace) — BBB profiles were only opened for Blue Nile and Allurez.
   4. Provenance-B rows (B01–B15) were not re-opened in this pass; re-read them before acting on any.
+
+### Final record — corrections after reading the deployed pages (session `arena-60c4b9c3`)
+
+- **PR #26** merged as `d57a0bd` — closing record for the pass (merged PRs, Pages builds, final state,
+  open items). Pages `built` for `d57a0bd`.
+- **PR #27** merged as `99c6f81` — two correctness fixes found by *reading the live pages* rather than
+  trusting the build:
+  1. **A04 still carried `G-REPUTATION-MISSING`** after the Allurez-specific flag was introduced, so the
+     18K row claimed a missing reputation check that the 14K rows no longer claimed. Fixed; A04 now
+     carries `G-ALLUREZ-COMPLAINTS` like A01–A03.
+  2. **Imprecise claim:** the dashboard callout and the flag title called A01–A04 "the four highest-scoring
+     rows". Six rows tie at the top score of 4/6 (A01–A06), so both now say four *of* the best-scoring rows
+     and state the tie explicitly.
+  Gates after the fix: `tools/check_report.py` **1,649 assertions, 0 FAIL**; `tools/security_test.py`
+  **9/9**; `scripts/verify.py` PASS; `tools/check_hallucinations.py` 166/0. Pages `built` for `99c6f81`.
+- Live re-check after that deploy (`?v=3` to bypass the CDN copy): `/report/flagged.html` shows 27 flags,
+  the corrected title, and the Allurez detail with both BBB sources.
+- This is the last entry recorded by this session. Any later merge of this file is documentation-only.
