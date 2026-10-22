@@ -184,11 +184,11 @@ exclusive to this session and does **not** modify the archived deliverables of `
 | ID | Task | Status | Owner | File scope (exclusive) |
 |---|---|---|---|---|
 | C1 | Re-read prior boards, datasets, evidence; run both existing checkers | done | 7cca80c9 | read-only |
-| C2 | Live re-verification of listing prices, karats, weights, policies (dated) | in progress | 7cca80c9 | `docs/verification/*.md` (new files only) |
-| C3 | Consolidate all 25 listings (both sessions) into one canonical dataset | unclaimed → in progress | 7cca80c9 | `site/assets/data.js` |
-| C4 | Rebuild dashboard site: landing + category subpages, tables, analysis, calculator | in progress | 7cca80c9 | `index.html`, `site/**/*.html`, `site/assets/*.css`, `site/assets/*.js` |
-| C5 | Verification harness v2 + hallucination/security passes | in progress | 7cca80c9 | `scripts/verify.py`, `site/assets/verification-log.js` |
-| C6 | Final integration: link check, PR → main, merge, Pages deploy confirm | unclaimed | 7cca80c9 | `COORDINATION.md` (log), GitHub PR |
+| C2 | Live re-verification of listing prices, karats, weights, policies (dated) | **done** | 7cca80c9 | `docs/verification/*.md` (new files only) |
+| C3 | Consolidate all 25 listings (both sessions) into one canonical dataset | **done** | 7cca80c9 | `site/assets/data.json` (source) + `data.js` (emitted) |
+| C4 | Rebuild dashboard site: landing + category subpages, tables, analysis, calculator | **done** | 7cca80c9 | `index.html`, `site/**/*.html`, `site/assets/*.css`, `site/assets/*.js` |
+| C5 | Verification harness v2 + hallucination/security passes | **done** | 7cca80c9 | `scripts/verify.py`, `scripts/author_data.py`, `scripts/build_site.py` |
+| C6 | Final integration: link check, PR → main, merge, Pages deploy confirm | **in progress** | 7cca80c9 | `COORDINATION.md` (log), GitHub PR |
 
 Notes:
 - No other session is active: only this branch has commits after `1c35fd0`, and no claim is open on
@@ -197,3 +197,38 @@ Notes:
   not by a conflicting second site.
 - Branch naming deviation persists (platform binds this session to `arena/7cca80c9-gold5`); logged,
   as before, instead of `session-<id>/<task>`.
+
+### Log — session `7cca80c9` (consolidation, 2026-10-22 UTC)
+
+- **C1 done.** Read every prior board, dataset and evidence file; ran `scripts/verify.py` (v1: PASS, 9
+  checks) and `tools/check_hallucinations.py` (PASSED, 166 checks, 0 FAIL, 1 INFO). Fetched PR #4's
+  head to local ref `pr4` (= `2716d97`) for reference; it is not merged and its branch is gone.
+- **C2 done — live re-reads this pass (all 2026-10-22):** Kitco spot (7:26 p.m. ET), Blue Nile
+  returns policy + engagement-rings listing + items 203257 / 195871 / 203348, Allurez U5882 / U170 /
+  NG4426 + return policy, Avianne R25893, Jewelry Master 149700, Solid Gold Jewelers B02561,
+  Brilliant Earth Freesia / Nadia / Freesia Hidden Halo / Secret Halo + the return-policy URL,
+  Etsy 4426190660 and 1151446373, eCFR 16 CFR Part 23, FTC consumer pages, NIST SP 811, 15 U.S.C. § 297.
+  Six values remain same-day captures by `37e8ff42` (marked `provenance: "prior"` in the data), not
+  re-fetched here; every one carries its quote and URL.
+- **C2 corrections made:** spot updated to the 7:26 p.m. bid **$4,026.90/oz = $129.47/g** (earlier
+  $4,025.00 capture kept as a prior quote); FL-06 rewritten — only the $870 setting is below Blue
+  Nile's $1,000 warranty floor, the $1,000 setting sits exactly at it; three Etsy returns entries
+  marked verified after re-reading the stated windows (7-day VeraByEden, 30-day ForeverForLove and
+  Cittali); FL-24 closed (karat-in-URL and grams-via-snippet both resolved live).
+- **C3 done.** `scripts/author_data.py` is the single source of truth and emits
+  `site/assets/data.json`: **25 entries / 13 sellers / 25 flags (24 open, 1 resolved) / 10 references**.
+  Categories: 21 engagement rings, 3 bands, 1 case study. 8 rows publish grams, 24 publish a price,
+  9 state “solid gold”, 2 claim a karat stamp, **0 state a maker’s mark**.
+- **C4 done.** `scripts/build_site.py` renders **10 pages** (`index.html` + 9 under `site/`) with no
+  frameworks, external fonts or third-party scripts: Dashboard, Listings (25 rows, filter/sort),
+  Gold Price (4 timestamped quotes, purity table, raw-gold table), Calculator, Checklist, Sellers,
+  Analysis, Flagged for Review, Sources, Verification. Mobile layout + print styles in
+  `site/assets/site.css`. Prior sessions' sites are untouched and linked from the archive list.
+- **C5 done.** `scripts/verify.py` rewritten for v2: **15 checks PASS, 0 fail** (dataset integrity,
+  source+date per row, every blank flagged, arithmetic, rendered rows, internal links/anchors,
+  external-link registry, every dollar figure sourced-or-computed, `data.js`↔`data.json`, published
+  gold values, HTML well-formedness, no-hallucination banner on every page, security/no-`http://`/
+  `rel=noopener`). Report at `data/check_report_v2.json`; history in `data/pass_history_v2.json`;
+  human-readable report in `docs/verification/consolidation-2026-10-22.md`.
+- **Open question left in public (does not block):** no listing states a maker's mark, 17 publish no
+  weight, and Brilliant Earth's return policy URL redirects. These are published on Flagged for Review.

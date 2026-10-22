@@ -1,49 +1,92 @@
 # GOLD5 — Solid Gold Engagement Ring Research
 
-Research project to **find gold engagement rings** that meet a strict online-buying checklist
-(solid gold, karat, hallmark + maker's mark, weight in grams, seller reputation, price vs. gold
-value, return/resize policy, payment protection, documentation, independent XRF test).
+A research repo and static dashboard for buying a **gold engagement ring** that can actually be
+verified: karat, an explicit "solid gold" statement (not plated / vermeil / filled / overlay / tone),
+a hallmark with a **maker's mark** next to the karat stamp, weight in grams, a real seller with real
+contact details, a price compared with the gold it contains, a written return policy that covers
+resizing, credit-card payment, and an independent jeweller / XRF check on arrival.
 
-Three parallel agent sessions each delivered work for this project. **All of it is preserved**
-(union merge — see the merge notes in [COORDINATION.md](./COORDINATION.md)):
+**Live site:** <https://karagemop466-tech.github.io/GOLD5/> (root, GitHub Pages from `main`)
 
-| Session | Site (live) | Data | Checker |
-|---|---|---|---|
-| `37e8ff42` (final integration, PR #5) | **repo root** — https://karagemop466-tech.github.io/GOLD5/ (landing dashboard: Listings, Gold Price, Calculator, Checklist, Sellers, Flagged for Review, Sources) | [site/assets/data.js](./site/assets/data.js) (strict JSON) | `python3 scripts/verify.py` |
-| `638c9614` (PR #1/#2) | `docs/` — https://karagemop466-tech.github.io/GOLD5/docs/ (Dashboard, Rings, Calculator, Analysis, Sellers, Checklist, Flagged for Review, Verification, Sources) | [data/rings.json](./data/rings.json), `sellers.json`, `spot.json`, `flags.json` + verbatim `data/evidence/*.txt` | `python3 tools/check_hallucinations.py` |
-| `090bae73` (PR #3) | Checklist-format guide — landing preserved at [index-090bae73.html](./index-090bae73.html) + 13 subpages under `pages/` (gold purity, solid gold, hallmark, weight, seller reputation, price, returns, payment, documentation, upon-arrival, XRF, calculator, flagged) | content in-page, cited to official sources | cited per page |
+The core finding is the thesis: **a 14K or 18K stamp does not prove purity, and in this dataset no
+listing is documented well enough to buy without asking the seller for more.** 0 of 25 rows state a
+maker's mark; 17 publish no weight; 16 never say "solid gold". The dashboard leads with that.
 
-All sessions captured data from official pages on 2026-10-22 and **independently corroborate the
-same Kitco spot snapshot** ($4,025.00/oz bid, $129.41/g, 7:10 p.m. EDT).
+## ◆ NO HALLUCINATIONS RULE
 
-## ◆ NO HALLUCINATIONS RULE (applies to everything)
-No price, weight, karat, hallmark, policy, or claim is recorded without a link to the **official
-source page** and a check date. Anything not confirmable from an official source is **left blank
-and flagged** on the respective "Flagged for Review" page — never guessed, estimated or inferred.
-"Calculated" values are arithmetic on verified inputs (`weight × spot/gram × karat/24`).
-**After every review pass run the checker** and record it in COORDINATION.md:
-- `python3 scripts/verify.py` (root site + data)
-- `python3 tools/check_hallucinations.py --log "what I reviewed"` (docs/ site + data)
+No price, weight, karat, hallmark, policy or date is recorded without a link to the **official source
+page** and a check date. Anything not confirmable is **blank and flagged** on
+[Flagged for Review](https://karagemop466-tech.github.io/GOLD5/site/flagged.html) — never guessed,
+estimated, or copied from a search snippet. Derived values are arithmetic on verified inputs
+(fine gold = grams × karat fineness; metal value = fine gold × spot at a timestamped quote).
 
-## Layout
-| Path | What |
+Every review pass ends with the checkers:
+
+```bash
+python3 scripts/verify.py             # 15 checks over data + the generated 10-page site
+python3 tools/check_hallucinations.py  # 166 checks over the archived docs/ dataset
+```
+
+`scripts/verify.py` fails on: a listing without an https source link, a blank cell without its flag,
+arithmetic that does not recompute, a missing/broken internal link or anchor, an unregistered external
+link, a dollar figure that is not dataset-sourced or computed, a `data.js`/`data.json` mismatch, a
+template placeholder, malformed HTML, a missing no-hallucinations banner, or a security regression
+(http:// link, `_blank` without `rel=noopener`, frame, third-party script, posting form).
+
+## What the site contains
+
+| Page | Contents |
 |---|---|
-| `index.html`, `site/**` | Landing dashboard + subpages of session 37e8ff42 (this integration) |
-| `site/assets/data.js` | Single-source data for the root site (strict JSON) |
-| `scripts/verify.py` | Hallucination + link + arithmetic pass for the root site/data |
-| `docs/verification/*.md` | Per-source verification notes with exact quotes & URLs (session 37e8ff42) |
-| `index-090bae73.html`, `pages/*.html`, `assets/` | Checklist-format site of session 090bae73 (preserved) |
-| `data/rings.json`, `sellers.json`, `spot.json`, `flags.json` | Table data for the `docs/` site (shared output — edited only by the integration session) |
-| `data/evidence/*.txt` | Verbatim excerpts + source URL + capture date for every value (session 638c9614) |
-| `tools/check_hallucinations.py` | Security check: every value must appear verbatim in evidence; blanks must be flagged; every `$` on the site must be sourced or registered as calculated; links must resolve |
-| `tools/build_site.py` | Generates the static site into `docs/` (standard library only) and runs the check |
-| `docs/` | GitHub Pages site of session 638c9614 |
-| `COORDINATION.md` | Shared task board for all sessions |
+| `index.html` | Dashboard: spot price with timestamp, bottom-line verdict, 5 stat cards, price/metal findings, purity table, and the best-documented rows |
+| `site/listings.html` | All **25 listings** from **13 sellers**, filterable/sortable, with price, karat, grams, fine gold, metal value, price ÷ metal, solid-gold wording, hallmark + maker's mark, return policy, check date, provenance and flags |
+| `site/gold-price.html` | Four timestamped same-day quotes, per-purity values (10K–24K), and a raw-gold table by weight |
+| `site/calculator.html` | Live gold calculator: grams × karat × spot → fine gold, metal value, price ÷ metal, verdict; presets from the dataset |
+| `site/checklist.html` | The 12-point buying checklist, each point tied to an official source and to what the dataset shows |
+| `site/sellers.html` | 13 sellers: contact, returns, warranty, payment, reputation, flags |
+| `site/analysis.html` | Median markups, the below-metal case, documentation ranking, completeness scorecard, seller concentration |
+| `site/flagged.html` | All 25 flags (24 open, 1 resolved), each with detail and links |
+| `site/sources.html` | Every source used, with what it was used for and the check date |
+| `site/verification.html` | Method, the live fetch log, corrections made, and the latest checker result |
+
+Prices, karats and weights are what the seller displayed on the check date. **Prices change** — re-check
+before buying. Spot used for every calculation: Kitco bid **$4,026.90/oz = $129.47/g** at
+2026-10-22 7:26 p.m. ET; three earlier same-day quotes ($4,025.00, $4,077.60, $4,083.82) are recorded
+for comparison.
+
+## Build pipeline
+
+```
+scripts/author_data.py     ->  site/assets/data.json      (single source of truth)
+scripts/build_site.py      ->  index.html + site/*.html   (static, stdlib only)
+scripts/verify.py          ->  data/check_report_v2.json  (15 checks, exit 1 on failure)
+```
+
+```bash
+python3 scripts/author_data.py
+python3 scripts/build_site.py
+python3 scripts/verify.py
+```
+
+No frameworks, no external fonts, no third-party JavaScript, no network calls from the site.
+
+## Archived deliverables (preserved, not modified)
+
+| Session | Delivery | Where |
+|---|---|---|
+| `638c9614` | 11 rings + sellers/spot/flags, evidence transcripts, checker + builder | `data/`, `docs/`, `tools/` |
+| `090bae73` | 14-page checklist-format guide | `index-090bae73.html`, `pages/`, `assets/` |
+| `37e8ff42` | First root dashboard (14 listings, 8 pages) | `archive/session-37e8ff42/` |
+| `7cca80c9` | This consolidation: 25 listings, 13 sellers, 10 pages, 15-check harness | root `index.html`, `site/`, `scripts/` |
+
+All sessions captured data on 2026-10-22 and corroborate the same Kitco spot snapshot. Merges were
+resolved as unions — no session's content was discarded. See `COORDINATION.md` for the full board,
+claims, handoffs and PR history.
 
 ## Refreshing data
-1. Re-open each listing, copy the new verbatim text into the session's evidence store
-   (`data/evidence/<id>.txt` for the docs/ site; quote+URL entries in `site/assets/data.js` +
-   `docs/verification/*.md` for the root site).
-2. Run the matching checker → fix any FAIL.
-3. For the docs/ site: `python3 tools/build_site.py` → commit `data/` and `docs/`.
-4. Update the log in [COORDINATION.md](./COORDINATION.md).
+
+1. Re-open each listing and policy page; update `scripts/author_data.py` with the new value, the exact
+   quote, the URL and the check date. Never overwrite a value with an estimate.
+2. `python3 scripts/author_data.py && python3 scripts/build_site.py && python3 scripts/verify.py`.
+3. Commit the regenerated `index.html`, `site/*.html`, `site/assets/data.json`, `site/assets/data.js`,
+   `data/check_report_v2.json` and the report in `docs/verification/`.
+4. Log the pass in `COORDINATION.md` (what changed, what failed, which flags opened or resolved).
