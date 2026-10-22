@@ -1212,6 +1212,9 @@ needed for a legacy branch build.</div>
 <tr><td>Timing</td><td>Last commit 23:13:10 UTC, i.e. under 60 minutes before this session started at 23:14 UTC. The session was active, so <b>no takeover was performed</b>; only genuinely unclaimed tasks (11&ndash;14, 16) were claimed.</td></tr>
 </tbody></table></div>
 <h2>Commit history on this branch</h2>
+<p class="small">Snapshot taken by the build itself, so this table is always one build behind: running
+<span class="mono">build.py</span> regenerates these pages, and committing that regeneration adds the
+commit the table would then need to show. Timestamps are UTC and are the authoritative record.</p>
 <div class="tbl-wrap"><table><thead><tr><th>Commit | date | subject</th></tr></thead><tbody>
 {''.join("<tr><td class='mono'>" + E(c) + "</td></tr>" for c in commits.splitlines())}
 </tbody></table></div>
