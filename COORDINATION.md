@@ -79,6 +79,11 @@ Status values: unclaimed · in progress · done · needs review (= published on 
 - XRF testing cost/availability: varies by jeweler — left blank, flagged
 - Gold-tone: not specifically regulated by FTC — left blank, flagged
 
+## Notes
+- No hallucinations: every value verified against official sources with links.
+- Unverified values left blank and flagged on Flagged for Review page.
+- All pages link to their sources for manual review.
+- 2026-10-22: **PR #2 merged** (merge commit ed54ada): https://github.com/karagemop466-tech/GOLD5/pull/2 . GitHub Pages build status `built`; live site verified by fetching https://karagemop466-tech.github.io/GOLD5/docs/flagged.html (renders; internal links resolve to /GOLD5/docs/…). T5 **done**. Final hallucination pass: 166 checks, 0 FAIL, 0 WARN, 1 INFO.
 ## Task board — session 37e8ff42 (final integrator)
 
 | ID | Task | Status | Owner | File scope (exclusive) |
