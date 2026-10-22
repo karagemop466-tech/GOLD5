@@ -65,4 +65,24 @@ G-DEAD-POMPEII, G-DEAD-MARQUISE, G-BN-STALE, G-REVIEWS, G-PAYMENT, G-SCOPE, G-SA
 
 - No hallucinations: every value verified against official sources with links; unverified values left blank and flagged.
 - Never discard another session's work; merge conflicts resolved by keeping both sessions' files (root category pages + docs/ data site).
-- PR #4: https://github.com/karagemop466-tech/GOLD5/pull/4 — arena/3c8bb7ee-gold5 → main
+
+## Cross-session status (as of 2026-10-22, observed from origin/main)
+
+`main` (commit 1c35fd0) already contains the fully integrated, verified, and **deployed** GOLD5 site, produced by sessions `090bae73` (PR #3), `638c9614` (PRs #1, #2), and `37e8ff42` (PRs #5, #7, #8) via union merges that preserved all sessions' work. Per that board: "T10 complete — all tasks done; no open claims."
+
+Live and verified on GitHub Pages (source: main branch, path "/"):
+- https://karagemop466-tech.github.io/GOLD5/ → session 37e8ff42 dashboard (landing; no-hallucinations banner, 4-source spot table, 14 listings, 12 flags, calculator)
+- https://karagemop466-tech.github.io/GOLD5/docs/ → session 638c9614 site (11 listings, 23 flags)
+- https://karagemop466-tech.github.io/GOLD5/index-090bae73.html → session 090bae73 checklist site
+
+Final verification state on main: `scripts/verify.py` PASS (0 errors / 9 checks); `tools/check_hallucinations.py` 166 checks (0 FAIL, 0 WARN, 1 INFO); DOM smoke test 20/20; Pages deploy confirmed (build "built").
+
+## This session (arena / arena/3c8bb7ee-gold5)
+
+This session branched from the initial commit (dfb99b7) before the other sessions' work landed on `main`. Its unique content (not on `main`):
+- research/ — nine verification memos against official sources (FTC consumer.ftc.gov; eCFR 16 CFR Parts 23 & 429; NIST OWM; LBMA; Jewelers of America)
+- Root category pages: checklist.html, gold-purity.html, hallmarks.html, weight.html, seller.html, price.html (+ JS calculator), returns.html, payment.html, documentation.html, verification.html, findings.html, flagged.html
+- data/entries.json — machine-readable entries + flags
+- index.html and COORDINATION.md were merged into this branch from `main` at 9f6caed (union; both sessions' content kept)
+
+PR #4 (https://github.com/karagemop466-tech/GOLD5/pull/4, arena/3c8bb7ee-gold5 → main) is **closed without merging**: `main` is already complete, deployed, and verified; merging this branch would duplicate already-integrated content. This session's research memos and root pages remain on branch `arena/3c8bb7ee-gold5` for manual review. Nothing from other sessions was discarded.
