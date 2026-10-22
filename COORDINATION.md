@@ -12,7 +12,7 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 (UTC) — **session `b1f2fe3b` active (tasks B1–B5 done, B6 final integration in progress; union-merged with `93032b31`, `7cca80c9`, `60c4b9c3`, `84be683f`, `37e8ff42`, `638c9614`, `090bae73`)**
+- Last updated: 2026-10-22 (UTC) — **session `b1f2fe3b` complete (all tasks B1–B6 done; PR #28 merged as `066fbe2`, GitHub Pages deployed and live-verified)**
 
 ## ⏱ ACTIVE CLAIM — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
@@ -107,7 +107,7 @@ older than 60 minutes with no commits may be taken over (handoff logged).
 | B3 | Unified verified catalog & seller cross-check (all 38 unique listings across sessions + live source verification, blanks flagged) | **done** | `b1f2fe3b` | `data/b1f2fe3b_verified_catalog.json`, `site/assets/catalog-b1f2fe3b.js`, `docs/verification/listings-b1f2fe3b.md` |
 | B4 | Cross-site anti-hallucination & security checker (`scripts/audit_b1f2fe3b.py`) covering root `site/`, `report/`, `docs/`, `verified/`, `pages/`, and unified catalog | **done** | `b1f2fe3b` | `scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_audit_report.json` |
 | B5 | Master Cross-Session Audit, Unified Listings & XRF/Melt Verification subpage (`site/master-audit.html`) | **done** | `b1f2fe3b` | `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js` |
-| B6 | Final integration: union-merge `origin/main`, update shared index/nav/data, run all verification suites, open PR → `main`, merge, confirm Pages deploy, log | **in progress** | `b1f2fe3b` | `COORDINATION.md`, `README.md`, `scripts/author_data.py`, `scripts/build_site.py`, `site/assets/data.json`, `index.html`, `site/*.html` |
+| B6 | Final integration: union-merge `origin/main`, update shared index/nav/data, run all verification suites, open PR → `main`, merge, confirm Pages deploy, log | **done** (PR #28 → `066fbe2`) | `b1f2fe3b` | `COORDINATION.md`, `README.md`, `scripts/author_data.py`, `scripts/build_site.py`, `site/assets/data.json`, `index.html`, `site/*.html` |
 
 ### Log — session `b1f2fe3b`
 - 2026-10-22 (UTC): Read `COORDINATION.md` and `README.md` at `1c35fd0`. Inspected all merged sessions (`638c9614`, `090bae73`, `37e8ff42`) and unmerged branches (`arena/3c8bb7ee-gold5` PR #4, `arena/9eba173a-gold5` PR #6, `arena/93032b31-gold5`, `arena/7cca80c9-gold5`). Claimed B1–B6 with non-overlapping exclusive file scopes (`docs/verification/*-b1f2fe3b.md`, `data/b1f2fe3b_*.json`, `scripts/audit_b1f2fe3b.py`, `site/master-audit.html`) and committed/pushed claim immediately before starting B1.
@@ -127,6 +127,13 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   - `python3 tools/check_report.py` + `python3 tools/security_test.py` → **PASS** (1,648 assertions, 0 FAIL, 7/7 planted errors caught)
   - `cd verified && python3 scripts/build_site.py --check && python3 scripts/verify.py` → **PASS** (11 pages match, 896 assertions, 0 failures)
   - `python3 tools/check_hallucinations.py` → **PASS** (166 checks, 0 FAIL, 0 WARN, 1 INFO)
+- 2026-10-22 (UTC) **B6 done — PR #28 merged & GitHub Pages deployment verified**:
+  - **PR #28** (`arena/b1f2fe3b-gold5` → `main`): https://github.com/karagemop466-tech/GOLD5/pull/28 — merged without waiting for approval as **`066fbe2e663cfd2a8537eadb630bf4ad7388ea3e`** (`2026-10-22T23:55:30Z`).
+  - **GitHub Pages build confirmed**: `repos/karagemop466-tech/GOLD5/pages/builds/1306749576` for commit `066fbe2e663cfd2a8537eadb630bf4ad7388ea3e` = **`built`** (`2026-10-22T23:55:51Z`).
+  - **Live-fetched & verified after deploy**:
+    - https://karagemop466-tech.github.io/GOLD5/ → Root dashboard (`25` consolidated listings, `5` timestamped quotes, NO HALLUCINATIONS rule banner, nav link to `Master Audit & XRF`).
+    - https://karagemop466-tech.github.io/GOLD5/site/master-audit.html → Master Cross-Session Audit & XRF Calculator (`38` unified verified listings across `17` sellers, `12/38` with published gram weight, `12/38` with explicit `"Solid Gold"` claim, `0/38` with hallmark + maker photo on PDP, `5/5 PASS` verification suites, live XRF & stone-deduction calculator).
+  - **All tasks B1–B6 complete; 0 open claims.**
 
 ## Session registry & deliveries
 
