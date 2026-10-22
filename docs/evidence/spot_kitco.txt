@@ -1,0 +1,28 @@
+SOURCE: https://www.kitco.com/charts/gold
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+Oct 22, 2026 - 19:11 NY Time
+Bid
+### 4,025.00
+USD
++1.70(+0.04%)
+Ask
+4,027.00
+- ounce
+4,025.00
+- gram
+129.41
+Prices provided by [Kitco Metals Inc.](https://corp.kitco.com/), Montreal, Canada. Displayed in U.S. dollars (USD), as of October 22, 2026 at 7:10 p.m. EDT.
+[...]
+| 24K Gold99.99% Gold 999 24K · 24KT · 999.9 · 1000 | $4,025.00 |
+| 22K Gold91.67% Gold 916 22K · 22KT · 917 | $3,689.72 |
+| 18K Gold75.00% Gold 750 18K · 18KT | $3,018.75 |
+| 14K Gold58.33% Gold 585 14K · 14KT · 583 | $2,347.78 |
+| 10K Gold41.67% Gold 417 10K · 10KT · 416 | $1,677.22 |
+[...]
+\* Estimated metal value only, retail premiums may apply to physical products.
+[...]
+The current price of gold is **$4,024.60** per troy ounce as of October 22, 2026, 7:10 p.m. ET, up $1.30 today.
+[...]
+A troy ounce is 31.1034768 grams

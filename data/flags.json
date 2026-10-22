@@ -1,0 +1,190 @@
+[
+  {
+    "id": "F-WEIGHT",
+    "status": "unverified",
+    "title": "Weight (grams) not stated on the listing",
+    "detail": "The page does not give the ring's weight in grams, so gold content and melt value cannot be calculated. Left blank. Ask the seller in writing for the weight in grams before buying.",
+    "links": []
+  },
+  {
+    "id": "F-SOLID",
+    "status": "unverified",
+    "title": "Listing does not explicitly say \"solid gold\"",
+    "detail": "The page names a karat/metal but does not use the words \"solid gold\". Not inferred. Ask the seller to confirm in writing that it is solid (not plated/filled/hollow).",
+    "links": []
+  },
+  {
+    "id": "F-HALLMARK",
+    "status": "unverified",
+    "title": "No hallmark / maker's mark stated",
+    "detail": "The page does not say the ring is stamped with a karat mark plus a maker's mark. Left blank. Ask the seller for a photo of the stamps; verify on arrival with an independent jeweler (XRF).",
+    "links": []
+  },
+  {
+    "id": "F-KARAT-SLUG",
+    "status": "unverified",
+    "title": "Karat appears only in the product URL, not confirmed in page text",
+    "detail": "The listing page shows the item with a URL containing \"14K-Gold\", but the captured listing text for this item does not state the karat. Karat left blank rather than inferred from a URL.",
+    "links": []
+  },
+  {
+    "id": "F-BE-KARAT",
+    "status": "irregularity",
+    "title": "Brilliant Earth category text conflicts with item URLs",
+    "detail": "The Yellow Gold category page says rings are \"crafted in responsibly sourced 18K repurposed or Fairmined gold\", its filter shows both \"14K Yellow Gold\" and \"18K Yellow Gold\" selected, and item URLs say \"14K-Gold\". Only R01's product page confirms the karat (14K Yellow Gold). Confirm the karat on each product page before buying.",
+    "links": [
+      "https://www.brilliantearth.com/engagement-rings/yellow-gold/"
+    ]
+  },
+  {
+    "id": "F-RETURN-BE",
+    "status": "unverified",
+    "title": "Brilliant Earth return/resize/custom exclusions not confirmed",
+    "detail": "Product page says \"Free Shipping & Returns\" and \"Free 1-Year Resizing\". The captured return-policy page contained only navigation text, so window, conditions and resize/custom exclusions are unverified. Read the policy page directly.",
+    "links": [
+      "https://www.brilliantearth.com/customer-care/return-policy/"
+    ]
+  },
+  {
+    "id": "F-ALLUREZ-REF",
+    "status": "irregularity",
+    "title": "Allurez shows an \"Everyone Else\" comparison price",
+    "detail": "Allurez pages display a \"% Savings\" figure against an \"Everyone Else\" price. That comparison is the seller's own marketing claim, is not independently verified, and is NOT used here. Only the actual selling price is recorded.",
+    "links": [
+      "https://www.allurez.com/pages/return-policy"
+    ]
+  },
+  {
+    "id": "F-RETURN-ALLUREZ",
+    "status": "needs review",
+    "title": "Allurez: unclear whether \"setting only\" purchases count as Design Your Own",
+    "detail": "Allurez's return policy says Design Your Own engagement rings can only be exchanged (not refunded), and engraved/custom items are non-refundable. The product page offers both \"Choose a Center Stone\" and \"Buy Setting Only\". Which rule applies to a setting-only purchase is not stated — ask Allurez before buying. Engraving is offered free but makes the item non-refundable.",
+    "links": [
+      "https://www.allurez.com/pages/return-policy"
+    ]
+  },
+  {
+    "id": "F-AVIANNE-PROMO",
+    "status": "needs review",
+    "title": "Avianne & Co banner promo code not applied",
+    "detail": "The page banner advertises 10% off with a code. The recorded price ($1,100.00) is the displayed list price, with no code applied.",
+    "links": [
+      "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw"
+    ]
+  },
+  {
+    "id": "F-RETURN-AVIANNE",
+    "status": "unverified",
+    "title": "Avianne & Co: full return policy not captured",
+    "detail": "Only the one-line product-page statement was captured (14 days, unworn and unaltered). Resize/custom exclusions unverified.",
+    "links": [
+      "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw"
+    ]
+  },
+  {
+    "id": "F-JM-RETAIL",
+    "status": "irregularity",
+    "title": "Jewelry Master shows \"Retail Price\" roughly double the \"Special Price\"",
+    "detail": "The page shows Retail Price $6,041.00 and Special Price $3,020.00. The \"retail\" figure is the seller's own claim and is not independently verified; it is not used. The recorded price is the Special Price. Treat large \"retail\" markdowns as a marketing signal, not evidence of value.",
+    "links": [
+      "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html"
+    ]
+  },
+  {
+    "id": "F-RETURN-JM",
+    "status": "unverified",
+    "title": "Jewelry Master: \"some restrictions apply\" — restrictions not captured",
+    "detail": "The guarantee is headed \"Money Back Guarantee (some restrictions apply)\" but the restrictions were not shown. Also: shipments only go to the billing address on file with the card company.",
+    "links": [
+      "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html"
+    ]
+  },
+  {
+    "id": "F-SGJ-PRICE",
+    "status": "unverified",
+    "title": "Solid Gold Jewelers: no price on live page",
+    "detail": "The live page says \"Call (309) 452-1612 for current pricing and availability.\" A web-search snippet had shown a dollar price for this item, but the live page does not, so NO price is recorded (price left blank).",
+    "links": [
+      "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/"
+    ]
+  },
+  {
+    "id": "F-RETURN-SGJ",
+    "status": "unverified",
+    "title": "Solid Gold Jewelers: no return policy on product page",
+    "detail": "No return policy was visible on the product page.",
+    "links": [
+      "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/"
+    ]
+  },
+  {
+    "id": "G-SPOT-DUAL",
+    "status": "irregularity",
+    "title": "Kitco page shows two slightly different spot numbers",
+    "detail": "The same Kitco page shows Bid $4,025.00 (used here, with its \"by purity\" table) and, in body text, \"$4,024.60 per troy ounce as of October 22, 2026, 7:10 p.m. ET\". A 40-cent difference; the page's own table uses the $4,025.00 bid. Spot also moves every few seconds.",
+    "links": [
+      "https://www.kitco.com/charts/gold"
+    ]
+  },
+  {
+    "id": "G-SPOT-XCHECK",
+    "status": "needs review",
+    "title": "Other sites quoted different spot prices at earlier times (snippets only)",
+    "detail": "Search snippets (not live fetches) showed APMEX $4,077.60/oz at 11:02 AM ET and CNBC $4,083.82/oz at 9:00 AM ET on 2026-10-22. They are earlier clock times than Kitco's 7:10 PM EDT capture, so they are consistent with an intraday decline but have NOT been verified. Not used in any calculation.",
+    "links": [
+      "https://www.apmex.com/gold-price",
+      "https://www.cnbc.com/amp/select/the-price-of-gold-today-oct-22-2026/"
+    ]
+  },
+  {
+    "id": "G-DEAD-POMPEII",
+    "status": "irregularity",
+    "title": "Dead listing: Pompeii3 \"Contemporary Solitaire Engagement 14K Gold Ring Setting\"",
+    "detail": "A search result described this page (with a weight and metal), but the live URL returned \"Pompeii3.com - Not Found\". Excluded from the table; nothing recorded.",
+    "links": [
+      "https://www.pompeii3.com/contemporary-solitaire-engagement-14k-gold-ring-setting/"
+    ]
+  },
+  {
+    "id": "G-DEAD-MARQUISE",
+    "status": "irregularity",
+    "title": "Dead listing: marquise-jewelers.com ring ERSL0010-14K-Y",
+    "detail": "A search result described this ring page, but the live URL redirected to the site's sitemap. Excluded; nothing recorded.",
+    "links": [
+      "https://www.marquise-jewelers.com/ring-detail.html?rid=1748"
+    ]
+  },
+  {
+    "id": "G-BN-STALE",
+    "status": "needs review",
+    "title": "Blue Nile listings seen only in search snippets (dated 2024–2025)",
+    "detail": "Other Blue Nile 14K yellow gold settings appeared in search snippets, but the snippets were not fresh live captures, so no price is recorded. Only R05 was captured live. Candidate URLs are in the evidence file.",
+    "links": [
+      "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
+      "https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-yellow-gold-item-192261"
+    ]
+  },
+  {
+    "id": "G-REVIEWS",
+    "status": "unverified",
+    "title": "Independent seller reviews/complaints NOT researched",
+    "detail": "The checklist requires independent reviews and complaint research. That cannot be confirmed from the sellers' own (official) sites, and no third-party review data was collected. Blank for every seller. Manual step: check BBB, state attorney general complaints, and independent review sites; verify business address and phone.",
+    "links": []
+  },
+  {
+    "id": "G-PAYMENT",
+    "status": "unverified",
+    "title": "Accepted payment methods / credit-card protection not verified",
+    "detail": "Payment methods at checkout were not captured for any seller. Recommendation stands: pay by credit card; avoid wire/irreversible methods (Blue Nile's policy page notes bank-wire refunds are processed by wire/ACH).",
+    "links": [
+      "https://www.bluenile.com/policies/returns"
+    ]
+  },
+  {
+    "id": "G-SCOPE",
+    "status": "needs review",
+    "title": "Sample is small and not exhaustive",
+    "detail": "Only listings that could be captured live on 2026-10-22 from seller sites are included (11 captured, 10 with a price). It is a verified sample, not the entire market. Large retailers not captured (e.g. Costco, Kay, Zales, Tiffany, James Allen) are simply not included — not judged.",
+    "links": []
+  }
+]

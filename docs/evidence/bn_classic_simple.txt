@@ -1,0 +1,27 @@
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+Stock Number
+
+502120y14
+
+Metal
+
+14K Yellow Gold
+
+Width
+
+2.40mm
+[...]
+# Classic Simple Solitaire Engagement Ring in 14K Yellow Gold
+
+$1,145(Setting Price)
+[...]
+Metal Type:14K Yellow Gold
+[...]
+### Free Returns
+
+Our commitment to you does not end at delivery. We offer free returns to make your experience as easy as possible.
+[...]
+We warrant all gold and platinum jewelry items with a purchase price of $1,000 or more from manufacturer’s defect.

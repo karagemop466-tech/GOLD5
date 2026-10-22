@@ -12,13 +12,19 @@
 
 | ID | Task | Status | Owner session | Files touched |
 |----|------|--------|---------------|---------------|
-| T1 | Repo review & coordination setup | in progress | 638c9614 | `COORDINATION.md`, `README.md` |
-| T2 | Data collection: gold spot (Kitco) + ring listings + seller policies | in progress | 638c9614 | `data/spot.json`, `data/rings.json`, `data/sellers.json`, `data/evidence/*` |
-| T3 | Tools: calculator + build script + hallucination checker | in progress | 638c9614 | `tools/*` |
-| T4 | Site generation (GitHub Pages, `docs/`) | in progress | 638c9614 | `docs/*` (generated), `tools/build_site.py` |
-| T5 | Final integration: re-verify, link check, PR, merge, Pages deploy | unclaimed (runs after T1–T4) | — | PR only, `COORDINATION.md` |
+| T1 | Repo review & coordination setup | done | 638c9614 | `COORDINATION.md`, `README.md` |
+| T2 | Data collection: gold spot (Kitco) + ring listings + seller policies | done (items on Flagged page = needs review) | 638c9614 | `data/spot.json`, `data/rings.json`, `data/sellers.json`, `data/evidence/*` |
+| T3 | Tools: calculator + build script + hallucination checker | done | 638c9614 | `tools/*` |
+| T4 | Site generation (GitHub Pages, `docs/`) | done | 638c9614 | `docs/*` (generated), `tools/build_site.py` |
+| T5 | Final integration: re-verify, link check, PR, merge, Pages deploy | in progress | 638c9614 | PR only, `COORDINATION.md` |
 
 Status values: unclaimed · in progress · done · needs review (= published on Flagged for Review page; does not block).
 
 ## Log
 - 2026-10-22: Repo reviewed. Only `README.md` (`# GOLD5`) existed; no data, no site. GitHub Pages was already enabled (legacy, branch `main`, path `/`) with no content.
+- 2026-10-22: **T2 done.** Sources (all fetched live 2026-10-22, verbatim excerpts in `data/evidence/`): Kitco live gold price (spot bid $4,025.00/oz, 7:10 p.m. EDT); Brilliant Earth (yellow-gold listing + Freesia 2mm product page); Blue Nile (product page + returns policy); Allurez (3 product pages + return policy); Avianne & Co (product page); The Jewelry Master (product page); Solid Gold Jewelers (product page). 11 listings, 10 with a price.
+  Irregularities: Kitco page shows two spot numbers ($4,025.00 bid vs $4,024.60 in body text); Brilliant Earth category text says 18K while item URLs say 14K; Pompeii3 and marquise-jewelers listings found by search were dead (excluded); Solid Gold Jewelers page shows no price although a search snippet did (price left blank); Jewelry Master "Retail Price" ≈ 2× "Special Price" (retail not used); Allurez "Everyone Else" prices not used. Full list: Flagged for Review page / `data/flags.json`.
+  Not done (blank + flagged): independent reviews/complaints for every seller; payment methods; hallmark/maker's mark (no listing states one); weights for 5 listings; full Brilliant Earth / Avianne / Jewelry Master return terms.
+- 2026-10-22: **T3 done.** `tools/check_hallucinations.py` negative-tested: an injected fake price, a fake weight, a fake "solid" claim, and a hand-typed `$999.99` in HTML were all caught (FAIL) and then reverted.
+- 2026-10-22: **T4 done.** Site generated into `docs/`; calculator JS cross-checked against the Python calculation ($377.44 for 5 g of 14K at $4,025.00/oz).
+- 2026-10-22: Hallucination pass 1 (after T2–T4): 165 checks passed, 0 FAIL, 0 WARN, 1 INFO (R09 and R10 both list 2.3 g / 14K from different sellers — flagged for independent confirmation). Recorded in `data/pass_history.json`.

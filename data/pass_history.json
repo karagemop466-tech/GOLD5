@@ -1,0 +1,10 @@
+[
+  {
+    "date": "2026-10-22",
+    "label": "Pass 1: initial data capture + build (T2-T4)",
+    "passed": 165,
+    "fail": 0,
+    "warn": 0,
+    "info": 1
+  }
+]
