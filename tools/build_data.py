@@ -118,7 +118,7 @@ add(
     tokens=["$1,316", "Metal18k Yellow Gold", "Gold Weight 5.90 Grams (Approximate)", "Style numberU5885"],
     evidenceExtra=["allurez_returns.txt"],
     flags=["G-SOLID-UNSTATED", "G-HALLMARK-UNSTATED", "G-WEIGHT-APPROX", "G-EXCHANGE-ONLY",
-           "G-REPUTATION-MISSING", "G-18K-DIFFERENT-SKU"],
+           "G-ALLUREZ-COMPLAINTS", "G-18K-DIFFERENT-SKU"],
 )
 add(
     id="A05", sellerId="avianne", name="14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw",
