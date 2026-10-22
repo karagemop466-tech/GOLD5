@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Builds the GOLD5 dashboard site from verification/data.json.
 
-Output: index.html (landing dashboard) + report/*.html + report/assets/*.
+Output: report/index.html (landing) + report/*.html + report/assets/*. The repo-root index.html belongs
+to the integrated dashboard and is never written by this script.
 No external dependencies, no build step, no framework — plain HTML/CSS/JS so GitHub Pages
 serves it as-is. Every money string rendered here is either (a) the seller's own price text
 copied from the source page, or (b) computed from weight x karat x spot by the formula shown
@@ -93,22 +94,24 @@ STATS = {
 # --------------------------------------------------------------------------- shared chrome
 NAV = [
     ("index.html", "Dashboard"),
-    ("report/listings.html", "All listings"),
-    ("report/karat.html", "By karat"),
-    ("report/value.html", "Gold value &amp; calculator"),
-    ("report/sellers.html", "Sellers"),
-    ("report/checklist.html", "Checklist"),
-    ("report/flagged.html", "Flagged for review"),
-    ("report/sources.html", "Sources"),
-    ("report/method.html", "Method"),
+    ("listings.html", "All listings"),
+    ("karat.html", "By karat"),
+    ("value.html", "Gold value &amp; calculator"),
+    ("sellers.html", "Sellers"),
+    ("checklist.html", "Checklist"),
+    ("flagged.html", "Flagged for review"),
+    ("sources.html", "Sources"),
+    ("method.html", "Method"),
 ]
 
 
 def chrome(active, prefix, title, subtitle, body):
+    """prefix is "" for pages inside report/ (all pages now live there)."""
+    assets = (prefix + "report/assets/") if prefix else "assets/"
     links = []
     for href, label in NAV:
-        target = prefix + href if href != "index.html" else (prefix + "index.html" if prefix else "index.html")
-        cls = ' class="on"' if href.endswith(active) else ""
+        target = prefix + href
+        cls = ' class="on"' if href == active else ""
         links.append(f'<a href="{target}"{cls}>{label}</a>')
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -117,7 +120,7 @@ def chrome(active, prefix, title, subtitle, body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)} · GOLD5</title>
 <meta name="description" content="Verified solid-gold engagement ring research. Every value links to the official source page. No hallucinations.">
-<link rel="stylesheet" href="{prefix}report/assets/style.css">
+<link rel="stylesheet" href="{assets}style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -127,7 +130,7 @@ def chrome(active, prefix, title, subtitle, body):
     <nav class="nav">{''.join(links)}</nav>
   </div>
 </header>
-<div class="rulebar"><div class="wrap"><strong>No hallucinations.</strong> Every price, weight, karat and policy below was read from the linked official page on the date shown. Anything unconfirmed is blank and flagged. <a href="{prefix}report/method.html">How this is enforced →</a></div></div>
+<div class="rulebar"><div class="wrap"><strong>No hallucinations.</strong> Every price, weight, karat and policy below was read from the linked official page on the date shown. Anything unconfirmed is blank and flagged. <a href="{prefix}method.html">How this is enforced →</a></div></div>
 <main id="main" class="wrap">
   <h1>{title}</h1>
   <p class="lede">{subtitle}</p>
@@ -136,9 +139,9 @@ def chrome(active, prefix, title, subtitle, body):
 <footer class="foot"><div class="wrap">
   <p><strong>GOLD5</strong> · data as of {esc(D['meta']['asOf'])} · session {esc(D['meta']['session'])} · spot: {esc(D['spot']['source'])} {money(D['spot']['usdPerGramUsed'])}/g ({esc(D['spot']['capturedUtc'])})</p>
   <p>This is research, not advice. Verify the stamp and purity with an independent jeweler (ask for XRF) before wearing or resizing. Prices and policies change — re-open the source link before acting.</p>
-  <p class="small">Older dashboards kept for the record: <a href="{prefix}index-37e8ff42.html">previous root dashboard</a> · <a href="{prefix}docs/index.html">docs/ site</a> · <a href="{prefix}index-090bae73.html">checklist guide</a></p>
+  <p class="small">Older dashboards kept for the record: <a href="{prefix}../index-37e8ff42.html">previous root dashboard</a> · <a href="{prefix}../docs/index.html">docs/ site</a> · <a href="{prefix}../index-090bae73.html">checklist guide</a></p>
 </div></footer>
-<script src="{prefix}report/assets/app.js"></script>
+<script src="{assets}app.js"></script>
 </body></html>
 """
 
@@ -199,7 +202,7 @@ def page_index():
   <div class="notice">
     <h2>The rule this project runs on: no hallucinations</h2>
     <p>Every price, weight, karat, hallmark claim and return term on this site was read from the <b>seller's own page</b> on the date shown, and the exact text that was on the page is stored in <code>verification/evidence/</code>. If a value could not be confirmed, the cell is <b>blank</b> and the row carries a flag — never an estimate, never a "typical" number, never a currency conversion.</p>
-    <p>A checker enforces it: <code>python3 tools/check_report.py</code> re-finds every recorded value in the saved page text, re-derives every calculated number, and fails the build on any amount that is not traceable. It is run after every review, and the result is published on the <a href="report/method.html">Method</a> page.</p>
+    <p>A checker enforces it: <code>python3 tools/check_report.py</code> re-finds every recorded value in the saved page text, re-derives every calculated number, and fails the build on any amount that is not traceable. It is run after every review, and the result is published on the <a href="method.html">Method</a> page.</p>
   </div>
 </section>
 
@@ -235,20 +238,20 @@ def page_index():
     <div class="s">lowest per-gram figure Kitco displayed in that capture</div>
   </div>
 </div>
-<p class="note">Kitco's page displayed four different ounce figures and two gram figures within the same minute (see <a href="report/flagged.html#G-SPOT-SPREAD">G-SPOT-SPREAD</a>). The lowest per-gram figure is used so computed metal values are conservative. <a href="report/value.html">Full spot table, per-karat values and the calculator →</a></p>
+<p class="note">Kitco's page displayed four different ounce figures and two gram figures within the same minute (see <a href="flagged.html#G-SPOT-SPREAD">G-SPOT-SPREAD</a>). The lowest per-gram figure is used so computed metal values are conservative. <a href="value.html">Full spot table, per-karat values and the calculator →</a></p>
 </section>
 
 <section>
 <h2>Pages</h2>
 <div class="cards">
-  <a class="card" href="report/listings.html"><div class="k">All listings</div><div class="d">{STATS['n']} rows: karat, weight, price, fine gold, metal value, hallmark status, return terms, source link, flags.</div></a>
-  <a class="card" href="report/karat.html"><div class="k">By karat</div><div class="d">14K vs 18K side by side, with what each karat means and the fineness used.</div></a>
-  <a class="card" href="report/value.html"><div class="k">Gold value &amp; calculator</div><div class="d">Raw gold in any ring: weight → fine grams → troy ounces → dollars. Editable spot.</div></a>
-  <a class="card" href="report/sellers.html"><div class="k">Sellers</div><div class="d">{STATS['sellers']} sellers: contact details, return terms quoted, payment, reputation, what is still unknown.</div></a>
-  <a class="card" href="report/checklist.html"><div class="k">Checklist</div><div class="d">The 12 buying tests, each with the official rule behind it and how the catalogue scores.</div></a>
-  <a class="card" href="report/flagged.html"><div class="k">Flagged for review</div><div class="d">{STATS['flags']} irregularities and blanks, each with the source link and what would resolve it.</div></a>
-  <a class="card" href="report/sources.html"><div class="k">Sources</div><div class="d">Every official page used, with the quote and the timestamp of the capture.</div></a>
-  <a class="card" href="report/method.html"><div class="k">Method</div><div class="d">How verification works, the checks that ran, and what this project still cannot tell you.</div></a>
+  <a class="card" href="listings.html"><div class="k">All listings</div><div class="d">{STATS['n']} rows: karat, weight, price, fine gold, metal value, hallmark status, return terms, source link, flags.</div></a>
+  <a class="card" href="karat.html"><div class="k">By karat</div><div class="d">14K vs 18K side by side, with what each karat means and the fineness used.</div></a>
+  <a class="card" href="value.html"><div class="k">Gold value &amp; calculator</div><div class="d">Raw gold in any ring: weight → fine grams → troy ounces → dollars. Editable spot.</div></a>
+  <a class="card" href="sellers.html"><div class="k">Sellers</div><div class="d">{STATS['sellers']} sellers: contact details, return terms quoted, payment, reputation, what is still unknown.</div></a>
+  <a class="card" href="checklist.html"><div class="k">Checklist</div><div class="d">The 12 buying tests, each with the official rule behind it and how the catalogue scores.</div></a>
+  <a class="card" href="flagged.html"><div class="k">Flagged for review</div><div class="d">{STATS['flags']} irregularities and blanks, each with the source link and what would resolve it.</div></a>
+  <a class="card" href="sources.html"><div class="k">Sources</div><div class="d">Every official page used, with the quote and the timestamp of the capture.</div></a>
+  <a class="card" href="method.html"><div class="k">Method</div><div class="d">How verification works, the checks that ran, and what this project still cannot tell you.</div></a>
 </div>
 </section>
 
@@ -303,7 +306,7 @@ def page_listings():
 <p class="note">Prices are the seller's own strings (e.g. "Special Price$3,020.00") so you can match them against the page; the <b>Metal value</b> column is arithmetic — weight × karat ÷ 24 × {money(SPOT)}/g. Hover any flag code to read it, click to jump to the entry on <a href="flagged.html">Flagged for review</a>. "Score" counts the 6 machine-checkable criteria: karat, solid stated, hallmark stated, weight, price, seller return policy verified.</p>
 <p class="note">Every row links to the seller's product page. If a cell is blank, the seller did not publish it and this project did not guess it — the flag column says which decision it blocks.</p>
 """
-    return chrome("listings.html", "../", "All listings", f"{STATS['n']} gold ring listings, each with its source link and the exact price text from the page.", body)
+    return chrome("listings.html", "", "All listings", f"{STATS['n']} gold ring listings, each with its source link and the exact price text from the page.", body)
 
 
 def page_karat():
@@ -346,7 +349,7 @@ def page_karat():
 <p>Allurez sells the same filigree design in 14K (style U5882) and 18K (style U5885). The 14K page lists 5.00 g at $1,085; the 18K page lists 5.90 g at $1,316. That is <b>+$231 for +0.90 g of metal and a higher karat</b>, i.e. most of the difference is accounted for by the extra gold, not by a karat premium. But note the style numbers differ, so this is a same-family comparison, not the same SKU in two metals — recorded as <a href="flagged.html#G-18K-DIFFERENT-SKU">G-18K-DIFFERENT-SKU</a>.</p>
 <p>The Brilliant Earth Freesia is the one true same-SKU pair (BE1343-14KY / BE1343-18KY), but its 18K page was served in euros at capture, so no USD comparison is published here. Converting it would be an inference.</p>
 </section>"""
-    return chrome("karat.html", "../", "By karat", "14K and 18K listings, grouped, with the fineness each karat actually means.", body)
+    return chrome("karat.html", "", "By karat", "14K and 18K listings, grouped, with the fineness each karat actually means.", body)
 
 
 def page_value():
@@ -410,7 +413,7 @@ def page_value():
 </ol>
 </section>
 """
-    return chrome("value.html", "../", "Gold value & calculator", "What the gold in a ring is actually worth at today's verified spot — and how to compute it yourself.", body)
+    return chrome("value.html", "", "Gold value & calculator", "What the gold in a ring is actually worth at today's verified spot — and how to compute it yourself.", body)
 
 
 def page_sellers():
@@ -441,7 +444,7 @@ def page_sellers():
   <p class="tiny">Manual review, as the FTC recommends: <a href="https://www.google.com/search?q={esc(s["name"].replace(" ", "+"))}+complaints+reviews" rel="noopener">search “{esc(s["name"])} complaints reviews”</a> · <a href="https://www.bbb.org/search?find_country=USA&amp;find_text={esc(s["name"])}" rel="noopener">BBB search</a></p>
 </section>""")
     body = "".join(blocks)
-    return chrome("sellers.html", "../", "Sellers", "Contact details, return terms — quoted, not paraphrased — and what is still unknown about each seller.", body)
+    return chrome("sellers.html", "", "Sellers", "Contact details, return terms — quoted, not paraphrased — and what is still unknown about each seller.", body)
 
 
 def page_checklist():
@@ -509,7 +512,7 @@ def page_checklist():
 <p class="callout">Nothing in this catalogue is buyable on the strength of its listing alone. The listing can tell you the karat, sometimes the weight, and the return terms. It cannot tell you whether the ring is solid, whether it is hallmarked, or whether the gold is the karat claimed — those need the physical ring, a jeweler, and an XRF reading. What this catalogue does is remove the guesswork from everything that <i>can</i> be read, and mark the rest clearly.</p>
 </section>
 """
-    return chrome("checklist.html", "../", "The buying checklist", "Twelve tests, the official rule behind each, and exactly how far the published data gets you.", body)
+    return chrome("checklist.html", "", "The buying checklist", "Twelve tests, the official rule behind each, and exactly how far the published data gets you.", body)
 
 
 def page_flagged():
@@ -539,7 +542,7 @@ def page_flagged():
 <p>The earlier dashboard in this repo published an Etsy band as selling below its metal value. The price behind that claim came from a search snippet; the live listing is sold out and shows no price. It is withdrawn here — see <a href="#G-PRICE-BLANK-SOLD">G-PRICE-BLANK-SOLD</a>. The older pages are preserved for the record at <a href="../index-37e8ff42.html">index-37e8ff42.html</a> and <a href="../docs/index.html">docs/</a>.</p>
 </section>
 """
-    return chrome("flagged.html", "../", "Flagged for review", f"{STATS['flags']} irregularities, each with its source and the evidence that would close it.", body)
+    return chrome("flagged.html", "", "Flagged for review", f"{STATS['flags']} irregularities, each with its source and the evidence that would close it.", body)
 
 
 def page_sources():
@@ -570,7 +573,7 @@ def page_sources():
 </section>
 <p class="note">Every quote above was copied from the page on the date shown and is also stored verbatim in <code>verification/evidence/</code>, so you can diff the published table against what the page actually said.</p>
 """
-    return chrome("sources.html", "../", "Sources", "The official pages behind every rule and every row — with the exact quote used.", body)
+    return chrome("sources.html", "", "Sources", "The official pages behind every rule and every row — with the exact quote used.", body)
 
 
 def page_method():
@@ -633,7 +636,7 @@ def page_method():
 <p>Three earlier deliveries are preserved unmodified: <a href="../index-37e8ff42.html">index-37e8ff42.html</a> (the previous root dashboard), <a href="../site/listings.html">site/</a> (its subpages) and <a href="../docs/index.html">docs/</a> (a parallel session's site). This pass adds <code>verification/</code>, <code>report/</code> and this dashboard; nothing from those sessions was edited or deleted.</p>
 </section>
 """
-    return chrome("method.html", "../", "Method & passes", "How the no-hallucination rule is enforced mechanically, and what this project still cannot tell you.", body)
+    return chrome("method.html", "", "Method & passes", "How the no-hallucination rule is enforced mechanically, and what this project still cannot tell you.", body)
 
 
 def write(path, text):
@@ -644,17 +647,9 @@ def write(path, text):
     return full
 
 
-# preserve the previous root dashboard byte-for-byte before overwriting index.html
-prev = os.path.join(ROOT, "index.html")
-archive = os.path.join(ROOT, "index-37e8ff42.html")
-if os.path.exists(prev) and not os.path.exists(archive):
-    with open(prev, encoding="utf-8") as f:
-        old = f.read()
-    with open(archive, "w", encoding="utf-8") as f:
-        f.write(old)
-    print("preserved previous root dashboard -> index-37e8ff42.html")
-
-write("index.html", page_index())
+# The root index.html is the integrated dashboard (owned by the final integration session);
+# this suite's landing page is report/index.html, so a rebuild never touches the root page.
+write("report/index.html", page_index())
 write("report/listings.html", page_listings())
 write("report/karat.html", page_karat())
 write("report/value.html", page_value())
