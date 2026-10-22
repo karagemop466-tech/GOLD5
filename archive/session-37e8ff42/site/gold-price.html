@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Price — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Gold price (verified 2026-10-22)</h2>
+  <p class="note">Same-day quotes from independent official sources, each with its timestamp and capture method. The <b>primary</b> quote (latest timestamp, direct page fetch) drives every calculation on this site. Spot price moves continuously — <b>re-check the day you buy</b>.</p>
+  <div id="spot"></div>
+  <h2>Gold value by purity (Kitco table)</h2>
+  <div id="purity"></div>
+  <h2>How the price-vs-gold test works</h2>
+  <div class="card">
+    <p style="font-size:13.5px">1. Get the ring's weight in <b>grams</b> (ask the seller — a legitimate seller can provide it).<br>
+    2. Pure gold grams = weight × karat/24 (14K → ×0.5833, 18K → ×0.75).<br>
+    3. Metal value = pure gold grams × spot $/g (see table above, re-verified the day of purchase).<br>
+    4. Compare the price: <b>below</b> metal value = red flag (nobody sells solid gold below melt); a healthy engagement ring typically prices at 2–5× metal value to cover the stone, labor, and margin.<br>
+    5. Try it with any listing on the <a href="calculator.html">calculator</a>.</p>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5;
+  G.chrome("gold-price");
+  document.getElementById("spot").innerHTML = G.spotTable();
+  document.getElementById("purity").innerHTML = G.purityTable();
+})();
+</script>
+</body>
+</html>

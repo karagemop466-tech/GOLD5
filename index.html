@@ -1,82 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GOLD5 — Gold Ring Research Dashboard</title>
-<meta name="description" content="Verified solid gold engagement ring research: listings, gold price, calculator, checklist. No hallucinations — every value has a source link.">
-<link rel="stylesheet" href="site/assets/styles.css">
+<title>Gold engagement rings, verified line by line · GOLD5</title>
+<meta name="description" content="25 verified solid-gold engagement ring listings, gold spot price, calculator, checklist, seller policies and flagged irregularities. No hallucinations: every value has a dated source link.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="site/assets/site.css">
 </head>
 <body>
-<main class="wrap">
-  <h2>Dashboard</h2>
-  <div class="cards" id="stats"></div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rulebar"><div class="wrap">
+  <span><b>NO HALLUCINATIONS</b> — every value has a dated source link; anything unconfirmed is blank and flagged, never guessed.</span>
+  <span>Data as of <b>2026-10-22</b> · <a href="site/verification.html">How this was verified →</a></span>
+</div></div>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark">G5</span><span class="brand-name">GOLD5<small>Solid gold engagement ring research</small></span></a>
+  <nav class="nav" aria-label="Main"><a href="index.html" class="active">Dashboard</a><a href="site/listings.html">Listings</a><a href="site/gold-price.html">Gold Price</a><a href="site/calculator.html">Calculator</a><a href="site/analysis.html">Analysis</a><a href="site/checklist.html">Checklist</a><a href="site/sellers.html">Sellers</a><a href="site/flagged.html">Flagged</a><a href="site/sources.html">Sources</a><a href="site/verification.html">Verification</a></nav>
+</div></header>
+<main id="main"><div class="wrap">
 
-  <div class="flag info">
-    <h4>⚠ No hallucinations — that is the rule of this project</h4>
-    <p style="font-size:13.5px;margin:6px 0">Every price, weight, and claim on this site was read from the linked official source page on the check date and
-    is logged in <a href="site/sources.html">Sources</a>. Values we could not confirm from an official source are left <b>blank</b> and published on the
-    <a href="site/flagged.html">Flagged for Review</a> page — they are never inferred or filled in. Derived numbers (gold content, metal value) are computed
-    live in your browser from raw inputs. After every review, re-run the hallucination/security pass: <code>python3 scripts/verify.py</code>.</p>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Solid gold engagement rings · verified 2026-10-22</div>
+    <h1>Find a gold ring you can actually verify.</h1>
+    <p class="lead">25 real listings from 13 sellers, checked line by line against the seller's own page. Prices, karats and gram weights are recorded only when the source states them. Everything else is blank — and flagged.</p>
+    <div class="cta">
+      <a class="btn primary" href="site/listings.html">Browse the 25 listings</a>
+      <a class="btn gold" href="site/calculator.html">Value a ring by weight</a>
+      <a class="btn ghost" href="site/checklist.html">12-point checklist</a>
+    </div>
+    <p class="tiny muted" style="margin-top:14px">19 of 25 values were re-read from the seller’s own pages in this pass; the other 6 are same-day captures with their evidence recorded. No value anywhere on this site is inferred.</p>
   </div>
+  <aside class="hero-side">
+    <div>
+      <div class="label">Gold spot used here · Kitco bid</div>
+      <div class="big">$4,026.90<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
+      <div class="per">$129.47 per gram · 2026-10-22 7:26 p.m. ET</div>
+    </div>
+    <div class="quote">“Bid 4,026.90 USD … gram 129.47 … as of October 22, 2026 at 7:26 p.m. EDT.”<br><a href="site/gold-price.html">All four same-day quotes →</a></div>
+  </aside>
+</section>
 
-  <h2>Today's gold spot (verified 2026-10-22)</h2>
-  <div id="spot"></div>
+<section class="rule-panel">
+  <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
+  <p>Every price, weight, karat, hallmark claim and return policy on this site was read from the <b>linked official source page</b> on the check date shown. Nothing is estimated, averaged, filled in from a similar product, or copied from a search snippet without saying so.</p>
+  <ul>
+    <li><b>Blank means unverified.</b> If the seller's page does not state it, the cell stays empty and is published on <a href="site/flagged.html">Flagged for Review</a>.</li>
+    <li><b>Every row has a source link</b> to the exact page the value came from.</li>
+    <li><b>Derived numbers are calculated</b> from verified inputs: fine gold = grams × karat fineness; value = fine gold × spot.</li>
+    <li><b>Priorities:</b> official government/standards sources for rules; the seller's own page for its price and policy.</li>
+    <li><b>After every review pass</b> run <span class="run">python3 scripts/verify.py</span> — it re-checks sources, arithmetic, links and every dollar figure on the site.</li>
+  </ul>
+  <p style="margin-top:10px"><a class="btn ghost" href="site/verification.html">Read the method and this pass's log</a></p>
+</section>
 
-  <h2>Findings at a glance</h2>
-  <div class="table-scroll"><table>
-    <thead><tr><th>#</th><th>Finding</th><th>Severity</th><th>Detail</th><th>Where</th></tr></thead>
-    <tbody id="findings"></tbody>
-  </div>
+<div class="stats">
+  <div class="stat gold"><div class="k">Gold spot (Kitco bid)</div><div class="v">$4,026.90</div><div class="d">per oz · $129.47/g · 7:26 pm ET</div></div>
+  <div class="stat"><div class="k">Listings collected</div><div class="v">25</div><div class="d">21 engagement rings · 3 bands · 1 case study</div></div>
+  <div class="stat"><div class="k">With a published weight</div><div class="v">8 / 25</div><div class="d">others are blank + flagged (FL-03)</div></div>
+  <div class="stat"><div class="k">Open flags for review</div><div class="v">24</div><div class="d"><a href="site/flagged.html">Flagged for Review →</a></div></div>
+  <div class="stat"><div class="k">Checker failures</div><div class="v">0</div><div class="d">last run — see Verification</div></div>
+</div>
 
-  <h2>Top verified candidates (details on <a href="site/listings.html">Listings</a>)</h2>
-  <div id="top"></div>
-  <p class="note">Sorted by the only rows where gram weight is confirmed. The full table (13 listings across Blue Nile and 8 Etsy shops) is on the Listings page — every row carries its official source link.</p>
 
-  <h2>Pages</h2>
-  <div class="cards">
-    <a class="card" href="site/listings.html"><div class="k">Listings</div><div class="v" style="font-size:16px">All entries, line-by-line</div><div class="d">Every row: price, grams, hallmark claim, return policy, reputation, check date, source link.</div></a>
-    <a class="card" href="site/gold-price.html"><div class="k">Gold Price</div><div class="v" style="font-size:16px">Spot + fineness values</div><div class="d">Same-day cross-checked quotes with timestamps and per-karat values.</div></a>
-    <a class="card" href="site/calculator.html"><div class="k">Calculator</div><div class="v" style="font-size:16px">Gold weight → metal value</div><div class="d">Compute pure gold grams, troy oz, and metal value for any listing.</div></a>
-    <a class="card" href="site/checklist.html"><div class="k">Checklist</div><div class="v" style="font-size:16px">12-point buying checklist</div><div class="d">Each point with its official source and what this project found.</div></a>
-    <a class="card" href="site/sellers.html"><div class="k">Sellers</div><div class="v" style="font-size:16px">Reputation & policies</div><div class="d">Contact info, BBB, returns, warranty, payment — with links.</div></a>
-    <a class="card" href="site/flagged.html"><div class="k">Flagged for Review</div><div class="v" style="font-size:16px">Irregularities & blanks</div><div class="d">Red flags, unverified cells, exclusions. These do not block the site — review them here.</div></a>
-    <a class="card" href="docs/index.html"><div class="k">Session 638c9614's site</div><div class="v" style="font-size:16px">/docs/ (PR #1)</div><div class="d">Parallel delivery, preserved — 11 more verified listings (Brilliant Earth, Allurez, Avianne, …) + verbatim evidence files.</div></a>
-    <a class="card" href="index-090bae73.html"><div class="k">Session 090bae73's site</div><div class="v" style="font-size:16px">Checklist guide (PR #3)</div><div class="d">Checklist-format guide, preserved at /index-090bae73.html + 13 subpages under /pages/. See flag F12.</div></a>
-  </div>
-</main>
-<script src="site/assets/data.js"></script>
-<script src="site/assets/app.js"></script>
-<script>
-(function () {
-  const G = window.GOLD5, D = G.D;
-  G.chrome("home");
-  const verified = D.entries.filter(e => e.status === "verified").length;
-  const flagged = D.entries.filter(e => e.flags && e.flags.length).length;
-  const withGrams = D.entries.filter(e => e.grams != null).length;
-  const sources = new Set();
-  D.entries.forEach(e => (e.sources || []).forEach(u => sources.add(u)));
-  D.sellers.forEach(s => (s.sources || []).forEach(u => sources.add(u)));
-  D.references.forEach(r => sources.add(r.url));
-  document.getElementById("stats").innerHTML = `
-    <div class="card gold"><div class="k">Gold spot (primary, 2026-10-22 7:10 pm ET)</div><div class="v">${G.money(D.spot.primary.usdPerOz)} / oz</div><div class="d">${G.money(D.spot.primary.usdPerGram)} / g · <a href="${G.esc(D.spot.primary.url)}" target="_blank" rel="noopener">${G.esc(D.spot.primary.source)}</a></div></div>
-    <div class="card"><div class="k">Listings collected</div><div class="v">${D.entries.length}</div><div class="d">${D.entries.filter(e => e.category === "engagement-ring").length} engagement rings · ${D.entries.filter(e => e.category === "band-reference").length} reference bands · ${D.entries.filter(e => e.category === "case-study").length} case study</div></div>
-    <div class="card"><div class="k">Rows with verified gram weight</div><div class="v">${withGrams} / ${D.entries.length}</div><div class="d">Others left blank + flagged (F3) — weight not published by seller</div></div>
-    <div class="card"><div class="k">Flagged items</div><div class="v">${D.flags.length}</div><div class="d"><a href="site/flagged.html">Flagged for Review page ↗</a></div></div>
-    <div class="card"><div class="k">Distinct source URLs</div><div class="v">${sources.size}</div><div class="d"><a href="site/sources.html">Full source registry ↗</a></div></div>`;
-  document.getElementById("spot").innerHTML = G.spotTable();
-  const order = { high: 0, medium: 1, low: 2, info: 3 };
-  document.getElementById("findings").innerHTML = [...D.flags].sort((a,b) => order[a.severity] - order[b.severity]).map(f => `
-    <tr>
-      <td class="num">${G.esc(f.id)}</td>
-      <td><b>${G.esc(f.title)}</b></td>
-      <td><span class="badge ${f.severity === "high" ? "bad" : f.severity === "medium" ? "warn" : f.severity === "low" ? "info" : "gray"}">${f.severity}</span></td>
-      <td style="max-width:420px">${G.esc(f.detail.slice(0, 180))}${f.detail.length > 180 ? "…" : ""}</td>
-      <td><a href="site/flagged.html#${G.esc(f.id)}">details ↗</a></td>
-    </tr>`).join("");
-  const top = D.entries.filter(e => e.grams != null);
-  document.getElementById("top").innerHTML = G.listingsTable(top);
-})();
-</script>
+<section class="verdict">
+  <div class="eyebrow">Bottom line</div>
+  <h2>No listing here meets all 12 requirements — and that is the finding.</h2>
+  <p><b>0 of 25</b> rows state a maker’s mark, <b>17</b> publish no gram weight, <b>16</b> never say “solid gold”, and <b>11</b> have no verified return policy. Those gaps are the answer to “which ring should I buy”: none of these listings is documented well enough to buy as-is. Each gap is a question to put to the seller in writing before paying.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Best-documented rows (not a recommendation)</th><th>Documents present</th><th>Still missing</th><th>Also flagged</th></tr></thead>
+    <tbody><tr><td><div class="ring-name"><a href="site/listings.html#ET-1151446373">Ruby + Diamond Halo</a></div><div class="src">VeraByEden (Etsy shop) · $969 · 3.47× metal · complete ring</div></td><td class="small">gram weight, &#x27;solid gold&#x27; wording, verified return policy</td><td class="small muted">karat stamp claim, maker&#x27;s mark</td><td class="small"><span class="badge bad">off-platform contact</span></td></tr><tr><td><div class="ring-name"><a href="site/listings.html#AL-4426">Engraved Floral Setting</a></div><div class="src">Allurez · $585 · 2.16× metal · setting only</div></td><td class="small">gram weight, verified return policy</td><td class="small muted">&#x27;solid gold&#x27; wording, karat stamp claim, maker&#x27;s mark</td><td class="small"><span class="badge warn">exchange-only</span></td></tr><tr><td><div class="ring-name"><a href="site/listings.html#AL-170">Antique Engraved Setting</a></div><div class="src">Allurez · $933 · 2.57× metal · setting only</div></td><td class="small">gram weight, verified return policy</td><td class="small muted">&#x27;solid gold&#x27; wording, karat stamp claim, maker&#x27;s mark</td><td class="small"><span class="badge warn">exchange-only</span></td></tr><tr><td><div class="ring-name"><a href="site/listings.html#AL-5882">Filigree Solitaire Setting</a></div><div class="src">Allurez · $1,085 · 2.87× metal · setting only</div></td><td class="small">gram weight, verified return policy</td><td class="small muted">&#x27;solid gold&#x27; wording, karat stamp claim, maker&#x27;s mark</td><td class="small"><span class="badge warn">exchange-only</span></td></tr></tbody></table></div>
+  <p class="small muted" style="margin-top:8px">Weighted: gram weight counts most, then “solid gold” wording and a verified return policy; ties break on price ÷ metal value, and any open high-severity flag costs 1.5 points. The full checklist and every gap are on <a href="site/checklist.html">Checklist</a> and <a href="site/flagged.html">Flagged for Review</a>.</p>
+</section>
+
+
+<h2>Today's gold price <span class="tag">5 timestamped quotes, same day</span></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Source</th><th class="num">USD / troy oz</th><th class="num">USD / gram</th><th class="num">As of</th><th>Link</th></tr></thead>
+<tbody><tr><td><b>Kitco Metals Inc. — Live Gold Price</b> <span class="badge ok">used for all calculations</span><div class="src">live fetch (this pass)</div></td>
+<td class="num">$4,026.90</td><td class="num">$129.47</td><td class="num">2026-10-22 7:26 p.m. ET</td>
+<td><a class="src-link" href="https://www.kitco.com/charts/gold" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>Kitco Metals Inc. — Live Gold Price (earlier capture)</b><div class="src">prior-session capture</div></td>
+<td class="num">$4,025</td><td class="num">$129.41</td><td class="num">2026-10-22 7:10 p.m. ET</td>
+<td><a class="src-link" href="https://www.kitco.com/charts/gold" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>CNBC Select</b><div class="src">prior-session capture</div></td>
+<td class="num">$4,083.82</td><td class="num"><span class="blank">—</span></td><td class="num">2026-10-22 9:00 a.m. ET</td>
+<td><a class="src-link" href="https://www.cnbc.com/select/the-price-of-gold-today-oct-22-2026/" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>APMEX</b><div class="src">prior-session capture</div></td>
+<td class="num">$4,077.60</td><td class="num">$131.10</td><td class="num">2026-10-22 11:02 a.m. ET</td>
+<td><a class="src-link" href="https://www.apmex.com/gold-price" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>Kitco News (AM report)</b><div class="src">prior-session capture</div></td>
+<td class="num">$4,086.90</td><td class="num"><span class="blank">—</span></td><td class="num">2026-10-22 morning</td>
+<td><a class="src-link" href="https://www.kitco.com/news/article/2026-10-22/gold-silver-pressured-despite-lower-yields-hormuz-attacks-send-crude-higher" target="_blank" rel="noopener">source ↗</a></td></tr></tbody></table></div>
+<p class="small muted" style="margin-top:8px">The 5 quotes range from $4,025 to $4,086.90 per ounce — about 1.5% across one day. All calculations on this site use the single $129.47/g Kitco bid shown first, with its timestamp. <a href="site/gold-price.html">Full gold-price page, purity table and raw-gold amounts →</a></p>
+
+<h2>What we found <span class="tag">the short version</span></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>ID</th><th>Severity</th><th>Finding</th><th class="num">Rows</th><th></th></tr></thead>
+<tbody><tr><td class="num">FL-01</td><td><span class="badge bad">High</span></td>
+<td><b>Price is BELOW the computed gold metal value</b><div class="small muted">A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold. At the verified spot price the metal alone is worth about $529 — more than the asking price. For a legitimate seller that…</div></td>
+<td class="small">1</td><td><a href="site/flagged.html#FL-01">details ↗</a></td></tr><tr><td class="num">FL-02</td><td><span class="badge bad">High</span></td>
+<td><b>Listing photos solicit off-platform contact</b><div class="small muted">VeraByEden listing image 11 is a chat screenshot showing an address (2355 Westwood Boulevard #153, Los Angeles CA) and the text &#x27;Share your contact information with us on Etsy Message.&#x27; Off-…</div></td>
+<td class="small">1</td><td><a href="site/flagged.html#FL-02">details ↗</a></td></tr><tr><td class="num">FL-03</td><td><span class="badge warn">Medium</span></td>
+<td><b>Gram weight is not published (17 of 25 rows)</b><div class="small muted">Without a weight you cannot compute gold content or compare price with metal value. These cells are left blank — never estimated. Ask the seller in writing for the weight in grams before buy…</div></td>
+<td class="small">17</td><td><a href="site/flagged.html#FL-03">details ↗</a></td></tr><tr><td class="num">FL-04</td><td><span class="badge warn">Medium</span></td>
+<td><b>Independent seller reputation not captured for most sellers</b><div class="small muted">Only Blue Nile has independent complaint data captured (BBB and ConsumerAffairs). Brilliant Earth shows on-site review scores; Allurez, Avianne, Jewelry Master, Solid Gold Jewelers and the E…</div></td>
+<td class="small">—</td><td><a href="site/flagged.html#FL-04">details ↗</a></td></tr><tr><td class="num">FL-05</td><td><span class="badge warn">Medium</span></td>
+<td><b>Blue Nile: resized, engraved and custom rings are not returnable</b><div class="small muted">Blue Nile&#x27;s 30-day money-back guarantee excludes personalized jewelry, custom orders, engraved items, items resized after purchase, Diamond Upgrade purchases, clearance and Final Sale. Retur…</div></td>
+<td class="small">8</td><td><a href="site/flagged.html#FL-05">details ↗</a></td></tr><tr><td class="num">FL-07</td><td><span class="badge warn">Medium</span></td>
+<td><b>Brilliant Earth return window and exclusions are unverified</b><div class="small muted">Product pages say &#x27;Free Shipping &amp; Returns&#x27; and &#x27;Free 1-Year Resizing&#x27;, but brilliantearth.com/customer-care/return-policy/ redirects to the home page. The return window, condition requireme…</div></td>
+<td class="small">4</td><td><a href="site/flagged.html#FL-07">details ↗</a></td></tr><tr><td class="num">FL-10</td><td><span class="badge warn">Medium</span></td>
+<td><b>Allurez: Design Your Own rings are exchange-only</b><div class="small muted">Allurez&#x27;s policy says Design Your Own engagement rings may be exchanged for items of the same or higher value but cannot be refunded. It does not say whether buying a setting on its own coun…</div></td>
+<td class="small">3</td><td><a href="site/flagged.html#FL-10">details ↗</a></td></tr><tr><td class="num">FL-13</td><td><span class="badge warn">Medium</span></td>
+<td><b>Solid Gold Jewelers: no price and no return policy published</b><div class="small muted">The product page states &#x27;14ky, 4.7g, #B02561&#x27; and asks buyers to call (309) 452-1612 for current pricing and availability. No price and no return policy appear on the page, so both are left …</div></td>
+<td class="small">1</td><td><a href="site/flagged.html#FL-13">details ↗</a></td></tr></tbody></table></div>
+<p class="small muted" style="margin-top:8px">All 24 flags — including the low/info items — are on <a href="site/flagged.html">Flagged for Review</a>. They do not block publication; they are the list to work through.</p>
+
+<h2>Every row with a published weight <span class="tag">sorted by price ÷ metal value</span></h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Ring</th><th class="num">Grams</th><th class="num">Price</th><th class="num">Metal value</th><th class="num">Price / metal</th><th>Basis</th><th>Source</th></tr></thead>
+<tbody><tr>
+<td><div class="ring-name"><a href="site/listings.html#ET-576343849">7 g Band — case study</a></div><div class="src">BUTTERFLYWINGVINTAGE (Etsy shop) · 14K</div></td>
+<td class="num">7 g</td>
+<td class="num">$444.80</td>
+<td class="num calc">$528.64</td>
+<td class="num"><span class="badge bad">0.84×</span></td>
+<td class="small muted">complete ring</td>
+<td><a class="src-link" href="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#AL-4426">Engraved Floral Setting</a></div><div class="src">Allurez · 14K</div></td>
+<td class="num">3.58 g</td>
+<td class="num">$585</td>
+<td class="num calc">$270.36</td>
+<td class="num"><span class="badge ok">2.16×</span></td>
+<td class="small muted">setting only</td>
+<td><a class="src-link" href="https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#AL-170">Antique Engraved Setting</a></div><div class="src">Allurez · 14K</div></td>
+<td class="num">4.8 g</td>
+<td class="num">$933</td>
+<td class="num calc">$362.50</td>
+<td class="num"><span class="badge ok">2.57×</span></td>
+<td class="small muted">setting only</td>
+<td><a class="src-link" href="https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#AL-5882">Filigree Solitaire Setting</a></div><div class="src">Allurez · 14K</div></td>
+<td class="num">5 g</td>
+<td class="num">$1,085</td>
+<td class="num calc">$377.60</td>
+<td class="num"><span class="badge ok">2.87×</span></td>
+<td class="small muted">setting only</td>
+<td><a class="src-link" href="https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#ET-1151446373">Ruby + Diamond Halo</a></div><div class="src">VeraByEden (Etsy shop) · 14K</div></td>
+<td class="num">3.7 g</td>
+<td class="num">$969</td>
+<td class="num calc">$279.42</td>
+<td class="num"><span class="badge ok">3.47×</span></td>
+<td class="small muted">complete ring</td>
+<td><a class="src-link" href="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#AV-25893">Diamond Solitaire 0.41 Ctw</a></div><div class="src">Avianne &amp; Co · 14K</div></td>
+<td class="num">2.3 g</td>
+<td class="num">$1,100</td>
+<td class="num calc">$173.70</td>
+<td class="num"><span class="badge ok">6.33×</span></td>
+<td class="small muted">complete ring</td>
+<td><a class="src-link" href="https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw" target="_blank" rel="noopener">listing ↗</a></td></tr><tr>
+<td><div class="ring-name"><a href="site/listings.html#JM-149700">Brilliant Round Solitaire 0.71 ctw</a></div><div class="src">The Jewelry Master (Jewelry Masters) · 14K</div></td>
+<td class="num">2.3 g</td>
+<td class="num">$3,020</td>
+<td class="num calc">$173.70</td>
+<td class="num"><span class="badge ok">17.39×</span></td>
+<td class="small muted">complete ring</td>
+<td><a class="src-link" href="https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html" target="_blank" rel="noopener">listing ↗</a></td></tr></tbody></table></div>
+<div class="note gold"><b class="title">How to read “price ÷ metal value”</b>A ratio near 1 means you are paying mostly for gold. A high ratio is normal for a ring with diamonds and labour — it is not proof of a bad deal, and a low ratio is not automatically a bargain. The one signal to treat as a hard stop: <b>a price below the metal value</b> (ratio under 1.00). Only complete rings are comparable; setting prices exclude the center diamond. <a href="site/analysis.html">Full analysis →</a></div>
+
+<h2>Browse by category</h2>
+<div class="cards">
+  <a class="card" href="site/listings.html"><div class="k">All entries</div><div class="t">Listings, line by line</div><div class="d">25 rows: price, karat, grams, hallmark claim, returns, check date, flags and the source page for each.</div><div class="go">Open the table →</div></a>
+  <a class="card" href="site/analysis.html"><div class="k">Analysis</div><div class="t">Price vs. gold value</div><div class="d">The 8 rows that publish a weight, the median markup, the below-metal case, and data-completeness scores.</div><div class="go">Read the analysis →</div></a>
+  <a class="card" href="site/gold-price.html"><div class="k">Gold price</div><div class="t">Spot, purity, raw amounts</div><div class="d">5 same-day quotes, Kitco purity values, and a table of what X grams of 10K–24K is worth today.</div><div class="go">See the numbers →</div></a>
+  <a class="card" href="site/calculator.html"><div class="k">Calculator</div><div class="t">Weight → gold value</div><div class="d">Enter grams, karat, spot and asking price. Get fine gold, metal value and the price/metal ratio — computed live.</div><div class="go">Open the calculator →</div></a>
+  <a class="card" href="site/checklist.html"><div class="k">Checklist</div><div class="t">The 12-point buying test</div><div class="d">Each point linked to its official source, with what this dataset shows and what to demand from the seller.</div><div class="go">Work the checklist →</div></a>
+  <a class="card" href="site/sellers.html"><div class="k">Sellers</div><div class="t">13 sellers compared</div><div class="d">Contact details, return terms, warranty, payment and reputation — with the policy links and open questions.</div><div class="go">Compare sellers →</div></a>
+  <a class="card" href="site/flagged.html"><div class="k">Flagged for Review</div><div class="t">24 open items</div><div class="d">Every irregularity, blank cell and unresolved policy — with affected rows and sources. Review after launch.</div><div class="go">Open the flag list →</div></a>
+  <a class="card" href="site/sources.html"><div class="k">Sources</div><div class="t">Full registry</div><div class="d">Every URL used, grouped by official guidance, gold price, seller policy and listing, with check dates.</div><div class="go">Audit the sources →</div></a>
+  <a class="card" href="site/verification.html"><div class="k">Verification</div><div class="t">Method + pass log</div><div class="d">What was re-fetched live this pass, what was corrected, and the exact checker commands and results.</div><div class="go">See the proof →</div></a>
+</div>
+
+<h2>How to use this in 15 minutes</h2>
+<div class="cards">
+  <div class="card"><div class="k">Step 1 · 3 min</div><div class="t">Read the checklist</div><div class="d">The 12 checks, in order. If a seller cannot satisfy the weight, solid-gold, hallmark and return items, stop.</div></div>
+  <div class="card"><div class="k">Step 2 · 5 min</div><div class="t">Pick 2–3 listings</div><div class="d">Filter by karat and seller, open each source page, and confirm the price and karat are still what the row says.</div></div>
+  <div class="card"><div class="k">Step 3 · 4 min</div><div class="t">Run the numbers</div><div class="d">Ask for the gram weight, then use the calculator. A complete ring priced below its metal value is a stop sign.</div></div>
+  <div class="card"><div class="k">Step 4 · 3 min</div><div class="t">Ask, in writing</div><div class="d">Weight, solid gold, hallmark photo, return window and resize exclusions. Keep the replies with your receipt.</div></div>
+</div>
+
+<div class="note blue" style="margin-top:26px"><b class="title">Earlier sessions' work is preserved</b>Three parallel sessions delivered to this repository. Their sites remain published alongside this consolidated dashboard: <ul class="bullets" style="margin-bottom:0"><li><a href="docs/index.html">Session 638c9614 — research site at /docs/</a></li><li><a href="index-090bae73.html">Session 090bae73 — checklist guide</a></li><li><a href="archive/session-37e8ff42/index.html">Session 37e8ff42 — dashboard snapshot</a></li></ul></div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <div><b>GOLD5</b> — an independent research project. Not a shop. No affiliate links. No price is estimated, averaged or invented.<div class="fine">Listings and policies change after the check date. Confirm everything at the seller before paying.</div></div>
+  <div><b>At a glance</b><br>25 listings · 13 sellers · 24 open flags · 10 official references<br>Spot used: $4,026.90/oz, $129.47/g (Kitco, 2026-10-22 7:26 p.m. ET)</div>
+  <div><b>Verify</b><br><a href="site/verification.html">Method &amp; pass log</a><br><a href="site/flagged.html">Flagged for Review</a><br><a href="site/sources.html">All sources</a><br><a href="site/calculator.html">Gold calculator</a></div>
+</div></footer>
 </body>
 </html>

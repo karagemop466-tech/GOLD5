@@ -1,29 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calculator — GOLD5</title>
-<link rel="stylesheet" href="assets/styles.css">
+<title>Gold ring calculator — weight, karat, metal value · GOLD5</title>
+<meta name="description" content="Free gold ring calculator: enter grams, karat and spot price to compute fine gold, metal value and price-to-metal ratio. Pre-filled with verified listings.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<main class="wrap">
-  <h2>Gold weight &amp; metal value calculator</h2>
-  <p class="note">Enter the ring's weight in grams (and the price you paid), and the tool shows the raw gold content and metal value at the verified spot price. Everything is computed live in your browser from raw inputs — nothing is pre-stored or inferred. The spot field is pre-filled from the verified primary quote and is editable (cite a new source if you change it).</p>
-  <div id="calc"></div>
-  <h2>Worked example from this dataset</h2>
-  <div class="card">
-    <p style="font-size:13.5px">VeraByEden ruby/diamond ring (14K, seller-claimed 3.70 g, $969.00): 3.70 × 0.5833 = <b>2.16 g</b> pure gold → 2.16 × $129.41 = <b>$279</b> metal value. Price = 3.47× metal — plausible because the price also covers a 0.30 ct diamond, a 0.90 ct ruby, and labor. By contrast, the case-study 7 g 14K band at $444.80 computes to 0.84× metal value — <a href="flagged.html#F1">red flag F1</a>.</p>
+<a class="skip" href="#main">Skip to content</a>
+<div class="rulebar"><div class="wrap">
+  <span><b>NO HALLUCINATIONS</b> — every value has a dated source link; anything unconfirmed is blank and flagged, never guessed.</span>
+  <span>Data as of <b>2026-10-22</b> · <a href="../site/verification.html">How this was verified →</a></span>
+</div></div>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="../index.html"><span class="brand-mark">G5</span><span class="brand-name">GOLD5<small>Solid gold engagement ring research</small></span></a>
+  <nav class="nav" aria-label="Main"><a href="../index.html">Dashboard</a><a href="listings.html">Listings</a><a href="gold-price.html">Gold Price</a><a href="calculator.html" class="active">Calculator</a><a href="analysis.html">Analysis</a><a href="checklist.html">Checklist</a><a href="sellers.html">Sellers</a><a href="flagged.html">Flagged</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav>
+</div></header>
+<main id="main"><div class="wrap">
+
+<div class="page-head"><div class="eyebrow">Calculator · all inputs stay in your browser</div>
+<h1>What is the gold in this ring worth?</h1>
+<p>Enter the ring's weight in grams, its karat and the spot price you want to use. The calculator returns fine-gold grams, metal value and the price-to-metal ratio. Nothing you type is stored or sent anywhere.</p></div>
+
+<div class="calc-grid">
+  <form class="panel" id="calc-form" onsubmit="return false">
+    <div class="field">
+      <label for="preset">Start from a verified listing (optional)</label>
+      <select id="preset"><option value="">— choose a listing with a published weight —</option>
+      <option value="AL-5882" data-grams="5.0" data-karat="14" data-price="1085">Filigree Solitaire Setting — 14K, 5 g, $1,085</option><option value="AL-170" data-grams="4.8" data-karat="14" data-price="933">Antique Engraved Setting — 14K, 4.8 g, $933</option><option value="AL-4426" data-grams="3.58" data-karat="14" data-price="585">Engraved Floral Setting — 14K, 3.58 g, $585</option><option value="AV-25893" data-grams="2.3" data-karat="14" data-price="1100">Diamond Solitaire 0.41 Ctw — 14K, 2.3 g, $1,100</option><option value="JM-149700" data-grams="2.3" data-karat="14" data-price="3020">Brilliant Round Solitaire 0.71 ctw — 14K, 2.3 g, $3,020</option><option value="SGJ-B02561" data-grams="4.7" data-karat="14" data-price="">Yellow Gold Solitaire (M Michael) — 14K, 4.7 g, no price</option><option value="ET-1151446373" data-grams="3.7" data-karat="14" data-price="969.0">Ruby + Diamond Halo — 14K, 3.7 g, $969</option><option value="ET-576343849" data-grams="7.0" data-karat="14" data-price="444.8">7 g Band — case study — 14K, 7 g, $444.80</option>
+      </select>
+      <span class="hint">Only the 8 rows where the seller published a weight can be pre-filled.</span>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="grams">Weight (grams)</label><input id="grams" type="number" min="0" step="0.01" value="5.00" inputmode="decimal"></div>
+      <div class="field"><label for="karat">Karat</label><select id="karat"><option value="10">10K — 41.67%</option><option value="14" selected>14K — 58.33%</option><option value="18">18K — 75.00%</option><option value="22">22K — 91.67%</option><option value="24">24K — 99.99%</option></select></div>
+    </div>
+    <div class="field"><label for="spot">Spot price (USD per gram)</label><input id="spot" type="number" min="0" step="0.01" value="129.47" inputmode="decimal">
+      <span class="hint">Pre-filled with the verified Kitco bid of $129.47/g at 2026-10-22 7:26 p.m. ET. Replace it with a newer quote from the <a href="gold-price.html">gold-price page</a> or your own source.</span></div>
+    <div class="field"><label for="price">Asking price for the ring (USD, optional)</label><input id="price" type="number" min="0" step="0.01" placeholder="e.g. 1085" inputmode="decimal">
+      <span class="hint">Use the full price of a <b>complete ring</b>. For a setting, the center stone is extra — the comparison is not apples-to-apples.</span></div>
+    <button class="btn primary" type="button" id="calc-btn" style="width:100%">Calculate</button>
+  </form>
+
+  <div class="panel">
+    <div class="eyebrow">Result</div>
+    <div class="result">
+      <div class="r"><div class="k">Fine gold</div><div class="v" id="r-fine">—</div><div class="d" id="r-fine-d">grams of pure gold</div></div>
+      <div class="r"><div class="k">Metal value</div><div class="v" id="r-value">—</div><div class="d" id="r-value-d">at your spot</div></div>
+      <div class="r"><div class="k">Price ÷ metal</div><div class="v" id="r-ratio">—</div><div class="d" id="r-ratio-d">complete rings only</div></div>
+    </div>
+    <div class="verdict" id="verdict">Enter a weight and karat to see the metal value. Add an asking price to see the ratio.</div>
+    <div class="formula" style="margin-top:14px">fine gold = weight × fineness<br>metal value = fine gold × spot per gram<br>price ÷ metal = asking price ÷ metal value</div>
+    <p class="small muted" style="margin-top:12px">A ratio below 1.00 means the asking price is below the gold value — a fraud signal, not a bargain. A high ratio is normal for diamond rings; it does not by itself mean overpriced. Metal value ignores stones, labour, tax and resale spread.</p>
+    <p class="small"><a href="analysis.html">See the analysis of all priced rows →</a></p>
   </div>
-</main>
-<script src="assets/data.js"></script>
-<script src="assets/app.js"></script>
-<script>
-(function () {
-  const G = window.GOLD5;
-  G.chrome("calculator");
-  G.calculator();
-})();
-</script>
+</div>
+
+<h2>Worked examples from this dataset</h2>
+<div class="table-wrap"><table><thead><tr><th>Ring</th><th class="num">Weight</th><th class="num">Karat</th><th class="num">Fine gold</th><th class="num">Metal value at $129.47/g</th><th class="num">Price</th><th class="num">Price ÷ metal</th><th>Basis</th></tr></thead><tbody>
+<tr><td><b>Filigree Solitaire Setting</b><div class="src">Allurez</div></td><td class="num">5 g</td><td class="num">14K</td><td class="num">2.917 g</td><td class="num">$377.60</td><td class="num">$1,085</td><td class="num">2.87×</td><td class="small">setting only</td></tr><tr><td><b>Antique Engraved Setting</b><div class="src">Allurez</div></td><td class="num">4.8 g</td><td class="num">14K</td><td class="num">2.800 g</td><td class="num">$362.50</td><td class="num">$933</td><td class="num">2.57×</td><td class="small">setting only</td></tr><tr><td><b>Engraved Floral Setting</b><div class="src">Allurez</div></td><td class="num">3.58 g</td><td class="num">14K</td><td class="num">2.088 g</td><td class="num">$270.36</td><td class="num">$585</td><td class="num">2.16×</td><td class="small">setting only</td></tr><tr><td><b>Diamond Solitaire 0.41 Ctw</b><div class="src">Avianne &amp; Co</div></td><td class="num">2.3 g</td><td class="num">14K</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$1,100</td><td class="num">6.33×</td><td class="small">complete ring</td></tr><tr><td><b>Brilliant Round Solitaire 0.71 ctw</b><div class="src">The Jewelry Master (Jewelry Masters)</div></td><td class="num">2.3 g</td><td class="num">14K</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$3,020</td><td class="num">17.39×</td><td class="small">complete ring</td></tr><tr><td><b>Yellow Gold Solitaire (M Michael)</b><div class="src">Solid Gold Jewelers</div></td><td class="num">4.7 g</td><td class="num">14K</td><td class="num">2.742 g</td><td class="num">$354.94</td><td class="num"><span class="blank">—</span></td><td class="num"><span class="blank">—</span></td><td class="small">complete ring</td></tr><tr><td><b>Ruby + Diamond Halo</b><div class="src">VeraByEden (Etsy shop)</div></td><td class="num">3.7 g</td><td class="num">14K</td><td class="num">2.158 g</td><td class="num">$279.42</td><td class="num">$969</td><td class="num">3.47×</td><td class="small">complete ring</td></tr><tr><td><b>7 g Band — case study</b><div class="src">BUTTERFLYWINGVINTAGE (Etsy shop)</div></td><td class="num">7 g</td><td class="num">14K</td><td class="num">4.083 g</td><td class="num">$528.64</td><td class="num">$444.80</td><td class="num">0.84×</td><td class="small">complete ring</td></tr>
+</tbody></table></div>
+
+<div class="note gold"><b class="title">Why 17 of 25 listings are not in this calculator</b>Their sellers do not publish a gram weight. You cannot compute gold content from a price or a photo. The blank is the finding: request the weight in writing before you buy. See <a href="flagged.html#FL-03">FL-03</a>.</div>
+<script src="assets/calculator.js"></script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <div><b>GOLD5</b> — an independent research project. Not a shop. No affiliate links. No price is estimated, averaged or invented.<div class="fine">Listings and policies change after the check date. Confirm everything at the seller before paying.</div></div>
+  <div><b>At a glance</b><br>25 listings · 13 sellers · 24 open flags · 10 official references<br>Spot used: $4,026.90/oz, $129.47/g (Kitco, 2026-10-22 7:26 p.m. ET)</div>
+  <div><b>Verify</b><br><a href="../site/verification.html">Method &amp; pass log</a><br><a href="../site/flagged.html">Flagged for Review</a><br><a href="../site/sources.html">All sources</a><br><a href="../site/calculator.html">Gold calculator</a></div>
+</div></footer>
 </body>
 </html>

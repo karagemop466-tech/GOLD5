@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listings — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Listings — solid gold engagement rings &amp; reference bands</h2>
+  <p class="note">Each row was verified against the linked official page on the check date. <b>Blank cell = value not published by the seller / not confirmable from an official source</b> — such cells are flagged (<a href="flagged.html">Flagged for Review</a>), never filled in. Blue Nile rows are <b>setting prices</b> (center diamond sold separately); Etsy rows include the center stone. “Price vs. gold” is computed live from grams × fineness × verified spot (see <a href="gold-price.html">Gold Price</a>).</p>
+
+  <h3>Engagement rings</h3>
+  <div id="er"></div>
+
+  <h3>Solid gold bands (price-per-gram reference)</h3>
+  <div id="bands"></div>
+  <p class="note">Bands show what 14K solid gold actually costs per gram at verified listings — use them with the <a href="calculator.html">calculator</a> to sanity-check any engagement ring's price.</p>
+
+  <h3>Case studies (retained for analysis)</h3>
+  <div id="cs"></div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5, D = G.D;
+  G.chrome("listings");
+  document.getElementById("er").innerHTML = G.listingsTable(D.entries.filter(e => e.category === "engagement-ring"));
+  document.getElementById("bands").innerHTML = G.listingsTable(D.entries.filter(e => e.category === "band-reference"));
+  document.getElementById("cs").innerHTML = G.listingsTable(D.entries.filter(e => e.category === "case-study"));
+})();
+</script>
+</body>
+</html>
