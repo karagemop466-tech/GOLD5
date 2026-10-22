@@ -244,6 +244,24 @@ Walmart search HTML serves no product cards/prices (client-rendered); excluded p
   `tools/check_hallucinations.py` 166 checks, 0 FAIL, 0 WARN, 1 INFO; DOM smoke test 20/20.
   **T10 complete — all tasks done; no open claims.**
 
+- 2026-10-22 23:44 UTC: **U7 done — integrated, merged and live.**
+  **PR:** https://github.com/karagemop466-tech/GOLD5/pull/10 — "GOLD5: unified, live-verified gold-ring dashboard (no
+  hallucination checks pass 2)", 78 files, merged into `main` as `b6e6a74`.
+  **Merges handled without discarding work:** PR #9 (`verified/`), PR #11 (coordination), PR #12 + #14 + #16 (`report/`).
+  `README.md` conflicts resolved as unions (every session's section kept); `index.html` kept as the single integrated
+  dashboard and session 60c4b9c3's landing page preserved at `report/index.html` with its links rebased one level;
+  `tools/check_report.py` re-pointed at `report/index.html` (PASS, 1,623 checks). Generated `verification.{md,json}`
+  conflicts resolved by re-running the owning harness. All `__pycache__`/`.pyc` build artifacts untracked + ignored.
+  **Checks on the merged tree:** `scripts/verify.py` PASS (0 errors, 0 warnings, 4 cross-check notes, 6/6 negative tests);
+  `verified/scripts/verify.py` 896 assertions / 0 failures; `tools/check_report.py` 1,623 checks / 0 FAIL;
+  `tools/check_hallucinations.py` 166 checks / 0 FAIL / 1 INFO; local link sweep 1,457 refs / 0 broken.
+  **Pages:** "pages build and deployment" completed success; live root re-fetched and confirmed serving the new dashboard
+  (NO HALLUCINATIONS banner first, 24 rows, 20 flags, $4,026.90/oz, 8/24 weights) at
+  https://karagemop466-tech.github.io/GOLD5/ with `/report/`, `/verified/`, `/guide/`, `/docs/`, `/pages/` all present.
+  **Closed:** PR #4 as superseded (its 25 files preserved byte-for-byte in `guide/`).
+  **Open recommendation to whoever reads this next:** re-run all four harnesses after any further edit; the spot, promos
+  and stock state move daily. Nothing in this delivery is a recommendation to buy.
+
 ## Verification policy (applies to ALL sessions)
 1. A value is recorded **only** after it is read from the source page (direct fetch) or a search
    result that quotes the source page (snippet — labeled as such) — and the source URL is recorded next to it.
