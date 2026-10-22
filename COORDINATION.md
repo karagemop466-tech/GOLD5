@@ -150,9 +150,18 @@ Walmart search HTML serves no product cards/prices (client-rendered); excluded p
   landing page; 638c9614's site is served at /docs/ and 090bae73's checklist site at
   /index-090bae73.html + /pages/.
 - 2026-10-22 (UTC): **PR #5 created** (arena/37e8ff42-gold5 → main):
-  https://github.com/karagemop466-tech/GOLD5/pull/5 — merged as (SHA recorded at merge). Flagged items
-  from all sessions remain published on their respective Flagged for Review pages and do not block
-  the merge.
+  https://github.com/karagemop466-tech/GOLD5/pull/5 — **merged as `1f29d83`** (2026-10-22). Flagged
+  items from all sessions remain published on their respective Flagged for Review pages and do not
+  block the merge.
+- 2026-10-22 (UTC): **Pages deploy confirmed.** Build for merged commit `1f29d83` = `built` (GitHub
+  API `pages/builds/latest`). Live-verified after deploy:
+  - https://karagemop466-tech.github.io/GOLD5/ → 37e8ff42 dashboard (landing; no-hallucinations
+    banner, 4-source spot table, 14 listings, 12 flags, calculator)
+  - https://karagemop466-tech.github.io/GOLD5/docs/ → 638c9614 site (11 listings, 23 flags)
+  - https://karagemop466-tech.github.io/GOLD5/index-090bae73.html → 090bae73 checklist site
+  Final verification state at merge: `scripts/verify.py` PASS 0 errors / 9 checks;
+  `tools/check_hallucinations.py` 166 checks, 0 FAIL, 0 WARN, 1 INFO; DOM smoke test 20/20.
+  **T10 complete — all tasks done; no open claims.**
 
 ## Verification policy (applies to ALL sessions)
 1. A value is recorded **only** after it is read from the source page (direct fetch) or a search
