@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Source registry — what each link verifies</h2>
+  <p class="note">Complete list of official sources used, what each one backs, how it was captured (direct page fetch vs. search snippet of the official page), and the check date. This is the audit trail for the <b>no-hallucinations</b> rule: if a value on this site has no row here, it should not exist. Regenerated from <code>site/assets/data.js</code> — the same file <code>scripts/verify.py</code> checks.</p>
+  <div id="src"></div>
+  <h2>Verification method (per project policy)</h2>
+  <div class="card">
+    <ol style="font-size:13.5px;line-height:1.8">
+      <li>A value is recorded <b>only</b> after being read from the source page (direct fetch) or from a search result that quotes the source page (snippet) — and the URL is recorded next to it. Snippet-captured values are labeled in the table.</li>
+      <li><code>checkedOn</code> date recorded for every cell group; prices are same-day (2026-10-22).</li>
+      <li>Derived numbers (pure gold grams, troy oz, metal value, price ratio) are computed by browser JS / <code>scripts/verify.py</code> from raw inputs — never typed in.</li>
+      <li>Anything not confirmable from an official source → blank + <a href="flagged.html">Flagged for Review</a>.</li>
+      <li>After every review: run <code>python3 scripts/verify.py</code> (hallucination + link + arithmetic pass) and update the log in <code>COORDINATION.md</code>.</li>
+    </ol>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5;
+  G.chrome("sources");
+  document.getElementById("src").innerHTML = G.sourcesTable();
+})();
+</script>
+</body>
+</html>
