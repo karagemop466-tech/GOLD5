@@ -16,9 +16,10 @@
 </header>
 
 <section class="pledge">
-  <b>NO HALLUCINATIONS PLEDGE:</b> Every figure, quote, and rule on this site is tied to a source link to an official or verified
-  source. Nothing here is inferred, estimated, or made up. If a value cannot be confirmed from an official source, it is left blank
-  and flagged as <b>unverified</b>. All source links are listed on each page and on the <a href="flagged.html">Flagged for Review</a> page.
+  <b>NO HALLUCINATIONS — front page summary:</b> Every figure, quote, and rule on this site is tied to a source link to an official or verified
+  source. Nothing here is inferred, estimated, or made up. If a value cannot be confirmed from an official source, it is left blank and flagged as
+  <b>unverified</b>. Run the verification passes after every review and flag any hallucinations found. All source links are listed on each page and on
+  the <a href="flagged.html">Flagged for Review</a> page.
 </section>
 
 <nav class="site-nav">
@@ -36,20 +37,22 @@
     <li><a href="verification.html">Independent Verification (XRF)</a></li>
     <li><a href="findings.html">Analysis &amp; Findings</a></li>
     <li><a href="flagged.html">Flagged for Review</a></li>
+    <li style="opacity:0.85;"><a href="docs/checklist.html">Verified market sample (data site)</a></li>
+    <li style="opacity:0.85;"><a href="docs/sources.html">All sources</a></li>
   </ul>
 </nav>
 
 <div class="wrapper">
 <main>
   <h2>About this project</h2>
-  <p>GOLD5 collects, organizes, and analyzes the steps for buying a gold engagement ring online — 10K, 14K, 18K, and higher — so a buyer can
-  verify purity, weight, seller reputation, price, return policy, payment protection, documentation, and independent testing before and after
-  purchase.</p>
+  <p>GOLD5 collects, organizes, and analyzes the steps for buying a gold engagement ring online — 10K, 14K, 18K, and higher — so a buyer can verify
+  purity, weight, seller reputation, price, return policy, payment protection, documentation, and independent testing before and after purchase.</p>
 
   <p>The key rule, from the U.S. Federal Trade Commission (FTC): a <b>14K or 18K stamp by itself does not prove the ring is actually that purity.</b>
   The safest approach is a reputable seller + proper markings (karat mark <i>plus</i> maker's/trademark mark) + a reasonable price + independent
   testing after delivery.</p>
 
+  <h3>Category pages — official-source guidance</h3>
   <div class="card-grid">
     <div class="card">
       <h3>1. Confirm the karat</h3>
@@ -93,24 +96,49 @@
     </div>
   </div>
 
+  <h3>Verified market sample data (previous session, arena-gold5-01)</h3>
+  <p class="small">Live-captured listing evidence from seller sites on 2026-10-22, every figure traceable to its saved evidence page; blanks flagged
+  unverified. Runs an automated hallucination check after every review pass (<code>python3 tools/check_hallucinations.py</code>).</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Ring listings (11 captured)</h3>
+      <p>Brilliant Earth, Blue Nile, Allurez, Avianne &amp; Co, The Jewelry Master, Solid Gold Jewelers. Prices, karats, weights as stated on the listings. <a href="docs/checklist.html">View checklist &rarr;</a></p>
+    </div>
+    <div class="card">
+      <h3>Sellers &amp; return policies</h3>
+      <p>Contact info and return/resize/custom exclusions per seller, where capturable. <a href="docs/sellers.html">View sellers &rarr;</a></p>
+    </div>
+    <div class="card">
+      <h3>Spot price snapshot</h3>
+      <p>Kitco gold bid captured 2026-10-22; moves constantly — re-check before buying. <a href="docs/analysis.html">View analysis &rarr;</a></p>
+    </div>
+    <div class="card">
+      <h3>Flagged for Review</h3>
+      <p>Unverified items and irregularities from both sessions, published for your review. <a href="flagged.html">View flags &rarr;</a> &middot; <a href="docs/flagged.html">View data-site flags &rarr;</a></p>
+    </div>
+    <div class="card">
+      <h3>Sources &amp; verification</h3>
+      <p>FTC, eCFR 16 CFR Parts 23 &amp; 429, NIST, LBMA, Jewelers of America; plus seller evidence captures. <a href="docs/sources.html">View sources &rarr;</a></p>
+    </div>
+  </div>
+
   <div class="note">
     <strong>How to use this site:</strong> Work through the category pages in order. Every table row shows the official source it was verified
     against. Items that could not be confirmed from an official source are left blank and marked <span class="status status-unverified">unverified</span>.
-    See the <a href="checklist.html">full checklist table</a> for all entries at a glance, and the <a href="flagged.html">Flagged for Review</a>
-    page for items that need your attention.
   </div>
 
   <div class="warn">
-    <strong>Important:</strong> This site is consumer guidance built from public official sources (FTC, eCFR, NIST, LBMA, Jewelers of America).
-    It is not legal advice and not a substitute for an independent appraisal. Prices change constantly; always check a live price source at the
-    time of purchase.
+    <strong>Important:</strong> This site is consumer guidance built from public official sources (FTC, eCFR, NIST, LBMA, Jewelers of America) and
+    dated seller evidence captures. It is not legal advice and not a substitute for an independent appraisal. Prices change constantly; always check a
+    live price source at the time of purchase.
   </div>
 </main>
 </div>
 
 <footer>
-  <p>GOLD5 &middot; Built from official sources &middot; Last reviewed 2026-10-22 (UTC) &middot;
-  <a href="flagged.html">Flagged for Review</a> &middot; <a href="https://github.com/karagemop466-tech/GOLD5">Repository on GitHub</a></p>
+  <p>GOLD5 &middot; NO HALLUCINATIONS — every row links to its source &middot; Last reviewed 2026-10-22 (UTC) &middot;
+  <a href="https://github.com/karagemop466-tech/GOLD5">Repository on GitHub</a> &middot;
+  <a href="https://github.com/karagemop466-tech/GOLD5/pulls">Pull requests</a></p>
 </footer>
 
 </body>

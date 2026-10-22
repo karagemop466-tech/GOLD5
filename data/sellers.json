@@ -1,0 +1,119 @@
+[
+  {
+    "id": "S1",
+    "name": "Brilliant Earth",
+    "domain": "brilliantearth.com",
+    "home": "https://www.brilliantearth.com/",
+    "contact": [
+      {
+        "text": "800.691.0952",
+        "evidence": "be_listing",
+        "source": "https://www.brilliantearth.com/engagement-rings/yellow-gold/"
+      }
+    ],
+    "returns_summary": "Product page says \"Free Shipping & Returns\" and \"Free 1-Year Resizing\". Return window, conditions and resize/custom exclusions NOT confirmed (return-policy page capture contained only site navigation).",
+    "returns_url": "https://www.brilliantearth.com/customer-care/return-policy/",
+    "returns_evidence": "be_freesia_2mm",
+    "returns_verified": false
+  },
+  {
+    "id": "S2",
+    "name": "Blue Nile",
+    "domain": "bluenile.com",
+    "home": "https://www.bluenile.com/",
+    "contact": [
+      {
+        "text": "+1-800-242-2728",
+        "evidence": "bn_returns",
+        "source": "https://www.bluenile.com/policies/returns"
+      },
+      {
+        "text": "service@bluenile.com",
+        "evidence": "bn_returns",
+        "source": "https://www.bluenile.com/policies/returns"
+      }
+    ],
+    "returns_summary": "30 days from shipment date, original unworn condition, full refund or exchange. NOT returnable: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year. One free resize within 6 months if design permits.",
+    "returns_url": "https://www.bluenile.com/policies/returns",
+    "returns_evidence": "bn_returns",
+    "returns_verified": true
+  },
+  {
+    "id": "S3",
+    "name": "Allurez",
+    "domain": "allurez.com",
+    "home": "https://www.allurez.com/",
+    "contact": [
+      {
+        "text": "1-800-554-3509",
+        "evidence": "allurez_returns",
+        "source": "https://www.allurez.com/pages/return-policy"
+      },
+      {
+        "text": "service@allurez.com",
+        "evidence": "allurez_returns",
+        "source": "https://www.allurez.com/pages/return-policy"
+      }
+    ],
+    "returns_summary": "Return must ARRIVE within 30 days of original shipment; item unused, not resized or altered. Engraved items, custom-made orders and clearance items are non-refundable; Design Your Own engagement rings may only be exchanged (same or higher value). Buyer pays return shipping; original shipping not refunded.",
+    "returns_url": "https://www.allurez.com/pages/return-policy",
+    "returns_evidence": "allurez_returns",
+    "returns_verified": true
+  },
+  {
+    "id": "S4",
+    "name": "Avianne & Co",
+    "domain": "avianneandco.com",
+    "home": "https://www.avianneandco.com/",
+    "contact": [
+      {
+        "text": "1 (332)-244-4038",
+        "evidence": "avianne_r25893",
+        "source": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw"
+      },
+      {
+        "text": "28 W 47th Street",
+        "evidence": "avianne_r25893",
+        "source": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw"
+      }
+    ],
+    "returns_summary": "Product page: \"Returns of unworn and unaltered items accepted within 14 days.\" Full policy page not captured; resize/custom exclusions not confirmed.",
+    "returns_url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+    "returns_evidence": "avianne_r25893",
+    "returns_verified": false
+  },
+  {
+    "id": "S5",
+    "name": "The Jewelry Master (Jewelry Masters)",
+    "domain": "thejewelrymaster.com",
+    "home": "https://www.thejewelrymaster.com/",
+    "contact": [
+      {
+        "text": "1-888-59-JEWEL",
+        "evidence": "jm_149700",
+        "source": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html"
+      }
+    ],
+    "returns_summary": "Product page: \"Money Back Guarantee (some restrictions apply)\" — return or exchange within 30 days. The restrictions themselves were NOT captured, so resize/custom exclusions are unknown.",
+    "returns_url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
+    "returns_evidence": "jm_149700",
+    "returns_verified": false
+  },
+  {
+    "id": "S6",
+    "name": "Solid Gold Jewelers",
+    "domain": "solidgoldjewelers.net",
+    "home": "https://solidgoldjewelers.net/",
+    "contact": [
+      {
+        "text": "(309) 452-1612",
+        "evidence": "sgj_b02561",
+        "source": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/"
+      }
+    ],
+    "returns_summary": "No return policy shown on the product page.",
+    "returns_url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+    "returns_evidence": "sgj_b02561",
+    "returns_verified": false
+  }
+]

@@ -1,0 +1,20 @@
+SOURCE: https://www.allurez.com/pages/return-policy
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+Eligible unused items may be returned within 30 days, subject to the conditions and exceptions below.
+
+**Your return must arrive at our office within 30 days of the original shipment.**
+
+- Items must be unused and in their original condition, without scratches or signs of wear. They must not have been resized or altered in any way.
+- Worn, damaged, or altered items are not refundable and will be sent back to you at your expense.
+[...]
+- **Engraved items:** Non-refundable.
+- **Design Your Own engagement rings, pendants, and earrings:** May be exchanged for items of the same or higher value, but cannot be exchanged for loose diamonds.
+- **Custom-made orders:** Non-refundable and non-cancellable.
+[...]
+- **Clearance items:** Non-refundable.
+[...]
+You are responsible for return shipping costs. Our original shipping cost is not refundable, including when your order qualified for free shipping.
+[...]
+Email [service@allurez.com](mailto:service@allurez.com) or call [1-800-554-3509](tel:+18005543509)

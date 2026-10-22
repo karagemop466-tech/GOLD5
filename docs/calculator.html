@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gold Weight &amp; Value Calculator — GOLD5 Gold Engagement Ring Finder</title><link rel="stylesheet" href="style.css"></head><body>
+<header><div class="bar"><a class="brand" href="index.html">◆ GOLD5</a><nav><a href="index.html" class="">Dashboard</a><a href="rings.html" class="">Rings</a><a href="calculator.html" class="on">Calculator</a><a href="analysis.html" class="">Analysis</a><a href="sellers.html" class="">Sellers</a><a href="checklist.html" class="">Checklist</a><a href="flagged.html" class="">Flagged for Review</a><a href="verification.html" class="">Verification</a><a href="sources.html" class="">Sources</a></nav></div></header>
+<main><h1>Gold Weight &amp; Value Calculator</h1><p class="sub">Check what the gold in a ring is worth before you pay.</p><div class="nh"><b class="t">◆ NO HALLUCINATIONS RULE</b><br>
+Every price, weight, karat and policy on this site was copied from the linked <b>official seller page</b> on the capture date (2026-10-22).
+Anything that could not be confirmed there is <b>left blank and flagged <span class="badge b-unverified">unverified</span></b> — nothing is guessed, estimated or inferred.
+Values labelled <span class="calc">calculated</span> are plain arithmetic on verified inputs, with the formula shown.
+Prices change and gold moves every few seconds: <b>re-check the listing before you buy</b>.
+A <a href="verification.html">hallucination check</a> runs after every review pass — and you should run it again too (<code>python3 tools/check_hallucinations.py</code>).</div>
+<p>Gold content and melt value of a ring: <b>weight (g) × (spot per troy oz ÷ 31.1034768 g) × karat ÷ 24</b>. The spot field starts at the Kitco snapshot below
+(2026-10-22, Oct 22, 2026 - 19:11 NY Time (page footnote: as of October 22, 2026 at 7:10 p.m. EDT)). <b>Anything you type is your own input, not verified site data.</b> For a newer spot price use <a href="https://www.kitco.com/charts/gold" target="_blank" rel="noopener">kitco.com</a>.</p>
+<div class="form">
+<div><label>Gold spot (USD per troy oz)</label><input id="spot" type="number" step="0.01" value="4025.00"></div>
+<div><label>Karat</label><select id="kt"><option>10</option><option selected>14</option><option>18</option><option>22</option><option>24</option></select></div>
+<div><label>Ring weight</label><input id="wt" type="number" step="0.01" placeholder="from the listing"></div>
+<div><label>Weight unit</label><select id="un"><option value="1">grams</option><option value="1.55517384">pennyweight (dwt)</option><option value="31.1034768">troy ounce</option></select></div>
+<div><label>Asking price (USD, optional)</label><input id="ask" type="number" step="0.01" placeholder="from the listing"></div></div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><div class="k">Pure gold in ring</div><div class="out" id="o1">—</div></div>
+<div class="card"><div class="k">Gold (melt) value</div><div class="out" id="o2">—</div></div>
+<div class="card"><div class="k">Asking price ÷ gold value</div><div class="out" id="o3">—</div></div>
+<div class="card"><div class="k">Asking price − gold value</div><div class="out" id="o4">—</div></div></div>
+<p class="calc">Calculated in your browser. Red flag: an asking price <i>below</i> the gold value of a ring that is claimed to be solid gold. A price near or above it is normal (labor, stones, margin) and proves nothing about authenticity — verify with XRF.</p>
+<h2>Kitco snapshot — gold value by purity (1 troy oz)</h2>
+<div class="tw"><table><thead><tr><th>Purity</th><th class="n">Value (USD)</th><th class="n">Kitco purity %</th></tr></thead><tbody><tr><td>24K</td><td class='n'>$4,025.00</td><td class='n'>99.99%</td></tr><tr><td>22K</td><td class='n'>$3,689.72</td><td class='n'>91.67%</td></tr><tr><td>18K</td><td class='n'>$3,018.75</td><td class='n'>75.00%</td></tr><tr><td>14K</td><td class='n'>$2,347.78</td><td class='n'>58.33%</td></tr><tr><td>10K</td><td class='n'>$1,677.22</td><td class='n'>41.67%</td></tr></tbody></table></div>
+<p>Source: <a href="https://www.kitco.com/charts/gold" rel="noopener" target="_blank">Kitco live gold price ↗</a> · bid $4,025.00/oz · captured 2026-10-22, Oct 22, 2026 - 19:11 NY Time (page footnote: as of October 22, 2026 at 7:10 p.m. EDT) · evidence <a href="evidence/spot_kitco.txt">spot_kitco.txt</a>. Kitco notes: “Estimated metal value only, retail premiums may apply to physical products.” See flag <a href="flagged.html#G-SPOT-DUAL">G-SPOT-DUAL</a>.</p>
+<h2>Listings in this project, re-priced at the spot you enter</h2>
+<div class="tw"><table id="ct"><thead><tr><th>ID</th><th>Ring</th><th class="n">Karat</th><th class="n">Weight (g)</th><th class="n">Price</th><th class="n">Gold value</th><th class="n">Price ÷ value</th></tr></thead><tbody></tbody></table></div>
+<script>
+var G=31.1034768,D=[{"id": "R01", "name": "Freesia 2mm Solitaire Ring in 14K Yellow Gold (BE1343-14KY)", "w": null, "k": 14, "p": 750}, {"id": "R02", "name": "Nadia Diamond Ring", "w": null, "k": null, "p": 1250}, {"id": "R03", "name": "Freesia Hidden Halo Diamond Ring", "w": null, "k": null, "p": 1190}, {"id": "R04", "name": "Secret Halo 1.5mm Diamond Ring", "w": null, "k": null, "p": 1090}, {"id": "R05", "name": "Classic Simple Solitaire Engagement Ring in 14K Yellow Gold (502120y14)", "w": null, "k": 14, "p": 1145}, {"id": "R06", "name": "Filigree Designed Solitaire Engagement Ring Setting 14K Yellow Gold (U5882)", "w": 5.0, "k": 14, "p": 1085}, {"id": "R07", "name": "Antique Engraved Solitaire Engagement Ring Setting 14k Yellow Gold (U170)", "w": 4.8, "k": 14, "p": 933}, {"id": "R08", "name": "Engraved Floral Solitaire Engagement Ring Setting 14K Yellow Gold (NG4426)", "w": 3.58, "k": 14, "p": 585}, {"id": "R09", "name": "14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw (R25893)", "w": 2.3, "k": 14, "p": 1100.0}, {"id": "R10", "name": "Brilliant Round Diamond Solitaire Engagement Ring 14K Yellow Gold (Style 149700)", "w": 2.3, "k": 14, "p": 3020.0}, {"id": "R11", "name": "Yellow Gold Solitaire Engagement Ring (SKU B02561, brand M Michael)", "w": 4.7, "k": 14, "p": null}];
+function fm(x){return '$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function calc(){var s=+spot.value,k=+kt.value,w=+wt.value*+un.value,a=+ask.value;
+ if(!(s>0&&w>0)){o1.textContent=o2.textContent=o3.textContent=o4.textContent='—'}else{var pure=w*k/24,v=pure*s/G;o1.textContent=pure.toFixed(3)+' g';o2.textContent=fm(v);
+ if(a>0){o3.textContent=(a/v).toFixed(2)+'×';o4.textContent=fm(a-v)}else{o3.textContent=o4.textContent='—'}}
+ var h='';D.forEach(function(r){var v=(r.w&&r.k&&s>0)?r.w*(s/G)*r.k/24:null;h+='<tr><td>'+r.id+'</td><td>'+r.name+'</td><td class="n">'+(r.k?r.k+'K':'<span class="blank">blank — unverified</span>')+'</td><td class="n">'+(r.w!=null?r.w:'<span class="blank">blank — unverified</span>')+'</td><td class="n">'+(r.p!=null?fm(r.p):'<span class="blank">blank — unverified</span>')+'</td><td class="n">'+(v!=null?fm(v):'<span class="blank">blank</span>')+'</td><td class="n">'+((v&&r.p!=null)?(r.p/v).toFixed(2)+'×':'<span class="blank">blank</span>')+'</td></tr>'});
+ document.querySelector('#ct tbody').innerHTML=h}
+['spot','kt','wt','un','ask'].forEach(function(i){document.getElementById(i).addEventListener('input',calc)});calc();
+</script>
+<footer>Data snapshot captured 2026-10-22 (UTC date). Source code &amp; raw evidence: <a href="https://github.com/karagemop466-tech/GOLD5">github.com/karagemop466-tech/GOLD5</a>. Every figure is traceable to a linked seller page — see <a href="verification.html">Verification</a>.</footer></main></body></html>

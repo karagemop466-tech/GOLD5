@@ -1,0 +1,330 @@
+/* ==========================================================================
+   GOLD5 — Gold Engagement Ring Buying Checklist
+   Clean dashboard-style stylesheet
+   ========================================================================== */
+
+/* --- Reset & base --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f3f4f6;
+  min-height: 100vh;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Layout wrapper --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Header / navbar --- */
+.site-header {
+  background: #1f2937;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.navbar__brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar__brand:hover {
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.navbar__links a {
+  color: #e5e7eb;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.375rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar__links a:hover,
+.navbar__links a.active {
+  background: #374151;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* --- Hero / landing --- */
+.hero {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero p.subtitle {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.hero__cta {
+  display: inline-block;
+  background: #f59e0b;
+  color: #ffffff;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero__cta:hover {
+  background: #d97706;
+  text-decoration: none;
+}
+
+/* --- No-hallucinations banner --- */
+.no-hallucinations {
+  background: #fef3c7;
+  border: 2px solid #d97706;
+  color: #78350f;
+  padding: 1rem 1.5rem;
+  margin: 1rem auto;
+  max-width: 1200px;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.no-hallucinations strong {
+  color: #78350f;
+}
+
+/* --- Section: intro / checklist overview --- */
+.section {
+  padding: 3rem 1.5rem;
+}
+
+.section__title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+.section__subtitle {
+  font-size: 1.0625rem;
+  color: #4b5563;
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+/* --- Checklist grid --- */
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.checklist-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.checklist-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.checklist-card__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.checklist-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.checklist-card p {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.checklist-card a {
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.checklist-card a:hover {
+  border-bottom-color: #2563eb;
+}
+
+/* --- Tables --- */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-size: 0.9375rem;
+}
+
+th, td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover {
+  background: #f9fafb;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge--verified {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge--unverified {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge--blank {
+  background: #e5e7eb;
+  color: #4b5563;
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: #1f2937;
+  color: #e5e7eb;
+  padding: 2rem 1.5rem;
+  margin-top: 3rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.site-footer p {
+  font-size: 0.875rem;
+}
+
+/* --- Utility --- */
+.text-center { text-align: center; }
+.mt-2 { margin-top: 0.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.75rem; }
+  .navbar { flex-direction: column; align-items: stretch; }
+  .navbar__links { justify-content: center; }
+  .section { padding: 2rem 1rem; }
+}

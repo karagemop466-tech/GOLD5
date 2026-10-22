@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Calculator | GOLD5</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta name="description" content="Gold weight and value calculator. Calculates pure gold weight and melt value from ring weight, karat, and spot price.">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="navbar container">
+    <a href="../index.html" class="navbar__brand">
+      <span aria-hidden="true">💍</span> GOLD5
+    </a>
+    <ul class="navbar__links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="gold-purity.html">Gold Purity</a></li>
+      <li><a href="solid-gold.html">Solid Gold</a></li>
+      <li><a href="hallmark.html">Hallmark</a></li>
+      <li><a href="weight.html">Weight</a></li>
+      <li><a href="seller-reputation.html">Seller Reputation</a></li>
+      <li><a href="price.html">Price</a></li>
+      <li><a href="return-policy.html">Return Policy</a></li>
+      <li><a href="payment.html">Payment</a></li>
+      <li><a href="documentation.html">Documentation</a></li>
+      <li><a href="upon-arrival.html">Upon Arrival</a></li>
+      <li><a href="xrf-testing.html">XRF Testing</a></li>
+      <li><a href="calculator.html" class="active">Gold Calculator</a></li>
+      <li><a href="flagged-review.html">Flagged for Review</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="no-hallucinations">
+  <strong>NO HALLUCINATIONS:</strong> This calculator uses only values you enter.
+  No prices are pre-filled. The spot price must be obtained from an official market source at the time of calculation.
+</section>
+
+<main class="container">
+
+  <section class="section">
+    <h1 class="section__title">Gold Calculator — Raw Gold Value</h1>
+    <p class="section__subtitle">
+      Calculate the raw gold melt value from the ring's weight, karat purity, and current gold spot price.
+      Enter your own values — nothing is pre-filled to avoid hallucination.
+    </p>
+
+    <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:0.5rem;padding:1.5rem;max-width:600px;">
+      <form id="gold-calculator">
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-weight:600; margin-bottom:0.25rem;">Ring Weight (grams)</label>
+          <input type="number" id="ring-weight" step="0.01" min="0" placeholder="e.g., 5.0" style="width:100%; padding:0.5rem; border:1px solid #d1d5db; border-radius:0.375rem; font-size:1rem;">
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-weight:600; margin-bottom:0.25rem;">Karat</label>
+          <select id="ring-karat" style="width:100%; padding:0.5rem; border:1px solid #d1d5db; border-radius:0.375rem; font-size:1rem;">
+            <option value="24">24K (99.9%)</option>
+            <option value="22">22K (91.7%)</option>
+            <option value="18">18K (75.0%)</option>
+            <option value="14">14K (58.3%)</option>
+            <option value="10">10K (41.7%)</option>
+          </select>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-weight:600; margin-bottom:0.25rem;">Gold Spot Price (per gram, USD)</label>
+          <input type="number" id="gold-price" step="0.01" min="0" placeholder="Check LBMA for current price" style="width:100%; padding:0.5rem; border:1px solid #d1d5db; border-radius:0.375rem; font-size:1rem;">
+        </div>
+        <button type="submit" style="background:#2563eb; color:#ffffff; border:none; padding:0.75rem 1.5rem; border-radius:0.375rem; font-weight:600; font-size:1rem; cursor:pointer; width:100%;">
+          Calculate
+        </button>
+      </form>
+      <div id="calc-result" style="margin-top:1.5rem; padding:1rem; background:#f9fafb; border-radius:0.375rem; border:1px solid #e5e7eb;"></div>
+    </div>
+
+    <div style="margin-top:2rem; background:#f9fafb;border:1px solid #e5e7eb;border-radius:0.5rem;padding:1rem;">
+      <h3 style="margin-bottom:0.5rem;">How It Works</h3>
+      <ul style="margin-left:1.5rem; margin-bottom:0;">
+        <li><strong>Pure gold weight</strong> = ring weight × (karat ÷ 24)</li>
+        <li><strong>Raw gold value</strong> = pure gold weight × spot price per gram</li>
+        <li>This is the raw gold (melt) value only — it does not include craftsmanship, gemstones, brand premium, or retail markup</li>
+        <li>Purity fractions: 24K = 1.000, 18K = 0.750, 14K = 0.583, 10K = 0.417</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Sources:</strong> <a href="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry#gold" target="_blank" rel="noopener">FTC Consumer Guide</a> · <a href="https://www.lbma.org.uk" target="_blank" rel="noopener">LBMA (spot price)</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 GOLD5 — All content verified against official sources.</p>
+    <p><a href="../pages/flagged-review.html">Flagged for Review</a> · <a href="https://github.com/karagemop466-tech/GOLD5">GitHub Repository</a></p>
+  </div>
+</footer>
+
+<script src="../assets/js/script.js"></script>
+
+</body>
+</html>

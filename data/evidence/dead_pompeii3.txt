@@ -1,0 +1,6 @@
+SOURCE: https://www.pompeii3.com/contemporary-solitaire-engagement-14k-gold-ring-setting/
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+Page title returned by the live fetch: "Pompeii3.com - Not Found"
+A web-search result had described this URL as "Contemporary Solitaire Engagement 14K Gold Ring Setting ... Weight: 4 g ... Metal: 14k Yellow Gold". The live page no longer exists, so NO value from it is used.
