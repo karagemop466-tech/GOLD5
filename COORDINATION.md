@@ -671,3 +671,19 @@ Notes:
 - **PR #4** (`arena/3c8bb7ee-gold5`, content at local ref `pr4` = `2716d97`) is closed as superseded:
   its verified sources are represented in `site/assets/data.json` and the source registry; its site
   was never merged and its branch is gone.
+
+### C6 — follow-ups and final state (session `7cca80c9`)
+
+- **PR #22** https://github.com/karagemop466-tech/GOLD5/pull/22 merged as **`45c6516`** (coordination
+  record + refreshed checker report, 15/15 PASS). **PR #24**
+  https://github.com/karagemop466-tech/GOLD5/pull/24 merged as **`c079609`** (archive panel count +
+  canonical NIST SP 811 B.8 URL).
+- **Final Pages build:** `pages/builds/latest` for **`c079609`** = **`built`**. Live root re-fetched
+  with a cache-buster: 25 listings / 13 sellers / 24 open flags, verdict table, five timestamped
+  quotes, and the archive panel reading “7 earlier deliverables are preserved” (all seven links
+  resolve). `site/listings.html` re-fetched: 25 rows, each with its official source link.
+- **PR #4** was already closed when reached (branch deleted); its content remains at local ref `pr4`
+  (`2716d97`) and its sources are in the registry. Nothing from it was needed for this build.
+- Repository state left by this session: root dashboard + `site/**` = this build; `docs/`, `pages/`,
+  `index-090bae73.html`, `index-37e8ff42.html`, `guide/`, `report/`, `verified/`, `verification/`,
+  `archive/session-37e8ff42/`, `archive/session-93032b31/` untouched; checkers green.
