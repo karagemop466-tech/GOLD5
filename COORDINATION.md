@@ -172,3 +172,28 @@ Walmart search HTML serves no product cards/prices (client-rendered); excluded p
 4. Anything not confirmable from an official source → blank + flagged on the Flagged for Review page.
 5. After every review: run `python3 scripts/verify.py` **and** `python3 tools/check_hallucinations.py`
    (as applicable), and log the result here.
+
+---
+
+## Task board — session `7cca80c9` (consolidation & final integration, 2026-10-22 UTC)
+
+**Claim (written before work started):** this session owns the final consolidation pass. Scope is
+exclusive to this session and does **not** modify the archived deliverables of `638c9614`
+(`data/`, `docs/`, `tools/`) or `090bae73` (`pages/`, `assets/`, `index-090bae73.html`).
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|---|---|---|---|---|
+| C1 | Re-read prior boards, datasets, evidence; run both existing checkers | done | 7cca80c9 | read-only |
+| C2 | Live re-verification of listing prices, karats, weights, policies (dated) | in progress | 7cca80c9 | `docs/verification/*.md` (new files only) |
+| C3 | Consolidate all 25 listings (both sessions) into one canonical dataset | unclaimed → in progress | 7cca80c9 | `site/assets/data.js` |
+| C4 | Rebuild dashboard site: landing + category subpages, tables, analysis, calculator | in progress | 7cca80c9 | `index.html`, `site/**/*.html`, `site/assets/*.css`, `site/assets/*.js` |
+| C5 | Verification harness v2 + hallucination/security passes | in progress | 7cca80c9 | `scripts/verify.py`, `site/assets/verification-log.js` |
+| C6 | Final integration: link check, PR → main, merge, Pages deploy confirm | unclaimed | 7cca80c9 | `COORDINATION.md` (log), GitHub PR |
+
+Notes:
+- No other session is active: only this branch has commits after `1c35fd0`, and no claim is open on
+  this board. PR #4 (`arena/3c8bb7ee-gold5`) is OPEN/conflicting with a deleted branch; its content is
+  preserved locally at git ref `pr4` (= `2716d97`) and will be represented by its verified references,
+  not by a conflicting second site.
+- Branch naming deviation persists (platform binds this session to `arena/7cca80c9-gold5`); logged,
+  as before, instead of `session-<id>/<task>`.
