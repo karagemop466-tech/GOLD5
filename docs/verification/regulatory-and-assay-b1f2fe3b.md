@@ -1,0 +1,38 @@
+# Task B2 — Live Regulatory, Hallmark, Assay, Metrology & Spot Price Verification (Session `b1f2fe3b`)
+
+- **Verified date:** 2026-10-22 (UTC)
+- **Session:** `b1f2fe3b` (`arena/b1f2fe3b-gold5`)
+- **Rule:** Every statutory citation, tolerance, conversion factor, and spot price below was read directly from the linked official `.gov` or market benchmark source on 2026-10-22. Nothing is inferred.
+
+---
+
+## 1. Federal Statutory & Regulatory Standards for Gold Jewelry
+
+| Checklist Topic | Official Authority | URL | Verbatim Rule / Standard Verified (2026-10-22) |
+|---|---|---|---|
+| **Gold Purity (Karat System & Misrepresentation)** | FTC Jewelry Guides, **16 CFR § 23.3** (eCFR, current as of 2026-10-21; 83 FR 40667) | https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23 | `§ 23.3(a)`: "It is unfair or deceptive to misrepresent the presence of gold or gold alloy in an industry product, or the quantity or karat fineness of gold or gold alloy contained in the product..." `§ 23.3(b)(1)–(2)`: Unqualified word `"Gold"` may only describe 24K fine gold; alloys under 24K must be immediately preceded by the karat fineness of equal conspicuousness (e.g., `"14 Karat Gold"`, `"14K Gold"`). |
+| **Solid Gold vs. Hollow / Plated / Filled / Vermeil** | FTC Jewelry Guides, **16 CFR § 23.3(c)(1)–(3) & § 23.4**; FTC Consumer Advice | https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry | `16 CFR § 23.3(c)(1)`: Products composed throughout of gold alloy that have a **hollow center or interior** "should not be marked or described as 'solid' or as being solidly of gold or of a gold alloy. For example, when the composition of such a product is 14 karat gold alloy, it should not be described or marked as either '14 Kt. Solid Gold' or as 'Solid 14 Kt. Gold.'" `§ 23.3(c)(2)`: `"Gold Filled"` requires mechanical plating of ≥10K gold constituting **≥1/20th** of total metal weight (`"Gold Overlay"` / `"R.G.P."` ≥1/40th with fraction disclosed). `§ 23.3(c)(3)`: `"Gold Electroplate"` requires ≥0.175 µm fine gold equivalent (`"Heavy Gold Electroplate"` ≥2.5 µm). `§ 23.4`: `"Vermeil"` requires sterling silver base + ≥10K gold of ≥2.5 µm fine gold thickness. |
+| **National Stamping Act Fineness Tolerances (Assay)** | **15 U.S.C. § 295** (National Gold and Silver Stamping Act of 1906, as amended by Gold Labeling Act of 1976, Pub. L. 94-450); **16 CFR § 23.3 fn. 32** | https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec295.pdf | Without solder: actual fineness shall not be less by more than **3 parts per thousand (0.3%)** than the stamped mark (e.g., 14K = 583.33‰, minimum 580.33‰ without solder). Entire article assayed as one piece including solder: shall not be less by more than **7 parts per thousand (0.7%)** for jewelry/rings (3‰ for watchcases/flatware). Both standards apply concurrently. |
+| **Mandatory Maker's Mark / Registered Trademark Next to Quality Mark** | **15 U.S.C. § 297(b)**; **16 CFR § 23.10**; FTC Consumer Advice | https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec297.pdf | Any manufacturer, dealer, or importer who applies a quality/karat mark indicating gold or silver **must** also apply their duly registered U.S. trademark (or trademark applied for registration within 30 days) or legal name, "by the same means as that used in applying the quality mark or stamp appearing thereon, in type or lettering at least as large as that used in such quality mark or stamp, and in a position as close as possible to that quality mark or stamp." FTC Consumer Guide: *"If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it."* |
+| **Mixed Precious Metals (e.g., 14K Gold Band + Platinum Head)** | **16 CFR § 23.8** | https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23 | Marketers must list precious metals in order of relative weight from greatest to least (predominant metal first) unless context makes clear which part is which (e.g., `"14K gold band with platinum head"`). Also, under `15 U.S.C. § 297(b)(B)`, if an article has two or more distinct parts of different quality and one part is stamped, each other part must bear a quality mark disclosing its quality. |
+| **Assay Exemptions (Non-Gold Mechanical Parts)** | **16 CFR Part 23, Appendix (a)** | https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23 | Exempts only specific mechanical parts (springs, posts/backs of lapel buttons, snap tongues, wire pegs/rivets) from whole-item karat assay; a ring shank and head have **no** base-metal exemption. |
+| **Weight & Troy Conversion (Metrology)** | **NIST Office of Weights and Measures** (Handbook 130 § 2.17 & Precious Metals Conversion Information) | https://www.nist.gov/system/files/documents/2017/05/09/Precious-Metals-Conversion-Information-march2015.pdf | Exact conversion factors: **1 troy ounce (oz t) = 31.1034768 grams (g)** = **20 pennyweights (dwt)** = **480 grains (gr)**. **1 pennyweight (dwt) = 1.55517384 grams (g)**. **1 gram (g) = 0.03215075 oz t = 0.6430149 dwt = 15.43236 gr**. |
+| **Credit Card Purchase Protection (FCBA & State-Law Claims)** | **FTC — Using Credit Cards and Disputing Charges** (Fair Credit Billing Act, 15 U.S.C. § 1666 / § 1666i) | https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges | Under the FCBA: (1) Unauthorized charges capped at **$50**; (2) Billing errors include goods not delivered as agreed or not accepted — buyer must send written dispute to the issuer's billing-inquiries address within **60 days** of the first bill; issuer must acknowledge within **30 days** and resolve within **90 days** (two billing cycles), during which buyer may withhold payment of the disputed amount; (3) For quality disputes, federal law lets credit-card buyers assert the same legal claims/defenses against the card issuer as against the seller under state law (subject to statutory conditions). |
+
+---
+
+## 2. Live Gold Spot Verification (`https://www.kitco.com/charts/gold`, 2026-10-22)
+
+Two direct live captures of `https://www.kitco.com/charts/gold` were verified on 2026-10-22:
+
+| Capture | Page Timestamp (NY Time / EDT) | Spot Bid (USD / oz t) | Spot Ask (USD / oz t) | Spot per Gram (USD / g) | Spot per Pennyweight (USD / dwt) | Spot per Kilo (USD / kg) | 24K / oz | 22K / oz | 18K / oz | 14K / oz | 10K / oz |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Baseline (Sessions `638c9614` & `37e8ff42`)** | `Oct 22, 2026 - 19:11 NY Time` (`7:10 p.m. EDT`) | **$4,025.00** | $4,027.00 | **$129.41** | $201.25 | $129,408.74 | $4,025.00 | $3,689.72 | $3,018.75 | $2,347.78 | $1,677.22 |
+| **Live Re-Check (Session `b1f2fe3b`)** | `Oct 22, 2026 - 19:26 NY Time` (`7:26 p.m. EDT`) | **$4,026.90** | $4,028.90 | **$129.47** | $201.35 | $129,469.83 | $4,026.90 | $3,691.46 | $3,020.18 | $2,348.89 | $1,678.01 |
+
+- **Arithmetic verification (7:26 p.m. EDT capture):**
+  - `$4,026.90 ÷ 31.1034768 g/oz t = $129.4675/g` → rounds to Kitco published **`$129.47/g`**.
+  - `$4,026.90 ÷ 20 dwt/oz t = $201.345/dwt` → rounds to Kitco published **`$201.35/dwt`**.
+  - `14K per oz`: `$4,026.90 × 0.5833 = $2,348.89/oz` (`$75.52/g`).
+  - `18K per oz`: `$4,026.90 × 0.7500 = $3,020.18/oz` (`$97.10/g`).
+- **Flagged irregularity on live Kitco page (`I-B6`):** On the `7:26 p.m. EDT` capture, while the live Bid header and purity table use `$4,026.90/oz` (`$129.47/g`), the lower summary table (`Gold Price Today — Per Ounce, Gram and Kilo`) and body sentence on the same page read `$4,027.50/oz` (`$129.49/g`, `$201.38/dwt`), and the embedded TradingView OANDA widget shows `4,028.210`. All figures agree within `0.04%`.

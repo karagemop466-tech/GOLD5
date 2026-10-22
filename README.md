@@ -23,8 +23,11 @@ estimated, or copied from a search snippet. Derived values are arithmetic on ver
 Every review pass ends with the checkers:
 
 ```bash
-python3 scripts/verify.py             # 15 checks over data + the generated 10-page site
-python3 tools/check_hallucinations.py  # 166 checks over the archived docs/ dataset
+python3 scripts/verify.py             # 15 checks over data + the generated site
+python3 scripts/audit_b1f2fe3b.py     # 12 cross-site security & anti-hallucination checks (38 unified rows, 68 HTML pages)
+python3 tools/check_report.py         # 1,648 checks over /report/ + verification/data.json
+python3 verified/scripts/verify.py    # 896 assertions over /verified/
+python3 tools/check_hallucinations.py # 166 checks over the archived docs/ dataset
 ```
 
 `scripts/verify.py` fails on: a listing without an https source link, a blank cell without its flag,
@@ -38,6 +41,7 @@ template placeholder, malformed HTML, a missing no-hallucinations banner, or a s
 | Page | Contents |
 |---|---|
 | `index.html` | Dashboard: spot price with timestamp, bottom-line verdict, 5 stat cards, price/metal findings, purity table, and the best-documented rows |
+| `site/master-audit.html` | **Master Cross-Session Audit & XRF Calculator**: unified 38-listing catalog across all sessions, interactive gram/dwt/carat stone deduction + 15 U.S.C. § 295 XRF assay tolerance calculator, 14K vs. 18K alloy density analysis, and 12-check security audit |
 | `site/listings.html` | All **25 listings** from **13 sellers**, filterable/sortable, with price, karat, grams, fine gold, metal value, price ÷ metal, solid-gold wording, hallmark + maker's mark, return policy, check date, provenance and flags |
 | `site/gold-price.html` | Four timestamped same-day quotes, per-purity values (10K–24K), and a raw-gold table by weight |
 | `site/calculator.html` | Live gold calculator: grams × karat × spot → fine gold, metal value, price ÷ metal, verdict; presets from the dataset |
@@ -90,6 +94,7 @@ No frameworks, no external fonts, no third-party JavaScript, no network calls fr
 | `93032b31` | 24-row pass-2 dashboard (superseded by this consolidation, preserved verbatim) | `archive/session-93032b31/` |
 | `84be683f` | Generated 11-page site + its own builder/checker and CI | `verified/` |
 | `60c4b9c3` | Report site, evidence and security tests | `report/`, `verification/` |
+| `b1f2fe3b` | Master Cross-Session Audit & XRF Calculator (38 unified rows), statutory/assay audit memos, and 12-check repo-wide security harness | `site/master-audit.html`, `scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_*.json`, `docs/verification/*-b1f2fe3b.md` |
 | `090bae73` | Checklist guide (14 pages) | `guide/`, `index-090bae73.html`, `pages/` |
 
 All sessions captured data on 2026-10-22 and corroborate the same Kitco spot snapshot. Merges were
@@ -349,7 +354,7 @@ Nothing in `verified/` was edited by this pass; it is served at `/verified/`.
 
 ## Session `3e3fae49` — the 58-row dossier at `/dossier/` (added 2026-10-23)
 
-**Live:** <https://karagemop466-tech.github.io/GOLD5/dossier/> · an eighth, independent delivery in an
+**Live:** <https://karagemop466-tech.github.io/GOLD5/dossier/> · an additional independent delivery in an
 exclusive directory scope, so nothing above was modified except one additive card on the root
 dashboard and this section.
 
