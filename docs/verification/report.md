@@ -1,6 +1,6 @@
 # Verification report (auto-generated)
 
-- Run: 2026-10-22 23:21 UTC
+- Run: 2026-10-22 23:22 UTC
 - Data as of: 2026-10-22
 - Result: **PASS** — 0 error(s), 0 warning(s), 9 checks passed
 
@@ -11,10 +11,10 @@
 - purity table: fineness & per-ounce values consistent with karat math and primary spot
 - entry etsy-1151446373: recompute ratio 3.47 (metal value 279.29) — above melt, consistent
 - entry etsy-576343849: recompute ratio 0.84 < 1 → correctly flagged price-below-metal-value
-- flags: 11 flags, all entryIds resolve
+- flags: 12 flags, all entryIds resolve
 - sellers: 9 profiles, all dated + sourced
 - references: 9 official references, all dated + linked
-- html: 8 pages, 28 local links resolve, 4 external links http(s)
+- html: 17 pages, 219 local links resolve, 148 external links http(s)
 
 ## Errors
 
