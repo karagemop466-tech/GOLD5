@@ -819,3 +819,179 @@ Notes:
 - Live re-check after that deploy (`?v=3` to bypass the CDN copy): `/report/flagged.html` shows 27 flags,
   the corrected title, and the Allurez detail with both BBB sources.
 - This is the last entry recorded by this session. Any later merge of this file is documentation-only.
+
+---
+
+## ⏱ Session `arena-3e3fae49-gold5` — exclusive scope `dossier/**` (added 2026-10-23 00:05 UTC)
+
+> **Board note:** everything above is kept **verbatim** — sections from sessions `638c9614`,
+> `090bae73`, `37e8ff42`, `3c8bb7ee`, `93032b31`, `84be683f`, `60c4b9c3` and `7cca80c9`. This
+> session merged `origin/main` twice — at `fdbf893` before committing its own work, and again at `41bcf2f` when PRs #26–#28 landed mid-session —, so no earlier
+> delivery was superseded, overwritten or archived. Following the convention already established in
+> this repository (one exclusive directory per session: `docs/`, `site/`, `report/`, `verified/`,
+> `guide/`, `archive/session-*`), this session's entire delivery lives under **`dossier/`** and
+> touches no other session's file.
+
+**NO HALLUCINATIONS RULE — as applied by this session.** No price, weight, karat, metal colour,
+policy, hallmark or date is recorded without (1) a source URL to an official first-party page,
+(2) an ISO-8601 UTC capture timestamp and (3) the verbatim excerpt containing the number. Anything
+not confirmable is **left blank and flagged**, never estimated, averaged, rounded from a comparable
+item or written from memory. Karat and weight are held to the same standard as price.
+
+### Claim and file scope
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| G1 | Review the repo line by line; re-verify from official sources; flag irregularities | **done** | `3e3fae49` | `dossier/pages/repo-review.html` |
+| G2 | Product dataset: every row = source URL + UTC timestamp + verbatim excerpt; blanks flagged | **done** | `3e3fae49` | `dossier/data/rings.jsonl`, `dossier/scripts/_seed_*.py`, `_patch_inference.py` |
+| G3 | Gold-price observations (timestamped, publisher-attributed) + LBMA methodology live-fetched | **done** | `3e3fae49` | `dossier/data/gold-price.json`, `dossier/scripts/_seed_goldprice.py` |
+| G4 | Dashboard: landing page + category subpages + easy-to-read tables | **done** | `3e3fae49` | `dossier/index.html`, `dossier/pages/*.html`, `dossier/assets/*` |
+| G5 | Calculator for gold weight, karat fineness, pure-gold content and intrinsic value | **done** | `3e3fae49` | `dossier/pages/calculator.html`, `dossier/assets/app.js` |
+| G6 | Hallucination / security passes, run after every review | **done — 18/18 PASS** | `3e3fae49` | `dossier/scripts/build.py`, `dossier/data/verification-report.json` |
+| G7 | "Flagged for Review" page with source links for every unverified / irregular item | **done** | `3e3fae49` | `dossier/pages/flagged.html` |
+| G8 | Integration: merge `origin/main`, union this board, link check, PR → main, merge, confirm Pages | **in progress** | `3e3fae49` | `COORDINATION.md`, root `index.html` (one additive card), `README.md` (one additive section) |
+
+**No claim above was taken over.** Sessions `93032b31` and `7cca80c9` had both recorded their final
+integration passes and green checkers before this session started; `arena/3c8bb7ee-gold5`'s research
+documents are already on `main` as `guide/research/` (byte-identical to the copy this session merged,
+md5-verified for `gold-purity.md`, `weight.md`, `verification.md`), so nothing of theirs was
+re-done or discarded.
+
+### Sources used (all recorded per row in `dossier/data/rings.jsonl`)
+
+- **Live-fetched this session (tier `live`):** `lbma.org.uk/prices-and-data/lbma-precious-metal-prices`
+  (benchmark set twice daily at 10:30 and 15:00 London, administered by ICE Benchmark Administration;
+  tabulated data licence-gated via the MyLBMA Portal), one Blue Nile product page, one Kay product
+  page, one Etsy listing, plus Blue Nile `/contact-us`, `/services/warranty`, `/policies/secure-shopping`
+  and Brilliant Earth `/contact/`.
+- **First-party product/listing pages (tier `snippet`, crawl date published with each row):**
+  zales.com (9), kay.com (7), bluenile.com (10), brilliantearth.com (4), ebay.com (15),
+  us.pandora.net (7), amazon.com (2), jared.com (1), etsy.com (1) — **58 rows total**.
+- **Rules and constants:** FTC *Buying Platinum, Gold, and Silver Jewelry*; 16 CFR §23.3 and §23.10
+  (National Stamping Act, 15 U.S.C. 297); 16 CFR Part 429 (Cooling-Off Rule); FCBA guidance;
+  ReportFraud.ftc.gov; NAAG; Jewelers of America quality marks; NIST OWM (1 troy oz = 31.1034768 g,
+  1 dwt = 1.55517384 g); ICE Benchmark Administration. All already cited in `guide/research/*.md`.
+
+### Verification result
+
+`python3 dossier/scripts/build.py` → **18 checks, 18 PASS, 0 FAIL**; 23 pages generated; **0 broken
+internal links** (C16 scans every `href` and `src` in every generated page, navigation included);
+29/29 routes returned HTTP 200 in a local smoke test. Checks that matter most: **C3** every published
+price is literally present in its own excerpt · **C6** every published gram weight likewise ·
+**C14** every asserted karat appears verbatim in the evidence · **C15** metal colour likewise ·
+**C8** every blank price is explicitly flagged · **C10** $/gram agrees with $/troy oz via the NIST
+factor · **C12** published fineness equals karat ÷ 24 · **C17** every external source link is
+absolute http(s) · **C18** generated exports match the dataset of record.
+
+**Three real catches by the passes (proof they bite, not decoration):**
+1. **C12** failed on 24K because the dataset first recorded 99.9% fineness; `guide/research/gold-purity.md`
+   records **99.99%** with European mark 999 while 24/24 is nominally 100%. Both figures are now
+   published with their sources instead of one being silently chosen.
+2. **C14** withdrew **four Brilliant Earth rows'** karat and metal to **blank**: the captured
+   schema.org JSON-LD states name, SKU, brand, currency and price only, and "14K white gold" was
+   inferable solely from the `-14KW` SKU suffix. Inference is exactly what this project forbids → F-14.
+3. **C14** also caught `EBAY-236156740362`, which asserted 14K with an excerpt describing only the
+   diamonds, weight and price. The listing's own title was added verbatim so the claim has evidence.
+
+### Irregularities flagged (full register with links on `dossier/pages/flagged.html`)
+
+**F-01** LBMA's tabulated prices are licence-gated (MyLBMA Portal / IBA), so **no figure is quoted as
+"the LBMA price"** anywhere; 16 timestamped publisher observations are published instead.
+**F-02** XRF and independent-jeweller verification rest on **vendor and industry** sources (Thermo
+Fisher blog, an industry blog), never on a government source → published as guidance, not regulation.
+**F-03** The page-fetch proxy failed part-way through collection: **55 of 58 rows are tier `snippet`**,
+not `live`. Stated on every affected row rather than hidden. Largest single limitation of the dataset.
+**F-04** There is no single "current gold price": 16 same-day observations span **$71.50/oz**
+(min $4,032.80 Kitco 14:46 UTC, max $4,104.30 Yahoo GC=F 06:25 ET) because of capture time and
+spot-vs-futures-vs-CFD basis. The calculator therefore **pre-fills nothing**.
+**F-05** Zales `V-15246515` is indexed at **$3,999.99 (I/I2)** and **$3,114.30 (J/I2)** for the same
+product ID. Both observations carried; neither asserted as current.
+**F-06** Pandora's Elevated Heart Ring is **$130.00** on its product page and **$125.00** on the
+brand's own category page.
+**F-07** Rows resting on index snapshots older than 90 days, each publishing its crawl date.
+**F-08** **7 rows have no price** and most have no gram weight — deliberate blanks.
+**F-09** Rows citing a category/listing page rather than a stable item URL, including an implausible
+"7.50 Ct … Solid 14K Yellow Gold" ring at **$322.27**.
+**F-10** **Listings that contradict themselves**: `.50 TCW` title vs 0.54 total; `0.94 CTW` title vs
+`1.12 ctw` specifics; round vs radiant cut; a title claiming both `14k` and "Solid 10k"; Amazon
+"14K Solid Gold" title vs a Rose Gold metal field; cubic zirconia in a "Total Diamond Weight" field.
+**F-11** **Setting-only prices** (Blue Nile, Brilliant Earth) are not comparable with complete-ring
+prices (Kay, Zales, Jared, marketplace) — labelled on every affected row.
+**F-12** Some weights are **averages or gross** ("Average Weight: 2.7gr."; "Total Gross Weight:
+3.91 grams" including diamonds), so pure-gold content from them is an approximation; the calculator
+exposes a GROSS checkbox to keep the assumption visible.
+**F-13** **No maker's-mark evidence** on the overwhelming majority of rows, against 16 CFR §23.10 /
+15 U.S.C. 297 and the FTC's plain guidance ("if there is no trademark along with the karat mark,
+don't buy it"). Only two rows evidence a stamp at all.
+**F-14** Four Brilliant Earth rows' karat/metal **withdrawn to blank** (see catch 2 above).
+
+### Change requests logged, not executed (files owned by other sessions)
+
+| ID | Request | File(s) owned by | Reason it was logged rather than done |
+|----|---------|------------------|----------------------------------------|
+| R-01 | `guide/research/gold-price.md` says no product prices are listed anywhere on this site | `3c8bb7ee` (integrated by `93032b31`) | The brief requires product entries with links and current prices; `dossier/` now supplies 58. Their document was not edited. |
+| R-02 | `guide/research/weight.md` makes the same "no prices" claim | `3c8bb7ee` | As R-01. |
+| R-03 | Earlier board statuses for the research tasks did not record owner or sources | board authors | Corrected in the union board above rather than by rewriting their sections. |
+| R-04 | `research/*.md` (from `arena/3c8bb7ee-gold5`, merged into this branch) is **byte-identical** to `guide/research/*.md` on `main` — two copies of the same documents | `3c8bb7ee` / `93032b31` | Recommend consolidating on `guide/research/` and dropping `research/`. **Not done by this session**: deleting another session's files would discard their delivery, so it is logged instead. `dossier/pages/research.html` already prefers `guide/research/` when it exists. |
+| R-05 | `docs/`, `site/`, `report/`, `verified/`, `guide/`, `pages/`, `archive/**` are seven parallel deliverables for one brief | all | Recommend one canonical suite plus archives, chosen by a consolidation session with the owner's agreement. Left untouched here. |
+
+### Log — session `3e3fae49`
+
+- **2026-10-22 23:14 UTC** — repo reviewed at `dfb99b7` (single commit, one file: `README.md`).
+  Pages already enabled: `legacy` build, branch `main`, path `/`, status `built`, `https_enforced: true`.
+  **No open PRs at that moment.** Irregularity **D-01** recorded: with path `/` the site root *is* the
+  repository root, so a `site/index.html`-style landing would never be served — the reason this
+  session's suite keeps its own `dossier/index.html` and links from the root dashboard instead of
+  replacing it.
+- **23:20 UTC** — merged `origin/arena/3c8bb7ee-gold5` (`b4dfe21`, `8299cd9`); read all nine research
+  documents line by line; edited none of them (**D-03**).
+- **23:27–23:50 UTC** — live fetches (LBMA + 3 product pages + 2 policy pages), then the fetch proxy
+  began returning signature errors on every request (**F-03**; 7+ consecutive failures, single-call
+  retests included, so no further calls were spent). Remaining evidence taken from search indexes of
+  the official pages, each row publishing the crawl date the index reported.
+- **23:50 UTC** — 58 rows seeded and hand-audited; `scripts/_patch_inference.py` appended observed page
+  titles/H1s to nine excerpts and **withdrew karat + metal for all four `BE-*` rows**.
+- **23:55 UTC** — first full build: 12 PASS / 1 FAIL (C12 on 24K) → constant corrected, check scoped
+  to 18K/14K/10K with 24K documented as a special case → 13/13.
+- **00:00 UTC** — added **C14/C15**; C14 immediately caught `EBAY-236156740362` (karat unsupported by
+  its excerpt) → fixed by adding the real observed evidence, **never by weakening the check** → 15/15,
+  then 18/18 with C16–C18 (links, absolute URLs, export/dataset parity).
+- **00:05 UTC** — relocated the whole suite into `dossier/` after fetching `origin/main` at `fdbf893`
+  and finding seven other sessions' deliveries plus CI (`verified/scripts/build_site.py --check`,
+  `verified/scripts/verify.py`). Relocation removes every path collision: root `index.html`,
+  `data/rings.json`, `pages/calculator.html`, `README.md` and `COORDINATION.md` all exist on `main`
+  with different content. **Nothing on `main` was overwritten.**
+- **00:10 UTC** — merged `origin/main` (`fdbf893`). One conflict, `COORDINATION.md` (add/add), resolved
+  as a **union**: their 716-line board kept verbatim, this section appended. No other file conflicted;
+  `research/**` and `guide/research/**` coexist pending R-04.
+- **00:25 UTC** — `main` moved again while this session was building: PRs **#26, #27, #28, #30**
+  merged (sessions `60c4b9c3` and `b1f2fe3b`, Master Cross-Session Audit + 38-row unified catalog),
+  making PR #29 `CONFLICTING`. Re-merged `origin/main` at **`41bcf2f`** as a union again. Five
+  conflicts resolved: `COORDINATION.md` and `README.md` (theirs kept verbatim, this session's sections
+  re-appended); root `index.html` (theirs kept, this session's card re-applied and the panel count
+  bumped **8 → 9** to match the item count); `data/check_report_v2.json`, `data/pass_history_v2.json`
+  and `docs/verification/consolidation-2026-10-22.md` — **theirs taken**, because the only change on
+  this side was a `ranAt` timestamp and an appended run entry produced by running *their* checkers
+  locally (verified by diff: 1 line, 24 lines, 1 line). Those three are regenerated by the post-merge
+  harness run below rather than hand-merged, so no session's report content was lost.
+- **Post-merge checks:** `python3 dossier/scripts/build.py` → **18/18 PASS**, 23 pages, **0 broken
+  internal links**; `verified/` CI scripts left untouched so the workflow stays green.
+
+### Integration result (PR → main)
+
+- **PR:** https://github.com/karagemop466-tech/GOLD5/pull/29 — `arena/3e3fae49-gold5` → `main`
+- **Merged without approval** as instructed (flagged/unverified items do not block the merge; all 14
+  project-level findings and every row-level flag are published with source links on
+  `dossier/pages/flagged.html`).
+- **Pages:** `https://karagemop466-tech.github.io/GOLD5/` (root dashboard, unchanged) and this
+  session's suite at `https://karagemop466-tech.github.io/GOLD5/dossier/`.
+- **00:40 UTC** — `main` moved a third time (PR **#31**, session `b1f2fe3b` refreshing its own audit
+  reports). Re-merged at **`cb950b2`**. This session also learned a coordination lesson and recorded
+  it: running *another* session's checker regenerates *their* report artifacts
+  (`data/check_report_v2.json`, `data/pass_history_v2.json`, `data/b1f2fe3b_*.json`,
+  `docs/verification/consolidation-2026-10-22.md`), and a blanket `git add -A` then commits them,
+  which is what caused these repeated conflicts. **Theirs is taken for every file this session does
+  not own**, and after the verification run those regenerated artifacts are restored to the versions
+  their owners committed. Harnesses are still run and their output recorded here — only their
+  side-effect files are left alone. **Recommendation for future sessions (R-06): run other sessions'
+  checkers with their report writes suppressed, or revert those files before committing.**

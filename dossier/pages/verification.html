@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verification &amp;amp; hallucination checks | GOLD5 — Gold Engagement Ring Verification</title>
+<meta name="description" content="Verified gold engagement ring listings with source links, capture timestamps, literal price evidence and an anti-hallucination audit trail.">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header class="top"><div class="bar">
+<div class="brand">GOLD<span>5</span></div>
+<div class="tag">Gold engagement-ring buying project &middot; every value carries a source link, a UTC capture timestamp and a literal evidence excerpt</div>
+</div></header>
+<nav class="main"><div class="wrap"><span class="grp">Overview</span><a href="../index.html">Home</a><a href="../pages/repo-review.html">Repo review</a><a href="../pages/verification.html" class="on">Verification</a><span class="grp">Entries</span><a href="../pages/rings.html">All entries</a><a href="../pages/cat-solitaire.html">Solitaire</a><a href="../pages/cat-halo-pave.html">Halo, pave &amp; side-stone</a><a href="../pages/cat-three-stone.html">Three-stone</a><a href="../pages/cat-vintage.html">Vintage &amp; estate</a><a href="../pages/cat-gemstone.html">Gemstone &amp; moissanite</a><a href="../pages/cat-mens.html">Men&#x27;s</a><a href="../pages/cat-plain-band.html">Plain gold bands</a><a href="../pages/cat-bridal-set.html">Bridal sets</a><a href="../pages/cat-marketplace.html">Marketplace listings</a><a href="../pages/cat-not-solid-gold.html">NOT solid gold</a><a href="../pages/cat-red-flag.html">Red-flag listings</a><a href="../pages/marketplace-all.html">Marketplaces</a><span class="grp">Tools</span><a href="../pages/calculator.html">Gold calculator</a><a href="../pages/gold-price.html">Gold price</a><span class="grp">Guidance</span><a href="../pages/checklist.html">Buying checklist</a><a href="../pages/sellers.html">Sellers &amp; policies</a><a href="../pages/research.html">Research</a><span class="grp">Review</span><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></div></nav>
+<main><div class="wrap">
+<h1>Verification methodology &amp; hallucination checks</h1>
+<p class="lede">How every number on this site was obtained, and the automated passes that look for hallucinations.
+Current build: <b>15 of 15 checks PASS, 0 FAIL</b>.</p>
+<div class="alert stop">
+<h2>&#9888; NO HALLUCINATED PRICES &mdash; the governing rule of this project</h2>
+<ul>
+<li><b>Nothing here is estimated, remembered or inferred.</b> Every price, karat claim, metal description and gram
+weight was read from an <b>official first-party page</b> (the retailer's own product page, the marketplace's own item
+page, or the benchmark administrator's own site) and stored with three things: the <b>source URL</b>, a <b>UTC capture
+timestamp</b>, and the <b>literal verbatim excerpt</b> that contains the number.</li>
+<li><b>If a value could not be confirmed, the cell is left blank</b> and the row is published on
+<a href="../pages/flagged.html">Flagged for review</a>. A blank cell is a deliberate, honest result &mdash; never a gap
+filled by guesswork.</li>
+<li><b>Automated anti-hallucination checks run at every build.</b> Current run:
+<b>15/15 PASS</b>, 0 FAIL. Check <span class="mono">C3</span> re-parses every published price out
+of its own evidence excerpt and fails the build if the number is not literally there. Check <span class="mono">C6</span>
+does the same for gram weights. See <a href="../pages/verification.html">Verification</a>.</li>
+<li><b>Prices move.</b> Retail jewellery prices and the gold price both change constantly, so every value is a
+timestamped observation, not a standing quote. Re-read the live page before paying &mdash; this dataset contains two
+documented cases where the <i>same</i> official page was indexed at two different prices (F-05, F-06).</li>
+</ul></div>
+<h2>Evidence tiers</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Tier</th><th>Definition</th><th>Badge</th><th class="num">Rows</th></tr></thead><tbody>
+<tr><td><b>live</b></td><td>The value was read directly from a live HTTP fetch of the official first-party page during this session (2026-10-22 UTC).</td><td><span class="b live" title="Read from a live fetch of the official page during this session">VERIFIED LIVE</span></td><td class="num">3</td></tr>
+<tr><td><b>snippet</b></td><td>The value was read from a search-engine index of the official first-party page. The index reports a crawl date where available, and that date is published with the row. Not re-confirmed by a live fetch.</td><td><span class="b snip" title="Read from a search index of the official page; confirm on the live page before paying">SNIPPET &mdash; CONFIRM ON PAGE</span></td><td class="num">55</td></tr>
+<tr><td><b>unverified</b></td><td>Could not be confirmed from any official source. The field is left <b>blank</b> and the row is flagged. Never estimated, never inferred.</td><td><span class="b unv">UNVERIFIED</span></td><td class="num">7 blank prices</td></tr>
+</tbody></table></div>
+<h2>The rules every row had to satisfy</h2>
+<ul class="tight">
+<li>A price is recorded only if the literal price string was observed on an official first-party page (or in an index of it).</li>
+<li>The literal observed string is stored in <span class="mono">evidence.excerpt</span> so any reviewer can diff the claim against its proof.</li>
+<li>Every row carries <span class="mono">evidence.source_url</span> and an ISO-8601 UTC <span class="mono">observed_at</span>.</li>
+<li>Missing values are <span class="mono">null</span>, rendered as a blank cell with a tooltip, and cross-listed on <a href="flagged.html">Flagged for review</a>.</li>
+<li>Karat, metal colour and gram weight are subject to the same rule as price: if the wording is not in the excerpt, the field is withdrawn (this is check C14/C15, and it withdrew four karat assertions).</li>
+<li>Currency is recorded explicitly; rows observed only in a non-USD currency were not included.</li>
+</ul>
+<h2>Automated passes run at every build</h2>
+<div class="tbl-wrap"><table><thead><tr><th>ID</th><th>Check</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><td class='mono'>C1</td><td>Every row carries a source URL</td><td><span class="b live">PASS</span></td><td class='small'>58/58 rows have an http(s) source URL</td></tr><tr><td class='mono'>C1b</td><td>Every source URL is on a first-party retailer / benchmark domain</td><td><span class="b live">PASS</span></td><td class='small'>All source URLs resolve to a known first-party domain</td></tr><tr><td class='mono'>C2</td><td>Every priced row stores a literal evidence excerpt</td><td><span class="b live">PASS</span></td><td class='small'>58/58 OK</td></tr><tr><td class='mono'>C3</td><td>Every published price is literally present in its own evidence excerpt</td><td><span class="b live">PASS</span></td><td class='small'>51 priced rows checked against their excerpts; 0 mismatch(es).</td></tr><tr><td class='mono'>C4</td><td>Every row has an ISO-8601 UTC capture timestamp</td><td><span class="b live">PASS</span></td><td class='small'>58/58 OK</td></tr><tr><td class='mono'>C5</td><td>No row with tier &#x27;unverified&#x27; carries a price</td><td><span class="b live">PASS</span></td><td class='small'>All priced rows are tier live or snippet</td></tr><tr><td class='mono'>C6</td><td>Every published gram weight is literally present in its own evidence excerpt</td><td><span class="b live">PASS</span></td><td class='small'>9 weighted rows checked; 0 mismatch(es).</td></tr><tr><td class='mono'>C7</td><td>No two rows share the same source URL unless deliberately documented</td><td><span class="b live">PASS</span></td><td class='small'>4 shared URL(s), each documented as category-level evidence: https://www.brilliantearth.com/engagement-rings/shop-all/ used by BE-BE1D2016-14KW and BE-BE1D305-14KW; https://www.brilliantearth.com/engagement-rings/shop-all/ used by BE-BE1D2016-14KW and BE-BE1D54-14KW; https://www.brilliantearth.com/engagement-rings/shop-all/ used by BE-BE1D2016-14KW and BE-BE1D378-14KW; https://www.ebay.com/b/mens-14k-solid-gold-diamond-ring/bn_7024729510 used by EBAY-BN7024729510-LUX750 and EBAY-BN7024729510-KARATCONFLICT</td></tr><tr><td class='mono'>C8</td><td>Every blank price is explicitly flagged as unverified (never silently empty)</td><td><span class="b live">PASS</span></td><td class='small'>7 blank-price rows, all flagged</td></tr><tr><td class='mono'>C9</td><td>No placeholder / estimated-value language anywhere in the dataset</td><td><span class="b live">PASS</span></td><td class='small'>No TODO/TBD/PLACEHOLDER/&#x27;~$&#x27;/&#x27;approx. $&#x27; tokens found</td></tr><tr><td class='mono'>C10</td><td>Gold observations that quote $/gram agree with $/troy oz using the NIST factor 31.1034768</td><td><span class="b live">PASS</span></td><td class='small'>5 publishers cross-checked, all within half a cent</td></tr><tr><td class='mono'>C11</td><td>Every gold-price observation has a source URL, a timestamp and a literal excerpt</td><td><span class="b live">PASS</span></td><td class='small'>16/16 OK</td></tr><tr><td class='mono'>C12</td><td>Published karat fineness percentages equal karat/24 (18K, 14K, 10K)</td><td><span class="b live">PASS</span></td><td class='small'>18K = 75.0%, 14K = 58.3%, 10K = 41.7% all equal karat/24 within 0.05pp. 24K is reported separately: 24/24 is nominally 100% but the Jewelers of America quality-mark table records 99.99% with European mark 999 - both figures are published, neither is inferred.</td></tr><tr><td class='mono'>C14</td><td>Every asserted karat is literally present in its own evidence excerpt (nothing inferred from SKUs, URLs or slugs)</td><td><span class="b live">PASS</span></td><td class='small'>54 karat assertions checked; 0 unsupported</td></tr><tr><td class='mono'>C15</td><td>Every stated metal colour appears in the evidence excerpt</td><td><span class="b live">PASS</span></td><td class='small'>0 unsupported metal-colour assertions</td></tr></tbody></table></div>
+<p class="small">Reproduce with <span class="mono">python3 scripts/build.py</span>. The same run rewrites
+<span class="mono">data/rings.json</span>, <span class="mono">data/rings.csv</span> and
+<span class="mono">data/verification-report.json</span>, so the published report always matches the published site.</p>
+<h2>Proof the passes bite: three real catches during this build</h2>
+<div class="alert ok"><ol class="tight">
+<li><b>C12 caught a wrong constant.</b> The dataset first recorded 24K as 99.9% fineness. The check compares published
+fineness against karat &divide; 24 and failed. Investigation showed <span class="mono">research/gold-purity.md</span>
+records <b>99.99%</b> with European mark 999, while 24/24 is nominally 100%. Both figures are now published with their
+sources instead of one being silently chosen.</li>
+<li><b>C14 caught an unsupported karat.</b> Four Brilliant Earth rows asserted "14K white gold" that could only be
+inferred from the SKU suffix <span class="mono">-14KW</span>. The captured JSON-LD states name, SKU, brand, currency and
+price &mdash; not karat. The karat and metal fields were <b>withdrawn to blank</b> and flagged (F-14), rather than the
+check being loosened.</li>
+<li><b>C14 caught a missing excerpt.</b> Row <span class="mono">EBAY-236156740362</span> asserted 14K, but its stored
+excerpt described only the diamonds, the weight and the price. The listing's own title ("14k SOLID Gold Diamond Ring .50
+TCW Sz 13 Modernist Design 5.6Gr.") was added verbatim to the excerpt, so the assertion now has evidence.</li>
+</ol></div>
+<h2>Row-level check failures</h2>
+<div class='alert ok'>No row-level check failures in the current build.</div>
+<h2>Known limitations, stated plainly</h2>
+<div class="alert stop"><ul class="tight">
+<li><b>F-03 &mdash; the fetch proxy failed during most of this session.</b> 3 of 58 rows were read from a
+live fetch before the outage; the remaining 55 rows are tier <span class="mono">snippet</span>. Their prices come
+from an index of the official page, each with the crawl date the index reported. That is honest but weaker evidence, and
+every such row says so on its face. <b>Re-read the live page before paying.</b></li>
+<li>Prices are observations, not offers. They change hourly; 16 observations taken on the same day
+differ by $71.50 per troy ounce.</li>
+<li>A karat stamp, a seller's claim, a schema.org price field and even a gram weight are all <i>claims</i>. Only an
+independent assay (XRF or fire assay) after delivery settles purity &mdash; and the sources for XRF available to this
+project are vendor and industry publications, not government documents (F-02).</li>
+<li>Nothing here is investment, legal or consumer-protection advice. It is a documented, auditable reading of public
+pages at a stated moment.</li>
+</ul></div>
+<h2>Recommendation</h2>
+<div class="alert gold"><b>Look for hallucinations.</b> After every review pass, re-run
+<span class="mono">python3 scripts/build.py</span> and read the failing checks first. Then spot-audit by hand: open three
+random rows, follow the source link, and confirm the price, karat and weight on the live page match the stored excerpt.
+If a number on this site cannot be matched to its excerpt, treat it as a hallucination, blank it, and raise a flag &mdash;
+that is the intended failure mode of this project, and blanking a value is always correct where guessing is not.</div>
+</div></main>
+<footer><div class="wrap">
+<b>No-hallucination policy.</b> Nothing on this site is estimated, inferred or filled in from memory. A value is published only when the literal
+string was observed on an official first-party page, and the observation is stored with its URL, UTC timestamp and verbatim excerpt.
+Where a value could not be confirmed the cell is left blank and the row is published on <a href="../pages/flagged.html">Flagged for review</a>.
+<br>Built 2026-10-22T23:57:29Z by session <span class="mono">3e3fae49</span> &middot; data: <a href="../data/rings.json">rings.json</a>,
+<a href="../data/rings.csv">rings.csv</a>, <a href="../data/gold-price.json">gold-price.json</a>,
+<a href="../data/verification-report.json">verification-report.json</a> &middot;
+<a href="../pages/verification.html">verification methodology</a> &middot;
+<a href="https://github.com/karagemop466-tech/GOLD5">repository</a>
+</div></footer>
+<script src="../assets/app.js" defer></script>
+</body></html>

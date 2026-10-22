@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repository review | GOLD5 — Gold Engagement Ring Verification</title>
+<meta name="description" content="Verified gold engagement ring listings with source links, capture timestamps, literal price evidence and an anti-hallucination audit trail.">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header class="top"><div class="bar">
+<div class="brand">GOLD<span>5</span></div>
+<div class="tag">Gold engagement-ring buying project &middot; every value carries a source link, a UTC capture timestamp and a literal evidence excerpt</div>
+</div></header>
+<nav class="main"><div class="wrap"><span class="grp">Overview</span><a href="../index.html">Home</a><a href="../pages/repo-review.html" class="on">Repo review</a><a href="../pages/verification.html">Verification</a><span class="grp">Entries</span><a href="../pages/rings.html">All entries</a><a href="../pages/cat-solitaire.html">Solitaire</a><a href="../pages/cat-halo-pave.html">Halo, pave &amp; side-stone</a><a href="../pages/cat-three-stone.html">Three-stone</a><a href="../pages/cat-vintage.html">Vintage &amp; estate</a><a href="../pages/cat-gemstone.html">Gemstone &amp; moissanite</a><a href="../pages/cat-mens.html">Men&#x27;s</a><a href="../pages/cat-plain-band.html">Plain gold bands</a><a href="../pages/cat-bridal-set.html">Bridal sets</a><a href="../pages/cat-marketplace.html">Marketplace listings</a><a href="../pages/cat-not-solid-gold.html">NOT solid gold</a><a href="../pages/cat-red-flag.html">Red-flag listings</a><a href="../pages/marketplace-all.html">Marketplaces</a><span class="grp">Tools</span><a href="../pages/calculator.html">Gold calculator</a><a href="../pages/gold-price.html">Gold price</a><span class="grp">Guidance</span><a href="../pages/checklist.html">Buying checklist</a><a href="../pages/sellers.html">Sellers &amp; policies</a><a href="../pages/research.html">Research</a><span class="grp">Review</span><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></div></nav>
+<main><div class="wrap">
+<h1>Repository review</h1>
+<p class="lede">Line-by-line review of the repository as it was found, the parallel session's committed work, and the
+GitHub Pages configuration. Every fact below is reproducible with the git/gh command shown next to it.</p>
+<div class="alert stop">
+<h2>&#9888; NO HALLUCINATED PRICES &mdash; the governing rule of this project</h2>
+<ul>
+<li><b>Nothing here is estimated, remembered or inferred.</b> Every price, karat claim, metal description and gram
+weight was read from an <b>official first-party page</b> (the retailer's own product page, the marketplace's own item
+page, or the benchmark administrator's own site) and stored with three things: the <b>source URL</b>, a <b>UTC capture
+timestamp</b>, and the <b>literal verbatim excerpt</b> that contains the number.</li>
+<li><b>If a value could not be confirmed, the cell is left blank</b> and the row is published on
+<a href="../pages/flagged.html">Flagged for review</a>. A blank cell is a deliberate, honest result &mdash; never a gap
+filled by guesswork.</li>
+<li><b>Automated anti-hallucination checks run at every build.</b> Current run:
+<b>15/15 PASS</b>, 0 FAIL. Check <span class="mono">C3</span> re-parses every published price out
+of its own evidence excerpt and fails the build if the number is not literally there. Check <span class="mono">C6</span>
+does the same for gram weights. See <a href="../pages/verification.html">Verification</a>.</li>
+<li><b>Prices move.</b> Retail jewellery prices and the gold price both change constantly, so every value is a
+timestamped observation, not a standing quote. Re-read the live page before paying &mdash; this dataset contains two
+documented cases where the <i>same</i> official page was indexed at two different prices (F-05, F-06).</li>
+</ul></div>
+<h2>State at session start</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Item</th><th>Observed</th><th>Command</th></tr></thead><tbody>
+<tr><td>Initial commit</td><td class="mono">dfb99b7ac89ac9131aeb9419d2c5ead5ccc8dc9c | 2026-10-22 16:04:47 -0700 | karagemop466-tech | Initial commit</td><td class="mono">git log -1 --format=... dfb99b7</td></tr>
+<tr><td>Tracked files at that commit</td><td><b>0</b>: </td><td class="mono">git ls-tree -r --name-only dfb99b7</td></tr>
+<tr><td>README.md size</td><td><b>7 bytes</b>, content <span class="mono">&#x27;# GOLD5&#x27;</span></td><td class="mono">git cat-file -s / -p dfb99b7:README.md</td></tr>
+<tr><td>Remote branches</td><td class="mono">origin/HEAD, origin/arena/3c8bb7ee-gold5, origin/arena/3e3fae49-gold5, origin/main</td><td class="mono">git branch -r</td></tr>
+<tr><td>Open or closed pull requests</td><td><b>none</b> at session start</td><td class="mono">gh pr list --state all</td></tr>
+<tr><td>Authenticated as</td><td class="mono">karagemop466-tech</td><td class="mono">gh auth status</td></tr>
+</tbody></table></div>
+<div class="alert warn"><b>Irregularity (repo):</b> the repository began as a single commit containing one file,
+<span class="mono">README.md</span>, whose entire content was <span class="mono"># GOLD5</span> &mdash;
+no description, no licence, no <span class="mono">.gitignore</span>, no CI workflow and no data. There was therefore no
+pre-existing dataset to audit line by line; the audit below covers the work committed by the parallel session and the
+Pages configuration.</div>
+<h2>GitHub Pages configuration</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Setting</th><th>Observed value</th></tr></thead><tbody>
+<tr><td>Command</td><td class="mono">gh api repos/karagemop466-tech/GOLD5/pages</td></tr>
+<tr><td>Observed at</td><td class="mono">2026-10-22T23:14Z (session 3e3fae49)</td></tr>
+<tr><td>build_type</td><td class="mono">legacy</td></tr>
+<tr><td>source.branch / source.path</td><td class="mono">main / "/"</td></tr>
+<tr><td>status</td><td class="mono">built</td></tr>
+<tr><td>html_url</td><td><a href="https://karagemop466-tech.github.io/GOLD5/" target="_blank" rel="noopener noreferrer">https://karagemop466-tech.github.io/GOLD5/</a></td></tr>
+<tr><td>https_enforced / public</td><td class="mono">true / true</td></tr>
+</tbody></table></div>
+<div class="alert stop"><b>Irregularity D-01 (fixed, not just flagged):</b> Pages was <i>already</i> enabled with
+<span class="mono">path: "/"</span>, which means the site root is the <b>repository root</b>. The parallel session's task
+board assumed a <span class="mono">site/</span> directory, and <span class="mono">site/index.html</span> would never have
+been served as the landing page &mdash; the site would have deployed "successfully" while showing nothing. The site is
+therefore published from the repository root (<span class="mono">index.html</span>,
+<span class="mono">assets/</span>, <span class="mono">pages/</span>, <span class="mono">data/</span>), and the Pages
+configuration was deliberately left untouched so two sessions could not fight over it. No GitHub Actions workflow is
+needed for a legacy branch build.</div>
+<h2>Parallel session review &mdash; arena/3c8bb7ee-gold5</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Commit</th><th>Finding</th></tr></thead><tbody>
+<tr><td class="mono">b4dfe21 (2026-10-22 23:11:27 UTC)</td><td>Created <span class="mono">COORDINATION.md</span> with 17 tasks. Claimed only task 1.</td></tr>
+<tr><td class="mono">8299cd9 (2026-10-22 23:13:10 UTC)</td><td>Added 9 research documents covering every checklist topic, all citing FTC, eCFR, NIST, LBMA or Jewelers of America.</td></tr>
+<tr><td>Board vs. tree mismatch</td><td><b>Irregularity R-03:</b> tasks 2&ndash;10 were committed as finished documents but left marked "unclaimed" with no owner and no sources recorded on the board. Corrected by this session after re-verifying each document line by line.</td></tr>
+<tr><td>Scope conflict</td><td><b>Irregularity D-02:</b> <span class="mono">research/gold-price.md</span> and <span class="mono">research/weight.md</span> state that "no products are listed on this site". The project brief requires product entries with links and current prices. Resolved by adding a product dataset whose every price carries a source URL, a UTC timestamp and a verbatim excerpt; the research files were <b>not</b> edited, and change requests R-01/R-02 were logged instead.</td></tr>
+<tr><td>Source quality</td><td><span class="mono">research/verification.md</span> self-declares <b>PARTIALLY VERIFIED</b> and cites an instrument vendor's blog (Thermo Fisher) and an industry blog for XRF. Correct handling; carried forward as flag F-02 rather than upgraded to "official".</td></tr>
+<tr><td>Link currency</td><td><b>Flag F-03:</b> the external URLs cited in <span class="mono">research/*.md</span> could not be re-fetched during this session because the page-fetch proxy was returning signature errors. They are published with that limitation stated instead of being marked verified.</td></tr>
+<tr><td>Timing</td><td>Last commit 23:13:10 UTC, i.e. under 60 minutes before this session started at 23:14 UTC. The session was active, so <b>no takeover was performed</b>; only genuinely unclaimed tasks (11&ndash;14, 16) were claimed.</td></tr>
+</tbody></table></div>
+<h2>Commit history on this branch</h2>
+<p class="small">Snapshot taken by the build itself, so this table is always one build behind: running
+<span class="mono">build.py</span> regenerates these pages, and committing that regeneration adds the
+commit the table would then need to show. Timestamps are UTC and are the authoritative record.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Commit | date | subject</th></tr></thead><tbody>
+<tr><td class='mono'>010f347 | 2026-10-22 23:55:30 +0000 | coord: correct the PR number in this session&#x27;s integration record (#29)</td></tr><tr><td class='mono'>cdc50bd | 2026-10-22 23:54:53 +0000 | dossier: regenerate after merge (research page now cites canonical guide/research/)</td></tr><tr><td class='mono'>a761d44 | 2026-10-22 23:54:25 +0000 | merge origin/main (fdbf893): union the coordination board, keep every session&#x27;s delivery</td></tr><tr><td class='mono'>1c7213f | 2026-10-22 23:52:25 +0000 | dossier: 58-row gold ring dataset, 23-page dashboard, 18 anti-hallucination checks</td></tr><tr><td class='mono'>fdbf893 | 2026-10-22 16:50:40 -0700 | Merge pull request #25 from karagemop466-tech/arena/7cca80c9-gold5</td></tr><tr><td class='mono'>5adf637 | 2026-10-22 23:50:15 +0000 | coord: record PR #22/#24 merges, final Pages build c079609 and live re-check</td></tr><tr><td class='mono'>c079609 | 2026-10-22 16:49:35 -0700 | Merge pull request #24 from karagemop466-tech/arena/7cca80c9-gold5</td></tr><tr><td class='mono'>1c4ac59 | 2026-10-22 23:49:23 +0000 | site: fix archive intro count and cite the canonical NIST SP 811 B.8 URL</td></tr><tr><td class='mono'>3bd5db3 | 2026-10-22 16:48:05 -0700 | Merge pull request #21 from karagemop466-tech/arena/60c4b9c3-gold5</td></tr><tr><td class='mono'>45c6516 | 2026-10-22 16:47:57 -0700 | Merge pull request #22 from karagemop466-tech/arena/7cca80c9-gold5</td></tr><tr><td class='mono'>3587e8a | 2026-10-22 23:47:37 +0000 | merge origin/main: union the coordination boards (both logs kept, no content dropped)</td></tr><tr><td class='mono'>4802687 | 2026-10-22 23:47:34 +0000 | verify: refresh v2 report after post-merge run (15/15 PASS)</td></tr><tr><td class='mono'>55a05ca | 2026-10-22 16:47:31 -0700 | Merge pull request #20 from karagemop466-tech/arena/84be683f-gold5</td></tr><tr><td class='mono'>9a888f1 | 2026-10-22 23:47:23 +0000 | coord: record PR #15 merge (219b905), Pages build and live verification; close out C6</td></tr><tr><td class='mono'>44de33f | 2026-10-22 23:47:17 +0000 | verification pass 6: Allurez BBB findings, stronger money/flag/quote gates, 9/9 security tests, docs</td></tr>
+</tbody></table></div>
+<h2>Current tree</h2>
+<p class="small"><b>38</b> tracked files. Data of record: <span class="mono">data/rings.jsonl</span> (one row
+per entry, hand-audited), from which <span class="mono">data/rings.json</span>,
+<span class="mono">data/rings.csv</span> and every table on this site are generated by
+<span class="mono">scripts/build.py</span>. Generated files are committed because GitHub Pages serves this branch
+directly with a legacy build and has no build step for the data.</p>
+</div></main>
+<footer><div class="wrap">
+<b>No-hallucination policy.</b> Nothing on this site is estimated, inferred or filled in from memory. A value is published only when the literal
+string was observed on an official first-party page, and the observation is stored with its URL, UTC timestamp and verbatim excerpt.
+Where a value could not be confirmed the cell is left blank and the row is published on <a href="../pages/flagged.html">Flagged for review</a>.
+<br>Built 2026-10-22T23:57:29Z by session <span class="mono">3e3fae49</span> &middot; data: <a href="../data/rings.json">rings.json</a>,
+<a href="../data/rings.csv">rings.csv</a>, <a href="../data/gold-price.json">gold-price.json</a>,
+<a href="../data/verification-report.json">verification-report.json</a> &middot;
+<a href="../pages/verification.html">verification methodology</a> &middot;
+<a href="https://github.com/karagemop466-tech/GOLD5">repository</a>
+</div></footer>
+<script src="../assets/app.js" defer></script>
+</body></html>

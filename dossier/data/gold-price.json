@@ -1,0 +1,286 @@
+{
+  "captured_at": "2026-10-22T23:42:00Z",
+  "captured_by": "session 3e3fae49",
+  "policy": "NO official LBMA Gold Price figure is published in this dataset. The LBMA's own page states that the historical tabulated prices moved to the MyLBMA Portal and that a licence from ICE Benchmark Administration (IBA) is required to obtain, use or redistribute benchmark data. Publishing an unlicensed 'LBMA price' number would be unsourced, so instead this file records timestamped observations from named publishers, each with a link and a literal excerpt, and the calculator requires the user to pick or enter a price.",
+  "benchmark": {
+    "name": "LBMA Gold Price",
+    "administrator": "ICE Benchmark Administration Limited (IBA)",
+    "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+    "tier": "live",
+    "observed_at": "2026-10-22T23:15:00Z",
+    "facts": [
+      "The LBMA Gold Price is set twice daily in auctions independently operated and administered by ICE Benchmark Administration Limited (IBA) and commencing at 10:30 and 15:00 London time.",
+      "Sterling and Euro prices are available but they are indicative prices for settlement only.",
+      "LBMA Precious Metal Prices are not published on either weekends or those days designated as UK bank holidays.",
+      "The historical tabulated data for the LBMA Precious Metals Prices has been moved to the MyLBMA Portal; a relevant licence from IBA is required to view it.",
+      "A licence from IBA is required in order to obtain, use or redistribute real-time or historical benchmark data."
+    ],
+    "excerpt": "The LBMA Gold Price is set twice daily in auctions independently operated and administered by ICE Benchmark Administration Limited (IBA) and commencing at 10:30 and 15:00 London time. Sterling and Euro prices are available but they are indicative prices for settlement only. ... Tables have moved to the MyLBMA Portal ... A licence from IBA is required in order to obtain, use or redistribute real-time or historical benchmark data from that date."
+  },
+  "constants": {
+    "troy_ounce_grams": 31.1034768,
+    "troy_ounce_grams_source": "NIST Office of Weights and Measures, 'Conversion Factors for Precious Metal Sales' - https://www.nist.gov/document/precious-metals-conversion-information-march2015pdf (cited and verified in research/weight.md by session 3c8bb7ee; live re-fetch pending due to fetch outage - see F-03)",
+    "pennyweight_grams": 1.55517384,
+    "pennyweight_grams_source": "NIST OWM, same document (research/weight.md)",
+    "karat_fineness": {
+      "24K": {
+        "pct": 99.99,
+        "mark": "24K / 999",
+        "nominal_pct": 100.0,
+        "source": "Jewelers of America quality-marks table via research/gold-purity.md (states '24K; European mark 999; 99.99% pure gold')",
+        "note": "24/24 is nominally 100% pure, but the published industry quality mark is 999 and the Jewelers of America table records 99.99%. The nominal and the practical figure differ, so both are recorded rather than one being inferred."
+      },
+      "18K": {
+        "pct": 75.0,
+        "mark": "18K / 750",
+        "source": "FTC 'Buying Platinum, Gold, and Silver Jewelry'; Jewelers of America via research/gold-purity.md"
+      },
+      "14K": {
+        "pct": 58.3,
+        "mark": "14K / 585",
+        "source": "FTC 'Buying Platinum, Gold, and Silver Jewelry'; Jewelers of America via research/gold-purity.md"
+      },
+      "10K": {
+        "pct": 41.7,
+        "mark": "10K / 417",
+        "source": "Jewelers of America quality-marks table via research/gold-purity.md"
+      }
+    },
+    "karat_formula": "pure gold fraction = karat / 24; gold grams = total grams x (karat / 24)",
+    "value_formula": "gold value = gold grams / 31.1034768 x USD per troy ounce"
+  },
+  "observations": [
+    {
+      "id": "KITCO-CHART",
+      "publisher": "Kitco Metals Inc.",
+      "official": false,
+      "kind": "dealer/market data publisher",
+      "url": "http://www.kitco.com/charts/gold",
+      "usd_per_troy_oz": 4062.3,
+      "usd_per_gram_published": 130.61,
+      "as_of": "2026-10-22T10:54:00-04:00",
+      "as_of_label": "October 22, 2026, 10:54 a.m. ET",
+      "excerpt": "The current price of gold is $4,062.30 per troy ounce as of October 22, 2026, 10:54 a.m. ET, down $78.00 today. ... Gold price per ounce | $4,062.30 | -$78.00 | $4,044.30 | $4,145.30",
+      "tier": "snippet",
+      "extra": "Day's range published on the same page: low $4,044.30, high $4,145.30."
+    },
+    {
+      "id": "KITCO-METALS",
+      "publisher": "Kitco Metals Inc.",
+      "official": false,
+      "kind": "dealer/market data publisher",
+      "url": "https://www.kitco.com/price/precious-metals",
+      "usd_per_troy_oz": 4032.8,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T14:46:00",
+      "as_of_label": "Oct 22, 2026 14:46",
+      "excerpt": "GOLD Oct 22, 2026 14:46 4,032.80 4,034.80 -107.500 -2.60% 4,031.10 4,145.30 ... Gold price USD $4,032.80/ oz",
+      "tier": "snippet",
+      "extra": "Same publisher, later timestamp, different value - shows intraday movement."
+    },
+    {
+      "id": "CNBC-SELECT",
+      "publisher": "CNBC Select",
+      "official": false,
+      "kind": "news publisher quoting its own Gold/USD spot series",
+      "url": "https://www.cnbc.com/select/the-price-of-gold-today-oct-22-2026/",
+      "usd_per_troy_oz": 4083.82,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T09:00:00-04:00",
+      "as_of_label": "October 22, 2026, 9:00 a.m. ET",
+      "excerpt": "Gold's spot price - or its current trading value - today as of 9:00 a.m. ET is $4,083.82 per ounce, according to CNBC's Gold/ US Dollar Spot Price. That's slightly lower than Wednesday's price, when it traded at $4,129.91 per ounce at the same time.",
+      "tier": "snippet",
+      "extra": "Also gives the prior-day comparison value $4,129.91 at the same hour."
+    },
+    {
+      "id": "FORTUNE",
+      "publisher": "Fortune",
+      "official": false,
+      "kind": "news publisher",
+      "url": "https://fortune.com/article/current-price-of-gold-10-22-2026/",
+      "usd_per_troy_oz": 4088.0,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T08:50:00-04:00",
+      "as_of_label": "October 22, 2026, 8:50 a.m. ET",
+      "excerpt": "As of 8:50 a.m. Eastern Time today, gold was priced at $4,088 per ounce. This represents a $39 fall from yesterday at the same hour and an increase of $29 compared to one year ago.",
+      "tier": "snippet"
+    },
+    {
+      "id": "YAHOO-GCF",
+      "publisher": "Yahoo Finance",
+      "official": false,
+      "kind": "news publisher quoting COMEX front-month futures (GC=F)",
+      "url": "https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-thursday-october-22-2026-no-real-upward-price-momentum-for-gold-103501157.html",
+      "usd_per_troy_oz": 4104.3,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T06:25:00-04:00",
+      "as_of_label": "October 22, 2026, 6:25 a.m. ET",
+      "excerpt": "Gold (GC=F) December futures opened at $4,159 per troy ounce on Thursday, October 22, 2026, up 0.2% from Wednesday's close. The price of gold fell in early trading to $4,104.30 as of 6:25 a.m. ET.",
+      "tier": "snippet",
+      "extra": "This is a FUTURES quote (December contract), not a spot quote - do not mix it with spot values without noting the basis."
+    },
+    {
+      "id": "JMBULLION",
+      "publisher": "JM Bullion",
+      "official": false,
+      "kind": "dealer",
+      "url": "https://www.jmbullion.com/charts/gold-price/",
+      "usd_per_troy_oz": 4053.93,
+      "usd_per_gram_published": 130.34,
+      "as_of": "2026-10-22T13:13:00-04:00",
+      "as_of_label": "Oct 22, 2026 at 1:13 PM EDT",
+      "excerpt": "As of Oct 22, 2026 at 1:13 PM EDT, the live Gold spot price for 1 ounce of Gold in U.S. dollars (USD) is $4,053.93, 1 gram of Gold is $130.34 and 1 kilogram of Gold is $130,336.88.",
+      "tier": "snippet",
+      "extra": "Publishes per-ounce, per-gram and per-kilo, so the NIST conversion can be checked arithmetically."
+    },
+    {
+      "id": "APMEX-1102",
+      "publisher": "APMEX",
+      "official": false,
+      "kind": "dealer",
+      "url": "https://www.apmex.com/gold-price",
+      "usd_per_troy_oz": 4077.6,
+      "usd_per_gram_published": 131.1,
+      "as_of": "2026-10-22T11:02:00-04:00",
+      "as_of_label": "10/22/2026 11:02:00 AM ET",
+      "excerpt": "Gold Spot Price $4,077.60 USD ($83.90) USD -2.01% ... Gold Price Per Ounce $4,077.60 ... Gold Price Per Gram $131.10 ... Last Updated: 10/22/2026 11:02:00 AM ET",
+      "tier": "snippet"
+    },
+    {
+      "id": "APMEX-1825",
+      "publisher": "APMEX",
+      "official": false,
+      "kind": "dealer",
+      "url": "https://www.apmex.com/gold-price/1-gram-gold-price-today",
+      "usd_per_troy_oz": 4046.5,
+      "usd_per_gram_published": 130.1,
+      "as_of": "2026-10-22T18:25:00-04:00",
+      "as_of_label": "10/22/2026 6:25:00 PM ET",
+      "excerpt": "Gold Spot Price $4,046.50 USD $5.40 USD +0.13% ... Gold Price Per Gram $130.10 ... Last Updated: 10/22/2026 6:25:00 PM ET",
+      "tier": "snippet",
+      "extra": "Same publisher, 7 hours later: -$31.10/oz. Intraday drift is material at ring scale."
+    },
+    {
+      "id": "BULLIONVAULT",
+      "publisher": "BullionVault",
+      "official": false,
+      "kind": "dealer/investment platform",
+      "url": "https://www.bullionvault.com/gold-price-chart.do",
+      "usd_per_troy_oz": 4044.82,
+      "usd_per_gram_published": 130.04,
+      "as_of": "2026-10-22T18:27:31+01:00",
+      "as_of_label": "22 October 2026, 18:27:31 (GMT+01:00)",
+      "excerpt": "Current Gold Price - $4,044.81 per Ounce ... Gold Price per Gram | $130.04 | Gold Price per Kilo | $130,044 | Gold Price per Ounce | $4,044.82 | 22 October 2026, 18:27:31 (GMT+01:00)",
+      "tier": "snippet",
+      "extra": "The same page shows both $4,044.81 and $4,044.82 - a 1-cent internal inconsistency caused by continuous updating."
+    },
+    {
+      "id": "GOLDPRICECOM",
+      "publisher": "goldprice.com",
+      "official": false,
+      "kind": "market data publisher",
+      "url": "https://goldprice.com/gold-price-per-ounce",
+      "usd_per_troy_oz": 4054.08,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T10:39:00-04:00",
+      "as_of_label": "10:39 AM ET on October 22, 2026",
+      "excerpt": "As of 10:39 AM ET on October 22, 2026, gold is $4,054.08 per troy ounce in US dollars, based on a spot price of $4,054.08 per troy ounce.",
+      "tier": "snippet"
+    },
+    {
+      "id": "MACROTRENDS",
+      "publisher": "Macrotrends",
+      "official": false,
+      "kind": "historical data publisher",
+      "url": "https://www.macrotrends.net/1333/historical-gold-prices-100-year-chart",
+      "usd_per_troy_oz": 4053.0,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22",
+      "as_of_label": "as of October 22, 2026",
+      "excerpt": "Gold is $4,053 per ounce as of October 22, 2026, unchanged from $4,053 a year earlier. The price is down 6.2% so far in 2026.",
+      "tier": "snippet"
+    },
+    {
+      "id": "INVESTING-XAUUSD",
+      "publisher": "Investing.com",
+      "official": false,
+      "kind": "market data publisher (XAU/USD daily OHLC)",
+      "url": "https://www.investing.com/currencies/xau-usd-historical-data",
+      "usd_per_troy_oz": 4049.85,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22",
+      "as_of_label": "Oct 22, 2026 (daily close)",
+      "excerpt": "Oct 22, 2026 | 4,049.85 | 4,124.83 | 4,126.16 | 4,044.85 | | -1.83%",
+      "tier": "snippet",
+      "extra": "Daily OHLC for 2026-10-22: price 4,049.85, open 4,124.83, high 4,126.16, low 4,044.85, change -1.83%."
+    },
+    {
+      "id": "TRADINGECONOMICS",
+      "publisher": "Trading Economics",
+      "official": false,
+      "kind": "market data publisher (CFD tracking series)",
+      "url": "https://tradingeconomics.com/commodity/gold",
+      "usd_per_troy_oz": 4040.25,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22",
+      "as_of_label": "October 22, 2026",
+      "excerpt": "Gold fell to 4,040.25 USD/t.oz on October 22, 2026, down 2.44% from the previous day. Over the past month, Gold's price has fallen 5.76%, and is down 2.08% compared to the same time last year, according to trading on a contract for difference (CFD) that tracks the benchmark market for this commodity.",
+      "tier": "snippet",
+      "extra": "Publisher states the series is a CFD that TRACKS the benchmark, i.e. not the benchmark itself."
+    },
+    {
+      "id": "SDBULLION",
+      "publisher": "SD Bullion",
+      "official": false,
+      "kind": "dealer",
+      "url": "https://sdbullion.com/gold-price",
+      "usd_per_troy_oz": 4066.5,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22T10:39:00",
+      "as_of_label": "Updated October 22, 2026 10:39 AM",
+      "excerpt": "$4,066.50 $-85.26 USD -2.05% ... Updated October 22, 2026 10:39 AM",
+      "tier": "snippet"
+    },
+    {
+      "id": "USAGOLD",
+      "publisher": "USAGOLD",
+      "official": false,
+      "kind": "dealer/daily market report",
+      "url": "https://www.usagold.com/daily-precious-metals-market-report-october-22-2026/",
+      "usd_per_troy_oz": 4084.0,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-22",
+      "as_of_label": "October 22, 2026 daily report",
+      "excerpt": "Gold spot price is trading at $4,084.00 per ounce, down $56.40 (-1.36%) on the day.",
+      "tier": "snippet"
+    },
+    {
+      "id": "USATODAY-1021",
+      "publisher": "USA Today",
+      "official": false,
+      "kind": "news publisher",
+      "url": "https://www.usatoday.com/story/money/personalfinance/2026-10-21/gold-price-on-october-21-2026/92359388007/",
+      "usd_per_troy_oz": 4139.1,
+      "usd_per_gram_published": null,
+      "as_of": "2026-10-21",
+      "as_of_label": "October 21, 2026",
+      "excerpt": "As of October 21, 2026, the price of gold is $4,139.10 per ounce.",
+      "tier": "snippet",
+      "extra": "PRIOR-DAY observation, kept to show day-over-day movement (2026-10-21 to 2026-10-22)."
+    }
+  ],
+  "derived": {
+    "note": "DERIVED STATISTIC, NOT A QUOTED PRICE. Computed at build time from the 2026-10-22 observations above. Use only as a sanity range; always read a live price before acting.",
+    "n_observations_oct22": 15,
+    "median_usd_per_troy_oz": 4054.08,
+    "min_usd_per_troy_oz": 4032.8,
+    "max_usd_per_troy_oz": 4104.3,
+    "spread_usd": 71.5,
+    "prior_day_usd_per_troy_oz": 4139.1
+  },
+  "flags": [
+    "F-01: No official LBMA Gold Price NUMERIC value is published here because LBMA/IBA gate the tabulated data behind a licence (MyLBMA Portal). Verified live from lbma.org.uk on 2026-10-22.",
+    "F-04: The 16 observations for 2026-10-22 disagree by several tens of dollars per ounce because they are captured at different times of day and some are futures/CFD-derived rather than spot. Any single 'current gold price' claim without a timestamp and publisher is unreliable.",
+    "F-03: All observations except the LBMA methodology page are tier 'snippet' (read from a search index of the publisher's own page) because the fetch proxy was failing during this session; none were re-confirmed by a live fetch."
+  ]
+}

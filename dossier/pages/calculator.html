@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gold weight &amp;amp; purity calculator | GOLD5 — Gold Engagement Ring Verification</title>
+<meta name="description" content="Verified gold engagement ring listings with source links, capture timestamps, literal price evidence and an anti-hallucination audit trail.">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header class="top"><div class="bar">
+<div class="brand">GOLD<span>5</span></div>
+<div class="tag">Gold engagement-ring buying project &middot; every value carries a source link, a UTC capture timestamp and a literal evidence excerpt</div>
+</div></header>
+<nav class="main"><div class="wrap"><span class="grp">Overview</span><a href="../index.html">Home</a><a href="../pages/repo-review.html">Repo review</a><a href="../pages/verification.html">Verification</a><span class="grp">Entries</span><a href="../pages/rings.html">All entries</a><a href="../pages/cat-solitaire.html">Solitaire</a><a href="../pages/cat-halo-pave.html">Halo, pave &amp; side-stone</a><a href="../pages/cat-three-stone.html">Three-stone</a><a href="../pages/cat-vintage.html">Vintage &amp; estate</a><a href="../pages/cat-gemstone.html">Gemstone &amp; moissanite</a><a href="../pages/cat-mens.html">Men&#x27;s</a><a href="../pages/cat-plain-band.html">Plain gold bands</a><a href="../pages/cat-bridal-set.html">Bridal sets</a><a href="../pages/cat-marketplace.html">Marketplace listings</a><a href="../pages/cat-not-solid-gold.html">NOT solid gold</a><a href="../pages/cat-red-flag.html">Red-flag listings</a><a href="../pages/marketplace-all.html">Marketplaces</a><span class="grp">Tools</span><a href="../pages/calculator.html" class="on">Gold calculator</a><a href="../pages/gold-price.html">Gold price</a><span class="grp">Guidance</span><a href="../pages/checklist.html">Buying checklist</a><a href="../pages/sellers.html">Sellers &amp; policies</a><a href="../pages/research.html">Research</a><span class="grp">Review</span><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></div></nav>
+<main><div class="wrap">
+<h1>Gold weight &amp; purity calculator</h1>
+<p class="lede">Convert a ring's weight and karat into pure-gold content and intrinsic gold value.
+Nothing is pre-filled: a pre-filled gold price would silently go stale and become exactly the kind of invented
+number this project forbids. Pick a sourced observation below (each button carries its publisher, timestamp and link)
+or type the price you are actually being quoted.</p>
+<div class="alert stop">
+<h2>&#9888; NO HALLUCINATED PRICES &mdash; the governing rule of this project</h2>
+<ul>
+<li><b>Nothing here is estimated, remembered or inferred.</b> Every price, karat claim, metal description and gram
+weight was read from an <b>official first-party page</b> (the retailer's own product page, the marketplace's own item
+page, or the benchmark administrator's own site) and stored with three things: the <b>source URL</b>, a <b>UTC capture
+timestamp</b>, and the <b>literal verbatim excerpt</b> that contains the number.</li>
+<li><b>If a value could not be confirmed, the cell is left blank</b> and the row is published on
+<a href="../pages/flagged.html">Flagged for review</a>. A blank cell is a deliberate, honest result &mdash; never a gap
+filled by guesswork.</li>
+<li><b>Automated anti-hallucination checks run at every build.</b> Current run:
+<b>15/15 PASS</b>, 0 FAIL. Check <span class="mono">C3</span> re-parses every published price out
+of its own evidence excerpt and fails the build if the number is not literally there. Check <span class="mono">C6</span>
+does the same for gram weights. See <a href="../pages/verification.html">Verification</a>.</li>
+<li><b>Prices move.</b> Retail jewellery prices and the gold price both change constantly, so every value is a
+timestamped observation, not a standing quote. Re-read the live page before paying &mdash; this dataset contains two
+documented cases where the <i>same</i> official page was indexed at two different prices (F-05, F-06).</li>
+</ul></div>
+<div class="calc">
+<div class="field"><label for="c-weight">Ring weight (grams)</label>
+<input id="c-weight" type="number" step="0.001" min="0" placeholder="e.g. 3.91" inputmode="decimal">
+<label style="margin-top:8px"><input type="checkbox" id="c-gross" style="width:auto"> weight is GROSS (includes stones)</label>
+<div class="small" style="margin-top:6px">Use the weight the <b>seller publishes</b>, or your own jeweller's scale reading.
+A gross weight includes the diamonds, so pure-gold output will be a slight over-estimate.</div></div>
+<div class="field"><label for="c-karat">Karat (or fineness)</label>
+<select id="c-karat"><option value="">select karat&hellip;</option><option value="24">24K (nominally 100%)</option>
+<option value="18">18K</option><option value="14" selected>14K</option><option value="10">10K</option>
+<option value="9">9K</option><option value="8">8K</option></select>
+<label for="c-fineness" style="margin-top:8px">&hellip;or exact fineness % (overrides karat)</label>
+<input id="c-fineness" type="number" step="0.01" min="0" max="100" placeholder="e.g. 58.3">
+<div class="small" style="margin-top:6px">Fineness = karat &divide; 24. Industry marks: 18K/750 = 75.0%,
+14K/585 = 58.3%, 10K/417 = 41.7% (FTC and Jewelers of America; see <a href="checklist.html">Checklist</a>).</div></div>
+<div class="field"><label for="c-price">Gold price (USD per troy ounce)</label>
+<input id="c-price" type="number" step="0.01" min="0" placeholder="required - nothing is pre-filled" inputmode="decimal">
+<div class="small" id="c-price-src">No price loaded. Choose a sourced observation below or type your own.</div>
+<label for="c-retail" style="margin-top:8px">Asking / retail price (USD, optional)</label>
+<input id="c-retail" type="number" step="0.01" min="0" placeholder="optional" inputmode="decimal"></div>
+</div>
+<div class="field"><label for="c-example">Load a verified example from this dataset</label>
+<select id="c-example"><option value="">Load a verified example (seller-published weight)&hellip;</option><option value='{&quot;w&quot;: 3.8, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-117322068337&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/117322068337&quot;, &quot;at&quot;: &quot;2026-10-22T23:31:00Z&quot;}'>EBAY-117322068337 — 3.8 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 2.0, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-306024152911&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/306024152911&quot;, &quot;at&quot;: &quot;2026-10-22T23:31:00Z&quot;}'>EBAY-306024152911 — 2.0 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 5.6, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-236156740362&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/236156740362&quot;, &quot;at&quot;: &quot;2026-10-22T23:31:00Z&quot;}'>EBAY-236156740362 — 5.6 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 2.7, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;AMAZON-B081166CZD&quot;, &quot;ret&quot;: &quot;Amazon (marketplace)&quot;, &quot;url&quot;: &quot;https://www.amazon.com/Gold-Zirconia-Wedding-Engagement-Yellow/dp/B081166CZD&quot;, &quot;at&quot;: &quot;2026-10-22T23:36:00Z&quot;}'>AMAZON-B081166CZD — 2.7 g, 14K, Amazon (marketplace)</option><option value='{&quot;w&quot;: 1.72, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;AMAZON-B07QJSZ8QX&quot;, &quot;ret&quot;: &quot;Amazon (marketplace)&quot;, &quot;url&quot;: &quot;https://www.amazon.com/dp/B07QJSZ8QX&quot;, &quot;at&quot;: &quot;2026-10-22T23:36:00Z&quot;}'>AMAZON-B07QJSZ8QX — 1.72 g, 14K, Amazon (marketplace)</option><option value='{&quot;w&quot;: 5.9, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-126886617045&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/126886617045&quot;, &quot;at&quot;: &quot;2026-10-22T23:40:00Z&quot;}'>EBAY-126886617045 — 5.9 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 3.91, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-297741882482&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/297741882482&quot;, &quot;at&quot;: &quot;2026-10-22T23:40:00Z&quot;}'>EBAY-297741882482 — 3.91 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 5.4, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-117329699772&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/117329699772&quot;, &quot;at&quot;: &quot;2026-10-22T23:40:00Z&quot;}'>EBAY-117329699772 — 5.4 g, 14K, eBay (marketplace)</option><option value='{&quot;w&quot;: 1.9, &quot;k&quot;: &quot;14&quot;, &quot;id&quot;: &quot;EBAY-223469269883&quot;, &quot;ret&quot;: &quot;eBay (marketplace)&quot;, &quot;url&quot;: &quot;https://www.ebay.com/itm/223469269883&quot;, &quot;at&quot;: &quot;2026-10-22T23:40:00Z&quot;}'>EBAY-223469269883 — 1.9 g, 14K, eBay (marketplace)</option></select>
+<div class="small" id="c-example-src">Only rows where the seller itself published a gram weight are offered.
+9 of 58 rows qualify &mdash; the rest publish no weight, and this project does not guess one.</div></div>
+<h3 style="margin-top:18px">Load a sourced gold price (2026-10-22 observations)</h3>
+<div class="pill-row"><button class='pill' data-fill-price='4062.3' data-src-pub='Kitco Metals Inc.' data-src-asof='October 22, 2026, 10:54 a.m. ET' data-src-url='http://www.kitco.com/charts/gold'>Kitco $4,062.30 <span class='small'>October 22, 2026, 10:54 a.m. ET</span></button><button class='pill' data-fill-price='4032.8' data-src-pub='Kitco Metals Inc.' data-src-asof='Oct 22, 2026 14:46' data-src-url='https://www.kitco.com/price/precious-metals'>Kitco $4,032.80 <span class='small'>Oct 22, 2026 14:46</span></button><button class='pill' data-fill-price='4083.82' data-src-pub='CNBC Select' data-src-asof='October 22, 2026, 9:00 a.m. ET' data-src-url='https://www.cnbc.com/select/the-price-of-gold-today-oct-22-2026/'>CNBC $4,083.82 <span class='small'>October 22, 2026, 9:00 a.m. ET</span></button><button class='pill' data-fill-price='4088.0' data-src-pub='Fortune' data-src-asof='October 22, 2026, 8:50 a.m. ET' data-src-url='https://fortune.com/article/current-price-of-gold-10-22-2026/'>Fortune $4,088.00 <span class='small'>October 22, 2026, 8:50 a.m. ET</span></button><button class='pill' data-fill-price='4104.3' data-src-pub='Yahoo Finance' data-src-asof='October 22, 2026, 6:25 a.m. ET' data-src-url='https://finance.yahoo.com/personal-finance/investing/article/gold-price-today-thursday-october-22-2026-no-real-upward-price-momentum-for-gold-103501157.html'>Yahoo $4,104.30 <span class='small'>October 22, 2026, 6:25 a.m. ET</span></button><button class='pill' data-fill-price='4053.93' data-src-pub='JM Bullion' data-src-asof='Oct 22, 2026 at 1:13 PM EDT' data-src-url='https://www.jmbullion.com/charts/gold-price/'>JM $4,053.93 <span class='small'>Oct 22, 2026 at 1:13 PM EDT</span></button><button class='pill' data-fill-price='4077.6' data-src-pub='APMEX' data-src-asof='10/22/2026 11:02:00 AM ET' data-src-url='https://www.apmex.com/gold-price'>APMEX $4,077.60 <span class='small'>10/22/2026 11:02:00 AM ET</span></button><button class='pill' data-fill-price='4046.5' data-src-pub='APMEX' data-src-asof='10/22/2026 6:25:00 PM ET' data-src-url='https://www.apmex.com/gold-price/1-gram-gold-price-today'>APMEX $4,046.50 <span class='small'>10/22/2026 6:25:00 PM ET</span></button><button class='pill' data-fill-price='4044.82' data-src-pub='BullionVault' data-src-asof='22 October 2026, 18:27:31 (GMT+01:00)' data-src-url='https://www.bullionvault.com/gold-price-chart.do'>BullionVault $4,044.82 <span class='small'>22 October 2026, 18:27:31 (GMT+01:00)</span></button><button class='pill' data-fill-price='4054.08' data-src-pub='goldprice.com' data-src-asof='10:39 AM ET on October 22, 2026' data-src-url='https://goldprice.com/gold-price-per-ounce'>goldprice.com $4,054.08 <span class='small'>10:39 AM ET on October 22, 2026</span></button><button class='pill' data-fill-price='4053.0' data-src-pub='Macrotrends' data-src-asof='as of October 22, 2026' data-src-url='https://www.macrotrends.net/1333/historical-gold-prices-100-year-chart'>Macrotrends $4,053.00 <span class='small'>as of October 22, 2026</span></button><button class='pill' data-fill-price='4049.85' data-src-pub='Investing.com' data-src-asof='Oct 22, 2026 (daily close)' data-src-url='https://www.investing.com/currencies/xau-usd-historical-data'>Investing.com $4,049.85 <span class='small'>Oct 22, 2026 (daily close)</span></button><button class='pill' data-fill-price='4040.25' data-src-pub='Trading Economics' data-src-asof='October 22, 2026' data-src-url='https://tradingeconomics.com/commodity/gold'>Trading $4,040.25 <span class='small'>October 22, 2026</span></button><button class='pill' data-fill-price='4066.5' data-src-pub='SD Bullion' data-src-asof='Updated October 22, 2026 10:39 AM' data-src-url='https://sdbullion.com/gold-price'>SD $4,066.50 <span class='small'>Updated October 22, 2026 10:39 AM</span></button><button class='pill' data-fill-price='4084.0' data-src-pub='USAGOLD' data-src-asof='October 22, 2026 daily report' data-src-url='https://www.usagold.com/daily-precious-metals-market-report-october-22-2026/'>USAGOLD $4,084.00 <span class='small'>October 22, 2026 daily report</span></button><button class='pill' data-fill-price='4139.1' data-src-pub='USA Today' data-src-asof='October 21, 2026' data-src-url='https://www.usatoday.com/story/money/personalfinance/2026-10-21/gold-price-on-october-21-2026/92359388007/'>USA $4,139.10 <span class='small'>October 21, 2026</span></button></div>
+<p class="small">Each button fills the price field from one recorded observation and prints its publisher, timestamp and
+source link next to the field, so the number on screen is always traceable. Full table:
+<a href="gold-price.html">Gold price</a>.</p>
+<h2>Result</h2>
+<div class="out" id="c-out"></div>
+<div class="alert warn"><h3>How to read the result</h3><ul>
+<li><b>Intrinsic gold value is not what a ring is worth.</b> It is the melt value of the alloy's gold content only.
+It excludes labour, design, brand, the centre stone, the accent stones, certification and retail margin.</li>
+<li><b>A finished ring normally costs several times its gold content.</b> The multiple is informative, not a verdict.</li>
+<li><b>The dangerous direction is too cheap.</b> If the asking price is at or below the intrinsic gold value of the
+claimed weight and karat, the metal claim, the weight claim or the seller's honesty is wrong. That is the checklist's
+"unusually cheap price is a red flag" test, expressed arithmetically.</li>
+<li><b>Scrap buyers pay less than spot.</b> Refiners and pawn shops discount for melting, assay and margin, so this
+figure is a ceiling for scrap purposes, not an offer you will receive.</li>
+<li><b>The stamp does not prove purity.</b> Only an independent test (XRF or fire assay) does &mdash; see
+<a href="checklist.html">Checklist</a> and <a href="flagged.html">Flagged for review</a> (F-02).</li>
+</ul></div>
+<h2>Worked constants</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Constant</th><th class="num">Value</th><th>Source</th></tr></thead><tbody>
+<tr><td>Grams per troy ounce</td><td class="num">31.1034768</td><td>NIST Office of Weights and Measures, "Conversion Factors for Precious Metal Sales" &mdash; <a href="https://www.nist.gov/document/precious-metals-conversion-information-march2015pdf" target="_blank" rel="noopener noreferrer">nist.gov</a> (recorded in <span class="mono">research/weight.md</span>)</td></tr>
+<tr><td>Grams per pennyweight (dwt)</td><td class="num">1.55517384</td><td>same NIST document</td></tr>
+<tr><td>Pure-gold fraction</td><td class="num">karat &divide; 24</td><td>FTC, "Buying Platinum, Gold, and Silver Jewelry" &mdash; <a href="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry" target="_blank" rel="noopener noreferrer">consumer.ftc.gov</a></td></tr>
+<tr><td>18K fineness</td><td class="num">75.0 %</td><td>FTC; Jewelers of America quality-marks table</td></tr>
+<tr><td>14K fineness</td><td class="num">58.3 %</td><td>FTC; Jewelers of America quality-marks table</td></tr>
+<tr><td>10K fineness</td><td class="num">41.7 %</td><td>Jewelers of America quality-marks table</td></tr>
+</tbody></table></div>
+<p class="small">Live cross-check performed at build time: five publishers that quote both $/troy oz and $/gram agree with
+the NIST factor to within half a cent (check C10, 15/15 checks passing). See
+<a href="verification.html">Verification</a>.</p>
+</div></main>
+<footer><div class="wrap">
+<b>No-hallucination policy.</b> Nothing on this site is estimated, inferred or filled in from memory. A value is published only when the literal
+string was observed on an official first-party page, and the observation is stored with its URL, UTC timestamp and verbatim excerpt.
+Where a value could not be confirmed the cell is left blank and the row is published on <a href="../pages/flagged.html">Flagged for review</a>.
+<br>Built 2026-10-22T23:57:29Z by session <span class="mono">3e3fae49</span> &middot; data: <a href="../data/rings.json">rings.json</a>,
+<a href="../data/rings.csv">rings.csv</a>, <a href="../data/gold-price.json">gold-price.json</a>,
+<a href="../data/verification-report.json">verification-report.json</a> &middot;
+<a href="../pages/verification.html">verification methodology</a> &middot;
+<a href="https://github.com/karagemop466-tech/GOLD5">repository</a>
+</div></footer>
+<script src="../assets/app.js" defer></script>
+</body></html>

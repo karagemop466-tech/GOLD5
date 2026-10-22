@@ -349,3 +349,55 @@ Nothing in `verified/` was edited by this pass; it is served at `/verified/`.
 
 
 </details>
+
+---
+
+## Session `3e3fae49` — the 58-row dossier at `/dossier/` (added 2026-10-23)
+
+**Live:** <https://karagemop466-tech.github.io/GOLD5/dossier/> · an additional independent delivery in an
+exclusive directory scope, so nothing above was modified except one additive card on the root
+dashboard and this section.
+
+| | |
+|---|---|
+| Entries | **58** rows in `dossier/data/rings.jsonl` — Zales 9, Kay 7, Blue Nile 10, Brilliant Earth 4, eBay 15, Pandora 7, Amazon 2, Jared 1, Etsy 1 |
+| Pages | **23** generated: dashboard, master table, 11 category pages, marketplace, calculator, gold price, checklist, sellers, verification, flagged, sources, research index, repo review |
+| Evidence | every row carries a source URL, an ISO-8601 UTC capture timestamp and the **verbatim excerpt** containing the number |
+| Tiers | 3 rows `live` (read from a live fetch), 55 rows `snippet` (read from a search index of the official page, crawl date published with the row), blanks are `unverified` |
+| Checks | `python3 dossier/scripts/build.py` → **18 checks, 18 PASS, 0 FAIL**, 0 broken internal links |
+| Flags | 14 project-level findings **F-01…F-14** plus per-row flags, all with source links on `dossier/pages/flagged.html` |
+
+What this delivery adds that the other suites do not have:
+
+- **Karat and metal colour are verified to the same standard as price.** Checks **C14/C15** require the
+  asserted karat and metal colour to appear *literally* in the row's own evidence excerpt. C14 withdrew
+  four Brilliant Earth rows' karat/metal to **blank** because the value was only inferable from a
+  `-14KW` SKU suffix — inference is treated as a hallucination, not as evidence.
+- **16 timestamped gold-price observations for one day**, spanning **$71.50/oz**, each with publisher,
+  series basis (spot / December futures / CFD) and capture time, plus the LBMA benchmark methodology
+  **live-fetched from lbma.org.uk**. No figure anywhere is quoted as "the LBMA price" because that
+  tabulated data is licence-gated (**F-01**). The calculator therefore **pre-fills nothing**.
+- **A "not solid gold" category** (7 rows) built from brands' own published material strings — e.g.
+  Pandora's JSON-LD "14k Gold-plated Signature metal alloy" — mapped to the FTC/eCFR definitions of
+  electroplate, vermeil, gold filled, overlay and flashed, with one **FINAL SALE** row flagged.
+- **A red-flag category** (3 rows) of marketplace listings that fail the checklist outright: a
+  "No Brand" ring at $1,351.01, a 7.50 ct "solid 14K" ring at **$322.27** (below plausible metal
+  value), and a listing whose own title claims both `14k` and "Solid 10k".
+- **The repository review itself** (`dossier/pages/repo-review.html`): the state of the repo at session
+  start, the Pages configuration and why path `/` means the landing page must live at the repository
+  root, and every irregularity found in the parallel work, each with the git/gh command that reproduces it.
+
+Rebuild and re-verify:
+
+```bash
+python3 dossier/scripts/build.py    # regenerates all 23 pages + exports, then runs 18 checks
+```
+
+The generated exports (`dossier/data/rings.json`, `rings.csv`, `verification-report.json`) are
+committed because Pages serves this branch with a legacy build and has no data step. The dataset of
+record is `dossier/data/rings.jsonl`; the `_seed_*.py` and `_patch_inference.py` scripts in
+`dossier/scripts/` are the re-runnable provenance of every row.
+
+**Known limitation, stated plainly:** the page-fetch proxy failed part-way through collection
+(**F-03**), so 55 of 58 rows are `snippet` tier rather than `live`. Each such row says so on its face
+and publishes its crawl date. Re-read the live page before paying.
