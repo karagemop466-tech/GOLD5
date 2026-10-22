@@ -1307,7 +1307,7 @@ window.GOLD5_UNIFIED_CATALOG = {
         "G-HALLMARK-UNSTATED",
         "G-WEIGHT-APPROX",
         "G-EXCHANGE-ONLY",
-        "G-REPUTATION-MISSING",
+        "G-ALLUREZ-COMPLAINTS",
         "G-18K-DIFFERENT-SKU"
       ],
       "checkedOn": "2026-10-22",
