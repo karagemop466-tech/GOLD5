@@ -1893,8 +1893,8 @@
   {
    "id": "G-REPUTATION-MISSING",
    "severity": "medium",
-   "title": "Independent reputation checks were completed for only 2 of 8 sellers",
-   "detail": "Blue Nile (BBB) and VeraByEden (Etsy shop metrics + review count) have verified reputation data. Brilliant Earth, Allurez, Avianne & Co, The Jewelry Master and Solid Gold Jewelers do not — their reputation cells are blank. The FTC guide tells buyers to search '<seller> complaint' and '<seller> review' before buying; the Sellers page links a manual-review search for each.",
+   "title": "Independent reputation checks were completed for only 3 of 9 sellers",
+   "detail": "Blue Nile (BBB profile: A+ rated, accredited since 3/1/1999, with three recent review excerpts describing delays and defects), VeraByEden (Etsy: Star Seller, 4.9 from 2.1k reviews, 6.8k sales) and BUTTERFLYWINGVINTAGE (Etsy: 5/5 from 802 reviews, but its only listing here is sold out) have verified reputation data. Brilliant Earth, Allurez, Avianne & Co, The Jewelry Master, Solid Gold Jewelers and Etsy-as-a-marketplace do not have a verified independent rating here — their reputation cells are blank. The FTC guide tells buyers to search '<seller> complaint' and '<seller> review' before buying; the Sellers page links a manual-review search for each.",
    "listingIds": [],
    "sources": [
     "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry"
