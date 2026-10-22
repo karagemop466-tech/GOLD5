@@ -1,0 +1,45 @@
+SOURCE: https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw
+CAPTURED: 2026-10-22 23:47 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 6). Verbatim excerpts; [...] = omitted text.
+---
+#### 14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw
+
+**$1,100.00**
+
+[...]
+
+## DESCRIPTION:
+
+This elegant diamond solitaire engagement ring is handcrafted in 14k yellow gold. The center is prong set
+with one brilliant round cut diamond which weighs 0.41 carats. The frame measures to 4.5 mm in width and
+weighs 2.3 grams.
+
+## DETAILS:
+
+| Item Code | **R25893** |
+| Diamond Carat Weight | 0.41 Ctw |
+| Diamond Clarity | VS2 |
+| Diamond Color | G, H |
+| Metal Color | Yellow |
+| Metal Type | 14K Gold |
+| Item Weight | 2.3 grams |
+
+[...]
+
+Products delivered between Sun, 25 Oct and Thu, 29 Oct.
+
+Returns of unworn and unaltered items accepted within 14 days.
+
+Visit Our NY Showroom
+
+Come See Us In Person
+
+28 W 47th Street
+
+Diamond District  ·  New York, NY
+
+[Call / Text Us](tel:3342444038)
+---
+NOTES: "Solid" appears in the product TITLE ("14K Solid Yellow Gold ...") — that is the only solid-gold
+statement on the page. Weight appears twice (description "weighs 2.3 grams" and "Item Weight | 2.3 grams").
+No hallmark/stamp statement. Return window 14 days stated on the product page (full policy page not fetched).

@@ -1,0 +1,46 @@
+SOURCE: https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant
+CAPTURED: 2026-10-22 23:40 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 5). Verbatim excerpts; [...] = omitted text.
+---
+# 14K Solid Gold Ruby Diamond Ring: Elegant Handmade Engagement Ring
+
+Price:$783.00+
+
+Original Price:
+$1,044.00+
+
+25% off
+•
+Limited time sale
+
+[VeraByEden]
+Star Seller
+
+Returns & exchanges accepted
+
+Primary color
+10K YELLOW GOLD ($783.00)
+10K ROSE GOLD ($783.00)
+10K WHITE GOLD ($783.00)
+14K YELLOW GOLD ($969.00)
+14K ROSE GOLD ($969.00)
+14K WHITE GOLD ($969.00)
+18K YELLOW GOLD ($1,233.00)
+18K ROSE GOLD ($1,233.00)
+18K WHITE GOLD ($1,233.00)
+[...]
+
+[image alt text on listing photo 12]
+"May include: A smartphone screen displaying a map with a red pin marking a location. The text \"Hi! 2355
+Westwood Boulevard #153 Los Angeles CA 90082 USA\" is visible on the screen. The text \"Have a nice day.
+Can you give your address for delivery?\" is in a chat bubble above the map. The text \"We assure you a
+quick delivery. Share your contact information with us on Etsy Message.\" is at the top of the image. The
+text \"VERA by EDEN\" is at the bottom of the image."
+---
+NOTES (facts observed, no inference):
+- The live page states the 14K YELLOW GOLD variant price as $969.00; 10K $783.00; 18K $1,233.00.
+- The listing title itself says "14K Solid Gold".
+- NO gram weight appears anywhere in the product page sections captured.
+- NO hallmark / maker's mark statement appears in the sections captured.
+- One listing PHOTO solicits contact/delivery details off-platform ("Share your contact information with us
+  on Etsy Message"), which is recorded as flag F-OFFPLATFORM for review.

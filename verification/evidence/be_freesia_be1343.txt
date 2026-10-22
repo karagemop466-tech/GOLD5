@@ -1,0 +1,49 @@
+SOURCE: https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/
+CAPTURED: 2026-10-22 23:36-23:51 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunks 0 and 4 of 9; chunks 0-3 are site navigation only).
+        Verbatim excerpts; [...] = omitted text.
+---
+1
+Setting
+freesia 2mm solitaire-$750
+Change
+[...]
+# Freesia 2mm Solitaire Ring in 14K Yellow Gold
+
+$750(Setting Only)
+
+(80)
+[...]
+Metal:14K Yellow Gold
+[...]
+We've Got You Covered
+
+Free Shipping & Returns
+
+Free Lifetime Warranty
+
+Lifetime Diamond Upgrade
+
+Free 1-Year Resizing
+[...]
+### Ring Information
+
+- Style:
+
+BE1343-14KY
+
+- Metal:
+
+14K Yellow Gold
+
+- Width: 2-1.2 mm
+- Setting: Claw Prong
+---
+NOTES (observed only):
+- Price $750 is explicitly labelled "(Setting Only)" — the center diamond is not included.
+- Metal/karat: 14K Yellow Gold; style BE1343-14KY.
+- NO gram weight is published anywhere on the page  => weight blank + flagged.
+- The page does NOT state "solid gold". => solid claim unverified.
+- NO hallmark/stamp/maker's-mark statement. => unverified.
+- "Free Shipping & Returns" + "Free 1-Year Resizing" appear; the actual return window and the
+  resized/custom exclusions are NOT on this page (they live on the separate return-policy page).

@@ -1,0 +1,21 @@
+SOURCE: https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid
+CAPTURED: 2026-10-22 23:41 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 5). Verbatim; [...] = omitted text.
+---
+Sorry, this item is sold out
+
+[...]
+
+[BUTTERFLYWINGVINTAGE](https://www.etsy.com/shop/BUTTERFLYWINGVINTAGE) 5 out of 5 stars(802)802 reviews
+
+# Fine 14K Solid White Gold Ring - 7g Solid Gold -Size 11- Comfort Fit Wedding Ring Band-Marked 14K
+
+Sold
+---
+NOTES (observed only) — IMPORTANT CORRECTION TO PRIOR DATA:
+- The listing is SOLD OUT and the live page displays NO PRICE and NO weight table. The $444.80 figure used
+  in earlier passes came from a web-search snippet, NOT from a live page, and cannot now be confirmed.
+- What IS confirmed live: the title, including "7g Solid Gold" and "Marked 14K"; the shop name; the shop's
+  5-star/802-review badge; and sold-out status.
+- Therefore this row is recorded with price BLANK (flag F-PRICE-UNVERIFIED) and kept only as a
+  "marking language" example — it is NOT used as a below-melt case study.
