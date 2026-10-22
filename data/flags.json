@@ -1,0 +1,86 @@
+[
+  {
+    "id": "blue-nile-price-scope",
+    "category": "Blue Nile · price / scope",
+    "title": "Only a setting is priced—not a complete ring",
+    "detail": "Seller page displays $1,145 as the setting price and requires a diamond to be selected separately. Keep complete-ring price blank; do not present the setting amount as an all-in engagement-ring price.",
+    "sources": [{"id": "bluenile-setting-502120", "label": "Seller product page ↗"}]
+  },
+  {
+    "id": "blue-nile-solid-gold",
+    "category": "Blue Nile · material claim",
+    "title": "“Solid gold” is not explicitly confirmed",
+    "detail": "The reviewed listing identifies 14K Yellow Gold as its metal field, but does not explicitly state “solid gold.” Leave the criterion blank rather than treating the karat description as proof of solid construction.",
+    "sources": [{"id": "bluenile-setting-502120", "label": "Seller product page ↗"}]
+  },
+  {
+    "id": "blue-nile-weight",
+    "category": "Blue Nile · weight",
+    "title": "Gold-alloy weight in grams is missing",
+    "detail": "The reviewed listing gives a band width but no gold-alloy weight in grams. Do not estimate from photos, width, size, or price; request an actual documented weight.",
+    "sources": [{"id": "bluenile-setting-502120", "label": "Seller product page ↗"}]
+  },
+  {
+    "id": "blue-nile-marks",
+    "category": "Blue Nile · marks",
+    "title": "Hallmark and maker’s mark are not documented",
+    "detail": "Product details do not confirm a 14K stamp on the actual item or a separate maker/manufacturer’s mark. The two-mark requirement is this project's screening rule, not presented here as a legal conclusion. Inspect the delivered ring; a listing is not an assay.",
+    "sources": [{"id": "bluenile-setting-502120", "label": "Seller product page ↗"}, {"id": "ecfr-jewelry-guides", "label": "eCFR Jewelry Guides ↗"}]
+  },
+  {
+    "id": "blue-nile-returns",
+    "category": "Blue Nile · returns",
+    "title": "Return terms are published; test eligibility needs confirmation",
+    "detail": "Blue Nile’s policy states eligible items may be returned in original, unworn condition within 30 days of shipment; personalized/custom, engraved, and items resized after purchase are excluded. Whether independent professional testing is permitted while preserving eligibility is not stated. Confirm in writing before buying; resizing before testing conflicts with the stated exclusion.",
+    "sources": [{"id": "bluenile-return-policy", "label": "Seller return policy ↗"}, {"id": "bluenile-setting-502120", "label": "Product listing ↗"}]
+  },
+  {
+    "id": "blue-nile-independent-test",
+    "category": "Blue Nile · independent testing",
+    "title": "XRF/professional test cooperation is unconfirmed",
+    "detail": "No checked source establishes whether an independent jeweler may test purity and weight before the return deadline, or how testing affects eligibility. Obtain the answer in writing; if independent verification or a return is blocked, do not buy.",
+    "sources": [{"id": "bluenile-return-policy", "label": "Seller return policy ↗"}, {"id": "bluenile-setting-502120", "label": "Product listing ↗"}]
+  },
+  {
+    "id": "blue-nile-reputation",
+    "category": "Blue Nile · seller diligence",
+    "title": "BBB reputation snapshot warrants diligence",
+    "detail": "On October 22, 2026, BBB’s Blue Nile Inc profile showed a 1/5 average across 25 customer reviews, 121 complaints in the prior 3 years (23 in the prior 12 months), and BBB accreditation / an A+ rating. Reviews are consumer-submitted; complaint allegations are not automatically verified findings. BBB’s rating is its own profile metric, not a government or product-quality certification. The seller site lists contact channels, which were not independently tested. These metrics are retailer-wide, not about this ring.",
+    "sources": [{"id": "bbb-blue-nile-reviews", "label": "BBB reviews ↗"}, {"id": "bbb-blue-nile-complaints", "label": "BBB complaints ↗"}, {"id": "bluenile-contact", "label": "Seller contact page ↗"}]
+  },
+  {
+    "id": "quince-material",
+    "category": "Quince · material / scope",
+    "title": "14K gold band is paired with a platinum head; explicit solid-gold claim is absent",
+    "detail": "The seller describes a 14K gold band and a platinum head. The reviewed page does not explicitly say “solid gold”; this is mixed-metal rather than an all-gold ring. Leave solid-gold confirmation blank and do not infer it from 14K wording.",
+    "sources": [{"id": "quince-ring-oval-comfort-fit-1ct", "label": "Seller product page ↗"}]
+  },
+  {
+    "id": "quince-weight-marks",
+    "category": "Quince · weight / marks",
+    "title": "Gold-alloy grams and physical marks are not documented",
+    "detail": "The seller listing provides no gold-alloy grams and does not document the physical 14K stamp plus maker/manufacturer’s mark. Do not estimate from photos or band description. Request a documented weight and inspect the delivered ring.",
+    "sources": [{"id": "quince-ring-oval-comfort-fit-1ct", "label": "Seller product page ↗"}, {"id": "ecfr-jewelry-guides", "label": "eCFR Jewelry Guides ↗"}]
+  },
+  {
+    "id": "quince-returns",
+    "category": "Quince · returns",
+    "title": "Engagement rings have a 60-day return limit; test eligibility needs confirmation",
+    "detail": "Quince’s policy states engagement rings must be returned within 60 days of purchase; jewelry must be in original condition with no signs of wear and include original packaging/certifications. The policy does not state whether independent purity testing preserves return eligibility. Confirm in writing before purchase; do not wear or resize first.",
+    "sources": [{"id": "quince-returns", "label": "Seller return policy ↗"}, {"id": "quince-ring-oval-comfort-fit-1ct", "label": "Product listing ↗"}]
+  },
+  {
+    "id": "quince-reputation",
+    "category": "Quince · seller diligence",
+    "title": "BBB reputation snapshot raises diligence questions",
+    "detail": "On October 22, 2026, BBB’s Quince.com profile showed 1.69/5 across 125 customer reviews, 187 complaints in the prior 3 years (95 in the prior 12 months), and BBB accreditation / an A+ rating. These retailer-wide metrics are not ring-specific findings; complaint narratives are consumer accounts and not automatically verified facts. Seller contact channels are listed on its site but were not independently tested.",
+    "sources": [{"id": "bbb-quince-reviews", "label": "BBB reviews ↗"}, {"id": "bbb-quince-complaints", "label": "BBB complaints ↗"}, {"id": "quince-contact", "label": "Seller contact page ↗"}]
+  },
+  {
+    "id": "raw-gold-value",
+    "category": "Cross-listing · price comparison",
+    "title": "No current raw-gold quote or listing gold weight; melt comparison unavailable",
+    "detail": "The LBMA benchmark-information page did not expose a numeric quote in this review, and neither seller listing provides gold-alloy weight. No melt value or bargain/fair-price conclusion is calculated. The calculator needs documented weight, karat, date, and a sourced price.",
+    "sources": [{"id": "lbma-gold-price-info", "label": "LBMA benchmark information ↗"}, {"id": "bluenile-setting-502120", "label": "Blue Nile listing ↗"}, {"id": "quince-ring-oval-comfort-fit-1ct", "label": "Quince listing ↗"}]
+  }
+]

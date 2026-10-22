@@ -1,0 +1,110 @@
+[
+  {
+    "id": "bluenile-setting-502120",
+    "publisher": "Blue Nile (seller's own product page)",
+    "title": "Classic Simple Solitaire Engagement Ring in 14K Yellow Gold",
+    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
+    "accessed": "2026-10-22",
+    "supports": "Product page identifies stock number 502120y14, lists Metal as 14K Yellow Gold, and displays $1,145 (Setting Price). The page also says a diamond is selected in a later step, so this is not a complete ring price.",
+    "sourceType": "Seller listing; supports only what the seller currently states"
+  },
+  {
+    "id": "bluenile-return-policy",
+    "publisher": "Blue Nile (seller's own policy page)",
+    "title": "Blue Nile 30-Day Return Policy",
+    "url": "https://www.bluenile.com/policies/returns",
+    "accessed": "2026-10-22",
+    "supports": "Seller policy says eligible items may be returned in original, unworn condition within 30 days of shipment. It excludes personalized jewelry, custom orders, engraved items, and items resized after initial purchase. This supports the seller's stated terms only; confirm any independent testing with the seller before purchase.",
+    "sourceType": "Seller policy; current terms can change"
+  },
+  {
+    "id": "bluenile-contact",
+    "publisher": "Blue Nile (seller's own contact page)",
+    "title": "Contact Blue Nile",
+    "url": "https://www.bluenile.com/contact-us",
+    "accessed": "2026-10-22",
+    "supports": "The seller page displays a customer-service telephone number and an email contact option. This verifies that the official site publishes contact channels, not that a call/email was independently tested or that seller conduct is satisfactory.",
+    "sourceType": "Seller contact page; contact channels listed"
+  },
+  {
+    "id": "bbb-blue-nile-reviews",
+    "publisher": "Better Business Bureau (independent review platform)",
+    "title": "Blue Nile Inc — BBB customer reviews",
+    "url": "https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564/customer-reviews",
+    "accessed": "2026-10-22",
+    "supports": "BBB's profile displayed an average of 1/5 stars across 25 customer reviews and identified the profile as BBB Accredited / A+ rated at access time. Reviews are customer-submitted accounts and the rating is BBB's own system, not a government or product-quality certification.",
+    "sourceType": "Independent third-party reviews; anecdotal"
+  },
+  {
+    "id": "bbb-blue-nile-complaints",
+    "publisher": "Better Business Bureau (independent complaint platform)",
+    "title": "Blue Nile Inc — BBB complaints",
+    "url": "https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564/complaints",
+    "accessed": "2026-10-22",
+    "supports": "BBB's Blue Nile Inc profile displayed 121 complaints in the prior 3 years and 23 in the prior 12 months at access time. BBB says displayed complaint text may not represent all filed complaints; complaint allegations are not automatically verified facts. BBB listed 83 answered and 38 resolved statuses, using its own definitions.",
+    "sourceType": "Independent third-party complaint counts; not findings of liability"
+  },
+  {
+    "id": "quince-ring-oval-comfort-fit-1ct",
+    "publisher": "Quince (seller's own product page)",
+    "title": "Lab Grown Diamond Oval Comfort Fit Engagement Ring in Yellow Gold",
+    "url": "https://www.quince.com/women/oval-lab-grown-diamond-comfort-fit-engagement-ring---1ct?color=yellow-gold",
+    "accessed": "2026-10-22",
+    "supports": "Page displayed $900.00 for the selected 1 ct version, yellow-gold color, and describes a 14K gold or platinum band with a platinum head. This is a complete lab-grown diamond ring listing. It does not explicitly say solid gold or provide ring weight in grams.",
+    "sourceType": "Seller listing; supports only what the seller currently states"
+  },
+  {
+    "id": "quince-returns",
+    "publisher": "Quince (seller's own policy page)",
+    "title": "Quince Shipping and Return Policy",
+    "url": "https://www.quince.com/shipping-returns",
+    "accessed": "2026-10-22",
+    "supports": "Seller policy says engagement rings must be returned within 60 days of purchase, with no exceptions after 60 days. Jewelry must be in original condition with no signs of wear and include original packaging/certifications. Made-to-order jewelry is subject to a $35 restocking fee; whether this listing is made-to-order was not confirmed.",
+    "sourceType": "Seller policy; current terms can change"
+  },
+  {
+    "id": "quince-contact",
+    "publisher": "Quince (seller's own contact page)",
+    "title": "Quince Contact Us",
+    "url": "https://www.quince.com/contact-us",
+    "accessed": "2026-10-22",
+    "supports": "The official page displays customer-service phone/text contact at +1 888-618-9322 and service hours. This verifies that the official site lists a contact channel, not that it was independently tested or that seller conduct is satisfactory.",
+    "sourceType": "Seller contact page; contact channels listed"
+  },
+  {
+    "id": "bbb-quince-reviews",
+    "publisher": "Better Business Bureau (independent review platform)",
+    "title": "Quince.com — BBB customer reviews",
+    "url": "https://www.bbb.org/us/ca/san-francisco/profile/online-retailer/quincecom-1116-925341/customer-reviews",
+    "accessed": "2026-10-22",
+    "supports": "BBB profile displayed an average 1.69/5 stars across 125 customer reviews and showed BBB Accredited / A+ rated at access time. Reviews are consumer-submitted; BBB's rating is its own system, not a government or product-quality certification.",
+    "sourceType": "Independent third-party reviews; anecdotal"
+  },
+  {
+    "id": "bbb-quince-complaints",
+    "publisher": "Better Business Bureau (independent complaint platform)",
+    "title": "Quince.com — BBB complaints",
+    "url": "https://www.bbb.org/us/ca/san-francisco/profile/online-retailer/quincecom-1116-925341/complaints",
+    "accessed": "2026-10-22",
+    "supports": "BBB profile displayed 187 complaints in the prior 3 years and 95 in the prior 12 months at access time. BBB says displayed complaint text might not represent all filed complaints; allegations are not automatically verified facts. BBB listed 133 answered and 54 resolved statuses using its own definitions.",
+    "sourceType": "Independent third-party complaint counts; not findings of liability"
+  },
+  {
+    "id": "lbma-gold-price-info",
+    "publisher": "London Bullion Market Association (LBMA)",
+    "title": "LBMA Precious Metal Prices — benchmark information",
+    "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+    "accessed": "2026-10-22",
+    "supports": "LBMA states its gold benchmark is set in two daily auctions administered by ICE Benchmark Administration. The page notes historical tabulated data moved to a licensed portal; the review page returned no numeric gold quote. This source establishes how the benchmark is administered, not a current price value.",
+    "sourceType": "Benchmark information; no numeric price obtained"
+  },
+  {
+    "id": "ecfr-jewelry-guides",
+    "publisher": "Electronic Code of Federal Regulations / Federal Trade Commission",
+    "title": "16 CFR Part 23 — Guides for the Jewelry, Precious Metals, and Pewter Industries",
+    "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
+    "accessed": "2026-10-22",
+    "supports": "Primary U.S. government source for the current Jewelry Guides, including guidance on representations about gold content and quality marks. The eCFR page labels its content authoritative but unofficial; the Guides are guidance, not proof of a particular ring's composition.",
+    "sourceType": "Government source; regulatory guidance"
+  }
+]
