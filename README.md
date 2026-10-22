@@ -6,6 +6,27 @@ that makes sense against the gold market, a usable return window, and a path to 
 
 **Live site:** https://karagemop466-tech.github.io/GOLD5/
 
+**Verification suite (this pass):** https://karagemop466-tech.github.io/GOLD5/report/
+— 27 listings, 9 sellers, 27 flags, the gold-value calculator, and a per-row evidence trail. Gate:
+
+```bash
+python3 tools/build_data.py      # dataset from authored sources
+python3 tools/build_report.py    # 9 pages -> report/
+python3 tools/check_report.py    # 1,600+ assertions: evidence match, spot, derived, money, links, flags, pass log
+python3 tools/security_test.py   # plants 9 errors on purpose; all 9 must be caught
+```
+
+### Deliveries preserved in this repo (nothing deleted)
+
+| Path | Owner / purpose |
+|---|---|
+| `index.html` + root pages (`listings.html`, `sellers.html`, `gold-price.html`, `calculator.html`, `checklist.html`, `analysis.html`, `verification.html`, `flagged.html`, `sources.html`, `archive.html`) | integrated root dashboard (session `93032b31`), with one added nav link to `report/` |
+| `report/**` | verification suite: evidence-matched rows, calculator, flags, method + pass log (session `60c4b9c3`) |
+| `verified/**` | parallel site with its own checker and JSON dataset (session `84be683f`), live at `/verified/` |
+| `docs/**` | earlier documented pass with `tools/check_hallucinations.py` (session `638c9614`) |
+| `site/**`, `index-37e8ff42.html`, `pages/**`, `index-090bae73.html` | earlier preserved deliveries |
+| `scripts/verify.py` | gate for the root dashboard |
+
 ## ⚠ NO HALLUCINATIONS — the rule this project runs on
 
 > Every price, weight, karat and policy on the site was read from the **official page linked next to it**, on the check

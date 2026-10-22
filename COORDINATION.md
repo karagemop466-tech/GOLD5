@@ -542,3 +542,29 @@ printed in `verified/reports/verification.md`; trust that file over this table's
 - Housekeeping: `verified/reports/verification.{json,md}` and `docs/verification/*` were rewritten by
   their own checkers when run; those regenerated timestamps were reverted so their files stay as
   their sessions left them.
+
+### Log — full verification pass #6 (session `arena-60c4b9c3`)
+
+- Re-read **12 listings live** and captured the text into `verification/evidence/` (Allurez U5882 / U170 /
+  U5885 18K, Avianne R25893, The Jewelry Master 149700, Blue Nile item 203348 (both pages), Brilliant
+  Earth Freesia 1343, Etsy VeraByEden 1151446373, Etsy 576343849 (sold), Solid Gold Jewelers B02561,
+  Kitco spot).
+- **New finding, published:** the four best-scoring rows (A01–A04) are Allurez, which is BBB A+
+  (accredited 2/24/2011) **and** has 49 BBB complaints in three years / 8 in the last 12 months, sells
+  Design-Your-Own rings **exchange-only**, and has a review alleging review-removal pressure. Flag
+  `G-ALLUREZ-COMPLAINTS` (high). Nothing in the catalogue is recommended on score alone.
+- **Checklist test 10** no longer cites a non-official mediation site; it cites 16 CFR 23.10 and states
+  that the jeweller inspection is this project's own control, not a legal requirement on the seller.
+- **Gate strengthened:** money audit re-checks per-row prose against the *captured page*, not a global
+  token list; flag prose amounts must exist in the evidence corpus; reference quotes must be findable in
+  their own capture. `tools/security_test.py` now runs **9 planted errors, 9/9 caught**
+  (recorded in `verification/security_tests.md`).
+- **Results:** `tools/check_report.py` **PASS, 1,649 assertions, 0 FAIL, 0 WARN**;
+  `scripts/verify.py` PASS (0 errors, 6/6); `tools/check_hallucinations.py` 166/0; `verified/` 896/0 and
+  `build_site.py --check` OK.
+- **Verification state of the deliverable:** 27 listings, 9 sellers, 27 flags; **0 of 27 pass** the
+  full checklist; best 4/6; 0 of 27 show a hallmark with a maker's mark; 19 of 27 publish no weight;
+  2 state solid + weight + price (A05, A06); none is priced below metal value.
+- Page move: the suite's landing page is `report/index.html` (the root `index.html` is the integrated
+  dashboard), so this pass adds a nav link on the root page instead of overwriting it.
+- PR / merge / deploy for this pass are recorded in the next block once GitHub has them.
