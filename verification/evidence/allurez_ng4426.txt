@@ -1,0 +1,30 @@
+SOURCE: https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold
+CAPTURED: 2026-10-22 23:53 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 3). Verbatim; [...] = omitted text.
+---
+# Engraved Floral Solitaire Engagement Ring Setting 14K Yellow Gold
+
+$58551% Savings
+
+$1,194Everyone Else
+
+Setting only. Center stone sold separately.
+
+Metal: 14k Yellow Gold
+
+[...]
+
+Style numberNG4426
+
+[...]
+
+Engagement Ring Information
+
+Metal14k Yellow Gold
+
+GenderWomen's
+
+Approximate Metal Weight 3.58 grams
+---
+NOTES: price $585; "Everyone Else" $1,194 not used; weight labelled Approximate; no "solid" statement;
+no hallmark/stamp statement.

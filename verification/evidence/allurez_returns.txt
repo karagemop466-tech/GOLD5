@@ -1,0 +1,50 @@
+SOURCE: https://www.allurez.com/pages/return-policy
+CAPTURED: 2026-10-22 23:57 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 2). Verbatim; [...] = omitted text.
+---
+# Return Policy
+
+## Easy Returns
+
+We want you to feel confident about your Allurez purchase. Eligible unused items may be returned within
+30 days, subject to the conditions and exceptions below.
+
+### Return eligibility and deadline
+
+**Your return must arrive at our office within 30 days of the original shipment.** Please allow enough time
+for return shipping.
+
+- Items must be unused and in their original condition, without scratches or signs of wear. They must not
+  have been resized or altered in any way.
+[...]
+### Exceptions and special conditions
+
+- **Engraved items:** Non-refundable.
+- **Design Your Own engagement rings, pendants, and earrings:** May be exchanged for items of the same or
+  higher value, but cannot be exchanged for loose diamonds.
+- **Custom-made orders:** Non-refundable and non-cancellable.
+- **Contoured wedding bands:** Not returnable. [...]
+- **Clearance items:** Non-refundable.
+- **Appraisals:** Non-refundable.
+- **Gift cards:** Not returnable.
+- **Layaway deposits:** Non-refundable.
+
+### Shipping costs
+
+You are responsible for return shipping costs. Our original shipping cost is not refundable, including when
+your order qualified for free shipping.
+
+### How to return an item
+
+1. **Request your return authorization.** Email [service@allurez.com](mailto:service@allurez.com) or call
+   [1-800-554-3509](tel:+18005543509) to request a Return Merchandise Authorization (RMA) number. [...]
+[...]
+### Inspection and refunds
+
+Once we receive your return, our quality assurance team will inspect the item. After approval, we will issue
+your refund within 7 business days using your original payment method. Payments made by wire transfer will be
+refunded by company check.
+---
+NOTES: The three engagement-ring settings in this project are listed by Allurez under "Design Your Own"
+(their pages are built as "Pick Setting / Pick Stone / Review Your Ring"). Under this policy that category is
+EXCHANGE-ONLY, not refundable => recorded as a return-policy restriction (flag F-EXCHANGE-ONLY).

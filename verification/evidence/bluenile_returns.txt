@@ -1,0 +1,36 @@
+SOURCE: https://www.bluenile.com/policies/returns
+CAPTURED: 2026-10-22 23:35 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 2). Verbatim; [...] = omitted text.
+---
+# 30-DAY MONEY BACK GUARANTEE
+
+[...] you may return eligible items in their original, unworn condition within 30 days from the shipment
+date for a full refund or exchange.
+
+\* Personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond
+Upgrade Program purchases, clearance items and “Final Sale” items are not eligible for return or exchange.
+
+[...]
+
+Note: Two complimentary returns are allowed per customer, per year. A Return Merchandise Authorization
+(RMA) number is required for all returns.
+
+[...]
+
+## Non-Resizable Items
+
+Eligible rings receive one free resize, up or down two sizes, within 6 months of purchase if the design
+permits. Eternity bands, tension rings, rings made of alternative metals [...] cannot be resized [...]
+
+[...]
+
+**If you are expecting a refund**, credit will be submitted to your bank within three business days. [...]
+Returned orders with bank wire as the original payment method will be refunded via bank wire or ACH payment.
+Orders paid for through PayPal will be credited back to your PayPal account within two weeks.
+
+[+1-800-242-2728](tel:+1-800-242-2728)
+[service@bluenile.com](mailto:service@bluenile.com)
+---
+NOTES: The page shows a phone number and an email; payment methods are only mentioned indirectly (bank
+wire refunds, PayPal refunds, Blue Nile Credit Card financing on product pages) — no formal list of
+accepted payment methods was captured => payment row left blank + flagged.
