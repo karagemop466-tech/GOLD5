@@ -1,0 +1,156 @@
+{
+  "project": "GOLD5 — Gold Engagement Ring Online Buying Checklist",
+  "reviewed": "2026-10-22 (UTC)",
+  "pledge": "NO HALLUCINATIONS: every row links to its source; unconfirmed values are left blank and flagged unverified; nothing is inferred or invented.",
+  "sourceKey": {
+    "FTC-jewelry": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+    "FTC-credit-cards": "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+    "FTC-billed-never-got": "https://consumer.ftc.gov/articles/what-do-if-youre-billed-things-you-never-got-or-you-get-unordered-products",
+    "FTC-cooling-off": "https://consumer.ftc.gov/articles/buyers-remorse-ftcs-cooling-rule-may-help",
+    "eCFR-23-3": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.3",
+    "eCFR-23-10": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.10",
+    "eCFR-429": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-D/part-429",
+    "NIST-conversion": "https://www.nist.gov/document/precious-metals-conversion-information-march2015pdf",
+    "LBMA-gold-price": "https://www.lbma.org.uk/prices-and-data/lbma-gold-price",
+    "JA-gold-jewelry": "https://www.jewelers.org/find-a-jeweler/buying-guides/jewelry-metals-buying-guide/gold-jewelry/",
+    "JA-find-jeweler": "https://www.jewelers.org/find-a-jeweler",
+    "NAAG": "https://www.naag.org/our-work/center-for-consumer-protection/consumer-file-a-complaint/",
+    "ReportFraud": "https://reportfraud.ftc.gov/"
+  },
+  "entries": [
+    {
+      "id": 1,
+      "item": "Gold purity — confirm the karat (10K, 14K, 18K, etc.)",
+      "whatToVerify": "Karat mark states how much pure gold the piece contains (24-part system; 18K = 18/24 gold, 14K = 14/24 gold)",
+      "source": "FTC-jewelry; JA-gold-jewelry; eCFR-23-3",
+      "status": "verified",
+      "notes": ""
+    },
+    {
+      "id": 2,
+      "item": "Solid gold",
+      "whatToVerify": "Listing explicitly says solid gold; not plated, vermeil, gold-filled, gold overlay, or gold-tone",
+      "source": "FTC-jewelry",
+      "status": "verified",
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "item": "Hallmark + maker's mark",
+      "whatToVerify": "10K/14K/18K stamp plus a maker's/manufacturer's mark; FTC warns: no trademark with the karat mark = don't buy",
+      "source": "FTC-jewelry; eCFR-23-10 (National Stamping Act, 15 U.S.C. 297)",
+      "status": "verified",
+      "notes": "U.S. has no mandatory government assay office; stamp alone is not proof of purity"
+    },
+    {
+      "id": 4,
+      "item": "Weight in grams",
+      "whatToVerify": "Ring weight in grams provided by seller",
+      "source": "NIST-conversion",
+      "status": "verified",
+      "notes": "Conversion factor verified (1 oz t = 31.1034768 g); specific ring weights are seller-provided, not listed here"
+    },
+    {
+      "id": 5,
+      "item": "Seller reputation",
+      "whatToVerify": "Independent reviews and complaints; real business contact information",
+      "source": "FTC-jewelry; NAAG",
+      "status": "verified",
+      "notes": "No government-run jeweler rating database found; FTC method is search-engine-based (name + complaint/review)"
+    },
+    {
+      "id": 6,
+      "item": "Price vs. gold value",
+      "whatToVerify": "Price compared with ring's gold weight and current gold value; unusually cheap = red flag",
+      "source": "LBMA-gold-price",
+      "status": "verified-method",
+      "notes": "Live spot prices vary by dealer; no product prices are listed or inferred on this site"
+    },
+    {
+      "id": 7,
+      "item": "Return policy",
+      "whatToVerify": "Return after receiving and inspecting; check exclusions on resized/custom rings",
+      "source": "FTC-jewelry; eCFR-429",
+      "status": "verified-rule-scope",
+      "notes": "No general federal return right for online sales; Cooling-Off Rule covers door-to-door/temporary-location sales only"
+    },
+    {
+      "id": 8,
+      "item": "Payment — credit card preferred",
+      "whatToVerify": "Credit card for purchase protection; avoid irreversible payment methods",
+      "source": "FTC-credit-cards",
+      "status": "verified",
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "item": "Documentation",
+      "whatToVerify": "Keep listing, receipt, description, and seller's gold-purity claims",
+      "source": "FTC-jewelry",
+      "status": "verified",
+      "notes": ""
+    },
+    {
+      "id": 10,
+      "item": "Independent verification on arrival",
+      "whatToVerify": "Independent jeweler verifies purity and weight before wearing/resizing",
+      "source": "JA-find-jeweler; FTC-jewelry (Report Problems / JVC)",
+      "status": "unverified",
+      "notes": "Guidance from trade association/consumer page; not a codified federal requirement"
+    },
+    {
+      "id": 11,
+      "item": "XRF / professional gold-purity test",
+      "whatToVerify": "Ask for XRF testing or another professional gold-purity test; don't rely solely on the stamp",
+      "source": "Thermo Fisher Scientific XRF (industry/vendor)",
+      "status": "unverified",
+      "notes": "No government source found mandating or describing consumer XRF testing — flagged"
+    },
+    {
+      "id": 12,
+      "item": "Walk away if no verification/return",
+      "whatToVerify": "If the seller won't allow independent verification or return, don't buy",
+      "source": "FTC-jewelry",
+      "status": "verified-guidance",
+      "notes": ""
+    }
+  ],
+  "flags": [
+    {
+      "id": "F-1",
+      "item": "Independent jeweler verification",
+      "issue": "No U.S. federal/state government source found requiring consumer independent-jeweler verification",
+      "disposition": "Unverified guidance — kept on site, marked unverified"
+    },
+    {
+      "id": "F-2",
+      "item": "XRF testing",
+      "issue": "No government source found mandating/describing consumer XRF testing; industry/vendor sources only",
+      "disposition": "Unverified guidance — flagged, not presented as regulation"
+    },
+    {
+      "id": "F-3",
+      "item": "U.S. hallmarking not government assay",
+      "issue": "Karats stamp + trademark required, but no mandatory government assay office in the U.S.",
+      "disposition": "Noted as consumer limitation throughout the site"
+    },
+    {
+      "id": "F-4",
+      "item": "No government-run jeweler rating database",
+      "issue": "Seller reputation relies on FTC search-engine method plus state attorney general",
+      "disposition": "Method documented; no seller names or ratings listed"
+    },
+    {
+      "id": "F-5",
+      "item": "No general federal return right for online sales",
+      "issue": "Online returns depend on seller's written policy; Cooling-Off Rule is narrowly scoped",
+      "disposition": "Stated explicitly on Return Policy page"
+    },
+    {
+      "id": "F-6",
+      "item": "Live gold price",
+      "issue": "Prices change constantly; no current spot price claimed on this site",
+      "disposition": "Calculator is user-entered; any build-time reference is labeled with source and time"
+    }
+  ]
+}
