@@ -1,0 +1,14 @@
+SOURCE: https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+# Yellow Gold Solitaire Engagement Ring
+
+14ky, 4.7g, #B02561
+
+Pricing and availability are subject to change.
+
+SKU: B02561
+Brand: [M Michael](https://solidgoldjewelers.net/product-brands/m-michael/)
+[...]
+Call [(309) 452-1612](tel:+13094521612) for current pricing and availability.

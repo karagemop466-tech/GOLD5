@@ -1,0 +1,19 @@
+SOURCE: https://www.bluenile.com/policies/returns
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+# 30-DAY MONEY BACK GUARANTEE
+[...]
+you may return eligible items in their original, unworn condition within 30 days from the shipment date for a full refund or exchange.
+
+\* Personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance items and “Final Sale” items are not eligible for return or exchange.
+[...]
+Note: Two complimentary returns are allowed per customer, per year.
+[...]
+Eligible rings receive one free resize, up or down two sizes, within 6 months of purchase if the design permits.
+[...]
+Call +1-800-242-2728
+[...]
+service@bluenile.com
+[...]
+Returned orders with bank wire as the original payment method will be refunded via bank wire or ACH payment.

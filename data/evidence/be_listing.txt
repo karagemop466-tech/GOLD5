@@ -1,0 +1,27 @@
+SOURCE: https://www.brilliantearth.com/engagement-rings/yellow-gold/
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+# Gold Engagement Rings
+
+Warm and timeless, our yellow gold engagement rings are crafted in responsibly sourced 18K repurposed or Fairmined gold.... Read More
+[...]
+14K Yellow Gold✕18K Yellow Gold✕
+[...]
+Most Loved
+
+[**Nadia Diamond Ring**](https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/)
+
+$1,250
+
+[**Freesia Hidden Halo Diamond Ring**](https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/)
+
+$1,190
+[...]
+Hidden Halo
+
+[**Secret Halo 1.5mm Diamond Ring**](https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/)
+
+$1,090
+[...]
+- [800.691.0952](https://www.brilliantearth.com/contact/)

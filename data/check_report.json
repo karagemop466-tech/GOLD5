@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-22",
+  "passed": 166,
+  "fail": 0,
+  "warn": 0,
+  "info": 1,
+  "items": [
+    {
+      "level": "INFO",
+      "check": "C9",
+      "message": "R09, R10 share identical weight/karat 2.3 g / 14K from different listings \u2014 confirm each seller's figure independently"
+    }
+  ]
+}

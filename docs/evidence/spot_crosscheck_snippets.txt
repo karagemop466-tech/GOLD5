@@ -1,0 +1,7 @@
+SOURCE: https://www.apmex.com/gold-price
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+NOTE: These two excerpts came from web-search result snippets (NOT a live fetch of the page) and were taken at DIFFERENT clock times than the Kitco capture. They are shown only as an unverified cross-check on the Flagged page; they are never used in any calculation.
+[APMEX snippet] Gold Price Per Ounce | $4,077.60 | ($83.90) ... Last Updated: 10/22/2026 11:02:00 AM ET
+[CNBC snippet, https://www.cnbc.com/amp/select/the-price-of-gold-today-oct-22-2026/] Gold's spot price — or its current trading value — today as of 9:00 a.m. ET is $4,083.82 per ounce, according to CNBC's Gold/ US Dollar Spot Price.
