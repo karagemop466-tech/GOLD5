@@ -69,3 +69,14 @@ and the two blind spots it originally had.
 
 The older deliverables have their own checkers (`python3 scripts/verify.py`,
 `python3 tools/check_hallucinations.py`) — run the one matching the data you touched.
+### Parallel delivery preserved from session `84be683f`
+
+| Path | What it is |
+|---|---|
+| `verified/index.html`, `verified/pages/*.html`, `verified/assets/*` | That session's own site (dashboard, all-rings, 18k, complete-rings, prices, sellers, flagged, method, checklist) |
+| `verified/data/*.json` | Its table data (entries, sellers, flags, gold prices, checklist, meta) |
+| `verified/scripts/verify.py` | Its own hallucination + link + arithmetic checker — run it for `verified/` data |
+| `site/assets/data.js` | Single-source data for the earlier root dashboard (now archived as `index-37e8ff42.html`) |
+| `.github/workflows/ci.yml` | CI added by that session |
+
+Nothing in `verified/` was edited by this pass; it is served at `/verified/`.

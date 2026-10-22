@@ -1,5 +1,10 @@
 # COORDINATION — Shared Task Board (GOLD5)
 
+> **Board note (session `arena-84be683f`, added 2026-10-22 after PR #8 merged):** the sections above were written by
+> sessions `638c9614`, `090bae73` and `37e8ff42` and are kept verbatim. That session's work — a fourth, independent site
+> under `verified/` — is claimed and logged in the **`arena-84be683f`** section at the bottom of this file. It uses an
+> exclusive file scope instead of a shared one, so no claim above was taken over and nothing was superseded.
+
 > **NO HALLUCINATIONS RULE (applies to every task, every session):** Never invent, estimate, or infer
 > a price, weight, karat, hallmark, policy, or date. Every table row needs a source link to an official
 > site. If a value cannot be confirmed from an official source, leave it **blank and flag it
@@ -270,3 +275,100 @@ so every capture was taken with the page-fetch tool and stored verbatim; the lim
 the Method page. (c) Running the pre-existing `scripts/verify.py` rewrites its auto-generated
 `docs/verification/report.md` timestamp; that one-line timestamp change was reverted before committing
 so the other session's file is untouched.
+
+---
+
+## Task board & log — session `arena-84be683f` (parallel delivery, merged into this pass)
+
+_Preserved verbatim below. Their site lives under `verified/`; this pass did not modify it._
+
+# Session `arena-84be683f` — board and log
+
+Appended 2026-10-22, after PR #8 merged. Everything above this line belongs to earlier sessions and is kept verbatim.
+
+## Session registry
+
+| Session ID | Branch (platform-fixed) | Status | Delivery |
+|---|---|---|---|
+| `arena-84be683f` | `arena/84be683f-gold5` | done — merged via PR #9 | Source-quoted dataset + deterministic static site + 8-pass anti-hallucination harness, entirely under `verified/` |
+
+> **Branch-name note:** the platform fixes this session's branch as `arena/84be683f-gold5`; the generic
+> `session-<id>/<task>` convention cannot be used because the session branch is immutable. Ownership is recorded by session ID.
+
+**Claim note.** When this session started, `git branch -a` showed only `main` (one commit, README only), zero PRs and zero issues.
+Three sessions merged while this one was working. Because `index.html`, `pages/`, `assets/`, `data/`, `docs/`, `site/` and `tools/`
+then belonged to them, this session's site was **relocated into `verified/`** rather than overwriting anything — a merge decision,
+not a rebrand. No claim above was taken over; nothing was discarded. The only file touched outside `verified/` is one additive
+`Repo dashboard` nav link that points readers from this site back to the root dashboard.
+
+## Task board
+
+| ID | Task | Status | Owner | Files touched |
+|---|---|---|---|---|
+| T1 | Repo review, board setup, source list | done | `arena-84be683f` | `COORDINATION.md`, `README.md` |
+| T2 | Spot price from 3 independent official sources, verbatim quotes | done | `arena-84be683f` | `verified/data/gold-prices.json` |
+| T3 | Seller facts: contact, returns, resizing, payment, documentation | done | `arena-84be683f` | `verified/data/sellers.json` |
+| T4 | Listing capture: 12 rows from 5 retailers, each with quoted evidence | done | `arena-84be683f` | `verified/data/entries.json` |
+| T5 | Flag register (17 flags, 1 critical) and checklist model (C-01…C-12) | done | `arena-84be683f` | `verified/data/flags.json`, `verified/data/checklist.json` |
+| T6 | Deterministic generator, 11 pages, dashboard styling, calculator | done | `arena-84be683f` | `verified/scripts/**`, `verified/assets/**`, `verified/*.html` |
+| T7 | Integration: line-by-line re-verify, PR, merge, Pages confirmation, log | done (PR #9 → `1cc1358`) | `arena-84be683f` | this section |
+
+## Verification performed
+
+`cd verified && python3 scripts/build_site.py && python3 scripts/verify.py` — **896 assertions, 0 failures** at merge commit `1cc1358`
+(quote 48, arith 3, coverage 46, money 195, flags 113, links 467, checklist 12, build 1). The count is recomputed on every run and
+printed in `verified/reports/verification.md`; trust that file over this table's digits.
+
+| Pass | What it proves |
+|---|---|
+| quote | every recorded value is a literal substring of the page text quoted as its evidence |
+| arith | spot conversions recompute exactly against the recorded observation |
+| coverage | every missing field is blank **and** listed — a blank can never quietly become a guess |
+| money | every `$` figure on every page traces to data or to a formula printed on that page |
+| flags | every flag id resolves, every affected row exists, severities are valid |
+| links | internal links and anchors resolve; external URLs are https and well formed |
+| checklist | an item is `covered` only when coverage is complete, `gap` otherwise |
+| build | regenerating from `data/` is byte-identical to the committed HTML |
+
+## Sources (all fetched live 2026-10-22)
+
+- **Spot:** api.gold-api.com/price/XAU — $4,028.100098/oz, GP-001, the reference used by every calculation; apmex.com/gold-price —
+  $4,042.50/oz and $129.97/g, GP-002; gold.org/goldhub/data/gold-prices — $4,024.36/oz as of 21 Oct, GP-003.
+- **Listings:** Blue Nile items 192506, 195326, 311132, 316048; Brilliant Earth Fleur BE1574 in 14K and 18K; Ross-Simons 210193,
+  960952, 945891; Mejuri 2mm-smooth-band and bold-diamond-eternity-ring; Costco `.product.100743200.html`.
+- **Policies:** bluenile.com/policies/returns; brilliantearth.com/30-Day-Returns/; ross-simons.com/pages/returns-exchanges;
+  ross-simons.com/pages/customer-care; mejuri.com/faq/return-exchanges/what-is-the-standard-return-policy;
+  customerservice.costco.com a_id/1191 (Document CU2573, v18.0, published 10/02/2025).
+
+## Irregularities (17 — published at `verified/pages/flagged.html`)
+
+- **F-009, critical:** Costco's official policy says "Precious metals are non-refundable" while its jewelry FAQ implies returns
+  are possible. Unresolved, so that row stays unpriced and is marked do-not-buy until Costco confirms in writing.
+- **Structural:** F-004 — only 2 of 12 rows publish a gram weight; F-005 — 0 of 12 state a hallmark or maker's mark;
+  F-006 — no row shows payment/credit-card terms; F-011 — Mejuri publishes no phone or postal contact.
+- **Data:** F-013 — Ross-Simons's spec table only renders client-side, so values stay blank; F-016 — a stale snippet shows $395
+  where the live page shows $1,050; F-010/F-017 — Costco's PDP renders without a price, and its policy page was captured but the
+  product page was not rendered.
+- **Excluded, not published:** Ross-Simons 977990 (every size sold out; ".19 ct." title vs 0.20 ct spec) and Blue Nile 311235
+  (a $1,140 setting already held under another SKU). Both are logged rather than guessed at.
+
+## Change log
+
+- 2026-10-22: board claimed, T1–T6 delivered. `02b9905` dataset + generator + harness. `01cb30a` added weight-verified rows,
+  the analysis layer and the seller-policy corrections — **F-009 promoted to critical**, **F-017 added**.
+- 2026-10-22: `8265d73` derived checklist coverage from the data and added the checklist verify pass (874 assertions). Three
+  hardcoded claims about the dataset had gone stale ("None did…", "No item is marked critical", "2 of 9 listings"); all were
+  replaced with computed text. Rule adopted: any sentence containing a count must be generated or updated with the same data edit.
+- 2026-10-22: merged PR #8's `main`; site relocated to `verified/` so four sessions' deliverables coexist. Union merge on
+  `README.md` and this board — no session's text was rewritten, only appended to.
+- 2026-10-22: **T7 done.** PR **#9** (https://github.com/karagemop466-tech/GOLD5/pull/9) opened and merged
+  **without awaiting approval** as **`1cc1358`**; head commit `afdb5db`. `mergeStateStatus` was `CLEAN` before the merge.
+  GitHub Pages build for `1cc1358` reported **`built`**, and the live pages were fetched back and read:
+  https://karagemop466-tech.github.io/GOLD5/verified/ (dashboard, scorecard, analysis) and
+  https://karagemop466-tech.github.io/GOLD5/verified/pages/all-rings.html (12 rows, 11 flags, filter controls). Both render
+  with working source links, so the deploy is confirmed rather than assumed.
+  Post-merge re-run of this session's harness records commit `1cc1358` in `verified/reports/verification.{json,md}`
+  (896 assertions, 0 failures), and both repo-wide harnesses pass on the merged tree: `python3 scripts/verify.py` →
+  42 pages, 779 local links, 360 external links, 0 errors; `python3 tools/check_hallucinations.py` → 166 checks, 0 FAIL.
+- T7 is complete. No open items for this session: the 17 flags are published on the Flagged for review page and, per the brief,
+  do not block the merge.

@@ -1,0 +1,67 @@
+{
+  "generated_at_utc": "2026-10-22T23:39:31Z",
+  "commit": "355133b",
+  "totals": {
+    "assertions": 896,
+    "failures": 0,
+    "checks": 8
+  },
+  "checks": [
+    {
+      "name": "quote",
+      "description": "Every recorded value appears literally inside its captured quote.",
+      "assertions": 48,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "arith",
+      "description": "Derived values recompute exactly from their inputs and the captured spot.",
+      "assertions": 3,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "coverage",
+      "description": "Every blank or unstated field is represented by a flag on that row.",
+      "assertions": 46,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "money",
+      "description": "Every rendered $ amount traces to captured data or a printed formula.",
+      "assertions": 195,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "flags",
+      "description": "Flag ids resolve, and every flag references real data rows.",
+      "assertions": 113,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "links",
+      "description": "Internal links and anchors resolve; external URLs are well formed.",
+      "assertions": 478,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "checklist",
+      "description": "A checklist item may only be marked covered when coverage is complete.",
+      "assertions": 12,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "build",
+      "description": "Committed HTML is byte-identical to a build from data/.",
+      "assertions": 1,
+      "failures": 0,
+      "failure_detail": []
+    }
+  ]
+}
