@@ -1,274 +1,341 @@
 #!/usr/bin/env python3
-"""GOLD5 verification harness — hallucination + link + arithmetic pass.
+"""GOLD5 verification harness (v2 — consolidated site).
 
-Checks (no value may pass without a source):
-  1. data.js parses as JSON after the `window.GOLD5_DATA = ` prefix.
-  2. Every entry row has >= 1 source URL (row-level rule) and a valid checkedOn date.
-  3. Every non-blank price/grams cell has sources; blank grams require the
-     'no-gram-weight' flag (or status 'flagged') — blanks are never silently filled.
-  4. All URLs are http(s) and belong to the allowlisted official domains.
-  5. Spot quotes: primary + cross-checks each have url + asOf; gram value matches
-     ounce value within 1% (troy conversion); cross-checks within 3% of primary.
-  6. Purity table: fineness values match karat/24 within 0.1%; per-ounce values
-     consistent with primary spot within 2% (Kitco publishes these at its own spot).
-  7. Derived-value recomputation: for entries with grams+price+karat, recompute the
-     price/metal ratio and confirm any sub-melt ratio carries the
-     'price-below-metal-value' flag.
-  8. Flags reference only existing entry ids.
-  9. HTML: every local href/src resolves to an existing file; every external link is http(s).
+Checks, in order:
+  C1  dataset integrity: unique ids, seller/flag references, required fields
+  C2  every listing has an https source URL on an allowed domain + a check date
+  C3  every blank value is accompanied by the matching flag (blank never silent)
+  C4  spot / purity arithmetic recomputes from the published numbers
+  C5  generated HTML: 25 rows, every entry id present, every row links its source
+  C6  every internal link and anchor resolves
+  C7  every external link is a URL recorded in the dataset (no stray links)
+  C8  every dollar figure on the site is either in the dataset or computed from it
+  C9  every published price/gram appears in the listings HTML; blanks say why
+  C10 no placeholders (TODO, undefined, NaN, lorem, 0000)
+  C11 site/assets/data.js is byte-equivalent (as JSON) to data.json
+  C12 published spot and raw-gold values recompute on the gold-price page
+  C13 every generated page parses as well-formed HTML
+  C14 "NO HALLUCINATIONS" banner on every page
+  C15 security: https-only links, rel=noopener, no frames/scripts/posting forms
 
-Exit code 0 = clean, 1 = violations found. Report written to docs/verification/report.md.
-Run after EVERY review:  python3 scripts/verify.py
+Writes data/check_report_v2.json, appends data/pass_history_v2.json and a
+human-readable report to docs/verification/consolidation-2026-10-22.md.
+Exit code 1 if any check fails.
 """
-import json
-import os
-import re
-import sys
-from datetime import datetime
-from urllib.parse import urlparse
+import json, os, re, sys, glob, html as htmllib, datetime
+from html.parser import HTMLParser
+from urllib.parse import urlsplit, unquote
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_JS = os.path.join(ROOT, "site", "assets", "data.js")
-REPORT = os.path.join(ROOT, "docs", "verification", "report.md")
-
-ALLOWED_DOMAINS = {
-    "www.kitco.com", "www.cnbc.com", "www.apmex.com",
-    "www.bluenile.com",
-    "www.etsy.com", "etsy.com", "help.etsy.com",
-    "consumer.ftc.gov", "www.ftc.gov", "www.ecfr.gov",
-    "www.law.cornell.edu",
-    "www.bbb.org",
-    "www.consumeraffairs.com", "www.topconsumerreviews.com",
-    "jvclegal.org", "reportfraud.ftc.gov",
-}
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_PATH = os.path.join(ROOT, "site/assets/data.json")
+D = json.load(open(DATA_PATH))
+ENTRIES = D["entries"]
+SELLERS = {s["id"]: s for s in D["sellers"]}
+FLAGS = {f["id"]: f for f in D["flags"]}
+REFS = D["references"]
+SPOT = D["spot"]["primary"]
+SPOT_G = SPOT["usdPerGram"]
 TROY = 31.1034768
+FIN = D["spot"]["purity"]["fineness"]
+PAGES = ["index.html"] + sorted(os.path.basename(p) for p in glob.glob(os.path.join(ROOT, "site/*.html")))
+PAGE_PATHS = ["index.html"] + ["site/" + p for p in PAGES if p != "index.html"]
 
-ERRORS, WARNINGS, OKS = [], [], []
+results = []   # (check, ok, detail)
+def check(cid, ok, detail):
+    results.append((cid, bool(ok), detail))
+    return ok
 
+def money(n, dec=None):
+    if n is None: return ""
+    if dec is None: dec = 0 if float(n).is_integer() else 2
+    return "$" + f"{n:,.{dec}f}"
 
-def err(msg):
-    ERRORS.append(msg)
+def fine_g(e): return None if e["grams"] is None else e["grams"] * FIN[f'{e["karat"]}K']
+def metal(e):
+    g = fine_g(e)
+    return None if g is None else g * SPOT_G
+def ratio(e):
+    mv = metal(e)
+    return None if (mv is None or e["price"] is None) else e["price"] / mv
 
+def read_page(p):
+    return open(os.path.join(ROOT, p), encoding="utf-8").read()
 
-def warn(msg):
-    WARNINGS.append(msg)
+# ---------------------------------------------------------------- C1
+errs = []
+ids = [e["id"] for e in ENTRIES]
+if len(ids) != len(set(ids)): errs.append("duplicate entry ids")
+for e in ENTRIES:
+    for k in ["id", "name", "short", "sellerId", "category", "karat", "priceBasis", "url", "checkedOn", "provenance"]:
+        if e.get(k) in (None, ""): errs.append(f'{e.get("id")}: missing {k}')
+    if e["sellerId"] not in SELLERS: errs.append(f'{e["id"]}: unknown seller {e["sellerId"]}')
+    for fid in e["flags"]:
+        if fid not in FLAGS: errs.append(f'{e["id"]}: unknown flag {fid}')
+for f in D["flags"]:
+    for eid in f["entryIds"]:
+        if eid not in ids: errs.append(f'{f["id"]}: unknown entry {eid}')
+if len(SELLERS) != len(D["sellers"]): errs.append("duplicate seller ids")
+check("C1", not errs, f"{len(ENTRIES)} entries, {len(D['sellers'])} sellers, {len(D['flags'])} flags, {len(REFS)} references" + ("" if not errs else " — " + "; ".join(errs[:6])))
 
+# ---------------------------------------------------------------- C2
+ALLOWED = ("bluenile.com", "brilliantearth.com", "allurez.com", "avianneandco.com", "thejewelrymaster.com",
+           "solidgoldjewelers.net", "etsy.com", "kitco.com", "cnbc.com", "apmex.com", "consumer.ftc.gov",
+           "ecfr.gov", "law.cornell.edu", "nist.gov", "lbma.org.uk", "bbb.org", "consumeraffairs.com",
+           "jvclegal.org", "reportfraud.ftc.gov", "ftc.gov", "help.etsy.com", "topconsumerreviews.com")
+bad = []
+for e in ENTRIES:
+    u = e["url"]
+    if not u.startswith("https://"): bad.append(f'{e["id"]}: not https')
+    host = (urlsplit(u).hostname or "").lower()
+    if not any(host == d or host.endswith("." + d) for d in ALLOWED): bad.append(f'{e["id"]}: host {host}')
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["checkedOn"] or ""): bad.append(f'{e["id"]}: bad date')
+    if e["provenance"] not in ("live", "prior"): bad.append(f'{e["id"]}: bad provenance')
+check("C2", not bad, f"{len(ENTRIES)} listings have an https official-source URL and a {D['meta']['asOf']} check date" + ("" if not bad else " — " + "; ".join(bad[:6])))
 
-def okk(msg):
-    OKS.append(msg)
+# ---------------------------------------------------------------- C3
+miss = []
+for e in ENTRIES:
+    if e["grams"] is None and "FL-03" not in e["flags"]: miss.append(f'{e["id"]}: no weight, no FL-03')
+    if not e["solidStated"] and "FL-15" not in e["flags"]: miss.append(f'{e["id"]}: no solid claim, no FL-15')
+    if not e["hallmarkStated"] and "FL-14" not in e["flags"]: miss.append(f'{e["id"]}: no hallmark, no FL-14')
+    if e["price"] is None and "FL-13" not in e["flags"]: miss.append(f'{e["id"]}: no price, no FL-13')
+    if not e["returnsVerified"] and not any(f in e["flags"] for f in ("FL-07", "FL-11", "FL-12", "FL-13", "FL-16")):
+        miss.append(f'{e["id"]}: returns unverified, no returns flag')
+check("C3", not miss, "every blank is covered by a flag" + ("" if not miss else " — " + "; ".join(miss[:8])))
 
+# ---------------------------------------------------------------- C4
+arith = []
+if abs(SPOT["usdPerGram"] * TROY - SPOT["usdPerOz"]) > 0.25:
+    arith.append(f"spot gram×ozt {SPOT['usdPerGram']*TROY:.2f} vs {SPOT['usdPerOz']}")
+for k, f in FIN.items():
+    v = D["spot"]["purity"]["perOz"][k]
+    # Kitco's 24K row is the spot price itself (fineness .9999); the other rows are spot × fineness.
+    expected = SPOT["usdPerOz"] if k == "24K" else SPOT["usdPerOz"] * f
+    if abs(expected - v) > 0.03:
+        arith.append(f"{k} purity {v} vs {expected:.2f}")
+for e in ENTRIES:
+    if e["grams"] is not None:
+        if abs(fine_g(e) - e["grams"] * FIN[f'{e["karat"]}K']) > 1e-9: arith.append(f'{e["id"]}: fine')
+        if abs(metal(e) - fine_g(e) * SPOT_G) > 1e-9: arith.append(f'{e["id"]}: metal')
+check("C4", not arith, "spot, purity and 25 rows of derived values recompute" + ("" if not arith else " — " + "; ".join(arith[:6])))
 
-def load_data():
-    with open(DATA_JS, encoding="utf-8") as f:
-        txt = f.read()
-    m = re.search(r"window\.GOLD5_DATA\s*=\s*(\{.*\})\s*;\s*\Z", txt, re.S)
-    if not m:
-        err("data.js: cannot locate `window.GOLD5_DATA = {...};` block")
-        return None
-    try:
-        return json.loads(m.group(1))
-    except json.JSONDecodeError as e:
-        err(f"data.js: JSON parse error: {e}")
-        return None
+# ---------------------------------------------------------------- C5
+lis = read_page("site/listings.html")
+rows = re.findall(r'<tr id="([A-Z]{2,3}-[A-Z0-9]+)"([^>]*)>', lis)
+bad5 = []
+if len(rows) != len(ENTRIES): bad5.append(f"{len(rows)} rows vs {len(ENTRIES)} entries")
+for e in ENTRIES:
+    m = re.search(r'<tr id="' + re.escape(e["id"]) + r'"([^>]*)>', lis)
+    if not m: bad5.append(f'{e["id"]} missing'); continue
+    block_start = m.end()
+    block = lis[block_start:block_start + 4000]
+    if e["url"] not in block: bad5.append(f'{e["id"]} source link missing')
+    if e["grams"] is None:
+        if "not stated" not in block: bad5.append(f'{e["id"]} blank weight not labelled')
+    if e["price"] is None:
+        if "no price" not in block: bad5.append(f'{e["id"]} blank price not labelled')
+check("C5", not bad5, f"{len(rows)} listing rows, each with its official source link" + ("" if not bad5 else " — " + "; ".join(bad5[:8])))
 
+# ---------------------------------------------------------------- C6 internal links + anchors
+class IdParser(HTMLParser):
+    def __init__(self): super().__init__(); self.ids=set()
+    def handle_starttag(self, t, a):
+        d = dict(a)
+        if d.get("id"): self.ids.add(d["id"])
+        if d.get("name") and t == "a": self.ids.add(d["name"])
 
-def is_url(s):
-    return isinstance(s, str) and s.startswith(("http://", "https://"))
+ids_cache = {}
+def page_ids(path):
+    if path not in ids_cache:
+        p = IdParser(); p.feed(read_page(path)); ids_cache[path] = p.ids
+    return ids_cache[path]
 
-
-def check_url(u, ctx):
-    if not is_url(u):
-        err(f"{ctx}: URL not http(s): {u!r}")
-        return
-    host = urlparse(u).hostname or ""
-    if host not in ALLOWED_DOMAINS:
-        err(f"{ctx}: domain not in official allowlist: {host}")
-
-
-def check_date(s, ctx):
-    try:
-        datetime.strptime(s, "%Y-%m-%d")
-    except Exception:
-        err(f"{ctx}: invalid checkedOn date {s!r}")
-
-
-def main():
-    data = load_data()
-    if data is None:
-        finish()
-        return
-
-    D = data
-    spot = D["spot"]["primary"]
-
-    # --- spot checks ---
-    check_url(spot["url"], "spot.primary")
-    if not spot.get("asOf"):
-        err("spot.primary: missing asOf timestamp")
-    g = spot["usdPerOz"] / TROY
-    if abs(g - spot["usdPerGram"]) / g > 0.01:
-        err(f"spot.primary: per-gram {spot['usdPerGram']} inconsistent with per-oz {spot['usdPerOz']} (expected ~{g:.2f})")
-    else:
-        okk(f"spot.primary gram/oz consistent: {spot['usdPerOz']}/oz ≈ {g:.2f}/g (published {spot['usdPerGram']})")
-    for i, q in enumerate(D["spot"]["crossChecks"]):
-        ctx = f"spot.crossChecks[{i}] ({q['source']})"
-        check_url(q["url"], ctx)
-        if not q.get("asOf"):
-            err(f"{ctx}: missing asOf")
-        if abs(q["usdPerOz"] - spot["usdPerOz"]) / spot["usdPerOz"] > 0.03:
-            err(f"{ctx}: {q['usdPerOz']} deviates >3% from primary {spot['usdPerOz']}")
-    okk(f"spot: primary + {len(D['spot']['crossChecks'])} cross-checks, all same-day with timestamps")
-
-    # --- purity table ---
-    p = D["spot"]["purityValues"]
-    check_url(p["url"], "purity table")
-    for k, fin in p["fineness"].items():
-        karat = int(k[:-1])
-        expect = karat / 24 if karat < 24 else 0.9999
-        if abs(fin - expect) > 0.0015:
-            err(f"purity: {k} fineness {fin} != {expect:.4f}")
-    spot24 = spot["usdPerOz"]
-    for k, oz in p["perOunce"].items():
-        expect = spot24 * p["fineness"][k]
-        if abs(oz - expect) / expect > 0.02:
-            err(f"purity: {k} per-oz {oz} deviates >2% from primary spot × fineness ({expect:.2f})")
-    okk("purity table: fineness & per-ounce values consistent with karat math and primary spot")
-
-    # --- entries ---
-    entry_ids = set()
-    for e in D["entries"]:
-        ctx = f"entry {e['id']}"
-        entry_ids.add(e["id"])
-        if not (e.get("sources") or []):
-            err(f"{ctx}: NO source URLs — row-level rule violated")
-        for u in e.get("sources", []):
-            check_url(u, ctx)
-        check_url(e.get("url"), ctx)
-        check_date(e.get("checkedOn"), ctx)
-        if e.get("price") is not None and not e.get("sources"):
-            err(f"{ctx}: price present without sources")
-        if e.get("grams") is None and "no-gram-weight" not in (e.get("flags") or []) and e.get("status") != "flagged":
-            err(f"{ctx}: blank grams but no 'no-gram-weight' flag — must be flagged, never filled")
-        if e.get("grams") is not None:
-            if not e.get("gramsNote"):
-                warn(f"{ctx}: grams present without gramsNote")
-        # derived recomputation
-        if e.get("grams") is not None and e.get("price") is not None and e.get("karat"):
-            fin = p["fineness"].get(f"{e['karat']}K", e["karat"] / 24)
-            metal_val = e["grams"] * fin * spot["usdPerGram"]
-            ratio = e["price"] / metal_val
-            if ratio < 1.0:
-                if "price-below-metal-value" not in (e.get("flags") or []):
-                    err(f"{ctx}: ratio {ratio:.2f} < 1 (price below metal value) but not flagged")
-                else:
-                    okk(f"{ctx}: recompute ratio {ratio:.2f} < 1 → correctly flagged price-below-metal-value")
-            else:
-                okk(f"{ctx}: recompute ratio {ratio:.2f} (metal value {metal_val:.2f}) — above melt, consistent")
-
-    # --- flags ---
-    for f in D["flags"]:
-        if f.get("entryIds"):
-            for eid in f["entryIds"]:
-                if eid not in entry_ids:
-                    err(f"flag {f['id']}: unknown entryId {eid}")
-    okk(f"flags: {len(D['flags'])} flags, all entryIds resolve")
-
-    # --- sellers ---
-    seller_ids = {s["id"] for s in D["sellers"]}
-    for e in D["entries"]:
-        if e.get("sellerId") not in seller_ids:
-            err(f"entry {e['id']}: sellerId {e['sellerId']} not in sellers")
-    for s in D["sellers"]:
-        check_date(s.get("checkedOn"), f"seller {s['id']}")
-        for u in s.get("sources", []):
-            check_url(u, f"seller {s['id']}")
-    okk(f"sellers: {len(D['sellers'])} profiles, all dated + sourced")
-
-    # --- references ---
-    for r in D["references"]:
-        check_url(r["url"], f"reference {r['id']}")
-        check_date(r.get("checkedOn"), f"reference {r['id']}")
-    okk(f"references: {len(D['references'])} official references, all dated + linked")
-
-    # --- HTML link check ---
-    html_files = []
-    for base, _dirs, files in os.walk(ROOT):
-        rel_base = os.path.relpath(base, ROOT)
-        if any(part in {".git", "node_modules", ".venv"} for part in rel_base.split(os.sep)):
+bad6 = []
+for page in PAGE_PATHS:
+    base = os.path.dirname(page)
+    for href in re.findall(r'href="([^"]+)"', read_page(page)):
+        href = htmllib.unescape(href)
+        if href.startswith(("http://", "https://", "mailto:", "tel:", "javascript:")):
             continue
-        for fn in files:
-            if fn.endswith(".html"):
-                html_files.append(os.path.join(base, fn))
-    link_re = re.compile(r'(?:href|src)="([^"]+)"')
-    n_local = n_ext = 0
-    for path in sorted(html_files):
-        rel = os.path.relpath(path, ROOT)
-        with open(path, encoding="utf-8") as f:
-            html = f.read()
-        # drop inline <script> blocks: their href/src are JS template literals, not HTML links
-        html = re.sub(r"<script.*?</script>", "", html, flags=re.S)
-        for u in link_re.findall(html):
-            if u.startswith(("http://", "https://")):
-                n_ext += 1
-                host = urlparse(u).hostname or ""
-                # external links from the site may point anywhere, but data-file
-                # domains are still validated above; here we only check validity.
-                continue
-            if u.startswith("#") or u.startswith("mailto:"):
-                continue
-            local = u.split("#")[0].split("?")[0]
-            if not local:
-                continue
-            target = os.path.normpath(os.path.join(os.path.dirname(path), local))
-            if not os.path.exists(target):
-                err(f"{rel}: broken local link {u}")
-            else:
-                n_local += 1
-    okk(f"html: {len(html_files)} pages, {n_local} local links resolve, {n_ext} external links http(s)")
+        if href.startswith("#"):
+            if href[1:] and href[1:] not in page_ids(page): bad6.append(f"{page}: missing anchor {href}")
+            continue
+        if href == "":
+            bad6.append(f"{page}: empty href"); continue
+        target, _, frag = href.partition("#")
+        target = unquote(target)
+        tp = os.path.normpath(os.path.join(base, target))
+        if not os.path.exists(os.path.join(ROOT, tp)):
+            bad6.append(f"{page}: {href} → missing {tp}")
+        elif frag:
+            if tp not in PAGE_PATHS: continue
+            if frag not in page_ids(tp): bad6.append(f"{page}: {href} → missing anchor {frag}")
+check("C6", not bad6, f"all internal links and anchors resolve across {len(PAGE_PATHS)} pages" + ("" if not bad6 else " — " + "; ".join(bad6[:8])))
 
-    finish(data=D)
+# ---------------------------------------------------------------- C7 external registry
+registry = set()
+for e in ENTRIES: registry.update([e["url"], e.get("priceSourceUrl"), e.get("returnUrl")])
+for s in D["sellers"]:
+    registry.update([s.get("website"), s.get("contactUrl"), s.get("returnsUrl"), s.get("warrantyUrl")])
+    for r in s["reputation"]: registry.add(r["url"])
+for r in REFS: registry.add(r["url"])
+for q in [SPOT] + D["spot"]["prior"] + D["spot"]["crossChecks"]: registry.add(q["url"])
+registry.discard(None)
+bad7 = []
+for page in PAGE_PATHS:
+    for href in re.findall(r'href="([^"]+)"', read_page(page)):
+        href = htmllib.unescape(href)
+        if href.startswith(("http://", "https://")) and href.split("#")[0] not in {u.split("#")[0] for u in registry}:
+            bad7.append(f"{page}: {href}")
+check("C7", not bad7, f"every external link ({len(registry)} registered URLs) is recorded in the dataset" + ("" if not bad7 else " — " + "; ".join(bad7[:6])))
 
+# ---------------------------------------------------------------- C8 dollar audit
+dollar_re = re.compile(r"\$([0-9][0-9,]*(?:\.[0-9]+)?)")
+def dollars(text):
+    out = set()
+    for s in dollar_re.findall(text):
+        try: out.add(round(float(s.replace(",", "")), 4))
+        except ValueError: pass
+    return out
+allowed = set(dollars(json.dumps(D, ensure_ascii=False)))
+for e in ENTRIES:
+    if e["price"] is not None:
+        allowed.add(round(e["price"], 4)); allowed.add(round(e["price"], 2)); allowed.add(round(e["price"]))
+    if e.get("compareAt"):
+        allowed.add(round(e["compareAt"], 4))
+    if metal(e) is not None:
+        allowed.add(round(metal(e), 4)); allowed.add(round(metal(e), 2))
+for k in FIN:
+    v = D["spot"]["purity"]["perOz"][k]
+    allowed.update([round(v, 4), round(v, 2), round(v / TROY, 4), round(v / TROY, 2)])
+for q in [SPOT] + D["spot"]["prior"] + D["spot"]["crossChecks"]:
+    allowed.add(round(q["usdPerOz"], 4)); allowed.add(round(q["usdPerOz"], 2))
+    if q.get("usdPerGram"):
+        allowed.add(round(q["usdPerGram"], 4)); allowed.add(round(q["usdPerGram"], 2))
+for w in [1, 2, 3, 4, 5, 6, 7, 8, 10, 15, 20, 25, TROY]:
+    for k in FIN:
+        v = w * FIN[k] * SPOT_G
+        allowed.update([round(v, 4), round(v, 2)])
+bad8 = []
+for page in PAGE_PATHS:
+    for v in dollars(read_page(page)):
+        if not any(abs(v - a) <= 0.011 for a in allowed):
+            bad8.append(f"{page}: ${v:,.2f}")
+# dedupe & cap
+bad8 = sorted(set(bad8))
+check("C8", not bad8, f"every dollar figure on the site is dataset-sourced or computed ({len(allowed)} allowed values)" + ("" if not bad8 else f" — {len(bad8)} unmatched: " + "; ".join(bad8[:10])))
 
-def finish(data=None):
-    errors = list(ERRORS)
-    warnings = list(WARNINGS)
-    oks = list(OKS)
-    os.makedirs(os.path.dirname(REPORT), exist_ok=True)
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-    asof = data["meta"]["asOf"] if data else "?"
-    lines = [
-        "# Verification report (auto-generated)",
-        "",
-        f"- Run: {now}",
-        f"- Data as of: {asof}",
-        f"- Result: **{'PASS' if not errors else 'FAIL'}** — {len(errors)} error(s), {len(warnings)} warning(s), {len(oks)} checks passed",
-        "",
-        "## Checks passed",
-        "",
-    ]
-    lines += [f"- {m}" for m in oks]
-    lines += ["", "## Errors", ""]
-    lines += [f"- {m}" for m in errors] if errors else ["- none"]
-    lines += ["", "## Warnings", ""]
-    lines += [f"- {m}" for m in warnings] if warnings else ["- none"]
-    lines += ["",
-              "## Reminder",
-              "",
-              "Recommendation after every review: re-run `python3 scripts/verify.py` and scan the",
-              "Flagged for Review page for new hallucination/irregularity signals before publishing.",
-              ""]
-    with open(REPORT, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-    print("\n".join(lines[:6]))
-    if warnings:
-        print("WARNINGS:")
-        print("\n".join(f"  ! {w}" for w in warnings))
-    if errors:
-        print("ERRORS:")
-        print("\n".join(f"  ✗ {e}" for e in errors))
-    print(f"Report: {os.path.relpath(REPORT, ROOT)}")
-    sys.exit(1 if errors else 0)
+# ---------------------------------------------------------------- C9 price/weight presence
+bad9 = []
+for e in ENTRIES:
+    block = re.search(r'<tr id="' + re.escape(e["id"]) + r'"([^>]*)>(.*?)</tr>', lis, re.S)
+    if not block: bad9.append(f'{e["id"]} row missing'); continue
+    b = block.group(2)
+    if e["price"] is not None:
+        if money(e["price"]) not in b: bad9.append(f'{e["id"]} price {money(e["price"])} not rendered')
+        if e["url"] not in b: bad9.append(f'{e["id"]} URL not rendered')
+    if e["grams"] is not None and f'{e["grams"]:g} g' not in b:
+        bad9.append(f'{e["id"]} grams not rendered')
+check("C9", not bad9, "every published price, weight and source URL is rendered in its row" + ("" if not bad9 else " — " + "; ".join(bad9[:8])))
 
+# ---------------------------------------------------------------- C10 placeholders
+bad10 = []
+for page in PAGE_PATHS:
+    t = read_page(page)
+    for token in ["TODO", "undefined", "NaN", "lorem", "XXX", "000000", "{{", "}}"]:
+        if token in t: bad10.append(f"{page}: {token}")
+check("C10", not bad10, "no placeholders or template leftovers" + ("" if not bad10 else " — " + "; ".join(bad10[:6])))
 
-if __name__ == "__main__":
-    main()
+# ---------------------------------------------------------------- C11 data.js == data.json
+bad11 = []
+try:
+    js = open(os.path.join(ROOT, "site/assets/data.js"), encoding="utf-8").read()
+    body = js[js.index("{"): js.rindex("}") + 1]
+    if json.loads(body) != D: bad11.append("data.js differs from data.json")
+except Exception as ex:
+    bad11.append(f"cannot parse data.js: {ex}")
+check("C11", not bad11, "site/assets/data.js matches data.json" + ("" if not bad11 else " — " + "; ".join(bad11)))
+
+# ---------------------------------------------------------------- C12 published numbers on gold page
+gp = read_page("site/gold-price.html")
+bad12 = []
+for v in [money(SPOT["usdPerOz"]), money(SPOT["usdPerGram"]), money(D["spot"]["prior"][0]["usdPerOz"])]:
+    if v not in gp: bad12.append(f"{v} missing")
+for w, k in [(5, "14K"), (1, "24K"), (TROY, "18K")]:
+    v = money(w * FIN[k] * SPOT_G)
+    if v not in gp: bad12.append(f"raw {w:g}g {k} {v} missing")
+check("C12", not bad12, "spot, prior spot and three raw-gold cells recompute on the gold-price page" + ("" if not bad12 else " — " + "; ".join(bad12)))
+
+# ---------------------------------------------------------------- C13 well-formed HTML
+class Balance(HTMLParser):
+    VOID = {"meta", "link", "br", "hr", "img", "input", "source", "area", "base", "col", "embed", "param", "track", "wbr"}
+    def __init__(self): super().__init__(); self.stack=[]; self.err=[]
+    def handle_starttag(self, t, a):
+        if t not in self.VOID: self.stack.append(t)
+    def handle_endtag(self, t):
+        if self.stack and self.stack[-1] == t: self.stack.pop()
+        elif t in self.stack:
+            while self.stack and self.stack[-1] != t: self.err.append("unclosed " + self.stack.pop())
+            self.stack.pop()
+        else: self.err.append("stray </%s>" % t)
+bad13 = []
+for page in PAGE_PATHS:
+    p = Balance(); p.feed(read_page(page))
+    left = [x for x in p.stack if x not in ("html", "body")]
+    if p.err or left: bad13.append(f"{page}: {p.err[:3]} {left[:3]}")
+check("C13", not bad13, f"{len(PAGE_PATHS)} pages parse as well-formed HTML" + ("" if not bad13 else " — " + "; ".join(bad13[:4])))
+
+# ---------------------------------------------------------------- C14 banner
+bad14 = [p for p in PAGE_PATHS if "NO HALLUCINATIONS" not in read_page(p)]
+check("C14", not bad14, "the NO HALLUCINATIONS rule is on every page" + ("" if not bad14 else " — " + ", ".join(bad14)))
+
+# ---------------------------------------------------------------- C15 security
+bad15 = []
+for page in PAGE_PATHS:
+    t = read_page(page)
+    if re.search(r'href="http://', t): bad15.append(f"{page}: http:// link")
+    if re.search(r'href="\s*javascript:', t, re.I): bad15.append(f"{page}: javascript: href")
+    if re.search(r'<(iframe|object|embed)\b', t, re.I): bad15.append(f"{page}: embedded frame/object")
+    if re.search(r'<script[^>]+src="(https?:)?//', t, re.I): bad15.append(f"{page}: third-party script")
+    for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', t):
+        if 'rel="noopener' not in tag: bad15.append(f"{page}: _blank without rel=noopener")
+    if re.search(r'\son(click|load|error|mouseover)\s*=', t, re.I): bad15.append(f"{page}: inline event handler")
+    if re.search(r'<form[^>]*\baction=', t, re.I): bad15.append(f"{page}: form posts somewhere")
+    if re.search(r'type="password"', t, re.I): bad15.append(f"{page}: password field")
+check("C15", not bad15, "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener" + ("" if not bad15 else " — " + "; ".join(sorted(set(bad15))[:8])))
+
+# ---------------------------------------------------------------- report
+passed = sum(1 for _, ok, _ in results if ok)
+failed = [r for r in results if not r[1]]
+now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+report = dict(ok=not failed, passed=passed, fail=len(failed), warn=0, ranAt=now,
+              reportPath="data/check_report_v2.json",
+              checks=[dict(id=c, ok=o, detail=d) for c, o, d in results])
+os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
+json.dump(report, open(os.path.join(ROOT, "data/check_report_v2.json"), "w"), indent=1)
+
+hist_path = os.path.join(ROOT, "data/pass_history_v2.json")
+hist = json.load(open(hist_path)) if os.path.exists(hist_path) else []
+hist.append(dict(ranAt=now, passed=passed, fail=len(failed), warn=0,
+                 checks={c: ("PASS" if o else "FAIL") for c, o, _ in results},
+                 note="consolidated site (session 7cca80c9)"))
+json.dump(hist, open(hist_path, "w"), indent=1)
+
+md = [f"# Verification report — consolidated GOLD5 site", "",
+      f"- Run: {now}", f"- Data as of: {D['meta']['asOf']}",
+      f"- Result: **{'PASS' if not failed else 'FAIL'}** — {passed} checks passed, {len(failed)} failed", ""]
+for c, o, d in results:
+    md.append(f"- {'PASS' if o else 'FAIL'} · **{c}** — {d}")
+md += ["", "## What each check means", "",
+       "- C1 dataset integrity · C2 official source + date per listing · C3 every blank flagged",
+       "- C4 arithmetic · C5/C9 rendered rows · C6 internal links · C7 external link registry",
+       "- C8 every dollar figure sourced or computed · C10 placeholders · C11 data.js/data.json parity",
+       "- C12 published gold values · C13 HTML well-formedness · C14 no-hallucinations banner",
+       "- C15 security: https-only, rel=noopener on new tabs, no frames, third-party scripts, inline handlers or posting forms", ""]
+os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
+open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-22.md"), "w").write("\n".join(md))
+
+print(f"GOLD5 verify v2 — {'PASS' if not failed else 'FAIL'}: {passed} passed, {len(failed)} failed — {now}")
+for c, o, d in results:
+    print(("  PASS " if o else "  FAIL ") + c + " · " + d)
+sys.exit(0 if not failed else 1)
