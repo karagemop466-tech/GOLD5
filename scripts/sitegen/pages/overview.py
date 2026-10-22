@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from ..base import badge, esc, ext, layout, load, usd
 from ..tables import gold_value, spot
+from .. import analysis
 
 STATUS_BADGE = {
     "covered": ("Online — covered", "ok"),
@@ -84,6 +85,65 @@ def top_findings() -> str:
     return f'<ul class="finding-list">{"".join(items)}</ul>'
 
 
+def analysis_section() -> str:
+    fleur = analysis.fleur_delta()
+    bands = analysis.band_rows()
+    spreads = analysis.spreads()
+    band_rows = "".join(
+        f'<tr><td><a href="pages/all-rings.html#{esc(r["id"])}">{esc(r["id"])}</a></td>'
+        f'<td>{esc(r["title"])}</td><td class="num">{r["weight_g"]:g} g</td>'
+        f'<td class="num">{r["fine_g"]:.2f} g</td><td class="num">{usd(r["melt"], 2)}</td>'
+        f'<td class="num">{usd(r["price"])}</td>'
+        f'<td><span class="badge badge-{"warn" if (r["ratio"] or 0) < 2 else "ok"}">{r["ratio"]:.2f}×</span></td>'
+        f'<td class="num">{usd(r["labour"], 0)}</td></tr>'
+        for r in bands
+    )
+    return f"""
+<section>
+  <h2>What the numbers actually say</h2>
+  <p>Four findings that follow directly from the captured data. Each one is arithmetic on verified figures, not an opinion about a brand.</p>
+
+  <div class="panel">
+    <h3>1. The 18K premium is visible and small</h3>
+    <p>Brilliant Earth sells the same Fleur solitaire in 14K and 18K yellow gold. 14K is {usd(fleur['low'])} and 18K is
+    {usd(fleur['high'])}: a difference of <strong>{usd(fleur['delta'])}</strong>, or {fleur['pct']:.1f}% more for
+    {(18/24 - 14/24)*100:.1f} percentage points more fine gold. The metal step-up is cheap relative to the setting, but neither
+    listing publishes a weight, so the premium cannot be checked against grams.</p>
+  </div>
+
+  <div class="panel">
+    <h3>2. Where a weight exists, metal is a small share of the price</h3>
+    <p>These are the only two rows in the shortlist with a seller-published gram weight, so they are the only place the checklist's
+    price-versus-gold test can actually run:</p>
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>ID</th><th>Ring</th><th>Weight</th><th>Fine gold</th><th>Melt at spot</th><th>Price</th><th>Price ÷ melt</th><th>Price minus metal</th></tr></thead>
+        <tbody>{band_rows}</tbody>
+      </table>
+    </div>
+    <p class="fine">Melt = grams × karat ÷ 24 × {usd(spot()['usd_per_troy_oz'] / 31.1034768, 2)}/g. “Price minus metal” is design, labour,
+    margin, duty and packaging — a residual, not a cost breakdown. Multipliers of roughly 4× are normal for light retail gold;
+    a multiplier <em>below</em> 1 would mean the ring is priced under its own metal value, which is the red flag the checklist describes.</p>
+  </div>
+
+  <div class="panel">
+    <h3>3. Settings and complete rings are different products, price-wise</h3>
+    <p>Setting-only prices run from <strong>{usd(spreads['settings'][0])}</strong> to <strong>{usd(spreads['settings'][1])}</strong>,
+    while the single complete ring with a verified price is {usd(spreads['complete'][0])} and the plain bands sit at
+    {usd(spreads['bands'][0])}–{usd(spreads['bands'][1])}. A setting price excludes the centre stone, which is usually the largest
+    line item, so the two ranges cannot be compared directly (flag F-015).</p>
+  </div>
+
+  <div class="panel panel-warn">
+    <h3>4. The checklist's most important test is the one the market makes hardest</h3>
+    <p>Ten of twelve listings never published a gram weight, and none published a hallmark or maker's mark. The two figures that
+    decide whether a price is fair are therefore unavailable online for almost every candidate — which is exactly why the plan ends
+    with a written request to the seller and an XRF test after delivery.</p>
+  </div>
+</section>
+"""
+
+
 def overview_page() -> str:
     meta = load("meta.json")
     entries = load("entries.json")["entries"]
@@ -133,6 +193,8 @@ def overview_page() -> str:
   <p>Your twelve buying requirements, scored against what the web evidence actually supports for this shortlist.</p>
   {scorecard()}
 </section>
+
+{analysis_section()}
 
 <section>
   <h2>Most important findings</h2>

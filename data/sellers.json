@@ -60,8 +60,9 @@
         "status": "verified",
         "evidence": "If you are not satisfied with your purchase for any reason, simply return or exchange it within 30 days. All items must be in their original, unworn condition.",
         "exclusions_evidence": "Engraved fine jewelry. Please note that while you can return an engraved ring, we charge $40 to remove the custom engraving. | Custom designed jewelry. | Rings that have been resized or modified.",
-        "extra_terms_evidence": "We will email a return shipping authorization number and provide a free FedEx return shipping label.",
-        "capture_method": "search_snippet_of_official_page"
+        "extra_terms_evidence": "Your refund will be processed approximately 5 business days after we receive it. | Packages that are received without a return shipping authorization number will not be accepted for refund.",
+        "capture_method": "fetch + search snippet of the same official page",
+        "resizing_evidence": "We offer one complimentary resizing within 60 days regardless of sizing range, or up to 1 year if within sizing range."
       },
       "payment": {
         "status": "partial",
@@ -133,7 +134,7 @@
         "status": "verified",
         "evidence": "Phone: 800-835-0919 — 7 days a week, 7:00 am–11:00 pm ET | Email: customerservice@ross-simons.com",
         "source": "https://www.ross-simons.com/pages/customer-care",
-        "capture_method": "search_snippet_of_official_page"
+        "capture_method": "fetch"
       },
       "returns": {
         "window": "30 days from the date you receive your order",
@@ -141,8 +142,8 @@
         "status": "verified",
         "evidence": "You have 30 days from the date you receive your order to return eligible merchandise for a refund or exchange (shipping and handling charges are non-refundable).",
         "exclusions_evidence": "Merchandise that has been damaged, altered, or resized by a jeweler other than Ross-Simons cannot be accepted for return.",
-        "extra_terms_evidence": "All returns are reviewed by our Quality Assurance Specialists before credit is issued.",
-        "capture_method": "search_snippet_of_official_page"
+        "extra_terms_evidence": "Please note: we may include a flat fee of $4.95 for return shipping and handling. | Returns are typically processed within 4 business days of arrival at our Distribution Center.",
+        "capture_method": "fetch"
       },
       "payment": {
         "status": "unverified",
@@ -177,20 +178,21 @@
         "note": "A customer-service portal is published, but no phone number or email was captured in this pass."
       },
       "returns": {
-        "window": "No stated deadline for most jewelry (Risk-Free 100% Satisfaction Guarantee)",
+        "window": "No stated deadline for most merchandise, BUT precious metals are listed as non-refundable",
         "url": "https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy",
         "status": "verified-with-warning",
         "evidence": "Risk-Free 100% Satisfaction Guarantee | We guarantee your satisfaction on every product we sell, and will refund your purchase price",
-        "exclusions_evidence": "Diamonds: 1.00ct or larger: Members returning a diamond over 1.00ct must also present all original paperwork (IGI and/or GIA certificates) at which time they will receive a Jewelry Credit Memo. Within 48 hours, our Costco Graduate Gemologist will inspect for authenticity.",
+        "exclusions_evidence": "Precious metals are non-refundable. | Diamonds: 1.00ct or larger: Members returning a diamond over 1.00ct must also present all original paperwork (IGI and/or GIA certificates) at which time they will receive a Jewelry Credit Memo. Within 48 hours, our Costco Graduate Gemologist will inspect for authenticity.",
         "extra_terms_evidence": "You may return jewelry purchased on Costco.com for a refund including all shipping and handling fees.",
-        "capture_method": "search_snippet_of_official_page"
+        "capture_method": "fetch + search snippet of the same official page"
       },
       "payment": {
         "status": "unverified",
         "summary": "Accepted payment methods were not captured on the pages fetched.",
         "evidence": "",
         "source": "https://www.costco.com/",
-        "capture_method": "fetch"
+        "capture_method": "fetch",
+        "note": "Payment methods not captured."
       },
       "reputation": {
         "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Costco%20Wholesale",

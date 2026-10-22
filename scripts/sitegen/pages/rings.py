@@ -8,7 +8,8 @@ CATEGORY_GROUPS = {
     "solitaire-setting": ["solitaire-setting"],
     "halo-pave-setting": ["halo-pave-setting"],
     "18k-gold": ["18k-gold"],
-    "complete-ring": ["complete-ring", "solid-gold-band"],
+    "complete-ring": ["complete-ring"],
+    "gold-band": ["gold-band"],
 }
 
 CATEGORY_META = {
@@ -39,6 +40,13 @@ CATEGORY_META = {
         "These rows are complete rings rather than settings, so the listed price includes the stone. That makes them the only "
         "rows where price can be compared with the metal content on a like-for-like basis.",
         "complete",
+    ),
+    "gold-band": (
+        "Gold bands",
+        "Solid-gold rings with no stones — the cleanest test of metal value",
+        "A plain gold band strips the problem down to two numbers: grams and karat. It is the only category here where the "
+        "asking price can be divided by the metal actually contained in the ring, because the seller publishes the weight.",
+        "bands",
     ),
 }
 
@@ -86,7 +94,7 @@ def all_rings_page() -> str:
   <ul class="steps">
     <li><strong>Karat</strong> is copied from the listing's metal field. It is the seller's claim, not a test result.</li>
     <li><strong>“Solid gold” wording</strong> is “Explicit” only when the page uses the phrase. A karat alone does not exclude plating or vermeil.</li>
-    <li><strong>Weight</strong> is only shown if the seller published grams. None did, so every weight cell is blank and flagged (F-004).</li>
+    <li><strong>Weight</strong> is shown only when the seller published grams. Two rows do; the other ten are blank and flagged (F-004).</li>
     <li><strong>Fine-gold value at spot</strong> is grams × karat/24 × {usd(ref['usd_per_troy_oz'], 2)}/oz ÷ 31.1034768. It is melt value, not resale value, and it needs a weight — so it is empty here.</li>
     <li><strong>Flags</strong> link to the <a href="../pages/flagged.html">Flagged for review</a> page with the source and the recommended action.</li>
   </ul>
@@ -106,6 +114,17 @@ def category_page(key: str) -> str:
     wanted = CATEGORY_GROUPS[key]
     entries = [e for e in all_entries if e["category"] in wanted]
     title, subtitle, blurb, active = CATEGORY_META[key]
+    weighed = [e for e in entries if e.get("weight_g") is not None]
+    if weighed:
+        weight_step = (
+            f"<li><strong>{len(weighed)} of {len(entries)} rows here publish a gram weight</strong> — start with those, because the metal "
+            "value can be checked against the price. For the rest, ask for the weight in writing.</li>"
+        )
+    else:
+        weight_step = (
+            "<li>Ask for the exact gram weight for the size you are ordering — the metal content drives the value, and "
+            "no listing in this category published it.</li>"
+        )
     body = f"""
 <section class="page-head">
   <p class="eyebrow">Category</p>
@@ -122,7 +141,7 @@ def category_page(key: str) -> str:
 <section class="panel">
   <h3>Before you buy from this category</h3>
   <ul class="steps">
-    <li>Ask for the exact gram weight for the size you are ordering — the metal content drives the value, and no listing here published it.</li>
+    {weight_step}
     <li>Request a photo of the inside of the band showing the karat stamp and the maker's mark (F-005).</li>
     <li>Confirm in writing that the metal is solid, not plated or vermeil (F-006).</li>
     <li>Check the return exclusions for resized and personalised items on the <a href="sellers.html">Sellers</a> page before you let anyone size it.</li>

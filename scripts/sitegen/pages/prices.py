@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from ..base import esc, ext, layout, load, usd
 from ..tables import spot
+from .. import analysis
 
 OZ = 31.1034768
 
@@ -70,6 +71,26 @@ def implied_table() -> str:
     gram weight, the same division in reverse becomes a real “is this unusually cheap?” test.</p>"""
 
 
+def verified_weight_table() -> str:
+    rows = "".join(
+        f'<tr><td><a href="../pages/all-rings.html#{esc(r["id"])}">{esc(r["id"])}</a></td>'
+        f'<td>{esc(r["title"])}</td><td class="num">{r["weight_g"]:g} g</td>'
+        f'<td class="num">{r["fine_g"]:.3f} g</td><td class="num">{usd(r["melt"], 2)}</td>'
+        f'<td class="num">{usd(r["price"])}</td><td class="num">{r["ratio"]:.2f}×</td>'
+        f'<td class="num">{usd(r["price"] / r["weight_g"], 2)}</td></tr>'
+        for r in analysis.band_rows()
+    )
+    return f"""
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>ID</th><th>Ring</th><th>Seller weight</th><th>Fine gold</th><th>Melt at spot</th><th>Price</th><th>Price ÷ melt</th><th>Price per gram of ring</th></tr></thead>
+        <tbody>{rows}</tbody>
+      </table>
+    </div>
+    <p class="fine">This is the checklist's price-versus-gold test, run on the only two rows with a published weight. “Price per gram
+    of ring” divides the asking price by the total ring weight, not by fine gold, so it is only comparable between rings of the same karat.</p>"""
+
+
 def calculator() -> str:
     ref = spot()
     return f"""
@@ -115,6 +136,11 @@ def prices_page() -> str:
 </section>
 
 {calculator()}
+
+<section>
+  <h2>Price versus gold, where a weight exists</h2>
+  {verified_weight_table()}
+</section>
 
 <section>
   <h2>What the captured prices equal in raw gold</h2>

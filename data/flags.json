@@ -5,7 +5,10 @@
       "severity": "info",
       "title": "James Allen now redirects to Blue Nile",
       "detail": "jamesallen.com/returns redirects to bluenile.com, whose home page states 'James Allen is Now Part of Blue Nile'. James Allen settings are therefore recorded under their canonical bluenile.com URLs.",
-      "affects": ["BN-311132", "BN-316048"],
+      "affects": [
+        "BN-311132",
+        "BN-316048"
+      ],
       "source": "https://www.bluenile.com/james-allen",
       "recommendation": "Treat Blue Nile and James Allen as one seller for returns and warranty; use the Blue Nile order page for any James Allen item.",
       "status": "open"
@@ -15,7 +18,9 @@
       "severity": "warning",
       "title": "Cached search price differed from the live price",
       "detail": "A search-index snapshot for the Knife Edge Solitaire showed $700, while the live product page showed '$925(Setting Price)' on 2026-10-22. Prices in this project come only from the live page capture.",
-      "affects": ["BN-316048"],
+      "affects": [
+        "BN-316048"
+      ],
       "source": "https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048",
       "recommendation": "Re-open the live product page before buying; do not rely on search snippets, cached prices, or this site's captured price.",
       "status": "open"
@@ -25,7 +30,9 @@
       "severity": "warning",
       "title": "Removed Ross-Simons listing (404) seen in search results",
       "detail": "Search results still show '14kt Yellow Gold Solitaire Cathedral Engagement Ring Setting' (item 827614) with 'Gold Weight: 5.5 grams'. Both URL forms now return a 404 page. No price or weight is recorded from that snippet.",
-      "affects": ["RS-210193"],
+      "affects": [
+        "RS-210193"
+      ],
       "source": "https://www.ross-simons.com/products/827614",
       "recommendation": "Do not rely on discontinued-listing data. If the setting reappears, re-verify price and weight from the live page.",
       "status": "open"
@@ -33,11 +40,22 @@
     {
       "id": "F-004",
       "severity": "warning",
-      "title": "No listing published a gram weight",
-      "detail": "None of the fetched listing pages exposed the ring's weight in grams. The 'Weight' column is therefore blank on every row and marked unverified. This blocks a true price-per-gram comparison and makes the 'unusually cheap' test impossible to run from the listing alone.",
-      "affects": ["BN-192506", "BN-195326", "BN-311132", "BN-316048", "BE-BE1574-14KY", "RS-210193", "MEJ-2MM-SMOOTH", "MEJ-BOLD-DIAMOND-ETERNITY"],
-      "source": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
-      "recommendation": "Email or chat the seller and ask for the exact gram weight of the specific size and metal before paying. Keep the written answer with your records.",
+      "title": "Only 2 of 12 rows publish a gram weight",
+      "detail": "The checklist asks for the ring's weight in grams. Ross-Simons publishes a 'Gold Weight' line on plain gold rings (1.3 g and 1.7 g on the two rows that have it), which proves the figure exists and can be requested. The other ten rows — every diamond setting, both Mejuri pieces and the Costco ring — published no gram weight anywhere on the captured page.",
+      "affects": [
+        "BN-192506",
+        "BN-195326",
+        "BN-311132",
+        "BN-316048",
+        "BE-BE1574-14KY",
+        "BE-BE1574-18KY",
+        "RS-210193",
+        "MEJ-2MM-SMOOTH",
+        "MEJ-BOLD-DIAMOND-ETERNITY",
+        "COSTCO-100743200"
+      ],
+      "source": "https://www.ross-simons.com/products/960952",
+      "recommendation": "Ask the seller for the exact gram weight of the size and metal you are ordering, in writing, before paying. Ross-Simons already prints it for some rings, so treat 'we cannot tell you' as a reason not to buy.",
       "status": "open"
     },
     {
@@ -45,7 +63,20 @@
       "severity": "warning",
       "title": "No hallmark or maker's mark stated online",
       "detail": "No fetched listing stated a hallmark, quality stamp, or maker's mark. The checklist requires a 10K/14K/18K stamp plus a maker's/manufacturer's mark, which can only be confirmed on the physical ring or from a close-up photo.",
-      "affects": ["BN-192506", "BN-195326", "BN-311132", "BN-316048", "BE-BE1574-14KY", "RS-210193", "MEJ-2MM-SMOOTH", "MEJ-BOLD-DIAMOND-ETERNITY"],
+      "affects": [
+        "BN-192506",
+        "BN-195326",
+        "BN-311132",
+        "BN-316048",
+        "BE-BE1574-14KY",
+        "BE-BE1574-18KY",
+        "RS-210193",
+        "MEJ-2MM-SMOOTH",
+        "MEJ-BOLD-DIAMOND-ETERNITY",
+        "COSTCO-100743200",
+        "RS-960952",
+        "RS-945891"
+      ],
       "source": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
       "recommendation": "Before paying, request a clear photo of the inside of the band showing the stamps. After delivery, have an independent jeweler confirm the mark and purity, ideally with XRF.",
       "status": "open"
@@ -55,7 +86,18 @@
       "severity": "warning",
       "title": "'Solid gold' wording is missing from most listings",
       "detail": "Blue Nile, Brilliant Earth and Ross-Simons product pages state the karat (e.g. '14K Yellow Gold') but do not use the words 'solid gold'. Only the two Mejuri entries explicitly say 'solid gold'. Karat alone does not prove the item is not plated, filled, or vermeil.",
-      "affects": ["BN-192506", "BN-195326", "BN-311132", "BN-316048", "BE-BE1574-14KY", "RS-210193"],
+      "affects": [
+        "BN-192506",
+        "BN-195326",
+        "BN-311132",
+        "BN-316048",
+        "BE-BE1574-14KY",
+        "BE-BE1574-18KY",
+        "RS-210193",
+        "RS-960952",
+        "RS-945891",
+        "COSTCO-100743200"
+      ],
       "source": "https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048",
       "recommendation": "Get written confirmation that the ring is solid 14K/18K gold (not plated, vermeil, filled, overlay, or tone), and keep that message with the receipt.",
       "status": "open"
@@ -65,7 +107,9 @@
       "severity": "warning",
       "title": "Mejuri listing contradicts itself on gold colour",
       "detail": "On the Bold Diamond Eternity Ring page the variant selector says 'Solid White Gold (14k), Natural Diamond', while the Materials panel on the same page says 'Solid Yellow Gold (14k)'. Metal colour is therefore not certain from the page.",
-      "affects": ["MEJ-BOLD-DIAMOND-ETERNITY"],
+      "affects": [
+        "MEJ-BOLD-DIAMOND-ETERNITY"
+      ],
       "source": "https://mejuri.com/products/bold-diamond-eternity-ring",
       "recommendation": "Confirm the exact metal colour and karat in the order confirmation before paying.",
       "status": "open"
@@ -74,20 +118,24 @@
       "id": "F-008",
       "severity": "info",
       "title": "Brilliant Earth resizing terms differ between official page and BBB",
-      "detail": "The Brilliant Earth 30-day-returns page advertises 'Free 1-Year Resizing', while its BBB profile text describes '60 Day resizes'. The official site should govern, but the conflict is recorded here rather than resolved by assumption.",
-      "affects": ["BE-BE1574-14KY"],
+      "detail": "Reconciled on review. The BBB profile text says '60 Day resizes', while Brilliant Earth's page says 'one complimentary resizing within 60 days regardless of sizing range, or up to 1 year if within sizing range'. Both statements describe the same policy: 60 days unconditional, 12 months only inside the recommended sizing range. No contradiction remains.",
+      "affects": [
+        "BE-BE1574-14KY"
+      ],
       "source": "https://www.brilliantearth.com/30-Day-Returns/",
-      "recommendation": "Ask Brilliant Earth in writing which resizing window applies to the specific ring before ordering.",
-      "status": "open"
+      "recommendation": "Ask for the ring's recommended sizing range before ordering; outside it, the free resize window is 60 days.",
+      "status": "reconciled"
     },
     {
       "id": "F-009",
-      "severity": "warning",
-      "title": "Costco return-policy wording is inconsistent across official pages",
-      "detail": "Costco's return-policy answer says merchandise is covered by a satisfaction guarantee and explains jewelry returns, including a 48-hour gemologist inspection for diamonds of 1.00 ct or larger. A separate Costco help article lists 'precious metals' among items that are not returnable, and the product page itself mentions two to five business days for verification.",
-      "affects": ["costco"],
+      "severity": "critical",
+      "title": "Costco lists precious metals as non-refundable",
+      "detail": "Costco's official return policy states a 100% satisfaction guarantee, then lists exceptions. One of them reads 'Precious metals are non-refundable.' The same document carves out diamonds of 1.00 ct or larger, which are returned against a Jewelry Credit Memo after a 48-hour gemologist inspection. Its jewelry FAQ also says jewelry bought on Costco.com can be returned for a refund including shipping. The captured gold ring is a 1.00 ct diamond ring, so which rule governs it is genuinely unclear from the published text.",
+      "affects": [
+        "costco"
+      ],
       "source": "https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy",
-      "recommendation": "Confirm the return terms for the exact item at the warehouse counter or with Costco customer service before buying.",
+      "recommendation": "Get Costco to confirm in writing (chat transcript or email with a document ID) that this specific item is returnable, and to which address, before paying. If they will not put it in writing, the checklist rule says do not buy.",
       "status": "open"
     },
     {
@@ -95,7 +143,9 @@
       "severity": "info",
       "title": "Costco listing price could not be captured",
       "detail": "The Costco product page did not render a price in the captured page, and the metal selector defaulted to platinum. The Costco row therefore has a blank price and is marked unverified rather than guessing the gold price.",
-      "affects": ["COSTCO-100743200"],
+      "affects": [
+        "COSTCO-100743200"
+      ],
       "source": "https://www.costco.com/.product.100743200.html",
       "recommendation": "Select the 14kt yellow gold variant on the live page and record the price, or ask Costco customer service for the current price in writing.",
       "status": "open"
@@ -105,7 +155,9 @@
       "severity": "warning",
       "title": "Mejuri contact details not captured",
       "detail": "No phone number or email address appeared on the Mejuri product and FAQ pages that were fetched. The checklist requires verifiable business contact information before purchase.",
-      "affects": ["mejuri"],
+      "affects": [
+        "mejuri"
+      ],
       "source": "https://mejuri.com/faq",
       "recommendation": "Use Mejuri's published contact/chat channel and ask for a written response with a case number before ordering; keep the transcript.",
       "status": "open"
@@ -115,19 +167,23 @@
       "severity": "info",
       "title": "Brilliant Earth returns page moved",
       "detail": "brilliantearth.com/pages/returns/ serves the storefront rather than policy text. The live policy is at brilliantearth.com/30-Day-Returns/ and is the URL cited in this project.",
-      "affects": ["brilliantearth"],
+      "affects": [
+        "brilliantearth"
+      ],
       "source": "https://www.brilliantearth.com/pages/returns/",
       "recommendation": "Use the canonical returns URL when documenting your purchase.",
       "status": "open"
     },
     {
       "id": "F-013",
-      "severity": "warning",
-      "title": "Ross-Simons gram weights only appeared in search snippets",
-      "detail": "Several Ross-Simons rings show a 'Gold Weight' line in search-engine snippets, but the live product HTML captured here did not expose those values. No Ross-Simons weight is recorded; only the live page is treated as evidence.",
-      "affects": ["RS-210193"],
+      "severity": "info",
+      "title": "Ross-Simons spec block is rendered client-side, so published specs may be invisible to a static capture",
+      "detail": "The Ross-Simons product page builds its Details table in the browser from a specs object. On the two plain gold rings the weight still came through in the fetched text, but on the engagement-ring setting (item 210193) only the template code came through, with no weight line at all. A weight may therefore exist on that listing even though it could not be captured here.",
+      "affects": [
+        "RS-210193"
+      ],
       "source": "https://www.ross-simons.com/products/210193",
-      "recommendation": "Ask Ross-Simons customer service for the gram weight of the exact size, or weigh the ring on a calibrated scale after delivery before resizing.",
+      "recommendation": "Open the Ross-Simons page in a normal browser and read the Details block directly, or ask customer service for the gram weight in writing. This project will not record a value it could not see.",
       "status": "open"
     },
     {
@@ -135,7 +191,9 @@
       "severity": "info",
       "title": "Plated items appear inside Mejuri's engagement collection",
       "detail": "Mejuri's engagement-ring collection page (search-index snapshot) mixes solid 14k pieces with '18k Gold Vermeil' pieces such as the Aurora Lab Grown Sapphire Eternity Ring. Vermeil is plated, so it fails the solid-gold rule and is excluded from the table. The two snapshots also disagreed on that item's price ($218 vs $228), so no price is recorded.",
-      "affects": ["mejuri"],
+      "affects": [
+        "mejuri"
+      ],
       "source": "https://mejuri.com/world/en/collections/milestone-rings",
       "recommendation": "Filter by material on the live collection page and check each listing for 'solid' before assuming an item is solid gold.",
       "status": "open"
@@ -144,10 +202,42 @@
       "id": "F-015",
       "severity": "info",
       "title": "Most rows are setting-only prices, not complete-ring prices",
-      "detail": "Five of the nine rows are settings sold without a center stone. Their listed prices therefore exclude the diamond or gemstone, which dominates the final cost. Comparing a setting price with a complete-ring price would be misleading.",
-      "affects": ["BN-192506", "BN-195326", "BN-311132", "BN-316048", "BE-BE1574-14KY", "RS-210193"],
+      "detail": "Six of the twelve rows are settings sold without a center stone, and two more are plain bands. Their listed prices therefore exclude the diamond or are for a different product class, which dominates the final cost. Comparing a setting price with a complete-ring price would be misleading.",
+      "affects": [
+        "BN-192506",
+        "BN-195326",
+        "BN-311132",
+        "BN-316048",
+        "BE-BE1574-14KY",
+        "BE-BE1574-18KY",
+        "RS-210193"
+      ],
       "source": "https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/",
       "recommendation": "Compare like with like: setting-only against setting-only, or add the center-stone cost to get a complete-ring total.",
+      "status": "open"
+    },
+    {
+      "id": "F-016",
+      "severity": "warning",
+      "title": "Ross-Simons price snapshots disagree with the live product page",
+      "detail": "Search-index snapshots of the Ross-Simons four-prong 14kt yellow gold engagement ring setting show $395.00, and the semi-mounting category snapshot shows a sale price of $296.25 against that $395.00. The live product page shows $1,050 with sizes 5.5, 6.5, 7.5 and 8.5 sold out. Only the live figure is recorded here.",
+      "affects": [
+        "RS-210193"
+      ],
+      "source": "https://www.ross-simons.com/products/210193",
+      "recommendation": "Re-open the live page and read the price at checkout. If a discount code or sale is advertised, confirm the final charged amount before paying, and keep a screenshot of the price you were shown.",
+      "status": "open"
+    },
+    {
+      "id": "F-017",
+      "severity": "info",
+      "title": "Costco's return-policy page was captured live; the product page was not fully rendered",
+      "detail": "The Costco customer-service answer is a server-rendered document (Document ID CU2573, version 18.0, published 10/02/2025) and was captured in full. The product page, by contrast, rendered without a price and with the platinum variant selected, so the ring's gold price and weight remain unverified (F-010).",
+      "affects": [
+        "COSTCO-100743200"
+      ],
+      "source": "https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy",
+      "recommendation": "Open the Costco product page, switch the metal selector to 14kt yellow gold, and record the price and any published weight.",
       "status": "open"
     }
   ]

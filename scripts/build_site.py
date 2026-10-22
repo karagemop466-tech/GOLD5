@@ -16,6 +16,7 @@ OUTPUTS = {
     "pages/halo-pave.html": lambda: pages.category_page("halo-pave-setting"),
     "pages/18k.html": lambda: pages.category_page("18k-gold"),
     "pages/complete-rings.html": lambda: pages.category_page("complete-ring"),
+    "pages/gold-bands.html": lambda: pages.category_page("gold-band"),
     "pages/sellers.html": pages.sellers_page,
     "pages/prices.html": pages.prices_page,
     "pages/method.html": pages.method_page,

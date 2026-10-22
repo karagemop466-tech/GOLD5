@@ -18,6 +18,7 @@ NAV = [
     ("pages/halo-pave.html", "Halo &amp; pavé", "halo"),
     ("pages/18k.html", "18K gold", "18k"),
     ("pages/complete-rings.html", "Complete rings", "complete"),
+    ("pages/gold-bands.html", "Gold bands", "bands"),
     ("pages/sellers.html", "Sellers", "sellers"),
     ("pages/prices.html", "Gold price &amp; calculator", "prices"),
     ("pages/method.html", "Method", "method"),

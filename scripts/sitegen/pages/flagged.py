@@ -110,7 +110,9 @@ def flagged_page() -> str:
     <li><strong>Coverage pass:</strong> lists every field a row is missing, so blanks can never quietly become guesses.</li>
   </ol>
   <p class="fine">Items marked “info” are recorded for completeness. “Warning” items need a written answer from the seller or a
-  second source. No item is marked critical, because no captured source contradicted a price or a karat claim.</p>
+  second source. <strong>“Critical”</strong> items are reserved for anything that could leave you unable to return the ring or that
+  contradicts a seller's own published terms — there is one, and it is the reason Costco is not recommended for this purchase
+  until it is answered in writing.</p>
 </section>
 """
     return layout(

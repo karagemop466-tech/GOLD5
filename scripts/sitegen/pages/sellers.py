@@ -41,6 +41,7 @@ def seller_cards() -> str:
         <dt>Return window</dt><dd><strong>{esc(r['window'])}</strong> {ext(r['url'], 'policy page')}</dd>
         <dt>Return exclusions</dt><dd>{esc(r['exclusions_evidence'])}</dd>
         <dt>Extra terms</dt><dd>{esc(r['extra_terms_evidence'])}</dd>
+        <dt>Resizing</dt><dd>{esc(r.get('resizing_evidence') or 'not captured on the policy page')}</dd>
         <dt>Payment</dt><dd>{st(p['status'])} {esc(p['summary'])}</dd>
         <dt>Solid-gold wording</dt><dd>{esc(s['solid_gold_policy']['note'])}</dd>
         <dt>Independent complaints</dt><dd>{ext(s['reputation']['bbb_search'], 'Search this seller on BBB')} — no rating or complaint count is republished here.</dd>

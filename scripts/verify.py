@@ -189,6 +189,17 @@ def allowed_money_tokens() -> set[str]:
     for kat in (10, 14, 18, 22, 24):
         for grams in range(0, 61):
             allowed.add(f"${grams * kat / 24 * per_gram:,.2f}")
+    # melt values derived from each entry's own verified weight and karat
+    for entry in load("entries.json")["entries"]:
+        if entry.get("weight_g") and entry.get("karat"):
+            melt = entry["weight_g"] * entry["karat"] / 24 * per_gram
+            allowed.add(f"${melt:,.2f}")
+            allowed.add(f"${melt:,.0f}")
+    # analysis.py computes its figures from the same data with explicit formulas
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from sitegen import analysis  # noqa: E402
+
+    allowed |= analysis.all_money_tokens()
     return allowed
 
 

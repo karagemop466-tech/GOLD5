@@ -25,6 +25,7 @@
       <a href="../pages/halo-pave.html">Halo &amp; pavé</a>
       <a href="../pages/18k.html">18K gold</a>
       <a href="../pages/complete-rings.html">Complete rings</a>
+      <a href="../pages/gold-bands.html">Gold bands</a>
       <a href="../pages/sellers.html">Sellers</a>
       <a href="../pages/prices.html">Gold price &amp; calculator</a>
       <a href="../pages/method.html">Method</a>
@@ -46,7 +47,7 @@
   block publication — they are the exact list of things to resolve before money changes hands.</p>
 </section>
 
-<div class="stat-grid small"><div class="stat"><div class="stat-value">15</div><div class="stat-label">items flagged</div></div><div class="stat"><div class="stat-value">0</div><div class="stat-label">critical</div></div><div class="stat"><div class="stat-value">9</div><div class="stat-label">warnings</div></div><div class="stat"><div class="stat-value">6</div><div class="stat-label">informational</div></div></div>
+<div class="stat-grid small"><div class="stat"><div class="stat-value">17</div><div class="stat-label">items flagged</div></div><div class="stat"><div class="stat-value">1</div><div class="stat-label">critical</div></div><div class="stat"><div class="stat-value">8</div><div class="stat-label">warnings</div></div><div class="stat"><div class="stat-value">8</div><div class="stat-label">informational</div></div></div>
 
 <section>
   <h2>Flag register</h2>
@@ -55,6 +56,14 @@
       <table class="data-table compact">
         <thead><tr><th>ID</th><th>Severity</th><th>Finding</th><th>Affects</th><th>Official source</th><th>What to do</th></tr></thead>
         <tbody>
+      <tr id="F-009">
+        <td class="cell-id">F-009</td>
+        <td><span class="badge badge-bad">Critical</span></td>
+        <td><strong>Costco lists precious metals as non-refundable</strong><div class="cell-note">Costco&#x27;s official return policy states a 100% satisfaction guarantee, then lists exceptions. One of them reads &#x27;Precious metals are non-refundable.&#x27; The same document carves out diamonds of 1.00 ct or larger, which are returned against a Jewelry Credit Memo after a 48-hour gemologist inspection. Its jewelry FAQ also says jewelry bought on Costco.com can be returned for a refund including shipping. The captured gold ring is a 1.00 ct diamond ring, so which rule governs it is genuinely unclear from the published text.</div></td>
+        <td class="cell-note">costco</td>
+        <td><a href="https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy" target="_blank" rel="noopener noreferrer">customerservice.costco.com</a></td>
+        <td class="cell-note">Get Costco to confirm in writing (chat transcript or email with a document ID) that this specific item is returnable, and to which address, before paying. If they will not put it in writing, the checklist rule says do not buy.</td>
+      </tr>
       <tr id="F-002">
         <td class="cell-id">F-002</td>
         <td><span class="badge badge-warn">Warning</span></td>
@@ -74,16 +83,16 @@
       <tr id="F-004">
         <td class="cell-id">F-004</td>
         <td><span class="badge badge-warn">Warning</span></td>
-        <td><strong>No listing published a gram weight</strong><div class="cell-note">None of the fetched listing pages exposed the ring&#x27;s weight in grams. The &#x27;Weight&#x27; column is therefore blank on every row and marked unverified. This blocks a true price-per-gram comparison and makes the &#x27;unusually cheap&#x27; test impossible to run from the listing alone.</div></td>
-        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, RS-210193, MEJ-2MM-SMOOTH, MEJ-BOLD-DIAMOND-ETERNITY</td>
-        <td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506" target="_blank" rel="noopener noreferrer">bluenile.com</a></td>
-        <td class="cell-note">Email or chat the seller and ask for the exact gram weight of the specific size and metal before paying. Keep the written answer with your records.</td>
+        <td><strong>Only 2 of 12 rows publish a gram weight</strong><div class="cell-note">The checklist asks for the ring&#x27;s weight in grams. Ross-Simons publishes a &#x27;Gold Weight&#x27; line on plain gold rings (1.3 g and 1.7 g on the two rows that have it), which proves the figure exists and can be requested. The other ten rows — every diamond setting, both Mejuri pieces and the Costco ring — published no gram weight anywhere on the captured page.</div></td>
+        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, BE-BE1574-18KY, RS-210193, MEJ-2MM-SMOOTH, MEJ-BOLD-DIAMOND-ETERNITY, COSTCO-100743200</td>
+        <td><a href="https://www.ross-simons.com/products/960952" target="_blank" rel="noopener noreferrer">ross-simons.com</a></td>
+        <td class="cell-note">Ask the seller for the exact gram weight of the size and metal you are ordering, in writing, before paying. Ross-Simons already prints it for some rings, so treat &#x27;we cannot tell you&#x27; as a reason not to buy.</td>
       </tr>
       <tr id="F-005">
         <td class="cell-id">F-005</td>
         <td><span class="badge badge-warn">Warning</span></td>
         <td><strong>No hallmark or maker&#x27;s mark stated online</strong><div class="cell-note">No fetched listing stated a hallmark, quality stamp, or maker&#x27;s mark. The checklist requires a 10K/14K/18K stamp plus a maker&#x27;s/manufacturer&#x27;s mark, which can only be confirmed on the physical ring or from a close-up photo.</div></td>
-        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, RS-210193, MEJ-2MM-SMOOTH, MEJ-BOLD-DIAMOND-ETERNITY</td>
+        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, BE-BE1574-18KY, RS-210193, MEJ-2MM-SMOOTH, MEJ-BOLD-DIAMOND-ETERNITY, COSTCO-100743200, RS-960952, RS-945891</td>
         <td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506" target="_blank" rel="noopener noreferrer">bluenile.com</a></td>
         <td class="cell-note">Before paying, request a clear photo of the inside of the band showing the stamps. After delivery, have an independent jeweler confirm the mark and purity, ideally with XRF.</td>
       </tr>
@@ -91,7 +100,7 @@
         <td class="cell-id">F-006</td>
         <td><span class="badge badge-warn">Warning</span></td>
         <td><strong>&#x27;Solid gold&#x27; wording is missing from most listings</strong><div class="cell-note">Blue Nile, Brilliant Earth and Ross-Simons product pages state the karat (e.g. &#x27;14K Yellow Gold&#x27;) but do not use the words &#x27;solid gold&#x27;. Only the two Mejuri entries explicitly say &#x27;solid gold&#x27;. Karat alone does not prove the item is not plated, filled, or vermeil.</div></td>
-        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, RS-210193</td>
+        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, BE-BE1574-18KY, RS-210193, RS-960952, RS-945891, COSTCO-100743200</td>
         <td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048" target="_blank" rel="noopener noreferrer">bluenile.com</a></td>
         <td class="cell-note">Get written confirmation that the ring is solid 14K/18K gold (not plated, vermeil, filled, overlay, or tone), and keep that message with the receipt.</td>
       </tr>
@@ -103,14 +112,6 @@
         <td><a href="https://mejuri.com/products/bold-diamond-eternity-ring" target="_blank" rel="noopener noreferrer">mejuri.com</a></td>
         <td class="cell-note">Confirm the exact metal colour and karat in the order confirmation before paying.</td>
       </tr>
-      <tr id="F-009">
-        <td class="cell-id">F-009</td>
-        <td><span class="badge badge-warn">Warning</span></td>
-        <td><strong>Costco return-policy wording is inconsistent across official pages</strong><div class="cell-note">Costco&#x27;s return-policy answer says merchandise is covered by a satisfaction guarantee and explains jewelry returns, including a 48-hour gemologist inspection for diamonds of 1.00 ct or larger. A separate Costco help article lists &#x27;precious metals&#x27; among items that are not returnable, and the product page itself mentions two to five business days for verification.</div></td>
-        <td class="cell-note">costco</td>
-        <td><a href="https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy" target="_blank" rel="noopener noreferrer">customerservice.costco.com</a></td>
-        <td class="cell-note">Confirm the return terms for the exact item at the warehouse counter or with Costco customer service before buying.</td>
-      </tr>
       <tr id="F-011">
         <td class="cell-id">F-011</td>
         <td><span class="badge badge-warn">Warning</span></td>
@@ -119,13 +120,13 @@
         <td><a href="https://mejuri.com/faq" target="_blank" rel="noopener noreferrer">mejuri.com</a></td>
         <td class="cell-note">Use Mejuri&#x27;s published contact/chat channel and ask for a written response with a case number before ordering; keep the transcript.</td>
       </tr>
-      <tr id="F-013">
-        <td class="cell-id">F-013</td>
+      <tr id="F-016">
+        <td class="cell-id">F-016</td>
         <td><span class="badge badge-warn">Warning</span></td>
-        <td><strong>Ross-Simons gram weights only appeared in search snippets</strong><div class="cell-note">Several Ross-Simons rings show a &#x27;Gold Weight&#x27; line in search-engine snippets, but the live product HTML captured here did not expose those values. No Ross-Simons weight is recorded; only the live page is treated as evidence.</div></td>
+        <td><strong>Ross-Simons price snapshots disagree with the live product page</strong><div class="cell-note">Search-index snapshots of the Ross-Simons four-prong 14kt yellow gold engagement ring setting show $395.00, and the semi-mounting category snapshot shows a sale price of $296.25 against that $395.00. The live product page shows $1,050 with sizes 5.5, 6.5, 7.5 and 8.5 sold out. Only the live figure is recorded here.</div></td>
         <td class="cell-note">RS-210193</td>
         <td><a href="https://www.ross-simons.com/products/210193" target="_blank" rel="noopener noreferrer">ross-simons.com</a></td>
-        <td class="cell-note">Ask Ross-Simons customer service for the gram weight of the exact size, or weigh the ring on a calibrated scale after delivery before resizing.</td>
+        <td class="cell-note">Re-open the live page and read the price at checkout. If a discount code or sale is advertised, confirm the final charged amount before paying, and keep a screenshot of the price you were shown.</td>
       </tr>
       <tr id="F-001">
         <td class="cell-id">F-001</td>
@@ -138,10 +139,10 @@
       <tr id="F-008">
         <td class="cell-id">F-008</td>
         <td><span class="badge badge-muted">Info</span></td>
-        <td><strong>Brilliant Earth resizing terms differ between official page and BBB</strong><div class="cell-note">The Brilliant Earth 30-day-returns page advertises &#x27;Free 1-Year Resizing&#x27;, while its BBB profile text describes &#x27;60 Day resizes&#x27;. The official site should govern, but the conflict is recorded here rather than resolved by assumption.</div></td>
+        <td><strong>Brilliant Earth resizing terms differ between official page and BBB</strong><div class="cell-note">Reconciled on review. The BBB profile text says &#x27;60 Day resizes&#x27;, while Brilliant Earth&#x27;s page says &#x27;one complimentary resizing within 60 days regardless of sizing range, or up to 1 year if within sizing range&#x27;. Both statements describe the same policy: 60 days unconditional, 12 months only inside the recommended sizing range. No contradiction remains.</div></td>
         <td class="cell-note">BE-BE1574-14KY</td>
         <td><a href="https://www.brilliantearth.com/30-Day-Returns/" target="_blank" rel="noopener noreferrer">brilliantearth.com</a></td>
-        <td class="cell-note">Ask Brilliant Earth in writing which resizing window applies to the specific ring before ordering.</td>
+        <td class="cell-note">Ask for the ring&#x27;s recommended sizing range before ordering; outside it, the free resize window is 60 days.</td>
       </tr>
       <tr id="F-010">
         <td class="cell-id">F-010</td>
@@ -159,6 +160,14 @@
         <td><a href="https://www.brilliantearth.com/pages/returns/" target="_blank" rel="noopener noreferrer">brilliantearth.com</a></td>
         <td class="cell-note">Use the canonical returns URL when documenting your purchase.</td>
       </tr>
+      <tr id="F-013">
+        <td class="cell-id">F-013</td>
+        <td><span class="badge badge-muted">Info</span></td>
+        <td><strong>Ross-Simons spec block is rendered client-side, so published specs may be invisible to a static capture</strong><div class="cell-note">The Ross-Simons product page builds its Details table in the browser from a specs object. On the two plain gold rings the weight still came through in the fetched text, but on the engagement-ring setting (item 210193) only the template code came through, with no weight line at all. A weight may therefore exist on that listing even though it could not be captured here.</div></td>
+        <td class="cell-note">RS-210193</td>
+        <td><a href="https://www.ross-simons.com/products/210193" target="_blank" rel="noopener noreferrer">ross-simons.com</a></td>
+        <td class="cell-note">Open the Ross-Simons page in a normal browser and read the Details block directly, or ask customer service for the gram weight in writing. This project will not record a value it could not see.</td>
+      </tr>
       <tr id="F-014">
         <td class="cell-id">F-014</td>
         <td><span class="badge badge-muted">Info</span></td>
@@ -170,10 +179,18 @@
       <tr id="F-015">
         <td class="cell-id">F-015</td>
         <td><span class="badge badge-muted">Info</span></td>
-        <td><strong>Most rows are setting-only prices, not complete-ring prices</strong><div class="cell-note">Five of the nine rows are settings sold without a center stone. Their listed prices therefore exclude the diamond or gemstone, which dominates the final cost. Comparing a setting price with a complete-ring price would be misleading.</div></td>
-        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, RS-210193</td>
+        <td><strong>Most rows are setting-only prices, not complete-ring prices</strong><div class="cell-note">Six of the twelve rows are settings sold without a center stone, and two more are plain bands. Their listed prices therefore exclude the diamond or are for a different product class, which dominates the final cost. Comparing a setting price with a complete-ring price would be misleading.</div></td>
+        <td class="cell-note">BN-192506, BN-195326, BN-311132, BN-316048, BE-BE1574-14KY, BE-BE1574-18KY, RS-210193</td>
         <td><a href="https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/" target="_blank" rel="noopener noreferrer">brilliantearth.com</a></td>
         <td class="cell-note">Compare like with like: setting-only against setting-only, or add the center-stone cost to get a complete-ring total.</td>
+      </tr>
+      <tr id="F-017">
+        <td class="cell-id">F-017</td>
+        <td><span class="badge badge-muted">Info</span></td>
+        <td><strong>Costco&#x27;s return-policy page was captured live; the product page was not fully rendered</strong><div class="cell-note">The Costco customer-service answer is a server-rendered document (Document ID CU2573, version 18.0, published 10/02/2025) and was captured in full. The product page, by contrast, rendered without a price and with the platinum variant selected, so the ring&#x27;s gold price and weight remain unverified (F-010).</div></td>
+        <td class="cell-note">COSTCO-100743200</td>
+        <td><a href="https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy" target="_blank" rel="noopener noreferrer">customerservice.costco.com</a></td>
+        <td class="cell-note">Open the Costco product page, switch the metal selector to 14kt yellow gold, and record the price and any published weight.</td>
       </tr></tbody>
       </table>
     </div>
@@ -185,7 +202,7 @@
     <div class="table-wrap">
       <table class="data-table compact">
         <thead><tr><th>ID</th><th>Seller</th><th>Ring</th><th>Not published by the seller</th><th>Source</th></tr></thead>
-        <tbody><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-192506">BN-192506</a></td><td>Blue Nile</td><td>Petite Hidden Halo Solitaire Plus Diamond Engagement Ring in 14k Yellow Gold</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-195326">BN-195326</a></td><td>Blue Nile</td><td>Riviera Pavé Diamond Engagement Ring in 14k White Gold (1/6 ct. tw.)</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-311132">BN-311132</a></td><td>Blue Nile</td><td>Criss Cross Solitaire Engagement Ring in 18K Yellow Gold by James Allen</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-316048">BN-316048</a></td><td>Blue Nile</td><td>Knife Edge Solitaire Engagement Ring in 14K White Gold by James Allen</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BE-BE1574-14KY">BE-BE1574-14KY</a></td><td>Brilliant Earth</td><td>Fleur Solitaire Ring in 14K Yellow Gold</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#RS-210193">RS-210193</a></td><td>Ross-Simons</td><td>14kt Yellow Gold Four-Prong Engagement Ring Setting</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.ross-simons.com/products/210193" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#MEJ-2MM-SMOOTH">MEJ-2MM-SMOOTH</a></td><td>Mejuri</td><td>2mm Smooth Band</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, stock / style number</td><td><a href="https://mejuri.com/products/2mm-smooth-band" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#MEJ-BOLD-DIAMOND-ETERNITY">MEJ-BOLD-DIAMOND-ETERNITY</a></td><td>Mejuri</td><td>Bold Diamond Eternity Ring</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, stock / style number</td><td><a href="https://mejuri.com/products/bold-diamond-eternity-ring" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#COSTCO-100743200">COSTCO-100743200</a></td><td>Costco Wholesale</td><td>Round Brilliant 1.00 ct VS2 Clarity, I Color Diamond Solitaire Ring (14kt gold option)</td><td class="cell-note">weight (g), price, hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.costco.com/.product.100743200.html" target="_blank" rel="noopener noreferrer">official page</a></td></tr></tbody>
+        <tbody><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-192506">BN-192506</a></td><td>Blue Nile</td><td>Petite Hidden Halo Solitaire Plus Diamond Engagement Ring in 14k Yellow Gold</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-195326">BN-195326</a></td><td>Blue Nile</td><td>Riviera Pavé Diamond Engagement Ring in 14k White Gold (1/6 ct. tw.)</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-311132">BN-311132</a></td><td>Blue Nile</td><td>Criss Cross Solitaire Engagement Ring in 18K Yellow Gold by James Allen</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BN-316048">BN-316048</a></td><td>Blue Nile</td><td>Knife Edge Solitaire Engagement Ring in 14K White Gold by James Allen</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BE-BE1574-14KY">BE-BE1574-14KY</a></td><td>Brilliant Earth</td><td>Fleur Solitaire Ring in 14K Yellow Gold</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#RS-210193">RS-210193</a></td><td>Ross-Simons</td><td>14kt Yellow Gold Four-Prong Engagement Ring Setting</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.ross-simons.com/products/210193" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#MEJ-2MM-SMOOTH">MEJ-2MM-SMOOTH</a></td><td>Mejuri</td><td>2mm Smooth Band</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, stock / style number</td><td><a href="https://mejuri.com/products/2mm-smooth-band" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#MEJ-BOLD-DIAMOND-ETERNITY">MEJ-BOLD-DIAMOND-ETERNITY</a></td><td>Mejuri</td><td>Bold Diamond Eternity Ring</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, stock / style number</td><td><a href="https://mejuri.com/products/bold-diamond-eternity-ring" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#COSTCO-100743200">COSTCO-100743200</a></td><td>Costco Wholesale</td><td>Round Brilliant 1.00 ct VS2 Clarity, I Color Diamond Solitaire Ring (14kt gold option)</td><td class="cell-note">weight (g), price, hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.costco.com/.product.100743200.html" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#BE-BE1574-18KY">BE-BE1574-18KY</a></td><td>Brilliant Earth</td><td>Fleur Solitaire Ring in 18K Yellow Gold</td><td class="cell-note">weight (g), hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.brilliantearth.com/Fleur-Solitaire-Ring-Gold-BE1574-33044395/" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#RS-960952">RS-960952</a></td><td>Ross-Simons</td><td>Italian 14kt Yellow Gold Dome Ring</td><td class="cell-note">hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.ross-simons.com/products/960952" target="_blank" rel="noopener noreferrer">official page</a></td></tr><tr><td class="cell-id"><a href="../pages/all-rings.html#RS-945891">RS-945891</a></td><td>Ross-Simons</td><td>Italian 14kt Yellow Gold Filigree Ring</td><td class="cell-note">hallmark / maker&#x27;s mark, “solid gold” wording</td><td><a href="https://www.ross-simons.com/products/945891" target="_blank" rel="noopener noreferrer">official page</a></td></tr></tbody>
       </table>
     </div>
     <p class="fine">These are left blank on purpose. Filling them from a search snippet, an old cached page or an assumption would
@@ -202,7 +219,9 @@
     <li><strong>Coverage pass:</strong> lists every field a row is missing, so blanks can never quietly become guesses.</li>
   </ol>
   <p class="fine">Items marked “info” are recorded for completeness. “Warning” items need a written answer from the seller or a
-  second source. No item is marked critical, because no captured source contradicted a price or a karat claim.</p>
+  second source. <strong>“Critical”</strong> items are reserved for anything that could leave you unable to return the ring or that
+  contradicts a seller's own published terms — there is one, and it is the reason Costco is not recommended for this purchase
+  until it is answered in writing.</p>
 </section>
 
 </main>

@@ -53,7 +53,22 @@ def value_cell(entry: dict) -> str:
             badge("needs weight", "warn")
             + '<div class="cell-note">cannot price fine gold without grams — F-004</div>'
         )
-    return f'<span class="num">{usd(value, 0)}</span><div class="cell-note">melt value at spot, not resale</div>'
+    return f'<span class="num">{usd(value, 2)}</span><div class="cell-note">melt value at spot, not resale</div>'
+
+
+def ratio_cell(entry: dict) -> str:
+    """Price paid divided by the spot value of the fine gold in the ring."""
+    value = gold_value(entry)
+    if value is None or not entry.get("price_usd"):
+        return '<span class="cell-note">—</span>'
+    ratio = entry["price_usd"] / value
+    if ratio < 1:
+        kind, note = "bad", "below melt — red flag"
+    elif ratio < 2:
+        kind, note = "warn", "thin margin over melt"
+    else:
+        kind, note = "ok", "normal retail range"
+    return f'{badge(f"{ratio:.2f}×", kind)}<div class="cell-note">{note}</div>'
 
 
 def solid_cell(entry: dict) -> str:
@@ -129,6 +144,7 @@ def ring_row(entry: dict, prefix: str) -> str:
         <td>{weight_cell(entry)}</td>
         <td>{price_cell(entry)}</td>
         <td>{value_cell(entry)}</td>
+        <td>{ratio_cell(entry)}</td>
         <td class="cell-flags">{flag_chips(entry.get('flags', []), prefix)}</td>
       </tr>"""
 
@@ -144,6 +160,7 @@ HEADER = """      <thead>
           <th scope="col">Weight</th>
           <th scope="col">Price (USD)</th>
           <th scope="col">Fine-gold value at spot</th>
+          <th scope="col">Price ÷ melt</th>
           <th scope="col">Flags</th>
         </tr>
       </thead>"""
