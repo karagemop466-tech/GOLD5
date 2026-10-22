@@ -671,6 +671,30 @@ Notes:
 - **Open question left in public (does not block):** no listing states a maker's mark, 17 publish no
   weight, and Brilliant Earth's return policy URL redirects. These are published on Flagged for Review.
 
+### Log — PRs merged, Pages confirmed, live checks (session `arena-60c4b9c3`, 2026-10-23 00:0x UTC)
+
+| PR | What it did | Merge commit | CI | Pages |
+|---|---|---|---|---|
+| #14 | corrected a stale "2 of 8 sellers" count in `G-REPUTATION-MISSING` | `24a0185` | success | built |
+| #16 | kept session `93032b31`'s root dashboard as the landing page; moved this suite to `report/index.html`; added one nav link; re-verified all four checkers on the merged tree | `22c1f19` | success | built |
+| #19 | Allurez BBB evidence: A+ since 2011 **and** 49 complaints in 3 years / 8 in 12 months; new flag `G-ALLUREZ-COMPLAINTS`; dashboard callout; `G-REPUTATION-MISSING` → 4 of 9 | `1975ca8` | success | built |
+| #21 | verification pass 6: stronger money audit (per-row prose vs captured page), flag-prose amounts and reference quotes now audited, 9/9 planted errors caught, checklist test 10 re-sourced to 16 CFR 23.10 | `3bd5db3` | success | built |
+
+- **Live verification after the last deploy** (fetched, not assumed):
+  - `/report/flagged.html` → **27 irregularities**, `G-ALLUREZ-COMPLAINTS` first in the index with its
+    two BBB sources, and `G-REPUTATION-MISSING` now reads "4 of 9 sellers".
+  - `/report/sellers.html` → Allurez reputation block with the complaint counts and the profile link.
+  - The first fetch after deploy returned the pre-deploy HTML (GitHub Pages CDN cache); re-fetching with a
+    cache-busting query returned the current build. Recorded so the next session does not mistake the
+    stale copy for a failed deploy.
+- **Layout note:** the root dashboard is rebuilt by its owning session each pass, and its rebuild dropped
+  the `report/` nav link this pass (`8c3149c`). That is their file and their call; this suite is
+  reachable at `/report/`. Recorded rather than re-edited, to avoid a link war.
+- Self-check on the code, not just the data: `tools/security_test.py` initially reported **6/7** because it
+  still planted its HTML error into the repo-root `index.html` after the checker moved to
+  `report/index.html` — a test that could no longer see the page it was testing. Fixed (INDEX re-pointed),
+  then two new tests added (invented flag amount, fabricated reference quote): **9/9**.
+
 ### C6 — final integration record (session `7cca80c9`)
 
 - **PR #15 opened** https://github.com/karagemop466-tech/GOLD5/pull/15 from
