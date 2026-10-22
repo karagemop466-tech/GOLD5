@@ -1,23 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Master Audit &amp; XRF Calculator — GOLD5</title>
+<title>Master Audit &amp; XRF Calculator · GOLD5</title>
 <meta name="description" content="Unified cross-session audit of all verified gold engagement ring listings, federal 15 U.S.C. 295 / 16 CFR Part 23 standards, and XRF/melt calculator. No hallucinations.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<main class="wrap">
-  <h2>Master Cross-Session Audit, Unified Catalog &amp; XRF Verification</h2>
-
-  <div class="flag info">
-    <h4>⚠ NO HALLUCINATIONS — Line-by-Line Verification &amp; Security Audit</h4>
-    <p style="font-size:13.5px;margin:6px 0">
+<a class="skip" href="#main">Skip to content</a>
+<div class="rulebar"><div class="wrap">
+  <span><b>NO HALLUCINATIONS</b> — every value has a dated source link; anything unconfirmed is blank and flagged, never guessed.</span>
+  <span>Data as of <b>2026-10-22</b> · <a href="../site/verification.html">How this was verified →</a></span>
+</div></div>
+<header class="masthead"><div class="wrap">
+  <a class="brand" href="../index.html"><span class="brand-mark">G5</span><span class="brand-name">GOLD5<small>Solid gold engagement ring research</small></span></a>
+  <nav class="nav" aria-label="Main"><a href="../index.html">Dashboard</a><a href="master-audit.html" class="active">Master Audit &amp; XRF</a><a href="listings.html">Listings</a><a href="gold-price.html">Gold Price</a><a href="calculator.html">Calculator</a><a href="analysis.html">Analysis</a><a href="checklist.html">Checklist</a><a href="sellers.html">Sellers</a><a href="flagged.html">Flagged</a><a href="sources.html">Sources</a><a href="verification.html">Verification</a></nav>
+</div></header>
+<main id="main"><div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">Session b1f2fe3b · Unified Cross-Session Catalog &amp; Assay Verification</div>
+    <h1>Master Cross-Session Audit, Unified Catalog &amp; XRF Verification</h1>
+    <p>
       Every listing, price, weight, karat, hallmark claim, return policy, and statutory citation on this page was verified line by line from an official source on <b>2026-10-22</b>.
       Values that cannot be confirmed from an official source are left <b>blank (—)</b> and published on the <a href="flagged.html">Flagged for Review</a> page — never inferred, estimated, or guessed.
-      Run all three verification &amp; anti-hallucination suites after every review:
-      <code>python3 scripts/verify.py</code> · <code>python3 tools/check_hallucinations.py</code> · <code>python3 scripts/audit_b1f2fe3b.py</code>.
+      Run all five verification &amp; anti-hallucination suites after every review:
+      <code>python3 scripts/verify.py</code> · <code>python3 tools/check_report.py</code> · <code>python3 verified/scripts/verify.py</code> · <code>python3 tools/check_hallucinations.py</code> · <code>python3 scripts/audit_b1f2fe3b.py</code>.
     </p>
   </div>
 
@@ -26,13 +36,13 @@
   <h2>Interactive Gold Weight, Stone Deduction, Melt Value &amp; XRF Assay Calculator</h2>
   <p class="note">
     Computes net gold alloy weight (deducting diamond/gemstone carat weight at exact metric carat <code>1 ct = 0.200 g</code>),
-    troy ounces (<code>1 oz t = 31.1034768 g</code>), pennyweights (<code>1 dwt = 1.55517384 g</code> per <a href="https://www.nist.gov/system/files/documents/2017/05/09/Precious-Metals-Conversion-Information-march2015.pdf" target="_blank" rel="noopener">NIST</a>),
-    raw gold melt value, price-to-melt ratio, and federal <a href="https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec295.pdf" target="_blank" rel="noopener">15 U.S.C. § 295</a> assay tolerances (<code>-3‰</code> solder-free / <code>-7‰</code> with solder).
+    troy ounces (<code>1 oz t = 31.1034768 g</code>), pennyweights (<code>1 dwt = 1.55517384 g</code> per <a href="https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8" target="_blank" rel="noopener">NIST</a>),
+    raw gold melt value, price-to-melt ratio, and federal <a href="https://www.law.cornell.edu/uscode/text/15/297" target="_blank" rel="noopener">15 U.S.C. §§ 295, 297</a> assay tolerances (<code>-3‰</code> solder-free / <code>-7‰</code> with solder).
   </p>
   <div class="calc-grid" id="xrf-calc">
     <div class="calc-box">
       <h3 style="margin-top:0">1. Ring &amp; Assay Inputs</h3>
-      <label for="x-load">Load a verified listing with published weight</label>
+      <label for="x-load">Load any verified listing with published weight</label>
       <select id="x-load"><option value="">— custom / select verified listing —</option></select>
 
       <label for="x-weight">Total ring weight on scale</label>
@@ -58,13 +68,13 @@
 
       <label for="x-spot-preset">Verified Kitco Spot Snapshot (2026-10-22)</label>
       <select id="x-spot-preset">
-        <option value="129.41" selected>Kitco 7:10 p.m. EDT Primary — $4,025.00/oz ($129.41/g)</option>
-        <option value="129.47">Kitco 7:26 p.m. EDT Live Re-Check — $4,026.90/oz ($129.47/g)</option>
+        <option value="129.47" selected>Kitco 7:26 p.m. EDT Live Re-Check — $4,026.90/oz ($129.47/g)</option>
+        <option value="129.41">Kitco 7:10 p.m. EDT Prior — $4,025.00/oz ($129.41/g)</option>
         <option value="131.10">APMEX 11:02 a.m. ET Cross-Check — $4,077.60/oz ($131.10/g)</option>
       </select>
 
       <label for="x-spot">Spot price used (USD / gram of 24K gold)</label>
-      <input id="x-spot" type="number" step="0.01" min="0" value="129.41">
+      <input id="x-spot" type="number" step="0.01" min="0" value="129.47">
 
       <label for="x-price">Asking / Paid Price (USD)</label>
       <input id="x-price" type="number" step="0.01" min="0" value="1085">
@@ -75,14 +85,15 @@
     <div class="calc-box calc-out" id="x-out"></div>
   </div>
 
-  <h2>Analysis: Verified Weight &amp; Price-vs-Melt Comparison (All Weighted Listings)</h2>
+  <h2>Analysis: Verified Weight &amp; Price-vs-Melt Comparison (All Weighted Listings Across Sessions)</h2>
   <p class="note">
-    Out of all verified listings across all sessions, only the rows below publish a weight in grams on the listing (or search snippet of the listing).
-    Notice how <b>Allurez U5882 (14K, 5.00 g, $1,085)</b> and <b>Allurez U5885 (18K, 5.90 g, $1,316)</b> demonstrate the exact 1.18× density increase of 18K over 14K gold alloy on the same setting geometry, while <b>etsy-576343849 (14K, 7.00 g, $444.80)</b> prices at <b>0.84× melt value</b> (flagged red-flag case study <a href="flagged.html#F1">F1</a>).
+    Across all verified listings across sessions, only the rows below publish a weight in grams.
+    <span id="weighted-note-extra"></span>
+    See flag <a href="flagged.html#FL-01">FL-01</a> for the below-melt case study.
   </p>
   <div id="weighted-analysis"></div>
 
-  <h2>Filterable Master Table — All Verified Entries (<span id="master-count"></span>)</h2>
+  <h2>Filterable Unified Master Table — All Verified Entries Across Sessions (<span id="master-count"></span>)</h2>
   <div class="card" style="margin-bottom:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
     <div>
       <label for="f-seller" style="margin:0 0 4px;font-size:12px">Filter by Seller</label>
@@ -116,7 +127,7 @@
   <div id="master-table"></div>
 
   <h2>Federal Statutory, Regulatory &amp; Metrology Standards Verified</h2>
-  <div class="table-scroll">
+  <div class="table-wrap">
     <table>
       <thead>
         <tr>
@@ -133,56 +144,56 @@
           <td>16 CFR § 23.3(a)–(c) (FTC Jewelry Guides)</td>
           <td>24 parts system: 10K = 41.67%, 14K = 58.33%, 18K = 75.00%, 22K = 91.67%. Unqualified "Gold" = 24K only; alloys must state karat immediately before "Gold" in equal type size.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23" target="_blank" rel="noopener">eCFR 16 CFR Part 23 ↗</a></td>
+          <td><a class="src-link" href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23" target="_blank" rel="noopener">eCFR 16 CFR Part 23 ↗</a></td>
         </tr>
         <tr>
           <td><b>2. Solid Gold vs. Hollow / Plated / Vermeil</b></td>
           <td>16 CFR § 23.3(c)(1)–(3) &amp; § 23.4; FTC Consumer Guide</td>
           <td>Hollow-center items may <b>not</b> be marked or described as "Solid Gold". Gold Filled ≥ 1/20th total metal weight (≥10K); RGP/Overlay ≥ 1/40th with fraction; Gold Electroplate ≥ 0.175 µm fine Au; Vermeil = sterling silver + ≥10K gold ≥ 2.5 µm fine Au.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry" target="_blank" rel="noopener">FTC Jewelry Guide ↗</a></td>
+          <td><a class="src-link" href="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry" target="_blank" rel="noopener">FTC Jewelry Guide ↗</a></td>
         </tr>
         <tr>
           <td><b>3. Hallmark + Registered Maker's Mark</b></td>
           <td>15 U.S.C. § 297(b) (National Stamping Act) &amp; 16 CFR § 23.10</td>
           <td>Any article bearing a gold/silver quality mark must also bear the manufacturer/dealer/importer's registered U.S. trademark (or legal name) in type at least as large as and as close as possible to the karat stamp.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec297.pdf" target="_blank" rel="noopener">15 U.S.C. § 297 (govinfo) ↗</a></td>
+          <td><a class="src-link" href="https://www.law.cornell.edu/uscode/text/15/297" target="_blank" rel="noopener">15 U.S.C. § 297 ↗</a></td>
         </tr>
         <tr>
           <td><b>4. Assay Fineness Tolerances</b></td>
-          <td>15 U.S.C. § 295 (Gold Labeling Act of 1976, Pub. L. 94-450)</td>
+          <td>15 U.S.C. § 295 (Gold Labeling Act of 1976, Pub. L. 94-450) &amp; 16 CFR § 23.3 Fn. 32</td>
           <td>Maximum downward deviation from stamped fineness: <b>3 parts per thousand (0.3%)</b> for solder-free sample; <b>7 parts per thousand (0.7%)</b> for whole ring assayed with solder.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec295.pdf" target="_blank" rel="noopener">15 U.S.C. § 295 (govinfo) ↗</a></td>
+          <td><a class="src-link" href="https://www.law.cornell.edu/cfr/text/16/23.3" target="_blank" rel="noopener">16 CFR § 23.3 ↗</a></td>
         </tr>
         <tr>
           <td><b>5. Mixed-Metal Rings (e.g. 14K Band + Platinum Head)</b></td>
           <td>16 CFR § 23.8 &amp; 15 U.S.C. § 297(b)(B)</td>
           <td>Metals must be disclosed in order of predominant weight unless context identifies each part; distinct parts of different quality must be marked accordingly.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23" target="_blank" rel="noopener">16 CFR § 23.8 ↗</a></td>
+          <td><a class="src-link" href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23" target="_blank" rel="noopener">16 CFR § 23.8 ↗</a></td>
         </tr>
         <tr>
           <td><b>6. Weight &amp; Troy Conversion</b></td>
-          <td>NIST Office of Weights &amp; Measures (Handbook 130 § 2.17)</td>
+          <td>NIST Office of Weights &amp; Measures (SI Guide Appendix B.8 &amp; Handbook 130 § 2.17)</td>
           <td><b>1 troy oz (oz t) = 31.1034768 g</b> = 20 pennyweights (dwt) = 480 grains (gr). <b>1 dwt = 1.55517384 g</b>. <b>1 g = 0.03215075 oz t = 0.6430149 dwt</b>.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://www.nist.gov/system/files/documents/2017/05/09/Precious-Metals-Conversion-Information-march2015.pdf" target="_blank" rel="noopener">NIST Conversion PDF ↗</a></td>
+          <td><a class="src-link" href="https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8" target="_blank" rel="noopener">NIST SI Guide B.8 ↗</a></td>
         </tr>
         <tr>
           <td><b>7. Credit Card Purchase Protection</b></td>
           <td>Fair Credit Billing Act (15 U.S.C. §§ 1666, 1666i); FTC Guidance</td>
           <td>60-day written billing-error dispute window (goods not delivered as agreed); card issuer must acknowledge within 30 days and resolve within 90 days; state-law claims/defenses can be asserted against card issuer.</td>
           <td class="num">2026-10-22</td>
-          <td><a class="src" href="https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges" target="_blank" rel="noopener">FTC Credit Card Guide ↗</a></td>
+          <td><a class="src-link" href="https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges" target="_blank" rel="noopener">FTC Credit Card Guide ↗</a></td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <h2>Security &amp; Anti-Hallucination Audit Passes (Session <code>b1f2fe3b</code>)</h2>
-  <div class="table-scroll">
+  <div class="table-wrap">
     <table>
       <thead>
         <tr>
@@ -198,194 +209,24 @@
         <tr><td class="num">S3</td><td>Unverified values left blank (<code>null</code>) + explicitly flagged</td><td>All missing weights (<code>no-gram-weight</code>), missing prices (<code>no-price</code>), missing hallmarks</td><td><span class="badge ok">PASS</span></td></tr>
         <tr><td class="num">S4</td><td>Spot price &amp; NIST troy ounce / gram / pennyweight arithmetic</td><td>Kitco 7:10pm ($4,025.00/oz), Kitco 7:26pm ($4,026.90/oz), APMEX ($4,077.60/oz)</td><td><span class="badge ok">PASS</span></td></tr>
         <tr><td class="num">S5</td><td>Karat fineness &amp; 15 U.S.C. § 295 assay tolerances (-3‰ / -7‰)</td><td>10K, 14K, 18K, 22K, 24K purity tables &amp; XRF calculator</td><td><span class="badge ok">PASS</span></td></tr>
-        <tr><td class="num">S6</td><td>Derived raw gold grams, melt value &amp; sub-melt red-flag detection</td><td>All weighted entries (catches <code>etsy-576343849</code> at 0.84× melt → F1)</td><td><span class="badge ok">PASS</span></td></tr>
+        <tr><td class="num">S6</td><td>Derived raw gold grams, melt value &amp; sub-melt red-flag detection</td><td>All weighted entries (catches <code>ET-576343849</code> at 0.84× melt → FL-01)</td><td><span class="badge ok">PASS</span></td></tr>
         <tr><td class="num">S7</td><td>Verbatim evidence matching against <code>data/evidence/*.txt</code></td><td>All 11 rows of <code>data/rings.json</code> + seller contacts</td><td><span class="badge ok">PASS</span></td></tr>
-        <tr><td class="num">S8</td><td>Local link &amp; asset resolution across all HTML pages</td><td>Root dashboard, <code>site/*.html</code>, <code>docs/*.html</code>, <code>pages/*.html</code></td><td><span class="badge ok">PASS</span></td></tr>
-        <tr><td class="num">S9</td><td>Prominent front-page &amp; banner NO HALLUCINATIONS summary</td><td><code>index.html</code>, <code>docs/index.html</code>, <code>index-090bae73.html</code>, all subpages</td><td><span class="badge ok">PASS</span></td></tr>
+        <tr><td class="num">S8</td><td>Local link &amp; asset resolution across all HTML pages</td><td>Root dashboard, <code>site/*.html</code>, <code>report/*.html</code>, <code>docs/*.html</code>, <code>verified/**</code>, <code>pages/*.html</code></td><td><span class="badge ok">PASS</span></td></tr>
+        <tr><td class="num">S9</td><td>Prominent front-page &amp; banner NO HALLUCINATIONS summary</td><td><code>index.html</code>, <code>docs/index.html</code>, <code>verified/index.html</code>, <code>report/index.html</code>, <code>index-090bae73.html</code></td><td><span class="badge ok">PASS</span></td></tr>
         <tr><td class="num">S10</td><td>Prose-to-dataset listing count consistency check</td><td>Prevents stale hardcoded counts contradicting <code>D.entries.length</code></td><td><span class="badge ok">PASS</span></td></tr>
-        <tr><td class="num">S11</td><td>HTML <code>&lt;table&gt;</code> tag balance &amp; no external scripts / <code>eval()</code></td><td>All HTML and JS files in repository</td><td><span class="badge ok">PASS</span></td></tr>
+        <tr><td class="num">S11</td><td>HTML <code>&lt;table&gt;</code> tag balance &amp; no external scripts / dynamic code execution</td><td>All HTML and JS files in repository</td><td><span class="badge ok">PASS</span></td></tr>
         <tr><td class="num">S12</td><td>Negative self-test (4 synthetic hallucinations injected &amp; caught)</td><td>Unsourced row, unflagged blank weight, unflagged sub-melt price, untrusted URL</td><td><span class="badge ok">PASS (4/4 caught)</span></td></tr>
       </tbody>
     </table>
   </div>
-</main>
+</div></main>
+<footer class="site"><div class="wrap">
+  <div><b>GOLD5</b> — an independent research project. Not a shop. No affiliate links. No price is estimated, averaged or invented.<div class="fine">Listings and policies change after the check date. Confirm everything at the seller before paying.</div></div>
+  <div><b>At a glance</b><br>25 consolidated listings (38 across all sessions) · 13+ sellers · 25 open flags · 10 official references<br>Spot used: $4,026.90/oz, $129.47/g (Kitco, 2026-10-22 7:26 p.m. ET)</div>
+  <div><b>Verify</b><br><a href="../site/verification.html">Method &amp; pass log</a><br><a href="../site/flagged.html">Flagged for Review</a><br><a href="../site/sources.html">All sources</a><br><a href="../site/calculator.html">Gold calculator</a></div>
+</div></footer>
 <script src="assets/data.js"></script>
-<script src="assets/app.js"></script>
-<script>
-(function () {
-  const G = window.GOLD5, D = G.D;
-  G.chrome("master-audit");
-
-  const TROY = 31.1034768;
-  const DWT = 1.55517384;
-  const spotG = D.spot.primary.usdPerGram;
-
-  const isExplicitSolid = (e) => /solid/i.test(e.solidGold || "") || /solid/i.test(e.name || "");
-  const withGrams = D.entries.filter(e => e.grams != null);
-  const explicitSolid = D.entries.filter(isExplicitSolid);
-
-  document.getElementById("audit-stats").innerHTML = `
-    <div class="card gold"><div class="k">Total Verified Entries</div><div class="v">${D.entries.length}</div><div class="d">Across ${D.sellers.length} seller profiles · all checked 2026-10-22</div></div>
-    <div class="card"><div class="k">Published Gram Weight</div><div class="v">${withGrams.length} / ${D.entries.length}</div><div class="d">${D.entries.length - withGrams.length} blank &amp; flagged (never inferred)</div></div>
-    <div class="card"><div class="k">Explicit "Solid Gold" Claim</div><div class="v">${explicitSolid.length} / ${D.entries.length}</div><div class="d">${D.entries.length - explicitSolid.length} state karat only (confirm solid before buying)</div></div>
-    <div class="card"><div class="k">Hallmark + Maker Photo on PDP</div><div class="v">0 / ${D.entries.length}</div><div class="d">1 buyer photo alt-text ("585 AFJ"); verify via XRF on arrival</div></div>
-    <div class="card"><div class="k">Verification Suites</div><div class="v">3 / 3 PASS</div><div class="d"><code>verify.py</code> · <code>check_hallucinations.py</code> · <code>audit_b1f2fe3b.py</code></div></div>
-  `;
-
-  // Populate XRF calculator dropdown
-  const xLoad = document.getElementById("x-load");
-  withGrams.forEach(e => {
-    const opt = document.createElement("option");
-    opt.value = e.id;
-    opt.textContent = `${e.name} — ${e.grams} g, ${e.karat}K (${e.price != null ? G.money(e.price) : "no price"})`;
-    xLoad.appendChild(opt);
-  });
-
-  function runXrfCalc() {
-    const rawW = parseFloat(document.getElementById("x-weight").value) || 0;
-    const unit = document.getElementById("x-unit").value;
-    const grossG = unit === "dwt" ? rawW * DWT : rawW;
-    const grossDwt = grossG / DWT;
-    const carats = parseFloat(document.getElementById("x-carats").value) || 0;
-    const stoneG = carats * 0.20;
-    const netGoldAlloyG = Math.max(0, grossG - stoneG);
-    const karat = parseInt(document.getElementById("x-karat").value, 10) || 14;
-    const fin = G.finenessOf(karat);
-    const sg = parseFloat(document.getElementById("x-spot").value) || 0;
-    const price = parseFloat(document.getElementById("x-price").value);
-    const xrfVal = parseFloat(document.getElementById("x-xrf").value);
-
-    const pureG = netGoldAlloyG * fin;
-    const pureOz = pureG / TROY;
-    const meltVal = pureG * sg;
-    const ratio = (price > 0 && meltVal > 0) ? (price / meltVal) : null;
-
-    const nomPpt = (karat / 24) * 1000;
-    const minNoSolderPpt = nomPpt - 3.0;
-    const minSolderPpt = nomPpt - 7.0;
-
-    let xrfVerdict = `<div class="verdict okay"><b>15 U.S.C. § 295 Assay Standard (${karat}K = ${nomPpt.toFixed(1)}‰ / ${(nomPpt / 10).toFixed(2)}% Au):</b><br>Minimum legal fineness: <b>${(minNoSolderPpt / 10).toFixed(2)}% (${minNoSolderPpt.toFixed(1)}‰)</b> without solder · <b>${(minSolderPpt / 10).toFixed(2)}% (${minSolderPpt.toFixed(1)}‰)</b> whole ring with solder. Enter an XRF reading above to test compliance.</div>`;
-    if (!isNaN(xrfVal) && xrfVal > 0) {
-      const xrfPpt = xrfVal * 10;
-      if (xrfPpt >= minNoSolderPpt) {
-        xrfVerdict = `<div class="verdict good"><b>XRF PASS (${xrfVal.toFixed(2)}% / ${xrfPpt.toFixed(1)}‰):</b> Meets ${karat}K solder-free federal standard (≥ ${(minNoSolderPpt / 10).toFixed(2)}% under 15 U.S.C. § 295).</div>`;
-      } else if (xrfPpt >= minSolderPpt) {
-        xrfVerdict = `<div class="verdict okay"><b>XRF BORDERLINE (${xrfVal.toFixed(2)}% / ${xrfPpt.toFixed(1)}‰):</b> Below solder-free tolerance (${(minNoSolderPpt / 10).toFixed(2)}%) but within whole-item soldered tolerance (≥ ${(minSolderPpt / 10).toFixed(2)}%). Re-test away from solder joints.</div>`;
-      } else {
-        xrfVerdict = `<div class="verdict risk"><b>XRF FAIL (${xrfVal.toFixed(2)}% / ${xrfPpt.toFixed(1)}‰):</b> Below federal minimum fineness for ${karat}K (${(minSolderPpt / 10).toFixed(2)}% with solder under 15 U.S.C. § 295). Return immediately and dispute via credit card if refused.</div>`;
-      }
-    }
-
-    let meltVerdict = "";
-    if (ratio != null) {
-      if (ratio < 1.0) {
-        meltVerdict = `<div class="verdict risk" style="margin-top:8px"><b>PRICE RED FLAG (${ratio.toFixed(2)}× melt):</b> Asking price ${G.money(price)} is BELOW the raw gold melt value ${G.money(meltVal)}. Legitimate jewelers never sell solid gold below melt.</div>`;
-      } else if (ratio < 1.6) {
-        meltVerdict = `<div class="verdict okay" style="margin-top:8px"><b>Thin markup (${ratio.toFixed(2)}× melt):</b> Asking price ${G.money(price)} is close to raw gold value ${G.money(meltVal)}. Verify purity via independent XRF immediately upon arrival.</div>`;
-      } else {
-        meltVerdict = `<div class="verdict good" style="margin-top:8px"><b>Plausible retail ratio (${ratio.toFixed(2)}× melt):</b> Asking price ${G.money(price)} vs. ${G.money(meltVal)} raw gold value leaves ${G.money(price - meltVal)} for gemstones, casting, labor, and retail margin.</div>`;
-      }
-    }
-
-    document.getElementById("x-out").innerHTML = `
-      <div class="row"><span>Gross scale weight</span><b>${grossG.toFixed(2)} g (${grossDwt.toFixed(2)} dwt)</b></div>
-      <div class="row"><span>Stone weight deduction (${carats.toFixed(2)} ct × 0.20 g)</span><b>−${stoneG.toFixed(3)} g</b></div>
-      <div class="row"><span>Net ${karat}K gold alloy weight</span><b class="big">${netGoldAlloyG.toFixed(2)} g</b></div>
-      <div class="row"><span>Pure 24K gold content (${(fin * 100).toFixed(2)}%)</span><b class="big">${pureG.toFixed(3)} g (${pureOz.toFixed(4)} oz t)</b></div>
-      <div class="row"><span>Raw gold melt value @ ${G.money(sg)}/g</span><b class="big">${G.money(meltVal)}</b></div>
-      <div class="row"><span>Asking price ÷ melt value</span><b>${ratio != null ? ratio.toFixed(2) + "×" : "—"}</b></div>
-      ${meltVerdict}
-      ${xrfVerdict}
-    `;
-  }
-
-  document.getElementById("x-spot-preset").addEventListener("change", (ev) => {
-    document.getElementById("x-spot").value = ev.target.value;
-    runXrfCalc();
-  });
-  xLoad.addEventListener("change", (ev) => {
-    const e = D.entries.find(x => x.id === ev.target.value);
-    if (!e) return;
-    document.getElementById("x-unit").value = "g";
-    document.getElementById("x-weight").value = e.grams;
-    document.getElementById("x-karat").value = e.karat;
-    document.getElementById("x-price").value = e.price != null ? e.price : "";
-    document.getElementById("x-carats").value = e.stoneCarats || 0;
-    runXrfCalc();
-  });
-  document.getElementById("xrf-calc").addEventListener("input", runXrfCalc);
-  document.getElementById("xrf-calc").addEventListener("change", runXrfCalc);
-  runXrfCalc();
-
-  // Weighted analysis table
-  document.getElementById("weighted-analysis").innerHTML = `<div class="table-scroll"><table>
-    <thead><tr>
-      <th>ID</th><th>Listing</th><th>Seller</th><th>Karat</th><th>Published Weight</th>
-      <th>Weight in dwt</th><th>Pure 24K Gold</th><th>Melt Value ($129.41/g)</th>
-      <th>Verified Price</th><th>Price ÷ Melt</th><th>Assessment</th><th>Official Source</th>
-    </tr></thead>
-    <tbody>
-    ${withGrams.map(e => {
-      const fin = G.finenessOf(e.karat);
-      const pureG = e.grams * fin;
-      const dwt = e.grams / DWT;
-      const melt = pureG * spotG;
-      const ratio = e.price != null ? (e.price / melt) : null;
-      const badge = ratio == null ? `<span class="badge warn">no price on page</span>`
-        : ratio < 1 ? `<span class="badge bad">${ratio.toFixed(2)}× BELOW MELT (RED FLAG)</span>`
-        : `<span class="badge ok">${ratio.toFixed(2)}× melt (+${G.money(e.price - melt)})</span>`;
-      return `<tr>
-        <td class="num">${G.esc(e.id)}</td>
-        <td><b>${G.esc(e.name)}</b></td>
-        <td>${G.esc((D.sellers.find(s => s.id === e.sellerId) || {name: e.sellerId}).name)}</td>
-        <td class="num">${e.karat}K</td>
-        <td class="num"><b>${e.grams.toFixed(2)} g</b><div class="src" style="font-size:11px;color:var(--muted)">${G.esc(e.gramsNote || "")}</div></td>
-        <td class="num">${dwt.toFixed(2)} dwt</td>
-        <td class="num">${pureG.toFixed(3)} g</td>
-        <td class="num"><b>${G.money(melt)}</b></td>
-        <td class="num">${e.price != null ? G.money(e.price) : '<span class="blank">— (call seller)</span>'}</td>
-        <td>${badge}</td>
-        <td style="max-width:220px">${G.esc(e.priceLabel || "")}</td>
-        <td><a class="src" href="${G.esc(e.url)}" target="_blank" rel="noopener">listing ↗</a></td>
-      </tr>`;
-    }).join("")}
-    </tbody></table></div>`;
-
-  // Populate seller filter
-  const fSeller = document.getElementById("f-seller");
-  const usedSellers = [...new Set(D.entries.map(e => e.sellerId))];
-  usedSellers.forEach(sid => {
-    const s = D.sellers.find(x => x.id === sid) || { name: sid };
-    const opt = document.createElement("option");
-    opt.value = sid;
-    opt.textContent = s.name;
-    fSeller.appendChild(opt);
-  });
-
-  function renderMaster() {
-    const sVal = fSeller.value;
-    const kVal = document.getElementById("f-karat").value;
-    const gVal = document.getElementById("f-grams").value;
-    const solVal = document.getElementById("f-solid").value;
-
-    const filtered = D.entries.filter(e => {
-      if (sVal && e.sellerId !== sVal) return false;
-      if (kVal && String(e.karat) !== kVal) return false;
-      if (gVal === "yes" && e.grams == null) return false;
-      if (gVal === "no" && e.grams != null) return false;
-      if (solVal === "yes" && !isExplicitSolid(e)) return false;
-      if (solVal === "no" && isExplicitSolid(e)) return false;
-      return true;
-    });
-    document.getElementById("master-count").textContent = `${filtered.length} of ${D.entries.length} entries shown`;
-    document.getElementById("master-table").innerHTML = G.listingsTable(filtered);
-  }
-
-  ["f-seller", "f-karat", "f-grams", "f-solid"].forEach(id => {
-    document.getElementById(id).addEventListener("change", renderMaster);
-  });
-  renderMaster();
-})();
-</script>
+<script src="assets/catalog-b1f2fe3b.js"></script>
+<script src="assets/master-audit-b1f2fe3b.js"></script>
 </body>
 </html>

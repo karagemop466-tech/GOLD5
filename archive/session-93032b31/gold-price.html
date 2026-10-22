@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold price — GOLD5</title>
+<meta name="description" content="Solid gold engagement ring research: every price, weight and karat verified against the official listing, with source links. No hallucinations.">
+<link rel="stylesheet" href="site/assets/dashboard.css">
+</head>
+<body>
+<div class="banner"><div class="wrap"><b>⚠ NO HALLUCINATIONS</b> — every value on this site was read from the linked official source on the check date
+(2026-10-22). A value we could not confirm is <b>blank</b> and published on <a href="flagged.html">Flagged for review</a> — never guessed.
+Re-run the security check after every review: <code>python3 scripts/verify.py</code></div></div>
+<header class="site"><div class="wrap"><h1>GOLD5<span> · </span>Gold Ring Research</h1>
+<span class="sub">Solid gold engagement rings — collected, verified line by line, priced against the gold market</span></div></header>
+<nav class="main"><div class="wrap"><a href="index.html" class="">Dashboard</a><a href="listings.html" class="">All listings</a><a href="sellers.html" class="">Sellers</a><a href="gold-price.html" class="active">Gold price</a><a href="calculator.html" class="">Calculator</a><a href="checklist.html" class="">Checklist</a><a href="analysis.html" class="">Analysis</a><a href="verification.html" class="">Verification</a><a href="flagged.html" class="">Flagged for review</a><a href="sources.html" class="">Sources</a><a href="archive.html" class="">Archive</a></div></nav>
+<main><div class="wrap">
+
+<h2>Gold price — the dated snapshot this site prices against</h2>
+<p class="note">Spot is not a fixed number. Every quote here has its timestamp and its source, and the primary quote drives
+every calculation. The pass-2 read happened on 2026-10-22 (evening UTC).</p>
+<h3>Primary and cross-checks</h3>
+<div class="table-scroll"><table><thead><tr><th>Source</th><th>USD / oz</th><th>USD / g</th><th>As of</th><th>What the page said</th><th>Link</th></tr></thead><tbody><tr><td><b>Kitco Metals Inc. — Live Gold Price (direct page fetch)</b> <span class="badge ok">primary</span></td>
+<td class="num">$4,026.90</td><td class="num">$129.47</td>
+<td class="num">2026-10-22 19:26 NY Time (page footnote: 7:26 p.m. EDT)</td><td class="small">Live panel: Bid 4,026.90 / gram 129.47. The same page&#x27;s summary line reads &#x27;$4,027.50 per troy ounce as of October 22, 2026, 7:26 p.m. ET&#x27; — a 0.60 USD internal difference on the same page (flagged F7).<div class="src"><span class="badge ok">re-verified</span></div></td>
+<td><a class="src" href="https://www.kitco.com/charts/gold" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>CNBC Select — gold price today</b> </td>
+<td class="num">$4,083.82</td><td class="num"><span class="blank">—</span></td>
+<td class="num">2026-10-22 9:00 a.m. ET</td><td class="small">&#x27;$4,083.82 per ounce&#x27; as of 9:00 a.m. ET.<div class="src"><span class="badge warn">prior capture</span></div></td>
+<td><a class="src" href="https://www.cnbc.com/select/the-price-of-gold-today-oct-22-2026/" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>APMEX — gold price</b> </td>
+<td class="num">$4,077.60</td><td class="num">$131.10</td>
+<td class="num">2026-10-22 11:02 a.m. ET</td><td class="small">&#x27;Gold Spot Price $4,077.60 ... Per Gram $131.10&#x27;, last updated 10/22/2026 11:02:00 AM ET.<div class="src"><span class="badge warn">prior capture</span></div></td>
+<td><a class="src" href="https://www.apmex.com/gold-price" target="_blank" rel="noopener">source ↗</a></td></tr><tr><td><b>Kitco News — AM report</b> </td>
+<td class="num">$4,086.90</td><td class="num"><span class="blank">—</span></td>
+<td class="num">2026-10-22 morning</td><td class="small">&#x27;spot gold was near $4,086.90 an ounce&#x27;.<div class="src"><span class="badge warn">prior capture</span></div></td>
+<td><a class="src" href="https://www.kitco.com/news/article/2026-10-22/gold-silver-pressured-despite-lower-yields-hormuz-attacks-send-crude-higher" target="_blank" rel="noopener">source ↗</a></td></tr></tbody></table></div>
+<h3>Gold value by purity (Kitco table, same page, same read)</h3>
+<div class="table-scroll"><table><thead><tr><th>Fineness</th><th>Gold content</th><th>Value / troy oz</th><th>Value / gram (derived)</th><th>Typical stamp</th></tr></thead>
+<tbody><tr><td><b>24K</b></td><td class="num">99.99%</td>
+<td class="num">$4,026.90</td><td class="num">$129.47</td><td class="num">999</td></tr><tr><td><b>22K</b></td><td class="num">91.67%</td>
+<td class="num">$3,691.46</td><td class="num">$118.68</td><td class="num">916 / 917</td></tr><tr><td><b>18K</b></td><td class="num">75.00%</td>
+<td class="num">$3,020.18</td><td class="num">$97.10</td><td class="num">750</td></tr><tr><td><b>14K</b></td><td class="num">58.33%</td>
+<td class="num">$2,348.89</td><td class="num">$75.52</td><td class="num">585</td></tr><tr><td><b>10K</b></td><td class="num">41.67%</td>
+<td class="num">$1,678.01</td><td class="num">$53.95</td><td class="num">417</td></tr></tbody></table></div>
+<p class="note">Per-ounce values and fineness % are read from the source table; the per-gram column is derived (÷ 31.1034768 g/oz).
+Sanity check: $4,026.90 ÷ 31.1034768 = $129.47 ≈ the published per-gram bid
+$129.47.</p>
+
+<h2>How the price-vs-gold test works</h2>
+<div class="card">
+<p class="small">1. Get the ring's weight in <b>grams</b> (ask the seller — a legitimate seller can provide it).<br>
+2. Pure gold grams = weight × karat ÷ 24 (14K → ×0.5833, 18K → ×0.75).<br>
+3. Raw metal value = pure gold grams × spot $/g, re-checked the day you buy.<br>
+4. Compare: <b>below</b> metal value is a fraud signal (nobody sells solid gold below melt). A ring priced at a small
+multiple of melt can still be legitimate if the workmanship and stones justify it — but the lower the multiple, the harder
+you should look at the seller.</p>
+</div>
+
+<h2>Two rules of thumb that are worth more than any single quote</h2>
+<div class="two">
+<div class="card"><h3 style="margin-top:0">A price below melt is not a bargain</h3>
+<p class="small">Gold is a commodity with a public price. If a seller offers solid 14K gold for less than its scrap value,
+either the gold is not what it claims to be, or the “solid gold” description is wrong. Case study <a href="flagged.html#F1">F1</a>
+in this dataset priced at 0.84× melt.</p></div>
+<div class="card"><h3 style="margin-top:0">You are buying metal plus work, not a number on a stamp</h3>
+<p class="small">Setting-only prices (Blue Nile, Brilliant Earth, Allurez) exclude the center stone, so their metal ratios look
+low. Complete-ring prices (Avianne, Jewelry Master, Etsy) include stones, so they look high. Compare like with like —
+<a href="flagged.html#F10">F10</a>.</p></div>
+</div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+<span>GOLD5 · data verified 2026-10-22 · Arena agent sessions 37e8ff42 (pass 1) and 93032b31 (pass 2, live re-verification)</span>
+<span>Security check: <code>python3 scripts/verify.py</code> · <a href="verification.html">verification log</a> · <a href="flagged.html">flagged items</a></span>
+</div></footer>
+</body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analysis — GOLD5</title>
+<meta name="description" content="Solid gold engagement ring research: every price, weight and karat verified against the official listing, with source links. No hallucinations.">
+<link rel="stylesheet" href="site/assets/dashboard.css">
+</head>
+<body>
+<div class="banner"><div class="wrap"><b>⚠ NO HALLUCINATIONS</b> — every value on this site was read from the linked official source on the check date
+(2026-10-22). A value we could not confirm is <b>blank</b> and published on <a href="flagged.html">Flagged for review</a> — never guessed.
+Re-run the security check after every review: <code>python3 scripts/verify.py</code></div></div>
+<header class="site"><div class="wrap"><h1>GOLD5<span> · </span>Gold Ring Research</h1>
+<span class="sub">Solid gold engagement rings — collected, verified line by line, priced against the gold market</span></div></header>
+<nav class="main"><div class="wrap"><a href="index.html" class="">Dashboard</a><a href="listings.html" class="">All listings</a><a href="sellers.html" class="">Sellers</a><a href="gold-price.html" class="">Gold price</a><a href="calculator.html" class="">Calculator</a><a href="checklist.html" class="">Checklist</a><a href="analysis.html" class="active">Analysis</a><a href="verification.html" class="">Verification</a><a href="flagged.html" class="">Flagged for review</a><a href="sources.html" class="">Sources</a><a href="archive.html" class="">Archive</a></div></nav>
+<main><div class="wrap">
+
+<h2>Analysis — what the data actually says</h2>
+<p class="note">This page contains only conclusions that follow from the table. Where a number is derived, the formula is
+shown; where a fact is missing, it is named as missing.</p>
+
+<div class="cards">
+<div class="card"><div class="k">Rows with weight + price</div><div class="v">7 / 24</div><div class="d">Only these can be priced against gold at all</div></div>
+<div class="card"><div class="k">Setting-only rows</div><div class="v">14</div><div class="d">Center stone sold separately — not comparable to complete rings</div></div>
+<div class="card"><div class="k">Complete-ring rows</div><div class="v">4</div><div class="d">Stone(s) included in the price</div></div>
+<div class="card"><div class="k">Below-melt rows</div><div class="v">1</div><div class="d">One case study — see F1</div></div>
+</div>
+
+<h2>Finding 1 — the hallmark gap is universal, not occasional</h2>
+<p>Across 24 listings from 14 sellers, <b>not one</b> shows a photograph or description of a hallmark
+<i>together with</i> a maker's mark. Sellers publish stock numbers and style numbers; those are inventory references, not
+hallmarks. The FTC's guidance is explicit that a karat mark must be accompanied by the maker's name or trademark, and that
+without the trademark you should not buy. This is the strongest argument for treating every online gold purchase as
+<b>unverified until an independent jeweler tests it</b>.</p>
+
+<h2>Finding 2 — weight is withheld by exactly the sellers who could publish it</h2>
+<p>The three big retailers (Blue Nile, Brilliant Earth) publish no gram weight on any of the 11
+rows checked, while smaller sellers (Allurez, Avianne, Jewelry Master, Solid Gold Jewelers, VeraByEden) do publish one.
+Without a weight you cannot run the price-vs-gold test before buying — you can only ask. That is a concrete, answerable
+question to put to the seller in writing, and a refusal is itself information.</p>
+
+<h2>Finding 3 — the one below-melt listing is a case study in why the test exists</h2>
+<p>The 7 g “14K solid” band in the case study was priced at $444.80. At the verified spot its gold content is
+7.0 × 0.5833 = 4.083 g, worth $528.64. That is 0.84× melt — below the value of the metal alone.
+No jeweler sells solid gold below melt; the plausible explanations are that the gold is not what it claims, or the
+description is wrong. The listing is now unavailable, which removes the chance to test that hypothesis — another reason to
+keep documentation.</p>
+
+<h2>Finding 4 — “setting only” quietly breaks price comparisons</h2>
+<p>14 of 24 rows are setting prices with the center diamond excluded. A $870 setting plus a 1 ct diamond
+is a very different purchase from a $969 complete ring. Any comparison that ignores the basis is wrong. The table therefore
+carries a <b>Price basis</b> label on every row and a flag (F10) explaining it.</p>
+
+<h2>Finding 5 — return windows are shorter than buyers assume</h2>
+<p>Blue Nile's 30 days excludes resized and engraved items. On Etsy the windows we read were 7, 14, 21 and 30 days depending on
+the shop. If your plan is “buy, inspect with a jeweler, return if wrong”, the window must outlast the shipping time plus the
+jeweler's appointment. VeraByEden's 7 days is tight for an international shipment; RAKSHAKJEWELS ships from India with a
+14-day window.</p>
+
+<h2>Price-vs-gold, all rows that can be computed</h2>
+<div class="table-scroll"><table><thead><tr><th>Listing</th><th>Basis</th><th>Weight</th><th>Karat</th><th>Pure gold</th><th>Metal value</th><th>Price</th><th>Price ÷ metal</th></tr></thead><tbody>
+<tr><td><a href="https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">Filigree Designed Solitaire Engagement Ring Setting (U5882)</a></td><td class="num">5.0 g</td><td class="num">2.917 g</td><td class="num">$377.60</td><td class="num">$1,085.00</td><td class="num">2.87×</td><td>plausible</td></tr><tr><td><a href="https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">Antique Engraved Solitaire Engagement Ring Setting (U170)</a></td><td class="num">4.8 g</td><td class="num">2.800 g</td><td class="num">$362.50</td><td class="num">$933.00</td><td class="num">2.57×</td><td>plausible</td></tr><tr><td><a href="https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold" target="_blank" rel="noopener">Engraved Floral Solitaire Engagement Ring Setting (NG4426)</a></td><td class="num">3.58 g</td><td class="num">2.088 g</td><td class="num">$270.36</td><td class="num">$585.00</td><td class="num">2.16×</td><td>plausible</td></tr><tr><td><a href="https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw" target="_blank" rel="noopener">14K Solid Yellow Gold Diamond Solitaire Engagement Ring, 0.41 Ctw (R25893)</a></td><td class="num">2.3 g</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$1,100.00</td><td class="num">6.33×</td><td>plausible</td></tr><tr><td><a href="https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html" target="_blank" rel="noopener">Brilliant Round Diamond Solitaire Engagement Ring, 0.71 ctw (Style 149700)</a></td><td class="num">2.3 g</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$3,020.00</td><td class="num">17.39×</td><td>plausible</td></tr><tr><td><a href="https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/" target="_blank" rel="noopener">Yellow Gold Solitaire Engagement Ring (SKU B02561, brand M Michael)</a></td><td class="num">4.7 g</td><td class="num">2.741 g</td><td class="num">$354.94</td><td class="num"><span class="blank">—</span></td><td class="num"><span class="blank">—</span></td><td>plausible</td></tr><tr><td><a href="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant" target="_blank" rel="noopener">14K Solid Gold Ruby + 0.30 ct Diamond Halo Ring</a></td><td class="num">3.7 g</td><td class="num">2.158 g</td><td class="num">$279.42</td><td class="num">$969.00</td><td class="num">3.47×</td><td>plausible</td></tr><tr><td><a href="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g" target="_blank" rel="noopener">14K Solid White Gold 7 g Band, Size 11 — CASE STUDY (no longer available)</a></td><td class="num">7.0 g</td><td class="num">4.083 g</td><td class="num">$528.64</td><td class="num">$444.80</td><td class="num">0.84×</td><td><b style='color:#a3181d'>below melt — red flag</b></td></tr>
+</tbody></table></div>
+<p class="note">Metal value uses the pass-2 spot of $129.47/g and the Kitco fineness table. A low ratio is not proof of fraud
+and a high ratio is not proof of quality — the ratio tells you how much of the price is explained by the metal. Stones, labour
+and brand explain the rest.</p>
+
+<h2>What would change the conclusion</h2>
+<ul class="tight small">
+<li>A listing publishing <b>weight + an XRF report + a hallmark photo with maker's mark</b> would move that row from “verify on arrival” to “pre-verified”. None exists in this dataset.</li>
+<li>A seller publishing a <b>written return policy that survives resizing</b> would remove the biggest practical risk in the checklist.</li>
+<li>Independent reputation data for the Etsy shops (beyond Etsy's own ratings) would let us rank them. None was verifiable from an independent source, so none is claimed.</li>
+</ul>
+
+<h2>Bottom line</h2>
+<div class="hero" style="border-left-color:var(--ok)">
+<h2>How to use this list</h2>
+<p>Use it as a <b>shortlist of real, currently-listed rings with traceable prices</b> — not as a guarantee. Pick rows where the
+seller answers the weight and hallmark questions in writing, pay by credit card, keep the 30-day window intact, and have the
+ring weighed and XRF-tested before you wear it. If a row has no weight and the seller won't provide one, walk away.</p>
+</div>
+
+</div></main>
+<footer class="site"><div class="wrap">
+<span>GOLD5 · data verified 2026-10-22 · Arena agent sessions 37e8ff42 (pass 1) and 93032b31 (pass 2, live re-verification)</span>
+<span>Security check: <code>python3 scripts/verify.py</code> · <a href="verification.html">verification log</a> · <a href="flagged.html">flagged items</a></span>
+</div></footer>
+</body></html>

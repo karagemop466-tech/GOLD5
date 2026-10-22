@@ -1,0 +1,85 @@
+{
+ "ok": true,
+ "passed": 15,
+ "fail": 0,
+ "warn": 0,
+ "ranAt": "2026-10-22 23:53 UTC",
+ "reportPath": "data/check_report_v2.json",
+ "checks": [
+  {
+   "id": "C1",
+   "ok": true,
+   "detail": "25 entries, 13 sellers, 25 flags, 10 references"
+  },
+  {
+   "id": "C2",
+   "ok": true,
+   "detail": "25 listings have an https official-source URL and a 2026-10-22 check date"
+  },
+  {
+   "id": "C3",
+   "ok": true,
+   "detail": "every blank is covered by a flag"
+  },
+  {
+   "id": "C4",
+   "ok": true,
+   "detail": "spot, purity and 25 rows of derived values recompute"
+  },
+  {
+   "id": "C5",
+   "ok": true,
+   "detail": "25 listing rows, each with its official source link"
+  },
+  {
+   "id": "C6",
+   "ok": true,
+   "detail": "all internal links and anchors resolve across 11 pages"
+  },
+  {
+   "id": "C7",
+   "ok": true,
+   "detail": "every external link (65 registered URLs) is recorded in the dataset"
+  },
+  {
+   "id": "C8",
+   "ok": true,
+   "detail": "every dollar figure on the site is dataset-sourced or computed (224 allowed values)"
+  },
+  {
+   "id": "C9",
+   "ok": true,
+   "detail": "every published price, weight and source URL is rendered in its row"
+  },
+  {
+   "id": "C10",
+   "ok": true,
+   "detail": "no placeholders or template leftovers"
+  },
+  {
+   "id": "C11",
+   "ok": true,
+   "detail": "site/assets/data.js matches data.json"
+  },
+  {
+   "id": "C12",
+   "ok": true,
+   "detail": "spot, prior spot and three raw-gold cells recompute on the gold-price page"
+  },
+  {
+   "id": "C13",
+   "ok": true,
+   "detail": "11 pages parse as well-formed HTML"
+  },
+  {
+   "id": "C14",
+   "ok": true,
+   "detail": "the NO HALLUCINATIONS rule is on every page"
+  },
+  {
+   "id": "C15",
+   "ok": true,
+   "detail": "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener"
+  }
+ ]
+}
