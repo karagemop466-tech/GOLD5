@@ -1,0 +1,647 @@
+{
+  "entries": [
+    {
+      "id": "BN-192506",
+      "seller_id": "bluenile",
+      "seller": "Blue Nile",
+      "title": "Petite Hidden Halo Solitaire Plus Diamond Engagement Ring in 14k Yellow Gold",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "halo-pave-setting",
+      "tags": [
+        "14k",
+        "setting-only",
+        "hidden-halo",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "14K Yellow Gold",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "26 natural diamonds, 1/10 ct. tw. (counts shown for a 1 ct. center stone)",
+      "price_usd": 1255.0,
+      "price_basis": "Setting price — center diamond sold separately",
+      "stock_number": "502250y14",
+      "width_mm": 1.6,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$1,255(Setting Price)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 14K Yellow Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Stock Number 502250y14"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width 1.60mm"
+        },
+        {
+          "field": "stone",
+          "quote": "Natural Diamond Information Shape Round Quantity 26 Total Carat 1/10"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "Blue Nile states a limited lifetime warranty only on gold/platinum items with a purchase price of $1,000 or more; this setting is above that threshold."
+    },
+    {
+      "id": "BN-195326",
+      "seller_id": "bluenile",
+      "seller": "Blue Nile",
+      "title": "Riviera Pavé Diamond Engagement Ring in 14k White Gold (1/6 ct. tw.)",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "halo-pave-setting",
+      "tags": [
+        "14k",
+        "setting-only",
+        "pave",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "14K White Gold",
+      "karat": 14,
+      "gold_color": "White",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "18 natural diamonds, 1/6 ct. tw. (counts shown for a 1 ct. center stone)",
+      "price_usd": 1500.0,
+      "price_basis": "Setting price — center diamond sold separately",
+      "stock_number": "501590w14",
+      "width_mm": 2.0,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$1,500(Setting Price)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 14K White Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Stock Number 501590w14"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width 2.00mm"
+        },
+        {
+          "field": "stone",
+          "quote": "Natural Diamond Information Shape Round Quantity 18 Total Carat 1/6"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "White gold listing states 'Rhodium Finish: Yes'. Rhodium is a plating over the gold, not a substitute for solid gold; ask the seller to confirm the base metal in writing."
+    },
+    {
+      "id": "BN-311132",
+      "seller_id": "bluenile",
+      "seller": "Blue Nile",
+      "title": "Criss Cross Solitaire Engagement Ring in 18K Yellow Gold by James Allen",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "18k-gold",
+      "tags": [
+        "18k",
+        "setting-only",
+        "solitaire",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "18K Yellow Gold",
+      "karat": 18,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None included — center stone required",
+      "price_usd": 2320.0,
+      "price_basis": "Setting price — center diamond sold separately",
+      "stock_number": "505032y",
+      "width_mm": null,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$2,320(Setting Price)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 18K Yellow Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Stock Number 505032y"
+        }
+      ],
+      "flags": [
+        "F-001",
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "James Allen now redirects to Blue Nile (F-001). Page states 'Width 8.45mm' without a unit in the captured text apart from the label; recorded as 8.45 because the label reads 'Width' and the value is '8.45mm' on the page."
+    },
+    {
+      "id": "BN-316048",
+      "seller_id": "bluenile",
+      "seller": "Blue Nile",
+      "title": "Knife Edge Solitaire Engagement Ring in 14K White Gold by James Allen",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "solitaire-setting",
+      "tags": [
+        "14k",
+        "setting-only",
+        "solitaire",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "14K White Gold",
+      "karat": 14,
+      "gold_color": "White",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None included — center stone required",
+      "price_usd": 925.0,
+      "price_basis": "Setting price — center diamond sold separately",
+      "stock_number": "505060w14",
+      "width_mm": 2.0,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$925(Setting Price)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 14K White Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Stock Number 505060w14"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width 2.00mm"
+        }
+      ],
+      "flags": [
+        "F-001",
+        "F-002",
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "Below Blue Nile's stated $1,000 warranty threshold. A search-index snapshot showed $700 for this item while the live page showed $925 (F-002) — always re-check the price on the live page."
+    },
+    {
+      "id": "BE-BE1574-14KY",
+      "seller_id": "brilliantearth",
+      "seller": "Brilliant Earth",
+      "title": "Fleur Solitaire Ring in 14K Yellow Gold",
+      "url": "https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "solitaire-setting",
+      "tags": [
+        "14k",
+        "setting-only",
+        "solitaire",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "14K Yellow Gold",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None included — center diamond required",
+      "price_usd": 1350.0,
+      "price_basis": "Setting only — center diamond sold separately",
+      "stock_number": "BE1574-14KY",
+      "width_mm": 1.8,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$1,350(Setting Only)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal: 14K Yellow Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "BE1574-14KY"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width: 1.8 mm"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "Page advertises 'Free Shipping & Returns', 'Free Lifetime Warranty' and 'Free 1-Year Resizing'. The 18K Yellow Gold variant exists on the same page (link only) but its price was not captured, so no 18K row is claimed."
+    },
+    {
+      "id": "RS-210193",
+      "seller_id": "ross-simons",
+      "seller": "Ross-Simons",
+      "title": "14kt Yellow Gold Four-Prong Engagement Ring Setting",
+      "url": "https://www.ross-simons.com/products/210193",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "solitaire-setting",
+      "tags": [
+        "14k",
+        "setting-only",
+        "solitaire",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "14kt Yellow Gold",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None included — center stone and setting sold separately",
+      "price_usd": 1050.0,
+      "price_basis": "Setting only — center stone sold separately",
+      "stock_number": "210193",
+      "width_mm": null,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$1,050"
+        },
+        {
+          "field": "karat",
+          "quote": "14kt Yellow Gold Four-Prong Engagement Ring Setting"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Item 210193"
+        }
+      ],
+      "flags": [
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006",
+        "F-013"
+      ],
+      "notes": "Ross-Simons search results show a 'Gold Weight' field for many rings, but the live product HTML captured here did not expose a gram weight; it is therefore left blank rather than copied from a search snippet. Sizes 5.5, 6.5, 7.5 and 8.5 were shown as sold out on the capture date."
+    },
+    {
+      "id": "MEJ-2MM-SMOOTH",
+      "seller_id": "mejuri",
+      "seller": "Mejuri",
+      "title": "2mm Smooth Band",
+      "url": "https://mejuri.com/products/2mm-smooth-band",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "gold-band",
+      "tags": [
+        "14k",
+        "complete",
+        "under-1000",
+        "weight-unverified"
+      ],
+      "type": "Complete ring (no stones)",
+      "metal": "Solid Yellow Gold (14k)",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "explicit",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None",
+      "price_usd": 498.0,
+      "price_basis": "Listed price for the ring",
+      "stock_number": "",
+      "width_mm": 2.0,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$498"
+        },
+        {
+          "field": "karat",
+          "quote": "Solid Yellow Gold (14k)"
+        },
+        {
+          "field": "solid_gold",
+          "quote": "Handcrafted in recycled 14k solid gold"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width: 2 mm"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-011"
+      ],
+      "notes": "Marketed as an everyday band rather than an engagement ring, but it is a genuine solid 14k gold ring at a low entry price and is useful as a gold-value benchmark. Engraved items are excluded from returns."
+    },
+    {
+      "id": "MEJ-BOLD-DIAMOND-ETERNITY",
+      "seller_id": "mejuri",
+      "seller": "Mejuri",
+      "title": "Bold Diamond Eternity Ring",
+      "url": "https://mejuri.com/products/bold-diamond-eternity-ring",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "complete-ring",
+      "tags": [
+        "14k",
+        "complete",
+        "diamond",
+        "over-2500",
+        "weight-unverified"
+      ],
+      "type": "Complete ring (set with diamonds)",
+      "metal": "Solid White Gold (14k)",
+      "karat": 14,
+      "gold_color": "White",
+      "solid_gold": "explicit",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "23 round brilliant-cut natural diamonds; stated minimum carat weight 1.15 ct – 1.57 ct",
+      "price_usd": 2900.0,
+      "price_basis": "From price — varies by size and metal",
+      "stock_number": "",
+      "width_mm": 2.6,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "From$2,900"
+        },
+        {
+          "field": "karat",
+          "quote": "Solid White Gold (14k), Natural Diamond"
+        },
+        {
+          "field": "solid_gold",
+          "quote": "handcrafted in 14k solid gold featuring as many as 23 round brilliant cut diamonds"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Band Width: 2.6 mm"
+        },
+        {
+          "field": "stone",
+          "quote": "Minimum Carat Weight: 1.15 ct - 1.57 ct"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-007",
+        "F-011"
+      ],
+      "notes": "The variant selector states 'Solid White Gold (14k)', while the Materials panel on the same page says 'Solid Yellow Gold (14k)'. The discrepancy is flagged (F-007); metal must be confirmed at checkout."
+    },
+    {
+      "id": "COSTCO-100743200",
+      "seller_id": "costco",
+      "seller": "Costco Wholesale",
+      "title": "Round Brilliant 1.00 ct VS2 Clarity, I Color Diamond Solitaire Ring (14kt gold option)",
+      "url": "https://www.costco.com/.product.100743200.html",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "complete-ring",
+      "tags": [
+        "14k",
+        "complete",
+        "diamond",
+        "price-unverified"
+      ],
+      "type": "Complete ring (set with center diamond)",
+      "metal": "950 Platinum or 14kt Yellow Gold (variant not fixed in capture)",
+      "karat": 14,
+      "gold_color": "Yellow (14kt option)",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "1 round brilliant diamond, 1.00 ct total weight, VS2 clarity, I colour",
+      "price_usd": null,
+      "price_basis": "Price not captured — the page did not render a price and defaulted to the platinum variant",
+      "stock_number": "1535017",
+      "width_mm": null,
+      "evidence": [
+        {
+          "field": "karat",
+          "quote": "Metal: 950 Platinum or 14kt Yellow Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Item 1535017"
+        },
+        {
+          "field": "stone",
+          "quote": "Total Diamond Weight: 1.00 ct | Total Number of Diamonds: 1"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-006",
+        "F-009",
+        "F-010"
+      ],
+      "notes": "Included because Costco is a major seller with a strong published satisfaction guarantee, but the row is intentionally incomplete: neither price nor gram weight could be verified. The captured page was showing the platinum variant."
+    },
+    {
+      "id": "BE-BE1574-18KY",
+      "seller_id": "brilliantearth",
+      "seller": "Brilliant Earth",
+      "title": "Fleur Solitaire Ring in 18K Yellow Gold",
+      "url": "https://www.brilliantearth.com/Fleur-Solitaire-Ring-Gold-BE1574-33044395/",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "18k-gold",
+      "tags": [
+        "18k",
+        "setting-only",
+        "solitaire",
+        "weight-unverified"
+      ],
+      "type": "Setting only",
+      "metal": "18K Yellow Gold",
+      "karat": 18,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": null,
+      "weight_status": "unverified",
+      "stone": "None included — center diamond required",
+      "price_usd": 1550.0,
+      "price_basis": "Setting only — center diamond sold separately",
+      "stock_number": "BE1574-18KY",
+      "width_mm": 1.8,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$1,550(Setting Only)"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal: 18K Yellow Gold"
+        },
+        {
+          "field": "stock_number",
+          "quote": "BE1574-18KY"
+        },
+        {
+          "field": "width_mm",
+          "quote": "Width: 1.8 mm"
+        }
+      ],
+      "flags": [
+        "F-004",
+        "F-005",
+        "F-006"
+      ],
+      "notes": "Same setting as BE-BE1574-14KY in 18K: the 18K version costs $200 more on the capture date, which is the visible price of the extra fine gold."
+    },
+    {
+      "id": "RS-960952",
+      "seller_id": "ross-simons",
+      "seller": "Ross-Simons",
+      "title": "Italian 14kt Yellow Gold Dome Ring",
+      "url": "https://www.ross-simons.com/products/960952",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "gold-band",
+      "tags": [
+        "14k",
+        "complete",
+        "under-500",
+        "weight-verified"
+      ],
+      "type": "Complete ring (no stones)",
+      "metal": "14kt Yellow Gold",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": 1.3,
+      "weight_status": "verified",
+      "stone": "None",
+      "price_usd": 399.0,
+      "price_basis": "Listed price, all sizes",
+      "stock_number": "960952",
+      "width_mm": null,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$399"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 14ktYellow Gold"
+        },
+        {
+          "field": "weight_g",
+          "quote": "Gold Weight 1.3 grams"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Item 960952"
+        }
+      ],
+      "flags": [
+        "F-005",
+        "F-006"
+      ],
+      "notes": "One of only two rows with a seller-published gram weight, which makes the price-per-gram check possible. Width is given as 1/4 inch rather than millimetres, so no mm value is recorded."
+    },
+    {
+      "id": "RS-945891",
+      "seller_id": "ross-simons",
+      "seller": "Ross-Simons",
+      "title": "Italian 14kt Yellow Gold Filigree Ring",
+      "url": "https://www.ross-simons.com/products/945891",
+      "checked_on": "2026-10-22",
+      "capture_method": "fetch",
+      "category": "gold-band",
+      "tags": [
+        "14k",
+        "complete",
+        "under-500",
+        "weight-verified"
+      ],
+      "type": "Complete ring (no stones)",
+      "metal": "14kt Yellow Gold",
+      "karat": 14,
+      "gold_color": "Yellow",
+      "solid_gold": "not-stated",
+      "hallmark": "not-stated",
+      "weight_g": 1.7,
+      "weight_status": "verified",
+      "stone": "None",
+      "price_usd": 499.0,
+      "price_basis": "Listed price, all sizes",
+      "stock_number": "945891",
+      "width_mm": null,
+      "evidence": [
+        {
+          "field": "price_usd",
+          "quote": "$499"
+        },
+        {
+          "field": "karat",
+          "quote": "Metal 14ktYellow Gold"
+        },
+        {
+          "field": "weight_g",
+          "quote": "Gold Weight 1.7 grams"
+        },
+        {
+          "field": "stock_number",
+          "quote": "Item 945891"
+        }
+      ],
+      "flags": [
+        "F-005",
+        "F-006"
+      ],
+      "notes": "A verified customer review on the same page calls the ring 'very thin', which is consistent with a 1.7 g weight. Filigree is mostly open space, so a low gram weight is expected."
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "sellers": [
+    {
+      "id": "bluenile",
+      "name": "Blue Nile (incl. James Allen)",
+      "site": "https://www.bluenile.com/",
+      "checked_on": "2026-10-22",
+      "contact": {
+        "phone": "+1-800-242-2728",
+        "email": "service@bluenile.com",
+        "contact_page": "https://www.bluenile.com/contact-us",
+        "status": "verified",
+        "evidence": "Call +1-800-242-2728 | Send an Email service@bluenile.com",
+        "source": "https://www.bluenile.com/engagement-rings/design-your-own-ring/knife-edge-solitaire-engagement-ring-in-14k-white-gold-by-james-allen-item-316048",
+        "capture_method": "fetch"
+      },
+      "returns": {
+        "window": "30 days from the shipment date",
+        "url": "https://www.bluenile.com/policies/returns",
+        "status": "verified",
+        "evidence": "you may return eligible items in their original, unworn condition within 30 days from the shipment date for a full refund or exchange",
+        "exclusions_evidence": "Personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance items and “Final Sale” items are not eligible for return or exchange.",
+        "extra_terms_evidence": "Two complimentary returns are allowed per customer, per year. | The cost to replace a missing diamond grading report is $150 | Eligible rings receive one free resize, up or down two sizes, within 6 months of purchase if the design permits.",
+        "capture_method": "fetch"
+      },
+      "payment": {
+        "status": "partial",
+        "summary": "Credit-card financing and bank refunds are referenced; an explicit accepted-card list was not captured.",
+        "evidence": "Or as low as $394/mo for 6months with the Blue Nile Credit Card | credit will be submitted to your bank within three business days",
+        "source": "https://www.bluenile.com/policies/returns",
+        "capture_method": "fetch"
+      },
+      "reputation": {
+        "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Blue%20Nile",
+        "status": "lookup-not-evaluated",
+        "note": "BBB profile linked for independent review; no rating or complaint count is claimed in this project."
+      },
+      "solid_gold_policy": {
+        "status": "not-stated-on-listings",
+        "note": "Product pages state the karat (e.g. 14K Yellow Gold) but do not use the words 'solid gold'. Treated as unverified per the checklist."
+      }
+    },
+    {
+      "id": "brilliantearth",
+      "name": "Brilliant Earth",
+      "site": "https://www.brilliantearth.com/",
+      "checked_on": "2026-10-22",
+      "contact": {
+        "phone": "800.691.0952",
+        "email": "",
+        "contact_page": "https://www.brilliantearth.com/contact/",
+        "status": "verified",
+        "evidence": "800.691.0952",
+        "source": "https://www.brilliantearth.com/30-Day-Returns/",
+        "capture_method": "fetch"
+      },
+      "returns": {
+        "window": "30 days",
+        "url": "https://www.brilliantearth.com/30-Day-Returns/",
+        "status": "verified",
+        "evidence": "If you are not satisfied with your purchase for any reason, simply return or exchange it within 30 days. All items must be in their original, unworn condition.",
+        "exclusions_evidence": "Engraved fine jewelry. Please note that while you can return an engraved ring, we charge $40 to remove the custom engraving. | Custom designed jewelry. | Rings that have been resized or modified.",
+        "extra_terms_evidence": "Your refund will be processed approximately 5 business days after we receive it. | Packages that are received without a return shipping authorization number will not be accepted for refund.",
+        "capture_method": "fetch + search snippet of the same official page",
+        "resizing_evidence": "We offer one complimentary resizing within 60 days regardless of sizing range, or up to 1 year if within sizing range."
+      },
+      "payment": {
+        "status": "partial",
+        "summary": "Affirm and Wells Fargo financing are advertised; an explicit accepted-card list was not captured.",
+        "evidence": "Easy monthly payments with Affirm. From 0% APR financing. | Special 12 month financing options available with Wells Fargo",
+        "source": "https://www.brilliantearth.com/Fleur-Solitaire-Ring-14K-Gold-BE1574-76785943/",
+        "capture_method": "fetch"
+      },
+      "reputation": {
+        "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Brilliant%20Earth",
+        "status": "lookup-not-evaluated",
+        "note": "BBB profile linked for independent review; no rating is claimed here."
+      },
+      "solid_gold_policy": {
+        "status": "not-stated-on-listings",
+        "note": "Listing states '14K Yellow Gold' only. No 'solid gold' phrase captured on the product page; treated as unverified."
+      }
+    },
+    {
+      "id": "mejuri",
+      "name": "Mejuri",
+      "site": "https://mejuri.com/",
+      "checked_on": "2026-10-22",
+      "contact": {
+        "phone": "",
+        "email": "",
+        "contact_page": "https://mejuri.com/faq",
+        "status": "unverified",
+        "evidence": "",
+        "source": "https://mejuri.com/faq",
+        "capture_method": "fetch",
+        "note": "No phone number or email address was captured on the product or FAQ pages that were fetched. Flagged for review."
+      },
+      "returns": {
+        "window": "30 days from delivery or in-store pickup",
+        "url": "https://mejuri.com/faq/return-exchanges/what-is-the-standard-return-policy",
+        "status": "verified",
+        "evidence": "We offer free 30-day returns for customers in the US, Canada, UK, Australia, and Germany, starting from the day the shipment is delivered or picked up in-store.",
+        "exclusions_evidence": "All below items are non-returnable: Engraved and monogrammed products | Final sale items (including 'Before We Melt' items)",
+        "extra_terms_evidence": "Shipping fees are non-refundable.",
+        "capture_method": "fetch"
+      },
+      "payment": {
+        "status": "partial",
+        "summary": "Klarna instalments and Shop Pay are shown on product pages; an explicit accepted-card list was not captured.",
+        "evidence": "4 payments at 0% interest with Klarna | Shop Pay",
+        "source": "https://mejuri.com/products/2mm-smooth-band",
+        "capture_method": "fetch"
+      },
+      "reputation": {
+        "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Mejuri",
+        "status": "lookup-not-evaluated",
+        "note": "BBB profile linked for independent review; no rating is claimed here."
+      },
+      "solid_gold_policy": {
+        "status": "explicit-on-listings",
+        "note": "Mejuri product pages explicitly say 'Handcrafted in recycled 14k solid gold' and 'Solid Yellow Gold (14k)'."
+      }
+    },
+    {
+      "id": "ross-simons",
+      "name": "Ross-Simons",
+      "site": "https://www.ross-simons.com/",
+      "checked_on": "2026-10-22",
+      "contact": {
+        "phone": "800-835-0919",
+        "email": "customerservice@ross-simons.com",
+        "contact_page": "https://www.ross-simons.com/pages/customer-care",
+        "status": "verified",
+        "evidence": "Phone: 800-835-0919 — 7 days a week, 7:00 am–11:00 pm ET | Email: customerservice@ross-simons.com",
+        "source": "https://www.ross-simons.com/pages/customer-care",
+        "capture_method": "fetch"
+      },
+      "returns": {
+        "window": "30 days from the date you receive your order",
+        "url": "https://www.ross-simons.com/pages/returns-exchanges",
+        "status": "verified",
+        "evidence": "You have 30 days from the date you receive your order to return eligible merchandise for a refund or exchange (shipping and handling charges are non-refundable).",
+        "exclusions_evidence": "Merchandise that has been damaged, altered, or resized by a jeweler other than Ross-Simons cannot be accepted for return.",
+        "extra_terms_evidence": "Please note: we may include a flat fee of $4.95 for return shipping and handling. | Returns are typically processed within 4 business days of arrival at our Distribution Center.",
+        "capture_method": "fetch"
+      },
+      "payment": {
+        "status": "unverified",
+        "summary": "Accepted payment methods were not captured on the pages fetched.",
+        "evidence": "",
+        "source": "https://www.ross-simons.com/pages/customer-care",
+        "capture_method": "search_snippet_of_official_page"
+      },
+      "reputation": {
+        "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Ross-Simons",
+        "status": "lookup-not-evaluated",
+        "note": "BBB profile linked for independent review; no rating is claimed here."
+      },
+      "solid_gold_policy": {
+        "status": "not-stated-on-listings",
+        "note": "Listings say '14kt Yellow Gold'. The words 'solid gold' were not captured; Ross-Simons also sells gold-plated and gold-over-sterling items, so the distinction must be checked per listing."
+      }
+    },
+    {
+      "id": "costco",
+      "name": "Costco Wholesale",
+      "site": "https://www.costco.com/",
+      "checked_on": "2026-10-22",
+      "contact": {
+        "phone": "",
+        "email": "",
+        "contact_page": "https://customerservice.costco.com/",
+        "status": "partial",
+        "evidence": "Go To Homepage",
+        "source": "https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy",
+        "capture_method": "search_snippet_of_official_page",
+        "note": "A customer-service portal is published, but no phone number or email was captured in this pass."
+      },
+      "returns": {
+        "window": "No stated deadline for most merchandise, BUT precious metals are listed as non-refundable",
+        "url": "https://customerservice.costco.com/app/answers/detail/a_id/1191/~/what-is-costcos-return-policy",
+        "status": "verified-with-warning",
+        "evidence": "Risk-Free 100% Satisfaction Guarantee | We guarantee your satisfaction on every product we sell, and will refund your purchase price",
+        "exclusions_evidence": "Precious metals are non-refundable. | Diamonds: 1.00ct or larger: Members returning a diamond over 1.00ct must also present all original paperwork (IGI and/or GIA certificates) at which time they will receive a Jewelry Credit Memo. Within 48 hours, our Costco Graduate Gemologist will inspect for authenticity.",
+        "extra_terms_evidence": "You may return jewelry purchased on Costco.com for a refund including all shipping and handling fees.",
+        "capture_method": "fetch + search snippet of the same official page"
+      },
+      "payment": {
+        "status": "unverified",
+        "summary": "Accepted payment methods were not captured on the pages fetched.",
+        "evidence": "",
+        "source": "https://www.costco.com/",
+        "capture_method": "fetch",
+        "note": "Payment methods not captured."
+      },
+      "reputation": {
+        "bbb_search": "https://www.bbb.org/search?find_country=USA&find_text=Costco%20Wholesale",
+        "status": "lookup-not-evaluated",
+        "note": "BBB profile linked for independent review; no rating is claimed here."
+      },
+      "solid_gold_policy": {
+        "status": "not-stated-on-listings",
+        "note": "The captured product page lists 'Metal: 950 Platinum or 14kt Yellow Gold' without the words 'solid gold'."
+      }
+    }
+  ]
+}

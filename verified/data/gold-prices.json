@@ -1,0 +1,38 @@
+{
+  "reference_id": "GP-001",
+  "troy_ounce_grams": 31.1034768,
+  "observations": [
+    {
+      "id": "GP-001",
+      "provider": "Gold-API (XAU quote)",
+      "url": "https://api.gold-api.com/price/XAU",
+      "captured_at_utc": "2026-10-22T23:05:00Z",
+      "quote_timestamp": "2026-10-22T23:01:42Z",
+      "usd_per_troy_oz": 4028.100098,
+      "capture_method": "fetch",
+      "evidence": "{\"currency\":\"USD\",\"currencySymbol\":\"$\",\"exchangeRate\":1.0,\"name\":\"Gold\",\"price\":4028.100098,\"symbol\":\"XAU\",\"updatedAt\":\"2026-10-22T23:01:42Z\"}"
+    },
+    {
+      "id": "GP-002",
+      "provider": "APMEX spot price page",
+      "url": "https://www.apmex.com/gold-price",
+      "captured_at_utc": "2026-10-22T23:12:00Z",
+      "quote_timestamp": "2026-10-22T19:11:31-04:00",
+      "usd_per_troy_oz": 4042.50,
+      "usd_per_gram_stated": 129.97,
+      "capture_method": "fetch",
+      "evidence": "Gold Price Per Ounce $4,042.50 USD | Gold Price Per Gram $129.97 USD | Live Metal Spot Prices (24 Hours) Last Updated: 10/22/2026 7:11:31 PM ET"
+    },
+    {
+      "id": "GP-003",
+      "provider": "World Gold Council — Goldhub gold spot price",
+      "url": "https://www.gold.org/goldhub/data/gold-prices",
+      "captured_at_utc": "2026-10-22T23:13:00Z",
+      "quote_timestamp": "2026-10-21",
+      "usd_per_troy_oz": 4024.36,
+      "capture_method": "fetch",
+      "evidence": "Gold Spot price USD /oz - 4,024.36 | Data as of 21 October, 2026"
+    }
+  ],
+  "notes": "GP-001 is the reference used for arithmetic on the site. GP-002 and GP-003 are independent cross-checks captured minutes apart. LBMA benchmark tables are licence-only (https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices), so the LBMA auction price itself is not republished here."
+}
