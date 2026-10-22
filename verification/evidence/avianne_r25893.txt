@@ -43,3 +43,7 @@ Diamond District  ·  New York, NY
 NOTES: "Solid" appears in the product TITLE ("14K Solid Yellow Gold ...") — that is the only solid-gold
 statement on the page. Weight appears twice (description "weighs 2.3 grams" and "Item Weight | 2.3 grams").
 No hallmark/stamp statement. Return window 14 days stated on the product page (full policy page not fetched).
+
+--- additional verbatim lines from the same capture (payment / financing) ---
+"As low as $69/mo or 0% APR with Affirm.See if you qualify"
+"Products delivered between Sun, 25 Oct and Thu, 29 Oct."

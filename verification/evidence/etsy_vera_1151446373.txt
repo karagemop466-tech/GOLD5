@@ -44,3 +44,31 @@ NOTES (facts observed, no inference):
 - NO hallmark / maker's mark statement appears in the sections captured.
 - One listing PHOTO solicits contact/delivery details off-platform ("Share your contact information with us
   on Etsy Message"), which is recorded as flag F-OFFPLATFORM for review.
+
+--- SECOND CAPTURE, same day, later chunk (chunk 2 of 5) — seller FAQ + shop metrics ---
+CAPTURED: 2026-10-23 00:05 UTC
+"What is the purity of your gold?
+The gold used for engagement rings, wedding bands, and fine jewelry is rarely ever 100% gold. Rather, gold
+comes in a variety of purity levels, like 14k. Thus we use eco-friendly and high quality recyled solid 14
+karat gold in our jewelry. [...]"
+
+"What is your return policy?
+If you are not satisfied with our product, you can return it within 7 days after receiving your item.
+When you ship your package to our New York store, our Quality Assurance team will inspect it.
+* If everything looks good, we will refund your original payment method, excluding a $20 delivery charge and
+a 10% restocking fee, within three weeks of receiving your return.
+* Customers are responsible for the shipping costs of any return or exchange.
+* Please note that personalized products, colored enameled pieces, letter pieces, and name-specific items are
+not eligible for return."
+
+"Our products are elegantly handmade by our most talented associates and jewelers on our team in our Grand
+Bazaar warehouse, Istanbul Turkey. [...]"
+"Our repair shop in Albany, New York [...]"
+
+Reviews for this item: 5.0 (1 reviews) · 100% Buyers recommend
+Shop: [VeraByEden] · Albany, New York · 4.9 (2.1k) · 6.8k sales · 4 years on Etsy · Star Seller
+"It's highly unlikely oxidized..." [sic]
+---
+NOTES: "solid 14 karat gold" is now confirmed in the SELLER'S OWN FAQ (a solid-gold statement, by the seller).
+The return window per the seller's FAQ is 7 DAYS with a $20 delivery charge + 10% restocking fee — the Etsy
+tab only says "Returns & exchanges accepted". Still NO gram weight anywhere on the page.

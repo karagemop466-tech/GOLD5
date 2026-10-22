@@ -1,49 +1,71 @@
-# GOLD5 — Solid Gold Engagement Ring Research
+# GOLD5 — gold engagement ring research
 
 Research project to **find gold engagement rings** that meet a strict online-buying checklist
 (solid gold, karat, hallmark + maker's mark, weight in grams, seller reputation, price vs. gold
 value, return/resize policy, payment protection, documentation, independent XRF test).
 
-Three parallel agent sessions each delivered work for this project. **All of it is preserved**
-(union merge — see the merge notes in [COORDINATION.md](./COORDINATION.md)):
+**Live site (GitHub Pages):** https://karagemop466-tech.github.io/GOLD5/
+— landing dashboard + 8 subpages (All listings · By karat · Gold value & calculator · Sellers ·
+Checklist · Flagged for review · Sources · Method).
 
-| Session | Site (live) | Data | Checker |
-|---|---|---|---|
-| `37e8ff42` (final integration, PR #5) | **repo root** — https://karagemop466-tech.github.io/GOLD5/ (landing dashboard: Listings, Gold Price, Calculator, Checklist, Sellers, Flagged for Review, Sources) | [site/assets/data.js](./site/assets/data.js) (strict JSON) | `python3 scripts/verify.py` |
-| `638c9614` (PR #1/#2) | `docs/` — https://karagemop466-tech.github.io/GOLD5/docs/ (Dashboard, Rings, Calculator, Analysis, Sellers, Checklist, Flagged for Review, Verification, Sources) | [data/rings.json](./data/rings.json), `sellers.json`, `spot.json`, `flags.json` + verbatim `data/evidence/*.txt` | `python3 tools/check_hallucinations.py` |
-| `090bae73` (PR #3) | Checklist-format guide — landing preserved at [index-090bae73.html](./index-090bae73.html) + 13 subpages under `pages/` (gold purity, solid gold, hallmark, weight, seller reputation, price, returns, payment, documentation, upon-arrival, XRF, calculator, flagged) | content in-page, cited to official sources | cited per page |
+## ◆ NO HALLUCINATIONS — the rule of this project
 
-All sessions captured data from official pages on 2026-10-22 and **independently corroborate the
-same Kitco spot snapshot** ($4,025.00/oz bid, $129.41/g, 7:10 p.m. EDT).
+> Every price, weight, karat, hallmark claim and policy on the site was read from the **seller's own
+> page** (or an official regulator) on the date shown, and the exact text that was on the page is
+> stored in [`verification/evidence/`](./verification/evidence). A value that could not be confirmed
+> is **blank and flagged** on the [Flagged for review page](https://karagemop466-tech.github.io/GOLD5/report/flagged.html).
+> Nothing is estimated, inferred, or currency-converted.
 
-## ◆ NO HALLUCINATIONS RULE (applies to everything)
-No price, weight, karat, hallmark, policy, or claim is recorded without a link to the **official
-source page** and a check date. Anything not confirmable from an official source is **left blank
-and flagged** on the respective "Flagged for Review" page — never guessed, estimated or inferred.
-"Calculated" values are arithmetic on verified inputs (`weight × spot/gram × karat/24`).
-**After every review pass run the checker** and record it in COORDINATION.md:
-- `python3 scripts/verify.py` (root site + data)
-- `python3 tools/check_hallucinations.py --log "what I reviewed"` (docs/ site + data)
+The rule is enforced mechanically, not by good intentions:
 
-## Layout
-| Path | What |
+```bash
+python3 tools/check_report.py --record   # 10 check groups, ~1,600 assertions, exit 1 on any failure
+python3 tools/security_test.py           # plants 7 fake values; all must be caught
+```
+
+`check_report.py` re-finds every recorded value as a literal string inside the saved capture of the
+page, recomputes every calculated number, audits every dollar amount rendered in the HTML, checks
+link integrity and flag cross-references, and fails the build otherwise. See
+[`verification/security_tests.md`](./verification/security_tests.md) for the planted-error results
+and the two blind spots it originally had.
+
+## What is here
+
+| Path | What it is |
 |---|---|
-| `index.html`, `site/**` | Landing dashboard + subpages of session 37e8ff42 (this integration) |
-| `site/assets/data.js` | Single-source data for the root site (strict JSON) |
-| `scripts/verify.py` | Hallucination + link + arithmetic pass for the root site/data |
-| `docs/verification/*.md` | Per-source verification notes with exact quotes & URLs (session 37e8ff42) |
-| `index-090bae73.html`, `pages/*.html`, `assets/` | Checklist-format site of session 090bae73 (preserved) |
-| `data/rings.json`, `sellers.json`, `spot.json`, `flags.json` | Table data for the `docs/` site (shared output — edited only by the integration session) |
-| `data/evidence/*.txt` | Verbatim excerpts + source URL + capture date for every value (session 638c9614) |
-| `tools/check_hallucinations.py` | Security check: every value must appear verbatim in evidence; blanks must be flagged; every `$` on the site must be sourced or registered as calculated; links must resolve |
-| `tools/build_site.py` | Generates the static site into `docs/` (standard library only) and runs the check |
-| `docs/` | GitHub Pages site of session 638c9614 |
-| `COORDINATION.md` | Shared task board for all sessions |
+| `index.html`, `report/**` | **This pass's site** — dashboard, category subpages, calculator, flag page, sources, method. Generated by `tools/build_report.py` from `verification/data.json`. Never edit the HTML by hand; edit the data and rebuild. |
+| `verification/data.json` | Single source for the new site: 27 listings, 9 sellers, 7 reference documents, 26 flags, the spot snapshot. Every value carries `tokens` — the literal strings that must exist in its evidence file. |
+| `verification/evidence/*.txt` | Verbatim captures with source URL and UTC timestamp, one file per page. |
+| `verification/passes.json` | Verification pass log, rendered on the Method page. |
+| `tools/build_data.py` | Writes `verification/data.json` (provenance, tokens, derived logic). |
+| `tools/build_report.py` | Builds the site. Also preserves the previous root dashboard at `index-37e8ff42.html` on first run. |
+| `tools/check_report.py` | The no-hallucination gate. |
+| `tools/security_test.py` | Negative tests for the gate. |
+| `index-37e8ff42.html`, `site/**` | Previous root dashboard (session 37e8ff42), preserved byte-for-byte. |
+| `docs/**` | Session 638c9614's site (11 listings + its own evidence store + `tools/check_hallucinations.py`). |
+| `index-090bae73.html`, `pages/**`, `assets/**` | Session 090bae73's checklist guide. |
+| `COORDINATION.md` | Shared task board — read this first if another session is working. |
 
-## Refreshing data
-1. Re-open each listing, copy the new verbatim text into the session's evidence store
-   (`data/evidence/<id>.txt` for the docs/ site; quote+URL entries in `site/assets/data.js` +
-   `docs/verification/*.md` for the root site).
-2. Run the matching checker → fix any FAIL.
-3. For the docs/ site: `python3 tools/build_site.py` → commit `data/` and `docs/`.
-4. Update the log in [COORDINATION.md](./COORDINATION.md).
+## Data discipline
+
+- **Provenance A** — 12 rows re-read live in this pass (2026-10-22 23:26 → 2026-10-23 00:07 UTC).
+- **Provenance B** — 15 rows captured earlier the same UTC day by another session; the verbatim
+  quote is in this repo and the row is labelled B because it was not re-opened in this pass.
+- **Price text** is stored exactly as the seller rendered it (e.g. `Special Price$3,020.00`), so you
+  can match the table against the page.
+- **Derived numbers** are always `weight × karat ÷ 24` for fine gold and `fine gold × spot/gram` for
+  metal value, at the verified Kitco snapshot of **$129.47/g** (2026-10-22 19:26 NY), with the
+  formula printed next to the table and a calculator on the Gold value page.
+- **Gold spot disagrees with itself**: Kitco's page showed 4,026.90 / 4,027.50 / 4,028.21 per ounce in
+  one capture. The lowest per-gram figure is used so computed metal values are conservative.
+
+## Refreshing
+
+1. Re-open the source link. Copy the new verbatim text into `verification/evidence/<page>.txt`
+   (URL + UTC timestamp), update `tokens` and values in `tools/build_data.py`.
+2. `python3 tools/build_data.py && python3 tools/build_report.py`
+3. `python3 tools/check_report.py --record` → fix any FAIL, rebuild, re-run.
+4. Log the pass and any irregularity in `COORDINATION.md`.
+
+The older deliverables have their own checkers (`python3 scripts/verify.py`,
+`python3 tools/check_hallucinations.py`) — run the one matching the data you touched.
