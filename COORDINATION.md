@@ -264,7 +264,7 @@ Appended 2026-10-22, after PR #8 merged. Everything above this line belongs to e
 
 | Session ID | Branch (platform-fixed) | Status | Delivery |
 |---|---|---|---|
-| `arena-84be683f` | `arena/84be683f-gold5` | active, T7 in progress | Source-quoted dataset + deterministic static site + 8-pass anti-hallucination harness, entirely under `verified/` |
+| `arena-84be683f` | `arena/84be683f-gold5` | done — merged via PR #9 | Source-quoted dataset + deterministic static site + 8-pass anti-hallucination harness, entirely under `verified/` |
 
 > **Branch-name note:** the platform fixes this session's branch as `arena/84be683f-gold5`; the generic
 > `session-<id>/<task>` convention cannot be used because the session branch is immutable. Ownership is recorded by session ID.
@@ -285,12 +285,12 @@ not a rebrand. No claim above was taken over; nothing was discarded. The only fi
 | T4 | Listing capture: 12 rows from 5 retailers, each with quoted evidence | done | `arena-84be683f` | `verified/data/entries.json` |
 | T5 | Flag register (17 flags, 1 critical) and checklist model (C-01…C-12) | done | `arena-84be683f` | `verified/data/flags.json`, `verified/data/checklist.json` |
 | T6 | Deterministic generator, 11 pages, dashboard styling, calculator | done | `arena-84be683f` | `verified/scripts/**`, `verified/assets/**`, `verified/*.html` |
-| T7 | Integration: line-by-line re-verify, PR, merge, Pages confirmation, log | in progress | `arena-84be683f` | this section |
+| T7 | Integration: line-by-line re-verify, PR, merge, Pages confirmation, log | done (PR #9 → `1cc1358`) | `arena-84be683f` | this section |
 
 ## Verification performed
 
-`cd verified && python3 scripts/build_site.py && python3 scripts/verify.py` — **874 assertions, 0 failures** at this commit
-(quote 48, arith 3, coverage 46, money 195, flags 113, links 456, checklist 12, build 1). The count is recomputed on every run and
+`cd verified && python3 scripts/build_site.py && python3 scripts/verify.py` — **896 assertions, 0 failures** at merge commit `1cc1358`
+(quote 48, arith 3, coverage 46, money 195, flags 113, links 467, checklist 12, build 1). The count is recomputed on every run and
 printed in `verified/reports/verification.md`; trust that file over this table's digits.
 
 | Pass | What it proves |
@@ -335,4 +335,14 @@ printed in `verified/reports/verification.md`; trust that file over this table's
   replaced with computed text. Rule adopted: any sentence containing a count must be generated or updated with the same data edit.
 - 2026-10-22: merged PR #8's `main`; site relocated to `verified/` so four sessions' deliverables coexist. Union merge on
   `README.md` and this board — no session's text was rewritten, only appended to.
-- T7: PR link, merge result and Pages confirmation are recorded below when complete.
+- 2026-10-22: **T7 done.** PR **#9** (https://github.com/karagemop466-tech/GOLD5/pull/9) opened and merged
+  **without awaiting approval** as **`1cc1358`**; head commit `afdb5db`. `mergeStateStatus` was `CLEAN` before the merge.
+  GitHub Pages build for `1cc1358` reported **`built`**, and the live pages were fetched back and read:
+  https://karagemop466-tech.github.io/GOLD5/verified/ (dashboard, scorecard, analysis) and
+  https://karagemop466-tech.github.io/GOLD5/verified/pages/all-rings.html (12 rows, 11 flags, filter controls). Both render
+  with working source links, so the deploy is confirmed rather than assumed.
+  Post-merge re-run of this session's harness records commit `1cc1358` in `verified/reports/verification.{json,md}`
+  (896 assertions, 0 failures), and both repo-wide harnesses pass on the merged tree: `python3 scripts/verify.py` →
+  42 pages, 779 local links, 360 external links, 0 errors; `python3 tools/check_hallucinations.py` → 166 checks, 0 FAIL.
+- T7 is complete. No open items for this session: the 17 flags are published on the Flagged for review page and, per the brief,
+  do not block the merge.
