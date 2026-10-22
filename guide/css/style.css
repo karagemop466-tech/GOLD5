@@ -1,0 +1,162 @@
+/* GOLD5 — Gold Engagement Ring Buying Checklist site styles */
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --gold: #b08d3c;
+  --gold-dark: #8a702e;
+  --bg: #ffffff;
+  --panel: #faf6ee;
+  --line: #d9d2be;
+  --flag: #8a1f1f;
+  --flag-bg: #fdecec;
+  --ok: #1e6b3a;
+  --ok-bg: #eef7f0;
+  --unverified: #b08d3c;
+  --unverified-bg: #fdf7e9;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+a { color: var(--gold-dark); text-decoration: underline; }
+a:hover { color: var(--gold); }
+
+/* Header / site identity */
+.site-header {
+  background: var(--ink);
+  color: #fff;
+  padding: 1.25rem 1rem;
+  border-bottom: 4px solid var(--gold);
+}
+.site-header .inner { max-width: 1000px; margin: 0 auto; }
+.site-title {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+.site-tagline {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
+  color: #c9c2ae;
+}
+
+/* Top pledge banner */
+.pledge {
+  background: #fff3cd;
+  border: 2px solid var(--gold-dark);
+  color: #6b5b1a;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.pledge b { color: var(--gold-dark); }
+.pledge a { color: var(--gold-dark); }
+
+/* Navigation */
+.site-nav {
+  background: #f5efe1;
+  border-bottom: 1px solid var(--line);
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.site-nav li { border-right: 1px solid var(--line); }
+.site-nav a {
+  display: block;
+  padding: 0.55rem 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.site-nav a:hover { background: #e9e2d0; color: var(--gold-dark); }
+
+/* Layout */
+.wrapper { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+main { padding: 2rem 0 3rem 0; }
+
+h1 { font-size: 1.75rem; margin-top: 0; border-bottom: 3px solid var(--gold); padding-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; margin: 2rem 0 1rem 0; color: var(--gold-dark); }
+h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem 0; color: var(--gold-dark); }
+p { margin: 0 0 1rem 0; }
+
+/* Cards (dashboard style) */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.15rem;
+  border-radius: 6px;
+}
+.card h3 { margin-top: 0; font-size: 1.05rem; color: var(--ink); }
+.card p { margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #3a3a3a; }
+.card a { color: var(--gold-dark); font-weight: 600; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
+th, td { border: 1px solid var(--line); padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+th { background: #efe8d7; color: var(--ink-dark, #000); font-weight: 700; }
+tr:nth-child(even) { background: #fcf9f0; }
+tr:hover { background: #f3ecd9; }
+
+.status { font-weight: 700; }
+.status-verified { color: var(--ok); }
+.status-unverified { color: var(--unverified); }
+.status-flag { color: var(--flag); }
+
+/* Callouts */
+.note { background: var(--panel); border-left: 4px solid var(--gold); padding: 0.85rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+.warn { background: var(--flag-bg); border-left: 4px solid var(--flag); padding: 0.85rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+.okbox { background: var(--ok-bg); border-left: 4px solid var(--ok); padding: 0.85rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0; }
+
+ul { margin: 0.5rem 0 1rem 1.5rem; }
+li { margin-bottom: 0.35rem; }
+
+/* Calculator */
+.calc { background: var(--panel); border: 1px solid var(--line); padding: 1.25rem; border-radius: 8px; max-width: 520px; }
+.calc label { display: block; font-weight: 600; margin: 0.9rem 0 0.3rem 0; font-size: 0.92rem; }
+.calc input[type="number"], .calc input[type="text"] {
+  width: 100%; padding: 0.5rem; border: 1px solid #c9c2ae; border-radius: 4px; font-size: 1rem;
+}
+.calc button {
+  margin-top: 1rem; background: var(--gold-dark); color: #fff; border: none; padding: 0.6rem 1.25rem;
+  font-size: 1rem; border-radius: 4px; cursor: pointer; font-weight: 600;
+}
+.calc button:hover { background: var(--gold); }
+.calc-output { margin-top: 1rem; padding: 0.8rem; background: #fff; border: 1px solid var(--line); border-radius: 4px; font-size: 0.95rem; }
+.calc-output .res { font-weight: 700; color: var(--gold-dark); }
+
+.small { font-size: 0.85rem; color: var(--muted); }
+.source-link { font-size: 0.86rem; color: var(--gold-dark); word-break: break-all; }
+.kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: #efe8d7; padding: 0 0.2rem; border-radius: 2px; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 0 1rem 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+footer a { color: var(--gold-dark); }
+
+@media (max-width: 640px) {
+  .site-nav li { border-right: none; }
+  .site-nav a { padding: 0.45rem 0.7rem; font-size: 0.85rem; }
+  th, td { padding: 0.45rem 0.5rem; font-size: 0.82rem; }
+}

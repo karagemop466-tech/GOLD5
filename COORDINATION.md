@@ -12,7 +12,83 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 (UTC) — **integrated by session `37e8ff42` (final integration of this brief)**
+- Last updated: 2026-10-22 23:30 UTC — **session `93032b31` active (final integration pass 2: live re-verification + unified site)**
+
+## ⏱ ACTIVE CLAIM — session `93032b31` (Arena branch `arena/93032b31-gold5`)
+
+Claimed at 2026-10-22 23:30 UTC. Second final-integration session for this brief. Scope is
+**non-overlapping at the file level** with the earlier sessions — their `docs/`, `data/`, `tools/`,
+`pages/`, `assets/` and `index-090bae73.html` are read-only archives for me. Read the session log
+below before touching anything.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| U1 | Review repo, re-open board, claim scopes, log | **done** | 93032b31 | `COORDINATION.md`, `README.md` |
+| U2 | **Live re-verification** of every listing/seller/spot URL against the official page (fetch log) | **done** | 93032b31 | `data/live_check.json`, `data/unified.json` |
+| U3 | Unified, de-duplicated dataset — every row carries source URL + check date; blanks flagged | **done** | 93032b31 | `tools/data_unified.py`, `data/unified.json`, `site/assets/data.js` |
+| U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | **done** | 93032b31 | `index.html` + 10 root pages, `site/assets/dashboard.css` |
+| U5 | Extend + run the hallucination/security harness (negative-tested) | **done** | 93032b31 | `scripts/verify.py` (rewritten for the unified schema) |
+| U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | **done** | 93032b31 | `guide/**` (new) — all 25 files preserved |
+| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | in progress | 93032b31 | `COORDINATION.md` |
+
+Rules I follow for this pass: same no-hallucinations rule; **no value is carried over without either a
+fresh live fetch today or an explicit "captured earlier today by session X, not re-fetched" note**;
+derived numbers are recomputed by script; every review ends with a checker run logged here. A claim
+older than 60 minutes with no commits may be taken over (handoff logged).
+
+### Log — session 93032b31
+- 2026-10-22 23:28 UTC: repo reviewed at `1c35fd0` (main after PR #8). Baseline checkers both PASS:
+  `scripts/verify.py` 0 errors / 9 checks; `tools/check_hallucinations.py` 166 checks, 0 FAIL, 0 WARN,
+  1 INFO. Found: two parallel datasets/deliveries live on the published site (root 13 rows, `docs/`
+  11 rows) and PR #4 from session `3c8bb7ee` is still open. Both are addressed by U3–U6.
+- 2026-10-22 23:30 UTC: **claim committed and pushed before starting work** (this block, `37f8dac`).
+- 2026-10-22 23:31-23:53 UTC: **U2 done — live re-verification pass 2.** Re-fetched: Kitco spot page; all 7 Blue Nile
+  product pages; all 4 Brilliant Earth product pages; all 3 Allurez product pages; Avianne R25893; Jewelry Master 149700;
+  Solid Gold Jewelers B02561; Etsy listings 4426190660, 4366425533, 1151446373, 1566052947, 576343849; and the FTC consumer
+  article. Results are logged per URL in `data/live_check.json` (23 product/spot fetches + the FTC page).
+  **Matched exactly:** all 7 Blue Nile prices/karats/stock numbers/widths; Brilliant Earth $750 / $1,250 / $1,190 and
+  BE1343-14KY, BE1D6013-14KY, BE1D3939-14KY with widths and review counts; Allurez $1,085/5.00 g, $933/4.80 g,
+  $585/3.58 g; Avianne $1,100/2.3 g/R25893/14-day returns; Jewelry Master $3,020 special vs $6,041 retail/2.3 g;
+  Solid Gold Jewelers 14ky/4.7 g/B02561/no price; Etsy RAKSHAK 14K $1,891.78 + 14-day returns + no item reviews;
+  VibrantStone $251.30 from $359.00 + 21-day returns + LA shipping; VeraByEden 14K/585, solid gold, 3.70 g, **7-day** returns.
+  **New findings:** (a) Brilliant Earth Secret Halo served **EUR 1,250.00**, so its USD price is not confirmed and is now
+  blank (F14); (b) Blue Nile item 203738 is titled/specced **18K white gold but described as "14k yellow gold"** (F13);
+  (c) the 7 g case-study listing is now **unavailable**, so its price stays snippet-sourced (F17); (d) two data gaps were
+  filled from the live pages (bn-195639 stock 501130y14 / 1.80 mm; be-nadia 14K / 1.8 mm / 143 reviews).
+  **Corrections vs. earlier data:** VeraByEden returns are 7 days (not "accepted"); RAKSHAK item has no reviews (the 5.0 is the
+  shop rating); Etsy promos had 19 h / 1 day / 3 days left at read time.
+- 2026-10-22: **U3/U4 done.** Single dataset `tools/data_unified.py` → `data/unified.json` → generated site (11 root pages).
+  24 listings (20 engagement rings, 3 bands, 1 case study), 14 sellers, 19 flags, 10 official references, 12 checklist points.
+  Every row carries its official URL, check date and verification state (P2 / prior capture). Blanks on 16 weights, 2 prices,
+  every hallmark and 2 return policies are flagged individually on the Flagged page.
+- 2026-10-22: **U5 done.** `scripts/verify.py` rewritten for the unified schema: 11 check groups — schema sync between
+  `unified.json` and `data.js`; provenance; source scheme; blank-must-be-flagged; prior-capture labelling; arithmetic
+  recompute (gold g, metal value, ratio, per-gram spot, per-karat consistency, cross-check spread); flags integrity;
+  **money traceability** (every `$` in the generated HTML must exist in the dataset); local/external links; required pages +
+  no-hallucinations banner; and 6 **negative tests**. Run: **PASS — 0 errors, 0 warnings, 4 cross-check notes, 6/6 negative
+  tests caught.** Report: `docs/verification/pass2-report.md`; status: `data/check_status.json`. The docs/ archive checker
+  (`tools/check_hallucinations.py`) still passes at 166 checks / 0 FAIL / 1 INFO.
+- 2026-10-22 23:52 UTC: **Second live re-check of the merged tree** (after another session merged PR #9 / `verified/`).
+  20 pages re-fetched: all 7 Blue Nile (prices unchanged), Brilliant Earth $750 / $1,250 / $1,190 (USD confirmed; Secret Halo
+  still serves EUR), all 3 Allurez, Avianne, Jewelry Master, Solid Gold Jewelers, Blue Nile 203348 and 3 Etsy listings.
+  **New result:** Etsy 1151446373 now renders its price table — 14K **$969.00** exactly matches the dataset, while the
+  headline "$783.00+" is the **10K** option. Etsy 4426190660 shows "$1,202.08+" which is the **silver** option, not the 14K
+  $1,891.78. Added **F20** (Etsy "from" pricing is the cheapest variant) — a real trap when comparing rows.
+  Etsy 576343849 is now **sold out** (page reads "Sorry, this item is sold out"), so its below-melt price is a dated capture.
+  Second-pass totals: 20 re-fetched, 19 confirmed, 1 changed (sold out). All three harnesses pass on the merged tree:
+  `scripts/verify.py` PASS (0/0, 6/6 negative), `verified/scripts/verify.py` 896 assertions / 0 failures,
+  `tools/check_hallucinations.py` 166 checks / 0 FAIL. Local link sweep: **1,018 local refs, 0 broken**.
+- 2026-10-22: **Merge with PR #9 resolved as a union.** `README.md` conflicted (both sessions rewrote it); the resolution
+  keeps this branch's site map and appends session 84be683f's own delivery section verbatim. `COORDINATION.md` auto-merged
+  with both boards. No file from either side was dropped. The `verified/` site is now linked from the Archive page.
+- 2026-10-22: **U6 done — PR #4 resolved without discarding it.** Session `3c8bb7ee`'s open PR added a checklist site at the
+  repo root, including an `index.html` that would have overwritten the dashboard. Instead of merging over it or closing the
+  work out, all 25 files were imported byte-for-byte into **`guide/`** (13 HTML pages, `css/style.css`, 9 `research/*.md`,
+  `entries.json`). Every link in that delivery is relative, so it renders unchanged at `/guide/`. It is linked from the new
+  **Archive** page and from flag F12. PR #4 is closed as superseded, with a comment pointing at `guide/`.
+- 2026-10-22: **Legacy pages kept working.** The previous dashboard's `site/*.html` pages read the old data schema; they now
+  load the original data from `site/assets/data-legacy.js` (restored from git, 46,051 bytes) and show an "archived view"
+  banner linking to the new landing page. Nothing was deleted. `site/assets/app.js` and `styles.css` remain in use by them.
 - Branch rule (all sessions, same platform constraint): each session is bound to its fixed Arena
   branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5`); the
   `session-<id>/<task>` naming scheme from the brief cannot be used (the platform forbids other
@@ -195,7 +271,7 @@ deviation already logged by the earlier sessions).
 | G4 | New dashboard site (landing + 8 category subpages + calculator) at repo root | **done** | `arena-60c4b9c3` | `index.html`, `report/**` |
 | G5 | Hallucination/security checker + negative tests | **done** (1,622 assertions; 7/7 planted errors caught) | `arena-60c4b9c3` | `tools/check_report.py`, `tools/security_test.py` |
 | G6 | Run verification passes after each review; log results | **done** (pass log on Method page) | `arena-60c4b9c3` | `verification/passes.json`, this file |
-| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | **in progress** | `arena-60c4b9c3` | this file (log) |
+| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | **done** (PR #12) | `arena-60c4b9c3` | this file (log) |
 
 **Files this session will NOT edit** (owned by earlier sessions, preserved byte-for-byte):
 `docs/**` (638c9614), `pages/**` + `assets/**` + `index-090bae73.html` (090bae73),
@@ -372,3 +448,42 @@ printed in `verified/reports/verification.md`; trust that file over this table's
   42 pages, 779 local links, 360 external links, 0 errors; `python3 tools/check_hallucinations.py` → 166 checks, 0 FAIL.
 - T7 is complete. No open items for this session: the 17 flags are published on the Flagged for review page and, per the brief,
   do not block the merge.
+
+### Log — merge, deploy and post-merge verification (session `arena-60c4b9c3`)
+
+- 2026-10-22 23:39 UTC: **Merge conflict #1 encountered and resolved (union).** While PR #12 was open,
+  main advanced (`c496779`, PR #11 from session `84be683f`, which added a `verified/` site + data +
+  its own checker and a CI workflow). `git merge origin/main` conflicted in exactly two files —
+  `COORDINATION.md` and `README.md`.
+  Resolution: both boards/logs kept verbatim (this session's section first, then `84be683f`'s);
+  README keeps this pass's layout **plus** a new section documenting `verified/`. **No file of
+  `84be683f` was edited or deleted** — `verified/**` is untouched, and their site stays live at
+  `/verified/`. Root `index.html` stayed this pass's dashboard because it is the shared output.
+  Logged as required: the conflict, the union resolution, and what was preserved.
+- Post-merge re-verification of the **combined** tree — all four checkers pass:
+  | Checker | Scope | Result |
+  |---|---|---|
+  | `tools/check_report.py` | this pass's site + `verification/data.json` | **PASS** 1,624 assertions, 0 FAIL, 0 WARN |
+  | `verified/scripts/verify.py` | session 84be683f's site | **PASS** 896 assertions, 0 failures |
+  | `verified/scripts/build_site.py --check` | its generated HTML vs its JSON | **OK** 11 pages match |
+  | `scripts/verify.py` / `tools/check_hallucinations.py` | the earlier `site/` + `docs/` deliveries | **PASS** 0 errors · 166 checks, 0 FAIL |
+- 2026-10-22 23:39 UTC: **PR #12 merged** as `3816bc6`:
+  https://github.com/karagemop466-tech/GOLD5/pull/12
+- 2026-10-22 23:40 UTC: **GitHub Pages deploy confirmed** — `pages/builds/latest` for commit `3816bc6`
+  = `built` (updated 2026-10-22T23:40:03Z). CI workflow "Verify" on the merge commit: **success**
+  (run 39873251732); the PR run 39873248709 was also **success**.
+- Live pages fetched after deploy (not just assumed):
+  - https://karagemop466-tech.github.io/GOLD5/ → new dashboard (title "Gold engagement rings,
+    verified line by line"; 27 listings / 8 with weights / 9 solid-stated / 26 flags; spot 4,026.90 & 129.47)
+  - https://karagemop466-tech.github.io/GOLD5/report/flagged.html → all 26 flag blocks with their
+    anchors, source links and affected rows
+  - https://karagemop466-tech.github.io/GOLD5/report/value.html → hub table + raw-gold table; the
+    calculator rendered its default result in the browser (2.9167 g fine gold, $377.62) which proves
+    the JS runs against the deployed asset
+- 2026-10-22 23:47 UTC: post-deploy copy fix — the `G-REPUTATION-MISSING` detail still said "2 of 8
+  sellers" after the 9th seller was added. Corrected to "3 of 9" with the three named sources, passes
+  re-run (**1,624 assertions, 0 FAIL**), and shipped in a follow-up PR (flagged here rather than
+  edited silently).
+- Remaining open items: all 26 flags are published on the Flagged for review page with source links.
+  They do not block the deploy, and none of them is a claim that anything on the site is false — each
+  one states what could not be verified and what would settle it.

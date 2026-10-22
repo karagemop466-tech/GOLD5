@@ -459,8 +459,8 @@ def main():
     record = "--record" in sys.argv
     d = load()
     pages = {}
-    for rel in ["index.html"] + [f"report/{n}.html" for n in
-                                 ("listings", "karat", "value", "sellers", "checklist",
+    for rel in [f"report/{n}.html" for n in
+                                 ("index", "listings", "karat", "value", "sellers", "checklist",
                                   "flagged", "sources", "method")]:
         p = os.path.join(ROOT, rel)
         if not os.path.exists(p):
