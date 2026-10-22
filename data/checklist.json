@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": "C-01",
+      "requirement": "Gold purity: confirm the karat (10K, 14K, 18K, etc.)",
+      "online": "Yes — karat is printed on every listing in the table",
+      "status": "covered",
+      "note": "Recorded from the listing's metal field; the exact quote is stored per row."
+    },
+    {
+      "id": "C-02",
+      "requirement": "Solid gold: the listing must explicitly say solid gold — not plated, vermeil, filled, overlay or tone",
+      "online": "Only partly — 2 of 9 listings explicitly say 'solid gold'",
+      "status": "gap",
+      "note": "Blue Nile, Brilliant Earth and Ross-Simons list karat only. Flagged F-006; get written confirmation from the seller."
+    },
+    {
+      "id": "C-03",
+      "requirement": "Hallmark: a 10K/14K/18K stamp plus a maker's/manufacturer's mark",
+      "online": "No — no listing page states the hallmark or maker's mark",
+      "status": "gap",
+      "note": "Flagged F-005. Must be seen on the ring (or in a close-up photo) and confirmed by an independent jeweler."
+    },
+    {
+      "id": "C-04",
+      "requirement": "Weight: the ring's weight in grams",
+      "online": "No — 0 of 9 listings published a gram weight in captured HTML",
+      "status": "gap",
+      "note": "Flagged F-004/F-013. Ask the seller for the weight of the exact size and metal before paying."
+    },
+    {
+      "id": "C-05",
+      "requirement": "Seller reputation: independent reviews/complaints and real contact information",
+      "online": "Partly — contact phone/email verified for 3 of 5 sellers; BBB lookup links provided",
+      "status": "gap",
+      "note": "No review rating is republished here. Mejuri contact details were not captured (F-011); BBB profiles are linked for manual review."
+    },
+    {
+      "id": "C-06",
+      "requirement": "Price: compare with gold weight and current gold value; an unusually cheap price is a red flag",
+      "online": "Partly — prices and spot captured; weights are missing, so price-per-gram cannot be computed",
+      "status": "gap",
+      "note": "Use the calculator with a seller-confirmed weight. Setting-only prices exclude the centre stone (F-015)."
+    },
+    {
+      "id": "C-07",
+      "requirement": "Return policy, including exclusions for resized/custom rings",
+      "online": "Yes — return windows and exclusions captured for all five sellers",
+      "status": "covered",
+      "note": "All five exclude resized and/or personalised items from returns. Details and quotes on the Sellers page."
+    },
+    {
+      "id": "C-08",
+      "requirement": "Payment: prefer a credit card; avoid irreversible methods",
+      "online": "Partly — financing is advertised, but no seller's full accepted-card list was captured",
+      "status": "gap",
+      "note": "Pay by credit card at checkout so chargeback protection applies; this is a checklist rule, not a claim about a seller's payment page."
+    },
+    {
+      "id": "C-09",
+      "requirement": "Documentation: keep the listing, receipt, description and purity claims",
+      "online": "Yes — every row links to the official page with a capture date",
+      "status": "covered",
+      "note": "Save a PDF/screenshot of the live page at purchase time; pages change (F-002, F-003)."
+    },
+    {
+      "id": "C-10",
+      "requirement": "On arrival: independent jeweler verifies purity and weight before wearing/resizing",
+      "online": "No — this is an offline step",
+      "status": "offline",
+      "note": "Unresizable or resized rings may lose return eligibility, so inspect first."
+    },
+    {
+      "id": "C-11",
+      "requirement": "Best verification: XRF testing or another professional purity test; do not rely on the stamp alone",
+      "online": "No — this is an offline step",
+      "status": "offline",
+      "note": "Ask for the XRF readout in writing, with the machine's calibration check."
+    },
+    {
+      "id": "C-12",
+      "requirement": "If the seller will not allow independent verification or a return, do not buy",
+      "online": "No — a decision rule for you at checkout",
+      "status": "offline",
+      "note": "All five sellers publish a return window; confirming it for the exact item is still required."
+    }
+  ]
+}
