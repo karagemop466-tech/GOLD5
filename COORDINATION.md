@@ -864,7 +864,7 @@ don't buy it"). Only two rows evidence a stamp at all.
 
 ### Integration result (PR → main)
 
-- **PR:** https://github.com/karagemop466-tech/GOLD5/pull/26 — `arena/3e3fae49-gold5` → `main`
+- **PR:** https://github.com/karagemop466-tech/GOLD5/pull/29 — `arena/3e3fae49-gold5` → `main`
 - **Merged without approval** as instructed (flagged/unverified items do not block the merge; all 14
   project-level findings and every row-level flag are published with source links on
   `dossier/pages/flagged.html`).
