@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GOLD5">
+  <rect width="64" height="64" rx="14" fill="#122b1d"/>
+  <circle cx="32" cy="30" r="15" fill="none" stroke="#d8b45a" stroke-width="4"/>
+  <path d="M32 15l7 8-7 22-7-22z" fill="#d8b45a" opacity=".35"/>
+  <text x="32" y="58" font-size="9" text-anchor="middle" fill="#d8b45a" font-family="monospace">GOLD</text>
+</svg>
