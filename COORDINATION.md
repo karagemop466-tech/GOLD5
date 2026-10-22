@@ -18,13 +18,13 @@ below before touching anything.
 
 | ID | Task | Status | Owner | File scope (exclusive) |
 |----|------|--------|-------|------------------------|
-| U1 | Review repo, re-open board, claim scopes, log | in progress | 93032b31 | `COORDINATION.md`, `README.md` |
-| U2 | **Live re-verification** of every listing/seller/spot URL against the official page (fetch log with timestamps) | in progress | 93032b31 | `data/live_check.json`, `docs/verification/live-pass-2.md` |
-| U3 | Unified, de-duplicated dataset — every row carries source URL + check date; blanks flagged | in progress | 93032b31 | `site/assets/data.js` |
-| U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | in progress | 93032b31 | `index.html`, `site/*.html`, `site/assets/*` |
-| U5 | Extend + run the hallucination/security harness (negative-tested) | in progress | 93032b31 | `scripts/verify.py`, `tools/check_hallucinations.py` |
-| U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | in progress | 93032b31 | `guide/**` (new), `data/entries.json` |
-| U7 | Final integration: merge, link check, PR #9 → main, merge, confirm Pages deploy, log | unclaimed | — | `COORDINATION.md` |
+| U1 | Review repo, re-open board, claim scopes, log | **done** | 93032b31 | `COORDINATION.md`, `README.md` |
+| U2 | **Live re-verification** of every listing/seller/spot URL against the official page (fetch log) | **done** | 93032b31 | `data/live_check.json`, `data/unified.json` |
+| U3 | Unified, de-duplicated dataset — every row carries source URL + check date; blanks flagged | **done** | 93032b31 | `tools/data_unified.py`, `data/unified.json`, `site/assets/data.js` |
+| U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | **done** | 93032b31 | `index.html` + 10 root pages, `site/assets/dashboard.css` |
+| U5 | Extend + run the hallucination/security harness (negative-tested) | **done** | 93032b31 | `scripts/verify.py` (rewritten for the unified schema) |
+| U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | **done** | 93032b31 | `guide/**` (new) — all 25 files preserved |
+| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | in progress | 93032b31 | `COORDINATION.md` |
 
 Rules I follow for this pass: same no-hallucinations rule; **no value is carried over without either a
 fresh live fetch today or an explicit "captured earlier today by session X, not re-fetched" note**;
@@ -36,7 +36,41 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   `scripts/verify.py` 0 errors / 9 checks; `tools/check_hallucinations.py` 166 checks, 0 FAIL, 0 WARN,
   1 INFO. Found: two parallel datasets/deliveries live on the published site (root 13 rows, `docs/`
   11 rows) and PR #4 from session `3c8bb7ee` is still open. Both are addressed by U3–U6.
-- 2026-10-22 23:30 UTC: **claim committed and pushed before starting work** (this block).
+- 2026-10-22 23:30 UTC: **claim committed and pushed before starting work** (this block, `37f8dac`).
+- 2026-10-22 23:31-23:53 UTC: **U2 done — live re-verification pass 2.** Re-fetched: Kitco spot page; all 7 Blue Nile
+  product pages; all 4 Brilliant Earth product pages; all 3 Allurez product pages; Avianne R25893; Jewelry Master 149700;
+  Solid Gold Jewelers B02561; Etsy listings 4426190660, 4366425533, 1151446373, 1566052947, 576343849; and the FTC consumer
+  article. Results are logged per URL in `data/live_check.json` (23 product/spot fetches + the FTC page).
+  **Matched exactly:** all 7 Blue Nile prices/karats/stock numbers/widths; Brilliant Earth $750 / $1,250 / $1,190 and
+  BE1343-14KY, BE1D6013-14KY, BE1D3939-14KY with widths and review counts; Allurez $1,085/5.00 g, $933/4.80 g,
+  $585/3.58 g; Avianne $1,100/2.3 g/R25893/14-day returns; Jewelry Master $3,020 special vs $6,041 retail/2.3 g;
+  Solid Gold Jewelers 14ky/4.7 g/B02561/no price; Etsy RAKSHAK 14K $1,891.78 + 14-day returns + no item reviews;
+  VibrantStone $251.30 from $359.00 + 21-day returns + LA shipping; VeraByEden 14K/585, solid gold, 3.70 g, **7-day** returns.
+  **New findings:** (a) Brilliant Earth Secret Halo served **EUR 1,250.00**, so its USD price is not confirmed and is now
+  blank (F14); (b) Blue Nile item 203738 is titled/specced **18K white gold but described as "14k yellow gold"** (F13);
+  (c) the 7 g case-study listing is now **unavailable**, so its price stays snippet-sourced (F17); (d) two data gaps were
+  filled from the live pages (bn-195639 stock 501130y14 / 1.80 mm; be-nadia 14K / 1.8 mm / 143 reviews).
+  **Corrections vs. earlier data:** VeraByEden returns are 7 days (not "accepted"); RAKSHAK item has no reviews (the 5.0 is the
+  shop rating); Etsy promos had 19 h / 1 day / 3 days left at read time.
+- 2026-10-22: **U3/U4 done.** Single dataset `tools/data_unified.py` → `data/unified.json` → generated site (11 root pages).
+  24 listings (20 engagement rings, 3 bands, 1 case study), 14 sellers, 19 flags, 10 official references, 12 checklist points.
+  Every row carries its official URL, check date and verification state (P2 / prior capture). Blanks on 16 weights, 2 prices,
+  every hallmark and 2 return policies are flagged individually on the Flagged page.
+- 2026-10-22: **U5 done.** `scripts/verify.py` rewritten for the unified schema: 11 check groups — schema sync between
+  `unified.json` and `data.js`; provenance; source scheme; blank-must-be-flagged; prior-capture labelling; arithmetic
+  recompute (gold g, metal value, ratio, per-gram spot, per-karat consistency, cross-check spread); flags integrity;
+  **money traceability** (every `$` in the generated HTML must exist in the dataset); local/external links; required pages +
+  no-hallucinations banner; and 6 **negative tests**. Run: **PASS — 0 errors, 0 warnings, 4 cross-check notes, 6/6 negative
+  tests caught.** Report: `docs/verification/pass2-report.md`; status: `data/check_status.json`. The docs/ archive checker
+  (`tools/check_hallucinations.py`) still passes at 166 checks / 0 FAIL / 1 INFO.
+- 2026-10-22: **U6 done — PR #4 resolved without discarding it.** Session `3c8bb7ee`'s open PR added a checklist site at the
+  repo root, including an `index.html` that would have overwritten the dashboard. Instead of merging over it or closing the
+  work out, all 25 files were imported byte-for-byte into **`guide/`** (13 HTML pages, `css/style.css`, 9 `research/*.md`,
+  `entries.json`). Every link in that delivery is relative, so it renders unchanged at `/guide/`. It is linked from the new
+  **Archive** page and from flag F12. PR #4 is closed as superseded, with a comment pointing at `guide/`.
+- 2026-10-22: **Legacy pages kept working.** The previous dashboard's `site/*.html` pages read the old data schema; they now
+  load the original data from `site/assets/data-legacy.js` (restored from git, 46,051 bytes) and show an "archived view"
+  banner linking to the new landing page. Nothing was deleted. `site/assets/app.js` and `styles.css` remain in use by them.
 - Branch rule (all sessions, same platform constraint): each session is bound to its fixed Arena
   branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5`); the
   `session-<id>/<task>` naming scheme from the brief cannot be used (the platform forbids other

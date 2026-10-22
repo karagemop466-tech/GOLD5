@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive — GOLD5</title>
+<meta name="description" content="Solid gold engagement ring research: every price, weight and karat verified against the official listing, with source links. No hallucinations.">
+<link rel="stylesheet" href="site/assets/dashboard.css">
+</head>
+<body>
+<div class="banner"><div class="wrap"><b>⚠ NO HALLUCINATIONS</b> — every value on this site was read from the linked official source on the check date
+(2026-10-22). A value we could not confirm is <b>blank</b> and published on <a href="flagged.html">Flagged for review</a> — never guessed.
+Re-run the security check after every review: <code>python3 scripts/verify.py</code></div></div>
+<header class="site"><div class="wrap"><h1>GOLD5<span> · </span>Gold Ring Research</h1>
+<span class="sub">Solid gold engagement rings — collected, verified line by line, priced against the gold market</span></div></header>
+<nav class="main"><div class="wrap"><a href="index.html" class="">Dashboard</a><a href="listings.html" class="">All listings</a><a href="sellers.html" class="">Sellers</a><a href="gold-price.html" class="">Gold price</a><a href="calculator.html" class="">Calculator</a><a href="checklist.html" class="">Checklist</a><a href="analysis.html" class="">Analysis</a><a href="verification.html" class="">Verification</a><a href="flagged.html" class="">Flagged for review</a><a href="sources.html" class="">Sources</a><a href="archive.html" class="active">Archive</a></div></nav>
+<main><div class="wrap">
+
+<h2>Archive — earlier sessions' work, preserved unchanged</h2>
+<p class="note">This repository was worked on by several parallel agent sessions. Rather than delete or overwrite their
+output, every delivery is preserved byte-for-byte and linked here. The dashboard you are reading is the integrated view;
+the archives are for traceability and for the extra detail they carry.</p>
+<div class="table-scroll"><table><thead><tr><th>Archive</th><th>What is in it</th><th>Open</th></tr></thead><tbody>
+<tr><td><b>docs/</b> — session 638c9614</td><td>11 verified listings (Brilliant Earth, Blue Nile, Allurez, Avianne, Jewelry Master, Solid Gold Jewelers)
+with verbatim evidence excerpts in <code>data/evidence/</code>, its own dashboard, calculator and Flagged page, plus its own hallucination checker
+(<code>tools/check_hallucinations.py</code>).</td><td><a href="docs/index.html">docs/index.html ↗</a></td></tr>
+<tr><td><b>pages/</b> + index-090bae73.html — session 090bae73</td><td>A 13-page checklist-format guide (purity, solid gold, hallmark, weight,
+seller reputation, price, returns, payment, documentation, on-arrival, XRF, calculator, flagged).</td><td><a href="index-090bae73.html">landing ↗</a> ·
+<a href="pages/gold-purity.html">example subpage ↗</a></td></tr>
+<tr><td><b>guide/</b> — session 3c8bb7ee (PR #4)</td><td>A checklist site with research notes: 13 pages plus <code>research/*.md</code> and a
+machine-readable <code>entries.json</code>. Preserved with its original relative links intact.</td><td><a href="guide/index.html">guide/index.html ↗</a></td></tr>
+<tr><td><b>data/</b></td><td>The unified dataset (<code>unified.json</code>), the fetch log (<code>live_check.json</code>), and the earlier sessions'
+data files with their evidence.</td><td><a href="sources.html">source registry ↗</a></td></tr>
+</tbody></table></div>
+<h2>Why keep three sites?</h2>
+<p class="small">Because the brief for this project says not to discard other sessions' work, and because each archive contains
+material this dashboard summarises: the <code>docs/</code> site holds verbatim page excerpts captured at read time, the
+<code>pages/</code> site walks each checklist point in more depth, and <code>guide/</code> adds formal citations and research
+notes. The dashboard does not duplicate their evidence files — it links to them.</p>
+<p class="small">The security checks still cover the archives: <code>python3 tools/check_hallucinations.py</code> audits the
+<code>docs/</code> dataset, and <code>python3 scripts/verify.py</code> audits this dashboard and cross-checks the archived links resolve.</p>
+
+</div></main>
+<footer class="site"><div class="wrap">
+<span>GOLD5 · data verified 2026-10-22 · Arena agent sessions 37e8ff42 (pass 1) and 93032b31 (pass 2, live re-verification)</span>
+<span>Security check: <code>python3 scripts/verify.py</code> · <a href="verification.html">verification log</a> · <a href="flagged.html">flagged items</a></span>
+</div></footer>
+</body></html>

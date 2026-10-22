@@ -1,0 +1,989 @@
+# -*- coding: utf-8 -*-
+"""Build the GOLD5 dashboard site from tools/data_unified.py.
+
+Outputs:
+  data/unified.json          machine-readable dataset (checked by scripts/verify.py)
+  site/assets/data.js        same data for the browser calculator
+  site/assets/dashboard.css  styles
+  *.html (repo root)         landing page + category subpages
+
+No external dependencies, no build step at runtime, no third-party JS.
+"""
+import json
+import os
+import sys
+import html as htmllib
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from data_unified import (ASOF, META, SPOT, SELLERS, LISTINGS, FLAGS, REFERENCES, CHECKLIST)
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OZ = SPOT["troyOzGrams"]
+FIN = SPOT["purity"]["fineness"]
+G = SPOT["primary"]["usdPerGram"]
+E = htmllib.escape
+
+
+def money(n, dec=2):
+    if n is None:
+        return None
+    return "${:,.{d}f}".format(float(n), d=dec)
+
+
+def derive(row):
+    k = row.get("karat")
+    grams = row.get("grams")
+    out = {"gold_g": None, "metal_value": None, "ratio": None}
+    fin = FIN.get(str(k) + "K")
+    if grams is not None and fin is not None:
+        gold = grams * fin
+        out["gold_g"] = round(gold, 4)
+        out["metal_value"] = round(gold * G, 2)
+        if row.get("price"):
+            out["ratio"] = round(row["price"] / out["metal_value"], 3)
+    return out
+
+
+SELLER_BY_ID = {s["id"]: s for s in SELLERS}
+
+# ----------------------------------------------------------------------------------------
+# integrity guard: refuse to build if the data breaks the no-hallucination contract
+# ----------------------------------------------------------------------------------------
+problems = []
+ids = set()
+for r in LISTINGS:
+    if r["id"] in ids:
+        problems.append("duplicate id " + r["id"])
+    ids.add(r["id"])
+    if not r.get("url", "").startswith("https://"):
+        problems.append("listing without https source: " + r["id"])
+    if r["sellerId"] not in SELLER_BY_ID:
+        problems.append("unknown seller %s on %s" % (r["sellerId"], r["id"]))
+    if r.get("verifyState") not in ("P2", "prior", "unverified"):
+        problems.append("bad verifyState on " + r["id"])
+    if r.get("price") is None and not any(f in ("no-price", "usd-price-unverified", "price-from-search-snippet") for f in r["flags"]):
+        problems.append("blank price not flagged: " + r["id"])
+    if r.get("grams") is None and "no-gram-weight" not in r["flags"]:
+        problems.append("blank weight not flagged: " + r["id"])
+    if r.get("grams") is not None and r["grams"] <= 0:
+        problems.append("non-positive weight: " + r["id"])
+    if r.get("price") is not None and r["price"] <= 0:
+        problems.append("non-positive price: " + r["id"])
+    if r.get("karat") not in (10, 14, 18, 22):
+        problems.append("implausible karat on " + r["id"])
+if problems:
+    raise SystemExit("DATA INTEGRITY FAIL:\n  " + "\n  ".join(problems))
+
+# ----------------------------------------------------------------------------------------
+# unified.json
+# ----------------------------------------------------------------------------------------
+listings_out = []
+for r in LISTINGS:
+    d = dict(r)
+    d["checkedOn"] = ASOF
+    d.update(derive(r))
+    d["sellerName"] = SELLER_BY_ID[r["sellerId"]]["name"]
+    listings_out.append(d)
+
+# derived per-gram values for the purity table — computed, never typed
+SPOT["purity"]["perGram"] = {k: round(v / OZ, 4) for k, v in SPOT["purity"]["perOunce"].items()}
+
+UNIFIED = {
+    "meta": META,
+    "spot": SPOT,
+    "sellers": SELLERS,
+    "listings": listings_out,
+    "flags": FLAGS,
+    "references": REFERENCES,
+    "checklist": [{"point": c[0], "what": c[1], "referenceId": c[2], "finding": c[3]} for c in CHECKLIST],
+    "stats": {
+        "listings": len(listings_out),
+        "engageRings": sum(1 for x in listings_out if x["category"] == "engagement-ring"),
+        "bands": sum(1 for x in listings_out if x["category"] == "band"),
+        "caseStudies": sum(1 for x in listings_out if x["category"] == "case-study"),
+        "sellers": len(SELLERS),
+        "withWeight": sum(1 for x in listings_out if x["grams"] is not None),
+        "withPrice": sum(1 for x in listings_out if x["price"] is not None),
+        "belowMelt": sum(1 for x in listings_out if x["ratio"] is not None and x["ratio"] < 1),
+        "withHallmarkProof": sum(1 for x in listings_out if x.get("makerMark")),
+        "reverified": sum(1 for x in listings_out if x["verifyState"] == "P2"),
+        "priorCapture": sum(1 for x in listings_out if x["verifyState"] == "prior"),
+        "flags": len(FLAGS),
+        "sources": len({r["url"] for r in listings_out} | {s["website"] for s in SELLERS} | {x["url"] for x in REFERENCES}),
+    },
+}
+
+os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
+with open(os.path.join(ROOT, "data", "unified.json"), "w", encoding="utf-8") as f:
+    json.dump(UNIFIED, f, indent=2, ensure_ascii=False)
+    f.write("\n")
+
+JS_DATA = ("/* GENERATED by tools/build_dashboard.py from tools/data_unified.py — do not edit by hand.\n"
+           "   NO HALLUCINATIONS: every value has a source URL + check date. */\n"
+           "window.GOLD5_DATA = " + json.dumps(UNIFIED, ensure_ascii=False, indent=1) + ";\n")
+with open(os.path.join(ROOT, "site", "assets", "data.js"), "w", encoding="utf-8") as f:
+    f.write(JS_DATA)
+
+# ----------------------------------------------------------------------------------------
+# styles
+# ----------------------------------------------------------------------------------------
+CSS = """
+:root{--bg:#f7f6f2;--panel:#fff;--ink:#1d1b16;--muted:#6b6459;--line:#e4dfd5;--gold:#a9801f;--gold2:#c9a227;
+--ok:#1c7a4a;--okbg:#e6f4ec;--warn:#8a5a00;--warnbg:#fff3d6;--bad:#a3181d;--badbg:#fdeaea;--info:#1f5f99;--infobg:#e8f2fb}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:#7a5a10;text-underline-offset:2px}
+a:hover{color:#a9801f}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header.site{background:linear-gradient(180deg,#16140f,#241f16);color:#f6f1e3;padding:20px 0 16px;border-bottom:3px solid var(--gold2)}
+header.site h1{margin:0;font-size:23px;letter-spacing:.2px}
+header.site h1 span{color:var(--gold2)}
+header.site .sub{display:block;color:#c9c1ae;font-size:13px;margin-top:5px}
+nav.main{background:#0f0e0b;position:sticky;top:0;z-index:20;border-bottom:1px solid #2a251a}
+nav.main .wrap{display:flex;flex-wrap:wrap;gap:2px}
+nav.main a{color:#cfc7b4;text-decoration:none;padding:10px 12px;font-size:13.5px;border-bottom:2px solid transparent}
+nav.main a:hover{color:#fff;background:#1b1810}
+nav.main a.active{color:#fff;border-bottom-color:var(--gold2);background:#1b1810}
+.banner{background:#fff7d6;border-bottom:1px solid #e8d79a;font-size:12.5px;color:#4a3d12}
+.banner .wrap{padding:8px 18px}
+.banner b{color:#7a5a10}
+main{padding:26px 0 56px}
+h2{font-size:20px;margin:34px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2:first-child{margin-top:4px}
+h3{font-size:16px;margin:22px 0 8px}
+p{margin:9px 0}
+.note{color:var(--muted);font-size:13px}
+.small{font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.card .v{font-size:23px;font-weight:700;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.card .d{font-size:12.5px;color:var(--muted)}
+.card.gold{background:#fffaf0;border-color:#e6d5a5}
+.card.gold .v{color:#8a6512}
+.card a{text-decoration:none}
+a.card{display:block;transition:.15s}
+a.card:hover{border-color:var(--gold2);transform:translateY(-1px)}
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f2efe7;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:#57503f;position:sticky;top:0}
+tbody tr:hover{background:#fbf9f3}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.src{font-size:11.5px;color:var(--muted);word-break:break-word}
+.blank{color:#a09a8d;font-style:italic}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap}
+.badge.ok{background:var(--okbg);color:var(--ok)}.badge.warn{background:var(--warnbg);color:var(--warn)}
+.badge.bad{background:var(--badbg);color:var(--bad)}.badge.info{background:var(--infobg);color:var(--info)}
+.badge.gray{background:#eeece6;color:#6b6459}
+.flag{border-left:4px solid var(--gold2);background:var(--panel);border-radius:8px;padding:13px 15px;margin:12px 0}
+.flag.high{border-left-color:var(--bad)}.flag.medium{border-left-color:#d08a00}
+.flag.low{border-left-color:var(--info)}.flag.info{border-left-color:#9b9484}
+.flag h4{margin:0 0 6px;font-size:14.5px}
+.flag p{margin:6px 0;font-size:13.5px}
+.flag .meta{font-size:11.5px;color:var(--muted);word-break:break-word}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.calc-grid{grid-template-columns:1fr}}
+.calc-box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.4px}
+input,select{width:100%;padding:9px 10px;border:1px solid #cfc8b9;border-radius:8px;font-size:14px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--gold2);outline-offset:1px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.row:last-of-type{border-bottom:none}
+.row b.big{font-size:19px}
+.verdict{margin-top:12px;padding:12px;border-radius:8px;background:var(--infobg);font-size:13.5px}
+.verdict.risk{background:var(--badbg)}.verdict.good{background:var(--okbg)}.verdict.okay{background:var(--warnbg)}
+.pill{display:inline-block;background:#f2efe7;border:1px solid var(--line);border-radius:20px;padding:3px 10px;font-size:12px;margin:2px 4px 2px 0}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 13px;font-size:13px;cursor:pointer;color:var(--ink)}
+.filters button.active{background:#16140f;color:#fff;border-color:#16140f}
+footer.site{border-top:1px solid var(--line);background:#fff;padding:18px 0;font-size:12.5px;color:var(--muted)}
+footer.site .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+code{background:#f2efe7;padding:1px 5px;border-radius:4px;font-size:12.5px}
+ul.tight li{margin:5px 0}
+.hero{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:10px;padding:16px 18px;margin:8px 0 18px}
+.hero h2{border:none;margin:0 0 6px;padding:0;font-size:18px}
+.hero p{font-size:13.5px;margin:6px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+"""
+
+NAV = [
+    ("index.html", "Dashboard", "home"),
+    ("listings.html", "All listings", "listings"),
+    ("sellers.html", "Sellers", "sellers"),
+    ("gold-price.html", "Gold price", "price"),
+    ("calculator.html", "Calculator", "calc"),
+    ("checklist.html", "Checklist", "check"),
+    ("analysis.html", "Analysis", "analysis"),
+    ("verification.html", "Verification", "verify"),
+    ("flagged.html", "Flagged for review", "flagged"),
+    ("sources.html", "Sources", "sources"),
+    ("archive.html", "Archive", "archive"),
+]
+
+
+def chrome(active, title, body, subtitle=""):
+    nav = "".join(
+        '<a href="%s" class="%s">%s</a>' % (href, "active" if key == active else "", label)
+        for href, label, key in NAV
+    )
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{E(title)} — GOLD5</title>
+<meta name="description" content="Solid gold engagement ring research: every price, weight and karat verified against the official listing, with source links. No hallucinations.">
+<link rel="stylesheet" href="site/assets/dashboard.css">
+</head>
+<body>
+<div class="banner"><div class="wrap"><b>⚠ NO HALLUCINATIONS</b> — every value on this site was read from the linked official source on the check date
+({E(META['asOf'])}). A value we could not confirm is <b>blank</b> and published on <a href="flagged.html">Flagged for review</a> — never guessed.
+Re-run the security check after every review: <code>python3 scripts/verify.py</code></div></div>
+<header class="site"><div class="wrap"><h1>GOLD5<span> · </span>Gold Ring Research</h1>
+<span class="sub">{E(subtitle or 'Solid gold engagement rings — collected, verified line by line, priced against the gold market')}</span></div></header>
+<nav class="main"><div class="wrap">{nav}</div></nav>
+<main><div class="wrap">
+{body}
+</div></main>
+<footer class="site"><div class="wrap">
+<span>GOLD5 · data verified {E(META['asOf'])} · {E(META['verifiedBy'])}</span>
+<span>Security check: <code>python3 scripts/verify.py</code> · <a href="verification.html">verification log</a> · <a href="flagged.html">flagged items</a></span>
+</div></footer>
+</body></html>
+"""
+
+
+def badge(tone, text):
+    return '<span class="badge %s">%s</span>' % (tone, E(text))
+
+
+FLAG_LABELS = {
+    "no-gram-weight": ("gray", "no gram weight"),
+    "hallmark-not-shown": ("warn", "no hallmark photo"),
+    "setting-only": ("info", "setting only"),
+    "seller-stated-weight": ("info", "seller-stated weight"),
+    "variant-price": ("info", "variant price"),
+    "sale-price-expires": ("warn", "sale ends soon"),
+    "short-return-window": ("warn", "short return window"),
+    "price-below-metal-value": ("bad", "BELOW METAL VALUE"),
+    "sold-at-check": ("gray", "unavailable now"),
+    "price-from-search-snippet": ("warn", "price via snippet"),
+    "usd-price-unverified": ("bad", "USD price unverified"),
+    "no-price": ("gray", "no price published"),
+    "returns-unstated": ("warn", "returns not stated"),
+    "metal-text-contradiction": ("bad", "metal text contradicts spec"),
+    "restocking-fee": ("warn", "restocking fee"),
+    "ships-from-india": ("info", "ships from India"),
+    "cross-border-shipping": ("info", "cross-border"),
+    "prior-capture": ("gray", "prior capture"),
+    "retail-vs-sale-price": ("info", "retail vs sale price"),
+}
+
+
+def flag_badges(flags):
+    out = []
+    for f in flags:
+        tone, label = FLAG_LABELS.get(f, ("gray", f))
+        out.append(badge(tone, label))
+    return " ".join(out)
+
+
+def state_badge(state):
+    if state == "P2":
+        return badge("ok", "re-verified")
+    if state == "prior":
+        return badge("warn", "prior capture")
+    return badge("bad", "unverified")
+
+
+def listing_rows(rows):
+    out = []
+    for r in rows:
+        d = derive(r)
+        s = SELLER_BY_ID[r["sellerId"]]
+        if d["ratio"] is None:
+            vs = '<span class="blank">n/a — no weight</span>'
+        else:
+            ratio = d["ratio"]
+            tone = "bad" if ratio < 1 else "warn" if ratio < 1.6 else "ok"
+            word = ("BELOW metal value" if ratio < 1 else "thin margin" if ratio < 1.6 else "above metal value")
+            vs = ('<span class="num">%.2f×</span><br>%s<span class="src">metal ≈ %s @ %s/g</span>'
+                  % (ratio, badge(tone, word), money(d["metal_value"]), money(G)))
+        price = money(r["price"]) if r["price"] is not None else '<span class="blank">—</span>'
+        grams = ('<span class="num">%s g</span>' % r["grams"]) if r["grams"] is not None else '<span class="blank">—</span>'
+        hallmark = r.get("hallmark") or r.get("hallmarkNote") or None
+        out.append(f"""<tr data-category="{E(r['category'])}">
+<td><b>{E(r['name'])}</b><div class="src"><a href="{E(r['url'])}" target="_blank" rel="noopener">official listing ↗</a></div></td>
+<td>{E(s['name'])}</td>
+<td class="num">{r['karat']}K<br><span class="src">{E(r.get('metalColor') or '')}</span></td>
+<td class="num">{grams}<div class="src">{E(r.get('gramsNote') or '')}</div></td>
+<td class="num">{price}<div class="src">{E(r.get('priceLabel') or '')}</div></td>
+<td>{vs}</td>
+<td>{E(r.get('solid') or '—') if r.get('solid') else '<span class="blank">not stated</span>'}</td>
+<td>{E(hallmark) if hallmark else '<span class="blank">not shown</span>'}</td>
+<td>{E(r.get('returns') or '—') if r.get('returns') else '<span class="blank">not stated</span>'}{('<div class="src"><a href="%s" target="_blank" rel="noopener">policy ↗</a></div>' % E(r['returnsUrl'])) if r.get('returnsUrl') else ''}</td>
+<td class="num">{E(str(r.get('widthMm')) + ' mm') if r.get('widthMm') else '<span class="blank">—</span>'}</td>
+<td>{state_badge(r['verifyState'])}<div class="src">{E(r.get('reviews') or '')}</div></td>
+<td>{flag_badges(r['flags'])}</td>
+</tr>""")
+    return "\n".join(out)
+
+
+LISTING_HEAD = """<div class="table-scroll"><table>
+<thead><tr><th>Ring / listing</th><th>Seller</th><th>Karat</th><th>Weight</th><th>Price</th><th>Price vs. gold</th>
+<th>Solid-gold claim</th><th>Hallmark / maker</th><th>Return policy</th><th>Width</th><th>Status</th><th>Flags</th></tr></thead>
+<tbody>"""
+
+
+def listings_table(rows):
+    return LISTING_HEAD + listing_rows(rows) + "</tbody></table></div>"
+
+
+def category_section(title, cat, blurb):
+    rows = [r for r in LISTINGS if r["category"] == cat]
+    return (f'<h2 id="{cat}">{E(title)} <span class="src">({len(rows)})</span></h2>'
+            f'<p class="note">{blurb}</p>' + listings_table(rows))
+
+
+# ----------------------------------------------------------------------------------------
+# pages
+# ----------------------------------------------------------------------------------------
+def page_home():
+    S = UNIFIED["stats"]
+    top = [r for r in LISTINGS if r["grams"] is not None]
+    top.sort(key=lambda r: (derive(r)["ratio"] if derive(r)["ratio"] is not None else 9))
+    rated = [r for r in top if r["category"] != "case-study"][:5]
+    spot = SPOT["primary"]
+    body = f"""
+<div class="hero">
+<h2>Read this first: no hallucinations</h2>
+<p><b>{E(META['noHallucinations'])}</b></p>
+<p class="small">How that is enforced, in public: every table row carries the official listing URL and the date it was read;
+any blank cell is listed on the <a href="flagged.html">Flagged for review</a> page with the reason it is blank; and
+<code>scripts/verify.py</code> is a security check that fails the build if a value has no source, if a derived number does not
+recompute, or if a dollar figure on the page cannot be traced back to the dataset. <b>Run that check after every review.</b></p>
+</div>
+
+<div class="cards">
+<div class="card gold"><div class="k">Gold spot (primary, {E(spot['asOf'][:10])}, 7:26 pm ET)</div>
+<div class="v">{money(spot['usdPerOz'])} / oz</div>
+<div class="d">{money(spot['usdPerGram'])} / g · <a href="{E(spot['url'])}" target="_blank" rel="noopener">Kitco ↗</a></div></div>
+<div class="card"><div class="k">Listings collected &amp; verified</div><div class="v">{S['listings']}</div>
+<div class="d">{S['engageRings']} engagement rings · {S['bands']} reference bands · {S['caseStudies']} case study</div></div>
+<div class="card"><div class="k">Rows with a gram weight</div><div class="v">{S['withWeight']} / {S['listings']}</div>
+<div class="d">The rest are blank + flagged — the seller does not publish a weight</div></div>
+<div class="card"><div class="k">Rows with hallmark proof</div><div class="v">{S['withHallmarkProof']} / {S['listings']}</div>
+<div class="d">No listing shows a maker's mark — the biggest gap in online gold buying</div></div>
+<div class="card"><div class="k">Flags raised</div><div class="v">{S['flags']}</div>
+<div class="d"><a href="flagged.html">Flagged for review ↗</a></div></div>
+</div>
+
+<h2>What this is</h2>
+<div class="two">
+<div class="card">
+<h3 style="margin-top:0">The goal</h3>
+<p class="small">Find gold engagement rings that can actually be verified: solid gold (not plated or filled), a stated karat,
+a hallmark <i>and</i> maker's mark, a published weight in grams, a reputable seller, a price that makes sense against the gold
+market, a usable return window, and a path to independent XRF testing on arrival.</p>
+<p class="small">This dashboard collects every candidate we could verify from an official listing, shows what is known and
+what is not, and computes the raw-gold value of each ring so an implausible price stands out.</p>
+</div>
+<div class="card">
+<h3 style="margin-top:0">The key finding</h3>
+<p class="small"><b>A 14K or 18K stamp by itself does not prove the ring is that purity.</b> The FTC's own guidance says a karat
+mark must sit next to the maker's name or trademark — and if the trademark is missing, don't buy. Not one listing in this
+dataset shows that combination. The only proof is an independent jeweler's weights and XRF test after delivery, before you
+wear or resize the ring.</p>
+<p class="small"><a href="checklist.html">The 12-point checklist →</a> · <a href="analysis.html">Full analysis →</a></p>
+</div>
+</div>
+
+<h2>The gold spot we priced against</h2>
+<p class="note">One primary quote drives every calculation on this site; same-day cross-checks are on the
+<a href="gold-price.html">Gold price</a> page. Spot moves all day — re-check before you buy.</p>
+{spot_table()}
+
+<h2>Best-documented candidates <span class="src">(only rows with a published gram weight)</span></h2>
+<p class="note">Sorted by price ÷ raw-gold value at the verified spot. A ratio under 1.00× is below melt value — a red flag,
+not a bargain. These are <b>setting-only</b> prices where marked, so the ratio understates the total ring cost.</p>
+{listings_table(rated)}
+<p class="note">The full set — {S['listings']} rows across {S['sellers']} sellers — is on <a href="listings.html">All listings</a>,
+each with its source link, check date and flags.</p>
+
+<h2>Where to go next</h2>
+<div class="cards">
+<a class="card" href="listings.html"><div class="k">All listings</div><div class="v" style="font-size:16px">{S['listings']} rows, one table</div><div class="d">Price, grams, karat, solid claim, hallmark, returns, width, source, status.</div></a>
+<a class="card" href="gold-price.html"><div class="k">Gold price</div><div class="v" style="font-size:16px">Spot + per-karat values</div><div class="d">Dated quotes, cross-checks, fineness table.</div></a>
+<a class="card" href="calculator.html"><div class="k">Calculator</div><div class="v" style="font-size:16px">Weight → raw gold value</div><div class="d">Pure gold grams, troy ounces, metal value, price-to-metal ratio.</div></a>
+<a class="card" href="checklist.html"><div class="k">Checklist</div><div class="v" style="font-size:16px">12 points, each sourced</div><div class="d">What to demand from the seller, and what we found.</div></a>
+<a class="card" href="sellers.html"><div class="k">Sellers</div><div class="v" style="font-size:16px">{S['sellers']} profiles</div><div class="d">Contact details, returns, warranty, payment, reputation links.</div></a>
+<a class="card" href="flagged.html"><div class="k">Flagged for review</div><div class="v" style="font-size:16px">{S['flags']} items</div><div class="d">Irregularities and every unverified cell, with the source.</div></a>
+</div>
+"""
+    return chrome("home", "Gold ring research dashboard", body)
+
+
+def spot_table():
+    rows = [dict(SPOT["primary"], primary=True)] + SPOT["crossChecks"]
+    trs = []
+    for q in rows:
+        trs.append(f"""<tr><td><b>{E(q['source'])}</b> {badge('ok','primary') if q.get('primary') else ''}</td>
+<td class="num">{money(q['usdPerOz'])}</td><td class="num">{money(q['usdPerGram']) if q.get('usdPerGram') else '<span class="blank">—</span>'}</td>
+<td class="num">{E(q['asOf'])}</td><td class="small">{E(q.get('note') or '')}<div class="src">{state_badge(q.get('verifyState'))}</div></td>
+<td><a class="src" href="{E(q['url'])}" target="_blank" rel="noopener">source ↗</a></td></tr>""")
+    return ('<div class="table-scroll"><table><thead><tr><th>Source</th><th>USD / oz</th><th>USD / g</th><th>As of</th>'
+            '<th>What the page said</th><th>Link</th></tr></thead><tbody>' + "".join(trs) + "</tbody></table></div>")
+
+
+def page_listings():
+    S = UNIFIED["stats"]
+    body = f"""
+<h2>All listings — every row, every source</h2>
+<p class="note">Each row was checked against the linked official page. <b>Blank = the seller does not publish that value</b>;
+blanks are flagged, never filled in. Rows marked {badge('ok','re-verified')} were re-fetched live in verification pass 2 (2026-10-22 evening UTC);
+{badge('warn','prior capture')} rows were captured earlier the same day and are labelled as such. {badge('bad','unverified')} would mean
+no source at all — there are none on this page.</p>
+<p class="note"><b>Setting-only</b> prices exclude the center diamond and are <u>not</u> comparable with complete-ring prices.
+Price vs. gold = price ÷ (grams × karat fineness × {money(G)}/g); hover-free math, recomputed by the checker.</p>
+<div class="filters" id="filters">
+<button class="active" data-f="all">All {S['listings']}</button>
+<button data-f="engagement-ring">Engagement rings {S['engageRings']}</button>
+<button data-f="band">Reference bands {S['bands']}</button>
+<button data-f="case-study">Case study {S['caseStudies']}</button>
+</div>
+{category_section('Engagement rings', 'engagement-ring', 'The core list. Karat and price come from the product page; weight only where the seller publishes it.')}
+{category_section('Solid-gold bands (price-per-gram reference)', 'band', 'Plain bands show what 14K solid gold actually costs per gram at retail — use them with the calculator to sanity-check an engagement-ring price.')}
+{category_section('Case study', 'case-study', 'Retained because it shows the price-vs-melt test catching something: a 7 g 14K band priced below its own gold value.')}
+<script>
+(function(){{
+  var btns=document.querySelectorAll('#filters button');
+  btns.forEach(function(b){{b.addEventListener('click',function(){{
+    btns.forEach(function(x){{x.classList.remove('active')}});b.classList.add('active');
+    var f=b.getAttribute('data-f');
+    document.querySelectorAll('tbody tr').forEach(function(tr){{
+      tr.style.display=(f==='all'||tr.getAttribute('data-category')===f)?'':'none';
+    }});
+  }})}});
+}})();
+</script>
+"""
+    return chrome("listings", "All listings", body)
+
+
+def page_sellers():
+    cards = []
+    for s in SELLERS:
+        rep = "".join('<div class="small">• <a href="%s" target="_blank" rel="noopener">%s</a> %s</div>'
+                      % (E(x["url"]), E(x["note"]), state_badge(x["verifyState"])) for x in s.get("reputation", []))
+        ret = s.get("returns") or {}
+        war = s.get("warranty") or {}
+        cards.append(f"""<div class="flag info" style="border-left-color:#c9a227">
+<h4>{E(s['name'])} {badge('gray', s['type'])}</h4>
+<div class="small" style="line-height:1.8">
+<div><b>Website</b> <a href="{E(s['website'])}" target="_blank" rel="noopener">{E(s['website'])}</a>
+{' · <b>Contact</b> <a href="' + E(s['contactUrl']) + '" target="_blank" rel="noopener">contact page ↗</a>' if s.get('contactUrl') else ''}</div>
+{'<div><b>Phone</b> ' + E(s['phone']) + '</div>' if s.get('phone') else ''}
+{'<div><b>Email</b> ' + E(s['email']) + '</div>' if s.get('email') else ''}
+<div><b>Where</b> {E(s.get('hq') or '—')}</div>
+<div><b>Returns</b> {E(ret.get('summary') or 'Not stated — do not assume a return right.')} {state_badge(ret.get('verifyState'))}
+{'<a href="' + E(ret['url']) + '" target="_blank" rel="noopener">policy ↗</a>' if ret.get('url') else ''}</div>
+<div><b>Warranty</b> {E(war.get('summary') or 'Not verified.')} {state_badge(war.get('verifyState'))}</div>
+<div><b>Payment</b> {E(s.get('payment') or '—')}</div>
+<div><b>Reputation</b> {rep or '<span class="blank">No independent reputation source verified for this seller.</span>'}</div>
+</div></div>""")
+    body = f"""
+<h2>Sellers — contact, policies, reputation</h2>
+<p class="note">A seller is only usable if you can reach a real business, read its return terms in writing, and pay by a
+reversible method. Everything below links to where it was read. Missing facts are shown as missing — that is the point.</p>
+<div class="hero" style="border-left-color:var(--warn)">
+<h2>What this table does not tell you</h2>
+<p>It does not tell you the seller is honest. Reputation data here is a sample of public complaint sources, not an audit.
+The FTC's advice is to search the business name with the words “complaint” and “review”, and to get the return policy in
+writing before you pay. Do that yourself for the final seller you choose.</p>
+</div>
+{''.join(cards)}
+<h2>Comparing the shops at a glance</h2>
+<div class="table-scroll"><table><thead><tr><th>Seller</th><th>Phone / contact</th><th>Return window</th><th>Independent reputation checked</th></tr></thead><tbody>
+{''.join('<tr><td><b>%s</b></td><td>%s</td><td>%s</td><td>%s</td></tr>' % (
+  E(s['name']),
+  E(s.get('phone') or ('contact page' if s.get('contactUrl') else '—')),
+  E((s.get('returns') or {}).get('summary') or 'not stated'),
+  ('yes — see profile' if s.get('reputation') else '<span class="blank">none verified</span>')) for s in SELLERS)}
+</tbody></table></div>
+"""
+    return chrome("sellers", "Sellers", body)
+
+
+def page_price():
+    P = SPOT["purity"]
+    rows = []
+    for k in ["24K", "22K", "18K", "14K", "10K"]:
+        per_g = P["perOunce"][k] / OZ
+        rows.append(f"""<tr><td><b>{k}</b></td><td class="num">{P['fineness'][k]*100:.2f}%</td>
+<td class="num">{money(P['perOunce'][k])}</td><td class="num">{money(per_g)}</td><td class="num">{E(P['stamp'][k])}</td></tr>""")
+    body = f"""
+<h2>Gold price — the dated snapshot this site prices against</h2>
+<p class="note">Spot is not a fixed number. Every quote here has its timestamp and its source, and the primary quote drives
+every calculation. The pass-2 read happened on {E(ASOF)} (evening UTC).</p>
+<h3>Primary and cross-checks</h3>
+{spot_table()}
+<h3>Gold value by purity (Kitco table, same page, same read)</h3>
+<div class="table-scroll"><table><thead><tr><th>Fineness</th><th>Gold content</th><th>Value / troy oz</th><th>Value / gram (derived)</th><th>Typical stamp</th></tr></thead>
+<tbody>{''.join(rows)}</tbody></table></div>
+<p class="note">Per-ounce values and fineness % are read from the source table; the per-gram column is derived (÷ {OZ} g/oz).
+Sanity check: {money(SPOT['primary']['usdPerOz'])} ÷ {OZ} = {money(SPOT['primary']['usdPerOz']/OZ)} ≈ the published per-gram bid
+{money(SPOT['primary']['usdPerGram'])}.</p>
+
+<h2>How the price-vs-gold test works</h2>
+<div class="card">
+<p class="small">1. Get the ring's weight in <b>grams</b> (ask the seller — a legitimate seller can provide it).<br>
+2. Pure gold grams = weight × karat ÷ 24 (14K → ×0.5833, 18K → ×0.75).<br>
+3. Raw metal value = pure gold grams × spot $/g, re-checked the day you buy.<br>
+4. Compare: <b>below</b> metal value is a fraud signal (nobody sells solid gold below melt). A ring priced at a small
+multiple of melt can still be legitimate if the workmanship and stones justify it — but the lower the multiple, the harder
+you should look at the seller.</p>
+</div>
+
+<h2>Two rules of thumb that are worth more than any single quote</h2>
+<div class="two">
+<div class="card"><h3 style="margin-top:0">A price below melt is not a bargain</h3>
+<p class="small">Gold is a commodity with a public price. If a seller offers solid 14K gold for less than its scrap value,
+either the gold is not what it claims to be, or the “solid gold” description is wrong. Case study <a href="flagged.html#F1">F1</a>
+in this dataset priced at 0.84× melt.</p></div>
+<div class="card"><h3 style="margin-top:0">You are buying metal plus work, not a number on a stamp</h3>
+<p class="small">Setting-only prices (Blue Nile, Brilliant Earth, Allurez) exclude the center stone, so their metal ratios look
+low. Complete-ring prices (Avianne, Jewelry Master, Etsy) include stones, so they look high. Compare like with like —
+<a href="flagged.html#F10">F10</a>.</p></div>
+</div>
+"""
+    return chrome("price", "Gold price", body)
+
+
+def page_calculator():
+    compact = [{"id": r["id"], "name": r["name"], "grams": r["grams"], "karat": r["karat"],
+                "price": r["price"], "basis": r["priceBasis"]} for r in LISTINGS if r["grams"] is not None]
+    body = f"""
+<h2>Raw gold calculator — weight × karat × spot</h2>
+<p class="note">Enter a ring's weight and karat to see the pure gold it contains, its metal value at the verified spot, and
+how the asking price compares. Everything is computed in your browser from the numbers you enter — nothing is pre-stored or
+inferred. The spot field is pre-filled with the verified primary quote and is editable so you can use a newer price.</p>
+<div class="calc-grid">
+<div class="calc-box">
+  <h3 style="margin-top:0">Inputs</h3>
+  <label for="c-weight">Ring weight (grams)</label>
+  <input id="c-weight" type="number" step="0.01" min="0" placeholder="e.g. 3.70">
+  <label for="c-karat">Karat</label>
+  <select id="c-karat">
+    <option value="14" selected>14K — 58.33% gold (585)</option>
+    <option value="18">18K — 75.00% gold (750)</option>
+    <option value="10">10K — 41.67% gold (417)</option>
+    <option value="22">22K — 91.67% gold (916)</option>
+  </select>
+  <label for="c-spot">Gold spot (USD per gram)</label>
+  <input id="c-spot" type="number" step="0.01" min="0" value="{G}">
+  <p class="note" style="margin:6px 0 0">Pre-filled from {E(SPOT['primary']['source'])} · {E(SPOT['primary']['asOf'])} ·
+  <a href="{E(SPOT['primary']['url'])}" target="_blank" rel="noopener">source ↗</a></p>
+  <label for="c-price">Asking / paid price (USD, optional)</label>
+  <input id="c-price" type="number" step="0.01" min="0" placeholder="e.g. 969">
+  <label for="c-load">Load a verified listing</label>
+  <select id="c-load"><option value="">— choose a row —</option>
+  {"".join('<option value="%s">%s (%s g, %dK)</option>' % (E(x['id']), E(x['name']), x['grams'], x['karat']) for x in compact)}
+  </select>
+  <p class="note">Loading a row fills in the <b>seller-stated</b> weight and the recorded price. It does not verify them —
+  that is what the jeweler on arrival is for.</p>
+</div>
+<div class="calc-box">
+  <h3 style="margin-top:0">Result</h3>
+  <div id="c-out"></div>
+</div>
+</div>
+
+<h2>Worked examples from this dataset</h2>
+<div class="table-scroll"><table><thead><tr><th>Listing</th><th>Weight</th><th>Pure gold</th><th>Metal value at {money(G)}/g</th><th>Price</th><th>Price ÷ metal</th><th>Reading</th></tr></thead><tbody>
+{''.join(worked_rows())}
+</tbody></table></div>
+<p class="note">Computed by the same formula as the calculator and recomputed by <code>scripts/verify.py</code> at build time.
+Prices marked “setting only” exclude the center stone, so their ratio is not the full ring value.</p>
+<script src="site/assets/data.js"></script>
+<script>
+(function(){{
+  var F={{24:0.9999,22:0.9167,18:0.75,14:0.5833,10:0.4167}}, OZ=31.1034768, D=window.GOLD5_DATA;
+  var el=function(id){{return document.getElementById(id)}};
+  function money(n){{return '$'+Number(n).toLocaleString('en-US',{{minimumFractionDigits:2,maximumFractionDigits:2}})}}
+  function calc(){{
+    var w=parseFloat(el('c-weight').value)||0, k=parseInt(el('c-karat').value,10),
+        s=parseFloat(el('c-spot').value)||0, p=parseFloat(el('c-price').value), f=F[k]||k/24;
+    var gold=w*f, oz=gold/OZ, val=gold*s, out=el('c-out'), html='';
+    html+='<div class="row"><span>Pure gold content</span><b class="big">'+gold.toFixed(3)+' g</b></div>';
+    html+='<div class="row"><span>In troy ounces</span><b>'+oz.toFixed(4)+' oz</b></div>';
+    html+='<div class="row"><span>Spot used</span><b>'+money(s)+'/g</b></div>';
+    html+='<div class="row"><span>Raw gold value</span><b class="big">'+money(val)+'</b></div>';
+    html+='<div class="row"><span>Price</span><b>'+(isFinite(p)&&p>0?money(p):'—')+'</b></div>';
+    var ratio=(isFinite(p)&&p>0&&val>0)?p/val:null;
+    html+='<div class="row"><span>Price ÷ metal value</span><b>'+(ratio?ratio.toFixed(2)+'×':'—')+'</b></div>';
+    if(w>0&&s>0){{
+      var cls='okay', msg='';
+      if(ratio){{
+        if(ratio<1){{cls='risk';msg='<b>Below melt value.</b> A solid-gold ring cannot honestly cost less than its own gold. Treat as a red flag and do not buy without an XRF test first.'}}
+        else if(ratio<1.6){{cls='okay';msg='A thin margin over melt. Possible for a simple band, unusual for a stone-set ring — scrutinise the seller and insist on a return window.'}}
+        else {{cls='good';msg='Above melt, which leaves room for labour, design and stones. Still verify purity independently after delivery.'}}
+      }} else {{cls='okay';msg='Add the asking price to see the price-to-metal ratio.'}}
+      html+='<div class="verdict '+cls+'">'+msg+'</div>';
+    }} else {{html+='<div class="verdict">Enter a weight above to begin.</div>'}}
+    html+='<p class="note" style="margin-top:10px">Formula: gold g = weight × karat÷24 · value = gold g × spot $/g · 1 troy oz = '+OZ+' g. Karat fineness values come from the verified Kitco purity table.</p>';
+    out.innerHTML=html;
+  }}
+  ['c-weight','c-karat','c-spot','c-price'].forEach(function(id){{el(id).addEventListener('input',calc);el(id).addEventListener('change',calc)}});
+  el('c-load').addEventListener('change',function(e){{
+    var row=(D.listings||[]).filter(function(x){{return x.id===e.target.value}})[0];
+    if(!row) return;
+    if(row.grams!=null) el('c-weight').value=row.grams;
+    el('c-karat').value=row.karat;
+    el('c-price').value=(row.price!=null?row.price:'');
+    calc();
+  }});
+  calc();
+}})();
+</script>
+"""
+    return chrome("calc", "Gold calculator", body)
+
+
+def worked_rows():
+    out = []
+    for r in LISTINGS:
+        d = derive(r)
+        if d["metal_value"] is None:
+            continue
+        ratio = d["ratio"]
+        read = ("<b style='color:#a3181d'>below melt — red flag</b>" if ratio and ratio < 1
+                else "thin margin" if ratio and ratio < 1.6 else "plausible")
+        out.append('<tr><td><a href="%s" target="_blank" rel="noopener">%s</a></td><td class="num">%s g</td>'
+                   '<td class="num">%.3f g</td><td class="num">%s</td><td class="num">%s</td><td class="num">%s</td><td>%s</td></tr>'
+                   % (E(r["url"]), E(r["name"]), r["grams"], d["gold_g"], money(d["metal_value"]),
+                      money(r["price"]) if r["price"] else '<span class="blank">—</span>',
+                      ("%.2f×" % ratio) if ratio else '<span class="blank">—</span>', read))
+    return out
+
+
+def page_checklist():
+    refs = {x["id"]: x for x in REFERENCES}
+    items = []
+    for i, (point, what, ref, finding) in enumerate(CHECKLIST, 1):
+        r = refs[ref]
+        items.append(f"""<div class="flag info" style="border-left-color:#c9a227">
+<h4>{i}. {E(point)}</h4>
+<p>{E(what)}</p>
+<p class="small"><b>What we found:</b> {E(finding)}</p>
+<div class="meta">Official source: <a href="{E(r['url'])}" target="_blank" rel="noopener">{E(r['title'])}</a> {state_badge(r['verifyState'])}</div>
+</div>""")
+    S = UNIFIED["stats"]
+    body = f"""
+<h2>The 12-point online gold-ring checklist</h2>
+<p class="note">Each point is tied to an official source and to what this project actually observed across {S['listings']} verified
+listings. The checklist is the buyer's requirement; the right-hand column is the evidence.</p>
+<div class="hero" style="border-left-color:var(--warn)">
+<h2>The key, restated</h2>
+<p><b>A 14K or 18K stamp by itself does not prove the ring is that purity.</b> The safe pattern is: reputable seller with real
+contact details + karat <b>and</b> maker's mark + a published weight + a sensible price against the gold market + a return
+window that survives resizing + credit-card payment + independent XRF testing after delivery. If the seller won't let you
+verify it or return it — don't buy it.</p>
+</div>
+{''.join(items)}
+<h2>How to verify a ring yourself, in order</h2>
+<div class="card">
+<ol class="small" style="line-height:1.9">
+<li><b>Before paying:</b> save the listing page, the price, the karat claim, the solid-gold wording and the return policy (screenshot + URL).</li>
+<li><b>Ask the seller in writing</b> for the weight in grams, the maker's mark, and confirmation that the item is solid gold, not plated or filled.</li>
+<li><b>Pay by credit card.</b> Avoid bank transfer, gift cards, crypto, or anything off-platform.</li>
+<li><b>On arrival, before wearing or resizing:</b> take it to an independent jeweler. Ask for the weight on a scale and an XRF test; get it in writing.</li>
+<li><b>Compare:</b> measured weight vs. the seller's claim; measured purity vs. the stamp; measured metal value vs. what you paid.</li>
+<li><b>If anything disagrees:</b> return it inside the window, in unworn condition, with the documentation you saved. Do not resize first — a resize usually voids the return right.</li>
+</ol>
+</div>
+"""
+    return chrome("check", "Checklist", body)
+
+
+def page_analysis():
+    S = UNIFIED["stats"]
+    cs = next(dict(derive(r), **r) for r in LISTINGS if r["id"] == "etsy-576343849")
+    with_w = [r for r in LISTINGS if r["grams"] is not None and r["price"] is not None]
+    sett = [r for r in LISTINGS if r["priceBasis"] == "setting-only"]
+    comp = [r for r in LISTINGS if r["priceBasis"] == "complete"]
+    body = f"""
+<h2>Analysis — what the data actually says</h2>
+<p class="note">This page contains only conclusions that follow from the table. Where a number is derived, the formula is
+shown; where a fact is missing, it is named as missing.</p>
+
+<div class="cards">
+<div class="card"><div class="k">Rows with weight + price</div><div class="v">{len(with_w)} / {S['listings']}</div><div class="d">Only these can be priced against gold at all</div></div>
+<div class="card"><div class="k">Setting-only rows</div><div class="v">{len(sett)}</div><div class="d">Center stone sold separately — not comparable to complete rings</div></div>
+<div class="card"><div class="k">Complete-ring rows</div><div class="v">{len(comp)}</div><div class="d">Stone(s) included in the price</div></div>
+<div class="card"><div class="k">Below-melt rows</div><div class="v">{S['belowMelt']}</div><div class="d">One case study — see F1</div></div>
+</div>
+
+<h2>Finding 1 — the hallmark gap is universal, not occasional</h2>
+<p>Across {S['listings']} listings from {S['sellers']} sellers, <b>not one</b> shows a photograph or description of a hallmark
+<i>together with</i> a maker's mark. Sellers publish stock numbers and style numbers; those are inventory references, not
+hallmarks. The FTC's guidance is explicit that a karat mark must be accompanied by the maker's name or trademark, and that
+without the trademark you should not buy. This is the strongest argument for treating every online gold purchase as
+<b>unverified until an independent jeweler tests it</b>.</p>
+
+<h2>Finding 2 — weight is withheld by exactly the sellers who could publish it</h2>
+<p>The three big retailers (Blue Nile, Brilliant Earth) publish no gram weight on any of the {len([r for r in LISTINGS if r['sellerId'] in ('bluenile','brilliantearth')])}
+rows checked, while smaller sellers (Allurez, Avianne, Jewelry Master, Solid Gold Jewelers, VeraByEden) do publish one.
+Without a weight you cannot run the price-vs-gold test before buying — you can only ask. That is a concrete, answerable
+question to put to the seller in writing, and a refusal is itself information.</p>
+
+<h2>Finding 3 — the one below-melt listing is a case study in why the test exists</h2>
+<p>The 7 g “14K solid” band in the case study was priced at {money(cs['price'])}. At the verified spot its gold content is
+{cs['grams']} × {FIN['14K']:.4f} = {cs['gold_g']:.3f} g, worth {money(cs['metal_value'])}. That is {cs['ratio']:.2f}× melt — below the value of the metal alone.
+No jeweler sells solid gold below melt; the plausible explanations are that the gold is not what it claims, or the
+description is wrong. The listing is now unavailable, which removes the chance to test that hypothesis — another reason to
+keep documentation.</p>
+
+<h2>Finding 4 — “setting only” quietly breaks price comparisons</h2>
+<p>{len(sett)} of {S['listings']} rows are setting prices with the center diamond excluded. A $870 setting plus a 1 ct diamond
+is a very different purchase from a $969 complete ring. Any comparison that ignores the basis is wrong. The table therefore
+carries a <b>Price basis</b> label on every row and a flag (F10) explaining it.</p>
+
+<h2>Finding 5 — return windows are shorter than buyers assume</h2>
+<p>Blue Nile's 30 days excludes resized and engraved items. On Etsy the windows we read were 7, 14, 21 and 30 days depending on
+the shop. If your plan is “buy, inspect with a jeweler, return if wrong”, the window must outlast the shipping time plus the
+jeweler's appointment. VeraByEden's 7 days is tight for an international shipment; RAKSHAKJEWELS ships from India with a
+14-day window.</p>
+
+<h2>Price-vs-gold, all rows that can be computed</h2>
+<div class="table-scroll"><table><thead><tr><th>Listing</th><th>Basis</th><th>Weight</th><th>Karat</th><th>Pure gold</th><th>Metal value</th><th>Price</th><th>Price ÷ metal</th></tr></thead><tbody>
+{''.join(worked_rows())}
+</tbody></table></div>
+<p class="note">Metal value uses the pass-2 spot of {money(G)}/g and the Kitco fineness table. A low ratio is not proof of fraud
+and a high ratio is not proof of quality — the ratio tells you how much of the price is explained by the metal. Stones, labour
+and brand explain the rest.</p>
+
+<h2>What would change the conclusion</h2>
+<ul class="tight small">
+<li>A listing publishing <b>weight + an XRF report + a hallmark photo with maker's mark</b> would move that row from “verify on arrival” to “pre-verified”. None exists in this dataset.</li>
+<li>A seller publishing a <b>written return policy that survives resizing</b> would remove the biggest practical risk in the checklist.</li>
+<li>Independent reputation data for the Etsy shops (beyond Etsy's own ratings) would let us rank them. None was verifiable from an independent source, so none is claimed.</li>
+</ul>
+
+<h2>Bottom line</h2>
+<div class="hero" style="border-left-color:var(--ok)">
+<h2>How to use this list</h2>
+<p>Use it as a <b>shortlist of real, currently-listed rings with traceable prices</b> — not as a guarantee. Pick rows where the
+seller answers the weight and hallmark questions in writing, pay by credit card, keep the 30-day window intact, and have the
+ring weighed and XRF-tested before you wear it. If a row has no weight and the seller won't provide one, walk away.</p>
+</div>
+"""
+    return chrome("analysis", "Analysis", body)
+
+
+def page_verification():
+    live_path = os.path.join(ROOT, "data", "live_check.json")
+    live = None
+    if os.path.exists(live_path):
+        with open(live_path, encoding="utf-8") as f:
+            live = json.load(f)
+    status_path = os.path.join(ROOT, "data", "check_status.json")
+    status = None
+    if os.path.exists(status_path):
+        with open(status_path, encoding="utf-8") as f:
+            status = json.load(f)
+
+    checks_html = ""
+    if live:
+        rows = []
+        for c in live["checks"]:
+            tone = {"match": "ok", "updated": "info", "unavailable": "bad", "not-rendered": "warn",
+                    "geo-currency": "warn", "no-price": "gray", "blocked": "bad", "confirmed-absent": "ok"}.get(c["result"], "gray")
+            rows.append(f'<tr><td class="num">{c["seq"]}</td><td>{E(c["id"])}</td><td class="src"><a href="{E(c["url"])}" target="_blank" rel="noopener">{E(c["url"])}</a></td>'
+                        f'<td>{E(c["what"])}</td><td>{badge(tone, c["result"])}</td><td class="small">{E(c.get("detail") or "")}</td></tr>')
+        checks_html = ('<div class="table-scroll"><table><thead><tr><th>#</th><th>Row</th><th>URL fetched</th><th>What was compared</th><th>Result</th><th>Detail</th></tr></thead><tbody>'
+                       + "".join(rows) + "</tbody></table></div>")
+    status_html = ""
+    if status:
+        status_html = f"""<div class="card"><h3 style="margin-top:0">Latest security-check run</h3>
+<p class="small">Run {E(status['runAt'])} · result <b>{E(status['result'])}</b> · {status['checksRun']} check groups ·
+{status['fails']} FAIL · {status['warns']} WARN · {status['infos']} INFO ·
+negative tests <b>{status.get('negativeTestsCaught', 0)}/{status.get('negativeTestsTotal', 0)} caught</b></p>
+<p class="small">Failures would block publication. Negative tests are part of the run: the checker is fed deliberately corrupted
+data (a fabricated price, a fabricated weight, a hand-typed dollar figure in the HTML) and must catch each one.</p></div>"""
+    body = f"""
+<h2>Verification — what was checked, when, and with what result</h2>
+<p class="note">This site is only as good as its audit trail. Every listing URL was opened and compared with the dataset;
+the rows that could not be re-read are labelled <b>prior capture</b> rather than presented as fresh. The security check is
+re-runnable by anyone: <code>python3 scripts/verify.py</code>.</p>
+
+<div class="hero">
+<h2>Run this after every review</h2>
+<p><code>python3 scripts/verify.py</code> — fails the build if any value lacks a source, if a derived number does not
+recompute from raw inputs, if a blank cell is not flagged, or if a dollar amount in the generated HTML cannot be traced to the
+dataset. It also runs negative tests: injected fake prices, fake weights and hand-typed figures must all be caught.
+The second checker, <code>python3 tools/check_hallucinations.py</code>, audits the preserved <code>docs/</code> archive the same way.</p>
+</div>
+{status_html}
+
+<h2>What pass 2 did (live re-verification, {E(ASOF)} evening UTC)</h2>
+<p>Every product page in the table was requested again and the rendered page was compared with the stored values: price,
+karat, stock/style number, width, weight, return window and — for Etsy — the exact variant prices. Where the page changed or
+could not be read, the row was corrected, blanked or labelled. The fetch log:</p>
+{checks_html or '<p class="note">Fetch log not present in this build.</p>'}
+
+<h2>Rows not re-read in pass 2 (labelled “prior capture”)</h2>
+<p>Three rows (adelafinejewels, CittaliFineJewelry, and the 14K option of ForeverForLove) plus several policy pages were captured
+earlier on {E(ASOF)} and were not re-fetched. They carry the <b>prior capture</b> badge and are listed in
+<a href="flagged.html#F18">F18</a>. They are not presented as re-verified.</p>
+
+<h2>What is still not verified — by design</h2>
+<ul class="tight small">
+<li><b>Purity by assay.</b> No seller supplied an XRF or fire-assay result for the specific ring. Every karat value here is the seller's claim, read from the listing.</li>
+<li><b>Physical weight.</b> Published weights are claims; we did not weigh anything.</li>
+<li><b>Hallmark + maker's mark.</b> Not shown in any listing, so the column is blank on every row.</li>
+<li><b>Independent reputation for Etsy shops.</b> Etsy's own ratings are not independent. No third-party data was verified, so none is shown.</li>
+</ul>
+
+<h2>Method, in one paragraph</h2>
+<p class="small">A value enters the dataset only after it is read on the official page (or, where explicitly labelled, a search
+snippet of that page), with the URL and the date recorded next to it. Derived values are computed by script and recomputed by
+the checker. Anything unconfirmable is left <b>blank</b>, given a flag that links the page where it was looked for, and published
+on <a href="flagged.html">Flagged for review</a>. No value is estimated, interpolated, or carried over from a similar product.</p>
+"""
+    return chrome("verify", "Verification", body)
+
+
+def page_flagged():
+    order = {"high": 0, "medium": 1, "low": 2, "info": 3}
+    flags = sorted(FLAGS, key=lambda f: order.get(f["severity"], 9))
+    cards = []
+    for f in flags:
+        src = f["source"]
+        link = ('<a href="%s" target="_blank" rel="noopener">%s</a>' % (E(src), E(src))) if src.startswith("http") else E(src)
+        cards.append(f"""<div class="flag {f['severity']}" id="{f['id']}">
+<h4>{badge('bad' if f['severity']=='high' else 'warn' if f['severity']=='medium' else 'info' if f['severity']=='low' else 'gray', f['severity'])} &nbsp;{E(f['id'])} — {E(f['title'])}</h4>
+<p>{E(f['detail'])}</p>
+<div class="meta">Observed at: {link} &nbsp;·&nbsp; Rows: {E(', '.join(f.get('entries') or []) or '—')} &nbsp;·&nbsp; Status: open</div>
+</div>""")
+    blanks = []
+    for r in LISTINGS:
+        if r["grams"] is None:
+            blanks.append(("Weight", r["id"] + " — " + r["name"], "Not published by the seller", r["url"]))
+        if r["price"] is None:
+            blanks.append(("Price", r["id"] + " — " + r["name"], "Not published / not confirmed in USD", r["url"]))
+        if not (r.get("hallmark") or "").strip() or "not shown" in (r.get("hallmark") or "").lower() or r.get("hallmark") is None:
+            blanks.append(("Hallmark photo", r["id"] + " — " + r["name"], "No hallmark/maker's-mark image in the listing", r["url"]))
+        if not r.get("returns"):
+            blanks.append(("Return policy", r["id"] + " — " + r["name"], "Not stated on the page read", r["url"]))
+    body = f"""
+<h2>⚑ Flagged for review</h2>
+<p class="note">Everything that did not verify cleanly, and every cell left blank on purpose. <b>These items do not block the
+site</b> — they are published here, with their source links, so they can be reviewed and corrected. Severity is about
+purchase risk: <span class="badge bad">high</span> act before buying · <span class="badge warn">medium</span> verify before buying ·
+<span class="badge info">low</span> context · <span class="badge gray">info</span> note.</p>
+<h2>Findings ({len(flags)})</h2>
+{''.join(cards)}
+<h2>Every blank cell, and why it is blank ({len(blanks)})</h2>
+<div class="table-scroll"><table><thead><tr><th>Field</th><th>Row</th><th>Why blank</th><th>Page checked</th></tr></thead><tbody>
+{''.join('<tr><td>%s</td><td>%s</td><td>%s</td><td class="src"><a href="%s" target="_blank" rel="noopener">source ↗</a></td></tr>' % (E(a), E(b), E(c), E(d)) for a, b, c, d in blanks)}
+</tbody></table></div>
+<p class="note">A blank is not a zero and not a guess. If a seller later provides the value in writing, it can be added with
+that message as the source.</p>
+"""
+    return chrome("flagged", "Flagged for review", body)
+
+
+def page_sources():
+    rows = []
+    for r in LISTINGS:
+        rows.append(("Listing price/karat/weight", r["name"], r["url"], r["verifyState"], ASOF))
+    for s in SELLERS:
+        for u in s.get("sources", []):
+            rows.append(("Seller facts · " + s["name"], s["name"], u, s["checkedOn"] == ASOF and "P2" or "prior", s["checkedOn"]))
+    for x in REFERENCES:
+        rows.append(("Official guidance", x["title"], x["url"], x["verifyState"], ASOF))
+    for q in [SPOT["primary"]] + SPOT["crossChecks"]:
+        rows.append(("Gold spot", q["source"], q["url"], q["verifyState"], ASOF))
+    trs = []
+    for what, label, url, state, date in rows:
+        trs.append(f'<tr><td>{E(what)}</td><td>{E(label)}</td><td class="src"><a href="{E(url)}" target="_blank" rel="noopener">{E(url)}</a></td>'
+                   f'<td>{state_badge(state if state in ("P2","prior","unverified") else "prior")}</td><td class="num">{E(date)}</td></tr>')
+    body = f"""
+<h2>Source registry — the audit trail</h2>
+<p class="note">Every source this site relies on, what it backs, and when it was read. If a value on this site has no row here,
+it should not exist. {len(trs)} source rows.</p>
+<div class="filters">
+<span class="pill">Listing pages: official retailer / marketplace URLs</span>
+<span class="pill">Seller facts: contact, returns, warranty pages</span>
+<span class="pill">Guidance: FTC, eCFR, NIST, LBMA, Etsy</span>
+<span class="pill">Spot: Kitco + same-day cross-checks</span>
+</div>
+<div class="table-scroll"><table><thead><tr><th>What it backs</th><th>Source</th><th>URL</th><th>Verification</th><th>Date</th></tr></thead>
+<tbody>{''.join(trs)}</tbody></table></div>
+<h2>Official guidance used</h2>
+<div class="table-scroll"><table><thead><tr><th>Reference</th><th>What it establishes</th><th>Link</th><th>Status</th></tr></thead><tbody>
+{''.join('<tr><td><b>%s</b></td><td class="small">%s</td><td class="src"><a href="%s" target="_blank" rel="noopener">%s</a></td><td>%s</td></tr>' % (E(x['title']), E(x['what']), E(x['url']), E(x['url']), state_badge(x['verifyState'])) for x in REFERENCES)}
+</tbody></table></div>
+<p class="note">Note on “prior”: a prior-capture source was read earlier on {E(ASOF)} and has not been re-read since. Sellers
+change policies; re-read the page yourself before you buy.</p>
+"""
+    return chrome("sources", "Sources", body)
+
+
+def page_archive():
+    body = f"""
+<h2>Archive — earlier sessions' work, preserved unchanged</h2>
+<p class="note">This repository was worked on by several parallel agent sessions. Rather than delete or overwrite their
+output, every delivery is preserved byte-for-byte and linked here. The dashboard you are reading is the integrated view;
+the archives are for traceability and for the extra detail they carry.</p>
+<div class="table-scroll"><table><thead><tr><th>Archive</th><th>What is in it</th><th>Open</th></tr></thead><tbody>
+<tr><td><b>docs/</b> — session 638c9614</td><td>11 verified listings (Brilliant Earth, Blue Nile, Allurez, Avianne, Jewelry Master, Solid Gold Jewelers)
+with verbatim evidence excerpts in <code>data/evidence/</code>, its own dashboard, calculator and Flagged page, plus its own hallucination checker
+(<code>tools/check_hallucinations.py</code>).</td><td><a href="docs/index.html">docs/index.html ↗</a></td></tr>
+<tr><td><b>pages/</b> + index-090bae73.html — session 090bae73</td><td>A 13-page checklist-format guide (purity, solid gold, hallmark, weight,
+seller reputation, price, returns, payment, documentation, on-arrival, XRF, calculator, flagged).</td><td><a href="index-090bae73.html">landing ↗</a> ·
+<a href="pages/gold-purity.html">example subpage ↗</a></td></tr>
+<tr><td><b>guide/</b> — session 3c8bb7ee (PR #4)</td><td>A checklist site with research notes: 13 pages plus <code>research/*.md</code> and a
+machine-readable <code>entries.json</code>. Preserved with its original relative links intact.</td><td><a href="guide/index.html">guide/index.html ↗</a></td></tr>
+<tr><td><b>data/</b></td><td>The unified dataset (<code>unified.json</code>), the fetch log (<code>live_check.json</code>), and the earlier sessions'
+data files with their evidence.</td><td><a href="sources.html">source registry ↗</a></td></tr>
+</tbody></table></div>
+<h2>Why keep three sites?</h2>
+<p class="small">Because the brief for this project says not to discard other sessions' work, and because each archive contains
+material this dashboard summarises: the <code>docs/</code> site holds verbatim page excerpts captured at read time, the
+<code>pages/</code> site walks each checklist point in more depth, and <code>guide/</code> adds formal citations and research
+notes. The dashboard does not duplicate their evidence files — it links to them.</p>
+<p class="small">The security checks still cover the archives: <code>python3 tools/check_hallucinations.py</code> audits the
+<code>docs/</code> dataset, and <code>python3 scripts/verify.py</code> audits this dashboard and cross-checks the archived links resolve.</p>
+"""
+    return chrome("archive", "Archive", body)
+
+
+PAGES = {
+    "index.html": page_home,
+    "listings.html": page_listings,
+    "sellers.html": page_sellers,
+    "gold-price.html": page_price,
+    "calculator.html": page_calculator,
+    "checklist.html": page_checklist,
+    "analysis.html": page_analysis,
+    "verification.html": page_verification,
+    "flagged.html": page_flagged,
+    "sources.html": page_sources,
+    "archive.html": page_archive,
+}
+
+for name, fn in PAGES.items():
+    with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+        f.write(fn())
+
+with open(os.path.join(ROOT, "site", "assets", "dashboard.css"), "w", encoding="utf-8") as f:
+    f.write(CSS)
+
+S = UNIFIED["stats"]
+print("built: %d pages, %d listings, %d sellers, %d flags" % (len(PAGES), S["listings"], S["sellers"], S["flags"]))
+print("below melt rows: %d; rows with weight: %d" % (S["belowMelt"], S["withWeight"]))
