@@ -336,7 +336,7 @@ def index_page():
   <div class="card"><div class="k">Step 4 · 3 min</div><div class="t">Ask, in writing</div><div class="d">Weight, solid gold, hallmark photo, return window and resize exclusions. Keep the replies with your receipt.</div></div>
 </div>
 
-<div class="note blue" style="margin-top:26px"><b class="title">Earlier sessions' work is preserved</b>Three parallel sessions delivered to this repository. Their sites remain published alongside this consolidated dashboard: <ul class="bullets" style="margin-bottom:0">{archive}</ul></div>
+<div class="note blue" style="margin-top:26px"><b class="title">Earlier sessions' work is preserved</b>{len(D["meta"]["archive"])} earlier deliverables are preserved in this repository and remain published alongside this consolidated dashboard: <ul class="bullets" style="margin-bottom:0">{archive}</ul></div>
 """
     return shell("", "home", "Gold engagement rings, verified line by line",
                  "25 verified solid-gold engagement ring listings, gold spot price, calculator, checklist, seller policies and flagged irregularities. No hallucinations: every value has a dated source link.", body)
@@ -491,7 +491,7 @@ def gold_price_page():
 metal value (USD) = fine gold (g) × spot (USD per gram)<br>
 price ÷ metal value = asking price ÷ metal value<br>
 1 troy ounce = 31.1034768 grams</div>
-<p class="small muted" style="margin-top:10px">Troy-ounce conversion: NIST SP 811 Appendix B.8 and Kitco's own statement (“A troy ounce is 31.1034768 grams”). {source_link('https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8', 'NIST ↗')}</p>
+<p class="small muted" style="margin-top:10px">Troy-ounce conversion: NIST SP 811 Appendix B.8 and Kitco's own statement (“A troy ounce is 31.1034768 grams”). {source_link('https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8', 'NIST ↗')}</p>
 
 <div class="note red"><b class="title">Do not treat this as a valuation of a ring</b>Metal value is a floor check, not an appraisal. A diamond, setting work and brand can legitimately multiply the metal value many times. What metal value is good for: spotting a price that is <i>below</i> the gold itself, which is the classic fraud signal.</div>
 """
@@ -956,7 +956,7 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
         ("https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23", "16 CFR Part 23: §23.3 gold content; §23.10 quality marks; §23.18 weight representations"),
         ("https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges", "Federal right to dispute billing errors; credit-card protection"),
         ("https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices", "LBMA Gold Price set twice daily (10:30, 15:00 London) by ICE Benchmark Administration"),
-        ("https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
+        ("https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
         ("https://www.law.cornell.edu/uscode/text/15/297", "15 U.S.C. §297(b): trademark must be applied beside the quality mark"),
     ]
     log_rows = "".join(f"<tr><td class=\"small\"><a href=\"{esc(u)}\" target=\"_blank\" rel=\"noopener\">{esc(u[:88])}{'…' if len(u)>88 else ''} ↗</a></td><td class=\"small\">{esc(what)}</td></tr>" for u, what in log)
