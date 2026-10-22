@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-10-22T23:34:57Z",
-  "commit": "8265d73",
+  "generated_at_utc": "2026-10-22T23:36:01Z",
+  "commit": "e5b2394",
   "totals": {
     "assertions": 896,
-    "failures": 11,
+    "failures": 0,
     "checks": 8
   },
   "checks": [
@@ -46,20 +46,8 @@
       "name": "links",
       "description": "Internal links and anchors resolve; external URLs are well formed.",
       "assertions": 478,
-      "failures": 11,
-      "failure_detail": [
-        "index.html: broken link ../index.html",
-        "18k.html: broken link ../../index.html",
-        "all-rings.html: broken link ../../index.html",
-        "complete-rings.html: broken link ../../index.html",
-        "flagged.html: broken link ../../index.html",
-        "gold-bands.html: broken link ../../index.html",
-        "halo-pave.html: broken link ../../index.html",
-        "method.html: broken link ../../index.html",
-        "prices.html: broken link ../../index.html",
-        "sellers.html: broken link ../../index.html",
-        "solitaires.html: broken link ../../index.html"
-      ]
+      "failures": 0,
+      "failure_detail": []
     },
     {
       "name": "checklist",

@@ -77,7 +77,7 @@ def layout(prefix: str, title: str, description: str, active: str, body: str) ->
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <link rel="stylesheet" href="{prefix}assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23122b1d'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23d8b45a'%3E%25C3%25A2%25C2%2597%25C2%2588%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="{prefix}assets/favicon.svg">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
