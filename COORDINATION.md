@@ -7,15 +7,29 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 (UTC) — **integrated by session `37e8ff42` (final integration of this brief)**
+- Last updated: 2026-10-22 (UTC) — **session `b1f2fe3b` active (claiming tasks B1–B6; builds on integrated `1c35fd0` from `37e8ff42`, `638c9614`, `090bae73`)**
 - Branch rule (all sessions, same platform constraint): each session is bound to its fixed Arena
-  branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5`); the
+  branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5` / `arena/b1f2fe3b-gold5`); the
   `session-<id>/<task>` naming scheme from the brief cannot be used (the platform forbids other
   branches). Logged as a deviation by the affected sessions; non-overlapping file scopes were used instead.
 - Stale-claim rule: a claim older than 60 minutes with no commits may be taken over (log the handoff).
 - **Ownership of shared outputs** (site `index.html`/nav, this board, README): modified only by the
-  final integration session — here, `37e8ff42`. Conflicts were resolved as **unions**: no session's
-  content was discarded.
+  final integration session once all other tasks are done. Conflicts are resolved as **unions**: no session's
+  content is ever discarded.
+
+## Task board — session `b1f2fe3b` (`arena/b1f2fe3b-gold5`)
+
+| ID | Task | Status | Owner session | Exclusive file scope |
+|---|---|---|---|---|
+| B1 | Line-by-line repo review & cross-session audit of existing entries (`site/assets/data.js`, `data/*.json`, `pages/*.html`) against official sources | in progress | `b1f2fe3b` | `docs/verification/audit-b1f2fe3b.md` |
+| B2 | Live verification of regulatory, hallmark, assay & spot/troy-weight standards (15 U.S.C. §§ 294–300, 16 CFR Part 23, FTC, NIST, LBMA, Kitco) | unclaimed | `b1f2fe3b` | `docs/verification/regulatory-and-assay-b1f2fe3b.md`, `data/evidence/b1f2fe3b_*.txt` |
+| B3 | Unified verified catalog & seller cross-check (all 25+ listings across sessions + live source verification, blanks flagged) | unclaimed | `b1f2fe3b` | `data/b1f2fe3b_verified_catalog.json`, `docs/verification/listings-b1f2fe3b.md` |
+| B4 | Cross-site anti-hallucination & security checker (`scripts/audit_b1f2fe3b.py`) covering root `site/`, `docs/`, `pages/`, and unified catalog | unclaimed | `b1f2fe3b` | `scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_audit_report.json` |
+| B5 | Master Cross-Session Audit, Unified Listings & XRF/Melt Verification subpage (`site/master-audit.html`) | unclaimed | `b1f2fe3b` | `site/master-audit.html` |
+| B6 | Final integration: union-merge `origin/main`, update shared index/nav/data, run all verification suites, open PR → `main`, merge, confirm Pages deploy, log | unclaimed | `b1f2fe3b` | `COORDINATION.md`, `README.md`, `index.html`, `site/*.html`, `site/assets/data.js` (at final integration step only) |
+
+### Log — session `b1f2fe3b`
+- 2026-10-22 (UTC): Read `COORDINATION.md` and `README.md` at `1c35fd0`. Inspected all merged sessions (`638c9614`, `090bae73`, `37e8ff42`) and unmerged branches (`arena/3c8bb7ee-gold5` PR #4, `arena/9eba173a-gold5` PR #6, `arena/93032b31-gold5`, `arena/7cca80c9-gold5`). Claimed B1–B6 with non-overlapping exclusive file scopes (`docs/verification/*-b1f2fe3b.md`, `data/b1f2fe3b_*.json`, `scripts/audit_b1f2fe3b.py`, `site/master-audit.html`) and committed/pushed claim immediately before starting B1.
 
 ## Session registry & deliveries
 
