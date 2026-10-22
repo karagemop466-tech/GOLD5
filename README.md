@@ -4,7 +4,7 @@ Collects, organizes and analyzes **solid-gold engagement ring listings** against
 (karat · explicit "solid gold" · hallmark + maker's mark · weight in grams · seller reputation · price vs. gold value ·
 return/resize policy · payment · documentation · independent XRF test).
 
-**Live site:** https://karagemop466-tech.github.io/GOLD5/  (served from `docs/`)
+**Live site:** https://karagemop466-tech.github.io/GOLD5/docs/ (root `index.html` redirects there; Pages source is `main` `/`, and the platform token could not switch it to `/docs`)
 
 ## ◆ NO HALLUCINATIONS RULE
 Every price, weight, karat and policy was copied from the linked **official seller page** on the capture date.
