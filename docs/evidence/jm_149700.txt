@@ -1,0 +1,22 @@
+SOURCE: https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+# Brilliant Round Diamond Solitaire Engagement Ring 14K Yellow Gold
+[...]
+Retail Price$6,041.00Special Price$3,020.00
+[...]
+**Style**
+
+149700
+[...]
+This beautiful treasure is entirely handcrafted in pure 14KT solid yellow gold. This engagement ring is wreathed with prong set brilliant round diamonds and bezel set brilliant round diamonds weighing 0.71 carats. All of the stones are a blinding white G-H color and SI1 clarity.
+[...]
+| Metal Type: | 14KT Gold |
+| Metal Weight: | 2.3 Grams |
+[...]
+## Money Back Guarantee (some restrictions apply)\*
+[...]
+you can simply return or exchange your purchase within a 30-day period - no questions asked.
+[...]
+please call one of our friendly customer service representatives at [1-888-59-JEWEL](tel:18885953935)

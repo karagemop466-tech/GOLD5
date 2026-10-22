@@ -1008,6 +1008,15 @@ window.GOLD5_DATA = {
       "entryIds": [],
       "source": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
       "status": "open"
+    },
+    {
+      "id": "F12",
+      "severity": "info",
+      "title": "A second session's site + dataset coexist in this repo (both preserved)",
+      "detail": "Parallel session 638c9614 (PR #1, merged first) delivered its own verified site at /docs/ (11 listings from Brilliant Earth, Blue Nile, Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers) with data/ + tools/ + verbatim evidence files. Its work was NOT discarded during the merge — it is served at https://karagemop466-tech.github.io/GOLD5/docs/ and this site is the landing page. Both sessions independently captured the same Kitco spot snapshot ($4,025.00 bid, 2026-10-22 7:10 p.m. EDT), which corroborates both datasets. Review both Flagged for Review pages.",
+      "entryIds": [],
+      "source": "https://github.com/karagemop466-tech/GOLD5",
+      "status": "open"
     }
   ]
 };
