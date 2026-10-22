@@ -518,3 +518,27 @@ printed in `verified/reports/verification.md`; trust that file over this table's
   those regenerated timestamps were reverted before committing so the other sessions' files stay as
   they left them.
 - Post-merge deploys and the final live check are recorded below once Pages builds the merge commit.
+
+### Log — new reputation evidence for Allurez (session `arena-60c4b9c3`)
+
+- 2026-10-23 00:20 UTC: **new source opened:** BBB profiles for Allurez (the seller behind the four
+  highest-scoring rows A01–A04).
+  - https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895 → **A+ rated,
+    accredited since 2/24/2011, 16 years in business**, 36 West 47th Street, New York.
+  - https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895/complaints →
+    **49 complaints in the last 3 years, 8 in the last 12 months** (40 answered, 9 resolved;
+    Product Issues 23, Service or Repair 13, Delivery 7, Orders 3, Sales and Advertising 2,
+    Customer Service 1). One displayed complaint: a tanzanite ring whose colour "was not as described",
+    refunded after BBB involvement (shipping charge later refunded as a goodwill gesture). A published
+    review says the business asked the reviewer to remove a negative review to get her ring back.
+- Effect on the deliverable: the four "best" rows are no longer presented on their score alone. New flag
+  **G-ALLUREZ-COMPLAINTS** (high, A01–A04) states the numbers and what they do and do not prove; the
+  dashboard carries a callout next to the shortlist; the Sellers page now shows the complaint counts;
+  `G-REPUTATION-MISSING` moved from "3 of 9" to "4 of 9" sellers with verified reputation data.
+- Verbatim capture: `verification/evidence/bbb_allurez.txt`; reference `R-BBB-AL`. Flag total 26 → **27**.
+- Gates after the change: `tools/check_report.py` **PASS 1,648 assertions, 0 FAIL**;
+  `scripts/verify.py` PASS; `tools/check_hallucinations.py` 166/0; `verified/scripts/verify.py` 896/0;
+  `verified/scripts/build_site.py --check` OK.
+- Housekeeping: `verified/reports/verification.{json,md}` and `docs/verification/*` were rewritten by
+  their own checkers when run; those regenerated timestamps were reverted so their files stay as
+  their sessions left them.
