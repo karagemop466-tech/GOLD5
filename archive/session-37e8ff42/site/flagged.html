@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>⚑ Flagged for Review</h2>
+  <p class="note">Irregularities, unverified cells, and data-source limitations found during verification. <b>These do not block the site</b> — review them here and request changes if needed. Every flag links to the source where the finding was observed. Status legend: <span class="badge bad">high</span> act before purchase · <span class="badge warn">medium</span> verify before purchase · <span class="badge info">low</span> context · <span class="badge gray">info</span> note.</p>
+  <div id="flags"></div>
+  <h2>Unverified cells (left blank on purpose — never inferred)</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Row</th><th>Field</th><th>Why blank</th><th>Source checked</th></tr></thead>
+    <tbody id="blanks"></tbody>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5, D = G.D;
+  G.chrome("flagged");
+  document.getElementById("flags").innerHTML = G.flagCards();
+  const rows = [];
+  D.entries.forEach(e => {
+    if (e.grams == null) rows.push([e.id, "grams", "Seller does not publish gram weight on the product page", e.url]);
+    if (e.makerMark == null) rows.push([e.id, "maker's mark", "No maker's-mark photo shown in listing", e.url]);
+    if (e.reviewScore == null) rows.push([e.id, "review score", "No rating shown on the page fetched", e.url]);
+  });
+  document.getElementById("blanks").innerHTML = rows.map(r => `
+    <tr>
+      <td class="num">${G.esc(r[0])}</td>
+      <td>${G.esc(r[1])}</td>
+      <td>${G.esc(r[2])}</td>
+      <td><a class="src" href="${G.esc(r[3])}" target="_blank" rel="noopener">${G.esc(r[3])}</a></td>
+    </tr>`).join("");
+})();
+</script>
+</body>
+</html>

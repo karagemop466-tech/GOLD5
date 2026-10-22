@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculator — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Gold weight &amp; metal value calculator</h2>
+  <p class="note">Enter the ring's weight in grams (and the price you paid), and the tool shows the raw gold content and metal value at the verified spot price. Everything is computed live in your browser from raw inputs — nothing is pre-stored or inferred. The spot field is pre-filled from the verified primary quote and is editable (cite a new source if you change it).</p>
+  <div id="calc"></div>
+  <h2>Worked example from this dataset</h2>
+  <div class="card">
+    <p style="font-size:13.5px">VeraByEden ruby/diamond ring (14K, seller-claimed 3.70 g, $969.00): 3.70 × 0.5833 = <b>2.16 g</b> pure gold → 2.16 × $129.41 = <b>$279</b> metal value. Price = 3.47× metal — plausible because the price also covers a 0.30 ct diamond, a 0.90 ct ruby, and labor. By contrast, the case-study 7 g 14K band at $444.80 computes to 0.84× metal value — <a href="flagged.html#F1">red flag F1</a>.</p>
+  </div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5;
+  G.chrome("calculator");
+  G.calculator();
+})();
+</script>
+</body>
+</html>

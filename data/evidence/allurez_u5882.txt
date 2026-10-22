@@ -1,0 +1,33 @@
+SOURCE: https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold
+CAPTURED: 2026-10-22 (UTC date of capture)
+METHOD: fetch_page text rendering of the live page; excerpts below are verbatim, [...] marks omitted text
+---
+# Filigree Designed Solitaire Engagement Ring Setting 14K Yellow Gold
+[...]
+$1,08557% Savings
+
+$2,497Everyone Else
+[...]
+$1,085
+
+Buy Setting Only \| $1,085
+[...]
+Setting only. Center stone sold separately.
+[...]
+Metal: 14k Yellow Gold
+[...]
+Style numberU5882
+[...]
+Engagement Ring Information
+
+Metal14k Yellow Gold
+
+GenderWomen's
+
+Width2.9mm (Top Width) 2.3mm (Bottom Width)
+
+Height3.5mm (Top Height) 1.7mm (Bottom Height)
+
+Gold Weight 5.00 Grams (Approximate)
+
+Please Note The center stone is not included in the price of the ring.

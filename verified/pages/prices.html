@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold price and calculator — GOLD5</title>
+<meta name="description" content="Captured gold spot references, raw-gold value tables by weight and karat, and a calculator that requires a seller-confirmed weight.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span class="brand-name">GOLD5</span>
+      <span class="brand-sub">Gold engagement rings</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Site">
+      <a href="../index.html">Overview</a>
+      <a href="../pages/all-rings.html">All rings</a>
+      <a href="../pages/solitaires.html">Solitaires</a>
+      <a href="../pages/halo-pave.html">Halo &amp; pavé</a>
+      <a href="../pages/18k.html">18K gold</a>
+      <a href="../pages/complete-rings.html">Complete rings</a>
+      <a href="../pages/gold-bands.html">Gold bands</a>
+      <a href="../pages/sellers.html">Sellers</a>
+      <a href="../pages/prices.html" class="active">Gold price &amp; calculator</a>
+      <a href="../pages/method.html">Method</a>
+      <a href="../pages/flagged.html">Flagged for review</a>
+      <a href="../../index.html">Repo dashboard</a>
+    </nav>
+  </div>
+</header>
+<div class="rule-banner" role="note">
+  <span><strong>No-hallucination rule.</strong> Every value is a verbatim field from an official page captured on
+  22 October 2026 (UTC), or arithmetic with the formula shown. If a seller did not publish a value, the cell is blank and flagged.</span>
+  <a href="../pages/method.html">How verification works</a>
+</div>
+<main id="main">
+
+<section class="page-head">
+  <p class="eyebrow">Gold price &amp; calculator</p>
+  <h1>What the gold in a ring is actually worth</h1>
+  <p class="lede">Three independent spot quotes captured on the same day, the raw-gold equivalents for common weights and karats,
+  and a calculator that stays honest: it only computes with a weight you supply.</p>
+</section>
+
+<section>
+  <h2>Spot references captured</h2>
+  
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>Source</th><th>USD / troy oz</th><th>USD / gram (÷ 31.1034768)</th><th>Quote timestamp</th><th>Link</th></tr></thead>
+        <tbody><tr><td>Gold-API (XAU quote)</td><td class="num">$4,028.10</td><td class="num">$129.51</td><td class="mono">2026-10-22T23:01:42Z</td><td><a href="https://api.gold-api.com/price/XAU" target="_blank" rel="noopener noreferrer">open source</a></td></tr><tr><td>APMEX spot price page</td><td class="num">$4,042.50</td><td class="num">$129.97</td><td class="mono">2026-10-22T19:11:31-04:00</td><td><a href="https://www.apmex.com/gold-price" target="_blank" rel="noopener noreferrer">open source</a></td></tr><tr><td>World Gold Council — Goldhub gold spot price</td><td class="num">$4,024.36</td><td class="num">$129.39</td><td class="mono">2026-10-21</td><td><a href="https://www.gold.org/goldhub/data/gold-prices" target="_blank" rel="noopener noreferrer">open source</a></td></tr></tbody>
+      </table>
+    </div>
+</section>
+
+<section>
+  <h2>Raw gold value by weight and karat</h2>
+  
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>Raw weight</th><th>10K (41.7%)</th><th>14K (58.3%)</th><th>18K (75.0%)</th><th>24K (99.9%)</th></tr></thead>
+        <tbody><tr><td class="num">1 g</td><td class="num">$53.96</td><td class="num">$75.55</td><td class="num">$97.13</td><td class="num">$129.51</td></tr><tr><td class="num">2 g</td><td class="num">$107.92</td><td class="num">$151.09</td><td class="num">$194.26</td><td class="num">$259.01</td></tr><tr><td class="num">3 g</td><td class="num">$161.88</td><td class="num">$226.64</td><td class="num">$291.39</td><td class="num">$388.52</td></tr><tr><td class="num">5 g</td><td class="num">$269.81</td><td class="num">$377.73</td><td class="num">$485.65</td><td class="num">$647.53</td></tr><tr><td class="num">7 g</td><td class="num">$377.73</td><td class="num">$528.82</td><td class="num">$679.91</td><td class="num">$906.54</td></tr><tr><td class="num">10 g</td><td class="num">$539.61</td><td class="num">$755.45</td><td class="num">$971.30</td><td class="num">$1,295.06</td></tr><tr><td class="num">15 g</td><td class="num">$809.42</td><td class="num">$1,133.18</td><td class="num">$1,456.95</td><td class="num">$1,942.60</td></tr><tr><td class="num">20 g</td><td class="num">$1,079.22</td><td class="num">$1,510.91</td><td class="num">$1,942.60</td><td class="num">$2,590.13</td></tr><tr><td class="num">30 g</td><td class="num">$1,618.83</td><td class="num">$2,266.36</td><td class="num">$2,913.89</td><td class="num">$3,885.19</td></tr></tbody>
+      </table>
+    </div>
+    <p class="fine">Fine-gold melt value = weight × (karat ÷ 24) × $129.51/g, using the Gold-API (XAU quote)
+    quote of $4,028.10/oz captured 2026-10-22 23:05 UTC.
+    These are metal-only values: they ignore labour, setting, design, duty and retail margin, and they are not resale offers.</p>
+</section>
+
+
+<section class="panel calc" id="calculator" data-spot="4028.100098">
+  <h2>Gold value calculator</h2>
+  <p>Weights are yours to enter — the tool does not guess them. Spot is fixed at the captured
+  $4,028.10/oz (2026-10-22T23:01:42Z), so results are a check against that snapshot, not a live quote.</p>
+  <form class="calc-form" onsubmit="return false;">
+    <label class="tool"><span>Ring weight (g)</span><input id="calc-grams" type="number" min="0" step="0.01" value="3" inputmode="decimal"></label>
+    <label class="tool"><span>Karat</span>
+      <select id="calc-karat"><option value="10">10K — 41.7%</option><option value="14" selected>14K — 58.3%</option><option value="18">18K — 75.0%</option><option value="22">22K — 91.7%</option><option value="24">24K — 99.9%</option></select></label>
+    <label class="tool"><span>Price paid (USD, optional)</span><input id="calc-price" type="number" min="0" step="1" placeholder="e.g. 1255" inputmode="decimal"></label>
+  </form>
+  <div class="calc-out" aria-live="polite">
+    <div class="stat"><div class="stat-value" id="out-fine">—</div><div class="stat-label">fine gold in the ring (g)</div></div>
+    <div class="stat"><div class="stat-value" id="out-value">—</div><div class="stat-label">melt value at captured spot</div></div>
+    <div class="stat"><div class="stat-value" id="out-mult">—</div><div class="stat-label">price ÷ melt value</div></div>
+  </div>
+  <p class="fine" id="out-note">Enter the weight the seller gives you in writing. A multiplier below about 1 means the price is at or
+  under the metal value — treat that as a red flag, because labour and setting cost money. Multipliers of roughly 2–4 are typical
+  for retail settings; this is a sanity check, not an appraisal.</p>
+</section>
+
+<section>
+  <h2>Price versus gold, where a weight exists</h2>
+  
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>ID</th><th>Ring</th><th>Seller weight</th><th>Fine gold</th><th>Melt at spot</th><th>Price</th><th>Price ÷ melt</th><th>Price per gram of ring</th></tr></thead>
+        <tbody><tr><td><a href="../pages/all-rings.html#RS-945891">RS-945891</a></td><td>Italian 14kt Yellow Gold Filigree Ring</td><td class="num">1.7 g</td><td class="num">0.992 g</td><td class="num">$128.43</td><td class="num">$499</td><td class="num">3.89×</td><td class="num">$293.53</td></tr><tr><td><a href="../pages/all-rings.html#RS-960952">RS-960952</a></td><td>Italian 14kt Yellow Gold Dome Ring</td><td class="num">1.3 g</td><td class="num">0.758 g</td><td class="num">$98.21</td><td class="num">$399</td><td class="num">4.06×</td><td class="num">$306.92</td></tr></tbody>
+      </table>
+    </div>
+    <p class="fine">This is the checklist's price-versus-gold test, run on the only two rows with a published weight. “Price per gram
+    of ring” divides the asking price by the total ring weight, not by fine gold, so it is only comparable between rings of the same karat.</p>
+</section>
+
+<section>
+  <h2>What the captured prices equal in raw gold</h2>
+  <p>A cross-check on asking prices. Read the caveat under the table before drawing conclusions.</p>
+  
+    <div class="table-wrap">
+      <table class="data-table compact">
+        <thead><tr><th>ID</th><th>Ring</th><th>Captured price</th><th>Fine gold the price equals at spot</th><th>Price covers</th></tr></thead>
+        <tbody><tr><td><a href="../pages/all-rings.html#BN-192506">BN-192506</a></td><td>Petite Hidden Halo Solitaire Plus Diamond Engagement Ring in 14k Yellow Gold</td><td class="num">$1,255</td><td class="num">9.69 g</td><td class="cell-note">Setting price — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#BN-195326">BN-195326</a></td><td>Riviera Pavé Diamond Engagement Ring in 14k White Gold (1/6 ct. tw.)</td><td class="num">$1,500</td><td class="num">11.58 g</td><td class="cell-note">Setting price — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#BN-311132">BN-311132</a></td><td>Criss Cross Solitaire Engagement Ring in 18K Yellow Gold by James Allen</td><td class="num">$2,320</td><td class="num">17.91 g</td><td class="cell-note">Setting price — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#BN-316048">BN-316048</a></td><td>Knife Edge Solitaire Engagement Ring in 14K White Gold by James Allen</td><td class="num">$925</td><td class="num">7.14 g</td><td class="cell-note">Setting price — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#BE-BE1574-14KY">BE-BE1574-14KY</a></td><td>Fleur Solitaire Ring in 14K Yellow Gold</td><td class="num">$1,350</td><td class="num">10.42 g</td><td class="cell-note">Setting only — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#RS-210193">RS-210193</a></td><td>14kt Yellow Gold Four-Prong Engagement Ring Setting</td><td class="num">$1,050</td><td class="num">8.11 g</td><td class="cell-note">Setting only — center stone sold separately</td></tr><tr><td><a href="../pages/all-rings.html#MEJ-2MM-SMOOTH">MEJ-2MM-SMOOTH</a></td><td>2mm Smooth Band</td><td class="num">$498</td><td class="num">3.85 g</td><td class="cell-note">Listed price for the ring</td></tr><tr><td><a href="../pages/all-rings.html#MEJ-BOLD-DIAMOND-ETERNITY">MEJ-BOLD-DIAMOND-ETERNITY</a></td><td>Bold Diamond Eternity Ring</td><td class="num">$2,900</td><td class="num">22.39 g</td><td class="cell-note">From price — varies by size and metal</td></tr><tr><td><a href="../pages/all-rings.html#BE-BE1574-18KY">BE-BE1574-18KY</a></td><td>Fleur Solitaire Ring in 18K Yellow Gold</td><td class="num">$1,550</td><td class="num">11.97 g</td><td class="cell-note">Setting only — center diamond sold separately</td></tr><tr><td><a href="../pages/all-rings.html#RS-960952">RS-960952</a></td><td>Italian 14kt Yellow Gold Dome Ring</td><td class="num">$399</td><td class="num">3.08 g</td><td class="cell-note">Listed price, all sizes</td></tr><tr><td><a href="../pages/all-rings.html#RS-945891">RS-945891</a></td><td>Italian 14kt Yellow Gold Filigree Ring</td><td class="num">$499</td><td class="num">3.85 g</td><td class="cell-note">Listed price, all sizes</td></tr></tbody>
+      </table>
+    </div>
+    <p class="fine"><strong>This is not the ring's weight.</strong> It divides the asking price by the spot value of one gram of pure gold,
+    which answers a different question: if you spent this money on raw metal instead, how much fine gold would it buy? A setting
+    price that buys only a gram or two of metal is normal, because labour and design dominate. Once a seller publishes the actual
+    gram weight, the same division in reverse becomes a real “is this unusually cheap?” test.</p>
+</section>
+
+<section class="panel panel-warn">
+  <h3>Why this shortlist cannot yet answer “is it unusually cheap?”</h3>
+  <p>The checklist says to compare the price with the ring's gold weight. That needs a gram figure, and
+  <strong>10 of the 12 listings published none</strong> in the page text captured here (flag F-004).
+  The two that did are in the first table. The second table runs the same arithmetic on asking prices alone — a different
+  question, clearly labelled — so nothing is invented while the missing weights are outstanding.</p>
+  <p>Gold spot on 2026-10-22 was $4,028.10/oz. Any figure on this site is tied to that
+  timestamp; re-open <a href="https://api.gold-api.com/price/XAU" target="_blank" rel="noopener noreferrer">the source</a> before relying on it.</p>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <p><strong>GOLD5</strong> · verified 22 October 2026 (UTC) · session arena-84be683f ·
+      <a href="https://github.com/karagemop466-tech/GOLD5" target="_blank" rel="noopener noreferrer">repository</a></p>
+    <p class="fine">Independent research, not financial, legal or appraisal advice. Prices change without notice — re-open every source link before buying.
+      Nothing here guarantees authenticity. Always verify the physical ring with an independent jeweler and, ideally, XRF testing.</p>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

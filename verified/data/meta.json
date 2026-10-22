@@ -1,0 +1,13 @@
+{
+  "project": "GOLD5 — Gold engagement ring research",
+  "verified_on": "2026-10-22",
+  "verified_on_display": "22 October 2026 (UTC)",
+  "session_id": "arena-84be683f",
+  "branch": "arena/84be683f-gold5",
+  "repo": "https://github.com/karagemop466-tech/GOLD5",
+  "site": "https://karagemop466-tech.github.io/GOLD5/",
+  "no_hallucination_rule": "No price, weight, karat, policy, or seller detail is published here unless it is backed by a verbatim quote from an official page and that page's URL. If a value could not be confirmed, it is left blank and flagged as unverified. Prices were captured on the date shown and can change.",
+  "spot_month_note": "Gold spot prices move continuously. Every dollar figure derived from gold value in this project is labelled with the exact observation it used and its timestamp.",
+  "karats": [10, 14, 18, 22, 24],
+  "troy_ounce_grams": 31.1034768
+}
