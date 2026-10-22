@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sellers — GOLD5</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Sellers — contact, reputation, policies</h2>
+  <p class="note">Every fact below links to the source where it was read (BBB data captured via search snippets of the BBB profile pages on 2026-10-22; policy text read from the sellers' own pages). Reputation is mixed by design — that is what independent checking looks like.</p>
+  <div id="sellers"></div>
+  <h2>Reputation summary</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Seller</th><th>Independent signals (linked)</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Blue Nile</b></td>
+        <td>
+          <a href="https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564" target="_blank" rel="noopener">BBB: A+ accredited, 121 complaints/3 yrs</a> ·
+          <a href="https://www.consumeraffairs.com/retail/blue-nile.html" target="_blank" rel="noopener">ConsumerAffairs 1.7/5 (172)</a> ·
+          <a href="https://www.topconsumerreviews.com/best-jewelry-stores/reviews/blue-nile.php" target="_blank" rel="noopener">TopConsumerReviews 'VERY GOOD' (Oct 2026)</a>
+        </td>
+        <td>Real, established business (since 1999, real contact info, showrooms) with a genuinely mixed complaint record. Acceptable <b>only with</b> credit-card purchase + 30-day window + independent test on arrival. See <a href="flagged.html#F4">F4</a>, <a href="flagged.html#F5">F5</a>.</td>
+      </tr>
+      <tr>
+        <td><b>Etsy shops (8 checked)</b></td>
+        <td>
+          Star Seller / 5.0–4.9 listing ratings shown on each listing page (linked from the Listings table) +
+          <a href="https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program" target="_blank" rel="noopener">Etsy Purchase Protection</a>
+        </td>
+        <td>Shop-level BBB data is not applicable; use shop review counts + keep orders on-platform. Two specific warnings: VeraByEden off-platform contact photos (<a href="flagged.html#F2">F2</a>) and the below-melt case-study seller (sold item, <a href="flagged.html#F1">F1</a>).</td>
+      </tr>
+      <tr>
+        <td><b>Excluded retailers</b></td>
+        <td><a href="flagged.html#F9">F9 — fetch log</a></td>
+        <td>Zales, Kay, Goldspring, Clean Origins, Icing/Claire's could not be verified from official pages (client-side render or blocked) — excluded rather than guessed.</td>
+      </tr>
+    </tbody>
+  </table></div>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5;
+  G.chrome("sellers");
+  document.getElementById("sellers").innerHTML = G.sellersCards();
+})();
+</script>
+</body>
+</html>
