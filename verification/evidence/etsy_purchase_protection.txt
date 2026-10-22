@@ -1,0 +1,27 @@
+SOURCE: https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program
+CAPTURED: 2026-10-22 (session arena-60c4b9c3) — re-verified because the first URL tried was wrong
+METHOD: fetch_page text rendering of the Etsy Help article (single chunk). Verbatim; [...] = omitted text.
+---
+Etsy’s Purchase Protection program allows you to shop confidently knowing you'll receive a full refund for
+qualifying orders when your item:
+
+- Doesn’t arrive
+- Arrives damaged
+- Arrives 7+ days after the maximum estimated delivery date window provided at checkout [...]
+- Differs significantly from the item description or photos (for example, the wrong material or color)
+
+If you’re unsatisfied with an order that doesn’t meet the criteria for Etsy Purchase Protection, please check
+the seller’s policies to see if they accept cancellations, returns or exchanges.
+
+Buyers are responsible for paying any customs duties, import duties, or other charges imposed by their
+country's government, payable on delivery. Items that arrive late or are not received due to buyer delay or
+refusal to pay charges owed upon delivery, do not qualify [...]
+
+## How do I get my refund?
+
+If you believe your order qualifies for Etsy Purchase Protection, the first step is to reach out to the seller
+by starting a Help request. [...] If the issue hasn’t been resolved and it’s been 48 hours since you first
+messaged the seller, you may be able to ask Etsy to step in and help you get a refund.
+---
+NOTES: This is a MARKETPLACE guarantee that covers non-delivery / damage / significant misdescription.
+It is NOT a "return it because you changed your mind" right, and it does not override a shop's own policy.

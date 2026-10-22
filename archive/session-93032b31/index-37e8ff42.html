@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOLD5 — Gold Ring Research Dashboard</title>
+<meta name="description" content="Verified solid gold engagement ring research: listings, gold price, calculator, checklist. No hallucinations — every value has a source link.">
+<link rel="stylesheet" href="../../site/assets/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <h2>Dashboard</h2>
+  <div class="cards" id="stats"></div>
+
+  <div class="flag info">
+    <h4>⚠ No hallucinations — that is the rule of this project</h4>
+    <p style="font-size:13.5px;margin:6px 0">Every price, weight, and claim on this site was read from the linked official source page on the check date and
+    is logged in <a href="../../site/sources.html">Sources</a>. Values we could not confirm from an official source are left <b>blank</b> and published on the
+    <a href="../../site/flagged.html">Flagged for Review</a> page — they are never inferred or filled in. Derived numbers (gold content, metal value) are computed
+    live in your browser from raw inputs. After every review, re-run the hallucination/security pass: <code>python3 scripts/verify.py</code>.</p>
+  </div>
+
+  <h2>Today's gold spot (verified 2026-10-22)</h2>
+  <div id="spot"></div>
+
+  <h2>Findings at a glance</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>#</th><th>Finding</th><th>Severity</th><th>Detail</th><th>Where</th></tr></thead>
+    <tbody id="findings"></tbody>
+  </div>
+
+  <h2>Top verified candidates (details on <a href="../../site/listings.html">Listings</a>)</h2>
+  <div id="top"></div>
+  <p class="note">Sorted by the only rows where gram weight is confirmed. The full table (13 listings across Blue Nile and 8 Etsy shops) is on the Listings page — every row carries its official source link.</p>
+
+  <h2>Pages</h2>
+  <div class="cards">
+    <a class="card" href="../../site/listings.html"><div class="k">Listings</div><div class="v" style="font-size:16px">All entries, line-by-line</div><div class="d">Every row: price, grams, hallmark claim, return policy, reputation, check date, source link.</div></a>
+    <a class="card" href="../../site/gold-price.html"><div class="k">Gold Price</div><div class="v" style="font-size:16px">Spot + fineness values</div><div class="d">Same-day cross-checked quotes with timestamps and per-karat values.</div></a>
+    <a class="card" href="../../site/calculator.html"><div class="k">Calculator</div><div class="v" style="font-size:16px">Gold weight → metal value</div><div class="d">Compute pure gold grams, troy oz, and metal value for any listing.</div></a>
+    <a class="card" href="../../site/checklist.html"><div class="k">Checklist</div><div class="v" style="font-size:16px">12-point buying checklist</div><div class="d">Each point with its official source and what this project found.</div></a>
+    <a class="card" href="../../site/sellers.html"><div class="k">Sellers</div><div class="v" style="font-size:16px">Reputation & policies</div><div class="d">Contact info, BBB, returns, warranty, payment — with links.</div></a>
+    <a class="card" href="../../site/flagged.html"><div class="k">Flagged for Review</div><div class="v" style="font-size:16px">Irregularities & blanks</div><div class="d">Red flags, unverified cells, exclusions. These do not block the site — review them here.</div></a>
+    <a class="card" href="../../docs/index.html"><div class="k">Session 638c9614's site</div><div class="v" style="font-size:16px">/docs/ (PR #1)</div><div class="d">Parallel delivery, preserved — 11 more verified listings (Brilliant Earth, Allurez, Avianne, …) + verbatim evidence files.</div></a>
+    <a class="card" href="../../index-090bae73.html"><div class="k">Session 090bae73's site</div><div class="v" style="font-size:16px">Checklist guide (PR #3)</div><div class="d">Checklist-format guide, preserved at /index-090bae73.html + 13 subpages under /pages/. See flag F12.</div></a>
+  </div>
+</main>
+<script src="site/assets/data.js"></script>
+<script src="site/assets/app.js"></script>
+<script>
+(function () {
+  const G = window.GOLD5, D = G.D;
+  G.chrome("home");
+  const verified = D.entries.filter(e => e.status === "verified").length;
+  const flagged = D.entries.filter(e => e.flags && e.flags.length).length;
+  const withGrams = D.entries.filter(e => e.grams != null).length;
+  const sources = new Set();
+  D.entries.forEach(e => (e.sources || []).forEach(u => sources.add(u)));
+  D.sellers.forEach(s => (s.sources || []).forEach(u => sources.add(u)));
+  D.references.forEach(r => sources.add(r.url));
+  document.getElementById("stats").innerHTML = `
+    <div class="card gold"><div class="k">Gold spot (primary, 2026-10-22 7:10 pm ET)</div><div class="v">${G.money(D.spot.primary.usdPerOz)} / oz</div><div class="d">${G.money(D.spot.primary.usdPerGram)} / g · <a href="${G.esc(D.spot.primary.url)}" target="_blank" rel="noopener">${G.esc(D.spot.primary.source)}</a></div></div>
+    <div class="card"><div class="k">Listings collected</div><div class="v">${D.entries.length}</div><div class="d">${D.entries.filter(e => e.category === "engagement-ring").length} engagement rings · ${D.entries.filter(e => e.category === "band-reference").length} reference bands · ${D.entries.filter(e => e.category === "case-study").length} case study</div></div>
+    <div class="card"><div class="k">Rows with verified gram weight</div><div class="v">${withGrams} / ${D.entries.length}</div><div class="d">Others left blank + flagged (F3) — weight not published by seller</div></div>
+    <div class="card"><div class="k">Flagged items</div><div class="v">${D.flags.length}</div><div class="d"><a href="../../site/flagged.html">Flagged for Review page ↗</a></div></div>
+    <div class="card"><div class="k">Distinct source URLs</div><div class="v">${sources.size}</div><div class="d"><a href="../../site/sources.html">Full source registry ↗</a></div></div>`;
+  document.getElementById("spot").innerHTML = G.spotTable();
+  const order = { high: 0, medium: 1, low: 2, info: 3 };
+  document.getElementById("findings").innerHTML = [...D.flags].sort((a,b) => order[a.severity] - order[b.severity]).map(f => `
+    <tr>
+      <td class="num">${G.esc(f.id)}</td>
+      <td><b>${G.esc(f.title)}</b></td>
+      <td><span class="badge ${f.severity === "high" ? "bad" : f.severity === "medium" ? "warn" : f.severity === "low" ? "info" : "gray"}">${f.severity}</span></td>
+      <td style="max-width:420px">${G.esc(f.detail.slice(0, 180))}${f.detail.length > 180 ? "…" : ""}</td>
+      <td><a href="../../site/flagged.html#${G.esc(f.id)}">details ↗</a></td>
+    </tr>`).join("");
+  const top = D.entries.filter(e => e.grams != null);
+  document.getElementById("top").innerHTML = G.listingsTable(top);
+})();
+</script>
+</body>
+</html>

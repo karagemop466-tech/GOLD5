@@ -1,0 +1,42 @@
+SOURCE: https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564
+CAPTURED: 2026-10-22 23:58 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live BBB business profile (single chunk).
+---
+Business Profile
+Jewelry Stores
+Blue Nile Inc
+
+[BBB Accredited Business] [A+Rated by BBB]
+
+[(206) 336-6700](tel:206-336-6700)
+
+## About This Business
+
+Blue Nile Inc offers fine jewelry sales.
+
+**BBB Accredited Since:** 3/1/1999
+
+**Years in Business:** 27
+
+**Number of Employees:** 700
+
+### Additional Contact Information
+Additional Phone NumbersOther Phone: [(206) 336-6800](tel:+1-206-336-6800)
+Other Phone: [(800) 242-2728](tel:+1-800-242-2728)
+Other Phone: [(888) 565-7641](tel:+1-888-565-7641)
+
+## Latest Reviews
+
+- ### Dani B
+"What makes this especially upsetting is that I could have ordered somewhere else. Another jeweler was
+transparent enough to tell me they could not meet my deadline." ...
+- ### Barbie M
+"Sells and ships jewelry with faulty manufacturing and attempts to pass on that cost to the customer under
+the guise of a possiblerepair at the consumers expense. [...]"
+- ### Elisha M
+"My fianc spent $7,500 on this engagement ring, and it has been a nightmare from the start. [...]"
+[View all Reviews]
+---
+NOTES: Rating shown: "A+ Rated by BBB" and "BBB Accredited Since 3/1/1999". Complaint COUNTS and review
+AVERAGES were NOT displayed in this capture => those cells are left BLANK + flagged (prior passes reported
+counts from this same profile; they are not reproduced here because they could not be re-read today).

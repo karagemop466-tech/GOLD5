@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold calculator — GOLD5</title>
+<meta name="description" content="Solid gold engagement ring research: every price, weight and karat verified against the official listing, with source links. No hallucinations.">
+<link rel="stylesheet" href="site/assets/dashboard.css">
+</head>
+<body>
+<div class="banner"><div class="wrap"><b>⚠ NO HALLUCINATIONS</b> — every value on this site was read from the linked official source on the check date
+(2026-10-22). A value we could not confirm is <b>blank</b> and published on <a href="flagged.html">Flagged for review</a> — never guessed.
+Re-run the security check after every review: <code>python3 scripts/verify.py</code></div></div>
+<header class="site"><div class="wrap"><h1>GOLD5<span> · </span>Gold Ring Research</h1>
+<span class="sub">Solid gold engagement rings — collected, verified line by line, priced against the gold market</span></div></header>
+<nav class="main"><div class="wrap"><a href="index.html" class="">Dashboard</a><a href="listings.html" class="">All listings</a><a href="sellers.html" class="">Sellers</a><a href="gold-price.html" class="">Gold price</a><a href="calculator.html" class="active">Calculator</a><a href="checklist.html" class="">Checklist</a><a href="analysis.html" class="">Analysis</a><a href="verification.html" class="">Verification</a><a href="flagged.html" class="">Flagged for review</a><a href="sources.html" class="">Sources</a><a href="archive.html" class="">Archive</a></div></nav>
+<main><div class="wrap">
+
+<h2>Raw gold calculator — weight × karat × spot</h2>
+<p class="note">Enter a ring's weight and karat to see the pure gold it contains, its metal value at the verified spot, and
+how the asking price compares. Everything is computed in your browser from the numbers you enter — nothing is pre-stored or
+inferred. The spot field is pre-filled with the verified primary quote and is editable so you can use a newer price.</p>
+<div class="calc-grid">
+<div class="calc-box">
+  <h3 style="margin-top:0">Inputs</h3>
+  <label for="c-weight">Ring weight (grams)</label>
+  <input id="c-weight" type="number" step="0.01" min="0" placeholder="e.g. 3.70">
+  <label for="c-karat">Karat</label>
+  <select id="c-karat">
+    <option value="14" selected>14K — 58.33% gold (585)</option>
+    <option value="18">18K — 75.00% gold (750)</option>
+    <option value="10">10K — 41.67% gold (417)</option>
+    <option value="22">22K — 91.67% gold (916)</option>
+  </select>
+  <label for="c-spot">Gold spot (USD per gram)</label>
+  <input id="c-spot" type="number" step="0.01" min="0" value="129.47">
+  <p class="note" style="margin:6px 0 0">Pre-filled from Kitco Metals Inc. — Live Gold Price (direct page fetch) · 2026-10-22 19:26 NY Time (page footnote: 7:26 p.m. EDT) ·
+  <a href="https://www.kitco.com/charts/gold" target="_blank" rel="noopener">source ↗</a></p>
+  <label for="c-price">Asking / paid price (USD, optional)</label>
+  <input id="c-price" type="number" step="0.01" min="0" placeholder="e.g. 969">
+  <label for="c-load">Load a verified listing</label>
+  <select id="c-load"><option value="">— choose a row —</option>
+  <option value="al-u5882">Filigree Designed Solitaire Engagement Ring Setting (U5882) (5.0 g, 14K)</option><option value="al-u170">Antique Engraved Solitaire Engagement Ring Setting (U170) (4.8 g, 14K)</option><option value="al-ng4426">Engraved Floral Solitaire Engagement Ring Setting (NG4426) (3.58 g, 14K)</option><option value="av-r25893">14K Solid Yellow Gold Diamond Solitaire Engagement Ring, 0.41 Ctw (R25893) (2.3 g, 14K)</option><option value="jm-149700">Brilliant Round Diamond Solitaire Engagement Ring, 0.71 ctw (Style 149700) (2.3 g, 14K)</option><option value="sgj-b02561">Yellow Gold Solitaire Engagement Ring (SKU B02561, brand M Michael) (4.7 g, 14K)</option><option value="etsy-1151446373">14K Solid Gold Ruby + 0.30 ct Diamond Halo Ring (3.7 g, 14K)</option><option value="etsy-576343849">14K Solid White Gold 7 g Band, Size 11 — CASE STUDY (no longer available) (7.0 g, 14K)</option>
+  </select>
+  <p class="note">Loading a row fills in the <b>seller-stated</b> weight and the recorded price. It does not verify them —
+  that is what the jeweler on arrival is for.</p>
+</div>
+<div class="calc-box">
+  <h3 style="margin-top:0">Result</h3>
+  <div id="c-out"></div>
+</div>
+</div>
+
+<h2>Worked examples from this dataset</h2>
+<div class="table-scroll"><table><thead><tr><th>Listing</th><th>Weight</th><th>Pure gold</th><th>Metal value at $129.47/g</th><th>Price</th><th>Price ÷ metal</th><th>Reading</th></tr></thead><tbody>
+<tr><td><a href="https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">Filigree Designed Solitaire Engagement Ring Setting (U5882)</a></td><td class="num">5.0 g</td><td class="num">2.917 g</td><td class="num">$377.60</td><td class="num">$1,085.00</td><td class="num">2.87×</td><td>plausible</td></tr><tr><td><a href="https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold" target="_blank" rel="noopener">Antique Engraved Solitaire Engagement Ring Setting (U170)</a></td><td class="num">4.8 g</td><td class="num">2.800 g</td><td class="num">$362.50</td><td class="num">$933.00</td><td class="num">2.57×</td><td>plausible</td></tr><tr><td><a href="https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold" target="_blank" rel="noopener">Engraved Floral Solitaire Engagement Ring Setting (NG4426)</a></td><td class="num">3.58 g</td><td class="num">2.088 g</td><td class="num">$270.36</td><td class="num">$585.00</td><td class="num">2.16×</td><td>plausible</td></tr><tr><td><a href="https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw" target="_blank" rel="noopener">14K Solid Yellow Gold Diamond Solitaire Engagement Ring, 0.41 Ctw (R25893)</a></td><td class="num">2.3 g</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$1,100.00</td><td class="num">6.33×</td><td>plausible</td></tr><tr><td><a href="https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html" target="_blank" rel="noopener">Brilliant Round Diamond Solitaire Engagement Ring, 0.71 ctw (Style 149700)</a></td><td class="num">2.3 g</td><td class="num">1.342 g</td><td class="num">$173.70</td><td class="num">$3,020.00</td><td class="num">17.39×</td><td>plausible</td></tr><tr><td><a href="https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/" target="_blank" rel="noopener">Yellow Gold Solitaire Engagement Ring (SKU B02561, brand M Michael)</a></td><td class="num">4.7 g</td><td class="num">2.741 g</td><td class="num">$354.94</td><td class="num"><span class="blank">—</span></td><td class="num"><span class="blank">—</span></td><td>plausible</td></tr><tr><td><a href="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant" target="_blank" rel="noopener">14K Solid Gold Ruby + 0.30 ct Diamond Halo Ring</a></td><td class="num">3.7 g</td><td class="num">2.158 g</td><td class="num">$279.42</td><td class="num">$969.00</td><td class="num">3.47×</td><td>plausible</td></tr><tr><td><a href="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g" target="_blank" rel="noopener">14K Solid White Gold 7 g Band, Size 11 — CASE STUDY (no longer available)</a></td><td class="num">7.0 g</td><td class="num">4.083 g</td><td class="num">$528.64</td><td class="num">$444.80</td><td class="num">0.84×</td><td><b style='color:#a3181d'>below melt — red flag</b></td></tr>
+</tbody></table></div>
+<p class="note">Computed by the same formula as the calculator and recomputed by <code>scripts/verify.py</code> at build time.
+Prices marked “setting only” exclude the center stone, so their ratio is not the full ring value.</p>
+<script src="site/assets/data.js"></script>
+<script>
+(function(){
+  var F={24:0.9999,22:0.9167,18:0.75,14:0.5833,10:0.4167}, OZ=31.1034768, D=window.GOLD5_DATA;
+  var el=function(id){return document.getElementById(id)};
+  function money(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function calc(){
+    var w=parseFloat(el('c-weight').value)||0, k=parseInt(el('c-karat').value,10),
+        s=parseFloat(el('c-spot').value)||0, p=parseFloat(el('c-price').value), f=F[k]||k/24;
+    var gold=w*f, oz=gold/OZ, val=gold*s, out=el('c-out'), html='';
+    html+='<div class="row"><span>Pure gold content</span><b class="big">'+gold.toFixed(3)+' g</b></div>';
+    html+='<div class="row"><span>In troy ounces</span><b>'+oz.toFixed(4)+' oz</b></div>';
+    html+='<div class="row"><span>Spot used</span><b>'+money(s)+'/g</b></div>';
+    html+='<div class="row"><span>Raw gold value</span><b class="big">'+money(val)+'</b></div>';
+    html+='<div class="row"><span>Price</span><b>'+(isFinite(p)&&p>0?money(p):'—')+'</b></div>';
+    var ratio=(isFinite(p)&&p>0&&val>0)?p/val:null;
+    html+='<div class="row"><span>Price ÷ metal value</span><b>'+(ratio?ratio.toFixed(2)+'×':'—')+'</b></div>';
+    if(w>0&&s>0){
+      var cls='okay', msg='';
+      if(ratio){
+        if(ratio<1){cls='risk';msg='<b>Below melt value.</b> A solid-gold ring cannot honestly cost less than its own gold. Treat as a red flag and do not buy without an XRF test first.'}
+        else if(ratio<1.6){cls='okay';msg='A thin margin over melt. Possible for a simple band, unusual for a stone-set ring — scrutinise the seller and insist on a return window.'}
+        else {cls='good';msg='Above melt, which leaves room for labour, design and stones. Still verify purity independently after delivery.'}
+      } else {cls='okay';msg='Add the asking price to see the price-to-metal ratio.'}
+      html+='<div class="verdict '+cls+'">'+msg+'</div>';
+    } else {html+='<div class="verdict">Enter a weight above to begin.</div>'}
+    html+='<p class="note" style="margin-top:10px">Formula: gold g = weight × karat÷24 · value = gold g × spot $/g · 1 troy oz = '+OZ+' g. Karat fineness values come from the verified Kitco purity table.</p>';
+    out.innerHTML=html;
+  }
+  ['c-weight','c-karat','c-spot','c-price'].forEach(function(id){el(id).addEventListener('input',calc);el(id).addEventListener('change',calc)});
+  el('c-load').addEventListener('change',function(e){
+    var row=(D.listings||[]).filter(function(x){return x.id===e.target.value})[0];
+    if(!row) return;
+    if(row.grams!=null) el('c-weight').value=row.grams;
+    el('c-karat').value=row.karat;
+    el('c-price').value=(row.price!=null?row.price:'');
+    calc();
+  });
+  calc();
+})();
+</script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+<span>GOLD5 · data verified 2026-10-22 · Arena agent sessions 37e8ff42 (pass 1) and 93032b31 (pass 2, live re-verification)</span>
+<span>Security check: <code>python3 scripts/verify.py</code> · <a href="verification.html">verification log</a> · <a href="flagged.html">flagged items</a></span>
+</div></footer>
+</body></html>

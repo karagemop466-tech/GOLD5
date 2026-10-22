@@ -1,0 +1,23 @@
+GOLD5 security tests — planting errors to prove the checker catches them
+
+[CAUGHT] Invented price in the data (A01 $1,085 → $999)
+          FAIL: A01: price 999 has no token containing it
+          FAIL: A01: prose mentions an amount not on the captured page (999.00)
+          FAIL: A01: computed price/metal multiple 2.65x missing from the site
+[CAUGHT] Invented weight for a row that publishes none (A07 → 4.2 g)
+          FAIL: A07: weight 4.2 has no token containing '4.2'
+          FAIL: A07: computed fine gold 2.45 g missing from the site
+          FAIL: A07: computed metal value $317.20 missing from the site
+[CAUGHT] Row points at a flag that does not exist
+          FAIL: A01: references unknown flag G-MADE-UP
+[CAUGHT] Price text silently changed (A09 EUR page → fake $950.00)
+          FAIL: A09: prose mentions an amount not on the captured page (950.00)
+[CAUGHT] Evidence token removed (the 2.3 g claim)
+          FAIL: A05: weight 2.3 has no token containing '2.3'
+[CAUGHT] Product URL replaced with a non-official domain
+          FAIL: URL outside the official allowlist: https://example.com/fake-ring
+[CAUGHT] Hand-typed price in the HTML ($999.99)
+          FAIL: index.html: renders an amount that is not traceable to data ($999.99)
+
+7/7 planted errors caught
+clean-state check: PASS

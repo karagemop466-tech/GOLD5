@@ -1,0 +1,24 @@
+SOURCE: https://www.law.cornell.edu/cfr/text/16/23.10
+CAPTURED: 2026-10-22 23:58 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of 16 CFR § 23.10 (e-CFR text hosted by Cornell LII), single chunk.
+---
+§ 23.10 Additional guidance for the use of quality marks.
+
+As used in these guides, the term quality mark means any letter, figure, numeral, symbol, sign, word, or
+term, or any combination thereof, that has been stamped, embossed, inscribed, or otherwise placed on any
+industry product and which indicates or suggests that any such product is composed throughout of any precious
+metal or any precious metal alloy [...]
+
+(a) Deception as to applicability of marks.
+[...]
+Note 1 to § 23.10: Legibility of markings. If a quality mark is engraved or stamped on an industry product, or
+is printed on a tag or label attached to the product, the quality mark should be of sufficient size type as to
+be legible to persons of normal vision, should be so placed as likely to be observed by purchasers, and should
+be so attached as to remain thereon until consumer purchase.
+
+Note 2 to § 23.10: Disclosure of identity of manufacturers, processors, or distributors. The National Stamping
+Act provides that any person, firm, corporation, or association, being a manufacturer or dealer subject to
+section 294 of the Act, who applies or causes to be applied a quality mark, or imports any article bearing a
+quality mark “which indicates or purports to indicate that such article is made in whole or in part of gold or
+silver or of an alloy of either metal” shall apply to the article the trademark or name of such person.
+[15 U.S.C. 297]

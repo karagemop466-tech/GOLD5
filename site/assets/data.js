@@ -21,6 +21,22 @@ window.GOLD5_DATA = {
    {
     "label": "Session 37e8ff42 — dashboard snapshot",
     "path": "archive/session-37e8ff42/index.html"
+   },
+   {
+    "label": "Session 93032b31 — 24-row pass-2 dashboard (superseded, preserved)",
+    "path": "archive/session-93032b31/index.html"
+   },
+   {
+    "label": "Session 84be683f — generated site at /verified/",
+    "path": "verified/index.html"
+   },
+   {
+    "label": "Session 60c4b9c3 — report site at /report/",
+    "path": "report/index.html"
+   },
+   {
+    "label": "Checklist guide at /guide/",
+    "path": "guide/index.html"
    }
   ],
   "counts": {
@@ -1845,7 +1861,7 @@ window.GOLD5_DATA = {
    "severity": "info",
    "status": "open",
    "title": "Earlier sessions' work is preserved in this repo",
-   "detail": "Three sessions delivered to this repository. Their sites remain available: session 638c9614 at /docs/, session 090bae73 at /index-090bae73.html (+ /pages/), and session 37e8ff42's dashboard snapshot at /archive/session-37e8ff42/. This consolidated site merges their verified listings and flags; nothing was discarded.",
+   "detail": "Six earlier sessions delivered to this repository. Their sites remain available: 638c9614 at /docs/, 090bae73 at /index-090bae73.html (+ /pages/), 37e8ff42's dashboard at /archive/session-37e8ff42/, 93032b31's 24-row dashboard at /archive/session-93032b31/, 84be683f at /verified/, 60c4b9c3 at /report/ (evidence in /verification/), and the /guide/ checklist site. This consolidated site merges their verified listings and flags; nothing was discarded.",
    "entryIds": []
   },
   {

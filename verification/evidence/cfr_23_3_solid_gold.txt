@@ -1,0 +1,34 @@
+SOURCE: https://www.law.cornell.edu/cfr/text/16/23.3
+CAPTURED: 2026-10-22 23:57 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of 16 CFR § 23.3 (e-CFR text hosted by Cornell LII), chunk 0 of 2.
+---
+§ 23.3 Misrepresentation as to gold content.
+
+(a) It is unfair or deceptive to misrepresent the presence of gold or gold alloy in an industry product, or
+the quantity or karat fineness of gold or gold alloy contained in the product, or the karat fineness,
+thickness, weight ratio, or manner of application of any gold or gold alloy plating, covering, or coating on
+any surface of an industry product or part thereof.
+
+(b) The following are examples of markings or descriptions that may be misleading:
+[...]
+(3) Use of the word “Gold” or any abbreviation to describe all or part of an industry product that is not
+composed throughout of gold or a gold alloy, but is surface-plated or coated with gold alloy, unless the word
+“Gold” or its abbreviation is adequately qualified to indicate that the product or part is only
+surface-plated.
+
+(c) The following are examples of markings and descriptions that are consistent with the principles described
+above:
+
+(1) An industry product or part thereof, composed throughout of an alloy of gold may be marked and described
+as “Gold” when such word “Gold,” wherever appearing, is immediately preceded by a correct designation of the
+karat fineness of the alloy, and such karat designation is of equal conspicuousness as the word “Gold” (for
+example, “14 Karat Gold,” “14 K. Gold,” ...).
+
+Note to Paragraph (c)(1):
+
+Use of the term “Gold” or any abbreviation to describe all or part of a product that is composed throughout of
+gold alloy, but contains a hollow center or interior, may mislead consumers, unless the fact that the product
+contains a hollow center is disclosed in immediate proximity to the term “Gold” or its abbreviation [...].
+Such products should not be marked or described as “solid” or as being solidly of gold or of a gold alloy.
+For example, when the composition of such a product is 14 karat gold alloy, it should not be described or
+marked as either “14 Kt. Solid Gold” or as “Solid 14 Kt. Gold.”

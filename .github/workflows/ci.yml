@@ -1,0 +1,35 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build must match committed HTML
+        working-directory: verified
+        run: python3 scripts/build_site.py --check
+
+      - name: Anti-hallucination passes
+        working-directory: verified
+        run: python3 scripts/verify.py
+
+      - name: Upload verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-report
+          path: verified/reports/
+          if-no-files-found: warn
