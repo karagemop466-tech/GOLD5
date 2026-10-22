@@ -87,7 +87,7 @@
     "G-HALLMARK-UNSTATED",
     "G-WEIGHT-APPROX",
     "G-EXCHANGE-ONLY",
-    "G-REPUTATION-MISSING"
+    "G-ALLUREZ-COMPLAINTS"
    ]
   },
   {
@@ -132,7 +132,7 @@
     "G-HALLMARK-UNSTATED",
     "G-WEIGHT-APPROX",
     "G-EXCHANGE-ONLY",
-    "G-REPUTATION-MISSING"
+    "G-ALLUREZ-COMPLAINTS"
    ]
   },
   {
@@ -177,7 +177,7 @@
     "G-HALLMARK-UNSTATED",
     "G-WEIGHT-APPROX",
     "G-EXCHANGE-ONLY",
-    "G-REPUTATION-MISSING"
+    "G-ALLUREZ-COMPLAINTS"
    ]
   },
   {
@@ -1312,11 +1312,27 @@
    "returnsUrl": "https://www.allurez.com/pages/return-policy",
    "returnsVerified": true,
    "payment": "Affirm, Klarna, Shop Pay Installments, Flex Pay by Upgrade, Allurez Layaway listed on product pages.",
-   "reputation": [],
-   "reputationNote": "No independent reputation source was verified for Allurez in this pass.",
+   "reputation": [
+    {
+     "text": "BBB: 'A+Rated by BBB', 'BBB Accredited Since: 2/24/2011', 16 years in business, 36 West 47th Street, New York",
+     "source": "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895",
+     "verified": true
+    },
+    {
+     "text": "BBB complaints: 49 in the last 3 years and 8 in the last 12 months; 40 answered, 9 resolved; complaint types are Product Issues 23, Service or Repair 13, Delivery 7, Orders 3, Sales and Advertising 2, Customer Service 1",
+     "source": "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895/complaints",
+     "verified": true
+    },
+    {
+     "text": "A BBB reviewer ('Sheena H') writes that after posting a negative review the business told her she would have to remove it to get her ring back, and that she did.",
+     "source": "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895",
+     "verified": true
+    }
+   ],
+   "reputationNote": "A+ accredited since 2011, but the complaint volume is material and is published on the Flagged for review page; it is not a conclusion about any individual order.",
    "flags": [
     "G-EXCHANGE-ONLY",
-    "G-REPUTATION-MISSING"
+    "G-ALLUREZ-COMPLAINTS"
    ]
   },
   {
@@ -1547,6 +1563,23 @@
     "Etsy’s Purchase Protection program allows you to shop confidently knowing you'll receive a full refund for qualifying orders when your item: Doesn’t arrive / Arrives damaged / Arrives 7+ days after the maximum estimated delivery date window ... / Differs significantly from the item description or photos"
    ],
    "usedFor": "What marketplace protection does and does not cover"
+  },
+  {
+   "id": "R-BBB-AL",
+   "title": "BBB business profile — Allurez (profile + complaints)",
+   "url": "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895",
+   "publisher": "Better Business Bureau",
+   "verified": "2026-10-23 00:20 UTC",
+   "evidence": "bbb_allurez.txt",
+   "quotes": [
+    "A+Rated by BBB",
+    "BBB Accredited Since: 2/24/2011",
+    "49 complaints",
+    "8 complaints",
+    "Complaint Answered (40)",
+    "Product Issues (23)"
+   ],
+   "usedFor": "Independent seller reputation (Allurez)"
   },
   {
    "id": "R-BBB-BN",
@@ -1891,10 +1924,26 @@
    ]
   },
   {
+   "id": "G-ALLUREZ-COMPLAINTS",
+   "severity": "high",
+   "title": "The four best-scoring rows come from a seller with 49 BBB complaints in three years",
+   "detail": "Allurez is BBB-accredited (A+, since 2/24/2011), and its BBB complaints page shows 49 complaints in the last 3 years and 8 in the last 12 months: 23 product issues, 13 service or repair, 7 delivery, 3 order, 2 sales and advertising, 1 customer service; 40 answered and 9 resolved. One displayed complaint describes a ring whose colour did not match the photo; the buyer was refunded after BBB involvement, less a shipping charge the business later refunded as a goodwill gesture. A published review also says the business asked the reviewer to remove a negative review to get the ring back. None of this proves any particular ring is defective — it does change how much the 4-of-6 score on A01-A04 should be leaned on, and it is why the exchange-only policy on 'Design Your Own' rings matters more here.",
+   "listingIds": [
+    "A01",
+    "A02",
+    "A03",
+    "A04"
+   ],
+   "sources": [
+    "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895/complaints",
+    "https://www.bbb.org/us/ny/new-york/profile/jewelry-stores/allurez-0121-120895"
+   ]
+  },
+  {
    "id": "G-REPUTATION-MISSING",
    "severity": "medium",
-   "title": "Independent reputation checks were completed for only 3 of 9 sellers",
-   "detail": "Blue Nile (BBB profile: A+ rated, accredited since 3/1/1999, with three recent review excerpts describing delays and defects), VeraByEden (Etsy: Star Seller, 4.9 from 2.1k reviews, 6.8k sales) and BUTTERFLYWINGVINTAGE (Etsy: 5/5 from 802 reviews, but its only listing here is sold out) have verified reputation data. Brilliant Earth, Allurez, Avianne & Co, The Jewelry Master, Solid Gold Jewelers and Etsy-as-a-marketplace do not have a verified independent rating here — their reputation cells are blank. The FTC guide tells buyers to search '<seller> complaint' and '<seller> review' before buying; the Sellers page links a manual-review search for each.",
+   "title": "Independent reputation checks were completed for only 4 of 9 sellers",
+   "detail": "Blue Nile (BBB: A+ rated, accredited since 3/1/1999, with three recent review excerpts describing delays and defects), Allurez (BBB: A+ since 2/24/2011, 49 complaints in three years), VeraByEden (Etsy: Star Seller, 4.9 from 2.1k reviews, 6.8k sales) and BUTTERFLYWINGVINTAGE (Etsy: 5/5 from 802 reviews, but its only listing here is sold out) have verified reputation data. Brilliant Earth, Avianne & Co, The Jewelry Master, Solid Gold Jewelers and Etsy-as-a-marketplace do not have a verified independent rating here — their reputation cells are blank. The FTC guide tells buyers to search '<seller> complaint' and '<seller> review' before buying; the Sellers page links a manual-review search for each.",
    "listingIds": [],
    "sources": [
     "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry"

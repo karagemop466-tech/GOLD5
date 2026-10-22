@@ -39,6 +39,16 @@
    "warn": 0,
    "note": "records only; build again to render this pass on the Method page",
    "rendered": true
+  },
+  {
+   "n": 5,
+   "when": "2026-10-22 23:45 UTC",
+   "what": "full pass: evidence match, spot, derived, money audit, links, flags",
+   "checks": 1647,
+   "fail": 0,
+   "warn": 0,
+   "note": "records only; build again to render this pass on the Method page",
+   "rendered": true
   }
  ]
 }
