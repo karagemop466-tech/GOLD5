@@ -37,6 +37,10 @@ window.GOLD5_DATA = {
    {
     "label": "Checklist guide at /guide/",
     "path": "guide/index.html"
+   },
+   {
+    "label": "Session b1f2fe3b — Master Cross-Session Audit & XRF Assay Calculator (38 unified rows)",
+    "path": "site/master-audit.html"
    }
   ],
   "counts": {

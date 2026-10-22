@@ -3,7 +3,7 @@
  "passed": 15,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-22 23:49 UTC",
+ "ranAt": "2026-10-22 23:54 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
@@ -34,7 +34,7 @@
   {
    "id": "C6",
    "ok": true,
-   "detail": "all internal links and anchors resolve across 10 pages"
+   "detail": "all internal links and anchors resolve across 11 pages"
   },
   {
    "id": "C7",
@@ -69,7 +69,7 @@
   {
    "id": "C13",
    "ok": true,
-   "detail": "10 pages parse as well-formed HTML"
+   "detail": "11 pages parse as well-formed HTML"
   },
   {
    "id": "C14",

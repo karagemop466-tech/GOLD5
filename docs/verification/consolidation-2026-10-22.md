@@ -1,6 +1,6 @@
 # Verification report — consolidated GOLD5 site
 
-- Run: 2026-10-22 23:49 UTC
+- Run: 2026-10-22 23:54 UTC
 - Data as of: 2026-10-22
 - Result: **PASS** — 15 checks passed, 0 failed
 
@@ -9,14 +9,14 @@
 - PASS · **C3** — every blank is covered by a flag
 - PASS · **C4** — spot, purity and 25 rows of derived values recompute
 - PASS · **C5** — 25 listing rows, each with its official source link
-- PASS · **C6** — all internal links and anchors resolve across 10 pages
+- PASS · **C6** — all internal links and anchors resolve across 11 pages
 - PASS · **C7** — every external link (65 registered URLs) is recorded in the dataset
 - PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (224 allowed values)
 - PASS · **C9** — every published price, weight and source URL is rendered in its row
 - PASS · **C10** — no placeholders or template leftovers
 - PASS · **C11** — site/assets/data.js matches data.json
 - PASS · **C12** — spot, prior spot and three raw-gold cells recompute on the gold-price page
-- PASS · **C13** — 10 pages parse as well-formed HTML
+- PASS · **C13** — 11 pages parse as well-formed HTML
 - PASS · **C14** — the NO HALLUCINATIONS rule is on every page
 - PASS · **C15** — no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener
 

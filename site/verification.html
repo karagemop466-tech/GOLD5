@@ -16,7 +16,7 @@
 </div></div>
 <header class="masthead"><div class="wrap">
   <a class="brand" href="../index.html"><span class="brand-mark">G5</span><span class="brand-name">GOLD5<small>Solid gold engagement ring research</small></span></a>
-  <nav class="nav" aria-label="Main"><a href="../index.html">Dashboard</a><a href="listings.html">Listings</a><a href="gold-price.html">Gold Price</a><a href="calculator.html">Calculator</a><a href="analysis.html">Analysis</a><a href="checklist.html">Checklist</a><a href="sellers.html">Sellers</a><a href="flagged.html">Flagged</a><a href="sources.html">Sources</a><a href="verification.html" class="active">Verification</a></nav>
+  <nav class="nav" aria-label="Main"><a href="../index.html">Dashboard</a><a href="master-audit.html">Master Audit & XRF</a><a href="listings.html">Listings</a><a href="gold-price.html">Gold Price</a><a href="calculator.html">Calculator</a><a href="analysis.html">Analysis</a><a href="checklist.html">Checklist</a><a href="sellers.html">Sellers</a><a href="flagged.html">Flagged</a><a href="sources.html">Sources</a><a href="verification.html" class="active">Verification</a></nav>
 </div></header>
 <main id="main"><div class="wrap">
 
@@ -43,9 +43,7 @@
 <div class="table-wrap"><table><thead><tr><th>Item</th><th>What changed</th></tr></thead><tbody><tr><td><b>VeraByEden return window</b></td><td class="small">Earlier session records described the Etsy return tab generically. The live listing states <b>7 days</b>. Corrected in the seller record and flagged FL-16.</td></tr><tr><td><b>Brilliant Earth karats</b></td><td class="small">Earlier flags said the karat appeared only in product URLs. Each product page states <b>14K Yellow Gold</b> in its title and ring information. Flag FL-24 closed.</td></tr><tr><td><b>Brilliant Earth Secret Halo price</b></td><td class="small">The product page served <b>EUR €1,250.00</b> on this fetch, not USD. The $1,090 figure is retained only as a category-listing capture and flagged FL-08 — it was not converted or guessed.</td></tr><tr><td><b>VeraByEden gold weight</b></td><td class="small">The earlier '3.70 g via search snippet' flag was resolved: the description on the live page states <b>'Gold grams: 3.70 gr'</b>. Flag closed; seller-stated caveat remains FL-18.</td></tr><tr><td><b>Blue Nile warranty threshold</b></td><td class="small">The warranty page and product pages state <b>$1,000 or more</b>. The $870 setting therefore does not qualify; FL-06 was rewritten and linked to the correct rows.</td></tr><tr><td><b>Jewelry Master retail price</b></td><td class="small">The page shows $6,041.00 retail vs $3,020.00 special. The retail figure is the seller's own comparison; it is recorded but <b>not used</b> in any ratio (FL-12).</td></tr></tbody></table></div>
 
 <h2>The checker</h2>
-<div class="note green"><b class="title">Latest run: PASS</b>
-15 checks passed · 0 failed · 0 warnings · run 2026-10-22 23:47 UTC.
-See the full report at <code>data/check_report_v2.json</code>.</div>
+<div class="note"><b class="title">Checker</b>Run <code>python3 scripts/verify.py</code> to produce the latest result. The command validates every row, every dollar figure and every internal link.</div>
 <div class="formula">python3 scripts/build_site.py   # regenerate the static site from data.json
 python3 scripts/verify.py        # sources, arithmetic, $ figures, links, HTML integrity
 python3 tools/check_hallucinations.py   # archived /docs/ dataset (unchanged this pass)</div>

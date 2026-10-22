@@ -78,7 +78,8 @@ def base(prefix):
     return prefix
 
 def nav(prefix, active):
-    items = [("index.html", "Dashboard", "home"), ("site/listings.html", "Listings", "listings"),
+    items = [("index.html", "Dashboard", "home"), ("site/master-audit.html", "Master Audit & XRF", "master-audit"),
+             ("site/listings.html", "Listings", "listings"),
              ("site/gold-price.html", "Gold Price", "gold-price"), ("site/calculator.html", "Calculator", "calculator"),
              ("site/analysis.html", "Analysis", "analysis"), ("site/checklist.html", "Checklist", "checklist"),
              ("site/sellers.html", "Sellers", "sellers"), ("site/flagged.html", "Flagged", "flagged"),

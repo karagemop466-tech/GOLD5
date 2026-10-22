@@ -12,7 +12,7 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 23:30 UTC — **session `93032b31` active (final integration pass 2: live re-verification + unified site)**
+- Last updated: 2026-10-22 (UTC) — **session `b1f2fe3b` active (tasks B1–B5 done, B6 final integration in progress; union-merged with `93032b31`, `7cca80c9`, `60c4b9c3`, `84be683f`, `37e8ff42`, `638c9614`, `090bae73`)**
 
 ## ⏱ ACTIVE CLAIM — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
@@ -90,13 +90,43 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   load the original data from `site/assets/data-legacy.js` (restored from git, 46,051 bytes) and show an "archived view"
   banner linking to the new landing page. Nothing was deleted. `site/assets/app.js` and `styles.css` remain in use by them.
 - Branch rule (all sessions, same platform constraint): each session is bound to its fixed Arena
-  branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5`); the
+  branch (`arena/638c9614-gold5` / `arena/090bae73-gold5` / `arena/37e8ff42-gold5` / `arena/b1f2fe3b-gold5`); the
   `session-<id>/<task>` naming scheme from the brief cannot be used (the platform forbids other
   branches). Logged as a deviation by the affected sessions; non-overlapping file scopes were used instead.
 - Stale-claim rule: a claim older than 60 minutes with no commits may be taken over (log the handoff).
 - **Ownership of shared outputs** (site `index.html`/nav, this board, README): modified only by the
-  final integration session — here, `37e8ff42`. Conflicts were resolved as **unions**: no session's
-  content was discarded.
+  final integration session once all other tasks are done. Conflicts are resolved as **unions**: no session's
+  content is ever discarded.
+
+## Task board — session `b1f2fe3b` (`arena/b1f2fe3b-gold5`)
+
+| ID | Task | Status | Owner session | Exclusive file scope |
+|---|---|---|---|---|
+| B1 | Line-by-line repo review & cross-session audit of existing entries (`site/assets/data.js`, `data/*.json`, `pages/*.html`) against official sources | **done** | `b1f2fe3b` | `docs/verification/audit-b1f2fe3b.md` |
+| B2 | Live verification of regulatory, hallmark, assay & spot/troy-weight standards (15 U.S.C. §§ 294–300, 16 CFR Part 23, FTC, NIST, LBMA, Kitco) | **done** | `b1f2fe3b` | `docs/verification/regulatory-and-assay-b1f2fe3b.md` |
+| B3 | Unified verified catalog & seller cross-check (all 38 unique listings across sessions + live source verification, blanks flagged) | **done** | `b1f2fe3b` | `data/b1f2fe3b_verified_catalog.json`, `site/assets/catalog-b1f2fe3b.js`, `docs/verification/listings-b1f2fe3b.md` |
+| B4 | Cross-site anti-hallucination & security checker (`scripts/audit_b1f2fe3b.py`) covering root `site/`, `report/`, `docs/`, `verified/`, `pages/`, and unified catalog | **done** | `b1f2fe3b` | `scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_audit_report.json` |
+| B5 | Master Cross-Session Audit, Unified Listings & XRF/Melt Verification subpage (`site/master-audit.html`) | **done** | `b1f2fe3b` | `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js` |
+| B6 | Final integration: union-merge `origin/main`, update shared index/nav/data, run all verification suites, open PR → `main`, merge, confirm Pages deploy, log | **in progress** | `b1f2fe3b` | `COORDINATION.md`, `README.md`, `scripts/author_data.py`, `scripts/build_site.py`, `site/assets/data.json`, `index.html`, `site/*.html` |
+
+### Log — session `b1f2fe3b`
+- 2026-10-22 (UTC): Read `COORDINATION.md` and `README.md` at `1c35fd0`. Inspected all merged sessions (`638c9614`, `090bae73`, `37e8ff42`) and unmerged branches (`arena/3c8bb7ee-gold5` PR #4, `arena/9eba173a-gold5` PR #6, `arena/93032b31-gold5`, `arena/7cca80c9-gold5`). Claimed B1–B6 with non-overlapping exclusive file scopes (`docs/verification/*-b1f2fe3b.md`, `data/b1f2fe3b_*.json`, `scripts/audit_b1f2fe3b.py`, `site/master-audit.html`) and committed/pushed claim immediately before starting B1.
+- 2026-10-22 (UTC) **B1 done** (`docs/verification/audit-b1f2fe3b.md`): Reviewed all merged datasets and HTML pages line by line against official sources. Logged 8 repository irregularities (`I-B1`–`I-B8`), including unclosed `<table>` tags in `index-37e8ff42.html` (fixed) and legacy `site/flagged.html`, stale `"13 listings"` prose count vs 14 entries, Brilliant Earth `R02`–`R04` unverified PDPs, Brilliant Earth `/customer-care/return-policy/` redirect, and two unmerged session datasets (`9eba173a` Quince 1ct and `3c8bb7ee` guide).
+- 2026-10-22 (UTC) **B2 done** (`docs/verification/regulatory-and-assay-b1f2fe3b.md`): Live-fetched and verified federal statutory & metrology sources on 2026-10-22:
+  1. **Kitco Live Gold Chart** (`https://www.kitco.com/charts/gold`, 7:26 p.m. EDT): `$4,026.90/oz` bid, `$4,028.90/oz` ask, `$129.47/g`, `$201.35/dwt`, `$129,469.83/kg` (plus intra-page `$4,027.50/oz` / `$129.49/g` table and `4,028.21` widget).
+  2. **National Stamping Act** (`15 U.S.C. §§ 295, 297`, `https://www.govinfo.gov/link/uscode/15/295` and `.../297`): verified exact statutory assay tolerances (`-3‰` solder-free / `-7‰` whole ring with solder under Pub. L. 94-450) and mandatory registered trademark / maker's mark requirement adjacent to any karat stamp.
+  3. **FTC Jewelry Guides (`16 CFR Part 23`)** (`https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23`, current as of Oct 21, 2026): verified § 23.3 (solid vs hollow, 1/20 Gold Filled, 1/40 RGP/Overlay, ≥0.175 µm Gold Electroplate, ≥2.5 µm Heavy Gold Electroplate), § 23.4 (Vermeil ≥2.5 µm over sterling silver), § 23.7 (rhodium plating disclosure), § 23.8 (mixed-metal order-by-weight disclosure), and § 23.10 (trademark next to quality mark).
+  4. **FTC Consumer Guides** (`buying-platinum-gold-and-silver-jewelry` and `using-credit-cards-and-disputing-charges`): verified Fair Credit Billing Act (`15 U.S.C. § 1666`) 60-day dispute rights and complaint search advice.
+  5. **NIST Office of Weights & Measures** (`https://www.nist.gov/document/precious-metals-conversion-information-march2015pdf`, Handbook 130 § 2.17): verified `1 oz t = 20 dwt = 480 gr = 31.1034768 g` and `1 dwt = 1.55517384 g`.
+- 2026-10-22 (UTC) **B3 done** (`docs/verification/listings-b1f2fe3b.md`, `data/b1f2fe3b_verified_catalog.json`, `site/assets/catalog-b1f2fe3b.js`): Live-fetched multi-chunk product and policy pages for Brilliant Earth (`BE1343-14KY`, `BE1D6013-14KY`, `BE1D3939-14KY`, `BE1D13065-14KY`, and `/30-Day-Returns/` chunks 4–5 confirming 30-day window, resized/modified/custom exclusions, and $40 engraving-removal fee), Allurez (`U5882` 14K 5.00g $1,085, `U5885` 18K 5.90g $1,316, `U170` 14K 4.80g $933, `NG4426` 14K 3.58g $585), Avianne (`R25893` 14K Solid 2.30g $1,100), Blue Nile (`203348` 14K $1,145), and Quince (`1ct Oval Lab-Grown Diamond Ring`, 14k recycled gold band + platinum head, $900, 60-day engagement-ring return limit, $30–$100 missing cert fee). Consolidated **38 unique verified listings across 16 sellers** (11 with published gram weights). Documented the **14K vs 18K alloy density proof** on Allurez `U5882` (`5.00 g`) vs `U5885` (`5.90 g` = `1.180×` density ratio, with `$195.21` of the `+$231` price difference backed by fine gold).
+- 2026-10-22 (UTC) **B4 & B5 done** (`scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_audit_report.json`, `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js`): Built 12-check cross-site anti-hallucination & security harness (`S1`–`S12`, including 4 injected synthetic-hallucination negative self-tests) and the `site/master-audit.html` subpage featuring the interactive gram/pennyweight/carat stone-deduction & `15 U.S.C. § 295` XRF assay tolerance calculator, weighted price-vs-melt comparison table, and filterable 38-row master catalog.
+- 2026-10-22 (UTC) **Merge conflict encountered & resolved (union)**: Merging `origin/main` (`219b905`, after PRs #9–#19 from `84be683f`, `93032b31`, `60c4b9c3`, `7cca80c9`) conflicted in `COORDINATION.md` only (our exclusive files had 0 conflicts). Resolved as a complete union keeping all sessions' boards and logs verbatim, and added `"Master Audit & XRF"` (`site/master-audit.html`) to `scripts/author_data.py` and `scripts/build_site.py` navigation so all 11 pages in `site/` cross-link cleanly.
+- 2026-10-22 (UTC) **All 5 verification & anti-hallucination suites PASS on the integrated tree**:
+  - `python3 scripts/verify.py` → **PASS** (15/15 checks passed, 0 failed across 11 pages including `site/master-audit.html`)
+  - `python3 scripts/audit_b1f2fe3b.py` → **PASS** (6/6 check groups S1–S12, 38 unified entries, 68 HTML pages, 1,781 local links resolved, 4/4 synthetic hallucinations caught, 0 errors)
+  - `python3 tools/check_report.py` + `python3 tools/security_test.py` → **PASS** (1,648 assertions, 0 FAIL, 7/7 planted errors caught)
+  - `cd verified && python3 scripts/build_site.py --check && python3 scripts/verify.py` → **PASS** (11 pages match, 896 assertions, 0 failures)
+  - `python3 tools/check_hallucinations.py` → **PASS** (166 checks, 0 FAIL, 0 WARN, 1 INFO)
 
 ## Session registry & deliveries
 
