@@ -1,0 +1,25 @@
+SOURCE: https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/
+CAPTURED: 2026-10-22 23:49 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (chunk 0 of 4). Verbatim; [...] = omitted text.
+---
+# Yellow Gold Solitaire Engagement Ring
+
+14ky, 4.7g, #B02561
+
+Pricing and availability are subject to change.
+
+SKU: B02561
+
+Brand: [M Michael]
+
+[...]
+
+Call [(309) 452-1612](tel:+13094521612) for current pricing and availability.
+---
+NOTES (observed only):
+- NO PRICE is published (the page instructs the buyer to call) => price blank + flagged. A web-search
+  snippet previously showed a price; snippet prices are NOT used in this project.
+- Karat: "14ky" (seller shorthand for 14K yellow gold) and weight "4.7g" appear in the same terse line,
+  with SKU and brand. Solid-gold is NOT stated; hallmark/maker's mark is NOT stated (the brand is listed
+  as "M Michael", which is a brand attribution, not a statement that the ring is stamped).
+- No return policy on this page.

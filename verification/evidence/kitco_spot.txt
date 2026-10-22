@@ -1,0 +1,75 @@
+SOURCE: https://www.kitco.com/charts/gold
+CAPTURED: 2026-10-22 23:26-23:27 UTC (page clock: "Oct 22, 2026 - 19:26 NY Time" / "as of October 22, 2026 at 7:26 p.m. EDT")
+METHOD: fetch_page text rendering of the live page. Verbatim excerpts; [...] = omitted text.
+---
+Oct 22, 2026 - 19:26 NY Time
+
+Bid
+
+### 4,026.90
+
+USD
+
++3.80(+0.09%)
+
+Ask
+
+4,028.90
+
+- ounce
+
+4,026.90
+
++3.80
+
+- gram
+
+129.47
+
++0.12
+
+- Kilo
+
+129,469.83
+
++122.17
+
+[...]
+
+Prices provided by [Kitco Metals Inc.](https://corp.kitco.com/), Montreal, Canada. Displayed in U.S. dollars
+(USD), as of October 22, 2026 at 7:26 p.m. EDT.
+
+## Gold Value by Purity
+
+| Fineness | VALUE (USD)* |
+| 24K Gold99.99% Gold 999 24K · 24KT · 999.9 · 1000 | $4,026.90 |
+| 22K Gold91.67% Gold 916 22K · 22KT · 917 | $3,691.46 |
+| 18K Gold75.00% Gold 750 18K · 18KT | $3,020.18 |
+| 14K Gold58.33% Gold 585 14K · 14KT · 583 | $2,348.89 |
+| 10K Gold41.67% Gold 417 10K · 10KT · 416 | $1,678.01 |
+
+* Estimated metal value only, retail premiums may apply to physical products.
+
+## Gold Price Today — Per Ounce, Gram and Kilo
+
+| Unit | Gold Price (USD) | Change | Low | High |
+| Gold price per ounce | $4,027.50 | +$4.20 | $4,020.20 | $4,145.30 |
+| Gold price per gram | $129.49 | +$0.14 | $129.25 | $133.27 |
+| Gold price per 10 grams | $1,294.87 | +$1.35 | $1,292.52 | $1,332.74 |
+| Gold price per kilo | $129,487.13 | +$135.03 | $129,252.43 | $133,274.49 |
+[...]
+
+Prices in U.S. dollars, based on the bid price of the global spot market. Tael refers to the Hong Kong tael (37.799 g).
+
+The current price of gold is **$4,027.50** per troy ounce as of October 22, 2026, 7:26 p.m. ET, up $4.20 today.
+
+A troy ounce is 31.1034768 grams [...]
+---
+IRREGULARITY (recorded, not resolved — see F-SPOT-SPREAD):
+The same live page displayed THREE different per-ounce figures within the same capture:
+  4,026.90 (the "Bid" headline) / 4,027.50 (per-ounce table + body sentence) / and the
+  TradingView widget showed C 4,028.210 under "Gold Spot / U.S. Dollar · OANDA".
+Per-gram figures differed too: 129.47 (unit toggle) vs 129.49 (per-gram table).
+Cause is not stated by the page. Because of this, this project uses 129.47 USD/g only for the
+calculator default and shows the range; every derived value is recomputed in the page from the
+inputs shown, and the spread is quantified on the Gold Price page.

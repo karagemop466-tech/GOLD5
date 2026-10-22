@@ -1,0 +1,7 @@
+ATTEMPTED SOURCE (WRONG URL, kept for the record): https://help.etsy.com/hc/en-us/articles/360000343508-Etsy-Purchase-Protection
+CAPTURED: 2026-10-22 23:59 UTC  (session arena-60c4b9c3)
+RESULT: NEGATIVE — that URL redirected to an unrelated Etsy help article ("How to Download Your Listing
+Information"). No terms were taken from it.
+FOLLOW-UP: the correct article was found and verified separately — see `etsy_purchase_protection.txt`
+(https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program). Recorded so the
+failed fetch is not mistaken for evidence.

@@ -1,0 +1,66 @@
+SOURCE: https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html
+CAPTURED: 2026-10-22 23:48 UTC  (session arena-60c4b9c3)
+METHOD: fetch_page text rendering of the live page (single chunk, totalChunks=1). Verbatim; [...] = omitted.
+---
+# Brilliant Round Diamond Solitaire Engagement Ring 14K Yellow Gold
+
+[...]
+
+Retail Price$6,041.00Special Price$3,020.00
+
+Availability:
+
+In stock
+
+Only **1** left
+
+**Style**
+
+149700
+
+[...]
+
+## PRODUCT DETAILS
+
+This beautiful treasure is entirely handcrafted in pure 14KT solid yellow gold. This engagement ring is
+wreathed with prong set brilliant round diamonds and bezel set brilliant round diamonds weighing 0.71
+carats. All of the stones are a blinding white G-H color and SI1 clarity.
+
+FREE Shipping, a Gift Box, and a Professional Appraisal Certificate, accompanies each purchase.
+
+If this is not exactly what you are looking for please call one of our friendly customer service
+representatives at [1-888-59-JEWEL](tel:18885953935)
+
+| ### Information |
+| Carats: | 0.71ctw |
+| Stones: | Brilliant Round Diamonds |
+| Clarity: | SI1 |
+| Color: | G-H |
+| Setting: | Prong / Bezel |
+| Metal Type: | 14KT Gold |
+| Metal Weight: | 2.3 Grams |
+| Width: | mm |
+| Length: | mm |
+
+[...]
+
+## Money Back Guarantee (some restrictions apply)\*
+
+[...] you can simply return or exchange your purchase within a 30-day period - no questions asked.
+
+[...]
+
+3. Shipments are **only** made to the **billing address listed on file with your credit card company**.
+[...]
+All of your purchases are guaranteed to arrive in excellent condition. As evidenced by Jewelry Masters
+“No Questions Asked,” 30-Day return policy.
+---
+NOTES (observed only):
+- Two prices are printed: "Retail Price $6,041.00" and "Special Price $3,020.00". Only the SPECIAL PRICE is
+  recorded; the "retail" figure is the seller's own comparison price and is not used (flag F-RETAIL-COMPARE).
+- "pure 14KT solid yellow gold" => explicit solid-gold statement (by the seller).
+- "Metal Weight: 2.3 Grams" => weight published (not marked approximate).
+- The 30-day return policy says "some restrictions apply"; the restrictions themselves are NOT shown on
+  this page => recorded as UNVERIFIED (flag F-RETURN-RESTRICTIONS).
+- Payment: the shipping terms reference "the billing address listed on file with your credit card company",
+  which shows card payment exists, but no formal payment-methods list was captured => not recorded.

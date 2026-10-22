@@ -1,0 +1,10 @@
+WHAT THIS FILE IS: provenance record for a price that was WITHDRAWN from this project.
+SOURCE OF THE FIGURE: a web-search snippet of https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid,
+  as recorded by the earlier session's dataset at site/assets/data.js:
+      "priceLabel": "Listed price at snippet time: $444.80 (original $556.00, 20% off); page now shows Sold"
+CAPTURED (of the snippet, by the earlier session): 2026-10-22.
+LIVE RE-CHECK (this session, 2026-10-22 23:41 UTC): the listing page shows "Sorry, this item is sold out" and
+  NO price. See etsy_soldout_576343849.txt.
+DISPOSITION: the $444.80 figure is NOT used as a price anywhere in this catalogue, and the earlier
+  "price is below metal value" conclusion built on it is WITHDRAWN (flag G-PRICE-BLANK-SOLD). It appears in
+  the data only inside the text that explains the withdrawal.
