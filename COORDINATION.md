@@ -1,0 +1,34 @@
+# GOLD5 — Coordination Board
+
+Shared task board for parallel agent sessions. See repo instructions for the full
+coordination protocol.
+
+Session IDs: `arena` (this session, branch `arena/3c8bb7ee-gold5`).
+
+| # | Task | Status | Owner | Files touched | Sources / verification | Irregularities |
+|---|------|--------|-------|---------------|------------------------|----------------|
+| 1 | Create COORDINATION.md task board | done | arena | COORDINATION.md | — | None |
+| 2 | Research gold purity standards (10K/14K/18K) from official sources | unclaimed | — | research/gold-purity.md | — | None |
+| 3 | Research hallmark / maker's mark requirements (official) | unclaimed | — | research/hallmarking.md | — | None |
+| 4 | Research gold weight (grams) measurement guidance (official) | unclaimed | — | research/weight.md | — | None |
+| 5 | Research seller reputation checks (BBB/FTC official) | unclaimed | — | research/seller-reputation.md | — | None |
+| 6 | Research live gold price source + calculator basis (official) | unclaimed | — | research/gold-price.md | — | None |
+| 7 | Research return policy / consumer protection (FTC official) | unclaimed | — | research/return-policy.md | — | None |
+| 8 | Research payment protection / credit card (official) | unclaimed | — | research/payment.md | — | None |
+| 9 | Research documentation requirements | unclaimed | — | research/documentation.md | — | None |
+| 10 | Research independent jeweler / XRF verification | unclaimed | — | research/verification.md | — | None |
+| 11 | Build site landing page (index.html) | unclaimed | — | site/index.html | — | None |
+| 12 | Build category subpages | unclaimed | — | site/*.html | — | None |
+| 13 | Build data table with entries + source links | unclaimed | — | site/data/*, site/table*.html | — | None |
+| 14 | Build "Flagged for Review" page | unclaimed | — | site/flagged.html | — | None |
+| 15 | Configure GitHub Pages | unclaimed | — | .github/workflows, site | — | None |
+| 16 | Integration: line-by-line verification, broken-link check | unclaimed | — | all | — | None |
+| 17 | PR to main + merge + confirm Pages deploy | unclaimed | — | — | — | None |
+
+Rules: claim a task by writing your session ID and file scope, commit and push the
+claim immediately. Never start a task another session has claimed. Keep scopes
+non-overlapping. If a session crashes or its claim is >60 minutes old with no
+commits, another session may take over and note the handoff in the log. When a
+task is finished, record its sources, verification performed, and any
+irregularities here and mark it done. Shared outputs (table data, index,
+navigation) are changed only by the final integration session.
