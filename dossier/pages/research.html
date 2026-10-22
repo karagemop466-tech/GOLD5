@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research documents | GOLD5 — Gold Engagement Ring Verification</title>
+<meta name="description" content="Verified gold engagement ring listings with source links, capture timestamps, literal price evidence and an anti-hallucination audit trail.">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header class="top"><div class="bar">
+<div class="brand">GOLD<span>5</span></div>
+<div class="tag">Gold engagement-ring buying project &middot; every value carries a source link, a UTC capture timestamp and a literal evidence excerpt</div>
+</div></header>
+<nav class="main"><div class="wrap"><span class="grp">Overview</span><a href="../index.html">Home</a><a href="../pages/repo-review.html">Repo review</a><a href="../pages/verification.html">Verification</a><span class="grp">Entries</span><a href="../pages/rings.html">All entries</a><a href="../pages/cat-solitaire.html">Solitaire</a><a href="../pages/cat-halo-pave.html">Halo, pave &amp; side-stone</a><a href="../pages/cat-three-stone.html">Three-stone</a><a href="../pages/cat-vintage.html">Vintage &amp; estate</a><a href="../pages/cat-gemstone.html">Gemstone &amp; moissanite</a><a href="../pages/cat-mens.html">Men&#x27;s</a><a href="../pages/cat-plain-band.html">Plain gold bands</a><a href="../pages/cat-bridal-set.html">Bridal sets</a><a href="../pages/cat-marketplace.html">Marketplace listings</a><a href="../pages/cat-not-solid-gold.html">NOT solid gold</a><a href="../pages/cat-red-flag.html">Red-flag listings</a><a href="../pages/marketplace-all.html">Marketplaces</a><span class="grp">Tools</span><a href="../pages/calculator.html">Gold calculator</a><a href="../pages/gold-price.html">Gold price</a><span class="grp">Guidance</span><a href="../pages/checklist.html">Buying checklist</a><a href="../pages/sellers.html">Sellers &amp; policies</a><a href="../pages/research.html" class="on">Research</a><span class="grp">Review</span><a href="../pages/flagged.html">Flagged for review</a><a href="../pages/sources.html">Sources</a></div></nav>
+<main><div class="wrap">
+<h1>Research documents (session 3c8bb7ee)</h1>
+<p class="lede">The checklist topics were researched in a parallel session and committed to
+<span class="mono">research/*.md</span> and integrated into <span class="mono">main</span> as <span class="mono">guide/research/</span>. This session merged that work unchanged, re-read every document line by line and
+re-ran the arithmetic checks that depend on them. Nothing in <span class="mono">guide/research/</span> was edited &mdash;
+corrections are logged as change requests in <span class="mono">COORDINATION.md</span> instead.</p>
+<div class="alert stop">
+<h2>&#9888; NO HALLUCINATED PRICES &mdash; the governing rule of this project</h2>
+<ul>
+<li><b>Nothing here is estimated, remembered or inferred.</b> Every price, karat claim, metal description and gram
+weight was read from an <b>official first-party page</b> (the retailer's own product page, the marketplace's own item
+page, or the benchmark administrator's own site) and stored with three things: the <b>source URL</b>, a <b>UTC capture
+timestamp</b>, and the <b>literal verbatim excerpt</b> that contains the number.</li>
+<li><b>If a value could not be confirmed, the cell is left blank</b> and the row is published on
+<a href="../pages/flagged.html">Flagged for review</a>. A blank cell is a deliberate, honest result &mdash; never a gap
+filled by guesswork.</li>
+<li><b>Automated anti-hallucination checks run at every build.</b> Current run:
+<b>15/15 PASS</b>, 0 FAIL. Check <span class="mono">C3</span> re-parses every published price out
+of its own evidence excerpt and fails the build if the number is not literally there. Check <span class="mono">C6</span>
+does the same for gram weights. See <a href="../pages/verification.html">Verification</a>.</li>
+<li><b>Prices move.</b> Retail jewellery prices and the gold price both change constantly, so every value is a
+timestamped observation, not a standing quote. Re-read the live page before paying &mdash; this dataset contains two
+documented cases where the <i>same</i> official page was indexed at two different prices (F-05, F-06).</li>
+</ul></div>
+<div class="tbl-wrap"><table><thead><tr><th>File</th><th>Title</th><th>Status as declared in the document</th>
+<th class="num">Source URLs</th><th class="num">Lines</th><th>Link</th></tr></thead><tbody><tr><td class='mono'>documentation.md</td><td>Research: Documentation Requirements</td><td>VERIFIED against official sources.</td><td class='num'>2</td><td class='num'>32</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/documentation.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>gold-price.md</td><td>Research: Gold Price Source and Calculator Basis</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>34</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/gold-price.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>gold-purity.md</td><td>Research: Gold Purity Standards (10K / 14K / 18K)</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>38</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/gold-purity.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>hallmarking.md</td><td>Research: Hallmark / Maker&#x27;s Mark Requirements</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>43</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/hallmarking.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>payment.md</td><td>Research: Payment Protection — Credit Card</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>36</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/payment.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>return-policy.md</td><td>Research: Return Policy / Consumer Protection</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>33</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/return-policy.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>seller-reputation.md</td><td>Research: Seller Reputation Checks</td><td>VERIFIED against official sources.</td><td class='num'>3</td><td class='num'>33</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/seller-reputation.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>verification.md</td><td>Research: Independent Verification — Jeweler and XRF Testing</td><td>PARTIALLY VERIFIED (see flags below).</td><td class='num'>4</td><td class='num'>35</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/verification.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr><tr><td class='mono'>weight.md</td><td>Research: Gold Weight (Grams) — Measurement Standard</td><td>VERIFIED against official sources.</td><td class='num'>2</td><td class='num'>35</td><td><a href='https://github.com/karagemop466-tech/GOLD5/blob/main/research/weight.md' target='_blank' rel='noopener noreferrer'>view on GitHub</a></td></tr></tbody></table></div>
+<h2>Integration re-verification of these documents</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Claim relied on by this site</th><th>Document</th><th>Re-verification performed</th><th>Result</th></tr></thead><tbody>
+<tr><td>1 troy ounce = 31.1034768 g; 1 dwt = 1.55517384 g</td><td class="mono">research/weight.md</td>
+<td>Used as the divisor in build-time check C10 against five publishers that quote both $/oz and $/gram</td>
+<td><span class="b live">PASS</span> all five reproduce their published gram price within half a cent</td></tr>
+<tr><td>18K = 75.0%, 14K = 58.3%, 10K = 41.7% fineness</td><td class="mono">research/gold-purity.md</td>
+<td>Compared against karat &divide; 24 in build-time check C12; the calculator uses the same values</td>
+<td><span class="b live">PASS</span> within 0.05 percentage points</td></tr>
+<tr><td>24K is nominally 100% but the published mark is 999 / 99.99%</td><td class="mono">research/gold-purity.md</td>
+<td>Check C12 initially <b>failed</b> because 99.9% was recorded; corrected to the document's own 99.99% and the nominal 100% is now recorded alongside it</td>
+<td><span class="b warn">CORRECTED</span> both figures published, neither inferred</td></tr>
+<tr><td>Plated / filled / vermeil / flashed definitions</td><td class="mono">research/hallmarking.md</td>
+<td>Used verbatim on the checklist page; cross-checked against Pandora's own published material string</td>
+<td><span class="b live">CONSISTENT</span> the brand's own data matches the FTC definition of electroplating</td></tr>
+<tr><td>National Stamping Act: a trademark must accompany a quality mark</td><td class="mono">research/hallmarking.md</td>
+<td>Applied as flag F-13 to every row whose evidence contains no stamp or maker's mark</td>
+<td><span class="b warn">APPLIED</span> see Flagged for review</td></tr>
+<tr><td>Cooling-Off Rule does not cover most online sales</td><td class="mono">research/return-policy.md</td>
+<td>Reproduced on the sellers page with the caveat that no general federal return right exists</td>
+<td><span class="b live">CONSISTENT</span></td></tr>
+<tr><td>FCBA quality disputes are not billing errors</td><td class="mono">research/payment.md</td>
+<td>Surfaced prominently on the sellers page because it weakens chargeback protection for an under-karat ring</td>
+<td><span class="b live">CONSISTENT</span></td></tr>
+<tr><td>XRF is the best verification method</td><td class="mono">research/verification.md</td>
+<td>Document self-declares PARTIALLY VERIFIED; its two XRF sources are a vendor blog and an industry blog</td>
+<td><span class="b bad">F-02</span> published as guidance, never as regulation</td></tr>
+<tr><td>LBMA Gold Price is the benchmark, set twice daily by IBA</td><td class="mono">research/gold-price.md</td>
+<td><b>Re-fetched live from lbma.org.uk this session</b>; also discovered the tables are now licence-gated</td>
+<td><span class="b live">CONFIRMED LIVE</span> + new finding F-01</td></tr>
+<tr><td>"No product prices are listed anywhere on this site"</td><td class="mono">research/gold-price.md, research/weight.md</td>
+<td>Conflicts with the project brief, which requires product entries with links and current prices</td>
+<td><span class="b bad">R-01 / R-02</span> logged in COORDINATION.md; files not edited</td></tr>
+</tbody></table></div>
+</div></main>
+<footer><div class="wrap">
+<b>No-hallucination policy.</b> Nothing on this site is estimated, inferred or filled in from memory. A value is published only when the literal
+string was observed on an official first-party page, and the observation is stored with its URL, UTC timestamp and verbatim excerpt.
+Where a value could not be confirmed the cell is left blank and the row is published on <a href="../pages/flagged.html">Flagged for review</a>.
+<br>Built 2026-10-22T23:52:10Z by session <span class="mono">3e3fae49</span> &middot; data: <a href="../data/rings.json">rings.json</a>,
+<a href="../data/rings.csv">rings.csv</a>, <a href="../data/gold-price.json">gold-price.json</a>,
+<a href="../data/verification-report.json">verification-report.json</a> &middot;
+<a href="../pages/verification.html">verification methodology</a> &middot;
+<a href="https://github.com/karagemop466-tech/GOLD5">repository</a>
+</div></footer>
+<script src="../assets/app.js" defer></script>
+</body></html>
