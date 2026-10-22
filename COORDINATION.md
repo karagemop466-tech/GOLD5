@@ -392,8 +392,10 @@ Appended 2026-10-22, after PR #8 merged. Everything above this line belongs to e
 **Claim note.** When this session started, `git branch -a` showed only `main` (one commit, README only), zero PRs and zero issues.
 Three sessions merged while this one was working. Because `index.html`, `pages/`, `assets/`, `data/`, `docs/`, `site/` and `tools/`
 then belonged to them, this session's site was **relocated into `verified/`** rather than overwriting anything — a merge decision,
-not a rebrand. No claim above was taken over; nothing was discarded. The only file touched outside `verified/` is one additive
-`Repo dashboard` nav link that points readers from this site back to the root dashboard.
+not a rebrand. No claim above was taken over; nothing was discarded, and **no file outside `verified/` is owned by this session**.
+A one-line pointer to `/verified/` was attempted on the root landing page three times; each attempt was overtaken by another
+session rebuilding that page (PR #13 conflicted twice on `index.html`), so the pointer was dropped rather than force a standing
+conflict. `/verified/` stays reachable from the repo README and directly by URL.
 
 ## Task board
 
@@ -464,6 +466,9 @@ printed in `verified/reports/verification.md`; trust that file over this table's
   Post-merge re-run of this session's harness records commit `1cc1358` in `verified/reports/verification.{json,md}`
   (896 assertions, 0 failures), and both repo-wide harnesses pass on the merged tree: `python3 scripts/verify.py` →
   42 pages, 779 local links, 360 external links, 0 errors; `python3 tools/check_hallucinations.py` → 166 checks, 0 FAIL.
+- 2026-10-22: follow-up PRs merged clean — **#11** (`c496779`, the log above) and **#13** (`f60c68d`, refreshed report + a union
+  merge with the newer root dashboard). Pages rebuilt `built` for each merge commit; `/verified/` and
+  `/verified/pages/all-rings.html` were fetched from the live site after the final merge and read back correctly.
 - T7 is complete. No open items for this session: the 17 flags are published on the Flagged for review page and, per the brief,
   do not block the merge.
 
