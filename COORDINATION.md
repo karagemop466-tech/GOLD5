@@ -172,3 +172,33 @@ Walmart search HTML serves no product cards/prices (client-rendered); excluded p
 4. Anything not confirmable from an official source → blank + flagged on the Flagged for Review page.
 5. After every review: run `python3 scripts/verify.py` **and** `python3 tools/check_hallucinations.py`
    (as applicable), and log the result here.
+
+---
+
+## Task board — session `arena-60c4b9c3` (2026-10-22, this pass)
+
+**Claim written and pushed BEFORE any editing**, per the board rules. Session ID = `arena-60c4b9c3`
+(branch `arena/60c4b9c3-gold5`, the branch the platform binds this session to — the
+`session-<id>/<task>` naming cannot be used because the platform forbids other branches; same
+deviation already logged by the earlier sessions).
+
+| ID | Task | Status | Owner | File scope (exclusive to this session) |
+|----|------|--------|-------|----------------------------------------|
+| G1 | Claim board + fresh live re-verification of every row used by the new site | **in progress** | `arena-60c4b9c3` | `COORDINATION.md` (append-only section below), `verification/**` |
+| G2 | Evidence store: verbatim captures with URL + UTC timestamp per value | **in progress** | `arena-60c4b9c3` | `verification/evidence/*.txt` |
+| G3 | Consolidated verified dataset (listings, sellers, references, flags, spot) | unclaimed→in progress | `arena-60c4b9c3` | `verification/*.json` |
+| G4 | New dashboard site (landing + category subpages + calculator) at repo root | in progress | `arena-60c4b9c3` | `index.html`, `report/**` |
+| G5 | Hallucination/security checker for the new dataset (`tools/check_report.py`) | in progress | `arena-60c4b9c3` | `tools/check_report.py` |
+| G6 | Run verification passes after each review; log results | in progress | `arena-60c4b9c3` | `verification/passes.json`, this file |
+| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | in progress | `arena-60c4b9c3` | this file (log) |
+
+**Files this session will NOT edit** (owned by earlier sessions, preserved byte-for-byte):
+`docs/**` (638c9614), `pages/**` + `assets/**` + `index-090bae73.html` (090bae73),
+`site/**` + `scripts/verify.py` + `data/**` + `tools/check_hallucinations.py` + `tools/build_site.py`
+(37e8ff42 / 638c9614). The new pass adds its own `verification/` tree, its own checker, and a new
+root `index.html`; the previous root dashboard is preserved as `index-37e8ff42.html` so nothing is lost.
+
+### Log — session `arena-60c4b9c3`
+- 2026-10-22 23:31 UTC: repo read; both existing checkers run clean at baseline
+  (`scripts/verify.py` PASS 0 errors; `tools/check_hallucinations.py` 166 checks / 0 FAIL / 1 INFO).
+  Live re-verification started. Prices/policies are being re-read from the sellers' own pages today.
