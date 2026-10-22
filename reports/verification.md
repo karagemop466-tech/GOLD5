@@ -1,8 +1,8 @@
 # Verification report
 
-- Generated: 2026-10-22T23:33:29Z
-- Commit: `02b9905`
-- Assertions: 862
+- Generated: 2026-10-22T23:34:20Z
+- Commit: `01cb30a`
+- Assertions: 874
 - Failures: 0
 
 | Pass | What it proves | Assertions | Failures |
@@ -13,6 +13,7 @@
 | money | Every rendered $ amount traces to captured data or a printed formula. | 195 | 0 |
 | flags | Flag ids resolve, and every flag references real data rows. | 113 | 0 |
 | links | Internal links and anchors resolve; external URLs are well formed. | 456 | 0 |
+| checklist | A checklist item may only be marked covered when coverage is complete. | 12 | 0 |
 | build | Committed HTML is byte-identical to a build from data/. | 1 | 0 |
 
 No failures. Every value traces to a captured quote, every blank is flagged.

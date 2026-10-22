@@ -71,16 +71,16 @@
 
 <section>
   <h2>Pass log — this review</h2>
-  <p>Seven automated passes run after every review and on every push.</p>
+  <p>Eight automated passes run after every review and on every push.</p>
   
     <div class="table-wrap">
       <table class="data-table compact">
         <thead><tr><th>Pass</th><th>What it proves</th><th>Why it matters</th></tr></thead>
-        <tbody><tr><td><span class="mono">quote</span></td><td>Every recorded value is a literal substring of the quote captured from the page.</td><td class="cell-note">A remembered or invented price cannot survive this pass.</td></tr><tr><td><span class="mono">arith</span></td><td>Every derived figure recomputes from its inputs and the recorded spot observation.</td><td class="cell-note">Catches arithmetic drift and any price below its own melt value.</td></tr><tr><td><span class="mono">coverage</span></td><td>Every blank or unstated field is tied to a flag on that row.</td><td class="cell-note">Stops a blank from being quietly filled later.</td></tr><tr><td><span class="mono">money</span></td><td>Every $ amount rendered in the HTML traces to data or to a printed formula.</td><td class="cell-note">Catches a stray price that exists only in the page template.</td></tr><tr><td><span class="mono">flags</span></td><td>Flag ids resolve and point at real data rows.</td><td class="cell-note">No orphan or dangling findings.</td></tr><tr><td><span class="mono">links</span></td><td>Internal links and anchors resolve; external URLs are https and well formed.</td><td class="cell-note">No dead navigation; optional live fetch runs in CI.</td></tr><tr><td><span class="mono">build</span></td><td>Committed HTML is byte-identical to a fresh build from data/.</td><td class="cell-note">The published site cannot diverge from the verified data.</td></tr></tbody>
+        <tbody><tr><td><span class="mono">quote</span></td><td>Every recorded value is a literal substring of the quote captured from the page.</td><td class="cell-note">A remembered or invented price cannot survive this pass.</td></tr><tr><td><span class="mono">arith</span></td><td>Every derived figure recomputes from its inputs and the recorded spot observation.</td><td class="cell-note">Catches arithmetic drift and any price below its own melt value.</td></tr><tr><td><span class="mono">coverage</span></td><td>Every blank or unstated field is tied to a flag on that row.</td><td class="cell-note">Stops a blank from being quietly filled later.</td></tr><tr><td><span class="mono">money</span></td><td>Every $ amount rendered in the HTML traces to data or to a printed formula.</td><td class="cell-note">Catches a stray price that exists only in the page template.</td></tr><tr><td><span class="mono">flags</span></td><td>Flag ids resolve and point at real data rows.</td><td class="cell-note">No orphan or dangling findings.</td></tr><tr><td><span class="mono">links</span></td><td>Internal links and anchors resolve; external URLs are https and well formed.</td><td class="cell-note">No dead navigation; optional live fetch runs in CI.</td></tr><tr><td><span class="mono">checklist</span></td><td>A checklist item is marked covered only when coverage is complete.</td><td class="cell-note">The scorecard cannot overstate what the web proves.</td></tr><tr><td><span class="mono">build</span></td><td>Committed HTML is byte-identical to a fresh build from data/.</td><td class="cell-note">The published site cannot diverge from the verified data.</td></tr></tbody>
       </table>
     </div>
     <p class="fine">The result of the most recent run is published as machine-readable JSON and as a Markdown summary in the repository's
-    <span class="mono">reports/</span> directory, and the same seven passes run in CI on every push. The pass table above is fixed
+    <span class="mono">reports/</span> directory, and the same eight passes run in CI on every push. The pass table above is fixed
     text on purpose, so that the page cannot disagree with a build.</p>
 </section>
 
@@ -111,9 +111,10 @@
   <h2>Scope and limits of this pass</h2>
   <ul class="steps">
     <li>12 entries from five retailers were captured. This is a research shortlist, not the market.</li>
-    <li>17 flagged items; the two structural gaps are the missing gram weights (F-004) and the missing hallmark or
-      maker's mark (F-005) on every listing.</li>
-    <li>Search snippets and cached prices were explicitly rejected as evidence (F-002, F-003, F-013).</li>
+    <li>17 flagged items. The structural gap is the missing hallmark or maker's mark (F-005) on every row; gram weights are
+      published for only two rows (F-004).</li>
+    <li>Search snippets and cached prices were rejected as evidence wherever a live page could be read instead (F-002, F-003,
+      F-013, F-016). Where a snippet is the only captured text, the capture method says so on the row.</li>
     <li>All pages are static HTML generated from <span class="mono">data/*.json</span>. Rebuilding without changing the data must
       produce byte-identical files, which the CI checks.</li>
   </ul>

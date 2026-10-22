@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-10-22T23:33:29Z",
-  "commit": "02b9905",
+  "generated_at_utc": "2026-10-22T23:34:20Z",
+  "commit": "01cb30a",
   "totals": {
-    "assertions": 862,
+    "assertions": 874,
     "failures": 0,
-    "checks": 7
+    "checks": 8
   },
   "checks": [
     {
@@ -46,6 +46,13 @@
       "name": "links",
       "description": "Internal links and anchors resolve; external URLs are well formed.",
       "assertions": 456,
+      "failures": 0,
+      "failure_detail": []
+    },
+    {
+      "name": "checklist",
+      "description": "A checklist item may only be marked covered when coverage is complete.",
+      "assertions": 12,
       "failures": 0,
       "failure_detail": []
     },

@@ -16,6 +16,7 @@ PASSES = [
     ("money", "Every $ amount rendered in the HTML traces to data or to a printed formula.", "Catches a stray price that exists only in the page template."),
     ("flags", "Flag ids resolve and point at real data rows.", "No orphan or dangling findings."),
     ("links", "Internal links and anchors resolve; external URLs are https and well formed.", "No dead navigation; optional live fetch runs in CI."),
+    ("checklist", "A checklist item is marked covered only when coverage is complete.", "The scorecard cannot overstate what the web proves."),
     ("build", "Committed HTML is byte-identical to a fresh build from data/.", "The published site cannot diverge from the verified data."),
 ]
 
@@ -33,7 +34,7 @@ def pass_log() -> str:
       </table>
     </div>
     <p class="fine">The result of the most recent run is published as machine-readable JSON and as a Markdown summary in the repository's
-    <span class="mono">reports/</span> directory, and the same seven passes run in CI on every push. The pass table above is fixed
+    <span class="mono">reports/</span> directory, and the same eight passes run in CI on every push. The pass table above is fixed
     text on purpose, so that the page cannot disagree with a build.</p>"""
 
 
@@ -73,7 +74,7 @@ def method_page() -> str:
 
 <section>
   <h2>Pass log — this review</h2>
-  <p>Seven automated passes run after every review and on every push.</p>
+  <p>Eight automated passes run after every review and on every push.</p>
   {pass_log()}
 </section>
 
@@ -104,9 +105,10 @@ def method_page() -> str:
   <h2>Scope and limits of this pass</h2>
   <ul class="steps">
     <li>{len(entries)} entries from five retailers were captured. This is a research shortlist, not the market.</li>
-    <li>{len(flags)} flagged items; the two structural gaps are the missing gram weights (F-004) and the missing hallmark or
-      maker's mark (F-005) on every listing.</li>
-    <li>Search snippets and cached prices were explicitly rejected as evidence (F-002, F-003, F-013).</li>
+    <li>{len(flags)} flagged items. The structural gap is the missing hallmark or maker's mark (F-005) on every row; gram weights are
+      published for only two rows (F-004).</li>
+    <li>Search snippets and cached prices were rejected as evidence wherever a live page could be read instead (F-002, F-003,
+      F-013, F-016). Where a snippet is the only captured text, the capture method says so on the row.</li>
     <li>All pages are static HTML generated from <span class="mono">data/*.json</span>. Rebuilding without changing the data must
       produce byte-identical files, which the CI checks.</li>
   </ul>

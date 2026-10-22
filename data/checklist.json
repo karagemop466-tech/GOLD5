@@ -3,86 +3,86 @@
     {
       "id": "C-01",
       "requirement": "Gold purity: confirm the karat (10K, 14K, 18K, etc.)",
-      "online": "Yes — karat is printed on every listing in the table",
+      "metric": "karat",
       "status": "covered",
-      "note": "Recorded from the listing's metal field; the exact quote is stored per row."
+      "note": "Recorded from each listing's metal field; the exact quote is stored per row. This is the seller's claim, not a test result."
     },
     {
       "id": "C-02",
       "requirement": "Solid gold: the listing must explicitly say solid gold — not plated, vermeil, filled, overlay or tone",
-      "online": "Only partly — 2 of 9 listings explicitly say 'solid gold'",
+      "metric": "solid",
       "status": "gap",
-      "note": "Blue Nile, Brilliant Earth and Ross-Simons list karat only. Flagged F-006; get written confirmation from the seller."
+      "note": "Blue Nile, Brilliant Earth and Ross-Simons list karat only. Flagged F-006; get written confirmation from the seller before paying."
     },
     {
       "id": "C-03",
       "requirement": "Hallmark: a 10K/14K/18K stamp plus a maker's/manufacturer's mark",
-      "online": "No — no listing page states the hallmark or maker's mark",
+      "metric": "hallmark",
       "status": "gap",
-      "note": "Flagged F-005. Must be seen on the ring (or in a close-up photo) and confirmed by an independent jeweler."
+      "note": "Flagged F-005. Must be seen on the ring or in a close-up photo, then confirmed by an independent jeweler."
     },
     {
       "id": "C-04",
       "requirement": "Weight: the ring's weight in grams",
-      "online": "No — 0 of 9 listings published a gram weight in captured HTML",
+      "metric": "weight",
       "status": "gap",
-      "note": "Flagged F-004/F-013. Ask the seller for the weight of the exact size and metal before paying."
+      "note": "Flagged F-004. Where a seller publishes grams it is recorded; everywhere else it is blank and must be requested in writing."
     },
     {
       "id": "C-05",
       "requirement": "Seller reputation: independent reviews/complaints and real contact information",
-      "online": "Partly — contact phone/email verified for 3 of 5 sellers; BBB lookup links provided",
+      "metric": "contact",
       "status": "gap",
-      "note": "No review rating is republished here. Mejuri contact details were not captured (F-011); BBB profiles are linked for manual review."
+      "note": "No review rating is republished here. Mejuri's contact details were not captured (F-011) and Costco's were only partial; BBB search links are provided for manual review."
     },
     {
       "id": "C-06",
       "requirement": "Price: compare with gold weight and current gold value; an unusually cheap price is a red flag",
-      "online": "Partly — prices and spot captured; weights are missing, so price-per-gram cannot be computed",
+      "metric": "price_vs_melt",
       "status": "gap",
-      "note": "Use the calculator with a seller-confirmed weight. Setting-only prices exclude the centre stone (F-015)."
+      "note": "Computable only where a weight exists. Setting-only prices also exclude the centre stone (F-015), so they cannot be compared with complete-ring prices."
     },
     {
       "id": "C-07",
       "requirement": "Return policy, including exclusions for resized/custom rings",
-      "online": "Yes — return windows and exclusions captured for all five sellers",
+      "metric": "returns",
       "status": "covered",
-      "note": "All five exclude resized and/or personalised items from returns. Details and quotes on the Sellers page."
+      "note": "Blue Nile, Brilliant Earth and Ross-Simons explicitly exclude resized or altered rings; Mejuri and Costco do not state it. Costco additionally lists precious metals as non-refundable — see the critical flag F-009."
     },
     {
       "id": "C-08",
       "requirement": "Payment: prefer a credit card; avoid irreversible methods",
-      "online": "Partly — financing is advertised, but no seller's full accepted-card list was captured",
+      "metric": "payment",
       "status": "gap",
-      "note": "Pay by credit card at checkout so chargeback protection applies; this is a checklist rule, not a claim about a seller's payment page."
+      "note": "Financing is advertised by several sellers, but no seller's full accepted-card list was captured. Pay by credit card at checkout so chargeback protection applies."
     },
     {
       "id": "C-09",
       "requirement": "Documentation: keep the listing, receipt, description and purity claims",
-      "online": "Yes — every row links to the official page with a capture date",
+      "metric": "documentation",
       "status": "covered",
-      "note": "Save a PDF/screenshot of the live page at purchase time; pages change (F-002, F-003)."
+      "note": "Every row links to the official page with a capture date and the quoted text. Save a PDF of the live page at purchase time — pages change (F-002, F-016)."
     },
     {
       "id": "C-10",
       "requirement": "On arrival: independent jeweler verifies purity and weight before wearing/resizing",
-      "online": "No — this is an offline step",
+      "metric": "offline",
       "status": "offline",
-      "note": "Unresizable or resized rings may lose return eligibility, so inspect first."
+      "note": "Resizing or engraving can void the return window, so inspect first, before anyone touches the ring."
     },
     {
       "id": "C-11",
       "requirement": "Best verification: XRF testing or another professional purity test; do not rely on the stamp alone",
-      "online": "No — this is an offline step",
+      "metric": "offline",
       "status": "offline",
-      "note": "Ask for the XRF readout in writing, with the machine's calibration check."
+      "note": "Ask for the XRF readout in writing, including the machine's calibration check."
     },
     {
       "id": "C-12",
       "requirement": "If the seller will not allow independent verification or a return, do not buy",
-      "online": "No — a decision rule for you at checkout",
+      "metric": "offline",
       "status": "offline",
-      "note": "All five sellers publish a return window; confirming it for the exact item is still required."
+      "note": "Currently triggered by Costco until the non-refundable precious-metals clause is resolved in writing (F-009)."
     }
   ]
 }

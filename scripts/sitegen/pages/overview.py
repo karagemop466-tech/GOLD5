@@ -34,6 +34,29 @@ def stat_tiles() -> str:
     )
 
 
+def coverage_text(metric: str) -> str:
+    got, total = analysis.checklist_coverage()[metric]
+    if metric == "karat":
+        return f"Yes — karat is stated on {got} of {total} listings"
+    if metric == "solid":
+        return f"Only partly — {got} of {total} listings explicitly say “solid gold”"
+    if metric == "hallmark":
+        return f"No — {got} of {total} listings state a hallmark or maker's mark"
+    if metric == "weight":
+        return f"Only partly — {got} of {total} listings publish a gram weight"
+    if metric == "price_vs_melt":
+        return f"Partly — price ÷ melt is computable for {got} of {total} rows (needs both a price and a weight)"
+    if metric == "contact":
+        return f"Partly — phone or email verified for {got} of {total} sellers; BBB search links provided"
+    if metric == "returns":
+        return f"Yes — return window and exclusions captured for {got} of {total} sellers"
+    if metric == "payment":
+        return f"Not yet — a full accepted-payment list was captured for {got} of {total} sellers"
+    if metric == "documentation":
+        return f"Yes — {got} of {total} rows carry an official URL and a capture date"
+    return "Offline step — cannot be verified from a listing"
+
+
 def scorecard() -> str:
     items = load("checklist.json")["items"]
     rows = []
@@ -41,7 +64,7 @@ def scorecard() -> str:
         label, kind = STATUS_BADGE[item["status"]]
         rows.append(
             f'<tr><td class="cell-id">{esc(item["id"])}</td><td>{esc(item["requirement"])}</td>'
-            f'<td>{badge(label, kind)}</td><td>{esc(item["online"])}</td>'
+            f'<td>{badge(label, kind)}</td><td>{esc(coverage_text(item["metric"]))}</td>'
             f'<td class="cell-note">{esc(item["note"])}</td></tr>'
         )
     return f"""
@@ -181,7 +204,8 @@ def overview_page() -> str:
 
 <section>
   <h2>Gold spot price references used</h2>
-  <p>Three independent quotes captured within minutes of each other on {esc(meta['verified_on_display'])}. The calculator uses the
+  <p>Three independent quotes captured during this pass on {esc(meta['verified_on_display'])} (the World Gold Council figure is dated
+  the previous day). The calculator uses the
   <strong>{esc(spot()['provider'])}</strong> value ({usd(spot()['usd_per_troy_oz'], 2)}/oz).</p>
   {price_strip()}
   <p class="fine">Gold moves continuously; these are point-in-time observations, not current market data. LBMA benchmark tables are

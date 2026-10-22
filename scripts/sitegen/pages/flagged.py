@@ -102,13 +102,16 @@ def flagged_page() -> str:
 
 <section class="panel">
   <h3>How these were found</h3>
-  <p>Three automated passes run over the data on every build — see <a href="method.html">Method</a> and
-  <span class="mono">reports/</span> in the repository:</p>
+  <p>Eight automated passes run over the data on every build — see <a href="method.html">Method</a> and
+  <span class="mono">reports/</span> in the repository. The three that produce this page are:</p>
   <ol class="steps">
     <li><strong>Quote-substring pass:</strong> every recorded value must literally appear inside the quoted evidence captured from the page.</li>
     <li><strong>Arithmetic pass:</strong> recomputes each derived number from its inputs and the recorded spot observation.</li>
     <li><strong>Coverage pass:</strong> lists every field a row is missing, so blanks can never quietly become guesses.</li>
   </ol>
+  <p class="fine">A fourth, the <strong>money pass</strong>, scans every rendered page for <span class="mono">$</span> figures and fails the
+  build on any amount that cannot be traced to the data or to a formula printed on the page. That is the mechanical version of the
+  no-hallucination rule.</p>
   <p class="fine">Items marked “info” are recorded for completeness. “Warning” items need a written answer from the seller or a
   second source. <strong>“Critical”</strong> items are reserved for anything that could leave you unable to return the ring or that
   contradicts a seller's own published terms — there is one, and it is the reason Costco is not recommended for this purchase

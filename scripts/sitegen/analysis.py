@@ -100,3 +100,22 @@ def all_money_tokens() -> set[str]:
             add(pair[0])
             add(pair[1])
     return tokens
+
+
+def checklist_coverage() -> dict:
+    """Coverage per checklist metric, computed from the data so the page cannot go stale."""
+    entries = load("entries.json")["entries"]
+    sellers = load("sellers.json")["sellers"]
+    n = len(entries)
+    return {
+        "karat": (sum(1 for e in entries if e.get("karat")), n),
+        "solid": (sum(1 for e in entries if e["solid_gold"] == "explicit"), n),
+        "hallmark": (sum(1 for e in entries if e.get("hallmark") not in (None, "", "not-stated")), n),
+        "weight": (sum(1 for e in entries if e.get("weight_g") is not None), n),
+        "price_vs_melt": (sum(1 for e in entries if e.get("price_usd") and e.get("weight_g")), n),
+        "contact": (sum(1 for s in sellers if s["contact"]["status"] == "verified"), len(sellers)),
+        "returns": (sum(1 for s in sellers if s["returns"]["status"].startswith("verified")), len(sellers)),
+        "payment": (sum(1 for s in sellers if s["payment"]["status"] == "verified"), len(sellers)),
+        "documentation": (sum(1 for e in entries if e.get("url") and e.get("checked_on")), n),
+        "offline": (0, 0),
+    }

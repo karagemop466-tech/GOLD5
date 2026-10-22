@@ -28,7 +28,7 @@ checklist requires that the listing does not publish.
 | `pages/flagged.html` | Every irregularity and every unverified field, with its source and next action |
 | `data/*.json` | The single source of truth for all rendered content |
 | `scripts/build_site.py`, `scripts/sitegen/` | Deterministic static-site generator |
-| `scripts/verify.py` | Anti-hallucination harness (quote, arithmetic, coverage, money, flags, links, build) |
+| `scripts/verify.py` | Anti-hallucination harness (quote, arithmetic, coverage, money, flags, links, checklist, build) |
 | `reports/` | Latest machine-readable and human-readable verification report |
 
 ## Data model
@@ -60,7 +60,7 @@ remembered or invented number cannot reach the site.
 ```bash
 python3 scripts/build_site.py         # regenerate HTML from data/
 python3 scripts/build_site.py --check # fail if committed HTML is stale
-python3 scripts/verify.py             # run all seven passes
+python3 scripts/verify.py             # run all eight passes
 python3 scripts/verify.py --links     # also re-fetch every external URL
 ```
 
@@ -68,7 +68,7 @@ No dependencies beyond Python 3.11. The site is static HTML, CSS and a small amo
 
 ## What the data shows
 
-- **12 entries, 5 sellers, 16 flags.** Prices captured on 2026-10-22; gold spot reference $4,028.10/oz
+- **12 entries, 5 sellers, 17 flags.** Prices captured on 2026-10-22; gold spot reference $4,028.10/oz
   ([Gold-API](https://api.gold-api.com/price/XAU)), cross-checked against
   [APMEX](https://www.apmex.com/gold-price) and the [World Gold Council](https://www.gold.org/goldhub/data/gold-prices).
 - **Only 2 of 12 listings publish a gram weight** (both Ross-Simons plain gold rings). So the checklist's price-versus-gold test

@@ -305,7 +305,26 @@ def check_links(fetch_external: bool = False) -> Check:
     return c
 
 
-# ------------------------------------------------------------------ 7. build
+# -------------------------------------------------------------- 7. checklist
+def check_checklist() -> Check:
+    c = Check("checklist", "A checklist item may only be marked covered when coverage is complete.")
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from sitegen import analysis  # noqa: E402
+
+    cov = analysis.checklist_coverage()
+    for item in load("checklist.json")["items"]:
+        got, total = cov[item["metric"]]
+        c.ok()
+        if item["status"] == "covered" and total and got != total:
+            c.fail(f"{item['id']}: marked covered but coverage is {got}/{total}")
+        if item["status"] == "gap" and total and got == total:
+            c.fail(f"{item['id']}: marked gap but coverage is complete ({got}/{total})")
+        if item["status"] not in ("covered", "gap", "offline"):
+            c.fail(f"{item['id']}: unknown status {item['status']}")
+    return c
+
+
+# ------------------------------------------------------------------ 8. build
 def check_build() -> Check:
     c = Check("build", "Committed HTML is byte-identical to a build from data/.")
     proc = subprocess.run(
@@ -336,6 +355,7 @@ def main(argv: list[str]) -> int:
         check_money(),
         check_flags(),
         check_links("--links" in argv),
+        check_checklist(),
         check_build(),
     ]
     total = sum(c.assertions for c in checks)
