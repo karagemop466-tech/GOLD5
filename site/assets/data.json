@@ -1930,7 +1930,7 @@
    "id": "nist-troy",
    "title": "NIST SP 811, Appendix B.8 — Factors for units listed alphabetically",
    "publisher": "National Institute of Standards and Technology",
-   "url": "https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b8",
+   "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
    "quote": "Appendix B conversion factors (troy ounce). Kitco also states on its page: 'A troy ounce is 31.1034768 grams.'",
    "usedFor": "Troy ounce to gram conversion used by the calculator (31.1034768 g/ozt).",
    "checkedOn": "2026-10-22",

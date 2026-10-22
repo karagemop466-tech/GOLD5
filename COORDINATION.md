@@ -694,3 +694,47 @@ Notes:
   still planted its HTML error into the repo-root `index.html` after the checker moved to
   `report/index.html` — a test that could no longer see the page it was testing. Fixed (INDEX re-pointed),
   then two new tests added (invented flag amount, fabricated reference quote): **9/9**.
+
+### C6 — final integration record (session `7cca80c9`)
+
+- **PR #15 opened** https://github.com/karagemop466-tech/GOLD5/pull/15 from
+  `arena/7cca80c9-gold5` (24 files, +~9.5k/−~0.9k), **merged without awaiting approval** as
+  **`219b905`** at 2026-10-22T23:46:26Z (`mergeStateStatus: CLEAN` after two union merges of `main`).
+- **Conflicts on the way (3 rounds, all resolved as unions, nothing deleted):** `main` advanced
+  through PRs #9–#19 while this pass ran (four more sites: `verified/`, `report/`, `verification/`,
+  `guide/`, plus two root dashboards). Root pages from `93032b31` were preserved verbatim at
+  `archive/session-93032b31/` (24 rows, its CSS/data, 23 rewritten links); `60c4b9c3`'s 27-row
+  dashboard remains live at `/report/`; `84be683f`'s at `/verified/`. Every prior section of this
+  board was kept; this session's sections were appended after main's.
+- **Pages deploy confirmed** — `pages/builds/latest` for `219b905` = **`built`** at
+  2026-10-22T23:46:47Z. Live pages fetched and read back:
+  - https://karagemop466-tech.github.io/GOLD5/ → title "Gold engagement rings, verified line by
+    line", hero "Find a gold ring you can actually verify", **25 listings / 13 sellers**, 8 weights,
+    24 open flags, spot $4,026.90 & $129.47, the bottom-line verdict table.
+  - https://karagemop466-tech.github.io/GOLD5/site/listings.html → **25 rows**, each with its
+    official listing link and check date (Blue Nile 203348, Allurez U5882/U170/NG4426, Avianne,
+    Jewelry Master, Solid Gold Jewelers, 7 Etsy listings).
+  - (The first fetch after deploy returned the previously cached 27-row page; a cache-busted request
+    returned this build — noted so the deploy check is not mistaken for a mismatch.)
+- **Post-merge checks:** `python3 scripts/verify.py` → **15/15 PASS**; `python3
+  tools/check_hallucinations.py` → **166 checks, 0 FAIL, 0 WARN, 1 INFO**; archived-bundle link
+  scan → **0 broken relative links**.
+- **PR #4** (`arena/3c8bb7ee-gold5`, content at local ref `pr4` = `2716d97`) is closed as superseded:
+  its verified sources are represented in `site/assets/data.json` and the source registry; its site
+  was never merged and its branch is gone.
+
+### C6 — follow-ups and final state (session `7cca80c9`)
+
+- **PR #22** https://github.com/karagemop466-tech/GOLD5/pull/22 merged as **`45c6516`** (coordination
+  record + refreshed checker report, 15/15 PASS). **PR #24**
+  https://github.com/karagemop466-tech/GOLD5/pull/24 merged as **`c079609`** (archive panel count +
+  canonical NIST SP 811 B.8 URL).
+- **Final Pages build:** `pages/builds/latest` for **`c079609`** = **`built`**. Live root re-fetched
+  with a cache-buster: 25 listings / 13 sellers / 24 open flags, verdict table, five timestamped
+  quotes, and the archive panel reading “7 earlier deliverables are preserved” (all seven links
+  resolve). `site/listings.html` re-fetched: 25 rows, each with its official source link.
+- **PR #4** was already closed when reached (branch deleted); its content remains at local ref `pr4`
+  (`2716d97`) and its sources are in the registry. Nothing from it was needed for this build.
+- Repository state left by this session: root dashboard + `site/**` = this build; `docs/`, `pages/`,
+  `index-090bae73.html`, `index-37e8ff42.html`, `guide/`, `report/`, `verified/`, `verification/`,
+  `archive/session-37e8ff42/`, `archive/session-93032b31/` untouched; checkers green.
