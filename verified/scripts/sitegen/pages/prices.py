@@ -154,8 +154,8 @@ def prices_page() -> str:
   <h3>Why this shortlist cannot yet answer “is it unusually cheap?”</h3>
   <p>The checklist says to compare the price with the ring's gold weight. That needs a gram figure, and
   <strong>{missing} of the {len(entries)} listings published none</strong> in the page text captured here (flag F-004).
-  The two that did are shown above. Below, the same arithmetic runs on asking prices alone — a different question, clearly
-  labelled — so nothing is invented while the missing weights are outstanding.</p>
+  The two that did are in the first table. The second table runs the same arithmetic on asking prices alone — a different
+  question, clearly labelled — so nothing is invented while the missing weights are outstanding.</p>
   <p>Gold spot on {esc(ref['captured_at_utc'][:10])} was {usd(ref['usd_per_troy_oz'], 2)}/oz. Any figure on this site is tied to that
   timestamp; re-open {ext(ref['url'], 'the source')} before relying on it.</p>
 </section>
