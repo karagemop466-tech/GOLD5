@@ -209,7 +209,7 @@ deviation already logged by the earlier sessions).
 | G4 | New dashboard site (landing + 8 category subpages + calculator) at repo root | **done** | `arena-60c4b9c3` | `index.html`, `report/**` |
 | G5 | Hallucination/security checker + negative tests | **done** (1,622 assertions; 7/7 planted errors caught) | `arena-60c4b9c3` | `tools/check_report.py`, `tools/security_test.py` |
 | G6 | Run verification passes after each review; log results | **done** (pass log on Method page) | `arena-60c4b9c3` | `verification/passes.json`, this file |
-| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | **in progress** | `arena-60c4b9c3` | this file (log) |
+| G7 | PR → main, merge, confirm GitHub Pages deploy, record result | **done** (PR #12) | `arena-60c4b9c3` | this file (log) |
 
 **Files this session will NOT edit** (owned by earlier sessions, preserved byte-for-byte):
 `docs/**` (638c9614), `pages/**` + `assets/**` + `index-090bae73.html` (090bae73),
@@ -386,3 +386,42 @@ printed in `verified/reports/verification.md`; trust that file over this table's
   42 pages, 779 local links, 360 external links, 0 errors; `python3 tools/check_hallucinations.py` → 166 checks, 0 FAIL.
 - T7 is complete. No open items for this session: the 17 flags are published on the Flagged for review page and, per the brief,
   do not block the merge.
+
+### Log — merge, deploy and post-merge verification (session `arena-60c4b9c3`)
+
+- 2026-10-22 23:39 UTC: **Merge conflict #1 encountered and resolved (union).** While PR #12 was open,
+  main advanced (`c496779`, PR #11 from session `84be683f`, which added a `verified/` site + data +
+  its own checker and a CI workflow). `git merge origin/main` conflicted in exactly two files —
+  `COORDINATION.md` and `README.md`.
+  Resolution: both boards/logs kept verbatim (this session's section first, then `84be683f`'s);
+  README keeps this pass's layout **plus** a new section documenting `verified/`. **No file of
+  `84be683f` was edited or deleted** — `verified/**` is untouched, and their site stays live at
+  `/verified/`. Root `index.html` stayed this pass's dashboard because it is the shared output.
+  Logged as required: the conflict, the union resolution, and what was preserved.
+- Post-merge re-verification of the **combined** tree — all four checkers pass:
+  | Checker | Scope | Result |
+  |---|---|---|
+  | `tools/check_report.py` | this pass's site + `verification/data.json` | **PASS** 1,624 assertions, 0 FAIL, 0 WARN |
+  | `verified/scripts/verify.py` | session 84be683f's site | **PASS** 896 assertions, 0 failures |
+  | `verified/scripts/build_site.py --check` | its generated HTML vs its JSON | **OK** 11 pages match |
+  | `scripts/verify.py` / `tools/check_hallucinations.py` | the earlier `site/` + `docs/` deliveries | **PASS** 0 errors · 166 checks, 0 FAIL |
+- 2026-10-22 23:39 UTC: **PR #12 merged** as `3816bc6`:
+  https://github.com/karagemop466-tech/GOLD5/pull/12
+- 2026-10-22 23:40 UTC: **GitHub Pages deploy confirmed** — `pages/builds/latest` for commit `3816bc6`
+  = `built` (updated 2026-10-22T23:40:03Z). CI workflow "Verify" on the merge commit: **success**
+  (run 39873251732); the PR run 39873248709 was also **success**.
+- Live pages fetched after deploy (not just assumed):
+  - https://karagemop466-tech.github.io/GOLD5/ → new dashboard (title "Gold engagement rings,
+    verified line by line"; 27 listings / 8 with weights / 9 solid-stated / 26 flags; spot 4,026.90 & 129.47)
+  - https://karagemop466-tech.github.io/GOLD5/report/flagged.html → all 26 flag blocks with their
+    anchors, source links and affected rows
+  - https://karagemop466-tech.github.io/GOLD5/report/value.html → hub table + raw-gold table; the
+    calculator rendered its default result in the browser (2.9167 g fine gold, $377.62) which proves
+    the JS runs against the deployed asset
+- 2026-10-22 23:47 UTC: post-deploy copy fix — the `G-REPUTATION-MISSING` detail still said "2 of 8
+  sellers" after the 9th seller was added. Corrected to "3 of 9" with the three named sources, passes
+  re-run (**1,624 assertions, 0 FAIL**), and shipped in a follow-up PR (flagged here rather than
+  edited silently).
+- Remaining open items: all 26 flags are published on the Flagged for review page with source links.
+  They do not block the deploy, and none of them is a claim that anything on the site is false — each
+  one states what could not be verified and what would settle it.
