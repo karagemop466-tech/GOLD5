@@ -34,26 +34,19 @@ python3 tools/check_hallucinations.py  # archived /docs/ dataset
 cd verified && python3 scripts/verify.py   # session 84be683f suite (896 assertions)
 ```
 
-## Status — 2026-10-23 final integration pass (session `a255f011`)
+## Status — 2026-10-23 4:10 p.m. ET pass (session `3bf55199` · continuation of `a255f011`)
 
 | | |
 |---|---|
 | Listings | **25** rows from **13** sellers (21 engagement-ring rows, 3 bands, 1 sold case study); **24** priced, **8** with a published gram weight |
-| Re-read live today | **12** rows — 6 Blue Nile settings, 3 Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers |
-| Carried from 2026-10-22 | **13** rows — 4 Brilliant Earth, 7 Etsy, 2 Blue Nile — labelled, noted and flagged |
-| Spot used | Kitco bid **$4,022.50/oz = $129.33/g** at **2026-10-23 5:44 a.m. ET** (page-body second print $4,021.00 / $129.28 — FL-25) |
-| Flags | **28** (27 open, 1 resolved — FL-24). New today: FL-26, FL-27, FL-28 |
+| Re-read live today | **12** rows re-read at 5:44 a.m. ET + **4** rows re-confirmed at 4:10 p.m. ET (BN-195639 $1,000, BN-203257 $870, AL-5882 $1,085/5.00 g, AV-25893 $1,100/2.3 g) — all unchanged |
+| Carried from 2026-10-22 | **13** rows — 4 Brilliant Earth, 7 Etsy, 2 Blue Nile — labelled, noted and flagged (FL-26/FL-27/FL-28) |
+| Spot used | Kitco bid **$3,996.10/oz = $128.48/g** at **2026-10-23 4:10 p.m. ET** (body $3,995.50 / $128.46 — FL-25; intraday -$26.40 since $4,022.50/129.33 at 5:44 a.m. ET) |
+| Flags | **28** (27 open, 1 resolved — FL-24). Intraday spot move documented, prior chain preserved |
 | Official references | **11** (FTC consumer guide, 16 CFR Part 23, 15 U.S.C. § 295 and § 297, NIST, LBMA, Etsy Purchase Protection, JVC, ReportFraud, FTC credit cards) |
-| Harness | `scripts/verify.py` **PASS — 21/21, 0 failed, 8/8 negative self-tests caught** |
+| Harness | `scripts/verify.py` **PASS — 21/21, 0 failed, 8/8 negative self-tests caught** (232 allowed $ values at new spot; + prior chain checks) |
 
-**What changed today.** Every Blue Nile price re-read today was **unchanged** ($1,000 / $870 / $1,800 /
-$1,255 / $1,500 / $2,320); Allurez ($1,085 / $933 / $585 with 5.00 g / 4.80 g / 3.58 g), Avianne
-($1,100 / 2.3 g), The Jewelry Master ($3,020 special / 2.3 g) and Solid Gold Jewelers (4.7 g, no price)
-were also unchanged. The spot moved down $4.40/oz, so **every metal value on the site was recomputed**.
-Etsy returned HTTP 500 on all seven listings and Brilliant Earth served navigation only, so those rows
-were **not** refreshed and are flagged rather than silently re-dated. A previous README claim that the
-harness ran "6 negative tests" was false — `scripts/verify.py` had none. Eight real negative self-tests
-were added and are documented on the Verification page.
+**What changed at 4:10 p.m. ET.** Four listings were re-fetched and were **unchanged** (Blue Nile $1,000 & $870; Allurez $1,085/5.00 g; Avianne $1,100/2.3 g), confirming the 5:44 a.m. ET capture. The spot fell **$26.40/oz (-0.66%)** from $4,022.50 (5:44 a.m. ET) to $3,996.10 (4:10 p.m. ET), so **every metal value, per-purity value and raw-gold cell was recomputed** from the new bid via `scripts/build_site.py`. Prior quotes ($4,022.50/129.33 at 5:44 a.m., $4,026.90/129.47 and $4,025.00/129.41 on 2026-10-22) are retained as dated history and are not used in calculations. Etsy/Brilliant Earth rows remain on their 2026-10-22 dates and are flagged (FL-26/FL-27/FL-28) rather than silently re-dated — no value was inferred. The earlier “6 negative tests” README error was fixed in the 5:44 a.m. pass (now 8 real negative self-tests N1–N8, all caught).
 
 ## The thesis holds
 
@@ -100,8 +93,9 @@ No frameworks, no external fonts, no third-party JavaScript, no network calls fr
 
 ## Evidence for this pass
 
-- `data/live_check_2026-10-23.json` — every URL attempted today, its status (`ok`, `nav_only`, `http_500`,
+- `data/live_check_2026-10-23.json` — every URL attempted at 5:44 a.m. ET, its status (`ok`, `nav_only`, `http_500`,
   `not_refetched`), the value read, and the failure reason.
+- `data/live_check_3bf55199.json` — **4:10 p.m. ET intraday re-check**: Kitco spot $3,996.10/$128.48 + 4 listings re-read and confirmed unchanged; intraday -$26.40 logged.
 - `verification/evidence/v2/*.txt` — verbatim excerpts for Kitco, Blue Nile (products + returns),
   Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers, FTC, eCFR and 15 U.S.C. § 295.
 - `docs/verification/final-integration-2026-10-23.md` — the integration memo: what was checked, what
