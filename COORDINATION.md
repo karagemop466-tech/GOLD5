@@ -1486,3 +1486,46 @@ dashboard / nav / table data and all generated site pages (final integration ses
   - Note: `gh pr edit` failed (exit 1) with a GitHub Projects-classic deprecation error on
     `projectCards`; the PR body was updated via `gh api … -X PATCH` instead. Recorded so the next
     session does not mistake the `gh pr edit` failure for a failed merge.
+
+---
+
+## Task board — session `arena-463d0ea2` (pass 4, 2026-10-23 late session)
+
+**Session ID = `arena-463d0ea2`** — the platform binds this session to branch `arena/463d0ea2-gold5`
+and forbids creating other branches, so the `session-<id>/<task>` branch naming in the brief cannot be
+used. This is the deviation logged by every earlier session on this repo; the session ID in the tables
+and logs below is authoritative.
+
+**Started from `main@beb6b13` (PR #42 merged).** No open PRs existed when this session claimed
+(`gh pr list --state open` → empty). All earlier sections are kept verbatim and treated as read-only
+history; every earlier deliverable (`docs/`, `site/`, `pages/`, `report/`, `verified/`, `guide/`,
+`dossier/`, `archive/`, `review/`, `data/`) is an **input** for this pass, not a file to rewrite by hand.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| P4-1 | Re-open the board, read every prior claim, run the 9-harness baseline, claim scopes, push the claim before any edit | **done** | `arena-463d0ea2` | `COORDINATION.md` (this section only) |
+| P4-2 | **Live re-verification pass 4** — re-fetch the Kitco spot page and every product / seller / policy / reference URL in the canonical dataset; log one row per URL with status + value read | **in progress** | `arena-463d0ea2` | `data/live_check_463d0ea2.json` (new), `verification/evidence/v3/` (new) |
+| P4-3 | Apply drift by **script only** (never hand-edit generated HTML): refresh spot + all derived metal values, re-date rows actually re-read, blank + flag anything not confirmable; extend flags rather than deleting any | **unclaimed** | — | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `scripts/independent_audit.py`, `index.html`, `site/**`, `data/check_report_v2.json` |
+| P4-4 | Site pass: landing page + every subpage, full local link sweep, every table row carries its official source link, no third-party scripts | **unclaimed** | — | read-only checks; fixes only inside P4-3 scope |
+| P4-5 | Final review: run **every** harness after the review, log results, then deliberately **hunt for hallucinations** (unsourced `$`, converted EUR, stale dates, counts that drifted) and record what was checked | **unclaimed** | — | `data/check_status.json`, `data/pass_history_v2.json`, `coordination` log below |
+| P4-6 | Integration: small commits, `git pull --rebase` before each push, PR → `main`, merge without waiting, confirm the Pages deploy and re-fetch the live site | **unclaimed** | — | `COORDINATION.md` |
+
+**Rules carried forward (unchanged):** the no-hallucinations rule at the top of this file; every table
+row keeps a link to the official page that states the value; a value not re-read today keeps its
+original capture date and is labelled/flagged, never silently upgraded; derived numbers are recomputed
+by script; every review pass ends with the checker suite. A claim older than 60 minutes with no commits
+may be taken over and the handoff logged.
+
+**Baseline at claim time (run before any edit, `main@beb6b13`):**
+
+| Harness | Result |
+|---|---|
+| `scripts/verify.py` | **PASS — 21/21** checks (C1–C20 + N1–N8 negative self-tests), 0 failed |
+| `scripts/independent_audit.py` | **PASS — 11/11** |
+| `scripts/review_current.py --check` | **PASS** |
+
+### Log — session `arena-463d0ea2`
+- 2026-10-23: repo reviewed at `beb6b13`. Read all prior board sections (sessions `638c9614`,
+  `090bae73`, `37e8ff42`, `b1f2fe3b`, `93032b31`, `7cca80c9`, `60c4b9c3`, `84be683f`, `3e3fae49`,
+  `0c967748`, `887435c2`, `a255f011`, `60a26527`, `77405ae3`); every earlier claim is closed or stale
+  and no scope overlaps this one. Claimed P4-1…P4-6 and pushed this block before any edit.
