@@ -1059,3 +1059,32 @@ its recorded official source, and publish limitations on a Flagged for Review pa
   Recommendation after every review: rerun checks and inspect for unsupported claims.
 - Evidence-refresh task status: **needs review** (published, nonblocking). UI/integration
   implementation and offline verification: **done**. Deployment task remains in progress.
+
+---
+
+## Session `340624e7` — comprehensive cross-session audit & unified site (2026-10-23)
+
+Arena fixes this session to `arena/340624e7-gold5`; no alternate branch will be created.
+Prior integration claims above have completed merge records or are in progress.
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| Comprehensive line-by-line audit of all session datasets against captured evidence | in progress | 340624e7 | `audit/**`, `scripts/audit_340624e7.py` |
+| Unified master catalog: deduplicate all 130+ rows across sessions into single verified dataset | in progress | 340624e7 | `data/unified_catalog.json`, `site/assets/unified_catalog.js` |
+| Build clean, unified gh-pages site with landing page + category subpages from unified catalog | in progress | 340624e7 | `index.html`, `site/*.html`, `site/assets/*.css`, `site/assets/*.js` |
+| Run all verification suites (root, verified, dossier, report, cross-site) | in progress | 340624e7 | `scripts/verify.py`, `tools/check_hallucinations.py`, `tools/check_report.py`, `verified/scripts/verify.py`, `dossier/scripts/build.py` |
+| PR → main, merge, confirm Pages deploy, log results | in progress | 340624e7 | `COORDINATION.md`, GitHub PR |
+
+**No claim above was taken over.** All prior sessions' deliveries remain in their exclusive directories (`docs/`, `verified/`, `report/`, `dossier/`, `guide/`, `pages/`, `archive/`, `review/`). This session creates a new unified catalog and site that references but does not overwrite them.
+
+### Audit scope
+- Root site (`site/assets/data.json`): 25 entries, 13 sellers, 25 flags, 10 references
+- Verified site (`verified/data/entries.json`): 12 entries, 5 sellers, 17 flags, 3 spot sources
+- Report site (`verification/data.json`): 27 entries, 9 sellers, 27 flags, 7 references
+- Dossier site (`dossier/data/rings.jsonl`): 58 entries, 11 categories, 15 flags
+- Master audit (`site/assets/catalog-b1f2fe3b.js`): 38 unified entries, 17 sellers
+- Review ledger (`review/current.json`): 264 records → 91 exact URLs
+
+All datasets remain read-only. This audit cross-references every row against its recorded source URL and evidence excerpt. Any value not traceable to its captured source is flagged. No network fetches to merchant sites (restricted); verification is against the repo's own evidence store.
+
+### 340624e7 — audit log
