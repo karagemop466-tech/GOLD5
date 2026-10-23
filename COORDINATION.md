@@ -78,6 +78,7 @@ those sources itself. No product values are changed.
 | H4 | Final re-run of checks; log results, irregularities, and a recommendation to keep hunting for hallucinations | **in progress** | `852a3edf` | `COORDINATION.md`, review report, generated checker outputs |
 | H5 | Reconcile the Verification page and builder with the 37-row P3 log and latest five-row P4 spot/listing log; preserve older passes as history, correct stale policy/fetch status, and link every log row to a registered official source | **in progress** | `852a3edf` | `scripts/build_site.py`, `site/verification.html`, `site/sellers.html`, `site/checklist.html`, `site/analysis.html` |
 | H6 | Remove overclaiming “verified solid-gold” SEO wording; align README and page summaries to canonical counts; add direct source/date status to product-derived and raw-value tables | **in progress** | `852a3edf` | `README.md`, `scripts/build_site.py`, `index.html`, `site/*.html` |
+| H7 | Replace root N1–N8 predicate-only “negative tests” with real mutation tests; add a source-linked P3 freshness check and run the root security gate in CI | **in progress** | `852a3edf` | `scripts/verify.py`, `scripts/security_test.py`, `.github/workflows/ci.yml` |
 
 Rules: preserve previous sessions' work; blank values remain blank and flagged; every data row keeps
 a source URL and date. No new prices or product specifications will be introduced without a live
@@ -87,7 +88,7 @@ request rather than editing it. Arena fixes this session to `arena/852a3edf-gold
 
 ### Log — session `852a3edf` (in progress)
 - 2026-10-23 UTC: Read `COORDINATION.md` first; confirmed prior tasks were marked complete. Initial claim committed/pushed on `arena/852a3edf-gold5` before the audit.
-- 2026-10-23 20:20 UTC: `git pull --rebase origin main` found main had advanced through sessions `3bf55199` PR #43/#44. Conflict was limited to `COORDINATION.md`; resolved as a union, preserving session `3bf55199`'s completed W1–W6/deploy record and this session's claim. New baseline is `main@c2519ff` (Kitco pass at $3,996.10/oz, $128.48/g, 2026-10-23 4:10 p.m. ET); no product values refreshed by this session.
+- 2026-10-23 20:20 UTC: `git pull --rebase origin main` found main had advanced through session `3bf55199` PR #43/#44. Three sequential content conflicts occurred in `COORDINATION.md` while replaying this session's claim/scope commits; each was resolved as a union, preserving the upstream W1–W6/deploy record and this session's claim, with no upstream work dropped. New baseline is `main@c2519ff` (Kitco pass at $3,996.10/oz, $128.48/g, 2026-10-23 4:10 p.m. ET); no product values refreshed by this session.
 
 ## ⏱ PRIOR CLAIM — session `77405ae3` (Arena branch `arena/77405ae3-gold5`) — **complete, PR #41+#42 merged**
 
@@ -218,6 +219,7 @@ older than 60 minutes with no commits may be taken over (handoff logged).
 - **PR #42** <https://github.com/karagemop466-tech/GOLD5/pull/42> is this record + the homepage
   count fix; it is merged immediately after this entry lands, and its result is its merge commit on
   main (Pages reconfirmed after it — COORDINATION-only + index text change, no data change).
+
 
 
 ## ⏱ PRIOR CLAIM (completed) — session `93032b31` (Arena branch `arena/93032b31-gold5`)
