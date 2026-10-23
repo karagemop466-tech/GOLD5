@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "session": "d49fe320",
+  "branch": "arena/d49fe320-gold5",
+  "checkedOn": "2026-10-23",
+  "method": "Post-merge read-only integration pass. Production Pages paths were fetched with ?v=368ddac to bypass edge-cache copies. Official sources were fetched directly. Retrieval time is not asserted unless the source itself displayed a timestamp. Repository harness output is saved in verification/evidence/d49fe320/harness_results.txt.",
+  "noHallucinations": "No product price or metal value was changed from memory or inferred. The newer Kitco quote below is recorded as a separate live observation; the published site continues to label its 4:10 p.m. ET quote as a dated snapshot. Conflicting or unsupported source statements are logged as change requests, not silently edited in files scoped to another completed task.",
+  "deployment": {
+    "pr": 50,
+    "prUrl": "https://github.com/karagemop466-tech/GOLD5/pull/50",
+    "state": "MERGED",
+    "mergedAt": "2026-10-23T20:46:45Z",
+    "mergeCommit": "368ddac68ea00d94e4adac68d61b505cab4a362d",
+    "requiredChecks": [
+      {"name": "review", "conclusion": "SUCCESS", "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801351"},
+      {"name": "verify", "conclusion": "SUCCESS", "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801357"}
+    ],
+    "pagesBuild": {
+      "runId": 40021841320,
+      "status": "built",
+      "conclusion": "success",
+      "commit": "368ddac68ea00d94e4adac68d61b505cab4a362d",
+      "runUrl": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021841320",
+      "updatedAt": "2026-10-23T20:47:42Z"
+    }
+  },
+  "productionPages": [
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/?v=368ddac",
+      "status": "success",
+      "title": "Gold engagement rings, verified line by line · GOLD5",
+      "observed": "NO HALLUCINATIONS banner; data as of 2026-10-23; 25 listings from 13 sellers; 25/25 re-read claim; current snapshot labelled Kitco bid $3,996.10/oz and $128.48/g at 2026-10-23 4:10 p.m. ET; 24 open flags; checker failures 0."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/categories.html?v=368ddac",
+      "status": "success",
+      "title": "Categories — browse gold engagement rings by style and metal · GOLD5",
+      "observed": "NO HALLUCINATIONS banner; seven category views over 25 rows; each category says it preserves the same listing/source/date/flag values."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/listings.html?v=368ddac",
+      "status": "success",
+      "title": "Listings — gold engagement rings · GOLD5",
+      "observed": "NO HALLUCINATIONS banner; 25 of 25 rows shown; listing table has source, evidence, check date, price basis, grams, calculated metal columns, and flags. Local C5/C19 checks independently verify all 25 rows link to allowlisted HTTPS sources."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/flagged.html?v=368ddac",
+      "status": "success",
+      "title": "Flagged for Review — unverified cells and irregularities · GOLD5",
+      "observed": "NO HALLUCINATIONS banner; 24 open flags and 6 resolved flags are shown; source links appear per displayed flag."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/verification.html?v=368ddac",
+      "status": "success",
+      "title": "Verification — method, live evidence ledger and checker results · GOLD5",
+      "observed": "NO HALLUCINATIONS verification contract; 46 evidence checks; 25/25 live listing rows dated 2026-10-23; 24 open flags; ledger and saved excerpts linked."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/gold-price.html?v=368ddac",
+      "status": "success",
+      "title": "Gold price — spot, purity and raw gold values · GOLD5",
+      "observed": "Page explicitly says quotes are dated observations, not live prices; primary quote is $3,996.10/oz and $128.48/g at 4:10 p.m. ET; purity and raw-gold table displayed."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/calculator.html?v=368ddac",
+      "status": "success",
+      "title": "Gold ring calculator — weight, karat, metal value · GOLD5",
+      "observed": "Page says inputs remain in the browser and only rows with a published weight can be prefilled; quote timestamp and formula are displayed."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/checklist.html?v=368ddac",
+      "status": "success",
+      "title": "Gold ring buying checklist — 12 verified checks · GOLD5",
+      "observed": "12-point table is live and source-linked. Semantic review found the payment-summary wording overstates what seller records confirm, and the §23.18 link is not scoped to ring-metal weight; both requests are recorded in the report."
+    },
+    {
+      "url": "https://karagemop466-tech.github.io/GOLD5/site/master-audit.html?v=368ddac",
+      "status": "success",
+      "title": "Master Audit & XRF Calculator · GOLD5",
+      "observed": "NO HALLUCINATIONS banner; 38-row unified cross-session catalog; source links, snapshot labels, calculator and verification-suite summary visible."
+    }
+  ],
+  "officialSourceChecks": [
+    {
+      "url": "https://www.kitco.com/charts/gold",
+      "status": "success",
+      "sourceTimestamp": "Oct 23, 2026 - 19:43 NY Time; prices provided as of October 23, 2026 at 7:42 p.m. EDT",
+      "observed": "Bid $3,994.90/oz; gram $128.44; ask $3,996.90. Purity table: 24K $3,994.90; 22K $3,662.12; 18K $2,996.18; 14K $2,330.23; 10K $1,664.67.",
+      "comparison": "Canonical site snapshot is $3,996.10/oz and $128.48/g at 4:10 p.m. ET. The page labels this as a snapshot, not a live feed; the newer observation is $1.20/oz and $0.04/g lower. Existing FL-19 already warns spot moves all day. No values were changed in this read-only pass."
+    },
+    {
+      "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+      "status": "success",
+      "observed": "FTC says to research sellers, get return/refund policies in writing, look near the karat mark for the responsible company's name or U.S. registered trademark, and defines 'solid gold' as not hollow. It separately describes plated, filled, overlay/RGP and vermeil terms."
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.18",
+      "status": "success",
+      "observed": "§23.18(a) states it is unfair or deceptive to misrepresent the weight of a diamond; subsections (b)–(d) discuss diamond carat/point and fractional diamond-weight representations. It does not set a ring-alloy gram-weight disclosure requirement."
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.10",
+      "status": "success",
+      "observed": "eCFR identifies §23.10 as additional guidance for use of quality marks; the displayed current title was up to date as of 10/21/2026."
+    },
+    {
+      "url": "https://www.govinfo.gov/link/uscode/15/295",
+      "status": "success",
+      "observed": "Official GovInfo U.S. Code text for §295 gives the gold fineness tolerances (3/1000 for the applicable solder-free test and 7/1000 for the entire quantity of other articles with solder), with scope described through the covered commerce in §§294–295."
+    },
+    {
+      "url": "https://www.govinfo.gov/link/uscode/15/297",
+      "status": "success",
+      "observed": "Official GovInfo U.S. Code text for §297(b) describes an identifying trademark or name placed as close as possible to the quality mark/stamp, for manufacturers/dealers subject to §294. This is an official alternative to the Cornell mirror currently recorded in the canonical reference list."
+    },
+    {
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "status": "success",
+      "observed": "Official NIST Appendix B.8 page fetched; project evidence records its rounded troy-ounce-to-gram factor and distinguishes it from Kitco's stated 31.1034768 g/ozt constant."
+    },
+    {
+      "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+      "status": "success",
+      "observed": "Official product page states '14ky, 4.7g, #B02561' and says to call (309) 452-1612 for current pricing and availability. The page does not state a payment method. Canonical seller data says 'Not stated; price is quoted by phone.'"
+    },
+    {
+      "url": "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+      "status": "success",
+      "observed": "FTC says consumers have legal rights and responsibilities, including the right to dispute billing errors; the page does not establish that every ring seller accepts cards or that any specific seller does not accept wire/Zelle/gift cards."
+    }
+  ],
+  "harnessResults": {
+    "scripts/verify.py": "PASS 22/22; 25 official HTTPS listing rows; 65 registered external URLs; 19 pages; C21 agrees with 46-check source ledger; 10/10 injected errors caught.",
+    "scripts/independent_audit.py": "PASS 11/11; arithmetic, all 60 raw-gold cells, money traceability, and price/gram/karat evidence tokens.",
+    "scripts/audit_b1f2fe3b.py": "PASS 6/6 groups; 38 unified rows; 103 HTML pages; 4,186 local links; 4/4 injected errors caught.",
+    "scripts/review_current.py --check": "PASS; 264 records; 92 exact URLs; 6/6 negative tests; offline structural checks only.",
+    "tools/check_hallucinations.py": "166 PASS; 0 FAIL; 0 WARN; 1 INFO about identical 2.3 g/14K weights on two different seller listings.",
+    "tools/check_report.py": "PASS; 1,649 checks; 0 FAIL; 0 WARN.",
+    "tools/security_test.py": "9/9 planted errors caught; clean-state PASS.",
+    "verified/scripts/verify.py": "896 assertions; 0 failures.",
+    "dossier/scripts/build.py": "18/18; 58 rows; 23 pages; 1,104 references; 0 broken links. Generated owner-scoped outputs were restored after this read-only verification run."
+  },
+  "changeRequests": [
+    {
+      "id": "CR-D49-01",
+      "severity": "medium",
+      "fileScopeRequest": "scripts/build_site.py, scripts/author_data.py, canonical generated site pages",
+      "issue": "The root checklist says 'Every seller reviewed checks out by card or Etsy checkout'; the root seller-payment table says 'Every seller reviewed' for cards and 'Not offered by these sellers' for wire/Zelle/gift cards. Canonical seller data says Solid Gold Jewelers has payment 'Not stated; price is quoted by phone' and the sold Etsy row is n/a; the official Solid Gold Jewelers product page only says call for current price/availability. FTC credit-card advice does not verify merchant checkout methods. Update the prose to distinguish stated vs unverified methods and publish the Solid Gold Jewelers payment gap on the root Flagged for Review page (the existing FL-13 is the relevant row).",
+      "sources": [
+        "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+        "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+        "https://karagemop466-tech.github.io/GOLD5/site/sellers.html?v=368ddac",
+        "https://karagemop466-tech.github.io/GOLD5/site/checklist.html?v=368ddac"
+      ],
+      "action": "Logged in COORDINATION.md per exclusive-scope rule; no H3-owned source/generated file edited in this audit pass."
+    },
+    {
+      "id": "CR-D49-02",
+      "severity": "medium",
+      "fileScopeRequest": "scripts/build_site.py and canonical generated checklist page",
+      "issue": "Checklist row 4 labels 16 CFR §23.18 as the source for asking sellers for a ring's metal weight in grams. Official §23.18 covers misrepresentation of diamond weight and diamond carat/point disclosures, not the alloy weight of a ring. Reword as this project's buying criterion (not a legal disclosure mandate) and make the citation's scope explicit.",
+      "sources": [
+        "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.18",
+        "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry"
+      ],
+      "action": "Logged in COORDINATION.md per exclusive-scope rule; no H3-owned source/generated file edited in this audit pass."
+    },
+    {
+      "id": "CR-D49-03",
+      "severity": "low",
+      "fileScopeRequest": "scripts/build_site.py and canonical generated checklist page",
+      "issue": "Checklist row 5 gives BBB and ConsumerAffairs counts/ratings but links only to FTC seller-research advice; the seller table contains the direct BBB and ConsumerAffairs URLs and marks those values as prior-session captures. Add direct links or clearly point readers to the seller-page source links and label the figures as historical snapshots.",
+      "sources": [
+        "https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564",
+        "https://www.consumeraffairs.com/retail/blue-nile.html",
+        "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry"
+      ],
+      "action": "Logged in COORDINATION.md per exclusive-scope rule; no H3-owned source/generated file edited in this audit pass."
+    },
+    {
+      "id": "CR-D49-04",
+      "severity": "low",
+      "fileScopeRequest": "scripts/author_data.py and canonical generated reference/master-audit pages",
+      "issue": "The canonical reference for 15 U.S.C. §297 points to Cornell LII, a secondary mirror, while official GovInfo U.S. Code text is available and was fetched successfully. Prefer GovInfo for the statutory source or label Cornell explicitly as a mirror.",
+      "sources": [
+        "https://www.govinfo.gov/link/uscode/15/297",
+        "https://www.law.cornell.edu/uscode/text/15/297"
+      ],
+      "action": "Logged in COORDINATION.md per exclusive-scope rule; no H3-owned source/generated file edited in this audit pass."
+    },
+    {
+      "id": "CR-D49-05",
+      "severity": "info",
+      "fileScopeRequest": "scripts/author_data.py and spot-driven generated pages",
+      "issue": "The current official Kitco page now shows a newer timestamped quote ($3,994.90/oz, $128.44/g at 7:42 p.m. EDT) than the site's labeled 4:10 p.m. snapshot ($3,996.10/oz, $128.48/g). The current page clearly says it is a dated snapshot, not a live feed; update only in a later evidence-ledger pass and recompute all derived amounts if 'current quote' freshness is required.",
+      "sources": ["https://www.kitco.com/charts/gold"],
+      "action": "Recorded as normal timestamped drift; no catalog change made without an approved source-data scope. Existing FL-19 covers intraday movement."
+    }
+  ]
+}
