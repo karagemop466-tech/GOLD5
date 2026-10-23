@@ -1264,3 +1264,27 @@ Derived numbers are recomputed by script. Every review ends with the harness run
   from its sandbox and left all current fields blank; this session's `fetch_page` access did work on
   2026-10-23, which is why 12 rows carry a 2026-10-23 date and 13 remain dated 2026-10-22. Both views
   state the same rule: unconfirmed values stay blank.
+- **2026-10-23 10:01 UTC — V6 done: PR #37 merged and Pages deployed.**
+  - **PR #37** <https://github.com/karagemop466-tech/GOLD5/pull/37> (`arena/a255f011-gold5` → `main`),
+    **MERGED 2026-10-23T10:01:19Z** as **`9f73698155c6e204fec3c7b2540f59b38d75ed57`** without waiting
+    for approval, as the brief instructs.
+  - **CI:** `verify` **pass** and `review` **pass** on the PR head
+    (runs 39935942170 / 39935942242). Both required jobs green before merge.
+  - **Pages:** build `1307848663` for `9f73698` → **`built`**. Config unchanged: `legacy`, branch `main`,
+    path `/`, `https_enforced: true`.
+  - **Live verification after deploy (fetch_page, 2026-10-23 10:05 UTC):**
+    - <https://karagemop466-tech.github.io/GOLD5/> → "Data as of **2026-10-23**", spot **$4,022.50/oz ·
+      $129.33/g · 2026-10-23 5:44 a.m. ET**, "12 of 25 rows were re-read … on 2026-10-23; the other 13
+      keep their 2026-10-22 capture date", **27 open flags**, checker failures **0**, NO HALLUCINATIONS
+      panel present, parallel-review note linking `/review/`.
+    - <https://karagemop466-tech.github.io/GOLD5/site/categories.html> → category index live, seven
+      cards with row counts and published price ranges.
+    - <https://karagemop466-tech.github.io/GOLD5/site/listings.html> → row badges verified:
+      BN-192506 … BN-195871 show `live 2026-10-23`; BN-203738/BN-203348 show `captured 2026-10-22`.
+    - <https://karagemop466-tech.github.io/GOLD5/site/flagged.html> → 27 open flags with source links.
+    - Note: the first fetch of `/` served a cached pre-deploy copy (2026-10-22, 5 quotes); a
+      cache-busted fetch confirmed the new page. CDN propagation, not a build failure.
+  - **Flagged items remain published, not blocking:** FL-26 (7 Etsy rows, HTTP 500), FL-27 (4 Brilliant
+    Earth rows), FL-28 (2 Blue Nile rows), plus the 17 missing weights, 0 maker's marks and 11
+    unverified return policies. They are on `/site/flagged.html` with source links.
+  - **All scopes released.** No open claims from this session; V1–V6 are **done**.

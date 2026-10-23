@@ -86,4 +86,15 @@ New checks added this pass:
 
 ## 7. Publish
 
-See the `COORDINATION.md` log for the PR number, merge commit and Pages build result.
+- **PR #37** — <https://github.com/karagemop466-tech/GOLD5/pull/37> — merged **2026-10-23T10:01:19Z**
+  as **`9f73698155c6e204fec3c7b2540f59b38d75ed57`** (merge commit, no approval wait).
+- **CI on the PR head:** `verify` **pass**, `review` **pass**.
+- **GitHub Pages:** build `1307848663` for `9f73698` → **`built`** (legacy build from `main`, path `/`).
+- **Live checks after deploy** (fetched 2026-10-23 10:05 UTC):
+  - `/` — data as of 2026-10-23, spot $4,022.50/oz · $129.33/g · 5:44 a.m. ET, 12 live / 13 captured,
+    27 open flags, checker failures 0, NO HALLUCINATIONS panel, link to `/review/`.
+  - `/site/categories.html` — seven category cards with counts and price ranges.
+  - `/site/listings.html` — `live 2026-10-23` and `captured 2026-10-22` badges render correctly.
+  - `/site/flagged.html` — 27 open flags with source links.
+- **Cache note:** the first fetch of `/` returned the pre-deploy page from the CDN; a cache-busted fetch
+  returned the new page. This was propagation delay, not a build failure.
