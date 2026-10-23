@@ -1129,7 +1129,7 @@ product-price research pass.
 - `python3 tools/check_hallucinations.py`: **166 PASS, 0 FAIL, 0 WARN** (one
   informational duplicate-weight review note).
 - `python3 scripts/audit_b1f2fe3b.py`: **6 groups PASS**, 0 errors/warnings;
-  91 HTML files, 2,507 resolved local links, 4/4 injected hallucinations caught.
+  95 HTML files, 3,808 resolved local links, 4/4 injected hallucinations caught.
 - `python3 tools/check_report.py`: **1,649 checks PASS**, 0 FAIL/WARN.
 - `python3 tools/security_test.py`: **9/9 planted errors caught**; clean-state check PASS.
 - `python3 dossier/scripts/build.py`: **18/18 PASS**, 23 pages, 0 broken links.
@@ -1142,3 +1142,9 @@ product-price research pass.
   status `built`; the latest main `Verify` and Pages deployment runs succeeded
   (main head `7cc612d9363f4b8bab047ddbcd2397451c90d5df`). There were no open PRs
   before this correction.
+- While PR #34 was open, PR #33 (the new current-evidence audit) merged to `main`
+  as `b4c68003`. Rebased this branch on the new main before the next push. The
+  `COORDINATION.md` conflict was resolved as a union, retaining both sessions'
+  sections; `index.html` retained the new current-review warning and links while
+  receiving this pass's dated-snapshot corrections. Post-rebase checks passed with
+  95 audited HTML files and 3,808 local links; no current-evidence work was dropped.
