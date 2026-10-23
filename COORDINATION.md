@@ -1014,3 +1014,21 @@ don't buy it"). Only two rows evidence a stamp at all.
   root `index.html` = one additive card, panel count 9; `README.md` = one additive section;
   `COORDINATION.md` = main's board verbatim plus this section; `research/**` kept alongside
   byte-identical `guide/research/**` pending **R-04**. No other session's file was modified.
+
+## Session `0c967748` — current-evidence audit and final integration (2026-10-23)
+
+Arena fixes this session to `arena/0c967748-gold5`; no alternate branch will be created.
+Prior integration claims above have completed merge records and are stale (>60 minutes).
+No other open PR was returned by `gh pr list` at claim time.
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| Current-evidence ledger, source availability and row audit | in progress | 0c967748 | `review/**`, `scripts/review_current.py` |
+| Final integration: honest landing summary and CI guard | in progress | 0c967748 | `index.html`, `.github/workflows/current-review.yml`, `COORDINATION.md` |
+| PR, merge, Pages build confirmation | in progress | 0c967748 | GitHub operations; `COORDINATION.md` |
+
+Existing datasets and archived sites remain read-only. The current review will not upgrade
+historical captures to verified prices. Network access in this session is restricted to
+GitHub and package registries; official merchant sources cannot be independently refreshed.
+The site will prominently disclose this, keep current values blank, link every candidate to
+its recorded official source, and publish limitations on a Flagged for Review page.
