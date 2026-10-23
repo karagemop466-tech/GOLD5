@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-22T23:57:29Z",
+  "built_at": "2026-10-23T00:03:24Z",
   "session": "3e3fae49",
   "total_rows": 58,
   "rows_with_price": 51,
@@ -115,9 +115,9 @@
     },
     {
       "id": "C16",
-      "name": "Every internal link in every generated page resolves to a file that exists",
+      "name": "Every internal link and asset reference in every generated page resolves to a real file",
       "status": "PASS",
-      "detail": "872 hrefs scanned across 23 generated pages; 0 broken",
+      "detail": "1104 href/src references scanned across 23 generated pages; 0 broken",
       "severity": "error"
     },
     {
@@ -257,6 +257,13 @@
     "F-11",
     "F-12",
     "F-13",
-    "F-14"
-  ]
+    "F-14",
+    "F-15"
+  ],
+  "link_scan": {
+    "files": 23,
+    "references": 1104,
+    "broken": 0
+  },
+  "build_pass": "2"
 }

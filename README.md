@@ -365,7 +365,7 @@ dashboard and this section.
 | Evidence | every row carries a source URL, an ISO-8601 UTC capture timestamp and the **verbatim excerpt** containing the number |
 | Tiers | 3 rows `live` (read from a live fetch), 55 rows `snippet` (read from a search index of the official page, crawl date published with the row), blanks are `unverified` |
 | Checks | `python3 dossier/scripts/build.py` → **18 checks, 18 PASS, 0 FAIL**, 0 broken internal links |
-| Flags | 14 project-level findings **F-01…F-14** plus per-row flags, all with source links on `dossier/pages/flagged.html` |
+| Flags | 15 project-level findings **F-01…F-15** plus per-row flags, all with source links on `dossier/pages/flagged.html` |
 
 What this delivery adds that the other suites do not have:
 
