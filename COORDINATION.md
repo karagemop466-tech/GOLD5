@@ -1,28 +1,5 @@
 # COORDINATION — Shared Task Board (GOLD5)
 
-## ⏱ ACTIVE CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`)
-
-Claimed **2026-10-23 20:15 UTC** after reading the full board and confirming that every earlier claim is
-closed and `gh pr list --state open` returned no open PRs. This is the next final-integration and
-current-evidence pass. Arena fixes this session to its existing branch, so the requested
-`session-<id>/<task>` branch naming cannot be used; exclusive file scopes are used instead. Earlier
-`docs/`, `dossier/`, `guide/`, `pages/`, `report/`, `review/`, `verified/`, `verification/` (except the
-new evidence path below), and `archive/` deliveries are read-only inputs.
-
-| ID | Task | Status | Owner | Exclusive file scope |
-|----|------|--------|-------|----------------------|
-| H1 | Repository audit, baseline harnesses, and coordination claim | **in progress** | bc4e36a1 | `COORDINATION.md` |
-| H2 | Re-read every canonical listing, seller/policy, spot, and reference URL; save dated evidence and failures without upgrading unconfirmed values | **unclaimed** | bc4e36a1 | `data/live_check_bc4e36a1.json`, `verification/evidence/bc4e36a1/**` |
-| H3 | Correct or blank/flag drift in the canonical dataset; rebuild dashboard and category pages from source data | **unclaimed** | bc4e36a1 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html`, `README.md` |
-| H4 | Line-by-line provenance, arithmetic, money, link, and hallucination/security review with negative tests after every review | **unclaimed** | bc4e36a1 | `scripts/verify.py`, `scripts/independent_audit.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/bc4e36a1-*.md` |
-| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **unclaimed** | bc4e36a1 | `COORDINATION.md`; GitHub PR/Pages operations |
-
-**No-hallucinations contract for H1–H5:** no price, weight, karat, hallmark, seller claim, policy, or
- date is inferred or copied from memory. Every published row keeps its official source URL and actual
-capture date. Failed or ambiguous reads stay at their prior date or become blank and are flagged.
-Derived values are recomputed only. Every review ends with the full available harness suite and a
-recommendation to hunt again for unsupported claims. Flagged items remain published and nonblocking.
-
 > **Board note (session `arena-84be683f`, added 2026-10-22 after PR #8 merged):** the sections above were written by
 > sessions `638c9614`, `090bae73` and `37e8ff42` and are kept verbatim. That session's work — a fourth, independent site
 > under `verified/` — is claimed and logged in the **`arena-84be683f`** section at the bottom of this file. It uses an
@@ -62,8 +39,8 @@ recommendation to hunt again for unsupported claims. Flagged items remain publis
 
 ### Log — session bc4e36a1 (current integration)
 
-- **H1/H2:** Claim committed as `0907896` before evidence work; evidence commit `dd8386d` pushed after
-  non-force rebases. Re-read 25 product pages, 9 seller/policy/contact pages, 11 official references
+- **H1/H2:** Claim committed as `0907896` (replayed as `1ed63cc`) before evidence work; evidence commit `dd8386d`
+  (replayed as `6345d31`) pushed after non-force rebases. Re-read 25 product pages, 9 seller/policy/contact pages, 11 official references
   and Kitco. `data/live_check_bc4e36a1.json` + `verification/evidence/bc4e36a1/` preserve all 46 checks.
 - **H3:** Canonical emission now contains 25 entries / 13 sellers / 30 flags / 11 references, all 25
   rows live on 2026-10-23. Current panel spot is $3,996.10/oz = $128.48/g; EUR-only prices remain
@@ -79,6 +56,11 @@ recommendation to hunt again for unsupported claims. Flagged items remain publis
   metal-conflict state and evidence paths, and distinguishes primary-spot ratios from historical
   recheck-spot values. Master Audit static counts/spot/case-study wording and its primary-spot table
   were corrected. `tools/security_test.py` is now the documented command everywhere in the canonical build.
+- **Rebase resolution:** `git pull --rebase origin main` integrated `main@1c6bb21` (PRs #43–#49).
+  Conflicts in the board, source files, JSON and generated pages were resolved as a union: the newer
+  pass-4 evidence and PR history remain, canonical values come from the 46-check ledger, and generated
+  HTML was rebuilt rather than edited by hand. The duplicate active-claim block was removed. FL-29 is
+  sold-out; FL-30 is the distinct BN-203738 metal conflict. No other session's evidence was discarded.
 - **H5:** Final full-suite rerun, diff review, commit/rebase/push, PR → `main`, merge and Pages
   confirmation are still being completed in this session. No unresolved research flag is being hidden
   to make the merge green; broken links or harness failures would block publication.

@@ -44,6 +44,8 @@
 
 <div class="note blue"><b class="title">Ledger and saved excerpts</b>The canonical input is <a href="../data/live_check_bc4e36a1.json"><code>data/live_check_bc4e36a1.json</code></a>. It contains 46 checks and 9 corrections. The human-readable excerpts are in <code>verification/evidence/bc4e36a1/</code>; each row below links to its file. Fetch timestamps are asserted only when the source itself displayed one.</div>
 
+<div class="note gold"><b class="title">Parallel pass-4 evidence preserved</b>Later independent reads remain available rather than being overwritten: <a href="../data/live_check_463d0ea2.json">pass-4 listing/spot ledger</a> · <a href="../data/live_check_ea49572b.json">36-URL reconciliation ledger</a> · <a href="../docs/verification/pass4-2026-10-23.md">pass-4 memo</a> · <a href="../docs/verification/pass4-ea49572b-2026-10-23.md">36-URL memo</a> · <a href="../data/evidence/p4_etsy_all_seven.txt">Etsy excerpts</a> · <a href="../data/evidence/p4_brilliantearth.txt">Brilliant Earth excerpts</a>. The canonical ledger above governs current values; conflicting observations stay labeled by date and no unsupported sold-band midpoint is used.</div>
+
 <h2>All 46 checks in this pass</h2>
 <p class="small muted">Every check below has status <b>read</b> in the ledger. “Corrected” and “blanked” describe a data correction, not a failed fetch. The previous Etsy HTTP-500 and Brilliant Earth navigation-only results are retained as resolved flags, not presented as the current state.</p>
 <div class="table-wrap tall"><table><thead><tr><th>Check / kind</th><th>Subject / result</th><th>Official URL + excerpt + saved evidence</th></tr></thead><tbody><tr id="S01"><td class="num"><b>S01</b><div class="src">Gold spot</div></td>
@@ -145,7 +147,7 @@
 
 <h2>The checker</h2>
 <div class="note green"><b class="title">Latest canonical checker: PASS</b>
-22 checks passed · 0 failed · 0 warnings · run 2026-10-23 20:42 UTC.
+22 checks passed · 0 failed · 0 warnings · run 2026-10-23 20:44 UTC.
 The machine-readable report is <code>data/check_report_v2.json</code>.</div>
 <div class="formula">python3 scripts/author_data.py   # validate ledger ↔ canonical values and emit data.json
 python3 scripts/build_site.py     # regenerate every canonical HTML page
