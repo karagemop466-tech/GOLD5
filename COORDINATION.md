@@ -31,7 +31,7 @@ sections verbatim; their deliverables (`docs/`, `site/`, `pages/`, `report/`, `v
 | G3 | Fix/flag any drift found by G2 (never overwrite silently: correct + flag, or blank + flag); refresh derived values by script only | **done — refreshed by script, all 7 harnesses PASS** | 77405ae3 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `site/**`, `index.html`, `data/live_check_77405ae3.json` |
 | G4 | Site pass: landing page + subpages review, full local link sweep, every table row has a source link | **done — C5/C6/C7 + S8–S11 PASS** | 77405ae3 | (read-only check; fixes scoped to G3 files) |
 | G5 | Final review pass: run every hallucination/security harness after the review, recommend hunting for hallucinations, record results | **done — 9 harnesses PASS, no hallucinations found** | 77405ae3 | `data/check_status.json`, `data/pass_history_v2.json` |
-| G6 | Final integration: small frequent commits, `git pull --rebase` before each push, PR → `main`, merge, confirm GitHub Pages deploy, log PR + merge result here | in progress | 77405ae3 | `COORDINATION.md` |
+| G6 | Final integration: small frequent commits, `git pull --rebase` before each push, PR → `main`, merge, confirm GitHub Pages deploy, log PR + merge result here | **done — PR #41 merged, Pages built + live-verified** | 77405ae3 | `COORDINATION.md` |
 
 Rules for this pass: no-hallucinations rule above; every table row keeps its official source link;
 values not re-confirmed today are labelled with their original capture date; derived numbers are
@@ -119,6 +119,30 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   appear only as dated text observations, never as a converted price, (3) the spot prior chain
   (4,022.50 primary vs 4,026.90/4,025.00 prior vs cross-checks), (4) FL-26 wording after FL-27/FL-28
   were resolved. Checked here: all four look clean.
+
+### Integration result — session 77405ae3 (recorded after deploy)
+
+- **PR #41** <https://github.com/karagemop466-tech/GOLD5/pull/41> —
+  `arena/77405ae3-gold5` → `main`, **MERGED 2026-10-23T10:48:57Z** as
+  **`dbd04d112cd4647ee8429d629f317d84f9df4591`** (merge commit, without approval, as the brief
+  instructs). Diff = this session's four commits on top of `main@e5d3099` (PRs #33–#40 fully
+  preserved — union resolution, nothing discarded).
+- **CI on the PR:** `review` (Current evidence boundaries) **SUCCESS** · `verify` **SUCCESS**.
+- **Pre-merge verification:** all 9 harnesses PASS on the integrated tree (verify 21/21 · audit
+  6/6 · independent_audit 11/11 · review_current PASS · hallucinations 166/0 · check_report PASS ·
+  security 9/9+clean · verified 896/0 · dossier 18/18). Flagged/unverified items did not block the
+  merge; they are published with source links on `site/flagged.html` (24 open + 4 resolved flags).
+- **Pages:** build for `dbd04d1` (run 39941743916) **completed/success**. Live check of
+  <https://karagemop466-tech.github.io/GOLD5/> after deploy: NO HALLUCINATIONS banner, data-as-of
+  **2026-10-23**, spot **$4,022.50 · $129.33/g · 5:44 a.m. ET**, 6-quote table with the prior chain,
+  18/7 provenance banner, flags table, checker failures 0.
+- **Post-deploy defect self-caught by that live fetch (fixed in this follow-up):** the homepage's
+  parallel-review paragraph still carried the first draft's hard-coded "12 rows / 13 rows" counts.
+  Now computed from `meta.coverage` (**18 rows / 7 rows**) so it can never drift again; `verify.py`
+  21/21 re-passed after the rebuild.
+- **PR #42** <https://github.com/karagemop466-tech/GOLD5/pull/42> is this record + the homepage
+  count fix; it is merged immediately after this entry lands, and its result is its merge commit on
+  main (Pages reconfirmed after it — COORDINATION-only + index text change, no data change).
 
 ## ⏱ PRIOR CLAIM (completed) — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
