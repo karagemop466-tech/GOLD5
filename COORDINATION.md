@@ -1554,7 +1554,7 @@ history; every earlier deliverable (`docs/`, `site/`, `pages/`, `report/`, `veri
 | P4-3 | Apply drift by **script only** (never hand-edit generated HTML): refresh spot + all derived metal values, re-date rows actually re-read, blank + flag anything not confirmable; extend flags rather than deleting any | **done — `author_data.py` → `build_site.py`, no hand-edit** | `arena-463d0ea2` | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `scripts/independent_audit.py`, `index.html`, `site/**`, `data/check_report_v2.json` |
 | P4-4 | Site pass: landing page + every subpage, full local link sweep, every table row carries its official source link, no third-party scripts | **done — C5/C6/C7 + S8–S11 PASS** | `arena-463d0ea2` | read-only checks; fixes only inside P4-3 scope |
 | P4-5 | Final review: run **every** harness after the review, log results, then deliberately **hunt for hallucinations** (unsourced `$`, converted EUR, stale dates, counts that drifted) and record what was checked | **done — 9 harnesses PASS; 2 prose hallucinations found and fixed** | `arena-463d0ea2` | `data/check_status.json`, `data/pass_history_v2.json`, `coordination` log below |
-| P4-6 | Integration: small commits, `git pull --rebase` before each push, PR → `main`, merge without waiting, confirm the Pages deploy and re-fetch the live site | **in progress** | `arena-463d0ea2` | `COORDINATION.md` |
+| P4-6 | Integration: small commits, `git pull --rebase` before each push, PR → `main`, merge without waiting, confirm the Pages deploy and re-fetch the live site | **done — PR #45 merged, Pages built on `df83828`, live pages re-fetched** | `arena-463d0ea2` | `COORDINATION.md` |
 
 **Rules carried forward (unchanged):** the no-hallucinations rule at the top of this file; every table
 row keeps a link to the official page that states the value; a value not re-read today keeps its
@@ -1626,3 +1626,28 @@ may be taken over and the handoff logged.
   testing anything. It now builds a synthetic prior row from a copy and applies the C16 rule to it.
   C16's message also handles the zero-prior case. A9's evidence corpus now resolves the new values
   through the five `data/evidence/p4_*.txt` files.
+- 2026-10-23 20:22 UTC: **P4-6 done.** PR **#45** (pass 4, session `arena-463d0ea2`) → merged to `main` as
+  **`df83828`**; CI `verify` + `review` green; GitHub Pages reported `built` on that commit at 20:24:44 UTC.
+  Merge conflicts with PR #44 (`3bf55199`, same Kitco quote) were resolved as a **union** on a merge commit
+  (`7ec2f25`), then rebased so the final branch history is linear: `eaf2579` on top of `7bd77fb`. Nothing from
+  the other session was discarded.
+- 2026-10-23 20:25 UTC: **live site verified, not assumed.** Re-fetched `https://karagemop466-tech.github.io/GOLD5/`
+  after the build: the first fetch still returned the pre-deploy 18-of-25 copy, so the same URL was re-fetched
+  with a cache-busting query and served the merged content — *"25 of 25 rows were re-read … No value anywhere on
+  this site is inferred"*, spot **$3,996.10 / $128.48 @ 2026-10-23 4:10 p.m. ET**, prior quote credited to
+  session `77405ae3`, FL-01 no longer carrying a typed dollar figure. **Lesson for the next session: a Pages
+  fetch can be served from an edge cache for a minute or two after `status: built`; re-fetch with `?v=<commit>`
+  and compare against `git show origin/main:index.html` before declaring a deploy good.**
+- 2026-10-23 20:25 UTC: one post-deploy copy defect found on the live page and fixed — "…and are dated; all of
+  them, so no row depends on the 2026-10-22 draft" (a conditional sentence assembled from two fragments).
+  Rewritten to "…and carry that date — every row — so none of them depends on the 2026-10-22 draft", rebuilt and
+  re-verified (`verify.py` 21/21, `independent_audit.py` 11/11). Shipped as a small follow-up PR rather than
+  edited on `main`.
+- 2026-10-23 20:26 UTC: **five more URLs re-read after the merge** (BN-203348 item page $1,145 / stock 502120y14 /
+  2.40 mm, the BN `/engagement-rings` index, the Brilliant Earth returns page, eCFR 16 CFR Part 23 and the FTC
+  consumer jewelry guide) and logged in `data/live_check_463d0ea2.json` (27 checks now) with verbatim excerpts in
+  `data/evidence/p4b_reconfirm.txt`. Two findings: the BN index agrees with every row this project tracks, and
+  **Brilliant Earth serves USD on its returns page while serving EUR on the BE-1343 product page minutes
+  earlier** — the currency split is per page/geo, so BE-1343 stays a dated USD observation plus FL-08. eCFR
+  shows Part 23 up to date as of 10/21/2026 and the FTC page still states the karat-plus-trademark rule and the
+  "solid gold means not hollow" definition the Checklist quotes.

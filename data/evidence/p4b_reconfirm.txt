@@ -1,0 +1,33 @@
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203348
+FETCHED: 2026-10-23 (pass 4 continuation, session arena-463d0ea2)
+VERBATIM: "Classic Simple Solitaire Engagement Ring in 14K Yellow Gold"
+VERBATIM: "$1,145(Setting Price)"
+VERBATIM: "Stock Number 502120y14 | Metal 14K Yellow Gold | Width 2.40mm"
+VERBATIM: "Free Overnight Shipping Returns Policy" / "Free Returns"
+
+SOURCE: https://www.bluenile.com/engagement-rings
+FETCHED: 2026-10-23 (same pass)
+VERBATIM: "Petite Solitaire Engagement Ring in 14k Yellow Gold $1,000(Setting Price)"
+VERBATIM: "Floral Marquise Diamond Engagement Ring in 18k White Gold $2,210(Setting Price)"
+VERBATIM: "French Pavé Diamond Engagement Ring in Platinum (1/4 ct. tw.) $2,150(Setting Price)"
+VERBATIM: "Classic Four Prong Solitaire Engagement Ring in Platinum $1,180(Setting Price)"
+VERBATIM: "The Fall Edit: Up to 30% Off* Select Styles"
+
+SOURCE: https://www.brilliantearth.com/30-Day-Returns/
+FETCHED: 2026-10-23 (same pass)
+NOTE: served in USD ("$250 ... 50% Off"), while the BE-1343 product page minutes earlier served EUR EUR 835.00
+      ("Setting Only", currency selector EUR/GBP). Currency is per page/geo — no conversion is performed (FL-08).
+
+SOURCE: https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23
+FETCHED: 2026-10-23 (same pass)
+VERBATIM: "Displaying title 16, up to date as of 10/21/2026. Title 16 was last amended 10/19/2026."
+VERBATIM: "Part 23 — Guides for the Jewelry, Precious Metals, and Pewter Industries (23.0 - 23.28)"
+VERBATIM: "§ 23.3 Misrepresentation as to gold content." / "§ 23.10 Additional guidance for the use of quality marks."
+
+SOURCE: https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry
+FETCHED: 2026-10-23 (same pass)
+VERBATIM: "When you shop for gold jewelry, look for the karat quality mark."
+VERBATIM: "If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it."
+VERBATIM: "The phrase 'solid gold' means the gold item isn't hollow."
+VERBATIM: "Find the store's refund and return policies - and get them in writing."
+VERBATIM: "The Jewelers Vigilance Committee (JVC) operates a mediation program"
