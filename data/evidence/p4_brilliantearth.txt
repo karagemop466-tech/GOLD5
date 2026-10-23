@@ -1,0 +1,38 @@
+SOURCE: https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23
+BE-NADIA Nadia Diamond Ring in 14K Yellow Gold
+USD  (currency selector shows USD)
+nadia-$1,250
+$1,250 (Setting Only)
+(143)
+Metal: 14K Yellow Gold
+1.8mm band width
+Free Shipping & Returns / Free Lifetime Warranty / Lifetime Diamond Upgrade / Free 1-Year Resizing
+Order now for delivery by Fri, Nov 13, depending on center diamond
+
+SOURCE: https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23 — MIXED-CURRENCY RENDER
+BE-1343 Freesia 2mm Solitaire Ring in 14K Yellow Gold
+USD
+EURCADAUDGBP        <-- currency switcher
+freesia 2mm solitaire-€835.00
+€835.00 (Setting Only)
+(80)
+Metal: 14K Yellow Gold
+Style: BE1343-14KY
+Width: 2-1.2 mm
+Setting: Claw Prong
+Order now and your order ships by Tue, Nov 10, depending on center diamond.
+Promo banner on the same page: "USD$250 Gift Card With Purchase Over USD$1,000."
+Related items on the same page are printed in EUR (e.g. Freesia with Curved Versailles €3,050.00).
+
+OBSERVATION: the setting price on this page rendered in EUR (835.00) while the gift-card
+banner and the related-item prices on other Brilliant Earth pages rendered in USD. This
+project does NOT convert currencies. The $750 in the dataset is the figure read on this
+same URL at 2026-10-23 05:44 ET (pass 3) and is labelled a dated observation (FL-08).
+
+SOURCE: https://www.brilliantearth.com/30-Day-Returns/
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23 (page re-opened; served USD)
+Title: Free 30 Day Returns & Resizing
+(Policy wording was extracted and verified in pass 3; this pass confirms the URL still
+resolves and is not a soft-404. No policy text is re-asserted from memory here.)

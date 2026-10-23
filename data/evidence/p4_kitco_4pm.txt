@@ -1,0 +1,62 @@
+SOURCE: https://www.kitco.com/charts/gold
+CAPTURE: pass 4, session arena-463d0ea2, fetched 2026-10-23 (page timestamp 16:12 NY Time)
+KIND: verbatim excerpt of the rendered page (headings and numbers as displayed)
+
+## Live GoldPrice
+Oct 23, 2026 - 16:12 NY Time
+Bid
+### 3,996.10
+USD
+-26.90(-0.67%)
+Ask
+3,998.10
+- ounce
+3,996.10
+  -26.90
+- gram
+128.48
+  -0.86
+- Kilo
+128,479.57
+  -864.85
+- pennyweight
+199.81
+  -1.34
+- tola
+1,498.54
+  -10.09
+- tael
+4,856.37
+  -32.69
+
+3975.10
+4040.20
+Day's Range
+
+Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 23, 2026 at 4:10 p.m. EDT.
+
+## Gold Value by Purity
+| 24K Gold99.99% | $3,996.10 |
+| 22K Gold91.67% | $3,663.22 |
+| 18K Gold75.00% | $2,997.08 |
+| 14K Gold58.33% | $2,330.93 |
+| 10K Gold41.67% | $1,665.17 |
+
+Gold Value by Purity at spot bid
+Based on a Kitco Gold Spot Bid, one (1) troy ounce of 24K Gold is worth approximately $3,996.10.
+Updated Oct 23, 2026 • 4:11 PM NY Time
+
+The current price of gold is **$3,995.50** per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.
+
+## Gold Price Today — Per Ounce, Gram and Kilo
+| Gold price per ounce | $3,995.50 | -$27.80 | $3,975.10 | $4,040.20 |
+| Gold price per gram | $128.46 | -$0.89 | $127.80 | $129.90 |
+| Gold price per 10 grams | $1,284.58 | -$8.94 | $1,278.02 | $1,298.95 |
+| Gold price per kilo | $128,458.31 | -$893.79 | $127,802.43 | $129,895.45 |
+
+A troy ounce is 31.1034768 grams.
+
+NOTE ON THE INTRA-PAGE SPREAD (FL-25): the ticker bid is 3,996.10 and its per-gram
+figure is 128.48; the page's own body sentence says 3,995.50 and its unit table says
+128.46. The dataset records the TICKER BID (3,996.10 / 128.48) with the timestamp and
+never mixes the nearby figures. No number on this page was computed from another.

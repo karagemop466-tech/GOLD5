@@ -1,17 +1,17 @@
 # Verification report — consolidated GOLD5 site
 
-- Run: 2026-10-23 20:19 UTC
+- Run: 2026-10-23 20:21 UTC
 - Data as of: 2026-10-23
 - Result: **PASS** — 21 checks passed, 0 failed
 
-- PASS · **C1** — 25 entries, 13 sellers, 28 flags, 11 references
+- PASS · **C1** — 25 entries, 13 sellers, 29 flags, 11 references
 - PASS · **C2** — 25 listings have an https official-source URL and a dated check (2026-10-22 or 2026-10-23)
 - PASS · **C3** — every blank is covered by a flag
 - PASS · **C4** — spot, purity and 25 rows of derived values recompute
 - PASS · **C5** — 25 listing rows, each with its official source link
 - PASS · **C6** — all internal links and anchors resolve across 19 pages
 - PASS · **C7** — every external link (66 registered URLs) is recorded in the dataset
-- PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (232 allowed values)
+- PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (233 allowed values)
 - PASS · **C9** — every published price, weight and source URL is rendered in its row
 - PASS · **C10** — no placeholders or template leftovers
 - PASS · **C11** — site/assets/data.js matches data.json
@@ -19,7 +19,7 @@
 - PASS · **C13** — 19 pages parse as well-formed HTML
 - PASS · **C14** — the NO HALLUCINATIONS rule is on every page
 - PASS · **C15** — no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener
-- PASS · **C16** — provenance: 18 live 2026-10-23 + 7 prior rows, each prior row dated, noted and flagged
+- PASS · **C16** — provenance: all 25 rows carry checkedOn=2026-10-23 and provenance=live
 - PASS · **C17** — 7 category pages cover all 25 rows, row counts match the rules, each links back
 - PASS · **C18** — consistent 12-item nav on all 19 pages and every page reachable from the dashboard
 - PASS · **C19** — https sources for every row, seller policy, flag reference and official reference; 11 references dated

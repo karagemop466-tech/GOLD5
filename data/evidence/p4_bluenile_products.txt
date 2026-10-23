@@ -1,0 +1,43 @@
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23
+BN-195639 Petite Solitaire Engagement Ring in 14k Yellow Gold
+Stock Number 501130y14
+Metal 14K Yellow Gold
+Width 1.80mm
+$1,000 (Setting Price)
+Free Overnight Shipping / Returns Policy
+
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23
+BN-203257 Classic Four Prong Solitaire Engagement Ring in 14K Yellow Gold
+Stock Number 500000y14
+Metal 14K Yellow Gold
+Width 1.90mm
+$870 (Setting Price)
+
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23
+BN-195871 French Pavé Diamond Engagement Ring in 14k Yellow Gold (1/4 ct. tw.)
+Stock Number 501410y14
+Metal 14K Yellow Gold
+Width 2.50mm
+Shape Round / Quantity 16 / Total Carat 1/4 / Average Color G-H / Average Clarity VS2-SI1 / Setting Type Pave
+$1,800 (Setting Price)
+
+SOURCE: https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23
+BN-203348 Classic Simple Solitaire Engagement Ring in 14K Yellow Gold
+Stock Number 502120y14
+Metal 14K Yellow Gold
+Width 2.40mm
+$1,145 (Setting Price)
+
+SOURCE: https://www.bluenile.com/engagement-rings
+CAPTURE: pass 4, session arena-463d0ea2, 2026-10-23 (gallery; 1,451 Results)
+Petite Hidden Halo Solitaire Plus Diamond Engagement Ring in 14k Yellow Gold — $1,255 (Setting Price) — item 192506
+Riviera Pavé Diamond Engagement Ring in 14k White Gold (1/6 ct. tw.) — $1,500 (Setting Price) — item 195326
+Criss Cross Solitaire Engagement Ring In 18K Yellow Gold By James Allen — $2,320 (Setting Price) — item 311132
+Floral Marquise Diamond Engagement Ring in 18k White Gold — $2,210 (Setting Price) — item 203738
+Petite Solitaire Engagement Ring in 14k Yellow Gold — $1,000 (Setting Price) — item 195639
+Classic Four Prong Solitaire Engagement Ring in Platinum — $1,180 (Setting Price) — item 194156 (not in dataset)
+French Pavé Diamond Engagement Ring in Platinum (1/4 ct. tw.) — $2,150 (Setting Price) — item 195271 (not in dataset)

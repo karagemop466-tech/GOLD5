@@ -1,0 +1,214 @@
+{
+ "session": "arena-463d0ea2",
+ "pass": "4",
+ "date": "2026-10-23",
+ "note": "One row per URL attempted in pass 4. status ok = page rendered and the value was read; currency_eur = page rendered in EUR so no USD value is recorded; sold_out = page rendered but the item cannot be bought. 'change' records the comparison against the 2026-10-22 dataset value. No value in this file was inferred, converted or copied from a snippet.",
+ "spot": {
+  "source": "Kitco Metals Inc. — Live Gold Price",
+  "url": "https://www.kitco.com/charts/gold",
+  "usdPerOz": 3996.1,
+  "usdPerGram": 128.48,
+  "asOf": "2026-10-23 4:10 p.m. ET",
+  "previousSameDay": {
+   "usdPerOz": 4022.5,
+   "usdPerGram": 129.33,
+   "asOf": "2026-10-23 5:44 a.m. ET",
+   "session": "77405ae3"
+  }
+ },
+ "checks": [
+  {
+   "seq": 1,
+   "id": "kitco",
+   "url": "https://www.kitco.com/charts/gold",
+   "status": "ok",
+   "valueRead": "bid 3,996.10 USD / 128.48 per gram at 2026-10-23 16:12 NY Time (page credits 4:10 p.m. EDT); ask 3,998.10; purity 24K 3,996.10 / 22K 3,663.22 / 18K 2,997.08 / 14K 2,330.93 / 10K 1,665.17",
+   "change": null
+  },
+  {
+   "seq": 2,
+   "id": "BN-195639",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
+   "status": "ok",
+   "valueRead": "$1,000 Setting Price; stock 501130y14; 14K yellow; 1.80 mm",
+   "change": "unchanged"
+  },
+  {
+   "seq": 3,
+   "id": "BN-203257",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
+   "status": "ok",
+   "valueRead": "$870 Setting Price; stock 500000y14; 1.90 mm",
+   "change": "unchanged"
+  },
+  {
+   "seq": 4,
+   "id": "BN-195871",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
+   "status": "ok",
+   "valueRead": "$1,800 Setting Price; stock 501410y14; 2.50 mm; 16 diamonds 1/4 ct. tw.",
+   "change": "unchanged"
+  },
+  {
+   "seq": 5,
+   "id": "BN-203348",
+   "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
+   "status": "ok",
+   "valueRead": "$1,145 Setting Price; stock 502120y14; 2.40 mm",
+   "change": "unchanged"
+  },
+  {
+   "seq": 6,
+   "id": "BN-gallery",
+   "url": "https://www.bluenile.com/engagement-rings",
+   "status": "ok",
+   "valueRead": "gallery prices: 192506 $1,255; 195326 $1,500; 311132 $2,320; 203738 $2,210; 195639 $1,000 (Setting Price)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 7,
+   "id": "BE-NADIA",
+   "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
+   "status": "ok",
+   "valueRead": "$1,250 (Setting Only) in USD; 1.8 mm; 143 reviews",
+   "change": "unchanged"
+  },
+  {
+   "seq": 8,
+   "id": "BE-1343",
+   "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
+   "status": "currency_eur",
+   "valueRead": "setting line rendered EUR 835.00 (Setting Only) with EUR/GBP selector on a mixed-currency page; USD not re-confirmable -> FL-08; style BE1343-14KY; 2-1.2 mm; 80 reviews",
+   "change": "currency changed; USD figure kept as the 05:44 ET observation only"
+  },
+  {
+   "seq": 9,
+   "id": "BE-returns",
+   "url": "https://www.brilliantearth.com/30-Day-Returns/",
+   "status": "ok",
+   "valueRead": "page resolves in USD (title 'Free 30 Day Returns & Resizing'); policy block not re-extracted this pass",
+   "change": "not re-asserted"
+  },
+  {
+   "seq": 10,
+   "id": "AL-5882",
+   "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
+   "status": "ok",
+   "valueRead": "$1,085; U5882; 5.00 g approx; 2.9/2.3 mm",
+   "change": "unchanged"
+  },
+  {
+   "seq": 11,
+   "id": "AL-170",
+   "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
+   "status": "ok",
+   "valueRead": "$933; U170; 4.80 g approx; 3.20/2.40 mm",
+   "change": "unchanged"
+  },
+  {
+   "seq": 12,
+   "id": "AL-4426",
+   "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
+   "status": "ok",
+   "valueRead": "$585; NG4426; 3.58 g approx",
+   "change": "unchanged"
+  },
+  {
+   "seq": 13,
+   "id": "AV-25893",
+   "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+   "status": "ok",
+   "valueRead": "$1,100.00; R25893; 2.3 g; 0.41 ctw; 14-day returns",
+   "change": "unchanged"
+  },
+  {
+   "seq": 14,
+   "id": "JM-149700",
+   "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
+   "status": "ok",
+   "valueRead": "Special $3,020.00 / Retail $6,041.00; 2.3 g; 14KT; in stock, only 1 left",
+   "change": "unchanged"
+  },
+  {
+   "seq": 15,
+   "id": "SGJ-B02561",
+   "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+   "status": "ok",
+   "valueRead": "'14ky, 4.7g, #B02561'; brand M Michael; no price; call for pricing",
+   "change": "unchanged"
+  },
+  {
+   "seq": 16,
+   "id": "ET-4426190660",
+   "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
+   "status": "ok",
+   "valueRead": "14K yellow $1,891.78 (50% off $2,404.16)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 17,
+   "id": "ET-4366425533",
+   "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
+   "status": "ok",
+   "valueRead": "14K yellow $546.09 (2026-10-22: $547.26); Original Price $626.34",
+   "change": "CHANGED - corrected"
+  },
+  {
+   "seq": 18,
+   "id": "ET-1151446373",
+   "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
+   "status": "ok",
+   "valueRead": "14K yellow $969.00 (25% off $1,044.00)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 19,
+   "id": "ET-1566052947",
+   "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
+   "status": "ok",
+   "valueRead": "2mm $251.30 (30% off $359.00)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 20,
+   "id": "ET-1433905613",
+   "url": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
+   "status": "ok",
+   "valueRead": "14K $999.70 (35% off $1,038.00)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 21,
+   "id": "ET-944684759",
+   "url": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
+   "status": "ok",
+   "valueRead": "2mm $195.75 (25% off $261.00)",
+   "change": "unchanged"
+  },
+  {
+   "seq": 22,
+   "id": "ET-576343849",
+   "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
+   "status": "sold_out",
+   "valueRead": "'Sorry, this item is sold out' / 'Sold'",
+   "change": "CHANGED - no longer purchasable (FL-29)"
+  }
+ ],
+ "totals": {
+  "attempted": 22,
+  "ok": 20,
+  "currency_eur": 1,
+  "sold_out": 1,
+  "changed": [
+   "ET-4366425533",
+   "ET-576343849",
+   "BE-1343"
+  ],
+  "failed": 0
+ },
+ "notAttemptedThisPass": [
+  "BE-1343HH",
+  "BE-SECRET"
+ ],
+ "notAttemptedReason": "Both Brilliant Earth hidden-halo pages already served EUR on 2026-10-23 (pass 3) and their price cells are blank under FL-08; they were not re-fetched in pass 4 because no refinable value remains for them."
+}
