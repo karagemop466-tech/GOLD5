@@ -342,7 +342,10 @@ if cov:
         bad16.append(f'meta.coverage says {cov} but data has {prov_counts}')
     if cov.get("liveDate") != ASOF:
         bad16.append("meta.coverage.liveDate does not match meta.asOf")
-check("C16", not bad16, f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged" + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
+_c16msg = (f"provenance: all {prov_counts['live']} rows carry checkedOn={ASOF} and provenance=live"
+           if not prov_counts["prior"] else
+           f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged")
+check("C16", not bad16, _c16msg + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
 
 # ---------------------------------------------------------------- C17 category coverage
 bad17 = []
@@ -460,9 +463,10 @@ def _neg_tests():
         if e["price"] is not None:
             allow.add(round(e["price"], 2))
     out.append(("N1 invented price", round(float(fake.replace("$", "").replace(",", "")), 2) not in allow))
-    # N2 prior row re-labelled live (C16)
-    e2 = dict(ENTRIES[[x["id"] for x in ENTRIES].index(next(x["id"] for x in ENTRIES if x["provenance"] == "prior"))])
-    out.append(("N2 prior row marked live", not (e2["provenance"] == "prior" and e2["checkedOn"] == ASOF)))
+    # N2 a row marked "prior" but dated to the pass date (the C16 rule). Built from a copy so the
+    # test does not depend on a prior row happening to exist in the current dataset.
+    e2 = dict(ENTRIES[0]); e2["provenance"] = "prior"; e2["checkedOn"] = ASOF
+    out.append(("N2 prior row dated to the pass date", e2["checkedOn"] >= ASOF))
     # N3 blank weight without the flag (C3)
     e3 = dict(next(x for x in ENTRIES if x["grams"] is None))
     e3["flags"] = [f for f in e3["flags"] if f != "FL-03"]

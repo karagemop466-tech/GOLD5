@@ -2,17 +2,17 @@
  "meta": {
   "project": "GOLD5 — Solid Gold Engagement Ring Research",
   "asOf": "2026-10-23",
-  "lastPass": "2026-10-23 (a255f011 provenance pass + 77405ae3 live re-verification)",
-  "session": "77405ae3",
+  "lastPass": "2026-10-23 pass 4 (session arena-463d0ea2): spot refreshed to the 4:10 p.m. ET quote, all seven Etsy listings re-read, one price corrected, one sold-out listing flagged",
+  "session": "arena-463d0ea2",
   "title": "Gold engagement rings, verified line by line",
-  "subtitle": "25 listings from 13 sellers · 18 rows re-read live on 2026-10-23, the 7 Etsy rows carry their 2026-10-22 capture date and say so · every value tied to the source page that states it · blanks are flagged, never guessed",
+  "subtitle": "25 listings from 13 sellers · all 25 rows were re-read from the seller's own page on 2026-10-23 (23 of them in pass 4) · every value tied to the source page that states it · blanks are flagged, never guessed · one listing confirmed sold out",
   "noHallucinations": "NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site was read from the linked official source page on the date shown next to it. If a value could not be confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated or filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py.",
   "checker": "python3 scripts/verify.py",
   "coverage": {
-   "live": 18,
-   "prior": 7,
+   "live": 25,
+   "prior": 0,
    "liveDate": "2026-10-23",
-   "priorDate": "2026-10-22"
+   "priorDate": null
   },
   "archive": [
    {
@@ -59,7 +59,7 @@
   "counts": {
    "entries": 25,
    "sellers": 13,
-   "flags": 28,
+   "flags": 29,
    "references": 11
   }
  },
@@ -67,14 +67,24 @@
   "primary": {
    "source": "Kitco Metals Inc. — Live Gold Price",
    "url": "https://www.kitco.com/charts/gold",
-   "usdPerOz": 4022.5,
-   "usdPerGram": 129.33,
-   "asOf": "2026-10-23 5:44 a.m. ET",
+   "usdPerOz": 3996.1,
+   "usdPerGram": 128.48,
+   "asOf": "2026-10-23 4:10 p.m. ET",
    "kind": "spot bid",
-   "method": "live fetch (2026-10-23 pass)",
-   "quote": "Live Gold Price — Oct 23, 2026 - 5:44 NY Time. Bid 4,022.50 USD (-1.50, -0.04%); Ask 4,024.50; gram 129.33 (-0.05); Kilo 129,328.36; pennyweight 201.13. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 5:43 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30 today.'"
+   "method": "live fetch (pass 4, session arena-463d0ea2)",
+   "quote": "Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81; tola 1,498.54. Day's range 3,975.10–4,040.20. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"
   },
   "prior": [
+   {
+    "source": "Kitco Metals Inc. — Live Gold Price (earlier the same day)",
+    "url": "https://www.kitco.com/charts/gold",
+    "usdPerOz": 4022.5,
+    "usdPerGram": 129.33,
+    "asOf": "2026-10-23 5:44 a.m. ET",
+    "kind": "spot bid",
+    "method": "live fetch (pass 3, session 77405ae3)",
+    "note": "Earlier 2026-10-23 capture; superseded by the 4:10 p.m. ET quote above. Kept so the intraday move is visible."
+   },
    {
     "source": "Kitco Metals Inc. — Live Gold Price (previous session)",
     "url": "https://www.kitco.com/charts/gold",
@@ -129,8 +139,8 @@
    }
   ],
   "notes": [
-   "The 2026-10-23 capture shows the bid ticker at $4,022.50 with $129.33/g, the page's own 'Gold Price Today' table at $4,021.00/oz and $129.28/g, and the purity calculator's 24K line at $4,022.50. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value.",
-   "The 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."
+   "The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, the purity calculator's 24K line at $3,996.10, and the same page's own note that a troy ounce is 31.1034768 grams. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value (FL-25).",
+   "The earlier 2026-10-23 5:44 a.m. ET quote ($4,022.50 / $129.33) and the 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."
   ],
   "purity": {
    "fineness": {
@@ -141,13 +151,13 @@
     "10K": 0.4167
    },
    "perOz": {
-    "24K": 4022.5,
-    "22K": 3687.43,
-    "18K": 3016.88,
-    "14K": 2346.32,
-    "10K": 1676.18
+    "24K": 3996.1,
+    "22K": 3663.22,
+    "18K": 2997.08,
+    "14K": 2330.93,
+    "10K": 1665.17
    },
-   "source": "Kitco 'Gold Value by Purity' table, same 2026-10-23 5:44 a.m. ET page capture"
+   "source": "Kitco 'Gold Value by Purity' table, same 2026-10-23 4:10 p.m. ET page capture"
   }
  },
  "entries": [
@@ -191,8 +201,9 @@
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
     "Lifetime warranty applies only to items priced $1,000 or more.",
-    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($1,255, Setting Price) — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): price re-read on the Blue Nile engagement-rings gallery ($1,255, Setting Price) — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-195639",
@@ -233,8 +244,9 @@
    ],
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
-    "Re-read live on 2026-10-23: $1,000 Setting Price; stock 501130y14; 14K Yellow Gold; 1.80 mm — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,000 Setting Price; stock 501130y14; 14K Yellow Gold; 1.80 mm — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-203257",
@@ -275,8 +287,9 @@
    ],
    "notes": [
     "Product page re-read this pass: $870 (Setting Price), Metal 14K Yellow Gold, Width 1.90mm.",
-    "Re-read live on 2026-10-23: $870 Setting Price; stock 500000y14; 14K Yellow Gold; 1.90 mm — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $870 Setting Price; stock 500000y14; 14K Yellow Gold; 1.90 mm — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-195326",
@@ -316,8 +329,9 @@
    ],
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
-    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($1,500, Setting Price) — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): price re-read on the Blue Nile engagement-rings gallery ($1,500, Setting Price) — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-195871",
@@ -357,8 +371,9 @@
    ],
    "notes": [
     "Product page re-read this pass: $1,800 (Setting Price), 14K Yellow Gold, 2.50mm, 16 diamonds 1/4 ct. tw.",
-    "Re-read live on 2026-10-23: $1,800 Setting Price; stock 501410y14; 14K Yellow Gold; 2.50 mm — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,800 Setting Price; stock 501410y14; 14K Yellow Gold; 2.50 mm — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-311132",
@@ -398,8 +413,9 @@
    ],
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
-    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($2,320, Setting Price) — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): price re-read on the Blue Nile engagement-rings gallery ($2,320, Setting Price) — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-203738",
@@ -439,8 +455,9 @@
    ],
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
-    "Re-read live on 2026-10-23: $2,210 Setting Price on the Blue Nile engagement-rings gallery; 18K White Gold — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $2,210 Setting Price on the Blue Nile engagement-rings gallery; 18K White Gold — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BN-203348",
@@ -481,8 +498,9 @@
    ],
    "notes": [
     "Product page re-read this pass: $1,145 (Setting Price), Stock 502120y14, 14K Yellow Gold, Width 2.40mm.",
-    "Re-read live on 2026-10-23: $1,145; stock 502120y14; 14K Yellow Gold; 2.40 mm — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,145; stock 502120y14; 14K Yellow Gold; 2.40 mm — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BE-1343",
@@ -495,7 +513,7 @@
    "price": 750,
    "compareAt": null,
    "priceBasis": "setting",
-   "priceNote": "$750 setting only (center diamond extra)",
+   "priceNote": "$750 setting only (center diamond extra) — read on the product page 2026-10-23 5:44 a.m. ET; the same page served EUR €835.00 (Setting Only) later that day, so the USD figure is a dated observation, not a converted or re-confirmed price (FL-08)",
    "priceSourceUrl": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
    "grams": null,
    "gramsText": null,
@@ -517,13 +535,16 @@
     "FL-03",
     "FL-15",
     "FL-14",
-    "FL-21"
+    "FL-21",
+    "FL-08"
    ],
    "notes": [
     "Product page re-read this pass: $750 (Setting Only), style BE1343-14KY, metal 14K Yellow Gold, width 2-1.2 mm.",
     "Listing shows 80 reviews at 4.8/5.",
-    "Re-read live on 2026-10-23: $750 Setting Only; style BE1343-14KY; 14K Yellow Gold; width 2–1.2 mm; 80 reviews at 4.8/5 — unchanged from the 2026-10-22 capture."
-   ]
+    "Pass 4 (2026-10-23, session arena-463d0ea2): the same product page returned a mixed-currency render — the setting line read €835.00 (Setting Only) with a EUR/GBP currency selector, while the page's gift-card banner read USD. The USD figure could therefore not be re-confirmed in pass 4 and is NOT asserted as current (FL-08). No conversion was performed.",
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $750 Setting Only; style BE1343-14KY; 14K Yellow Gold; width 2–1.2 mm; 80 reviews at 4.8/5 — currency changed: the product page served EUR (€835.00) in this pass, so the USD figure is a dated earlier-same-day capture only (FL-08)."
+   ],
+   "availability": null
   },
   {
    "id": "BE-NADIA",
@@ -562,8 +583,9 @@
    ],
    "notes": [
     "Product page re-read this pass: $1,250 (Setting Only), 14K Yellow Gold, 1.8mm band; 143 reviews shown.",
-    "Re-read live on 2026-10-23: $1,250 Setting Only; 14K Yellow Gold; 1.8 mm; 143 reviews — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,250 Setting Only; 14K Yellow Gold; 1.8 mm; 143 reviews — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "BE-1343HH",
@@ -604,7 +626,8 @@
    "notes": [
     "Product page re-read this pass: $1,190 (Setting Only), style BE1D3939-14KY, 14K Yellow Gold, 2-1.3 mm, 14 accent diamonds 0.05 ct. tw.",
     "Re-read live on 2026-10-23: product page served EUR (€1,350.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 2–1.3 mm, 14 accent diamonds 0.05 ct. tw."
-   ]
+   ],
+   "availability": null
   },
   {
    "id": "BE-SECRET",
@@ -646,7 +669,8 @@
     "Karat, width and returns re-confirmed on the product page 2026-10-23 (14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw.).",
     "USD price NOT confirmable: the product page was served in EUR (€1,250.00) on 2026-10-23 as well. The $1,090 figure is a dated 2026-10-22 category-listing observation only — kept as text, never converted.",
     "Re-read live on 2026-10-23: product page served EUR (€1,250.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw."
-   ]
+   ],
+   "availability": null
   },
   {
    "id": "AL-5882",
@@ -687,8 +711,9 @@
    "notes": [
     "Product page re-read this pass: $1,085, style U5882, 14k yellow gold, gold weight 5.00 g approx., widths 2.9/2.3 mm.",
     "Page also shows a '$2,497 Everyone Else / 57% Savings' comparison — seller marketing, not used.",
-    "Re-read live on 2026-10-23: $1,085; 14k yellow gold; gold weight 5.00 g (approximate); style U5882 — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,085; 14k yellow gold; gold weight 5.00 g (approximate); style U5882 — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "AL-170",
@@ -729,8 +754,9 @@
    "notes": [
     "Product page re-read this pass: $933, style U170, 14k yellow gold, gold weight 4.80 g approx., widths 3.20/2.40 mm.",
     "Page also shows a '$1,373 Everyone Else / 32% Savings' comparison — not used.",
-    "Re-read live on 2026-10-23: $933; 14k yellow gold; gold weight 4.80 g (approximate); style U170 — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $933; 14k yellow gold; gold weight 4.80 g (approximate); style U170 — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "AL-4426",
@@ -771,8 +797,9 @@
    "notes": [
     "Product page re-read this pass: $585, style NG4426, 14k yellow gold, approximate metal weight 3.58 g.",
     "Page also shows a '$1,194 Everyone Else / 51% Savings' comparison — not used.",
-    "Re-read live on 2026-10-23: $585; 14k yellow gold; approximate metal weight 3.58 g; style NG4426 — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $585; 14k yellow gold; approximate metal weight 3.58 g; style NG4426 — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "AV-25893",
@@ -810,8 +837,9 @@
    "notes": [
     "Product page re-read this pass: $1,100.00, item code R25893, 14K Gold, 2.3 grams, 0.41 Ctw, 4.5 mm width, VS2 clarity, G/H color.",
     "Site-wide banner: 10% OFF with code 'FALL10' — recorded price is the listed price before that code.",
-    "Re-read live on 2026-10-23: $1,100.00; item code R25893; 14K gold; 2.3 grams; returns within 14 days — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): $1,100.00; item code R25893; 14K gold; 2.3 grams; returns within 14 days — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "JM-149700",
@@ -849,8 +877,9 @@
    "notes": [
     "Product page re-read this pass: Retail Price $6,041.00 / Special Price $3,020.00, style 149700, 0.71 ctw, 14KT gold, 2.3 grams, in stock (only 1 left).",
     "Includes free shipping, gift box and a professional appraisal certificate per the page.",
-    "Re-read live on 2026-10-23: Retail $6,041.00 / Special $3,020.00; 14KT gold; metal weight 2.3 grams; 30-day return — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): Retail $6,041.00 / Special $3,020.00; 14KT gold; metal weight 2.3 grams; 30-day return — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "SGJ-B02561",
@@ -888,8 +917,9 @@
    ],
    "notes": [
     "Product page re-read this pass: '14ky, 4.7g, #B02561', brand M Michael, no price shown, call for pricing.",
-    "Re-read live on 2026-10-23: 14ky, 4.7 g, #B02561; no price — 'Call (309) 452-1612 for current pricing and availability' — unchanged from the 2026-10-22 capture."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 14ky, 4.7 g, #B02561; no price — 'Call (309) 452-1612 for current pricing and availability' — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-4426190660",
@@ -918,20 +948,20 @@
    "returnsVerified": false,
    "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-26"
+    "FL-14"
    ],
    "notes": [
     "Listing re-read this pass: $1,202.08+ base (925 silver), 14K Yellow Gold $1,891.78, 2.50 ct radiant yellow lab-grown diamond (VVS2), 0.32 ctw side stones, band 1.80 mm, IGI certificate offered.",
     "Shop is Etsy 'Star Seller' with a 5/5 listing rating.",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 14K Yellow Gold option $1,891.78 (50% off from $2,404.16+); 10K $1,686.02; 18K $2,109.58; 925 silver base $1,202.08; band 1.80 mm; 'Low in stock, only 1 left'; Star Seller — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-4366425533",
@@ -941,10 +971,10 @@
    "category": "engagement-ring",
    "karat": 14,
    "metalColor": "Yellow / White / Rose Gold",
-   "price": 547.26,
-   "compareAt": 627.68,
+   "price": 546.09,
+   "compareAt": 626.34,
    "priceBasis": "from",
-   "priceNote": "14K options from $547.26 (0.50 CT) up to $2,410.13 by carat; 40% off; list starts at $376.61 for 925 silver",
+   "priceNote": "14K options from $546.09 (0.50 CT) up to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 925 silver starts at $375.80",
    "priceSourceUrl": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
    "grams": null,
    "gramsText": null,
@@ -960,20 +990,21 @@
    "returnsVerified": true,
    "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-26"
+    "FL-14"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
     "Ships from the UK; duties included for US orders per listing description.",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Superseded observation kept for the audit trail: the 2026-10-22 capture recorded $547.26 for the 14K option and an 'Original Price' of $627.68. Both were corrected on 2026-10-23 to $546.09 and $626.34 after reading the listing's own material selector.",
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 14K Yellow Gold option now $546.09 (2026-10-22 capture: $547.26), range to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 30-day returns, buyer pays return shipping; ships from the United Kingdom — price corrected: the 14K option read $546.09, not $547.26."
+   ],
+   "availability": null
   },
   {
    "id": "ET-1151446373",
@@ -1002,23 +1033,23 @@
    "returnsVerified": true,
    "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-02",
     "FL-16",
     "FL-17",
     "FL-14",
-    "FL-18",
-    "FL-26"
+    "FL-18"
    ],
    "notes": [
     "Listing re-read this pass: $783.00+ (10K), 14K $969.00, 0.30 ct diamond + 0.90 ct ruby, 3.70 g gold, 585 stated.",
     "Return window is 7 days — shortest of the sellers reviewed.",
     "Ships from Albany, NY; production partner Vera Atolye, Istanbul, Türkiye.",
     "Listing photos include a chat screenshot with an address and a request to share contact details — flagged (FL-02).",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 14K Yellow Gold option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00; 'Returns & exchanges accepted' — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-1566052947",
@@ -1047,19 +1078,19 @@
    "returnsVerified": false,
    "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-26"
+    "FL-14"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 2mm option $251.30 (30% off from $359.00); width and ring size change the price; 'Returns & exchanges accepted' — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-1433905613",
@@ -1088,20 +1119,20 @@
    "returnsVerified": false,
    "url": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-26"
+    "FL-14"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
     "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark is recorded.",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 14K Gold option $999.70 (35% off from $1,038.00); 10K $674.70; ships in 1-3 business days — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-944684759",
@@ -1130,19 +1161,19 @@
    "returnsVerified": true,
    "url": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-26"
+    "FL-14"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): 2mm option $195.75 (25% off from $261.00); width and ring size change the price; 30-day returns, buyer pays return shipping; ships from Great Neck, NY — unchanged from the 2026-10-22 capture."
+   ],
+   "availability": null
   },
   {
    "id": "ET-576343849",
@@ -1155,7 +1186,7 @@
    "price": 444.8,
    "compareAt": 556.0,
    "priceBasis": "complete",
-   "priceNote": "$444.80 at snippet time (original $556.00, 20% off); item shows 'Sold' — retained as a pricing case study",
+   "priceNote": "$444.80 was the 2026-10-22 listing price (original $556.00); the page now reads 'Sorry, this item is sold out' / 'Sold', so the price is history, not an offer (FL-29)",
    "priceSourceUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
    "grams": 7.0,
    "gramsText": "7 g",
@@ -1171,20 +1202,20 @@
    "returnsVerified": false,
    "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
    "sources": [],
-   "checkedOn": "2026-10-22",
-   "provenance": "prior",
+   "checkedOn": "2026-10-23",
+   "provenance": "live",
    "flags": [
     "FL-01",
     "FL-16",
     "FL-17",
-    "FL-18",
-    "FL-26"
+    "FL-18"
    ],
    "notes": [
     "Price and weight come from the listing title/search evidence captured earlier the same day; the item is sold, so this row is retained only as a price-vs-metal case study.",
-    "7 g of 14K contains about 4.08 g fine gold. At the verified spot, metal value is ~$529 — well above the $444.80 asking price. That is the fraud pattern this project screens for (FL-01).",
-    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
-   ]
+    "7 g of 14K contains about 4.08 g fine gold; the computed metal-value column shows what that gold was worth at the dated spot, which at 2026-10-23 prices exceeded the asking price — the classic below-metal red flag this project screens for (FL-01). No derived figure is typed into this note; it is computed in the table.",
+    "Re-read live on 2026-10-23 (pass 4, session arena-463d0ea2): listing shows 'Sorry, this item is sold out' and 'Sold' — the price is NOT currently purchasable and is kept only as the dated 2026-10-22 observation (FL-29); the page still shows '7g Solid Gold' and 'Marked 14K' — availability changed: the listing is sold out, so the price is no longer purchasable (FL-29)."
+   ],
+   "availability": "SOLD OUT — confirmed 2026-10-23"
   }
  ],
  "sellers": [
@@ -1626,7 +1657,7 @@
    "severity": "high",
    "status": "open",
    "title": "Price is BELOW the computed gold metal value",
-   "detail": "A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold. At the verified spot price the metal alone is worth about $529 — more than the asking price. For a legitimate seller that is not economic, and it is the classic fraud signal. The listing is sold, so it is kept only as a case study. Do not treat any below-metal price as a bargain.",
+   "detail": "A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold, which at the dated Kitco spot was worth more than the asking price — the row's computed metal-value column shows that figure and it exceeds the price, so this project does not retype it here where it would silently drift as spot moves. For a legitimate seller a below-metal price is not economic, and it is the classic fraud signal. The listing is now sold (FL-29), so it is kept only as a case study. Do not treat any below-metal price as a bargain.",
    "entryIds": [
     "ET-576343849"
    ]
@@ -1720,11 +1751,12 @@
   },
   {
    "id": "FL-08",
-   "severity": "low",
+   "severity": "medium",
    "status": "open",
-   "title": "Brilliant Earth: USD price not confirmable — product pages serve EUR (geo-currency)",
-   "detail": "On 2026-10-23 both the BE-1343HH and BE-SECRET product pages served EUR instead of USD (€1,350.00 and €1,250.00, Setting Only) because of geo-currency. Prior USD captures are kept only as dated observations in the price notes: $1,190 (BE-1343HH product page, 2026-10-22) and $1,090 (BE-SECRET via the yellow-gold category listing, 2026-10-22). The price cells are BLANK — no conversion, no guess — until a USD price is re-confirmable (for example from a US checkout).",
+   "title": "Brilliant Earth: USD prices not confirmable — product pages serve EUR (geo-currency)",
+   "detail": "On 2026-10-23 the BE-1343HH and BE-SECRET product pages served EUR instead of USD (€1,350.00 and €1,250.00, Setting Only) because of geo-currency, so both price cells are BLANK. In pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) the same thing happened to the BE-1343 Freesia page, which returned a mixed render: the setting line read €835.00 (Setting Only) with a EUR/GBP selector while the gift-card banner read USD; the Nadia page, fetched minutes later, served USD $1,250 normally. BE-1343 therefore keeps the $750 that was actually read on the page at 5:44 a.m. ET on 2026-10-23, labelled as a dated observation and NOT asserted as current. Prior USD captures kept as text only: $1,190 (BE-1343HH, 2026-10-22) and $1,090 (BE-SECRET, 2026-10-22). No currency conversion is performed anywhere in this project — a figure shown in EUR is never turned into dollars.",
    "entryIds": [
+    "BE-1343",
     "BE-1343HH",
     "BE-SECRET"
    ]
@@ -1869,7 +1901,7 @@
    "severity": "info",
    "status": "open",
    "title": "Gold spot moves all day — the snapshot is dated",
-   "detail": "Quotes across the 2026-10-22 and 2026-10-23 captures range from $4,022.50 to $4,086.90 per ounce (about 1.6%). This site uses one timestamped Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+   "detail": "Quotes across the 2026-10-22 and 2026-10-23 captures range from $3,996.10 to $4,086.90 per ounce (about 2.2%). Within 2026-10-23 alone the bid fell from $4,022.50 (5:44 a.m. ET) to $3,996.10 (4:10 p.m. ET), a $26.40 move. This site uses one timestamped Kitco bid for every calculation and shows the timestamp; every metal value moves when it is refreshed. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
    "entryIds": []
   },
   {
@@ -1938,15 +1970,15 @@
    "severity": "low",
    "status": "open",
    "title": "Kitco page shows several nearby numbers in one capture",
-   "detail": "The 2026-10-23 capture displayed a ticker bid of $4,022.50 and $129.33/g while the body text read $4,021.00/oz and the conversion table $129.28/g; the 2026-10-22 capture similarly showed $4,026.90/$129.47 in the ticker vs $4,027.50 in the body, $129.49/g in the table, and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
+   "detail": "Each capture of the Kitco page contains several nearby numbers. Pass 4 (2026-10-23 4:10 p.m. ET) read a ticker bid of $3,996.10 with $128.48/g, a body sentence of $3,995.50/oz 'down $27.80 today', and a unit table of $128.46/g; the earlier 2026-10-23 capture read $4,022.50/$129.33/g with a body of $4,021.00 and a table of $129.28/g; the 2026-10-22 capture read $4,026.90/$129.47 with a body of $4,027.50, a table of $129.49/g and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
    "entryIds": []
   },
   {
    "id": "FL-26",
    "severity": "medium",
-   "status": "open",
-   "title": "Seven Etsy listings could not be re-fetched on 2026-10-23",
-   "detail": "Every attempt to open the seven Etsy listing pages on 2026-10-23 returned HTTP 500. Their prices, weights and return windows are therefore the 2026-10-22 captures, are labelled 'captured' on every row, and are NOT asserted as current. Re-check each Etsy listing in a browser before relying on it.",
+   "status": "resolved",
+   "title": "Resolved in pass 4: all seven Etsy listings re-opened on 2026-10-23",
+   "detail": "Pass 3 (2026-10-23 morning) got HTTP 500 from every Etsy listing page, so those seven rows kept their 2026-10-22 capture date. Pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) opened all seven successfully and read the 14K option from each listing's own material selector: ET-4426190660 $1,891.78 (unchanged), ET-4366425533 $546.09 (corrected from $547.26), ET-1151446373 $969.00 (unchanged), ET-1566052947 $251.30 (unchanged), ET-1433905613 $999.70 (unchanged), ET-944684759 $195.75 (unchanged), ET-576343849 sold out (FL-29). All seven rows now carry checkedOn=2026-10-23. Etsy remains an intermittent source — if a listing will not load, treat its price as unverified rather than assuming it.",
    "entryIds": [
     "ET-4426190660",
     "ET-4366425533",
@@ -1954,6 +1986,16 @@
     "ET-1566052947",
     "ET-1433905613",
     "ET-944684759",
+    "ET-576343849"
+   ]
+  },
+  {
+   "id": "FL-29",
+   "severity": "medium",
+   "status": "open",
+   "title": "ET-576343849 (the 7 g case-study band) is sold out",
+   "detail": "Re-opened on 2026-10-23 in pass 4, the listing returns 'Sorry, this item is sold out' and 'Sold' instead of a buy box. The row keeps the $444.80 price only as a dated 2026-10-22 observation for the price-versus-metal case study, and the site marks it SOLD OUT. It cannot be bought, so it is not a candidate; the same shop may have comparable bands, but nothing about those is recorded here.",
+   "entryIds": [
     "ET-576343849"
    ]
   },

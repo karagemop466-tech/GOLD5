@@ -3,13 +3,13 @@
  "passed": 21,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-23 10:51 UTC",
+ "ranAt": "2026-10-23 20:20 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 28 flags, 11 references"
+   "detail": "25 entries, 13 sellers, 29 flags, 11 references"
   },
   {
    "id": "C2",
@@ -44,7 +44,7 @@
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (237 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (233 allowed values)"
   },
   {
    "id": "C9",
@@ -84,7 +84,7 @@
   {
    "id": "C16",
    "ok": true,
-   "detail": "provenance: 18 live 2026-10-23 + 7 prior rows, each prior row dated, noted and flagged"
+   "detail": "provenance: all 25 rows carry checkedOn=2026-10-23 and provenance=live"
   },
   {
    "id": "C17",

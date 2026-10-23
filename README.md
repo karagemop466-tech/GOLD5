@@ -18,10 +18,11 @@ estimated, averaged, copied from a search snippet, or carried forward as if it w
 Three mechanisms enforce it:
 
 1. **Provenance on every row.** Each entry carries `checkedOn` and `provenance`.
-   `live` = re-fetched and read during the latest pass (`2026-10-23`); `prior` = read on `2026-10-22`
-   and **not** re-read today. Every `prior` row is labelled *captured 2026-10-22* in the table, carries
-   an explicit "not re-fetched" note, and is itemised in flags **FL-26** (Etsy unreachable),
-   **FL-27** (Brilliant Earth returned navigation only) or **FL-28** (two Blue Nile pages not reopened).
+   `live` = re-fetched and read during a pass on the date shown; `prior` = read on `2026-10-22` and
+   **not** re-read since (a `prior` row must be labelled *captured 2026-10-22*, carry an explicit
+   "not re-fetched" note, and be itemised in FL-26/27/28 — the checker enforces all three). After pass 4
+   on 2026-10-23 **no row is `prior`**: all 25 carry a 2026-10-23 read, and the rows where the value
+   changed say so on the row and in the flags (FL-08, FL-26, FL-29).
 2. **Arithmetic is computed, never typed.** Fine gold = grams × karat fineness; metal value = fine gold
    × the timestamped Kitco bid. The checker re-derives every figure from the inputs.
 3. **After every review pass, run the harnesses.** The pass is not finished until they are green:
@@ -34,33 +35,40 @@ python3 tools/check_hallucinations.py  # archived /docs/ dataset
 cd verified && python3 scripts/verify.py   # session 84be683f suite (896 assertions)
 ```
 
-## Status — 2026-10-23 final integration pass (session `a255f011`)
+## Status — 2026-10-23 pass 4 (session `arena-463d0ea2`)
 
 | | |
 |---|---|
-| Listings | **25** rows from **13** sellers (21 engagement-ring rows, 3 bands, 1 sold case study); **24** priced, **8** with a published gram weight |
-| Re-read live today | **12** rows — 6 Blue Nile settings, 3 Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers |
-| Carried from 2026-10-22 | **13** rows — 4 Brilliant Earth, 7 Etsy, 2 Blue Nile — labelled, noted and flagged |
-| Spot used | Kitco bid **$4,022.50/oz = $129.33/g** at **2026-10-23 5:44 a.m. ET** (page-body second print $4,021.00 / $129.28 — FL-25) |
-| Flags | **28** (27 open, 1 resolved — FL-24). New today: FL-26, FL-27, FL-28 |
+| Listings | **25** rows from **13** sellers (21 engagement-ring rows, 3 bands, 1 sold case study); **22** priced, **8** with a published gram weight |
+| Re-read live | **25 of 25** rows carry a **2026-10-23** read from the seller's own page — 23 of them in pass 4, the other 2 earlier the same day |
+| Carried over | **0** rows still depend on a 2026-10-22 figure; none were silently re-dated |
+| Spot used | Kitco bid **$3,996.10/oz = $128.48/g** at **2026-10-23 4:10 p.m. ET** (page body prints $3,995.50 / $128.46 — FL-25). The morning quote ($4,022.50 / $129.33) is kept as dated history |
+| Flags | **29** (24 open, 5 resolved — FL-07, FL-24, FL-26, FL-27, FL-28). New: **FL-29** (one listing sold out); FL-26 resolved |
 | Official references | **11** (FTC consumer guide, 16 CFR Part 23, 15 U.S.C. § 295 and § 297, NIST, LBMA, Etsy Purchase Protection, JVC, ReportFraud, FTC credit cards) |
-| Harness | `scripts/verify.py` **PASS — 21/21, 0 failed, 8/8 negative self-tests caught** |
+| Harness | `scripts/verify.py` **PASS — 21/21, 0 failed, 8/8 negative self-tests**; plus the other 8 harnesses, all PASS |
 
-**What changed today.** Every Blue Nile price re-read today was **unchanged** ($1,000 / $870 / $1,800 /
-$1,255 / $1,500 / $2,320); Allurez ($1,085 / $933 / $585 with 5.00 g / 4.80 g / 3.58 g), Avianne
-($1,100 / 2.3 g), The Jewelry Master ($3,020 special / 2.3 g) and Solid Gold Jewelers (4.7 g, no price)
-were also unchanged. The spot moved down $4.40/oz, so **every metal value on the site was recomputed**.
-Etsy returned HTTP 500 on all seven listings and Brilliant Earth served navigation only, so those rows
-were **not** refreshed and are flagged rather than silently re-dated. A previous README claim that the
-harness ran "6 negative tests" was false — `scripts/verify.py` had none. Eight real negative self-tests
-were added and are documented on the Verification page.
+**What changed in pass 4.**
+
+1. **The spot was re-read in the afternoon and fell $26.40/oz.** Every fine-gold, metal-value and
+   price-to-metal figure on the site was recomputed by the build script at $128.48/g. Both the morning
+   and afternoon quotes are published with their timestamps.
+2. **All seven Etsy listings opened** (pass 3 had been refused with HTTP 500). One price was **wrong and
+   is corrected**: ET-4366425533 is **$546.09**, not $547.26. The old figure stays in the audit trail.
+3. **One listing is sold out.** ET-576343849 (the 7 g case-study band) now shows "Sorry, this item is
+   sold out"; it carries a **SOLD OUT** badge and FL-29, and its $444.80 is labelled a dated observation.
+4. **Brilliant Earth served EUR for the Freesia** (€835.00) on a mixed-currency page minutes after the
+   Nadia page served USD normally, so BE-1343 now carries FL-08 and its $750 is labelled as the 5:44 a.m.
+   reading. **No currency is ever converted in this project.**
+5. **A stale derived number was removed from prose.** A note used to hard-code "~$529" of metal value
+   computed at an older spot; the note now points at the computed column. The hallucination sweep
+   re-derived every hand-written dollar figure in the dataset the same way — one was wrong, and it is fixed.
 
 ## The thesis holds
 
 **A 14K or 18K stamp does not prove purity, and in this dataset no listing is documented well enough to
 buy without asking the seller for more.** 0 of 25 rows state a maker's mark; 17 publish no gram weight;
-16 never say "solid gold"; 11 have no verified return policy; no listing offers an XRF test. The dashboard leads with that finding rather
-than with a "best buy".
+16 never say "solid gold"; 7 have no verified return policy; no listing offers an XRF test. The dashboard
+leads with that finding rather than with a "best buy".
 
 ## What the site contains
 
@@ -69,13 +77,13 @@ than with a "best buy".
 | `index.html` | Dashboard: NO HALLUCINATIONS panel, spot with timestamp, bottom-line verdict, stat cards, price/metal findings, category cards and the best-documented rows |
 | `site/categories.html` | **Category index** (new): seven views over the same 25 rows with counts, price ranges and links |
 | `site/category-*.html` | **Category subpages** (new): solitaires, halo & pavé, 18K, complete rings, settings only, bands, case study — same table layout and source links, no value changed |
-| `site/listings.html` | All 25 rows: price, karat, grams, fine gold, metal value, price ÷ metal, solid-gold wording, hallmark + maker's mark, return policy, check date + provenance badge, flags |
+| `site/listings.html` | All 25 rows: price, karat, grams, fine gold, metal value, price ÷ metal, solid-gold wording, hallmark + maker's mark, return policy, check date + provenance badge, flags — and a SOLD OUT badge on the one listing that is no longer buyable |
 | `site/gold-price.html` | Timestamped 2026-10-23 quote, dated prior-day quotes, per-purity values (10K–24K), raw-gold table by weight |
 | `site/calculator.html` | Live gold calculator: grams × karat × spot → fine gold, metal value, price ÷ metal, verdict |
 | `site/checklist.html` | The 12-point buying checklist, each point tied to an official source and to what the dataset shows |
 | `site/sellers.html` | 13 sellers: contact, returns, warranty, payment, reputation, flags |
 | `site/analysis.html` | Median markups, the below-metal case, documentation ranking, completeness scorecard, seller concentration |
-| `site/flagged.html` | All 28 flags (27 open, 1 resolved), each with detail, affected rows and links |
+| `site/flagged.html` | All 29 flags (24 open, 5 resolved), each with detail, affected rows and links |
 | `site/sources.html` | Every source used, with what it was used for and the check date |
 | `site/verification.html` | Method, today's fetch log, the earlier captures, corrections made, checker result, unverified list |
 | `site/master-audit.html` | Session b1f2fe3b's cross-session audit + XRF/stone-deduction calculator (dated 2026-10-22, preserved) |

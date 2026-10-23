@@ -263,7 +263,7 @@ def index_page():
       <a class="btn gold" href="site/calculator.html">Value a ring by weight</a>
       <a class="btn ghost" href="site/checklist.html">12-point checklist</a>
     </div>
-    <p class="tiny muted" style="margin-top:14px">{sum(1 for e in ENTRIES if e["provenance"] == "live")} of {len(ENTRIES)} rows were re-read from the seller’s own pages on {esc(D["meta"]["asOf"])}; the other {sum(1 for e in ENTRIES if e["provenance"] != "live")} keep their 2026-10-22 capture date, say so on the row, and are itemised on Flagged for Review. No value anywhere on this site is inferred.</p>
+    <p class="tiny muted" style="margin-top:14px">{sum(1 for e in ENTRIES if e["provenance"] == "live")} of {len(ENTRIES)} rows were re-read from the seller’s own pages on {esc(D["meta"]["asOf"])}{", and the other " + str(sum(1 for e in ENTRIES if e["provenance"] != "live")) + " keep their 2026-10-22 capture date and say so on the row" if sum(1 for e in ENTRIES if e["provenance"] != "live") else ""}; values that could not be confirmed are blank and itemised on Flagged for Review. No value anywhere on this site is inferred.</p>
   </div>
   <aside class="hero-side">
     <div>
@@ -276,7 +276,7 @@ def index_page():
 </section>
 
 <div class="note blue"><b class="title">Parallel review (session 0c967748) — and why its current fields are blank</b>
-That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> {D["meta"]["coverage"]["live"]} rows and the gold quote were re-read from the sellers and Kitco on 2026-10-23 and are dated; the other {D["meta"]["coverage"]["prior"]} rows are labelled <i>captured 2026-10-22</i> and itemised in FL-26 (the first draft's FL-27/FL-28 gaps were closed the same day by the second fetch — see Flagged for Review). Both reviews apply the same rule — an unconfirmed value stays blank.</div>
+That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> {D["meta"]["coverage"]["live"]} rows and the gold quote were re-read from the sellers and Kitco on 2026-10-23 and are dated;{" all of them, so no row depends on the 2026-10-22 draft" if not D["meta"]["coverage"]["prior"] else " the other " + str(D["meta"]["coverage"]["prior"]) + " rows are labelled <i>captured 2026-10-22</i> and itemised in FL-26"}. Both reviews apply the same rule — an unconfirmed value stays blank.</div>
 
 <section class="rule-panel">
   <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
@@ -386,6 +386,7 @@ def entry_row(e, i):
     return f"""<tr id="{esc(e['id'])}" data-seller="{esc(e['sellerId'])}" data-cat="{esc(e['category'])}" data-karat="{e['karat']}" data-weight="{'1' if e['grams'] is not None else '0'}" data-price="{e['price'] if e['price'] is not None else ''}" data-ratio="{r if r is not None else ''}" data-fine="{f'{fine_g(e):.6f}' if e['grams'] is not None else ''}" data-mv="{f'{metal_value(e):.6f}' if e['grams'] is not None else ''}" data-name="{esc(e['name'].lower())}">
 <td class="num">{i}</td>
 <td><div class="ring-name"><a href="{esc(e['url'])}" target="_blank" rel="noopener">{esc(e['short'])}</a></div>
+  {('<div><span class="badge bad">' + esc(e['availability']) + '</span></div>') if e.get('availability') else ''}
   <div class="subline">{esc(s['name'])} · {esc(e['metalColor'])}</div>
   <div class="src">{source_link(e['url'], 'official listing ↗')}</div></td>
 <td><b>{e['karat']}K</b><div class="src">{esc(e['metalColor'])}</div></td>
@@ -479,7 +480,7 @@ def gold_price_page():
     <div style="font-size:44px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px">{money(SPOT['usdPerOz'])}<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
     <div class="muted">{money(SPOT['usdPerGram'])} per gram · {esc(SPOT['asOf'])} · Kitco spot bid</div>
     <blockquote>{esc(SPOT['quote'])}<cite>Kitco Live Gold Price — <a href="{esc(SPOT['url'])}" target="_blank" rel="noopener">kitco.com/charts/gold</a>, fetched {esc(date_str())}</cite></blockquote>
-    <p class="small muted">The same 2026-10-23 capture also showed $4,021.00/oz in the page's own price table and $129.28/g in its conversion table. That is normal intraday updating — the ticker bid is the figure recorded here, and the timestamp is part of the value.</p>
+    <p class="small muted">The same 2026-10-23 4:10 p.m. ET capture also showed $3,995.50/oz in the page's own price table and $128.46/g in its conversion table. That is normal intraday updating — the ticker bid is the figure recorded here, and the timestamp is part of the value.</p>
   </div>
   <div class="panel"><div class="eyebrow">Why a timestamp matters</div>
     <p class="small">The {len(quotes)} timestamped quotes on this page (2026-10-22 and 2026-10-23) range from {money(min(q["usdPerOz"] for q in quotes))} to {money(max(q["usdPerOz"] for q in quotes))} per ounce — a spread of {gq_pct:.1f}%. Using the highest instead of the current bid would move every metal value by about that much.</p>
@@ -945,32 +946,46 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
     else:
         rep_html = '<div class="note"><b class="title">Checker</b>Run <code>python3 scripts/verify.py</code> to produce the latest result. The command validates every row, every dollar figure and every internal link.</div>'
     log = [
-        ("live", "2026-10-23", "https://www.kitco.com/charts/gold", "Spot bid 4,022.50; per gram 129.33; ask 4,024.50; purity table 24K 4,022.50 / 22K 3,687.43 / 18K 3,016.88 / 14K 2,346.32 / 10K 1,676.18; 5:44 a.m. ET"),
+        ("live", "2026-10-23", "https://www.kitco.com/charts/gold", "Pass 4: Spot bid 3,996.10; per gram 128.48; ask 3,998.10; purity table 24K 3,996.10 / 22K 3,663.22 / 18K 2,997.08 / 14K 2,330.93 / 10K 1,665.17; 4:10 p.m. ET; day range 3,975.10-4,040.20; body text 3,995.50"),
         ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639", "BN-195639: $1,000 Setting Price; stock 501130y14; 14K yellow; 1.80 mm; free overnight shipping / free returns"),
         ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257", "BN-203257: $870 Setting Price; stock 500000y14; 14K yellow; 1.90 mm"),
         ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871", "BN-195871: $1,800 Setting Price; stock 501410y14; 2.50 mm; 16 round; 1/4 ct. tw.; G-H / VS2-SI1"),
-        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings", "Gallery: BN-192506 $1,255; BN-195326 $1,500; BN-311132 $2,320 (Setting Price); 1,451 results"),
-        ("live", "2026-10-23", "https://www.bluenile.com/policies/returns", "30-day money-back; resized/engraved/custom/clearance excluded; two complimentary returns per year; RMA; $150 missing grading report; free resize +/- two sizes within 6 months"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145 Setting Price; stock 502120y14; 14K yellow; 2.40 mm"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings", "Gallery re-read in pass 4: BN-192506 $1,255; BN-195326 $1,500; BN-311132 $2,320; BN-203738 $2,210 (Setting Price); 1,451 results"),
+        ("live", "2026-10-23", "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "BE-NADIA: $1,250 (Setting Only) in USD; 14K yellow; 1.8 mm; 143 reviews; Free Shipping &amp; Returns / Free 1-Year Resizing stated"),
+        ("live", "2026-10-23", "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: page served EUR 835.00 (Setting Only) with a EUR/GBP selector on a mixed-currency render, so the USD price was NOT re-confirmed (FL-08); style BE1343-14KY; 2-1.2 mm; 80 reviews; ships by Nov 10"),
         ("live", "2026-10-23", "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-5882: $1,085; style U5882; 14k yellow; 5.00 g approximate; 2.9/2.3 mm"),
-        ("live", "2026-10-23", "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-170: $933; style U170; 4.80 g approximate; 3.20/2.40 mm"),
-        ("live", "2026-10-23", "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "AL-4426: $585; style NG4426; 3.58 g approximate"),
-        ("live", "2026-10-23", "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "AV-25893: $1,100.00; item R25893; 14K gold; 2.3 grams; 0.41 ctw; returns within 14 days"),
-        ("live", "2026-10-23", "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "JM-149700: Retail $6,041.00 / Special $3,020.00; 0.71 ctw; 14KT; 2.3 grams; 30-day Money Back Guarantee"),
-        ("live", "2026-10-23", "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "SGJ-B02561: '14ky, 4.7g, #B02561'; no price; Call (309) 452-1612 for current pricing"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-170: $933; style U170; 14k yellow; 4.80 g approximate; 3.20/2.40 mm"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "AL-4426: $585; style NG4426; 14k yellow; 3.58 g approximate"),
+        ("live", "2026-10-23", "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "AV-25893: $1,100.00; item R25893; 14K gold; 2.3 grams; 0.41 ctw; returns of unworn, unaltered items within 14 days"),
+        ("live", "2026-10-23", "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "JM-149700: Retail $6,041.00 / Special $3,020.00; 0.71 ctw; 14KT; 2.3 grams; in stock, only 1 left; 30-day Money Back Guarantee"),
+        ("live", "2026-10-23", "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "SGJ-B02561: '14ky, 4.7g, #B02561'; brand M Michael; no price; Call (309) 452-1612 for current pricing and availability"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "ET-4426190660: 14K yellow option $1,891.78 (50% off from $2,404.16); 10K $1,686.02; 18K $2,109.58; band 1.80 mm; only 1 left"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown", "ET-4366425533: 14K yellow option $546.09 (2026-10-22 capture said $547.26) - CORRECTED; range to $2,404.96 by carat; 40% off; 30-day returns; ships from the UK"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K yellow option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", "ET-1566052947: 2mm option $251.30 (30% off from $359.00); price varies by width and ring size"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished", "ET-1433905613: 14K gold option $999.70 (35% off from $1,038.00); 10K $674.70; ships in 1-3 business days"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished", "ET-944684759: 2mm option $195.75 (25% off from $261.00); 30-day returns, buyer pays return shipping; 51 reviews"),
+        ("live", "2026-10-23", "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "ET-576343849: 'Sorry, this item is sold out' / 'Sold' - price no longer purchasable (FL-29); title still reads 7g Solid Gold / Marked 14K"),
+    ]
+    pass3_log = [
+        ("live", "2026-10-23", "https://www.kitco.com/charts/gold", "Pass 3 (5:44 a.m. ET): spot bid 4,022.50; per gram 129.33; purity table 24K 4,022.50 / 22K 3,687.43 / 18K 3,016.88 / 14K 2,346.32 / 10K 1,676.18"),
+        ("live", "2026-10-23", "https://www.bluenile.com/policies/returns", "30-day money-back; resized/engraved/custom/clearance excluded; two complimentary returns per year; RMA; $150 missing grading report; free resize +/- two sizes within 6 months"),
+        ("live", "2026-10-23", "https://www.brilliantearth.com/30-Day-Returns/", "30-day return window, unworn; engraved ($40 fee), personalized, custom, altered, resized or modified items and repairs excluded (pass 3; URL re-opened in pass 4, policy block not re-extracted)"),
         ("live", "2026-10-23", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry", "Karat + trademark rule ('if you don't see a trademark along with the karat mark, don't buy it'); solid gold means not hollow; plated/filled/vermeil definitions"),
         ("live", "2026-10-23", "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23", "16 CFR Part 23, eCFR 'up to date as of 10/21/2026': §23.3 gold content, §23.4 vermeil, §23.10 quality marks, §23.18 weight representations"),
         ("live", "2026-10-23", "https://www.govinfo.gov/link/uscode/15/295", "15 U.S.C. § 295: 3/1000 fineness tolerance on the tested part; 7/1000 for the whole article including solder"),
-        ("failed", "2026-10-23", "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "HTTP 500 on every Etsy listing attempt today — no Etsy value was re-read; rows keep 2026-10-22 and are flagged FL-26")
+        ("failed", "2026-10-23", "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "Pass 3: HTTP 500 on every Etsy listing attempt - no Etsy value was re-read in that pass, so those rows kept 2026-10-22 and FL-26 was opened. Pass 4 opened all seven (above)."),
     ]
     prior_log = [
-        ("2026-10-22", "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: $750 setting only; 2 mm"),
+        ("2026-10-22", "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: $750 setting only; 2 mm (the same $750 was read again on 2026-10-23 at 5:44 a.m. ET)"),
         ("2026-10-22", "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "BE-NADIA: $1,250 setting only; 1.8 mm; 143 reviews"),
         ("2026-10-22", "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/", "BE-1343HH: $1,190 setting only; 14 accent diamonds 0.05 ct. tw."),
-        ("2026-10-22", "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "BE-SECRET: page served EUR EUR 1,250.00 - USD not confirmed (FL-08)"),
-        ("2026-10-22", "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K $969; 3.70 g; 7-day returns"),
-        ("2026-10-22", "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "ET-576343849: sold at capture; $444.80 for 7 g 14K (case study, FL-01)"),
-        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738", "BN-203738: $2,210 - not re-opened 2026-10-23 (FL-28)"),
-        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145; stock 502120y14; 2.40 mm - not re-opened 2026-10-23 (FL-28)"),
+        ("2026-10-22", "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "BE-SECRET: page served EUR 1,250.00 - USD never confirmed (FL-08)"),
+        ("2026-10-22", "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K $969; 3.70 g stated in the description"),
+        ("2026-10-22", "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "ET-576343849: $444.80 for 7 g of 14K (case study, FL-01); sold out when re-read on 2026-10-23 (FL-29)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738", "BN-203738: $2,210 (re-read on 2026-10-23 and unchanged)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145; stock 502120y14; 2.40 mm (re-read on 2026-10-23 and unchanged)"),
         ("2026-10-22", "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
         ("2026-10-22", "https://www.law.cornell.edu/uscode/text/15/297", "15 U.S.C. § 297(b): trademark must be applied beside the quality mark"),
         ("2026-10-22", "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges", "Federal right to dispute billing errors; credit-card protection"),
@@ -985,16 +1000,17 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
                 f"<a href=\"{esc(u)}\" target=\"_blank\" rel=\"noopener\">{esc(u[:88])}{'…' if len(u)>88 else ''} ↗</a></td>"
                 f"<td class=\"small\">{esc(what)}</td></tr>")
     log_rows = "".join(_logrow(u, what, d, st) for st, d, u, what in log)
+    pass3_rows = "".join(_logrow(u, what, d, st) for st, d, u, what in pass3_log)
     prior_rows = "".join(_logrow(u, what, d) for d, u, what in prior_log)
     corrections = [
-        ("Blue Nile × six settings re-read", "Six Blue Nile rows were re-read live on 2026-10-23 (three product pages, three gallery prices). <b>Every price was unchanged</b> from 2026-10-22 — $1,000 / $870 / $1,800 / $1,255 / $1,500 / $2,320."),
-        ("Allurez × three re-read", "AL-5882 $1,085 / 5.00 g, AL-170 $933 / 4.80 g and AL-4426 $585 / 3.58 g are unchanged. The old /product/ URL form now returns 404; the dataset already used the working /products/ URLs."),
-        ("Avianne, Jewelry Master, Solid Gold Jewelers", "All three pages re-read unchanged: $1,100 / 2.3 g (R25893), $3,020 special / 2.3 g, and 4.7 g with no published price (call for pricing)."),
-        ("Spot moved down", "Kitco bid moved from <b>$4,026.90/oz</b> (2026-10-22 7:26 p.m. ET, $129.47/g) to <b>$4,022.50/oz</b> (2026-10-23 5:44 a.m. ET, $129.33/g). Every metal value on the site is recomputed at the new quote; yesterday's quote is retained as dated history (FL-25)."),
-        ("Etsy unreachable", "All seven Etsy listing URLs returned <b>HTTP 500</b> on 2026-10-23. Their values keep the 2026-10-22 date, are labelled captured, and FL-26 was opened. Nothing was refreshed from memory or inference."),
-        ("Brilliant Earth pages returned navigation only", "The four Brilliant Earth product pages did not render their product block for the collector today. No value was read; FL-27 was opened and the rows keep their 2026-10-22 date."),
-        ("Two Blue Nile pages not reopened", "BN-203738 ($2,210) and BN-203348 ($1,145) were not individually re-opened today; their six siblings were and were unchanged, but that is not evidence for these two. FL-28 opened; rows keep the 2026-10-22 date."),
-        ("Earlier 'six negative tests' claim was wrong", "The previous README said the harness caught 6 injected errors, but <code>scripts/verify.py</code> contained no negative tests at all. Eight real negative self-tests (N1–N8) were added in this pass and all eight are caught. The old claim is recorded here rather than quietly deleted."),
+        ("Spot refreshed to the afternoon quote", "Kitco bid moved from <b>$4,022.50/oz</b> ($129.33/g, 2026-10-23 5:44 a.m. ET) to <b>$3,996.10/oz</b> ($128.48/g, 2026-10-23 4:10 p.m. ET) — a $26.40 fall. Every fine-gold, metal-value and price-to-metal figure on the site was recomputed at the new quote by the build script. Both quotes are kept, timestamped, on the gold-price page (FL-19, FL-25)."),
+        ("All seven Etsy listings opened at last", "Pass 3 got HTTP 500 from all seven. Pass 4 read each listing's own material selector and got the 14K option: $1,891.78 / $546.09 / $969.00 / $251.30 / $999.70 / $195.75, plus one sold-out listing. FL-26 is now resolved."),
+        ("One Etsy price was wrong and is corrected", "ET-4366425533 was recorded as $547.26 on 2026-10-22; the listing now shows <b>$546.09</b> for the 14K option, and its 'Original Price' is $626.34, not $627.68. The row is corrected; the old figure stays visible in FL-26's history rather than being quietly replaced."),
+        ("One listing is sold out", "ET-576343849 (the 7 g case-study band) returns 'Sorry, this item is sold out' / 'Sold'. It now carries availability = SOLD OUT and FL-29; its $444.80 is labelled as a dated 2026-10-22 observation, not an offer."),
+        ("Brilliant Earth served EUR for the Freesia in pass 4", "The BE-1343 page returned a mixed-currency render (setting line in EUR 835.00, gift-card banner in USD) minutes after the Nadia page served USD normally. The $750 read at 5:44 a.m. ET is kept as a dated observation and the row now carries FL-08. No conversion was performed."),
+        ("A stale computed figure was removed from a note", "The 7 g case-study note, and flag FL-01, used to hard-code a metal-value figure computed at an older spot. That is exactly how a stale derived number creeps into prose: it was correct when typed and wrong the moment the spot moved. Both now point at the computed metal-value column instead, so the site re-derives it every build. The hallucination sweep re-derived every other hand-written dollar figure in the dataset the same way."),
+        ("Blue Nile, Allurez, Avianne, Jewelry Master, Solid Gold Jewelers", "Re-read in pass 4 and <b>unchanged</b>: $1,255 / $1,000 / $870 / $1,500 / $1,800 / $2,320 / $2,210 / $1,145 (all Setting Price); $1,085 / 5.00 g, $933 / 4.80 g, $585 / 3.58 g; $1,100 / 2.3 g (R25893); $3,020 special / 2.3 g; 4.7 g with no published price."),
+        ("Earlier 'six negative tests' claim was wrong", "An earlier README said the harness caught 6 injected errors, but <code>scripts/verify.py</code> contained no negative tests at all. Eight real negative self-tests (N1–N8) were added in a previous pass and all eight are caught; the N2 test was hardened in this pass so it no longer depends on a stale row existing."),
     ]
     corr_rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td class=\"small\">{b}</td></tr>" for a, b in corrections)
     body = f"""
@@ -1013,12 +1029,16 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
   </ul>
 </div>
 
-<h2>This pass — 2026-10-23 live fetches</h2>
-<p class="small muted">These pages were opened and read today. {len(log)-1} succeeded; one (Etsy) failed with HTTP 500 and is listed as failed rather than silently omitted. Each row records exactly what that page confirmed.</p>
+<h2>Pass 4 — 2026-10-23, late afternoon (this pass)</h2>
+<p class="small muted">Every page below was opened and read in this pass; each row records what that page actually showed. {len(log)} URLs were read. No value is copied from an earlier pass, a search snippet or another site.</p>
 <div class="table-wrap tall"><table><thead><tr><th>URL</th><th>What it confirmed</th></tr></thead><tbody>{log_rows}</tbody></table></div>
 
-<h2>Earlier captures still in the dataset</h2>
-<p class="small muted">These values were read on <b>2026-10-22</b> and were <b>not</b> re-read today. They are labelled “captured 2026-10-22” on every affected row and itemised in flags FL-26 (Etsy unreachable), FL-27 (Brilliant Earth navigation only) and FL-28 (two Blue Nile pages not reopened). They are not asserted as current.</p>
+<h2>Pass 3 — earlier on 2026-10-23</h2>
+<p class="small muted">Kept for the audit trail: the policy pages and statutes verified in the morning pass, plus the one source that failed that morning (Etsy, HTTP 500) and was reopened in pass 4.</p>
+<div class="table-wrap tall"><table><thead><tr><th>URL</th><th>What it confirmed</th></tr></thead><tbody>{pass3_rows}</tbody></table></div>
+
+<h2>2026-10-22 archive captures</h2>
+<p class="small muted">The first capture of this dataset. All 25 rows have since been re-read on <b>2026-10-23</b>, so no row still depends on these figures; they are listed because a few are the only record of what a page said before it changed (the Brilliant Earth EUR render, for instance). Where a 2026-10-22 figure differs from the current one, the difference is stated on the row and in FL-26/FL-29.</p>
 <div class="table-wrap tall"><table><thead><tr><th>URL</th><th>What it confirmed on 2026-10-22</th></tr></thead><tbody>{prior_rows}</tbody></table></div>
 
 <h2>Corrections made this pass</h2>

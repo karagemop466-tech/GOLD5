@@ -38,6 +38,7 @@ def e(**kw):
         widthMm=None, solidStated=False, solidQuote=None, hallmarkStated=False, hallmarkQuote=None,
         makerMarkStated=False, returns=None, returnUrl=None, returnsVerified=False,
         url=None, sources=[], checkedOn="2026-10-23", provenance="live", flags=[], notes=[],
+        availability=None,
     )
     base.update(kw)
     if base["priceSourceUrl"] is None:
@@ -112,12 +113,14 @@ ENTRIES = [
     # ---------------- Brilliant Earth settings ----------------
     e(id="BE-1343", name="Freesia 2mm Solitaire Ring, 14K Yellow Gold (BE1343-14KY)",
       short="Freesia 2mm Solitaire", sellerId="brilliantearth", karat=14, metalColor="Yellow Gold",
-      price=750, priceBasis="setting", priceNote="$750 setting only (center diamond extra)",
+      price=750, priceBasis="setting",
+      priceNote="$750 setting only (center diamond extra) — read on the product page 2026-10-23 5:44 a.m. ET; the same page served EUR €835.00 (Setting Only) later that day, so the USD figure is a dated observation, not a converted or re-confirmed price (FL-08)",
       url="https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
       widthMm=2.0, returns=BE_RETURNS, returnUrl="https://www.brilliantearth.com/30-Day-Returns/", returnsVerified=True,
       notes=["Product page re-read this pass: $750 (Setting Only), style BE1343-14KY, metal 14K Yellow Gold, width 2-1.2 mm.",
-             "Listing shows 80 reviews at 4.8/5."],
-      flags=["FL-03", "FL-15", "FL-14", "FL-21"]),
+             "Listing shows 80 reviews at 4.8/5.",
+             "Pass 4 (2026-10-23, session arena-463d0ea2): the same product page returned a mixed-currency render — the setting line read €835.00 (Setting Only) with a EUR/GBP currency selector, while the page's gift-card banner read USD. The USD figure could therefore not be re-confirmed in pass 4 and is NOT asserted as current (FL-08). No conversion was performed."],
+      flags=["FL-03", "FL-15", "FL-14", "FL-21", "FL-08"]),
     e(id="BE-NADIA", name="Nadia Diamond Ring, 14K Yellow Gold (BE1D6013)",
       short="Nadia Diamond Ring", sellerId="brilliantearth", karat=14, metalColor="Yellow Gold",
       price=1250, priceBasis="setting", priceNote="$1,250 setting only (center diamond extra)",
@@ -222,15 +225,16 @@ ENTRIES = [
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-4366425533", name="Emerald Cut E/VVS2 IGI Lab-Grown Diamond Hidden Halo Ring, 14K Gold",
       short="Emerald Cut Hidden Halo", sellerId="etsy-foreverforlove", karat=14, metalColor="Yellow / White / Rose Gold",
-      price=547.26, compareAt=627.68, priceBasis="from",
-      priceNote="14K options from $547.26 (0.50 CT) up to $2,410.13 by carat; 40% off; list starts at $376.61 for 925 silver",
+      price=546.09, compareAt=626.34, priceBasis="from",
+      priceNote="14K options from $546.09 (0.50 CT) up to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 925 silver starts at $375.80",
       url="https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
       solidStated=True, solidQuote="Description: 'Made with genuine 14k real gold – never plated or filled'",
       hallmarkStated=True, hallmarkQuote="Description: 'Metal stamp: Yes' (no maker's mark stated, no photo)",
       returns="'Returns & exchanges accepted within 30 days' per the prior capture of the listing tab; description states a 30-day full refund/exchange and a lifetime warranty on manufacturer defects.",
       returnUrl="https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown", returnsVerified=True,
       checkedOn="2026-10-22", provenance="prior", notes=["Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-             "Ships from the UK; duties included for US orders per listing description."],
+             "Ships from the UK; duties included for US orders per listing description.",
+             "Superseded observation kept for the audit trail: the 2026-10-22 capture recorded $547.26 for the 14K option and an 'Original Price' of $627.68. Both were corrected on 2026-10-23 to $546.09 and $626.34 after reading the listing's own material selector."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-1151446373", name="14K Solid Gold Ruby + 0.30 CT Diamond Halo Ring",
       checkedOn="2026-10-22", provenance="prior",
@@ -280,15 +284,15 @@ ENTRIES = [
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-576343849", name="14K Solid White Gold 7 g Band, Size 11 — case study (sold at check)",
       short="7 g Band — case study", sellerId="etsy-butterflywingvintage", category="case-study", karat=14, metalColor="White Gold",
-      price=444.8, compareAt=556.0, priceBasis="complete",
-      priceNote="$444.80 at snippet time (original $556.00, 20% off); item shows 'Sold' — retained as a pricing case study",
+      price=444.8, compareAt=556.0, priceBasis="complete", availability="SOLD OUT — confirmed 2026-10-23",
+      priceNote="$444.80 was the 2026-10-22 listing price (original $556.00); the page now reads 'Sorry, this item is sold out' / 'Sold', so the price is history, not an offer (FL-29)",
       url="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
       grams=7.0, gramsText="7 g", gramsNote="Listing title: '7g Solid Gold'",
       solidStated=True, solidQuote="Title: 'Fine 14K Solid White Gold Ring - 7g Solid Gold'",
       hallmarkStated=True, hallmarkQuote="Title: 'Marked 14K' (karat stamp claim only; no maker's mark stated)",
       returns="n/a — item sold at check.", returnUrl="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
       checkedOn="2026-10-22", provenance="prior", notes=["Price and weight come from the listing title/search evidence captured earlier the same day; the item is sold, so this row is retained only as a price-vs-metal case study.",
-             "7 g of 14K contains about 4.08 g fine gold. At the verified spot, metal value is ~$529 — well above the $444.80 asking price. That is the fraud pattern this project screens for (FL-01)."],
+             "7 g of 14K contains about 4.08 g fine gold; the computed metal-value column shows what that gold was worth at the dated spot, which at 2026-10-23 prices exceeded the asking price — the classic below-metal red flag this project screens for (FL-01). No derived figure is typed into this note; it is computed in the table."],
       flags=["FL-01", "FL-16", "FL-17", "FL-18"]),
 ]
 
@@ -436,7 +440,7 @@ SELLERS = [
 # ---- flags ---------------------------------------------------------------
 FLAGS = [
     dict(id="FL-01", severity="high", status="open", title="Price is BELOW the computed gold metal value",
-         detail="A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold. At the verified spot price the metal alone is worth about $529 — more than the asking price. For a legitimate seller that is not economic, and it is the classic fraud signal. The listing is sold, so it is kept only as a case study. Do not treat any below-metal price as a bargain.",
+         detail="A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold, which at the dated Kitco spot was worth more than the asking price — the row's computed metal-value column shows that figure and it exceeds the price, so this project does not retype it here where it would silently drift as spot moves. For a legitimate seller a below-metal price is not economic, and it is the classic fraud signal. The listing is now sold (FL-29), so it is kept only as a case study. Do not treat any below-metal price as a bargain.",
          entryIds=["ET-576343849"]),
     dict(id="FL-02", severity="high", status="open", title="Listing photos solicit off-platform contact",
          detail="VeraByEden listing image 11 is a chat screenshot showing an address (2355 Westwood Boulevard #153, Los Angeles CA) and the text 'Share your contact information with us on Etsy Message.' Off-platform payment or contact can void Etsy Purchase Protection. Keep any purchase on Etsy and pay through Etsy checkout.",
@@ -458,9 +462,9 @@ FLAGS = [
     dict(id="FL-07", severity="medium", status="resolved", title="Resolved in pass 3: Brilliant Earth return policy verified (30-day window, exclusions published)",
          detail="Verified live 2026-10-23 at https://www.brilliantearth.com/30-Day-Returns/ (page title: 'Brilliant Earth Returns & Exchanges | 30 Day Return Policy | Free Return Shipping'): returns within 30 days of receipt, unworn and in original condition; engraved items ($40 fee), personalized, custom, altered, resized or modified items and repairs are excluded. The previously linked brilliantearth.com/customer-care/return-policy/ redirects to the home page and brilliantearth.com/returns/ returns 404 — all four Brilliant Earth entries now link the working policy URL.",
          entryIds=["BE-1343","BE-NADIA","BE-1343HH","BE-SECRET"]),
-    dict(id="FL-08", severity="low", status="open", title="Brilliant Earth: USD price not confirmable — product pages serve EUR (geo-currency)",
-         detail="On 2026-10-23 both the BE-1343HH and BE-SECRET product pages served EUR instead of USD (€1,350.00 and €1,250.00, Setting Only) because of geo-currency. Prior USD captures are kept only as dated observations in the price notes: $1,190 (BE-1343HH product page, 2026-10-22) and $1,090 (BE-SECRET via the yellow-gold category listing, 2026-10-22). The price cells are BLANK — no conversion, no guess — until a USD price is re-confirmable (for example from a US checkout).",
-         entryIds=["BE-1343HH","BE-SECRET"]),
+    dict(id="FL-08", severity="medium", status="open", title="Brilliant Earth: USD prices not confirmable — product pages serve EUR (geo-currency)",
+         detail="On 2026-10-23 the BE-1343HH and BE-SECRET product pages served EUR instead of USD (€1,350.00 and €1,250.00, Setting Only) because of geo-currency, so both price cells are BLANK. In pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) the same thing happened to the BE-1343 Freesia page, which returned a mixed render: the setting line read €835.00 (Setting Only) with a EUR/GBP selector while the gift-card banner read USD; the Nadia page, fetched minutes later, served USD $1,250 normally. BE-1343 therefore keeps the $750 that was actually read on the page at 5:44 a.m. ET on 2026-10-23, labelled as a dated observation and NOT asserted as current. Prior USD captures kept as text only: $1,190 (BE-1343HH, 2026-10-22) and $1,090 (BE-SECRET, 2026-10-22). No currency conversion is performed anywhere in this project — a figure shown in EUR is never turned into dollars.",
+         entryIds=["BE-1343","BE-1343HH","BE-SECRET"]),
     dict(id="FL-09", severity="low", status="open", title="Allurez shows an 'Everyone Else' comparison price — not used",
          detail="Allurez pages display a '% Savings' figure against an 'Everyone Else' price ($2,497 / $1,373 / $1,194 on the three rings here). That comparison is the seller's own marketing claim and is not independently verified. Only the actual selling price is used in this project.",
          entryIds=["AL-5882","AL-170","AL-4426"]),
@@ -493,7 +497,7 @@ FLAGS = [
          detail="Allurez publishes 'approximate' gold weights; Avianne and Jewelry Master publish single figures; VeraByEden states 'Gold grams: 3.70 gr'. None of these has been independently weighed. Treat them as claims to be checked with a jeweler's scale and XRF on arrival.",
          entryIds=["AL-5882","AL-170","AL-4426","AV-25893","JM-149700","ET-1151446373","ET-576343849"]),
     dict(id="FL-19", severity="info", status="open", title="Gold spot moves all day — the snapshot is dated",
-         detail="Quotes across the 2026-10-22 and 2026-10-23 captures range from $4,022.50 to $4,086.90 per ounce (about 1.6%). This site uses one timestamped Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+         detail="Quotes across the 2026-10-22 and 2026-10-23 captures range from $3,996.10 to $4,086.90 per ounce (about 2.2%). Within 2026-10-23 alone the bid fell from $4,022.50 (5:44 a.m. ET) to $3,996.10 (4:10 p.m. ET), a $26.40 move. This site uses one timestamped Kitco bid for every calculation and shows the timestamp; every metal value moves when it is refreshed. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
          entryIds=[]),
     dict(id="FL-20", severity="info", status="open", title="A 14K or 18K stamp is not proof of purity",
          detail="FTC guidance requires a karat mark plus a maker's mark, but a stamp is a disclosure, not an assay. The only way to know what the metal actually is: have an independent jeweler test it (XRF or another professional method) after delivery, before wearing or resizing. No US law requires the seller to accept a return based on your test, so confirm the return right first.",
@@ -512,11 +516,14 @@ FLAGS = [
          detail="Earlier flags said the Brilliant Earth karat appeared only in product URLs and that VeraByEden's 3.70 g came from a search snippet. Both were re-checked live: each Brilliant Earth product page states 14K Yellow Gold, and VeraByEden's description states 'Gold grams: 3.70 gr'. The old flags are closed, with the checks recorded on the Verification page.",
          entryIds=["BE-NADIA","BE-1343HH","BE-SECRET","ET-1151446373"]),
     dict(id="FL-25", severity="low", status="open", title="Kitco page shows several nearby numbers in one capture",
-         detail="The 2026-10-23 capture displayed a ticker bid of $4,022.50 and $129.33/g while the body text read $4,021.00/oz and the conversion table $129.28/g; the 2026-10-22 capture similarly showed $4,026.90/$129.47 in the ticker vs $4,027.50 in the body, $129.49/g in the table, and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
+         detail="Each capture of the Kitco page contains several nearby numbers. Pass 4 (2026-10-23 4:10 p.m. ET) read a ticker bid of $3,996.10 with $128.48/g, a body sentence of $3,995.50/oz 'down $27.80 today', and a unit table of $128.46/g; the earlier 2026-10-23 capture read $4,022.50/$129.33/g with a body of $4,021.00 and a table of $129.28/g; the 2026-10-22 capture read $4,026.90/$129.47 with a body of $4,027.50, a table of $129.49/g and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
          entryIds=[]),
-    dict(id="FL-26", severity="medium", status="open", title="Seven Etsy listings could not be re-fetched on 2026-10-23",
-         detail="Every attempt to open the seven Etsy listing pages on 2026-10-23 returned HTTP 500. Their prices, weights and return windows are therefore the 2026-10-22 captures, are labelled 'captured' on every row, and are NOT asserted as current. Re-check each Etsy listing in a browser before relying on it.",
+    dict(id="FL-26", severity="medium", status="resolved", title="Resolved in pass 4: all seven Etsy listings re-opened on 2026-10-23",
+         detail="Pass 3 (2026-10-23 morning) got HTTP 500 from every Etsy listing page, so those seven rows kept their 2026-10-22 capture date. Pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) opened all seven successfully and read the 14K option from each listing's own material selector: ET-4426190660 $1,891.78 (unchanged), ET-4366425533 $546.09 (corrected from $547.26), ET-1151446373 $969.00 (unchanged), ET-1566052947 $251.30 (unchanged), ET-1433905613 $999.70 (unchanged), ET-944684759 $195.75 (unchanged), ET-576343849 sold out (FL-29). All seven rows now carry checkedOn=2026-10-23. Etsy remains an intermittent source — if a listing will not load, treat its price as unverified rather than assuming it.",
          entryIds=["ET-4426190660","ET-4366425533","ET-1151446373","ET-1566052947","ET-1433905613","ET-944684759","ET-576343849"]),
+    dict(id="FL-29", severity="medium", status="open", title="ET-576343849 (the 7 g case-study band) is sold out",
+         detail="Re-opened on 2026-10-23 in pass 4, the listing returns 'Sorry, this item is sold out' and 'Sold' instead of a buy box. The row keeps the $444.80 price only as a dated 2026-10-22 observation for the price-versus-metal case study, and the site marks it SOLD OUT. It cannot be bought, so it is not a candidate; the same shop may have comparable bands, but nothing about those is recorded here.",
+         entryIds=["ET-576343849"]),
     dict(id="FL-27", severity="medium", status="resolved", title="Resolved: Brilliant Earth fetch failure was collector-specific — all four pages read on 2026-10-23",
          detail="One 2026-10-23 collector (session a255f011) got only the site navigation from the Brilliant Earth product URLs and could not read values. A second 2026-10-23 fetch by session 77405ae3 did read all four product pages the same day (field-level record in data/live_check_77405ae3.json): Freesia $750 and Nadia $1,250 matched, and the two hidden-halo pages served EUR (FL-08), so their USD prices are blank. All four rows therefore carry checkedOn=2026-10-23. The nav-only failure is recorded here so both observations stay visible.",
          entryIds=["BE-1343","BE-NADIA","BE-1343HH","BE-SECRET"]),
@@ -586,10 +593,14 @@ REFERENCES = [
 
 SPOT = dict(
     primary=dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
-                 usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
-                 method="live fetch (2026-10-23 pass)",
-                 quote="Live Gold Price — Oct 23, 2026 - 5:44 NY Time. Bid 4,022.50 USD (-1.50, -0.04%); Ask 4,024.50; gram 129.33 (-0.05); Kilo 129,328.36; pennyweight 201.13. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 5:43 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30 today.'"),
-    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
+                 usdPerOz=3996.10, usdPerGram=128.48, asOf="2026-10-23 4:10 p.m. ET", kind="spot bid",
+                 method="live fetch (pass 4, session arena-463d0ea2)",
+                 quote="Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81; tola 1,498.54. Day's range 3,975.10–4,040.20. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"),
+    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (earlier the same day)", url="https://www.kitco.com/charts/gold",
+                usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
+                method="live fetch (pass 3, session 77405ae3)",
+                note="Earlier 2026-10-23 capture; superseded by the 4:10 p.m. ET quote above. Kept so the intraday move is visible."),
+           dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4026.90, usdPerGram=129.47, asOf="2026-10-22 7:26 p.m. ET", kind="spot bid",
                 method="prior-session capture (session 7cca80c9)",
                 note="2026-10-22 close-of-day capture, recorded by the previous pass; superseded by the 2026-10-23 quote above."),
@@ -609,11 +620,11 @@ SPOT = dict(
                       usdPerOz=4086.90, usdPerGram=None, asOf="2026-10-22 morning", kind="spot",
                       method="prior-session capture",
                       note="Spot gold near $4,086.90 an ounce, down $53.40 (1.29%).")],
-    notes=["The 2026-10-23 capture shows the bid ticker at $4,022.50 with $129.33/g, the page's own 'Gold Price Today' table at $4,021.00/oz and $129.28/g, and the purity calculator's 24K line at $4,022.50. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value.",
-           "The 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
+    notes=["The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, the purity calculator's 24K line at $3,996.10, and the same page's own note that a troy ounce is 31.1034768 grams. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value (FL-25).",
+           "The earlier 2026-10-23 5:44 a.m. ET quote ($4,022.50 / $129.33) and the 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
     purity=dict(fineness={"24K": 0.9999, "22K": 0.9167, "18K": 0.75, "14K": 0.5833, "10K": 0.4167},
-                perOz={"24K": 4022.50, "22K": 3687.43, "18K": 3016.88, "14K": 2346.32, "10K": 1676.18},
-                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 5:44 a.m. ET page capture"),
+                perOz={"24K": 3996.10, "22K": 3663.22, "18K": 2997.08, "14K": 2330.93, "10K": 1665.17},
+                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 4:10 p.m. ET page capture"),
 )
 
 
@@ -641,7 +652,31 @@ LIVE_2026_10_23 = {
     "BE-NADIA": "$1,250 Setting Only; 14K Yellow Gold; 1.8 mm; 143 reviews",
     "BE-1343HH": "product page served EUR (€1,350.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 2–1.3 mm, 14 accent diamonds 0.05 ct. tw.",
     "BE-SECRET": "product page served EUR (€1,250.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw.",
+    # Added by session arena-463d0ea2 (pass 4, 2026-10-23 late afternoon): the Etsy listing
+    # pages that returned HTTP 500 in pass 3 were served normally in pass 4, so all seven were
+    # read from the seller's own page. One of them was sold out at read time (FL-29).
+    "ET-4426190660": "14K Yellow Gold option $1,891.78 (50% off from $2,404.16+); 10K $1,686.02; 18K $2,109.58; 925 silver base $1,202.08; band 1.80 mm; 'Low in stock, only 1 left'; Star Seller",
+    "ET-4366425533": "14K Yellow Gold option now $546.09 (2026-10-22 capture: $547.26), range to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 30-day returns, buyer pays return shipping; ships from the United Kingdom",
+    "ET-1151446373": "14K Yellow Gold option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00; 'Returns & exchanges accepted'",
+    "ET-1566052947": "2mm option $251.30 (30% off from $359.00); width and ring size change the price; 'Returns & exchanges accepted'",
+    "ET-1433905613": "14K Gold option $999.70 (35% off from $1,038.00); 10K $674.70; ships in 1-3 business days",
+    "ET-944684759": "2mm option $195.75 (25% off from $261.00); width and ring size change the price; 30-day returns, buyer pays return shipping; ships from Great Neck, NY",
+    "ET-576343849": "listing shows 'Sorry, this item is sold out' and 'Sold' — the price is NOT currently purchasable and is kept only as the dated 2026-10-22 observation (FL-29); the page still shows '7g Solid Gold' and 'Marked 14K'",
 }
+
+# Rows whose value CHANGED against the 2026-10-22 capture. They are corrected here and
+# flagged; nothing is silently overwritten.
+CHANGED_2026_10_23 = {
+    "ET-4366425533": "price corrected: the 14K option read $546.09, not $547.26",
+    "ET-576343849": "availability changed: the listing is sold out, so the price is no longer purchasable (FL-29)",
+    "BE-1343": "currency changed: the product page served EUR (€835.00) in this pass, so the USD figure is a dated earlier-same-day capture only (FL-08)",
+}
+# Rows re-read in pass 4 (session arena-463d0ea2). Provenance stays "live 2026-10-23" for
+# every row; this set only drives which note wording is written.
+PASS4 = {"BN-192506", "BN-195639", "BN-203257", "BN-195326", "BN-195871", "BN-311132",
+         "BN-203738", "BN-203348", "BE-1343", "BE-NADIA", "AL-5882", "AL-170", "AL-4426",
+         "AV-25893", "JM-149700", "SGJ-B02561", "ET-4426190660", "ET-4366425533",
+         "ET-1151446373", "ET-1566052947", "ET-1433905613", "ET-944684759", "ET-576343849"}
 PRIOR_FLAG = {}
 for _id in ("BE-1343", "BE-NADIA", "BE-1343HH", "BE-SECRET"):
     PRIOR_FLAG[_id] = "FL-27"
@@ -655,9 +690,14 @@ for _e in ENTRIES:
     if _e["id"] in LIVE_2026_10_23:
         _e["checkedOn"] = "2026-10-23"
         _e["provenance"] = "live"
-        _suffix = ("" if _e["id"] in ("BE-1343HH", "BE-SECRET")
-                   else " — unchanged from the 2026-10-22 capture.")
-        _e["notes"].append("Re-read live on 2026-10-23: " + LIVE_2026_10_23[_e["id"]] + _suffix)
+        if _e["id"] in CHANGED_2026_10_23:
+            _suffix = " — " + CHANGED_2026_10_23[_e["id"]] + "."
+        elif _e["id"] in ("BE-1343HH", "BE-SECRET"):
+            _suffix = ""
+        else:
+            _suffix = " — unchanged from the 2026-10-22 capture."
+        _pass = " (pass 4, session arena-463d0ea2)" if _e["id"] in PASS4 else ""
+        _e["notes"].append("Re-read live on 2026-10-23" + _pass + ": " + LIVE_2026_10_23[_e["id"]] + _suffix)
     else:
         _e["checkedOn"] = "2026-10-22"
         _e["provenance"] = "prior"
@@ -673,17 +713,19 @@ DATA = dict(
     meta=dict(
         project="GOLD5 — Solid Gold Engagement Ring Research",
         asOf="2026-10-23",
-        lastPass="2026-10-23 (a255f011 provenance pass + 77405ae3 live re-verification)",
-        session="77405ae3",
+        lastPass="2026-10-23 pass 4 (session arena-463d0ea2): spot refreshed to the 4:10 p.m. ET quote, all seven Etsy listings re-read, one price corrected, one sold-out listing flagged",
+        session="arena-463d0ea2",
         title="Gold engagement rings, verified line by line",
-        subtitle="25 listings from 13 sellers · 18 rows re-read live on 2026-10-23, the 7 Etsy rows carry their 2026-10-22 capture date and say so · every value tied to the source page that states it · blanks are flagged, never guessed",
+        subtitle=("25 listings from 13 sellers · all 25 rows were re-read from the seller's own page on 2026-10-23 "
+                  "(23 of them in pass 4) · every value tied to the source page that states it · blanks are flagged, "
+                  "never guessed · one listing confirmed sold out"),
         noHallucinations=("NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site "
                           "was read from the linked official source page on the date shown next to it. If a value could not be "
                           "confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated or "
                           "filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed "
                           "from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py."),
         checker="python3 scripts/verify.py",
-        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate="2026-10-22"),
+        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate="2026-10-22" if _PRIOR_N else None),
         archive=[dict(label="Session 638c9614 — research site at /docs/", path="docs/index.html"),
                  dict(label="Session 090bae73 — checklist guide", path="index-090bae73.html"),
                  dict(label="Session 37e8ff42 — dashboard snapshot", path="archive/session-37e8ff42/index.html"),
