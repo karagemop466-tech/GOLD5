@@ -12,9 +12,27 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 (UTC) — **session `77405ae3` claimed (see below); previous passes closed**
+- Last updated: 2026-10-23 (UTC) — **session `3bf55199` claimed (see below); session `77405ae3` complete, see prior claim**
 
-## ⏱ ACTIVE CLAIM — session `77405ae3` (Arena branch `arena/77405ae3-gold5`)
+## ⏱ ACTIVE CLAIM — session `3bf55199` (Arena branch `arena/3bf55199-gold5`)
+
+Claimed at 2026-10-23 20:14 UTC. Continuation verification pass for this brief — refresh gold spot and re-verify listings line-by-line with fresh fetches, update derived values via script only, rebuild site, re-run all harnesses and publish. All earlier sessions' deliverables are read-only archives except where explicitly listed as shared-output scope for the final integration (per brief).
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| W1 | Claim board, baseline run of all harnesses (verify, audit, independent, review, hallucinations, security, verified, dossier) | **in progress** | 3bf55199 | `COORDINATION.md` |
+| W2 | Live re-verification 2026-10-23 20:14 UTC: re-fetch Kitco spot + all listing URLs + reference URLs; log per URL | unclaimed | 3bf55199 | `data/live_check_3bf55199.json`, `verification/evidence/v3/*` |
+| W3 | Apply corrections via scripts only (spot refresh, blank+flag if drift, recompute derived); never hand-type prices | unclaimed | 3bf55199 | `scripts/author_data.py`, `site/assets/data.json`, `site/assets/data.js`, `data/live_check_2026-10-23.json` |
+| W4 | Rebuild site + category pages; keep NO HALLUCINATIONS banner on every page; internal/external link sweep | unclaimed | 3bf55199 | `scripts/build_site.py`, `index.html`, `site/*.html`, `site/assets/site.css` |
+| W5 | Full harness suite after rebuild (all 9 harnesses); log results; revert any unrelated regenerated artifacts | unclaimed | 3bf55199 | `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/consolidation-2026-10-22.md` |
+| W6 | Final integration: git pull --rebase, PR → main, merge without approval, confirm Pages deploy, log result here | unclaimed | 3bf55199 | `COORDINATION.md`, `README.md` |
+
+Rules: same no-hallucinations rule; blank beats wrong; per-row source URL + check date; derived numbers recomputed; every review ends with checker run; small frequent commits.
+
+### Log — session 3bf55199 (appended as work completes)
+- 2026-10-23 20:14 UTC: repo reviewed at `beb6b13` (main after PR #42). Baseline harnesses **PASS** (pre-claim run: verify 21/21, audit 6/6, independent 11/11, review PASS, hallucinations 166/0, report PASS, security 9/9, verified 896/0, dossier 18/18). Kitco spot to be re-fetched this pass (stored $4,022.50/oz $129.33/g at 2026-10-23 5:44 a.m. ET; intraday move expected). Claim committed and pushed before data work (this block).
+
+## ⏱ PRIOR CLAIM — session `77405ae3` (Arena branch `arena/77405ae3-gold5`) — **complete, PR #41+#42 merged**
 
 Claimed at 2026-10-23 (UTC). Third final-integration / re-verification session for this brief.
 All earlier claims are complete or stale (every PR #1–#32 is merged or closed; the `93032b31` U7
