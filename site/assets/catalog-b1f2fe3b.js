@@ -4,23 +4,23 @@ window.GOLD5_UNIFIED_CATALOG = {
     "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
     "asOf": "2026-10-23",
     "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
-    "primarySpotUsdPerOz": 4022.5,
-    "primarySpotUsdPerGram": 129.33,
-    "primarySpotAsOf": "2026-10-23 5:44 a.m. ET",
+    "primarySpotUsdPerOz": 3996.1,
+    "primarySpotUsdPerGram": 128.48,
+    "primarySpotAsOf": "2026-10-23 4:10 p.m. ET",
     "liveRecheckSpotUsdPerOz": 4026.9,
     "liveRecheckSpotUsdPerGram": 129.47,
     "liveRecheckAsOf": "2026-10-22 7:26 p.m. EDT",
     "troyOzGramsExact": 31.1034768,
     "pennyweightGramsExact": 1.55517384,
     "totalEntries": 38,
-    "entriesWithVerifiedGrams": 12,
+    "entriesWithVerifiedGrams": 11,
     "entriesWithExplicitSolidGold": 12,
-    "entriesWithVerifiedHallmarkAndMakerMark": 0
+    "entriesWithVerifiedHallmarkAndMakerMark": 1
   },
   "entries": [
     {
       "id": "BN-192506",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Petite Hidden Halo Solitaire Plus Diamond Engagement Ring, 14K Yellow Gold",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -37,7 +37,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L01",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -55,7 +58,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
-        "https://www.bluenile.com/engagement-rings",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -68,12 +70,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-195639",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Petite Solitaire Engagement Ring, 14k Yellow Gold",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -90,7 +93,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L02",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -108,7 +114,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
-        "https://www.bluenile.com/engagement-rings",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -121,12 +126,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-203257",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Classic Four Prong Solitaire Engagement Ring, 14K Yellow Gold",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -143,7 +149,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 1.9,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L03",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -161,7 +170,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
-        "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -174,12 +182,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-195326",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Riviera Pav\u00e9 Diamond Engagement Ring, 14K White Gold (1/6 ct. tw.)",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -196,7 +205,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L04",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -213,7 +225,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
-        "https://www.bluenile.com/engagement-rings",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -226,12 +237,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-195871",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "French Pav\u00e9 Diamond Engagement Ring, 14k Yellow Gold (1/4 ct. tw.)",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -248,7 +260,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 2.5,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L05",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -265,7 +280,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
-        "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -278,12 +292,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-311132",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Criss Cross Solitaire Engagement Ring, 18K Yellow Gold (by James Allen)",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -300,7 +315,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L06",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -317,7 +335,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
-        "https://www.bluenile.com/engagement-rings",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -330,29 +347,33 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-203738",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
-      "name": "Floral Marquise Diamond Engagement Ring, 18k White Gold",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
+      "name": "Floral Marquise Diamond Engagement Ring \u2014 metal description conflict",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
       "category": "engagement-ring",
       "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
       "karat": 18,
-      "metalColor": "White Gold",
+      "metalColor": "White Gold (title/specification)",
       "solidGoldClaim": "Not explicitly stated",
       "explicitSolidGoldStated": false,
       "grams": null,
       "gramsNote": null,
       "priceUsd": 2210,
-      "priceLabel": "$2,210 setting price (center diamond extra)",
+      "priceLabel": "$2,210 setting price (center diamond extra); metal description is internally conflicting (FL-30)",
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": "Title and specification say 18K White Gold; Product Details say 14K Yellow Gold.",
+      "evidenceId": "L07",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -363,13 +384,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-14",
         "FL-05",
         "FL-21",
+        "FL-30",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
-        "https://www.bluenile.com/engagement-rings",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -382,12 +403,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BN-203348",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Classic Simple Solitaire Engagement Ring, 14K Yellow Gold",
       "sellerId": "bluenile",
       "sellerName": "Blue Nile",
@@ -404,7 +426,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 2.4,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L08",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
       "reviewScore": null,
@@ -422,7 +447,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
-        "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
         "https://www.bluenile.com/policies/returns"
       ],
       "computed": {
@@ -435,12 +459,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BE-1343",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Freesia 2mm Solitaire Ring, 14K Yellow Gold (BE1343-14KY)",
       "sellerId": "brilliantearth",
       "sellerName": "Brilliant Earth",
@@ -452,27 +477,31 @@ window.GOLD5_UNIFIED_CATALOG = {
       "explicitSolidGoldStated": false,
       "grams": null,
       "gramsNote": null,
-      "priceUsd": 750,
-      "priceLabel": "$750 setting only (center diamond extra)",
+      "priceUsd": null,
+      "priceLabel": "USD price not confirmable \u2014 direct product page served EUR \u20ac835 setting only on 2026-10-23 (FL-08); prior USD $750 is a dated observation only, no conversion",
       "widthMm": 2.0,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L09",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
       "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
-      "status": "verified",
+      "status": "flagged",
       "flags": [
         "FL-03",
         "FL-15",
         "FL-14",
         "FL-21",
-        "no-gram-weight"
+        "FL-08",
+        "no-gram-weight",
+        "no-price"
       ],
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
-        "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
         "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
         "https://www.brilliantearth.com/30-Day-Returns/"
       ],
@@ -486,12 +515,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BE-NADIA",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Nadia Diamond Ring, 14K Yellow Gold (BE1D6013)",
       "sellerId": "brilliantearth",
       "sellerName": "Brilliant Earth",
@@ -508,7 +538,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 1.8,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L10",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
       "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
@@ -524,7 +557,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
-        "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
         "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
@@ -537,12 +569,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BE-1343HH",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Freesia Hidden Halo Diamond Ring, 14K Yellow Gold (BE1D3939)",
       "sellerId": "brilliantearth",
       "sellerName": "Brilliant Earth",
@@ -559,7 +592,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 2.0,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L11",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
       "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
@@ -577,7 +613,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
-        "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
         "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
@@ -590,12 +625,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "BE-SECRET",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Secret Halo 1.5mm Diamond Ring, 14K Yellow Gold (BE1D13065)",
       "sellerId": "brilliantearth",
       "sellerName": "Brilliant Earth",
@@ -607,30 +643,30 @@ window.GOLD5_UNIFIED_CATALOG = {
       "explicitSolidGoldStated": false,
       "grams": null,
       "gramsNote": null,
-      "priceUsd": null,
-      "priceLabel": "USD price not confirmable \u2014 product page served EUR \u20ac1,250.00 on 2026-10-23 (FL-08); prior USD $1,090 seen via the yellow-gold category listing 2026-10-22 (dated observation only, no conversion)",
+      "priceUsd": 1090,
+      "priceLabel": "$1,090 USD setting only (center diamond extra), read directly on the product page 2026-10-23; an earlier \u20ac1,250 EUR response is dated history, not converted",
       "widthMm": 1.5,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L12",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
       "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
-      "status": "flagged",
+      "status": "verified",
       "flags": [
         "FL-03",
         "FL-15",
         "FL-14",
         "FL-21",
-        "FL-08",
-        "no-gram-weight",
-        "no-price"
+        "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
-        "https://www.brilliantearth.com/engagement-rings/yellow-gold/",
         "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
@@ -643,12 +679,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "AL-5882",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Filigree Designed Solitaire Engagement Ring Setting, 14K Yellow Gold (U5882)",
       "sellerId": "allurez",
       "sellerName": "Allurez",
@@ -665,7 +702,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L13",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
       "reviewScore": null,
@@ -681,7 +721,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
-        "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
         "https://www.allurez.com/pages/return-policy"
       ],
       "computed": {
@@ -692,14 +731,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 3.2151,
         "pureGoldGrams": 2.9165,
         "pureGoldTroyOz": 0.09377,
-        "rawGoldMeltUsdAtPrimarySpot": 377.19,
+        "rawGoldMeltUsdAtPrimarySpot": 374.71,
         "rawGoldMeltUsdAtRecheckSpot": 377.6,
-        "priceToMeltRatio": 2.87
+        "priceToMeltRatio": 2.9,
+        "priceToMeltRatioAtRecheckSpot": 2.87
       }
     },
     {
       "id": "AL-170",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Antique Engraved Solitaire Engagement Ring Setting, 14k Yellow Gold (U170)",
       "sellerId": "allurez",
       "sellerName": "Allurez",
@@ -716,7 +756,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L14",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
       "reviewScore": null,
@@ -732,7 +775,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
-        "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
         "https://www.allurez.com/pages/return-policy"
       ],
       "computed": {
@@ -743,14 +785,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 3.0865,
         "pureGoldGrams": 2.7998,
         "pureGoldTroyOz": 0.09002,
-        "rawGoldMeltUsdAtPrimarySpot": 362.1,
+        "rawGoldMeltUsdAtPrimarySpot": 359.72,
         "rawGoldMeltUsdAtRecheckSpot": 362.49,
-        "priceToMeltRatio": 2.57
+        "priceToMeltRatio": 2.59,
+        "priceToMeltRatioAtRecheckSpot": 2.57
       }
     },
     {
       "id": "AL-4426",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Engraved Floral Solitaire Engagement Ring Setting, 14K Yellow Gold (NG4426)",
       "sellerId": "allurez",
       "sellerName": "Allurez",
@@ -767,7 +810,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L15",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
       "reviewScore": null,
@@ -783,7 +829,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
-        "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
         "https://www.allurez.com/pages/return-policy"
       ],
       "computed": {
@@ -794,14 +839,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 2.302,
         "pureGoldGrams": 2.0882,
         "pureGoldTroyOz": 0.06714,
-        "rawGoldMeltUsdAtPrimarySpot": 270.07,
+        "rawGoldMeltUsdAtPrimarySpot": 268.29,
         "rawGoldMeltUsdAtRecheckSpot": 270.36,
-        "priceToMeltRatio": 2.16
+        "priceToMeltRatio": 2.18,
+        "priceToMeltRatioAtRecheckSpot": 2.16
       }
     },
     {
       "id": "AV-25893",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "14K Solid Yellow Gold Diamond Solitaire Engagement Ring, 0.41 Ctw (R25893)",
       "sellerId": "avianne",
       "sellerName": "Avianne & Co",
@@ -818,7 +864,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": 4.5,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L16",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "Returns of unworn and unaltered items accepted within 14 days. Full policy page not captured; resize/custom exclusions not confirmed.",
       "returnUrl": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
       "payment": null,
       "reviewScore": null,
@@ -830,8 +879,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
-        "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
-        "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
         "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw"
       ],
       "computed": {
@@ -842,14 +889,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 173.51,
+        "rawGoldMeltUsdAtPrimarySpot": 172.37,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
-        "priceToMeltRatio": 6.33
+        "priceToMeltRatio": 6.38,
+        "priceToMeltRatioAtRecheckSpot": 6.33
       }
     },
     {
       "id": "JM-149700",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Brilliant Round Diamond Solitaire Engagement Ring, 14K Yellow Gold (Style 149700)",
       "sellerId": "jewelrymaster",
       "sellerName": "The Jewelry Master (Jewelry Masters)",
@@ -866,7 +914,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L17",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "30-day return or exchange under the 'Money Back Guarantee (some restrictions apply)'; the specific restrictions are not stated on the page.",
       "returnUrl": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
       "payment": null,
       "reviewScore": null,
@@ -878,8 +929,6 @@ window.GOLD5_UNIFIED_CATALOG = {
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
-        "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
-        "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
         "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html"
       ],
       "computed": {
@@ -890,14 +939,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 173.51,
+        "rawGoldMeltUsdAtPrimarySpot": 172.37,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
-        "priceToMeltRatio": 17.39
+        "priceToMeltRatio": 17.52,
+        "priceToMeltRatioAtRecheckSpot": 17.39
       }
     },
     {
       "id": "SGJ-B02561",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Yellow Gold Solitaire Engagement Ring, 14K Yellow (SKU B02561, brand M Michael)",
       "sellerId": "solidgoldjewelers",
       "sellerName": "Solid Gold Jewelers",
@@ -914,7 +964,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L18",
+      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "returnPolicy": "No return policy shown on the product page.",
       "returnUrl": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
       "payment": null,
       "reviewScore": null,
@@ -923,13 +976,12 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-13",
         "FL-15",
         "FL-14",
+        "FL-18",
         "no-price"
       ],
       "checkedOn": "2026-10-23",
       "provenance": "live",
       "sources": [
-        "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
-        "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
         "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/"
       ],
       "computed": {
@@ -940,14 +992,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 3.0222,
         "pureGoldGrams": 2.7415,
         "pureGoldTroyOz": 0.08814,
-        "rawGoldMeltUsdAtPrimarySpot": 354.56,
+        "rawGoldMeltUsdAtPrimarySpot": 352.23,
         "rawGoldMeltUsdAtRecheckSpot": 354.94,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-4426190660",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "2.50 CT Radiant Canary Lab-Grown Diamond Ring, IGI Certified, 14K Yellow Gold",
       "sellerId": "etsy-rakshakjewels",
       "sellerName": "RAKSHAKJEWELS (Etsy shop)",
@@ -960,11 +1013,14 @@ window.GOLD5_UNIFIED_CATALOG = {
       "grams": null,
       "gramsNote": null,
       "priceUsd": 1891.78,
-      "priceLabel": "14K Yellow Gold option $1,891.78 (50% off from $2,404.16+); 10K $1,686.02; 18K $2,109.58; list starts at $1,202.08 for 925 silver",
+      "priceLabel": "14K Yellow Gold option $1,891.78; 10K $1,686.02; 18K $2,109.58; list starts at $1,202.08 for 925 silver. The header compare-at belongs to another variant, so compareAt is blank.",
       "widthMm": 1.8,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L19",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns & exchanges accepted within 14 days; buyer pays return shipping; original condition required.",
       "returnUrl": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
       "payment": null,
       "reviewScore": null,
@@ -974,14 +1030,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-26",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
-        "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
         "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond"
       ],
       "computed": {
@@ -994,12 +1047,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-4366425533",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "Emerald Cut E/VVS2 IGI Lab-Grown Diamond Hidden Halo Ring, 14K Gold",
       "sellerId": "etsy-foreverforlove",
       "sellerName": "ForeverForLove (Etsy shop)",
@@ -1011,12 +1065,15 @@ window.GOLD5_UNIFIED_CATALOG = {
       "explicitSolidGoldStated": true,
       "grams": null,
       "gramsNote": null,
-      "priceUsd": 547.26,
-      "priceLabel": "14K options from $547.26 (0.50 CT) up to $2,410.13 by carat; 40% off; list starts at $376.61 for 925 silver",
+      "priceUsd": 546.09,
+      "priceLabel": "14K options $546.09\u2013$2,404.96 by center-diamond size; list starts at $375.80 for 925 silver. No 14K-specific compare-at price was published, so compareAt is blank.",
       "widthMm": null,
       "hallmarkClaim": "Description: 'Metal stamp: Yes' (no maker's mark stated, no photo)",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L20",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns & exchanges accepted within 30 days; buyer pays return shipping; description states a full refund/exchange and a lifetime warranty on manufacturer defects.",
       "returnUrl": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
       "payment": null,
       "reviewScore": null,
@@ -1026,14 +1083,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-26",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
-        "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
         "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown"
       ],
       "computed": {
@@ -1046,12 +1100,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-1151446373",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "14K Solid Gold Ruby + 0.30 CT Diamond Halo Ring",
       "sellerId": "etsy-verabyden",
       "sellerName": "VeraByEden (Etsy shop)",
@@ -1064,11 +1119,14 @@ window.GOLD5_UNIFIED_CATALOG = {
       "grams": 3.7,
       "gramsNote": "Seller's description: 'Gold grams: 3.70 gr' \u2014 verified on the listing page this pass",
       "priceUsd": 969.0,
-      "priceLabel": "14K option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00",
+      "priceLabel": "14K option $969.00; 10K $783.00; 18K $1,233.00. The $1,044 header compare-at belongs to the base variant, so compareAt is blank for the 14K row.",
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L21",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns within 7 days after receipt; buyer pays return shipping; $20 delivery charge and 10% restocking fee; personalized, colored-enamel, letter and name-specific items excluded.",
       "returnUrl": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
       "payment": null,
       "reviewScore": null,
@@ -1078,14 +1136,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-18",
-        "FL-26"
+        "FL-18"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
-        "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
         "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant"
       ],
       "computed": {
@@ -1096,14 +1151,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 2.3792,
         "pureGoldGrams": 2.1582,
         "pureGoldTroyOz": 0.06939,
-        "rawGoldMeltUsdAtPrimarySpot": 279.12,
+        "rawGoldMeltUsdAtPrimarySpot": 277.29,
         "rawGoldMeltUsdAtRecheckSpot": 279.42,
-        "priceToMeltRatio": 3.47
+        "priceToMeltRatio": 3.49,
+        "priceToMeltRatioAtRecheckSpot": 3.47
       }
     },
     {
       "id": "ET-1566052947",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "14K Solid Yellow Gold Domed Band, 2\u20138 mm (reference band)",
       "sellerId": "etsy-vibrantstone",
       "sellerName": "VibrantStone (Etsy shop)",
@@ -1120,7 +1176,10 @@ window.GOLD5_UNIFIED_CATALOG = {
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L22",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns & exchanges accepted within 21 days; buyer pays return shipping. Customized bands may not be returnable; altered/used/damaged items may incur fees up to 30% or be ineligible; items exchanged once cannot then be returned.",
       "returnUrl": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
       "payment": null,
       "reviewScore": null,
@@ -1130,14 +1189,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-26",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
-        "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
         "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band"
       ],
       "computed": {
@@ -1150,12 +1206,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-1433905613",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "14K Solid Gold 8 mm Polished Comfort-Fit Dome Band (reference band)",
       "sellerId": "etsy-adelafinejewels",
       "sellerName": "adelafinejewels (Etsy shop)",
@@ -1168,11 +1225,14 @@ window.GOLD5_UNIFIED_CATALOG = {
       "grams": null,
       "gramsNote": null,
       "priceUsd": 999.7,
-      "priceLabel": "14K options $999.70\u2013$1,368.90 by size (10K $674.70\u2013$963.95); 35% off",
+      "priceLabel": "14K options $999.70\u2013$1,368.90 by size (10K $674.70\u2013$963.95); 35% off. The $1,038 header compare-at is for the 10K base variant, so compareAt is blank for 14K.",
       "widthMm": 8.0,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L23",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns & exchanges accepted within 14 days; buyer pays return transportation; personalized products are non-refundable.",
       "returnUrl": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
       "payment": null,
       "reviewScore": null,
@@ -1182,14 +1242,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-26",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
-        "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
         "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished"
       ],
       "computed": {
@@ -1202,12 +1259,13 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-944684759",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
       "name": "14K White Gold Flat Polished Band, 2\u20136 mm (reference band)",
       "sellerId": "etsy-cittali",
       "sellerName": "CittaliFineJewelry (Etsy shop)",
@@ -1220,11 +1278,14 @@ window.GOLD5_UNIFIED_CATALOG = {
       "grams": null,
       "gramsNote": null,
       "priceUsd": 195.75,
-      "priceLabel": "From $195.75 (2 mm, 25% off $261.00); 3 mm $337.50+, 4 mm $369.00+, 5 mm $429.75+, 6 mm $524.25\u2013$1,158.75",
+      "priceLabel": "Listing titled 14K White Gold displays from $195.75 (2 mm, 25% off $261.00); 3 mm $337.50+, 4 mm $369.00+, 5 mm $429.75+, 6 mm $524.25\u2013$1,158.75. Description also lists other materials, so reconfirm the selected metal at checkout.",
       "widthMm": null,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
-      "returnPolicy": null,
+      "metalConflict": null,
+      "evidenceId": "L24",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "Returns & exchanges accepted within 30 days; buyer pays return shipping; original condition required.",
       "returnUrl": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
       "payment": null,
       "reviewScore": null,
@@ -1234,14 +1295,11 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-26",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
-        "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
         "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished"
       ],
       "computed": {
@@ -1254,59 +1312,63 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
       "id": "ET-576343849",
-      "originSession": "7cca80c9+37e8ff42+638c9614",
-      "name": "14K Solid White Gold 7 g Band, Size 11 \u2014 case study (sold at check)",
+      "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
+      "name": "14K Solid White Gold Band, Size 11 \u2014 sold case study (exact weight unresolved)",
       "sellerId": "etsy-butterflywingvintage",
       "sellerName": "BUTTERFLYWINGVINTAGE (Etsy shop)",
       "category": "case-study",
-      "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
+      "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
       "karat": 14,
       "metalColor": "White Gold",
-      "solidGoldClaim": "Title: 'Fine 14K Solid White Gold Ring - 7g Solid Gold'",
+      "solidGoldClaim": "Title and description: 'Fine Solid 14K White Gold Wedding/Engagement Band'",
       "explicitSolidGoldStated": true,
-      "grams": 7.0,
-      "gramsNote": "Listing title: '7g Solid Gold'",
-      "priceUsd": 444.8,
-      "priceLabel": "$444.80 at snippet time (original $556.00, 20% off); item shows 'Sold' \u2014 retained as a pricing case study",
+      "grams": null,
+      "gramsNote": "No exact seller-stated weight; numeric grams and metal value intentionally blank",
+      "priceUsd": 420.0,
+      "priceLabel": "$420.00 displayed on the sold-out detail page (original $525.00); this is a sold-listing case study, not a current offer",
       "widthMm": null,
-      "hallmarkClaim": "Title: 'Marked 14K' (karat stamp claim only; no maker's mark stated)",
-      "makerMark": null,
-      "returnPolicy": null,
-      "returnUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
+      "hallmarkClaim": "Description: 'marked 14K with a maker's mark' and directs the buyer to the fourth photo",
+      "makerMark": "Seller states a maker's mark; see the quoted listing evidence",
+      "metalConflict": null,
+      "evidenceId": "L25",
+      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "returnPolicy": "n/a \u2014 item sold; seller FAQ says no refund for buyer's remorse or changed mind.",
+      "returnUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
       "payment": null,
       "reviewScore": null,
       "status": "verified",
       "flags": [
         "FL-01",
+        "FL-03",
         "FL-16",
         "FL-17",
         "FL-18",
-        "FL-26",
-        "price-below-metal-value"
+        "FL-29",
+        "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
-        "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
-        "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
-        "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g"
+        "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1"
       ],
       "computed": {
         "fineness": 0.5833,
         "nominalPartsPerThousand": 583.33,
         "minAssayPptNoSolder_15USC295": 580.33,
         "minAssayPptWithSolder_15USC295": 576.33,
-        "totalPennyweightDwt": 4.5011,
-        "pureGoldGrams": 4.0831,
-        "pureGoldTroyOz": 0.13127,
-        "rawGoldMeltUsdAtPrimarySpot": 528.07,
-        "rawGoldMeltUsdAtRecheckSpot": 528.64,
-        "priceToMeltRatio": 0.84
+        "totalPennyweightDwt": null,
+        "pureGoldGrams": null,
+        "pureGoldTroyOz": null,
+        "rawGoldMeltUsdAtPrimarySpot": null,
+        "rawGoldMeltUsdAtRecheckSpot": null,
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1355,9 +1417,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 3.7938,
         "pureGoldGrams": 4.425,
         "pureGoldTroyOz": 0.14227,
-        "rawGoldMeltUsdAtPrimarySpot": 572.29,
+        "rawGoldMeltUsdAtPrimarySpot": 568.52,
         "rawGoldMeltUsdAtRecheckSpot": 572.9,
-        "priceToMeltRatio": 2.3
+        "priceToMeltRatio": 2.31,
+        "priceToMeltRatioAtRecheckSpot": 2.3
       }
     },
     {
@@ -1409,7 +1472,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1456,9 +1520,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 4.5011,
         "pureGoldGrams": 4.0831,
         "pureGoldTroyOz": 0.13127,
-        "rawGoldMeltUsdAtPrimarySpot": 528.07,
+        "rawGoldMeltUsdAtPrimarySpot": 524.6,
         "rawGoldMeltUsdAtRecheckSpot": 528.64,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1507,7 +1572,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1554,7 +1620,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1603,7 +1670,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1650,7 +1718,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1698,7 +1767,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1748,7 +1818,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1795,7 +1866,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     },
     {
@@ -1838,9 +1910,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 0.8359,
         "pureGoldGrams": 0.7583,
         "pureGoldTroyOz": 0.02438,
-        "rawGoldMeltUsdAtPrimarySpot": 98.07,
+        "rawGoldMeltUsdAtPrimarySpot": 97.43,
         "rawGoldMeltUsdAtRecheckSpot": 98.18,
-        "priceToMeltRatio": 4.06
+        "priceToMeltRatio": 4.1,
+        "priceToMeltRatioAtRecheckSpot": 4.06
       }
     },
     {
@@ -1883,9 +1956,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "totalPennyweightDwt": 1.0931,
         "pureGoldGrams": 0.9916,
         "pureGoldTroyOz": 0.03188,
-        "rawGoldMeltUsdAtPrimarySpot": 128.24,
+        "rawGoldMeltUsdAtPrimarySpot": 127.4,
         "rawGoldMeltUsdAtRecheckSpot": 128.38,
-        "priceToMeltRatio": 3.89
+        "priceToMeltRatio": 3.92,
+        "priceToMeltRatioAtRecheckSpot": 3.89
       }
     },
     {
@@ -1934,7 +2008,8 @@ window.GOLD5_UNIFIED_CATALOG = {
         "pureGoldTroyOz": null,
         "rawGoldMeltUsdAtPrimarySpot": null,
         "rawGoldMeltUsdAtRecheckSpot": null,
-        "priceToMeltRatio": null
+        "priceToMeltRatio": null,
+        "priceToMeltRatioAtRecheckSpot": null
       }
     }
   ]

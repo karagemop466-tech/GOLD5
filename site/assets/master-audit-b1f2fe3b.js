@@ -20,17 +20,17 @@
   const statsEl = document.getElementById("audit-stats");
   if (statsEl) {
     statsEl.innerHTML = [
-      '<div class="card gold"><div class="k">Unified Verified Listings</div><div class="v">' + ENTRIES.length + '</div><div class="d">Across ' + uniqueSellers.size + ' sellers · all checked 2026-10-22</div></div>',
+      '<div class="card gold"><div class="k">Unified source-read listings</div><div class="v">' + ENTRIES.length + '</div><div class="d">Across ' + uniqueSellers.size + ' sellers · canonical rows checked ' + esc(D.meta.asOf) + '; historical rows keep their dates</div></div>',
       '<div class="card"><div class="k">Published Gram Weight</div><div class="v">' + withGrams.length + " / " + ENTRIES.length + '</div><div class="d">' + (ENTRIES.length - withGrams.length) + ' blank &amp; flagged (never inferred)</div></div>',
       '<div class="card"><div class="k">Explicit "Solid Gold" Claim</div><div class="v">' + explicitSolid.length + " / " + ENTRIES.length + '</div><div class="d">' + (ENTRIES.length - explicitSolid.length) + ' state karat only (confirm solid before buying)</div></div>',
-      '<div class="card"><div class="k">Hallmark + Maker Photo on PDP</div><div class="v">0 / ' + ENTRIES.length + '</div><div class="d">1 buyer photo alt-text ("585 AFJ"); verify via XRF on arrival</div></div>',
-      '<div class="card"><div class="k">Verification Suites</div><div class="v">5 / 5 PASS</div><div class="d"><code>verify.py</code> · <code>check_report.py</code> · <code>verified/verify.py</code> · <code>check_hallucinations.py</code> · <code>audit_b1f2fe3b.py</code></div></div>'
+      '<div class="card"><div class="k">Hallmark + maker statement</div><div class="v">' + ENTRIES.filter((e) => e.makerMark && e.hallmarkClaim && !/not stated/i.test(e.hallmarkClaim)).length + ' / ' + ENTRIES.length + '</div><div class="d">Seller statements only; no independent assay or stamp-photo verification</div></div>',
+      '<div class="card"><div class="k">Verification Suites</div><div class="v">9 / 9 PASS</div><div class="d"><code>verify.py</code> · independent audit · cross-site audit · current review · report/hallucination/security checks · verified archive · dossier</div></div>'
     ].join("");
   }
 
   const noteEl = document.getElementById("weighted-note-extra");
   if (noteEl) {
-    noteEl.innerHTML = "Notice how <b>Allurez U5882 (14K, 5.00 g, " + money(1085) + ")</b> and <b>Allurez U5885 (18K, 5.90 g, " + money(1316) + ")</b> demonstrate the exact 1.18× density increase of 18K over 14K gold alloy on the same setting geometry (84.5% of the +" + money(231) + " retail difference is backed by raw fine gold), while <b>ET-576343849 (14K, 7.00 g, " + money(444.8) + " snippet / sold out)</b> prices at <b>0.84× melt value</b> (red-flag case study FL-01).";
+    noteEl.textContent = "Only exact published weights are included. The sold ET-576343849 page gives a 6–7 g scale range, so it is excluded from exact-weight calculations; the former below-melt conclusion is withdrawn (resolved FL-01).";
   }
 
   const xLoad = document.getElementById("x-load");
@@ -83,7 +83,7 @@
     let meltVerdict = "";
     if (ratio != null) {
       if (ratio < 1.0) {
-        meltVerdict = '<div class="note red" style="margin-top:8px"><b>PRICE RED FLAG (' + ratio.toFixed(2) + "× melt):</b> Asking price " + money(price) + " is BELOW the raw gold melt value " + money(meltVal) + ". Legitimate jewelers never sell solid gold below melt.</div>";
+        meltVerdict = '<div class="note red" style="margin-top:8px"><b>PRICE RED FLAG (' + ratio.toFixed(2) + "× melt):</b> Asking price " + money(price) + " is BELOW the raw gold melt value " + money(meltVal) + ". Stop and independently verify weight, purity and listing authenticity; a ratio alone does not prove intent.</div>";
       } else if (ratio < 1.6) {
         meltVerdict = '<div class="note gold" style="margin-top:8px"><b>Thin markup (' + ratio.toFixed(2) + "× melt):</b> Asking price " + money(price) + " is close to raw gold value " + money(meltVal) + ". Verify purity via independent XRF immediately upon arrival.</div>";
       } else {
@@ -138,7 +138,7 @@
     wEl.innerHTML = '<div class="table-wrap"><table><thead><tr>' +
       '<th>ID</th><th>Session</th><th>Listing</th><th>Seller</th><th>Karat</th><th>Published Weight</th>' +
       '<th>Weight in dwt</th><th>Pure 24K Gold</th><th>Melt Value (' + money(spotG) + '/g)</th>' +
-      '<th>Verified Price</th><th>Price ÷ Melt</th><th>Official Source</th>' +
+      '<th>Recorded price</th><th>Price ÷ Melt</th><th>Official Source</th>' +
       '</tr></thead><tbody>' +
       withGrams.map((e) => {
         const fin = finenessOf(e.karat || 14);
@@ -196,7 +196,7 @@
     document.getElementById("master-count").textContent = filtered.length + " of " + ENTRIES.length + " entries shown";
     document.getElementById("master-table").innerHTML = '<div class="table-wrap tall"><table><thead><tr>' +
       '<th>ID</th><th>Session</th><th>Ring / Listing</th><th>Seller</th><th>Karat</th><th>Solid Gold?</th>' +
-      '<th>Weight (g)</th><th>Pure Au (g)</th><th>Melt (' + money(spotG) + '/g)</th><th>Verified Price</th>' +
+      '<th>Weight (g)</th><th>Pure Au (g)</th><th>Melt (' + money(spotG) + '/g)</th><th>Recorded price</th>' +
       '<th>Price ÷ Melt</th><th>Return Policy</th><th>Checked</th><th>Source Link</th>' +
       '</tr></thead><tbody>' +
       filtered.map((e) => {
@@ -211,7 +211,7 @@
           '<td>' + (e.explicitSolidGoldStated ? '<span class="badge ok">explicit solid</span>' : '<span class="badge warn">karat only</span>') + '</td>' +
           '<td class="num">' + (e.grams != null ? e.grams.toFixed(2) + " g" : '<span class="blank">not stated</span>') + '</td>' +
           '<td class="num">' + (comp.pureGoldGrams != null ? comp.pureGoldGrams.toFixed(3) + " g" : '<span class="blank">—</span>') + '</td>' +
-          '<td class="num">' + (comp.rawGoldMeltUsdAtRecheckSpot != null ? money(comp.rawGoldMeltUsdAtRecheckSpot) : '<span class="blank">—</span>') + '</td>' +
+          '<td class="num">' + (comp.rawGoldMeltUsdAtPrimarySpot != null ? money(comp.rawGoldMeltUsdAtPrimarySpot) : '<span class="blank">—</span>') + '</td>' +
           '<td class="num">' + (p != null ? money(p) : '<span class="blank">no price</span>') + '<div class="src">' + esc(e.priceLabel || "") + '</div></td>' +
           '<td class="num">' + (comp.priceToMeltRatio != null ? comp.priceToMeltRatio.toFixed(2) + "×" : '<span class="blank">—</span>') + '</td>' +
           '<td style="max-width:220px;font-size:12px">' + esc(e.returnPolicy || "—") + '</td>' +

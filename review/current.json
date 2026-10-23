@@ -1406,7 +1406,7 @@
       "sourceHost": "www.bluenile.com",
       "recordedLabels": [
         "Floral Marquise Diamond Engagement Ring",
-        "Floral Marquise Diamond Engagement Ring, 18k White Gold",
+        "Floral Marquise Diamond Engagement Ring — metal description conflict",
         "Floral Marquise — 18K White Gold"
       ],
       "recordedCategories": [
@@ -3405,8 +3405,7 @@
       "sourceUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
       "sourceHost": "www.etsy.com",
       "recordedLabels": [
-        "14K Solid White Gold 7 g Band, Size 11 — CASE STUDY (no longer available)",
-        "14K Solid White Gold 7 g Band, Size 11 — case study (sold at check)"
+        "14K Solid White Gold 7 g Band, Size 11 — CASE STUDY (no longer available)"
       ],
       "recordedCategories": [
         "case-study"
@@ -3416,16 +3415,6 @@
           "file": "data/unified.json",
           "row": 24,
           "recordedId": "etsy-576343849"
-        },
-        {
-          "file": "data/b1f2fe3b_verified_catalog.json",
-          "row": 25,
-          "recordedId": "ET-576343849"
-        },
-        {
-          "file": "site/assets/data.json",
-          "row": 25,
-          "recordedId": "ET-576343849"
         }
       ],
       "reviewDate": "2026-10-23",
@@ -3472,6 +3461,51 @@
           "file": "verification/data.json",
           "row": 11,
           "recordedId": "A11"
+        }
+      ],
+      "reviewDate": "2026-10-23",
+      "officialPageCheckedAt": null,
+      "status": "unverified",
+      "flags": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ],
+      "current": {
+        "priceUsd": null,
+        "karat": null,
+        "netGoldAlloyGrams": null,
+        "solidGold": null,
+        "hallmark": null,
+        "makerMark": null,
+        "returnPolicy": null,
+        "creditCardAccepted": null,
+        "spotUsdPerGram": null,
+        "fineGoldGrams": null,
+        "metalValueUsd": null
+      }
+    },
+    {
+      "id": "05e87a6ef6b43702",
+      "sourceUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
+      "sourceHost": "www.etsy.com",
+      "recordedLabels": [
+        "14K Solid White Gold Band, Size 11 — sold case study (exact weight unresolved)"
+      ],
+      "recordedCategories": [
+        "case-study"
+      ],
+      "origins": [
+        {
+          "file": "data/b1f2fe3b_verified_catalog.json",
+          "row": 25,
+          "recordedId": "ET-576343849"
+        },
+        {
+          "file": "site/assets/data.json",
+          "row": 25,
+          "recordedId": "ET-576343849"
         }
       ],
       "reviewDate": "2026-10-23",

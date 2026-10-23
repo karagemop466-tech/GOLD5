@@ -19,7 +19,7 @@ Checks, in order:
   C15 security: https-only links, rel=noopener, no frames/scripts/posting forms
 
 Writes data/check_report_v2.json, appends data/pass_history_v2.json and a
-human-readable report to docs/verification/consolidation-2026-10-22.md.
+human-readable report to docs/verification/consolidation-2026-10-23.md.
 Exit code 1 if any check fails.
 """
 import json, os, re, sys, glob, html as htmllib, datetime
@@ -91,18 +91,37 @@ for e in ENTRIES:
     if not any(host == d or host.endswith("." + d) for d in ALLOWED): bad.append(f'{e["id"]}: host {host}')
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["checkedOn"] or ""): bad.append(f'{e["id"]}: bad date')
     if e["provenance"] not in ("live", "prior"): bad.append(f'{e["id"]}: bad provenance')
-check("C2", not bad, f"{len(ENTRIES)} listings have an https official-source URL and a dated check (2026-10-22 or 2026-10-23)" + ("" if not bad else " — " + "; ".join(bad[:6])))
+check("C2", not bad, f"{len(ENTRIES)} listings have an https official-source URL and a dated check (data as of {D['meta']['asOf']})" + ("" if not bad else " — " + "; ".join(bad[:6])))
 
 # ---------------------------------------------------------------- C3
-miss = []
-for e in ENTRIES:
-    if e["grams"] is None and "FL-03" not in e["flags"]: miss.append(f'{e["id"]}: no weight, no FL-03')
-    if not e["solidStated"] and "FL-15" not in e["flags"]: miss.append(f'{e["id"]}: no solid claim, no FL-15')
-    if not e["hallmarkStated"] and "FL-14" not in e["flags"]: miss.append(f'{e["id"]}: no hallmark, no FL-14')
-    if e["price"] is None and not ({"FL-13", "FL-08"} & set(e["flags"])): miss.append(f'{e["id"]}: no price, no FL-13/FL-08')
-    if not e["returnsVerified"] and not any(f in e["flags"] for f in ("FL-07", "FL-11", "FL-12", "FL-13", "FL-16")):
-        miss.append(f'{e["id"]}: returns unverified, no returns flag')
-check("C3", not miss, "every blank is covered by a flag" + ("" if not miss else " — " + "; ".join(miss[:8])))
+def blank_flag_errors(rows):
+    miss = []
+    for e in rows:
+        flags = set(e.get("flags", []))
+        if e.get("grams") is None and "FL-03" not in flags:
+            miss.append(f'{e["id"]}: no weight, no FL-03')
+        if not e.get("solidStated") and "FL-15" not in flags:
+            miss.append(f'{e["id"]}: no solid claim, no FL-15')
+        if not e.get("hallmarkStated") and "FL-14" not in flags:
+            miss.append(f'{e["id"]}: no hallmark, no FL-14')
+        if not e.get("makerMarkStated") and "FL-14" not in flags:
+            miss.append(f'{e["id"]}: no maker mark, no FL-14')
+        if e.get("price") is None and not ({"FL-13", "FL-08"} & flags):
+            miss.append(f'{e["id"]}: no price, no FL-13/FL-08')
+        if not e.get("returnsVerified") and not any(f in flags for f in ("FL-07", "FL-11", "FL-12", "FL-13", "FL-16")):
+            miss.append(f'{e["id"]}: returns unverified, no returns flag')
+        if e.get("metalConflict") and "FL-30" not in flags:
+            miss.append(f'{e["id"]}: metal conflict, no FL-30')
+        if "FL-30" in flags and not e.get("metalConflict"):
+            miss.append(f'{e["id"]}: FL-30 without a disclosed metal conflict')
+        if "FL-29" in flags and not e.get("availability"):
+            miss.append(f'{e["id"]}: sold-out flag without availability disclosure')
+        if e.get("availability") and "SOLD" in str(e["availability"]).upper() and "FL-29" not in flags:
+            miss.append(f'{e["id"]}: sold-out availability without FL-29')
+    return miss
+
+miss = blank_flag_errors(ENTRIES)
+check("C3", not miss, "every blank and source conflict is covered by a flag" + ("" if not miss else " — " + "; ".join(miss[:8])))
 
 # ---------------------------------------------------------------- C4
 arith = []
@@ -132,7 +151,7 @@ for e in ENTRIES:
     block = lis[block_start:block_start + 4000]
     if e["url"] not in block: bad5.append(f'{e["id"]} source link missing')
     if e["grams"] is None:
-        if "not stated" not in block: bad5.append(f'{e["id"]} blank weight not labelled')
+        if "not stated" not in block and "not exact" not in block: bad5.append(f'{e["id"]} blank weight not labelled')
     if e["price"] is None:
         if "no price" not in block: bad5.append(f'{e["id"]} blank price not labelled')
 check("C5", not bad5, f"{len(rows)} listing rows, each with its official source link" + ("" if not bad5 else " — " + "; ".join(bad5[:8])))
@@ -318,34 +337,36 @@ check("C15", not bad15, "no http://, javascript:, frames, third-party scripts, i
 # ---------------------------------------------------------------- C16 provenance integrity
 today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
 ASOF = D["meta"]["asOf"]
-bad16 = []
-prov_counts = {"live": 0, "prior": 0}
-for e in ENTRIES:
-    pv, co = e.get("provenance"), e.get("checkedOn")
-    if pv not in ("live", "prior"):
-        bad16.append(f'{e["id"]}: unknown provenance {pv!r}'); continue
-    prov_counts[pv] += 1
-    if not co or co > ASOF or co > today:
-        bad16.append(f'{e["id"]}: check date {co!r} is after data date {ASOF}')
-    if pv == "live" and co != ASOF:
-        bad16.append(f'{e["id"]}: marked live but checkedOn={co} != {ASOF}')
-    if pv == "prior":
-        if co >= ASOF:
-            bad16.append(f'{e["id"]}: prior row not older than the pass date')
-        if not any(n.startswith(f"NOT re-fetched on {ASOF}") for n in e.get("notes", [])):
-            bad16.append(f'{e["id"]}: prior row has no explicit not-refetched note')
-        if not ({"FL-26", "FL-27", "FL-28"} & set(e.get("flags", []))):
-            bad16.append(f'{e["id"]}: prior row carries none of FL-26/27/28')
+def provenance_errors(rows):
+    bad = []
+    for e in rows:
+        pv, co = e.get("provenance"), e.get("checkedOn")
+        if pv not in ("live", "prior"):
+            bad.append(f'{e["id"]}: unknown provenance {pv!r}')
+            continue
+        if not co or co > ASOF or co > today:
+            bad.append(f'{e["id"]}: check date {co!r} is after data date {ASOF}')
+        if pv == "live" and co != ASOF:
+            bad.append(f'{e["id"]}: marked live but checkedOn={co} != {ASOF}')
+        if pv == "prior":
+            if co >= ASOF:
+                bad.append(f'{e["id"]}: prior row not older than the pass date')
+            if not any(n.startswith(f"NOT re-fetched on {ASOF}") for n in e.get("notes", [])):
+                bad.append(f'{e["id"]}: prior row has no explicit not-refetched note')
+            if not ({"FL-26", "FL-27", "FL-28"} & set(e.get("flags", []))):
+                bad.append(f'{e["id"]}: prior row carries none of FL-26/27/28')
+    return bad
+
+bad16 = provenance_errors(ENTRIES)
+prov_counts = {"live": sum(1 for e in ENTRIES if e.get("provenance") == "live"),
+               "prior": sum(1 for e in ENTRIES if e.get("provenance") == "prior")}
 cov = D["meta"].get("coverage", {})
 if cov:
     if cov.get("live") != prov_counts["live"] or cov.get("prior") != prov_counts["prior"]:
         bad16.append(f'meta.coverage says {cov} but data has {prov_counts}')
     if cov.get("liveDate") != ASOF:
         bad16.append("meta.coverage.liveDate does not match meta.asOf")
-_c16msg = (f"provenance: all {prov_counts['live']} rows carry checkedOn={ASOF} and provenance=live"
-           if not prov_counts["prior"] else
-           f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged")
-check("C16", not bad16, _c16msg + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
+check("C16", not bad16, f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged" + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
 
 # ---------------------------------------------------------------- C17 category coverage
 bad17 = []
@@ -451,44 +472,112 @@ for e in ENTRIES:
         bad20.append(f'{e["id"]} live row is not labelled live')
 check("C20", not bad20, f"counts and row provenance labels match the dataset on all {n_rows} listing rows" + ("" if not bad20 else " — " + "; ".join(bad20[:6])))
 
+# ---------------------------------------------------------------- C21 evidence ledger integrity
+def ledger_errors(ledger, rows):
+    bad = []
+    by_id = {e["id"]: e for e in rows}
+    checks = ledger.get("checks", [])
+    if ledger.get("session") != D["meta"].get("session"):
+        bad.append("ledger session does not match canonical session")
+    if ledger.get("checkedOn") != ASOF:
+        bad.append("ledger date does not match data date")
+    if len(checks) != ledger.get("coverage", {}).get("total") or len(checks) != 46:
+        bad.append(f"ledger has {len(checks)} checks, expected 46")
+    ids = [c.get("id") for c in checks]
+    if len(ids) != len(set(ids)):
+        bad.append("duplicate evidence check ids")
+    kinds = {}
+    listing_seen = set()
+    for c in checks:
+        kinds[c.get("kind")] = kinds.get(c.get("kind"), 0) + 1
+        if c.get("status") != "read" or c.get("checkedOn") != ASOF:
+            bad.append(f'{c.get("id")}: not a current read')
+        if not str(c.get("url", "")).startswith("https://"):
+            bad.append(f'{c.get("id")}: non-https evidence URL')
+        if not c.get("sourceExcerpt"):
+            bad.append(f'{c.get("id")}: empty source excerpt')
+        ev = c.get("evidencePath")
+        if not ev or not os.path.exists(os.path.join(ROOT, ev)):
+            bad.append(f'{c.get("id")}: missing evidence file {ev}')
+        if c.get("kind") == "listing":
+            eid = c.get("entryId")
+            listing_seen.add(eid)
+            e = by_id.get(eid)
+            if not e:
+                bad.append(f'{c.get("id")}: unknown listing {eid}')
+                continue
+            if c.get("url") != e.get("url"):
+                bad.append(f'{eid}: ledger URL differs from row')
+            if e.get("evidenceId") != c.get("id") or e.get("evidencePath") != ev:
+                bad.append(f'{eid}: row does not point to its evidence check')
+            obs = c.get("observed") or {}
+            for field in ("price", "grams", "karat", "solidStated", "hallmarkStated", "makerMarkStated", "returnsVerified", "metalConflict"):
+                if obs.get(field) != e.get(field):
+                    bad.append(f'{eid}: observed {field} differs from canonical value')
+        elif c.get("kind") == "reference":
+            ref = next((r for r in REFS if r["id"] == c.get("referenceId")), None)
+            if not ref or ref["url"] != c.get("url"):
+                bad.append(f'{c.get("id")}: reference URL/id mismatch')
+        elif c.get("kind") == "spot":
+            if c.get("url") != SPOT.get("url"):
+                bad.append("spot evidence URL mismatch")
+    if listing_seen != set(by_id):
+        bad.append("ledger does not cover every canonical listing exactly once")
+    expected = {"listing": 25, "policy": 9, "reference": 11, "spot": 1}
+    if kinds != expected:
+        bad.append(f"ledger kind counts {kinds}, expected {expected}")
+    return bad
+
+bad21 = ledger_errors(D["meta"].get("liveCheck", {}), ENTRIES)
+check("C21", not bad21, "46-check evidence ledger covers every row and agrees with canonical observed values" + ("" if not bad21 else " — " + "; ".join(bad21[:8])))
+
 # ---------------------------------------------------------------- negative self-tests
 # Each mutation must be caught by the rule it targets. If a mutation is NOT
 # caught, that is itself a failure: the harness may not silently pass.
 def _neg_tests():
+    import copy
     out = []
     # N1 hand-typed dollar figure (C8)
     fake = "$9,999.99"
-    allow = set()
-    for e in ENTRIES:
-        if e["price"] is not None:
-            allow.add(round(e["price"], 2))
+    allow = {round(e["price"], 2) for e in ENTRIES if e["price"] is not None}
     out.append(("N1 invented price", round(float(fake.replace("$", "").replace(",", "")), 2) not in allow))
-    # N2 a row marked "prior" but dated to the pass date (the C16 rule). Built from a copy so the
-    # test does not depend on a prior row happening to exist in the current dataset.
-    e2 = dict(ENTRIES[0]); e2["provenance"] = "prior"; e2["checkedOn"] = ASOF
-    out.append(("N2 prior row dated to the pass date", e2["checkedOn"] >= ASOF))
-    # N3 blank weight without the flag (C3)
-    e3 = dict(next(x for x in ENTRIES if x["grams"] is None))
+    # N2 a current-dated prior row must be rejected by the actual C16 predicate.
+    e2 = copy.deepcopy(ENTRIES[0])
+    e2["provenance"] = "prior"
+    e2["checkedOn"] = ASOF
+    out.append(("N2 prior row marked current", bool(provenance_errors([e2]))))
+    # N3 blank weight without the flag (actual C3 predicate).
+    e3 = copy.deepcopy(next(x for x in ENTRIES if x["grams"] is None))
     e3["flags"] = [f for f in e3["flags"] if f != "FL-03"]
-    out.append(("N3 silent blank weight", "FL-03" not in e3["flags"]))
+    out.append(("N3 silent blank weight", bool(blank_flag_errors([e3]))))
     # N4 row without an https source (C2/C19)
     out.append(("N4 row without source", not bool(u_re.match("http://example.com/ring"))))
-    # N5 category page dropping a row (C17)
+    # N5 category page dropping a row (C17 selection invariant)
     c5 = SC.categories()[0]
     mem5 = SC.category_members(c5, ENTRIES)
     out.append(("N5 category drops a row", len([e for e in ENTRIES if e["id"] in {m["id"] for m in mem5}]) == len(mem5)))
     # N6 http:// link (C15)
     out.append(("N6 insecure link", bool(re.search(r'href="http://', '<a href="http://x.test">'))))
-    # N7 future check date (C16)
-    out.append(("N7 future check date", "2027-01-01" > ASOF))
+    # N7 future check date (actual C16 predicate)
+    e7 = copy.deepcopy(ENTRIES[0]); e7["checkedOn"] = "2999-01-01"
+    out.append(("N7 future check date", bool(provenance_errors([e7]))))
     # N8 duplicate entry id (C1)
     ids8 = [x["id"] for x in ENTRIES] + [ENTRIES[0]["id"]]
     out.append(("N8 duplicate id", len(ids8) != len(set(ids8))))
+    # N9 evidence mutation (actual C21 predicate)
+    ledger9 = copy.deepcopy(D["meta"]["liveCheck"])
+    target9 = next(c for c in ledger9["checks"] if c.get("kind") == "listing" and c["observed"].get("price") is not None)
+    target9["observed"]["price"] += 1
+    out.append(("N9 evidence price mismatch", bool(ledger_errors(ledger9, ENTRIES))))
+    # N10 conflict disclosure mutation (actual C3 predicate)
+    e10 = copy.deepcopy(next(x for x in ENTRIES if x.get("metalConflict")))
+    e10["flags"] = [f for f in e10["flags"] if f != "FL-30"]
+    out.append(("N10 undisclosed metal conflict", bool(blank_flag_errors([e10]))))
     return out
 
 neg = _neg_tests()
 caught = sum(1 for _, ok in neg if ok)
-check("N1-N8", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+check("N1-N10", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
 
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)
@@ -504,7 +593,7 @@ hist_path = os.path.join(ROOT, "data/pass_history_v2.json")
 hist = json.load(open(hist_path)) if os.path.exists(hist_path) else []
 hist.append(dict(ranAt=now, passed=passed, fail=len(failed), warn=0,
                  checks={c: ("PASS" if o else "FAIL") for c, o, _ in results},
-                 note="final integration 2026-10-23 (session a255f011)"))
+                 note="final integration 2026-10-23 (session bc4e36a1)"))
 json.dump(hist, open(hist_path, "w"), indent=1)
 
 md = [f"# Verification report — consolidated GOLD5 site", "",
@@ -518,14 +607,15 @@ md += ["", "## What each check means", "",
        "- C8 every dollar figure sourced or computed · C10 placeholders · C11 data.js/data.json parity",
        "- C12 published gold values · C13 HTML well-formedness · C14 no-hallucinations banner",
        "- C15 security: https-only, rel=noopener on new tabs, no frames, third-party scripts, inline handlers or posting forms",
-       "- C16 provenance: live rows dated to this pass, prior rows dated, noted and flagged (FL-26/27/28)",
+       "- C16 provenance: live rows dated to this pass, prior rows dated, noted and flagged; all-live datasets are valid",
+       "- C21 evidence ledger: 46 current checks, saved excerpts and observed values agree with every canonical row",
        "- C17 category coverage: every row appears on a category page and the row counts match the rules",
        "- C18 navigation: the same 12-item nav everywhere and no orphan page",
        "- C19 source discipline: https for every listing, policy, flag reference and official reference",
        "- C20 dataset ↔ page counts and per-row provenance labels",
-       "- N1–N8 negative self-tests: injected errors must be caught, or the harness fails", ""]
+       "- N1–N10 negative self-tests: injected errors must be caught, or the harness fails", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
-open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-22.md"), "w").write("\n".join(md))
+open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-23.md"), "w").write("\n".join(md))
 
 print(f"GOLD5 verify v2 — {'PASS' if not failed else 'FAIL'}: {passed} passed, {len(failed)} failed — {now}")
 for c, o, d in results:

@@ -35,7 +35,54 @@ recommendation to hunt again for unsupported claims. Flagged items remain publis
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 20:34 UTC — **session `ea49572b` complete (PR #48 merged, Pages deployed); all tasks E1–E6 done, no open claims**
+- Last updated: 2026-10-23 (UTC) — **session `bc4e36a1` H1–H4 complete; H5 publication in progress; PRs #43–#49 history preserved**
+
+## ⏱ ACTIVE CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`)
+
+Claimed **2026-10-23 20:15 UTC** after reading the full board and confirming that every earlier claim is
+closed and `gh pr list --state open` returned no open PRs. This is the next final-integration and
+current-evidence pass. Arena fixes this session to its existing branch, so the requested
+`session-<id>/<task>` branch naming cannot be used; exclusive file scopes are used instead. Earlier
+`docs/`, `dossier/`, `guide/`, `pages/`, `report/`, `review/`, `verified/`, `verification/` (except the
+new evidence path below), and `archive/` deliveries are read-only inputs.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| H1 | Repository audit, baseline harnesses, and coordination claim | **done** | bc4e36a1 | `COORDINATION.md` |
+| H2 | Re-read every canonical listing, seller/policy, spot, and reference URL; save dated evidence and failures without upgrading unconfirmed values | **done — 46/46 checks saved** | bc4e36a1 | `data/live_check_bc4e36a1.json`, `verification/evidence/bc4e36a1/**` |
+| H3 | Correct or blank/flag drift in the canonical dataset; rebuild dashboard and category pages from source data | **done — 25 rows / 30 flags rebuilt** | bc4e36a1 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html`, `README.md` |
+| H4 | Line-by-line provenance, arithmetic, money, link, and hallucination/security review with negative tests after every review | **done — full suite green** | bc4e36a1 | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `data/b1f2fe3b_*`, `docs/verification/bc4e36a1-*.md`, `review/**`, `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js` |
+| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **in progress** | bc4e36a1 | `COORDINATION.md`; GitHub PR/Pages operations |
+
+**No-hallucinations contract for H1–H5:** no price, weight, karat, hallmark, seller claim, policy, or
+ date is inferred or copied from memory. Every published row keeps its official source URL and actual
+capture date. Failed or ambiguous reads stay at their prior date or become blank and are flagged.
+Derived values are recomputed only. Every review ends with the full available harness suite and a
+recommendation to hunt again for unsupported claims. Flagged items remain published and nonblocking.
+
+### Log — session bc4e36a1 (current integration)
+
+- **H1/H2:** Claim committed as `0907896` before evidence work; evidence commit `dd8386d` pushed after
+  non-force rebases. Re-read 25 product pages, 9 seller/policy/contact pages, 11 official references
+  and Kitco. `data/live_check_bc4e36a1.json` + `verification/evidence/bc4e36a1/` preserve all 46 checks.
+- **H3:** Canonical emission now contains 25 entries / 13 sellers / 30 flags / 11 references, all 25
+  rows live on 2026-10-23. Current panel spot is $3,996.10/oz = $128.48/g; EUR-only prices remain
+  blank; BN-203738's metal conflict is FL-30; sold ET-576343849 retains $420/$525 but has no exact
+  grams. Rebuilt the 19-page canonical site and 7 category views.
+- **H4:** `scripts/verify.py` PASS 22/22 with 10/10 injected errors; independent audit PASS 11/11;
+  cross-site audit PASS 6/6 (38 unified rows, 103 HTML pages, 4,179 local links, 4/4 injected errors);
+  current review PASS (264 records, 92 exact URLs, 6/6 negative tests); hallucinations 166 PASS /
+  0 FAIL / 0 WARN / 1 INFO; report 1,649 checks PASS; security 9/9 planted errors caught; verified
+  archive 896 assertions PASS; dossier 18/18 PASS. The duplicate 2.3 g historical note remains open
+  for continued review rather than being silently dismissed.
+- **H4 integration corrections:** unified export now preserves return text, maker-mark statements,
+  metal-conflict state and evidence paths, and distinguishes primary-spot ratios from historical
+  recheck-spot values. Master Audit static counts/spot/case-study wording and its primary-spot table
+  were corrected. `tools/security_test.py` is now the documented command everywhere in the canonical build.
+- **H5:** Final full-suite rerun, diff review, commit/rebase/push, PR → `main`, merge and Pages
+  confirmation are still being completed in this session. No unresolved research flag is being hidden
+  to make the merge green; broken links or harness failures would block publication.
+
 
 ## ⏱ ACTIVE CLAIM — session `ea49572b` (Arena branch `arena/ea49572b-gold5`) — **complete, PR #48 merged**
 
