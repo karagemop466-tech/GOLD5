@@ -1,0 +1,16 @@
+SOURCES (all fetched 2026-10-23):
+  https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry
+    "Near the karat quality mark, look for the name or the U.S. registered trademark of the company that will
+     stand behind the mark. ... If you're thinking about buying a piece of gold jewelry but don't see a trademark
+     along with the karat mark, don't buy it."
+    "The phrase 'solid gold' means the gold item isn't hollow."
+    Gold filled / gold overlay / RGP: layer of at least 10 karat gold mechanically applied to base metal.
+    Gold electroplate: at least .175 microns. Vermeil: gold-plated sterling silver.
+  https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23
+    "Displaying title 16, up to date as of 10/21/2026."
+    Contents include § 23.3 Misrepresentation as to gold content; § 23.4 Misuse of the word "vermeil";
+    § 23.10 Additional guidance for the use of quality marks; § 23.18 Misrepresentation of weight and "total weight".
+  https://www.govinfo.gov/link/uscode/15/295  (resolves to USCODE-2024-title15-chap8-sec295.pdf)
+    "...the actual fineness of such gold or alloy shall not be less by more than three one-thousandth parts than
+     the fineness indicated by the mark stamped..."
+    "...shall not be less by more than ... seven one-thousandth parts, in the case of any other such article..."

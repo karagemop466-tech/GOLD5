@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-10-22 23:56 UTC",
+  "runAt": "2026-10-23 09:59 UTC",
   "session": "b1f2fe3b",
   "status": "PASS",
   "passedCount": 6,
@@ -8,11 +8,11 @@
   "catalogSummary": {
     "title": "GOLD5 Unified Cross-Session Verified Ring Catalog",
     "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
-    "asOf": "2026-10-22",
-    "noHallucinationsRule": "Every entry has >=1 official source URL and checkedOn=2026-10-22. Blank fields are null and flagged; derived fields are computed from verified inputs.",
-    "primarySpotUsdPerOz": 4026.9,
-    "primarySpotUsdPerGram": 129.47,
-    "primarySpotAsOf": "2026-10-22 7:26 p.m. ET",
+    "asOf": "2026-10-23",
+    "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
+    "primarySpotUsdPerOz": 4022.5,
+    "primarySpotUsdPerGram": 129.33,
+    "primarySpotAsOf": "2026-10-23 5:44 a.m. ET",
     "liveRecheckSpotUsdPerOz": 4026.9,
     "liveRecheckSpotUsdPerGram": 129.47,
     "liveRecheckAsOf": "2026-10-22 7:26 p.m. EDT",
@@ -24,11 +24,11 @@
     "entriesWithVerifiedHallmarkAndMakerMark": 0
   },
   "passed": [
-    "S1-S3/S6: All 38 unified entries have allowlisted HTTPS sources, valid 2026-10-22 check dates, flagged blanks, and verified melt ratios.",
+    "S1-S3/S6: All 38 unified entries have allowlisted HTTPS sources, valid 2026-10-22/2026-10-23 check dates consistent with provenance, flagged blanks, and verified melt ratios.",
     "S4: Spot quotes and NIST troy oz / pennyweight / gram conversions verified exact.",
     "S5: Karat fineness fractions & 15 U.S.C. \u00a7 295 (-3\u2030 / -7\u2030) tolerances verified.",
     "S7: All 11 data/rings.json entries verified verbatim against data/evidence/*.txt.",
-    "S8-S11: 68 HTML pages audited (1781 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).",
+    "S8-S11: 103 HTML pages audited (4057 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).",
     "S12: Negative self-test caught all 4/4 injected synthetic hallucinations (missing source, unflagged blank weight, unflagged sub-melt price, untrusted domain)."
   ],
   "errors": [],

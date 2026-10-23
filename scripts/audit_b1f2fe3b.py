@@ -152,6 +152,7 @@ def build_unified_catalog(root_data):
             "status": "verified" if price is not None else "flagged",
             "flags": flags,
             "checkedOn": e["checkedOn"],
+            "provenance": e.get("provenance"),
             "sources": srcs,
             "computed": comp,
         })
@@ -296,8 +297,8 @@ def build_unified_catalog(root_data):
         "meta": {
             "title": "GOLD5 Unified Cross-Session Verified Ring Catalog",
             "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
-            "asOf": "2026-10-22",
-            "noHallucinationsRule": "Every entry has >=1 official source URL and checkedOn=2026-10-22. Blank fields are null and flagged; derived fields are computed from verified inputs.",
+            "asOf": (root_data.get("meta", {}).get("asOf") or "2026-10-22"),
+            "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
             "primarySpotUsdPerOz": spot_primary["usdPerOz"],
             "primarySpotUsdPerGram": spot_primary["usdPerGram"],
             "primarySpotAsOf": spot_primary["asOf"],
@@ -334,8 +335,15 @@ def validate_entry_list(entries):
             host = (parsed.hostname or "").lower()
             if parsed.scheme != "https" or host not in OFFICIAL_ALLOWED_DOMAINS:
                 errs.append(f"S1: {eid} disallowed/non-https URL {u}")
-        if e.get("checkedOn") != "2026-10-22":
+        # 2026-10-23 (integration session a255f011): the canonical dataset now carries
+        # two legitimate check dates - rows re-read today and rows kept from the
+        # 2026-10-22 capture (which must be labelled provenance=prior and flagged).
+        if e.get("checkedOn") not in ("2026-10-22", "2026-10-23"):
             errs.append(f"S2: {eid} missing/invalid checkedOn date {e.get('checkedOn')!r}")
+        if e.get("checkedOn") == "2026-10-23" and e.get("provenance") != "live":
+            errs.append(f"S2: {eid} is dated 2026-10-23 but not marked live")
+        if e.get("provenance") == "prior" and e.get("checkedOn") != "2026-10-22":
+            errs.append(f"S2: {eid} is marked prior but not dated 2026-10-22")
         flags = set(e.get("flags") or [])
         if e.get("grams") is None and not ({"no-gram-weight", "FL-03", "F-WEIGHT", "G-NO-WEIGHT", "F-004"} & flags) and e.get("status") != "flagged":
             errs.append(f"S3: {eid} has blank grams without no-gram-weight/F-WEIGHT flag")
@@ -363,7 +371,7 @@ def run_audit():
         errors.extend(cat_errs)
     else:
         passed.append(
-            f"S1-S3/S6: All {len(catalog['entries'])} unified entries have allowlisted HTTPS sources, valid 2026-10-22 check dates, flagged blanks, and verified melt ratios."
+            f"S1-S3/S6: All {len(catalog['entries'])} unified entries have allowlisted HTTPS sources, valid 2026-10-22/2026-10-23 check dates consistent with provenance, flagged blanks, and verified melt ratios."
         )
 
     # S4: Spot & NIST Metrology math

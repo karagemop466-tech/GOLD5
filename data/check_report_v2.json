@@ -1,20 +1,20 @@
 {
  "ok": true,
- "passed": 15,
+ "passed": 21,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-22 23:56 UTC",
+ "ranAt": "2026-10-23 09:59 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 25 flags, 10 references"
+   "detail": "25 entries, 13 sellers, 28 flags, 11 references"
   },
   {
    "id": "C2",
    "ok": true,
-   "detail": "25 listings have an https official-source URL and a 2026-10-22 check date"
+   "detail": "25 listings have an https official-source URL and a 2026-10-23 check date"
   },
   {
    "id": "C3",
@@ -34,17 +34,17 @@
   {
    "id": "C6",
    "ok": true,
-   "detail": "all internal links and anchors resolve across 11 pages"
+   "detail": "all internal links and anchors resolve across 19 pages"
   },
   {
    "id": "C7",
    "ok": true,
-   "detail": "every external link (65 registered URLs) is recorded in the dataset"
+   "detail": "every external link (66 registered URLs) is recorded in the dataset"
   },
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (224 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (233 allowed values)"
   },
   {
    "id": "C9",
@@ -69,7 +69,7 @@
   {
    "id": "C13",
    "ok": true,
-   "detail": "11 pages parse as well-formed HTML"
+   "detail": "19 pages parse as well-formed HTML"
   },
   {
    "id": "C14",
@@ -80,6 +80,36 @@
    "id": "C15",
    "ok": true,
    "detail": "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener"
+  },
+  {
+   "id": "C16",
+   "ok": true,
+   "detail": "provenance: 12 live 2026-10-23 + 13 prior rows, each prior row dated, noted and flagged"
+  },
+  {
+   "id": "C17",
+   "ok": true,
+   "detail": "7 category pages cover all 25 rows, row counts match the rules, each links back"
+  },
+  {
+   "id": "C18",
+   "ok": true,
+   "detail": "consistent 12-item nav on all 19 pages and every page reachable from the dashboard"
+  },
+  {
+   "id": "C19",
+   "ok": true,
+   "detail": "https sources for every row, seller policy, flag reference and official reference; 11 references dated"
+  },
+  {
+   "id": "C20",
+   "ok": true,
+   "detail": "counts and row provenance labels match the dataset on all 25 listing rows"
+  },
+  {
+   "id": "N1-N8",
+   "ok": true,
+   "detail": "8/8 injected errors caught by the rules they target"
   }
  ]
 }
