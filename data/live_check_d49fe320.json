@@ -12,8 +12,16 @@
     "mergedAt": "2026-10-23T20:46:45Z",
     "mergeCommit": "368ddac68ea00d94e4adac68d61b505cab4a362d",
     "requiredChecks": [
-      {"name": "review", "conclusion": "SUCCESS", "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801351"},
-      {"name": "verify", "conclusion": "SUCCESS", "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801357"}
+      {
+        "name": "review",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801351"
+      },
+      {
+        "name": "verify",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40021801357"
+      }
     ],
     "pagesBuild": {
       "runId": 40021841320,
@@ -193,8 +201,64 @@
       "severity": "info",
       "fileScopeRequest": "scripts/author_data.py and spot-driven generated pages",
       "issue": "The current official Kitco page now shows a newer timestamped quote ($3,994.90/oz, $128.44/g at 7:42 p.m. EDT) than the site's labeled 4:10 p.m. snapshot ($3,996.10/oz, $128.48/g). The current page clearly says it is a dated snapshot, not a live feed; update only in a later evidence-ledger pass and recompute all derived amounts if 'current quote' freshness is required.",
-      "sources": ["https://www.kitco.com/charts/gold"],
+      "sources": [
+        "https://www.kitco.com/charts/gold"
+      ],
       "action": "Recorded as normal timestamped drift; no catalog change made without an approved source-data scope. Existing FL-19 covers intraday movement."
     }
-  ]
+  ],
+  "integrationCloseout": {
+    "pr": 51,
+    "prUrl": "https://github.com/karagemop466-tech/GOLD5/pull/51",
+    "state": "MERGED",
+    "mergedAt": "2026-10-23T23:56:42Z",
+    "mergeCommit": "f4099761ac2932aaa02d8a8b0dbf8fa04eb0640e",
+    "checks": [
+      {
+        "name": "review",
+        "conclusion": "SUCCESS",
+        "runId": 40042391493,
+        "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40042391493"
+      },
+      {
+        "name": "verify",
+        "conclusion": "SUCCESS",
+        "runId": 40042391400,
+        "url": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40042391400"
+      }
+    ],
+    "pagesBuild": {
+      "runId": 40042433195,
+      "status": "built",
+      "conclusion": "success",
+      "commit": "f4099761ac2932aaa02d8a8b0dbf8fa04eb0640e",
+      "updatedAt": "2026-10-23T23:57:10Z",
+      "runUrl": "https://github.com/karagemop466-tech/GOLD5/actions/runs/40042433195"
+    },
+    "cacheBustedLiveConfirmation": {
+      "query": "?v=f409976",
+      "pages": [
+        {
+          "url": "https://karagemop466-tech.github.io/GOLD5/?v=f409976",
+          "status": "success",
+          "observed": "NO HALLUCINATIONS summary, 25 listings/13 sellers, 24 open flags, 0 checker failures; spot remains explicitly timestamped at 2026-10-23 4:10 p.m. ET."
+        },
+        {
+          "url": "https://karagemop466-tech.github.io/GOLD5/site/flagged.html?v=f409976",
+          "status": "success",
+          "observed": "24 open flags and 6 resolved; this page does not yet contain the five D49 source-scope change requests (they are logged in COORDINATION and this ledger, not published as canonical flags)."
+        },
+        {
+          "url": "https://karagemop466-tech.github.io/GOLD5/site/verification.html?v=f409976",
+          "status": "success",
+          "observed": "46 checks; 25/25 listing rows dated 2026-10-23; canonical BC4 ledger and saved evidence linked."
+        },
+        {
+          "url": "https://karagemop466-tech.github.io/GOLD5/COORDINATION.md?v=f409976",
+          "status": "success",
+          "observed": "D1 audit and five source-scope requests are present; this fetch preceded the final H5 close-out entry."
+        }
+      ]
+    }
+  }
 }
