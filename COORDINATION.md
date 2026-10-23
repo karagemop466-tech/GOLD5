@@ -12,9 +12,9 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 23:55 UTC — **session `d49fe320` completed D1 post-merge audit; H5 PR/Pages close-out is in progress; PR #50 remains the deployed baseline**
+- Last updated: 2026-10-23 23:57 UTC — **session `d49fe320` completed D1 and H5; PR #51 merged; Pages built on `f409976`; 5 source-scope requests remain logged**
 
-## ⏱ ACTIVE CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — stale H5 takeover / post-merge verification
+## ⏱ PRIOR CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — complete, PR #51 merged
 
 Claimed **2026-10-23 23:44 UTC** after reading this board and confirming that PR #50 had merged and no
 PRs were open. Session `bc4e36a1` last recorded H5 as in progress at 20:15 UTC; more than 60 minutes
@@ -26,17 +26,21 @@ No canonical product data, site navigation, or generated page owned by another s
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
 | D1 | Independent post-merge audit of PR #50: recheck deployed landing/category/listings/flags/verification views, verify source/link and no-hallucination controls, run the combined harnesses, and log source-scope findings | **done — live pages and official references re-read; all 9 suites passed twice; 5 change requests logged** | `d49fe320` (handoff) | `COORDINATION.md`; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**` |
+| H5 | Complete inherited final integration: submit the fixed-branch PR, merge after checks, verify Pages deployment/live site and close this claim | **done — PR #51 merged as `f409976`; `review`/`verify` passed; Pages build `40042433195` succeeded** | `d49fe320` | `COORDINATION.md`; GitHub PR/Pages operations |
 
 **No-hallucinations rule for D1:** live price/weight/purity/policy/date claims are never inferred. Record each fetched URL, timestamp, status, and only the observed excerpt; if a source is unavailable or ambiguous, record that fact and do not change the catalog. Recompute values only through repository code. The review ends with the documented anti-hallucination/security suites and a recommendation to keep hunting for unsupported claims.
 
-### Log — session d49fe320 (in progress)
+### Log — session d49fe320 (complete)
 - 2026-10-23 23:44 UTC: stale H5 handoff claimed. Verified PR #50 is merged, both required PR checks succeeded, Pages status is `built`, and no PRs were open. The live/harness passes were pending at claim time; no site/data edits were in scope.
 - 2026-10-23 23:55 UTC: **D1 complete.** Re-fetched nine cache-busted production pages and directly re-read the official FTC, eCFR, GovInfo, NIST, Kitco and Solid Gold Jewelers pages; wrote [`data/live_check_d49fe320.json`](data/live_check_d49fe320.json) and [`verification/evidence/d49fe320/post-merge-audit.md`](verification/evidence/d49fe320/post-merge-audit.md). Re-ran all nine suites after the semantic-source review: every suite passed again; `scripts/verify.py` 22/22 (including 10/10 injected errors), independent audit 11/11, cross-site audit 6/6, current review 264/92/6, hallucinations 166/0/0/1, report 1,649/0, security 9/9, verified 896/0, dossier 18/18. Owner-scoped generated test outputs were restored.
 - **Five source-scope findings (requests, not edits):** (1) root checklist/seller prose overstates card acceptance and claims wire/Zelle/gift cards are not offered even though Solid Gold Jewelers says payment is not stated and its page says call for current price; the sold Etsy item is N/A. (2) checklist cites 16 CFR §23.18 for ring-metal weight although the official text covers diamond-weight representations. (3) checklist complaint-rating/count figures cite FTC guidance but should also link the BBB/ConsumerAffairs snapshots directly. (4) canonical §297 reference uses Cornell mirror despite an available official GovInfo text. (5) Kitco now shows $3,994.90/oz and $128.44/g at 7:42 p.m. EDT, newer than the clearly timestamped 4:10 p.m. snapshot. Full evidence and sources are in the two linked files above.
-- **Scope boundary:** these findings touch the completed H3-owned authoring/build/page files. Per the board's non-overlap rule, they are logged as change requests and were not edited in D1. The automated suites do not catch the two semantic prose mismatches; continue hunting for hallucinations and do not treat a green suite as semantic source verification. H5's PR/Pages close-out is still pending for this branch.
+- **Scope boundary / follow-up status:** the five findings touch completed H3-owned authoring/build/reference/page files. Per the non-overlap rule they remain logged as change requests and were not edited in D1. The root `/site/flagged.html` page still has the prior 24 open flags; these new source-scope findings have **not** yet been added there. Do not describe the deployed site as semantically hallucination-free; the automated suites do not catch the two payment/source-scope prose mismatches. Continue hunting for hallucinations.
+- 2026-10-23 23:56:42 UTC: **H5 publication complete.** PR [#51](https://github.com/karagemop466-tech/GOLD5/pull/51) from `arena/d49fe320-gold5` to `main` merged as `f4099761ac2932aaa02d8a8b0dbf8fa04eb0640e`. Required `review` and `verify` checks passed (runs 40042391493 and 40042391400).
+- 2026-10-23 23:57:10 UTC: **Pages built and live site confirmed.** Pages run [40042433195](https://github.com/karagemop466-tech/GOLD5/actions/runs/40042433195) succeeded on `f409976`; Pages API reports `built`, branch `main`, path `/`, HTTPS enforced. Cache-busted reads of `/`, `/site/flagged.html`, `/site/verification.html`, and this board (`?v=f409976`) succeeded. The landing page displays the no-hallucinations rule and 25-row summary; the flagged/verification pages remain accessible. No PRs were open after merge.
+- **Final recommendation:** keep hunting for hallucinations. The site is structurally verified and live; the five logged prose/source/quote requests remain unimplemented due exclusive scope and should be added to the canonical Flagged for Review page by a future scoped task.
 
 
-## ⏱ PRIOR CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`); H5 handed off to `d49fe320`
+## ⏱ PRIOR CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`); H5 completed under handoff to `d49fe320`
 
 Claimed **2026-10-23 20:15 UTC** after reading the full board and confirming that every earlier claim is
 closed and `gh pr list --state open` returned no open PRs. This is the next final-integration and
@@ -51,7 +55,7 @@ new evidence path below), and `archive/` deliveries are read-only inputs.
 | H2 | Re-read every canonical listing, seller/policy, spot, and reference URL; save dated evidence and failures without upgrading unconfirmed values | **done — 46/46 checks saved** | bc4e36a1 | `data/live_check_bc4e36a1.json`, `verification/evidence/bc4e36a1/**` |
 | H3 | Correct or blank/flag drift in the canonical dataset; rebuild dashboard and category pages from source data | **done — 25 rows / 30 flags rebuilt** | bc4e36a1 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html`, `README.md` |
 | H4 | Line-by-line provenance, arithmetic, money, link, and hallucination/security review with negative tests after every review | **done — full suite green** | bc4e36a1 | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `data/b1f2fe3b_*`, `docs/verification/bc4e36a1-*.md`, `review/**`, `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js` |
-| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **handed off to `d49fe320` for post-merge verification and close-out** | `d49fe320` (handoff) | `COORDINATION.md`; GitHub PR/Pages operations; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**` |
+| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **done — completed by `d49fe320`: PR #51 merged (`f409976`); Pages built and live verified** | `d49fe320` (handoff) | `COORDINATION.md`; GitHub PR/Pages operations; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**` |
 
 **No-hallucinations contract for H1–H5:** no price, weight, karat, hallmark, seller claim, policy, or
  date is inferred or copied from memory. Every published row keeps its official source URL and actual
