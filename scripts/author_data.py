@@ -586,10 +586,14 @@ REFERENCES = [
 
 SPOT = dict(
     primary=dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
-                 usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
-                 method="live fetch (2026-10-23 pass)",
-                 quote="Live Gold Price — Oct 23, 2026 - 5:44 NY Time. Bid 4,022.50 USD (-1.50, -0.04%); Ask 4,024.50; gram 129.33 (-0.05); Kilo 129,328.36; pennyweight 201.13. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 5:43 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30 today.'"),
-    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
+                 usdPerOz=3996.10, usdPerGram=128.48, asOf="2026-10-23 4:10 p.m. ET", kind="spot bid",
+                 method="live fetch (2026-10-23 4:10 p.m. ET pass, session 3bf55199)",
+                 quote="Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"),
+    prior=[dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
+                usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
+                method="live fetch (2026-10-23 5:44 a.m. ET pass, session 77405ae3)",
+                note="Previous 2026-10-23 quote (5:44 a.m. ET); superseded by 4:10 p.m. ET quote above. Bid fell $26.40/oz intraday."),
+           dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4026.90, usdPerGram=129.47, asOf="2026-10-22 7:26 p.m. ET", kind="spot bid",
                 method="prior-session capture (session 7cca80c9)",
                 note="2026-10-22 close-of-day capture, recorded by the previous pass; superseded by the 2026-10-23 quote above."),
@@ -609,11 +613,11 @@ SPOT = dict(
                       usdPerOz=4086.90, usdPerGram=None, asOf="2026-10-22 morning", kind="spot",
                       method="prior-session capture",
                       note="Spot gold near $4,086.90 an ounce, down $53.40 (1.29%).")],
-    notes=["The 2026-10-23 capture shows the bid ticker at $4,022.50 with $129.33/g, the page's own 'Gold Price Today' table at $4,021.00/oz and $129.28/g, and the purity calculator's 24K line at $4,022.50. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value.",
-           "The 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
+    notes=["The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, and the purity calculator's 24K line at $3,996.10. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value. Intraday move from $4,022.50 at 5:44 a.m. ET to $3,996.10 at 4:10 p.m. ET was -$26.40/oz (-0.66%).",
+           "Earlier quotes (5:44 a.m. ET and 2026-10-22) are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
     purity=dict(fineness={"24K": 0.9999, "22K": 0.9167, "18K": 0.75, "14K": 0.5833, "10K": 0.4167},
-                perOz={"24K": 4022.50, "22K": 3687.43, "18K": 3016.88, "14K": 2346.32, "10K": 1676.18},
-                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 5:44 a.m. ET page capture"),
+                perOz={"24K": 3996.10, "22K": 3663.22, "18K": 2997.08, "14K": 2330.93, "10K": 1665.17},
+                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 4:10 p.m. ET page capture"),
 )
 
 

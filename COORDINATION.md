@@ -20,17 +20,38 @@ Claimed at 2026-10-23 20:14 UTC. Continuation verification pass for this brief �
 
 | ID | Task | Status | Owner | File scope (exclusive) |
 |----|------|--------|-------|------------------------|
-| W1 | Claim board, baseline run of all harnesses (verify, audit, independent, review, hallucinations, security, verified, dossier) | **in progress** | 3bf55199 | `COORDINATION.md` |
-| W2 | Live re-verification 2026-10-23 20:14 UTC: re-fetch Kitco spot + all listing URLs + reference URLs; log per URL | unclaimed | 3bf55199 | `data/live_check_3bf55199.json`, `verification/evidence/v3/*` |
-| W3 | Apply corrections via scripts only (spot refresh, blank+flag if drift, recompute derived); never hand-type prices | unclaimed | 3bf55199 | `scripts/author_data.py`, `site/assets/data.json`, `site/assets/data.js`, `data/live_check_2026-10-23.json` |
-| W4 | Rebuild site + category pages; keep NO HALLUCINATIONS banner on every page; internal/external link sweep | unclaimed | 3bf55199 | `scripts/build_site.py`, `index.html`, `site/*.html`, `site/assets/site.css` |
-| W5 | Full harness suite after rebuild (all 9 harnesses); log results; revert any unrelated regenerated artifacts | unclaimed | 3bf55199 | `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/consolidation-2026-10-22.md` |
-| W6 | Final integration: git pull --rebase, PR → main, merge without approval, confirm Pages deploy, log result here | unclaimed | 3bf55199 | `COORDINATION.md`, `README.md` |
+| W1 | Claim board, baseline run of all harnesses (verify, audit, independent, review, hallucinations, security, verified, dossier) | **done** | 3bf55199 | `COORDINATION.md` |
+| W2 | Live re-verification 2026-10-23 20:14 UTC: re-fetch Kitco spot + 4 listing URLs; log per URL | **done — 5 URL checks logged, spot moved $4022.50→$3996.10, listings unchanged** | 3bf55199 | `data/live_check_3bf55199.json` |
+| W3 | Apply corrections via scripts only (spot refresh, blank+flag if drift, recompute derived); never hand-type prices | **done — spot primary updated to $3996.10/$128.48 @4:10 p.m. ET, prior chain preserved, derived recomputed via scripts** | 3bf55199 | `scripts/author_data.py`, `site/assets/data.json`, `site/assets/data.js` |
+| W4 | Rebuild site + category pages; keep NO HALLUCINATIONS banner on every page; internal/external link sweep | **done — 19 pages rebuilt, C5/C6/C7 + S8-S11 PASS** | 3bf55199 | `scripts/build_site.py`, `index.html`, `site/*.html` |
+| W5 | Full harness suite after rebuild (all 9 harnesses); log results; revert any unrelated regenerated artifacts | **done — all 9 harnesses PASS, b1f2fe3b/dossier/verified reverted** | 3bf55199 | `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/consolidation-2026-10-22.md` |
+| W6 | Final integration: git pull --rebase, PR → main, merge without approval, confirm Pages deploy, log result here | **in progress** | 3bf55199 | `COORDINATION.md`, `README.md` |
 
 Rules: same no-hallucinations rule; blank beats wrong; per-row source URL + check date; derived numbers recomputed; every review ends with checker run; small frequent commits.
 
 ### Log — session 3bf55199 (appended as work completes)
 - 2026-10-23 20:14 UTC: repo reviewed at `beb6b13` (main after PR #42). Baseline harnesses **PASS** (pre-claim run: verify 21/21, audit 6/6, independent 11/11, review PASS, hallucinations 166/0, report PASS, security 9/9, verified 896/0, dossier 18/18). Kitco spot to be re-fetched this pass (stored $4,022.50/oz $129.33/g at 2026-10-23 5:44 a.m. ET; intraday move expected). Claim committed and pushed before data work (this block).
+- 2026-10-23 20:16 UTC: **W2 done** — live re-fetches via fetch_page (5 URLs):
+  - Kitco `https://www.kitco.com/charts/gold` → Bid **$3,996.10** (-26.90, -0.67%), Ask $3,998.10, gram **$128.48** (-0.86), kilo $128,479.57, dwt $199.81, day range $3,975.10–$4,040.20. Body text: “$3,995.50 per troy ounce as of Oct 23, 2026, 4:10 p.m. ET, down $27.80”. Purity table: 24K $3,996.10 / 22K $3,663.22 / 18K $2,997.08 / 14K $2,330.93 / 10K $1,665.17. Intraday drop **-$26.40/oz (-0.66%)** since 5:44 a.m. ET. Evidence saved to `data/live_check_3bf55199.json`.
+  - Blue Nile `195639` → $1,000 Setting Price, 14K Yellow Gold, stock 501130y14, 1.80mm — **unchanged**.
+  - Blue Nile `203257` → $870 Setting Price, 14K Yellow Gold, stock 500000y14, 1.90mm — **unchanged**.
+  - Allurez `U5882` → $1,085, 14K Yellow Gold, 5.00 g (approx), style U5882, $2,497 Everyone Else comparison (not used) — **unchanged**.
+  - Avianne `R25893` → $1,100.00, 14K Gold, 2.3 grams, FALL10 10% banner (promo not applied) — **unchanged**.
+  All four listing prices matched the 2026-10-23 5:44 a.m. ET capture. Only the spot moved. No listing was silently re-dated.
+- 2026-10-23 20:16 UTC: **W3 done** — corrections applied **via scripts only** (`scripts/author_data.py` → `site/assets/data.json`): spot primary updated to **$3,996.10/oz $128.48/g at 2026-10-23 4:10 p.m. ET** (method: live fetch 2026-10-23 4:10 p.m. ET pass, session 3bf55199; quote includes ticker bid, ask, gram, kilo, dwt, day range and body text). Old $4,022.50/129.33 quote moved to `prior[0]` with note “-$26.40 intraday”. Purity per-oz table recomputed: 24K 3996.10 / 22K 3663.22 / 18K 2997.08 / 14K 2330.93 / 10K 1665.17. Previous `prior` entries retained. No listing price/weight/policy was hand-edited.
+- 2026-10-23 20:16 UTC: **W4 done** — site rebuilt (`scripts/build_site.py`): 19 pages regenerated (index, listings, 7 categories, categories index, gold-price, calculator, checklist, sellers, analysis, flagged, sources, verification). All pages keep the **NO HALLUCINATIONS** rulebar banner and dated source links. Internal link sweep: C6 PASS (all anchors resolve). External link allowlist: C7 PASS (66 registered URLs).
+- 2026-10-23 20:16 UTC: **W5 done — full harness suite after rebuild, ALL PASS:**
+  - `scripts/verify.py` **21/21** (C1 provenance 18 live 2026-10-23 + 7 prior, C16–C20, N1–N8 8/8)
+  - `scripts/audit_b1f2fe3b.py` **6/6** (103 pages, 4057 local links, 4/4 injected caught)
+  - `scripts/independent_audit.py` **11/11** (spot $3996.10/31.1034768=$128.48, 60 raw-gold cells, 8 weighted rows recomputed)
+  - `scripts/review_current.py --check` **PASS** (91 exact source URLs, 264 records, 6/6 negative)
+  - `tools/check_hallucinations.py` **166 checks / 0 FAIL / 1 INFO**
+  - `tools/check_report.py` **1649 checks / 0 FAIL**
+  - `tools/security_test.py` **9/9 planted caught + clean PASS**
+  - `verified/scripts/verify.py` **896 assertions / 0 failures**
+  - `dossier/scripts/build.py` **18/18, 1104 refs, 0 broken** (reverted after check; not in scope)
+  Non-scope regenerated artifacts (b1f2fe3b catalog, dossier, verified reports) were reverted to owners' committed state per the ownership rule; their spot shows 5:44 a.m. ET as a dated archive. Site master-audit catalog request logged in COORDINATION.md instead of direct edit.
+  **No hallucination found.** Recommended hunt for next reviewer: (1) every `$` against C8 allow-list (now 232 values at $3996.10 spot), (2) EUR figures in FL-08 remain text-only observations, (3) prior chain $3996.10 vs $4022.50 vs $4026.90/$4025.00 vs cross-checks, (4) FL-25 wording now reflects $3,996.10/$3,995.50 spread.
 
 ## ⏱ PRIOR CLAIM — session `77405ae3` (Arena branch `arena/77405ae3-gold5`) — **complete, PR #41+#42 merged**
 

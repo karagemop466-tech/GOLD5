@@ -1,6 +1,6 @@
 # Verification report — consolidated GOLD5 site
 
-- Run: 2026-10-23 10:51 UTC
+- Run: 2026-10-23 20:19 UTC
 - Data as of: 2026-10-23
 - Result: **PASS** — 21 checks passed, 0 failed
 
@@ -11,7 +11,7 @@
 - PASS · **C5** — 25 listing rows, each with its official source link
 - PASS · **C6** — all internal links and anchors resolve across 19 pages
 - PASS · **C7** — every external link (66 registered URLs) is recorded in the dataset
-- PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (237 allowed values)
+- PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (232 allowed values)
 - PASS · **C9** — every published price, weight and source URL is rendered in its row
 - PASS · **C10** — no placeholders or template leftovers
 - PASS · **C11** — site/assets/data.js matches data.json

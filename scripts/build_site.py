@@ -479,7 +479,7 @@ def gold_price_page():
     <div style="font-size:44px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px">{money(SPOT['usdPerOz'])}<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
     <div class="muted">{money(SPOT['usdPerGram'])} per gram · {esc(SPOT['asOf'])} · Kitco spot bid</div>
     <blockquote>{esc(SPOT['quote'])}<cite>Kitco Live Gold Price — <a href="{esc(SPOT['url'])}" target="_blank" rel="noopener">kitco.com/charts/gold</a>, fetched {esc(date_str())}</cite></blockquote>
-    <p class="small muted">The same 2026-10-23 capture also showed $4,021.00/oz in the page's own price table and $129.28/g in its conversion table. That is normal intraday updating — the ticker bid is the figure recorded here, and the timestamp is part of the value.</p>
+    <p class="small muted">The same 2026-10-23 capture also showed $3,995.50/oz in the page's own “Gold Price Today” table and $128.46/g in its conversion table. That small gap is normal intraday updating — the ticker bid ($3,996.10) is the figure recorded here, and the timestamp is part of the value.</p>
   </div>
   <div class="panel"><div class="eyebrow">Why a timestamp matters</div>
     <p class="small">The {len(quotes)} timestamped quotes on this page (2026-10-22 and 2026-10-23) range from {money(min(q["usdPerOz"] for q in quotes))} to {money(max(q["usdPerOz"] for q in quotes))} per ounce — a spread of {gq_pct:.1f}%. Using the highest instead of the current bid would move every metal value by about that much.</p>
