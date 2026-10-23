@@ -1,0 +1,10 @@
+SOURCES (all fetched 2026-10-23):
+  https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold
+    $1,085 (57% savings vs $2,497 "Everyone Else"); Style number U5882; Metal 14k Yellow Gold;
+    Width 2.9mm top / 2.3mm bottom; "Gold Weight 5.00 Grams (Approximate)"; setting only, center stone not included.
+  https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold
+    $933 (32% savings); Style number U170; 14k Yellow Gold; 3.20mm top / 2.40mm bottom;
+    "Gold Weight 4.80 grams (Approximate)".
+  https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold
+    $585 (51% savings); Style number NG4426; 14k Yellow Gold; "Approximate Metal Weight 3.58 grams".
+  DEAD END: /product/<slug>-u5882 and /product/<slug>-u170 return "404 Page Not Found". The dataset already uses /products/<slug>.

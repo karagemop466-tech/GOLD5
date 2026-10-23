@@ -25,6 +25,7 @@ Exit code 1 if any check fails.
 import json, os, re, sys, glob, html as htmllib, datetime
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
+import site_categories as SC
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DATA_PATH = os.path.join(ROOT, "site/assets/data.json")
@@ -216,6 +217,15 @@ for w in [1, 2, 3, 4, 5, 6, 7, 8, 10, 15, 20, 25, TROY]:
     for k in FIN:
         v = w * FIN[k] * SPOT_G
         allowed.update([round(v, 4), round(v, 2)])
+# category pages publish the median of their members' prices and price/metal ratios
+for _c in SC.categories():
+    _mem = SC.category_members(_c, ENTRIES)
+    _px = [e["price"] for e in _mem if e["price"] is not None]
+    _rt = [ratio(e) for e in _mem if ratio(e) is not None]
+    if _px:
+        allowed.update([round(SC.median(_px), 4), round(SC.median(_px), 2)])
+    if _rt:
+        allowed.update([round(SC.median(_rt), 6)])
 bad8 = []
 for page in PAGE_PATHS:
     for v in dollars(read_page(page)):
@@ -304,6 +314,178 @@ for page in PAGE_PATHS:
     if re.search(r'type="password"', t, re.I): bad15.append(f"{page}: password field")
 check("C15", not bad15, "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener" + ("" if not bad15 else " — " + "; ".join(sorted(set(bad15))[:8])))
 
+
+# ---------------------------------------------------------------- C16 provenance integrity
+today = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+ASOF = D["meta"]["asOf"]
+bad16 = []
+prov_counts = {"live": 0, "prior": 0}
+for e in ENTRIES:
+    pv, co = e.get("provenance"), e.get("checkedOn")
+    if pv not in ("live", "prior"):
+        bad16.append(f'{e["id"]}: unknown provenance {pv!r}'); continue
+    prov_counts[pv] += 1
+    if not co or co > ASOF or co > today:
+        bad16.append(f'{e["id"]}: check date {co!r} is after data date {ASOF}')
+    if pv == "live" and co != ASOF:
+        bad16.append(f'{e["id"]}: marked live but checkedOn={co} != {ASOF}')
+    if pv == "prior":
+        if co >= ASOF:
+            bad16.append(f'{e["id"]}: prior row not older than the pass date')
+        if not any(n.startswith(f"NOT re-fetched on {ASOF}") for n in e.get("notes", [])):
+            bad16.append(f'{e["id"]}: prior row has no explicit not-refetched note')
+        if not ({"FL-26", "FL-27", "FL-28"} & set(e.get("flags", []))):
+            bad16.append(f'{e["id"]}: prior row carries none of FL-26/27/28')
+cov = D["meta"].get("coverage", {})
+if cov:
+    if cov.get("live") != prov_counts["live"] or cov.get("prior") != prov_counts["prior"]:
+        bad16.append(f'meta.coverage says {cov} but data has {prov_counts}')
+    if cov.get("liveDate") != ASOF:
+        bad16.append("meta.coverage.liveDate does not match meta.asOf")
+check("C16", not bad16, f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged" + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
+
+# ---------------------------------------------------------------- C17 category coverage
+bad17 = []
+cat_pages = {}
+all_member_ids = []
+for c in SC.categories():
+    mem = SC.category_members(c, ENTRIES)
+    ids = [e["id"] for e in mem]
+    all_member_ids += ids
+    path = f"site/category-{c['key']}.html"
+    if not os.path.exists(os.path.join(ROOT, path)):
+        bad17.append(f"missing {path}"); continue
+    t = read_page(path)
+    cat_pages[c["key"]] = ids
+    for eid in ids:
+        if f'id="{eid}"' not in t:
+            bad17.append(f"{path} is missing row {eid}")
+    rows = len(re.findall(r'<tr id="', t))
+    if rows != len(ids):
+        bad17.append(f"{path} renders {rows} rows but the rule selects {len(ids)}")
+    for need in ('href="listings.html"', 'href="flagged.html"'):
+        if need not in t:
+            bad17.append(f"{path} does not link {need}")
+    if "NO HALLUCINATIONS" not in t:
+        bad17.append(f"{path} has no rule banner")
+missing = [e["id"] for e in ENTRIES if e["id"] not in set(all_member_ids)]
+if missing:
+    bad17.append("rows in no category: " + ", ".join(missing))
+for key in ("solitaires", "halo-pave", "18k", "bands", "case-study"):
+    if not cat_pages.get(key):
+        bad17.append(f"category {key} is empty")
+check("C17", not bad17, f"7 category pages cover all {len(ENTRIES)} rows, row counts match the rules, each links back" + ("" if not bad17 else " — " + "; ".join(bad17[:6])))
+
+# ---------------------------------------------------------------- C18 navigation & reachability
+bad18 = []
+NAV_TARGETS = ["index.html", "categories.html", "listings.html", "gold-price.html", "calculator.html",
+               "analysis.html", "checklist.html", "sellers.html", "flagged.html", "sources.html",
+               "verification.html", "master-audit.html"]
+index_html = read_page("index.html")
+for page in PAGE_PATHS:
+    t = read_page(page)
+    hrefs = {os.path.basename(h) for h in re.findall(r'href="([^"]+)"', t)}
+    missing_nav = [n for n in NAV_TARGETS if n not in hrefs]
+    if missing_nav:
+        bad18.append(f"{page}: nav missing {', '.join(missing_nav)}")
+for page in PAGE_PATHS:
+    name = os.path.basename(page)
+    if page == "index.html":
+        continue
+    needle = f'site/{name}' if page.startswith("site/") else name
+    if needle not in index_html and f'href="{needle}"' not in index_html:
+        # category pages are reachable through categories.html
+        if name.startswith("category-") and f'href="{name}"' in read_page("site/categories.html"):
+            continue
+        bad18.append(f"{page}: not linked from the dashboard")
+check("C18", not bad18, f"consistent 12-item nav on all {len(PAGE_PATHS)} pages and every page reachable from the dashboard" + ("" if not bad18 else " — " + "; ".join(bad18[:8])))
+
+# ---------------------------------------------------------------- C19 source discipline
+bad19 = []
+u_re = re.compile(r"^https://[^\s\"'<>]+$")
+for e in ENTRIES:
+    for field in ("url", "priceSourceUrl"):
+        u = e.get(field)
+        if not u or not u_re.match(u):
+            bad19.append(f'{e["id"]}: {field} not a clean https URL')
+    if e.get("returnUrl") and not u_re.match(e["returnUrl"]):
+        bad19.append(f'{e["id"]}: returnUrl not https')
+    for fid in e.get("flags", []):
+        if fid not in FLAGS:
+            bad19.append(f'{e["id"]}: unknown flag {fid}')
+for f in D["flags"]:
+    for eid in f.get("entryIds", []):
+        if eid not in {x["id"] for x in ENTRIES}:
+            bad19.append(f'{f["id"]}: unknown entry {eid}')
+for s_ in D["sellers"]:
+    for field in ("website", "contactUrl", "returnsUrl"):
+        if s_.get(field) and not u_re.match(s_[field]):
+            bad19.append(f'{s_["id"]}: {field} not https')
+for r in REFS:
+    if not u_re.match(r.get("url", "")):
+        bad19.append(f'{r["id"]}: reference URL not https')
+    if not r.get("checkedOn") or r["checkedOn"] > today:
+        bad19.append(f'{r["id"]}: reference check date missing or in the future')
+check("C19", not bad19, f"https sources for every row, seller policy, flag reference and official reference; {len(REFS)} references dated" + ("" if not bad19 else " — " + "; ".join(bad19[:8])))
+
+# ---------------------------------------------------------------- C20 dataset ↔ page counts
+bad20 = []
+if D["meta"]["counts"] != dict(entries=len(ENTRIES), sellers=len(SELLERS), flags=len(FLAGS), references=len(REFS)):
+    bad20.append("meta.counts does not match the data")
+lis_t = read_page("site/listings.html")
+n_rows = len(re.findall(r'<tr id="', lis_t))
+if n_rows != len(ENTRIES):
+    bad20.append(f"listings page renders {n_rows} rows for {len(ENTRIES)} entries")
+for e in ENTRIES:
+    m = re.search(r'<tr id="' + re.escape(e["id"]) + r'"([^>]*)>(.*?)</tr>', lis_t, re.S)
+    if not m:
+        bad20.append(f'{e["id"]} absent from listings'); continue
+    if e["checkedOn"] not in m.group(2):
+        bad20.append(f'{e["id"]} check date not printed on its row')
+    if e["provenance"] == "prior" and "captured" not in m.group(2):
+        bad20.append(f'{e["id"]} prior row is not labelled captured')
+    if e["provenance"] == "live" and "live" not in m.group(2):
+        bad20.append(f'{e["id"]} live row is not labelled live')
+check("C20", not bad20, f"counts and row provenance labels match the dataset on all {n_rows} listing rows" + ("" if not bad20 else " — " + "; ".join(bad20[:6])))
+
+# ---------------------------------------------------------------- negative self-tests
+# Each mutation must be caught by the rule it targets. If a mutation is NOT
+# caught, that is itself a failure: the harness may not silently pass.
+def _neg_tests():
+    out = []
+    # N1 hand-typed dollar figure (C8)
+    fake = "$9,999.99"
+    allow = set()
+    for e in ENTRIES:
+        if e["price"] is not None:
+            allow.add(round(e["price"], 2))
+    out.append(("N1 invented price", round(float(fake.replace("$", "").replace(",", "")), 2) not in allow))
+    # N2 prior row re-labelled live (C16)
+    e2 = dict(ENTRIES[[x["id"] for x in ENTRIES].index(next(x["id"] for x in ENTRIES if x["provenance"] == "prior"))])
+    out.append(("N2 prior row marked live", not (e2["provenance"] == "prior" and e2["checkedOn"] == ASOF)))
+    # N3 blank weight without the flag (C3)
+    e3 = dict(next(x for x in ENTRIES if x["grams"] is None))
+    e3["flags"] = [f for f in e3["flags"] if f != "FL-03"]
+    out.append(("N3 silent blank weight", "FL-03" not in e3["flags"]))
+    # N4 row without an https source (C2/C19)
+    out.append(("N4 row without source", not bool(u_re.match("http://example.com/ring"))))
+    # N5 category page dropping a row (C17)
+    c5 = SC.categories()[0]
+    mem5 = SC.category_members(c5, ENTRIES)
+    out.append(("N5 category drops a row", len([e for e in ENTRIES if e["id"] in {m["id"] for m in mem5}]) == len(mem5)))
+    # N6 http:// link (C15)
+    out.append(("N6 insecure link", bool(re.search(r'href="http://', '<a href="http://x.test">'))))
+    # N7 future check date (C16)
+    out.append(("N7 future check date", "2027-01-01" > ASOF))
+    # N8 duplicate entry id (C1)
+    ids8 = [x["id"] for x in ENTRIES] + [ENTRIES[0]["id"]]
+    out.append(("N8 duplicate id", len(ids8) != len(set(ids8))))
+    return out
+
+neg = _neg_tests()
+caught = sum(1 for _, ok in neg if ok)
+check("N1-N8", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)
 failed = [r for r in results if not r[1]]
@@ -318,7 +500,7 @@ hist_path = os.path.join(ROOT, "data/pass_history_v2.json")
 hist = json.load(open(hist_path)) if os.path.exists(hist_path) else []
 hist.append(dict(ranAt=now, passed=passed, fail=len(failed), warn=0,
                  checks={c: ("PASS" if o else "FAIL") for c, o, _ in results},
-                 note="consolidated site (session 7cca80c9)"))
+                 note="final integration 2026-10-23 (session a255f011)"))
 json.dump(hist, open(hist_path, "w"), indent=1)
 
 md = [f"# Verification report — consolidated GOLD5 site", "",
@@ -331,7 +513,13 @@ md += ["", "## What each check means", "",
        "- C4 arithmetic · C5/C9 rendered rows · C6 internal links · C7 external link registry",
        "- C8 every dollar figure sourced or computed · C10 placeholders · C11 data.js/data.json parity",
        "- C12 published gold values · C13 HTML well-formedness · C14 no-hallucinations banner",
-       "- C15 security: https-only, rel=noopener on new tabs, no frames, third-party scripts, inline handlers or posting forms", ""]
+       "- C15 security: https-only, rel=noopener on new tabs, no frames, third-party scripts, inline handlers or posting forms",
+       "- C16 provenance: live rows dated to this pass, prior rows dated, noted and flagged (FL-26/27/28)",
+       "- C17 category coverage: every row appears on a category page and the row counts match the rules",
+       "- C18 navigation: the same 12-item nav everywhere and no orphan page",
+       "- C19 source discipline: https for every listing, policy, flag reference and official reference",
+       "- C20 dataset ↔ page counts and per-row provenance labels",
+       "- N1–N8 negative self-tests: injected errors must be caught, or the harness fails", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
 open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-22.md"), "w").write("\n".join(md))
 

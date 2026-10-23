@@ -2,13 +2,19 @@
 window.GOLD5_DATA = {
  "meta": {
   "project": "GOLD5 — Solid Gold Engagement Ring Research",
-  "asOf": "2026-10-22",
-  "lastPass": "2026-10-22 23:59 UTC",
-  "session": "7cca80c9",
+  "asOf": "2026-10-23",
+  "lastPass": "2026-10-23 10:20 UTC",
+  "session": "a255f011",
   "title": "Gold engagement rings, verified line by line",
-  "subtitle": "25 listings from 13 sellers · every price, karat and weight tied to the source page that states it · blanks are flagged, never guessed",
+  "subtitle": "25 listings from 13 sellers · 12 rows re-read live on 2026-10-23, 13 carry their 2026-10-22 capture date and say so · every value tied to the source page that states it · blanks are flagged, never guessed",
   "noHallucinations": "NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site was read from the linked official source page on the date shown next to it. If a value could not be confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated or filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py.",
   "checker": "python3 scripts/verify.py",
+  "coverage": {
+   "live": 12,
+   "prior": 13,
+   "liveDate": "2026-10-23",
+   "priorDate": "2026-10-22"
+  },
   "archive": [
    {
     "label": "Session 638c9614 — research site at /docs/",
@@ -46,22 +52,32 @@ window.GOLD5_DATA = {
   "counts": {
    "entries": 25,
    "sellers": 13,
-   "flags": 25,
-   "references": 10
+   "flags": 28,
+   "references": 11
   }
  },
  "spot": {
   "primary": {
    "source": "Kitco Metals Inc. — Live Gold Price",
    "url": "https://www.kitco.com/charts/gold",
-   "usdPerOz": 4026.9,
-   "usdPerGram": 129.47,
-   "asOf": "2026-10-22 7:26 p.m. ET",
+   "usdPerOz": 4022.5,
+   "usdPerGram": 129.33,
+   "asOf": "2026-10-23 5:44 a.m. ET",
    "kind": "spot bid",
-   "method": "live fetch (this pass)",
-   "quote": "Bid 4,026.90 USD (+3.80); gram 129.47. 'Prices ... as of October 22, 2026 at 7:26 p.m. EDT.' Body text: 'The current price of gold is $4,027.50 per troy ounce as of October 22, 2026, 7:26 p.m. ET.'"
+   "method": "live fetch (2026-10-23 pass)",
+   "quote": "Live Gold Price — Oct 23, 2026 - 5:44 NY Time. Bid 4,022.50 USD (-1.50, -0.04%); Ask 4,024.50; gram 129.33 (-0.05); Kilo 129,328.36; pennyweight 201.13. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 5:43 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30 today.'"
   },
   "prior": [
+   {
+    "source": "Kitco Metals Inc. — Live Gold Price (previous session)",
+    "url": "https://www.kitco.com/charts/gold",
+    "usdPerOz": 4026.9,
+    "usdPerGram": 129.47,
+    "asOf": "2026-10-22 7:26 p.m. ET",
+    "kind": "spot bid",
+    "method": "prior-session capture (session 7cca80c9)",
+    "note": "2026-10-22 close-of-day capture, recorded by the previous pass; superseded by the 2026-10-23 quote above."
+   },
    {
     "source": "Kitco Metals Inc. — Live Gold Price (earlier capture)",
     "url": "https://www.kitco.com/charts/gold",
@@ -69,45 +85,45 @@ window.GOLD5_DATA = {
     "usdPerGram": 129.41,
     "asOf": "2026-10-22 7:10 p.m. ET",
     "kind": "spot bid",
-    "method": "prior-session capture",
-    "note": "Same page 16 minutes earlier; used by the archived sessions."
+    "method": "prior-session capture (session 37e8ff42)",
+    "note": "Same Kitco page 16 minutes earlier; used by the archived sessions."
    }
   ],
   "crossChecks": [
    {
-    "source": "CNBC Select",
+    "source": "CNBC Select (2026-10-22 capture)",
     "url": "https://www.cnbc.com/select/the-price-of-gold-today-oct-22-2026/",
     "usdPerOz": 4083.82,
     "usdPerGram": null,
     "asOf": "2026-10-22 9:00 a.m. ET",
     "kind": "spot",
     "method": "prior-session capture",
-    "note": "Gold's spot price as of 9:00 a.m. ET was $4,083.82 per ounce, per CNBC's Gold/US Dollar Spot Price."
+    "note": "Prior-day cross-check only. Gold's spot price as of 9:00 a.m. ET was $4,083.82 per ounce, per CNBC's Gold/US Dollar Spot Price."
    },
    {
-    "source": "APMEX",
+    "source": "APMEX (2026-10-22 capture)",
     "url": "https://www.apmex.com/gold-price",
     "usdPerOz": 4077.6,
     "usdPerGram": 131.1,
     "asOf": "2026-10-22 11:02 a.m. ET",
     "kind": "spot",
     "method": "prior-session capture",
-    "note": "Gold Spot Price $4,077.60; Per Gram $131.10; Last Updated 10/22/2026 11:02:00 AM ET."
+    "note": "Prior-day cross-check only. Gold Spot Price $4,077.60; Per Gram $131.10; Last Updated 10/22/2026 11:02:00 AM ET."
    },
    {
-    "source": "Kitco News (AM report)",
+    "source": "Kitco News AM report (2026-10-22)",
     "url": "https://www.kitco.com/news/article/2026-10-22/gold-silver-pressured-despite-lower-yields-hormuz-attacks-send-crude-higher",
     "usdPerOz": 4086.9,
     "usdPerGram": null,
     "asOf": "2026-10-22 morning",
     "kind": "spot",
     "method": "prior-session capture",
-    "note": "Spot gold near $4,086.90 an ounce, down $53.40 (1.29%)."
+    "note": "Prior-day cross-check only. Spot gold near $4,086.90 an ounce, down $53.40 (1.29%)."
    }
   ],
   "notes": [
-   "The same capture showed $4,027.50/oz in the page body and $129.49/g in the conversion table; the ticker bid of $4,026.90 and $129.47/g are the figures recorded here.",
-   "A TradingView last print of $4,028.21 also appeared on the page. Three nearby numbers in one capture is normal for a live ticker — the timestamp is part of the value."
+   "The 2026-10-23 capture shows the bid ticker at $4,022.50 with $129.33/g, the page's own 'Gold Price Today' table at $4,021.00/oz and $129.28/g, and the purity calculator's 24K line at $4,022.50. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value.",
+   "The 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."
   ],
   "purity": {
    "fineness": {
@@ -118,13 +134,13 @@ window.GOLD5_DATA = {
     "10K": 0.4167
    },
    "perOz": {
-    "24K": 4026.9,
-    "22K": 3691.46,
-    "18K": 3020.18,
-    "14K": 2348.89,
-    "10K": 1678.01
+    "24K": 4022.5,
+    "22K": 3687.43,
+    "18K": 3016.88,
+    "14K": 2346.32,
+    "10K": 1676.18
    },
-   "source": "Kitco 'Gold Value by Purity' table, same page capture (7:26 p.m. ET)"
+   "source": "Kitco 'Gold Value by Purity' table, same 2026-10-23 5:44 a.m. ET page capture"
   }
  },
  "entries": [
@@ -155,7 +171,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -167,7 +183,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Price re-read on the Blue Nile engagement-rings listing page this pass.",
-    "Lifetime warranty applies only to items priced $1,000 or more."
+    "Lifetime warranty applies only to items priced $1,000 or more.",
+    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($1,255, Setting Price) — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -197,7 +214,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -208,7 +225,8 @@ window.GOLD5_DATA = {
     "FL-06"
    ],
    "notes": [
-    "Price re-read on the Blue Nile engagement-rings listing page this pass."
+    "Price re-read on the Blue Nile engagement-rings listing page this pass.",
+    "Re-read live on 2026-10-23: $1,000 Setting Price; stock 501130y14; 14K Yellow Gold; 1.80 mm — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -238,7 +256,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -249,7 +267,8 @@ window.GOLD5_DATA = {
     "FL-06"
    ],
    "notes": [
-    "Product page re-read this pass: $870 (Setting Price), Metal 14K Yellow Gold, Width 1.90mm."
+    "Product page re-read this pass: $870 (Setting Price), Metal 14K Yellow Gold, Width 1.90mm.",
+    "Re-read live on 2026-10-23: $870 Setting Price; stock 500000y14; 14K Yellow Gold; 1.90 mm — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -279,7 +298,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -289,7 +308,8 @@ window.GOLD5_DATA = {
     "FL-21"
    ],
    "notes": [
-    "Price re-read on the Blue Nile engagement-rings listing page this pass."
+    "Price re-read on the Blue Nile engagement-rings listing page this pass.",
+    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($1,500, Setting Price) — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -319,7 +339,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -329,7 +349,8 @@ window.GOLD5_DATA = {
     "FL-21"
    ],
    "notes": [
-    "Product page re-read this pass: $1,800 (Setting Price), 14K Yellow Gold, 2.50mm, 16 diamonds 1/4 ct. tw."
+    "Product page re-read this pass: $1,800 (Setting Price), 14K Yellow Gold, 2.50mm, 16 diamonds 1/4 ct. tw.",
+    "Re-read live on 2026-10-23: $1,800 Setting Price; stock 501410y14; 14K Yellow Gold; 2.50 mm — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -359,7 +380,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -369,7 +390,8 @@ window.GOLD5_DATA = {
     "FL-21"
    ],
    "notes": [
-    "Price re-read on the Blue Nile engagement-rings listing page this pass."
+    "Price re-read on the Blue Nile engagement-rings listing page this pass.",
+    "Re-read live on 2026-10-23: price re-read on the Blue Nile engagement-rings gallery ($2,320, Setting Price) — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -400,16 +422,18 @@ window.GOLD5_DATA = {
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-05",
-    "FL-21"
+    "FL-21",
+    "FL-28"
    ],
    "notes": [
-    "Price re-read on the Blue Nile engagement-rings listing page this pass."
+    "Price re-read on the Blue Nile engagement-rings listing page this pass.",
+    "NOT re-fetched on 2026-10-23 (see FL-28): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -440,17 +464,19 @@ window.GOLD5_DATA = {
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-05",
     "FL-21",
-    "FL-06"
+    "FL-06",
+    "FL-28"
    ],
    "notes": [
-    "Product page re-read this pass: $1,145 (Setting Price), Stock 502120y14, 14K Yellow Gold, Width 2.40mm."
+    "Product page re-read this pass: $1,145 (Setting Price), Stock 502120y14, 14K Yellow Gold, Width 2.40mm.",
+    "NOT re-fetched on 2026-10-23 (see FL-28): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -481,17 +507,19 @@ window.GOLD5_DATA = {
    "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-07",
-    "FL-21"
+    "FL-21",
+    "FL-27"
    ],
    "notes": [
     "Product page re-read this pass: $750 (Setting Only), style BE1343-14KY, metal 14K Yellow Gold, width 2-1.2 mm.",
-    "Listing shows 80 reviews at 4.8/5."
+    "Listing shows 80 reviews at 4.8/5.",
+    "NOT re-fetched on 2026-10-23 (see FL-27): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -522,16 +550,18 @@ window.GOLD5_DATA = {
    "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-07",
-    "FL-21"
+    "FL-21",
+    "FL-27"
    ],
    "notes": [
-    "Product page re-read this pass: $1,250 (Setting Only), 14K Yellow Gold, 1.8mm band; 143 reviews shown."
+    "Product page re-read this pass: $1,250 (Setting Only), 14K Yellow Gold, 1.8mm band; 143 reviews shown.",
+    "NOT re-fetched on 2026-10-23 (see FL-27): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -562,16 +592,18 @@ window.GOLD5_DATA = {
    "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-07",
-    "FL-21"
+    "FL-21",
+    "FL-27"
    ],
    "notes": [
-    "Product page re-read this pass: $1,190 (Setting Only), style BE1D3939-14KY, 14K Yellow Gold, 2-1.3 mm, 14 accent diamonds 0.05 ct. tw."
+    "Product page re-read this pass: $1,190 (Setting Only), style BE1D3939-14KY, 14K Yellow Gold, 2-1.3 mm, 14 accent diamonds 0.05 ct. tw.",
+    "NOT re-fetched on 2026-10-23 (see FL-27): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -609,11 +641,13 @@ window.GOLD5_DATA = {
     "FL-14",
     "FL-07",
     "FL-21",
-    "FL-08"
+    "FL-08",
+    "FL-27"
    ],
    "notes": [
     "Karat and width confirmed on the product page this pass (14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw.).",
-    "USD price NOT re-confirmed: the product page was served in EUR (€1,250.00) on this fetch. The $1,090 figure is from the category listing captured earlier the same day."
+    "USD price NOT re-confirmed: the product page was served in EUR (€1,250.00) on this fetch. The $1,090 figure is from the category listing captured earlier the same day.",
+    "NOT re-fetched on 2026-10-23 (see FL-27): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -643,7 +677,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -654,7 +688,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read this pass: $1,085, style U5882, 14k yellow gold, gold weight 5.00 g approx., widths 2.9/2.3 mm.",
-    "Page also shows a '$2,497 Everyone Else / 57% Savings' comparison — seller marketing, not used."
+    "Page also shows a '$2,497 Everyone Else / 57% Savings' comparison — seller marketing, not used.",
+    "Re-read live on 2026-10-23: $1,085; 14k yellow gold; gold weight 5.00 g (approximate); style U5882 — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -684,7 +719,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -695,7 +730,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read this pass: $933, style U170, 14k yellow gold, gold weight 4.80 g approx., widths 3.20/2.40 mm.",
-    "Page also shows a '$1,373 Everyone Else / 32% Savings' comparison — not used."
+    "Page also shows a '$1,373 Everyone Else / 32% Savings' comparison — not used.",
+    "Re-read live on 2026-10-23: $933; 14k yellow gold; gold weight 4.80 g (approximate); style U170 — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -725,7 +761,7 @@ window.GOLD5_DATA = {
    "returnsVerified": true,
    "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -736,7 +772,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read this pass: $585, style NG4426, 14k yellow gold, approximate metal weight 3.58 g.",
-    "Page also shows a '$1,194 Everyone Else / 51% Savings' comparison — not used."
+    "Page also shows a '$1,194 Everyone Else / 51% Savings' comparison — not used.",
+    "Re-read live on 2026-10-23: $585; 14k yellow gold; approximate metal weight 3.58 g; style NG4426 — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -766,7 +803,7 @@ window.GOLD5_DATA = {
    "returnsVerified": false,
    "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-14",
@@ -774,7 +811,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read this pass: $1,100.00, item code R25893, 14K Gold, 2.3 grams, 0.41 Ctw, 4.5 mm width, VS2 clarity, G/H color.",
-    "Site-wide banner: 10% OFF with code 'FALL10' — recorded price is the listed price before that code."
+    "Site-wide banner: 10% OFF with code 'FALL10' — recorded price is the listed price before that code.",
+    "Re-read live on 2026-10-23: $1,100.00; item code R25893; 14K gold; 2.3 grams; returns within 14 days — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -804,7 +842,7 @@ window.GOLD5_DATA = {
    "returnsVerified": false,
    "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-14",
@@ -812,7 +850,8 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read this pass: Retail Price $6,041.00 / Special Price $3,020.00, style 149700, 0.71 ctw, 14KT gold, 2.3 grams, in stock (only 1 left).",
-    "Includes free shipping, gift box and a professional appraisal certificate per the page."
+    "Includes free shipping, gift box and a professional appraisal certificate per the page.",
+    "Re-read live on 2026-10-23: Retail $6,041.00 / Special $3,020.00; 14KT gold; metal weight 2.3 grams; 30-day return — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -842,7 +881,7 @@ window.GOLD5_DATA = {
    "returnsVerified": false,
    "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
    "sources": [],
-   "checkedOn": "2026-10-22",
+   "checkedOn": "2026-10-23",
    "provenance": "live",
    "flags": [
     "FL-13",
@@ -850,7 +889,8 @@ window.GOLD5_DATA = {
     "FL-14"
    ],
    "notes": [
-    "Product page re-read this pass: '14ky, 4.7g, #B02561', brand M Michael, no price shown, call for pricing."
+    "Product page re-read this pass: '14ky, 4.7g, #B02561', brand M Michael, no price shown, call for pricing.",
+    "Re-read live on 2026-10-23: 14ky, 4.7 g, #B02561; no price — 'Call (309) 452-1612 for current pricing and availability' — unchanged from the 2026-10-22 capture."
    ]
   },
   {
@@ -881,16 +921,18 @@ window.GOLD5_DATA = {
    "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14"
+    "FL-14",
+    "FL-26"
    ],
    "notes": [
     "Listing re-read this pass: $1,202.08+ base (925 silver), 14K Yellow Gold $1,891.78, 2.50 ct radiant yellow lab-grown diamond (VVS2), 0.32 ctw side stones, band 1.80 mm, IGI certificate offered.",
-    "Shop is Etsy 'Star Seller' with a 5/5 listing rating."
+    "Shop is Etsy 'Star Seller' with a 5/5 listing rating.",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -926,11 +968,13 @@ window.GOLD5_DATA = {
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14"
+    "FL-14",
+    "FL-26"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-    "Ships from the UK; duties included for US orders per listing description."
+    "Ships from the UK; duties included for US orders per listing description.",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -961,19 +1005,21 @@ window.GOLD5_DATA = {
    "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
    "sources": [],
    "checkedOn": "2026-10-22",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-02",
     "FL-16",
     "FL-17",
     "FL-14",
-    "FL-18"
+    "FL-18",
+    "FL-26"
    ],
    "notes": [
     "Listing re-read this pass: $783.00+ (10K), 14K $969.00, 0.30 ct diamond + 0.90 ct ruby, 3.70 g gold, 585 stated.",
     "Return window is 7 days — shortest of the sellers reviewed.",
     "Ships from Albany, NY; production partner Vera Atolye, Istanbul, Türkiye.",
-    "Listing photos include a chat screenshot with an address and a request to share contact details — flagged (FL-02)."
+    "Listing photos include a chat screenshot with an address and a request to share contact details — flagged (FL-02).",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -1009,10 +1055,12 @@ window.GOLD5_DATA = {
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14"
+    "FL-14",
+    "FL-26"
    ],
    "notes": [
-    "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass."
+    "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -1048,11 +1096,13 @@ window.GOLD5_DATA = {
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14"
+    "FL-14",
+    "FL-26"
    ],
    "notes": [
     "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-    "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark is recorded."
+    "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark is recorded.",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -1088,10 +1138,12 @@ window.GOLD5_DATA = {
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14"
+    "FL-14",
+    "FL-26"
    ],
    "notes": [
-    "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass."
+    "Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   },
   {
@@ -1127,11 +1179,13 @@ window.GOLD5_DATA = {
     "FL-01",
     "FL-16",
     "FL-17",
-    "FL-18"
+    "FL-18",
+    "FL-26"
    ],
    "notes": [
     "Price and weight come from the listing title/search evidence captured earlier the same day; the item is sold, so this row is retained only as a price-vs-metal case study.",
-    "7 g of 14K contains about 4.08 g fine gold. At the verified spot, metal value is ~$529 — well above the $444.80 asking price. That is the fraud pattern this project screens for (FL-01)."
+    "7 g of 14K contains about 4.08 g fine gold. At the verified spot, metal value is ~$529 — well above the $444.80 asking price. That is the fraud pattern this project screens for (FL-01).",
+    "NOT re-fetched on 2026-10-23 (see FL-26): this value carries its 2026-10-22 capture date and is not asserted as current."
    ]
   }
  ],
@@ -1886,8 +1940,48 @@ window.GOLD5_DATA = {
    "severity": "low",
    "status": "open",
    "title": "Kitco page shows several nearby numbers in one capture",
-   "detail": "The Kitco page displayed a bid of $4,026.90 and $129.47/g in the ticker, $4,027.50/oz and $129.49/g in the body table, and a TradingView last print of $4,028.21. This project records the ticker bid and the corresponding per-gram figure, and labels every calculation with that timestamp.",
+   "detail": "The 2026-10-23 capture displays a bid of $4,022.50 and $129.33/g in the ticker, $4,021.00/oz and $129.28/g in the page's own price table, and a 24K purity line of $4,022.50. This project records the ticker bid and the corresponding per-gram figure, and labels every calculation with that timestamp.",
    "entryIds": []
+  },
+  {
+   "id": "FL-26",
+   "severity": "medium",
+   "status": "open",
+   "title": "Seven Etsy listings could not be re-fetched on 2026-10-23",
+   "detail": "Every attempt to open the seven Etsy listing pages on 2026-10-23 returned HTTP 500. Their prices, weights and return windows are therefore the 2026-10-22 captures, are labelled 'captured' on every row, and are NOT asserted as current. Re-check each Etsy listing in a browser before relying on it.",
+   "entryIds": [
+    "ET-4426190660",
+    "ET-4366425533",
+    "ET-1151446373",
+    "ET-1566052947",
+    "ET-1433905613",
+    "ET-944684759",
+    "ET-576343849"
+   ]
+  },
+  {
+   "id": "FL-27",
+   "severity": "medium",
+   "status": "open",
+   "title": "Four Brilliant Earth listings were not re-verified on 2026-10-23",
+   "detail": "The Brilliant Earth product URLs returned only the site navigation in the 2026-10-23 fetch (the product block did not render for the collector), so no price or specification could be read today. Their prices and karats carry the 2026-10-22 check date and are labelled 'captured'. The 2026-10-22 pass had already recorded that the Secret Halo page served EUR, which is why its USD price stays blank (FL-08).",
+   "entryIds": [
+    "BE-1343",
+    "BE-NADIA",
+    "BE-1343HH",
+    "BE-SECRET"
+   ]
+  },
+  {
+   "id": "FL-28",
+   "severity": "low",
+   "status": "open",
+   "title": "Two Blue Nile item pages were not re-opened on 2026-10-23",
+   "detail": "BN-203738 (Floral Marquise 18K, $2,210) and BN-203348 (Classic Simple Solitaire 14K, $1,145) were not individually re-opened today. Their six sibling Blue Nile settings were re-read live today and were unchanged, but that is not evidence for these two rows: they carry the 2026-10-22 check date and are labelled 'captured'.",
+   "entryIds": [
+    "BN-203738",
+    "BN-203348"
+   ]
   }
  ],
  "references": [
@@ -1898,8 +1992,8 @@ window.GOLD5_DATA = {
    "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
    "quote": "Near the karat quality mark, look for the name or the U.S. registered trademark of the company that will stand behind the mark... If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it.",
    "usedFor": "Karat marks, maker's mark rule, solid vs plated/hollow definitions, returns in writing, where to report problems.",
-   "checkedOn": "2026-10-22",
-   "method": "live fetch (this pass)"
+   "checkedOn": "2026-10-23",
+   "method": "live fetch (2026-10-23 pass)"
   },
   {
    "id": "cfr23",
@@ -1907,9 +2001,19 @@ window.GOLD5_DATA = {
    "publisher": "eCFR (Office of the Federal Register)",
    "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
    "quote": "§ 23.3 Misrepresentation as to gold content. § 23.10 Additional guidance for the use of quality marks.",
-   "usedFor": "The regulation behind the FTC consumer guidance; gold-content and quality-mark rules.",
-   "checkedOn": "2026-10-22",
-   "method": "live fetch (this pass)"
+   "usedFor": "The regulation behind the FTC consumer guidance; gold-content and quality-mark rules. eCFR displayed 'up to date as of 10/21/2026' on the 2026-10-23 fetch.",
+   "checkedOn": "2026-10-23",
+   "method": "live fetch (2026-10-23 pass)"
+  },
+  {
+   "id": "usc295",
+   "title": "15 U.S.C. § 295 — Standard of fineness of gold articles; deviation",
+   "publisher": "U.S. Code (GovInfo, U.S. Government Publishing Office)",
+   "url": "https://www.govinfo.gov/link/uscode/15/295",
+   "quote": "...the actual fineness of such gold or alloy shall not be less by more than three one-thousandth parts than the fineness indicated by the mark stamped, branded, engraved, or printed upon any part of such article... and ... shall not be less by more than seven one-thousandth parts, in the case of any other such article...",
+   "usedFor": "The statutory assay tolerance an XRF reading is compared against: 3/1000 solder-free, 7/1000 for the whole article including solder.",
+   "checkedOn": "2026-10-23",
+   "method": "live fetch (2026-10-23 pass)"
   },
   {
    "id": "cfr23-3",

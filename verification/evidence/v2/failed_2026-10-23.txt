@@ -1,0 +1,10 @@
+FAILED FETCHES (2026-10-23):
+  https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant  -> HTTP 500
+  https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g      -> HTTP 500
+  (all seven Etsy listing URLs were attempted; all returned HTTP 500)
+  https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Yellow-Gold-BE1343-14KY/ -> navigation only
+    NOTE: this URL form was constructed by the agent and is NOT the dataset URL. The dataset URL is
+    https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/
+  https://www.allurez.com/product/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold-u5882 -> 404
+    NOTE: old URL form; the dataset already uses /products/<slug>.
+NO VALUE WAS TAKEN FROM ANY FAILED FETCH.

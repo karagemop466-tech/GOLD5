@@ -78,8 +78,8 @@ def base(prefix):
     return prefix
 
 def nav(prefix, active):
-    items = [("index.html", "Dashboard", "home"), ("site/master-audit.html", "Master Audit & XRF", "master-audit"),
-             ("site/listings.html", "Listings", "listings"),
+    items = [("index.html", "Dashboard", "home"), ("site/categories.html", "Categories", "categories"),
+             ("site/listings.html", "Listings", "listings"), ("site/master-audit.html", "Master Audit & XRF", "master-audit"),
              ("site/gold-price.html", "Gold Price", "gold-price"), ("site/calculator.html", "Calculator", "calculator"),
              ("site/analysis.html", "Analysis", "analysis"), ("site/checklist.html", "Checklist", "checklist"),
              ("site/sellers.html", "Sellers", "sellers"), ("site/flagged.html", "Flagged", "flagged"),
@@ -263,7 +263,7 @@ def index_page():
       <a class="btn gold" href="site/calculator.html">Value a ring by weight</a>
       <a class="btn ghost" href="site/checklist.html">12-point checklist</a>
     </div>
-    <p class="tiny muted" style="margin-top:14px">{sum(1 for e in ENTRIES if e["provenance"] == "live")} of {len(ENTRIES)} values were re-read from the seller’s own pages in this pass; the other {sum(1 for e in ENTRIES if e["provenance"] != "live")} are same-day captures with their evidence recorded. No value anywhere on this site is inferred.</p>
+    <p class="tiny muted" style="margin-top:14px">{sum(1 for e in ENTRIES if e["provenance"] == "live")} of {len(ENTRIES)} rows were re-read from the seller’s own pages on {esc(D["meta"]["asOf"])}; the other {sum(1 for e in ENTRIES if e["provenance"] != "live")} keep their 2026-10-22 capture date, say so on the row, and are itemised on Flagged for Review. No value anywhere on this site is inferred.</p>
   </div>
   <aside class="hero-side">
     <div>
@@ -271,7 +271,7 @@ def index_page():
       <div class="big">{money(SPOT['usdPerOz'])}<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
       <div class="per">{money(SPOT['usdPerGram'])} per gram · {esc(SPOT['asOf'])}</div>
     </div>
-    <div class="quote">“Bid 4,026.90 USD … gram 129.47 … as of October 22, 2026 at 7:26 p.m. EDT.”<br><a href="site/gold-price.html">All four same-day quotes →</a></div>
+    <div class="quote">“Bid {SPOT['usdPerOz']:,.2f} USD … gram {SPOT['usdPerGram']:,.2f} … {esc(SPOT['asOf'])}.”<br><a href="site/gold-price.html">All {n_quotes} timestamped quotes →</a></div>
   </aside>
 </section>
 
@@ -289,7 +289,7 @@ def index_page():
 </section>
 
 <div class="stats">
-  <div class="stat gold"><div class="k">Gold spot (Kitco bid)</div><div class="v">{money(SPOT['usdPerOz'])}</div><div class="d">per oz · {money(SPOT['usdPerGram'])}/g · 7:26 pm ET</div></div>
+  <div class="stat gold"><div class="k">Gold spot (Kitco bid)</div><div class="v">{money(SPOT['usdPerOz'])}</div><div class="d">per oz · {money(SPOT['usdPerGram'])}/g · {esc(SPOT['asOf'])}</div></div>
   <div class="stat"><div class="k">Listings collected</div><div class="v">{counts['entries']}</div><div class="d">{sum(1 for e in ENTRIES if e['category']=='engagement-ring')} engagement rings · {sum(1 for e in ENTRIES if e['category']=='band')} bands · 1 case study</div></div>
   <div class="stat"><div class="k">With a published weight</div><div class="v">{counts['weighted']} / {counts['entries']}</div><div class="d">others are blank + flagged (FL-03)</div></div>
   <div class="stat"><div class="k">Open flags for review</div><div class="v">{counts['openflags']}</div><div class="d"><a href="site/flagged.html">Flagged for Review →</a></div></div>
@@ -298,11 +298,11 @@ def index_page():
 
 {verdict}
 
-<h2>Today's gold price <span class="tag">{n_quotes} timestamped quotes, same day</span></h2>
+<h2>Gold price <span class="tag">{n_quotes} timestamped quotes, 2026-10-22 and 2026-10-23</span></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Source</th><th class="num">USD / troy oz</th><th class="num">USD / gram</th><th class="num">As of</th><th>Link</th></tr></thead>
 <tbody>{''.join(spot_rows)}</tbody></table></div>
-<p class="small muted" style="margin-top:8px">The {n_quotes} quotes range from {money(q_lo)} to {money(q_hi)} per ounce — about {q_pct:.1f}% across one day. All calculations on this site use the single {money(SPOT['usdPerGram'])}/g Kitco bid shown first, with its timestamp. <a href="site/gold-price.html">Full gold-price page, purity table and raw-gold amounts →</a></p>
+<p class="small muted" style="margin-top:8px">The {n_quotes} quotes range from {money(q_lo)} to {money(q_hi)} per ounce — about {q_pct:.1f}% across two days; only the first is used below. All calculations on this site use the single {money(SPOT['usdPerGram'])}/g Kitco bid shown first, with its timestamp. <a href="site/gold-price.html">Full gold-price page, purity table and raw-gold amounts →</a></p>
 
 <h2>What we found <span class="tag">the short version</span></h2>
 <div class="table-wrap"><table>
@@ -318,6 +318,7 @@ def index_page():
 
 <h2>Browse by category</h2>
 <div class="cards">
+  <a class="card" href="site/categories.html"><div class="k">New · 7 views</div><div class="t">Categories</div><div class="d">Solitaires · halo &amp; pavé · 18K · complete rings · settings only · bands · case study.</div><div class="go">Open the category index →</div></a>
   <a class="card" href="site/listings.html"><div class="k">All entries</div><div class="t">Listings, line by line</div><div class="d">25 rows: price, karat, grams, hallmark claim, returns, check date, flags and the source page for each.</div><div class="go">Open the table →</div></a>
   <a class="card" href="site/analysis.html"><div class="k">Analysis</div><div class="t">Price vs. gold value</div><div class="d">The 8 rows that publish a weight, the median markup, the below-metal case, and data-completeness scores.</div><div class="go">Read the analysis →</div></a>
   <a class="card" href="site/gold-price.html"><div class="k">Gold price</div><div class="t">Spot, purity, raw amounts</div><div class="d">{n_quotes} same-day quotes, Kitco purity values, and a table of what X grams of 10K–24K is worth today.</div><div class="go">See the numbers →</div></a>
@@ -342,41 +343,44 @@ def index_page():
     return shell("", "home", "Gold engagement rings, verified line by line",
                  "25 verified solid-gold engagement ring listings, gold spot price, calculator, checklist, seller policies and flagged irregularities. No hallucinations: every value has a dated source link.", body)
 
-def listings_page():
-    rows = []
-    for i, e in enumerate(ENTRIES, 1):
-        s = seller(e)
-        mv, r = metal_value(e), ratio(e)
-        if e["grams"] is None:
-            grams = '<span class="blank">not stated</span>'
-            fine = '<span class="blank">—</span>'
-            mvc = '<span class="blank">—</span>'
-            rc = '<span class="blank">n/a — no weight</span>'
+
+# ---------------------------------------------------------------- categories
+from site_categories import style_of, categories, category_members, median, STYLE_LABEL
+
+def entry_row(e, i):
+    s = seller(e)
+    mv, r = metal_value(e), ratio(e)
+    if e["grams"] is None:
+        grams = '<span class="blank">not stated</span>'
+        fine = '<span class="blank">—</span>'
+        mvc = '<span class="blank">—</span>'
+        rc = '<span class="blank">n/a — no weight</span>'
+    else:
+        grams = f'<span class="num">{e["grams"]:g} g</span><div class="src">{esc(e["gramsNote"] or "")}</div>'
+        fine = f'<span class="num">{fine_g(e):.3f} g</span>'
+        mvc = f'<span class="num">{money(mv)}</span>'
+        if r is None:
+            rc = '<span class="blank">no price</span>'
         else:
-            grams = f'<span class="num">{e["grams"]:g} g</span><div class="src">{esc(e["gramsNote"] or "")}</div>'
-            fine = f'<span class="num">{fine_g(e):.3f} g</span>'
-            mvc = f'<span class="num">{money(mv)}</span>'
-            if r is None:
-                rc = '<span class="blank">no price</span>'
-            else:
-                tone = "bad" if r < 1 else ("warn" if r < 1.6 else "ok")
-                basis = "setting" if e["priceBasis"] == "setting" else "complete"
-                rc = f'<span class="badge {tone}">{r:.2f}×</span><div class="src">{basis}</div>'
-        price = f'<span class="num">{money(e["price"])}</span>' if e["price"] is not None else '<span class="blank">no price</span>'
-        price_sub = f'<div class="src" style="max-width:240px">{esc(e["priceNote"] or "")}</div>'
-        solid = ('<span class="badge ok">stated</span>' if e["solidStated"] else '<span class="badge gray">not stated</span>')
-        solid += f'<div class="src" style="max-width:200px">{esc(e["solidQuote"])}</div>' if e["solidQuote"] else ""
-        mark = ('<span class="badge warn">karat stamp only</span>' if e["hallmarkStated"] else '<span class="badge gray">not stated</span>')
-        mark += '<div class="src">maker’s mark: <b>not stated</b></div>' if not e["makerMarkStated"] else ""
-        if e["hallmarkQuote"]:
-            mark += f'<div class="src" style="max-width:190px">{esc(e["hallmarkQuote"])}</div>'
-        rtext = (e["returns"] or "not stated").strip()
-        first = rtext.split(". ")[0]
-        if len(first) > 140:
-            first = first[:137].rstrip() + "…"
-        ret = f'<div class="src" style="max-width:190px">{esc(first)}</div><div>{source_link(e["returnUrl"], "policy ↗")}</div>'
-        prov = '<span class="badge ok">live</span>' if e["provenance"] == "live" else '<span class="badge info">same-day</span>'
-        rows.append(f"""<tr id="{esc(e['id'])}" data-seller="{esc(e['sellerId'])}" data-cat="{esc(e['category'])}" data-karat="{e['karat']}" data-weight="{'1' if e['grams'] is not None else '0'}" data-price="{e['price'] if e['price'] is not None else ''}" data-ratio="{r if r is not None else ''}" data-fine="{f'{fine_g(e):.6f}' if e['grams'] is not None else ''}" data-mv="{f'{metal_value(e):.6f}' if e['grams'] is not None else ''}" data-name="{esc(e['name'].lower())}">
+            tone = "bad" if r < 1 else ("warn" if r < 1.6 else "ok")
+            basis = "setting" if e["priceBasis"] == "setting" else "complete"
+            rc = f'<span class="badge {tone}">{r:.2f}×</span><div class="src">{basis}</div>'
+    price = f'<span class="num">{money(e["price"])}</span>' if e["price"] is not None else '<span class="blank">no price</span>'
+    price_sub = f'<div class="src" style="max-width:240px">{esc(e["priceNote"] or "")}</div>'
+    solid = ('<span class="badge ok">stated</span>' if e["solidStated"] else '<span class="badge gray">not stated</span>')
+    solid += f'<div class="src" style="max-width:200px">{esc(e["solidQuote"])}</div>' if e["solidQuote"] else ""
+    mark = ('<span class="badge warn">karat stamp only</span>' if e["hallmarkStated"] else '<span class="badge gray">not stated</span>')
+    mark += '<div class="src">maker’s mark: <b>not stated</b></div>' if not e["makerMarkStated"] else ""
+    if e["hallmarkQuote"]:
+        mark += f'<div class="src" style="max-width:190px">{esc(e["hallmarkQuote"])}</div>'
+    rtext = (e["returns"] or "not stated").strip()
+    first = rtext.split(". ")[0]
+    if len(first) > 140:
+        first = first[:137].rstrip() + "…"
+    ret = f'<div class="src" style="max-width:190px">{esc(first)}</div><div>{source_link(e["returnUrl"], "policy ↗")}</div>'
+    prov = (f'<span class="badge ok">live {e["checkedOn"]}</span>' if e["provenance"] == "live"
+            else f'<span class="badge info">captured {e["checkedOn"]}</span>')
+    return f"""<tr id="{esc(e['id'])}" data-seller="{esc(e['sellerId'])}" data-cat="{esc(e['category'])}" data-karat="{e['karat']}" data-weight="{'1' if e['grams'] is not None else '0'}" data-price="{e['price'] if e['price'] is not None else ''}" data-ratio="{r if r is not None else ''}" data-fine="{f'{fine_g(e):.6f}' if e['grams'] is not None else ''}" data-mv="{f'{metal_value(e):.6f}' if e['grams'] is not None else ''}" data-name="{esc(e['name'].lower())}">
 <td class="num">{i}</td>
 <td><div class="ring-name"><a href="{esc(e['url'])}" target="_blank" rel="noopener">{esc(e['short'])}</a></div>
   <div class="subline">{esc(s['name'])} · {esc(e['metalColor'])}</div>
@@ -391,7 +395,10 @@ def listings_page():
 <td>{mark}</td>
 <td>{ret}</td>
 <td class="num">{esc(e['checkedOn'])}<div>{prov}</div></td>
-<td class="small">{flag_badges(e)}</td></tr>""")
+<td class="small">{flag_badges(e)}</td></tr>"""
+
+def listings_page():
+    rows = [entry_row(e, i) for i, e in enumerate(ENTRIES, 1)]
 
     seller_opts = "".join(f'<option value="{esc(k)}">{esc(v["name"])}</option>' for k, v in sorted(SELLERS.items(), key=lambda kv: kv[1]["name"]))
     body = f"""
@@ -422,8 +429,8 @@ def listings_page():
 <tbody>{''.join(rows)}</tbody></table></div>
 
 <div class="note" style="margin-top:14px"><b class="title">Legend</b>
-<span class="badge ok">live</span> re-fetched and read in this verification pass ·
-<span class="badge info">same-day</span> captured live earlier the same day by another session, evidence preserved ·
+<span class="badge ok">live 2026-10-23</span> re-fetched and read in this verification pass ·
+<span class="badge info">captured 2026-10-22</span> read live on 2026-10-22; NOT re-fetched today — itemised on Flagged for Review ·
 <span class="badge ok">stated</span> the listing uses the words “solid gold” (quoted) ·
 <span class="badge warn">karat stamp only</span> the listing claims a karat stamp but no maker’s mark ·
 <span class="badge gray">not stated</span> the page does not say it — value left blank, not inferred.</div>
@@ -438,6 +445,8 @@ def listings_page():
 
 def gold_price_page():
     quotes = [dict(SPOT, primary=True)] + D["spot"]["prior"] + D["spot"]["crossChecks"]
+    gq_lo = min(q["usdPerOz"] for q in quotes); gq_hi = max(q["usdPerOz"] for q in quotes)
+    gq_pct = (gq_hi - gq_lo) / gq_lo * 100
     qrows = []
     for q in quotes:
         qrows.append(f"""<tr><td><b>{esc(q['source'])}</b>{' <span class="badge ok">used for calculations</span>' if q.get('primary') else ''}
@@ -460,17 +469,17 @@ def gold_price_page():
     body = f"""
 <div class="page-head"><div class="eyebrow">Gold price · verified {esc(date_str())}</div>
 <h1>What gold is worth today — and what it means per gram</h1>
-<p>{1 + len(D["spot"]["prior"]) + len(D["spot"]["crossChecks"])} same-day quotes are recorded below with their exact timestamps. One is chosen for every calculation on this site: the Kitco spot bid at {esc(SPOT['asOf'])}. A spot price is not a retail price; jewellery carries fabrication, design and retail margin on top.</p></div>
+<p>{1 + len(D["spot"]["prior"]) + len(D["spot"]["crossChecks"])} timestamped quotes across two days are recorded below with their exact timestamps. One is chosen for every calculation on this site: the Kitco spot bid at {esc(SPOT['asOf'])}. A spot price is not a retail price; jewellery carries fabrication, design and retail margin on top.</p></div>
 
 <div class="hero">
   <div class="panel"><div class="eyebrow">Primary quote</div>
     <div style="font-size:44px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px">{money(SPOT['usdPerOz'])}<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
     <div class="muted">{money(SPOT['usdPerGram'])} per gram · {esc(SPOT['asOf'])} · Kitco spot bid</div>
     <blockquote>{esc(SPOT['quote'])}<cite>Kitco Live Gold Price — <a href="{esc(SPOT['url'])}" target="_blank" rel="noopener">kitco.com/charts/gold</a>, fetched {esc(date_str())}</cite></blockquote>
-    <p class="small muted">The same page also showed $4,027.50/oz in its body text and $129.49/g in its conversion table. That is normal intraday updating — the ticker bid is the figure recorded here, and the timestamp is part of the value.</p>
+    <p class="small muted">The same 2026-10-23 capture also showed $4,021.00/oz in the page's own price table and $129.28/g in its conversion table. That is normal intraday updating — the ticker bid is the figure recorded here, and the timestamp is part of the value.</p>
   </div>
   <div class="panel"><div class="eyebrow">Why a timestamp matters</div>
-    <p class="small">The four same-day quotes on this page range from {money(4025)} to {money(4086.90)} per ounce. Using the morning high instead of the evening bid would move every metal value by about 1.5%.</p>
+    <p class="small">The {len(quotes)} timestamped quotes on this page (2026-10-22 and 2026-10-23) range from {money(min(q["usdPerOz"] for q in quotes))} to {money(max(q["usdPerOz"] for q in quotes))} per ounce — a spread of {gq_pct:.1f}%. Using the highest instead of the current bid would move every metal value by about that much.</p>
     <p class="small">The LBMA benchmark is set twice daily (10:30 and 15:00 London time) by auction, while retail spot pages update continuously. Neither is “the” price — both are snapshots. Record the time with the number.</p>
     {source_link('https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices', 'LBMA benchmark page ↗')}
   </div>
@@ -933,41 +942,56 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
     else:
         rep_html = '<div class="note"><b class="title">Checker</b>Run <code>python3 scripts/verify.py</code> to produce the latest result. The command validates every row, every dollar figure and every internal link.</div>'
     log = [
-        ("https://www.kitco.com/charts/gold", "Spot bid 4,026.90; per gram 129.47; purity table 24K/22K/18K/14K/10K; 7:26 p.m. ET"),
-        ("https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145 setting; stock 502120y14; 14K yellow; 2.40 mm"),
-        ("https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257", "BN-203257: $870 setting; stock 500000y14; 14K yellow; 1.90 mm"),
-        ("https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871", "BN-195871: $1,800 setting; stock 501410y14; 2.50 mm; 16 diamonds 1/4 ct. tw."),
-        ("https://www.bluenile.com/engagement-rings", "BN-192506 $1,255; BN-195326 $1,500; BN-311132 $2,320; BN-195639 $1,000; BN-203738 $2,210; 1,451 results"),
-        ("https://www.bluenile.com/policies/returns", "30-day guarantee; resized/engraved/custom excluded; 2 returns/year; RMA; $150 lost report; free resize ±2 sizes within 6 months"),
-        ("https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: $750 setting only; BE1343-14KY; 2–1.2 mm; 4.8/5 from 80 reviews"),
-        ("https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "BE-NADIA: $1,250 setting only; 1.8 mm; 143 reviews"),
-        ("https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/", "BE-1343HH: $1,190 setting only; 2–1.3 mm; 14 accent diamonds 0.05 ct. tw."),
-        ("https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "BE-SECRET: page served EUR €1,250.00 — USD not confirmed; 14K yellow; 1.5 mm; 13 diamonds 0.06 ct. tw."),
-        ("https://www.brilliantearth.com/customer-care/return-policy/", "Redirects to the Brilliant Earth home page — no return text retrievable"),
-        ("https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-5882: $1,085; style U5882; 14k yellow; 5.00 g approx.; 2.9/2.3 mm"),
-        ("https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-170: $933; style U170; 4.80 g approx.; 3.20/2.40 mm"),
-        ("https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "AL-4426: $585; style NG4426; 3.58 g approx."),
-        ("https://www.allurez.com/pages/return-policy", "30 days to arrive; engraved/custom/contoured/clearance excluded; DYO exchange-only; $300 missing cert; 7 business days refund"),
-        ("https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "AV-25893: $1,100; item R25893; 14K; 2.3 g; 0.41 ctw; 4.5 mm; 14-day returns; FALL10 code"),
-        ("https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "JM-149700: $3,020 special / $6,041 retail; 0.71 ctw; 14KT; 2.3 g; 30-day guarantee"),
-        ("https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "SGJ-B02561: '14ky, 4.7g, #B02561'; no price; call (309) 452-1612"),
-        ("https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "ET-4426190660: 14K $1,891.78 (50% off $2,404.16); 2.50 ct lab diamond; 1.80 mm; IGI; returns accepted"),
-        ("https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K $969; 3.70 g; 0.30 ct diamond + 0.90 ct ruby; 7-day returns; ships Albany NY"),
-        ("https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry", "Karat + maker's mark rule; solid gold means not hollow; plated/filled/vermeil definitions; get returns in writing"),
-        ("https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23", "16 CFR Part 23: §23.3 gold content; §23.10 quality marks; §23.18 weight representations"),
-        ("https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges", "Federal right to dispute billing errors; credit-card protection"),
-        ("https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices", "LBMA Gold Price set twice daily (10:30, 15:00 London) by ICE Benchmark Administration"),
-        ("https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
-        ("https://www.law.cornell.edu/uscode/text/15/297", "15 U.S.C. §297(b): trademark must be applied beside the quality mark"),
+        ("live", "2026-10-23", "https://www.kitco.com/charts/gold", "Spot bid 4,022.50; per gram 129.33; ask 4,024.50; purity table 24K 4,022.50 / 22K 3,687.43 / 18K 3,016.88 / 14K 2,346.32 / 10K 1,676.18; 5:44 a.m. ET"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639", "BN-195639: $1,000 Setting Price; stock 501130y14; 14K yellow; 1.80 mm; free overnight shipping / free returns"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257", "BN-203257: $870 Setting Price; stock 500000y14; 14K yellow; 1.90 mm"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871", "BN-195871: $1,800 Setting Price; stock 501410y14; 2.50 mm; 16 round; 1/4 ct. tw.; G-H / VS2-SI1"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings", "Gallery: BN-192506 $1,255; BN-195326 $1,500; BN-311132 $2,320 (Setting Price); 1,451 results"),
+        ("live", "2026-10-23", "https://www.bluenile.com/policies/returns", "30-day money-back; resized/engraved/custom/clearance excluded; two complimentary returns per year; RMA; $150 missing grading report; free resize +/- two sizes within 6 months"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-5882: $1,085; style U5882; 14k yellow; 5.00 g approximate; 2.9/2.3 mm"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-170: $933; style U170; 4.80 g approximate; 3.20/2.40 mm"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "AL-4426: $585; style NG4426; 3.58 g approximate"),
+        ("live", "2026-10-23", "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "AV-25893: $1,100.00; item R25893; 14K gold; 2.3 grams; 0.41 ctw; returns within 14 days"),
+        ("live", "2026-10-23", "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "JM-149700: Retail $6,041.00 / Special $3,020.00; 0.71 ctw; 14KT; 2.3 grams; 30-day Money Back Guarantee"),
+        ("live", "2026-10-23", "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "SGJ-B02561: '14ky, 4.7g, #B02561'; no price; Call (309) 452-1612 for current pricing"),
+        ("live", "2026-10-23", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry", "Karat + trademark rule ('if you don't see a trademark along with the karat mark, don't buy it'); solid gold means not hollow; plated/filled/vermeil definitions"),
+        ("live", "2026-10-23", "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23", "16 CFR Part 23, eCFR 'up to date as of 10/21/2026': §23.3 gold content, §23.4 vermeil, §23.10 quality marks, §23.18 weight representations"),
+        ("live", "2026-10-23", "https://www.govinfo.gov/link/uscode/15/295", "15 U.S.C. § 295: 3/1000 fineness tolerance on the tested part; 7/1000 for the whole article including solder"),
+        ("failed", "2026-10-23", "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "HTTP 500 on every Etsy listing attempt today — no Etsy value was re-read; rows keep 2026-10-22 and are flagged FL-26")
     ]
-    log_rows = "".join(f"<tr><td class=\"small\"><a href=\"{esc(u)}\" target=\"_blank\" rel=\"noopener\">{esc(u[:88])}{'…' if len(u)>88 else ''} ↗</a></td><td class=\"small\">{esc(what)}</td></tr>" for u, what in log)
+    prior_log = [
+        ("2026-10-22", "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: $750 setting only; 2 mm"),
+        ("2026-10-22", "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "BE-NADIA: $1,250 setting only; 1.8 mm; 143 reviews"),
+        ("2026-10-22", "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/", "BE-1343HH: $1,190 setting only; 14 accent diamonds 0.05 ct. tw."),
+        ("2026-10-22", "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "BE-SECRET: page served EUR EUR 1,250.00 - USD not confirmed (FL-08)"),
+        ("2026-10-22", "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K $969; 3.70 g; 7-day returns"),
+        ("2026-10-22", "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "ET-576343849: sold at capture; $444.80 for 7 g 14K (case study, FL-01)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738", "BN-203738: $2,210 - not re-opened 2026-10-23 (FL-28)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145; stock 502120y14; 2.40 mm - not re-opened 2026-10-23 (FL-28)"),
+        ("2026-10-22", "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
+        ("2026-10-22", "https://www.law.cornell.edu/uscode/text/15/297", "15 U.S.C. § 297(b): trademark must be applied beside the quality mark"),
+        ("2026-10-22", "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges", "Federal right to dispute billing errors; credit-card protection"),
+    ]
+    def _logrow(u, what, date=None, status=None):
+        badge = ""
+        if status == "live":
+            badge = ' <span class="badge ok">live</span>'
+        elif status == "failed":
+            badge = ' <span class="badge bad">failed</span>'
+        return (f"<tr><td class=\"small\">{badge}{'<b>' + date + '</b><br>' if date else ''}"
+                f"<a href=\"{esc(u)}\" target=\"_blank\" rel=\"noopener\">{esc(u[:88])}{'…' if len(u)>88 else ''} ↗</a></td>"
+                f"<td class=\"small\">{esc(what)}</td></tr>")
+    log_rows = "".join(_logrow(u, what, d, st) for st, d, u, what in log)
+    prior_rows = "".join(_logrow(u, what, d) for d, u, what in prior_log)
     corrections = [
-        ("VeraByEden return window", "Earlier session records described the Etsy return tab generically. The live listing states <b>7 days</b>. Corrected in the seller record and flagged FL-16."),
-        ("Brilliant Earth karats", "Earlier flags said the karat appeared only in product URLs. Each product page states <b>14K Yellow Gold</b> in its title and ring information. Flag FL-24 closed."),
-        ("Brilliant Earth Secret Halo price", "The product page served <b>EUR €1,250.00</b> on this fetch, not USD. The $1,090 figure is retained only as a category-listing capture and flagged FL-08 — it was not converted or guessed."),
-        ("VeraByEden gold weight", "The earlier '3.70 g via search snippet' flag was resolved: the description on the live page states <b>'Gold grams: 3.70 gr'</b>. Flag closed; seller-stated caveat remains FL-18."),
-        ("Blue Nile warranty threshold", "The warranty page and product pages state <b>$1,000 or more</b>. The $870 setting therefore does not qualify; FL-06 was rewritten and linked to the correct rows."),
-        ("Jewelry Master retail price", "The page shows $6,041.00 retail vs $3,020.00 special. The retail figure is the seller's own comparison; it is recorded but <b>not used</b> in any ratio (FL-12)."),
+        ("Blue Nile × six settings re-read", "Six Blue Nile rows were re-read live on 2026-10-23 (three product pages, three gallery prices). <b>Every price was unchanged</b> from 2026-10-22 — $1,000 / $870 / $1,800 / $1,255 / $1,500 / $2,320."),
+        ("Allurez × three re-read", "AL-5882 $1,085 / 5.00 g, AL-170 $933 / 4.80 g and AL-4426 $585 / 3.58 g are unchanged. The old /product/ URL form now returns 404; the dataset already used the working /products/ URLs."),
+        ("Avianne, Jewelry Master, Solid Gold Jewelers", "All three pages re-read unchanged: $1,100 / 2.3 g (R25893), $3,020 special / 2.3 g, and 4.7 g with no published price (call for pricing)."),
+        ("Spot moved down", "Kitco bid moved from <b>$4,026.90/oz</b> (2026-10-22 7:26 p.m. ET, $129.47/g) to <b>$4,022.50/oz</b> (2026-10-23 5:44 a.m. ET, $129.33/g). Every metal value on the site is recomputed at the new quote; yesterday's quote is retained as dated history (FL-25)."),
+        ("Etsy unreachable", "All seven Etsy listing URLs returned <b>HTTP 500</b> on 2026-10-23. Their values keep the 2026-10-22 date, are labelled captured, and FL-26 was opened. Nothing was refreshed from memory or inference."),
+        ("Brilliant Earth pages returned navigation only", "The four Brilliant Earth product pages did not render their product block for the collector today. No value was read; FL-27 was opened and the rows keep their 2026-10-22 date."),
+        ("Two Blue Nile pages not reopened", "BN-203738 ($2,210) and BN-203348 ($1,145) were not individually re-opened today; their six siblings were and were unchanged, but that is not evidence for these two. FL-28 opened; rows keep the 2026-10-22 date."),
+        ("Earlier 'six negative tests' claim was wrong", "The previous README said the harness caught 6 injected errors, but <code>scripts/verify.py</code> contained no negative tests at all. Eight real negative self-tests (N1–N8) were added in this pass and all eight are caught. The old claim is recorded here rather than quietly deleted."),
     ]
     corr_rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td class=\"small\">{b}</td></tr>" for a, b in corrections)
     body = f"""
@@ -986,9 +1010,13 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
   </ul>
 </div>
 
-<h2>This pass — live fetches</h2>
-<p class="small muted">{len(log)} sources were fetched and read for this dataset, all on {esc(D["meta"]["asOf"])}. Each row records what that page confirmed.</p>
+<h2>This pass — 2026-10-23 live fetches</h2>
+<p class="small muted">These pages were opened and read today. {len(log)-1} succeeded; one (Etsy) failed with HTTP 500 and is listed as failed rather than silently omitted. Each row records exactly what that page confirmed.</p>
 <div class="table-wrap tall"><table><thead><tr><th>URL</th><th>What it confirmed</th></tr></thead><tbody>{log_rows}</tbody></table></div>
+
+<h2>Earlier captures still in the dataset</h2>
+<p class="small muted">These values were read on <b>2026-10-22</b> and were <b>not</b> re-read today. They are labelled “captured 2026-10-22” on every affected row and itemised in flags FL-26 (Etsy unreachable), FL-27 (Brilliant Earth navigation only) and FL-28 (two Blue Nile pages not reopened). They are not asserted as current.</p>
+<div class="table-wrap tall"><table><thead><tr><th>URL</th><th>What it confirmed on 2026-10-22</th></tr></thead><tbody>{prior_rows}</tbody></table></div>
 
 <h2>Corrections made this pass</h2>
 <div class="table-wrap"><table><thead><tr><th>Item</th><th>What changed</th></tr></thead><tbody>{corr_rows}</tbody></table></div>
@@ -1013,12 +1041,84 @@ python3 tools/check_hallucinations.py   # archived /docs/ dataset (unchanged thi
 <h2>Earlier sessions</h2>
 <p class="small muted">This pass did not modify the archived deliverables. Their own checkers and evidence files remain in place and were run before consolidation:</p>
 <div class="table-wrap compact"><table><thead><tr><th>Artifact</th><th>Command</th><th>Result at consolidation</th></tr></thead><tbody>
-<tr><td><code>scripts/verify.py</code> (archive v1, root dashboard)</td><td><code>python3 scripts/verify.py</code></td><td>PASS — 0 errors, 9 checks</td></tr>
-<tr><td><code>tools/check_hallucinations.py</code> (/docs/ dataset)</td><td><code>python3 tools/check_hallucinations.py</code></td><td>PASS — 166 checks, 0 FAIL, 0 WARN, 1 INFO</td></tr>
+<tr><td><code>scripts/verify.py</code> (this dashboard, 2026-10-23)</td><td><code>python3 scripts/verify.py</code></td><td>PASS — 21 checks, 0 failed, 8/8 negative self-tests caught</td></tr>
+<tr><td><code>verified/scripts/verify.py</code> (session 84be683f)</td><td><code>cd verified &amp;&amp; python3 scripts/verify.py</code></td><td>PASS — 896 assertions, 0 failures (unchanged)</td></tr>
+<tr><td><code>tools/check_hallucinations.py</code> (/docs/ dataset)</td><td><code>python3 tools/check_hallucinations.py</code></td><td>PASS — 166 checks, 0 FAIL (unchanged)</td></tr>
 </tbody></table></div>
 """
     return shell("../", "verification", "Verification — method, live fetch log and checker results",
                  "Audit trail for the GOLD5 dataset: live fetches, corrections, the verification rules, checker commands and remaining unverified items.", body)
+
+
+# ---------------------------------------------------------------- category pages
+def median(vals):
+    vals = sorted(vals)
+    n = len(vals)
+    if n == 0:
+        return None
+    m = n // 2
+    return vals[m] if n % 2 else (vals[m - 1] + vals[m]) / 2
+
+def categories_page():
+    cards = []
+    for c in categories():
+        mem = category_members(c, ENTRIES)
+        priced = [e["price"] for e in mem if e["price"] is not None]
+        weighted = [e for e in mem if e["grams"] is not None]
+        rng = (f"{money(min(priced))} – {money(max(priced))}" if priced else '<span class="blank">no price published</span>')
+        cards.append(f"""<a class="card" href="category-{c['key']}.html">
+  <div class="k">{len(mem)} row{'s' if len(mem) != 1 else ''} · {len(weighted)} with a published weight</div>
+  <div class="t">{esc(c['title'])}</div>
+  <div class="d">{esc(c['blurb'])}</div>
+  <div class="go">Published price range: {rng} →</div></a>""")
+    body = f"""
+<div class="page-head">
+  <div class="eyebrow">Categories · {len(ENTRIES)} rows split seven ways</div>
+  <h1>Browse by category</h1>
+  <p>Every row appears in the same table layout as <a href="listings.html">Listings</a>, with the same source link, check date and flags. A category view never changes a value — it only filters rows. Categories overlap on purpose (an 18K solitaire appears in both), because karat, style and price basis are different questions.</p>
+</div>
+<div class="note gold"><b class="title">What a category is — and is not</b>A category is a grouping label taken from the seller's own product name (solitaire, halo, pavé), the stated karat, or the price basis the seller states (setting only vs complete). It is <b>not</b> a purity or quality claim, and it is <b>not</b> a ranking. No category has a “best buy”.</div>
+<div class="cards">{''.join(cards)}</div>
+<div class="note blue"><b class="title">How to use the category pages</b>Pick the shape you want, then check the three things that decide whether the row is usable: a published gram weight, an explicit “solid gold” statement, and a return policy you can read. <a href="checklist.html">The 12-point checklist</a> is the test; <a href="flagged.html">Flagged for Review</a> is the list of what is missing.</div>
+"""
+    return shell("../", "categories", "Categories — browse gold engagement rings by style and metal",
+                 "Seven category views over the 25 verified gold engagement ring rows: solitaires, halo and pave, 18K, complete rings, settings only, bands and the below-metal case study.",
+                 body)
+
+def category_page(c):
+    mem = category_members(c, ENTRIES)
+    priced = [e["price"] for e in mem if e["price"] is not None]
+    weighted = [e for e in mem if e["grams"] is not None]
+    ratios = [ratio(e) for e in mem if ratio(e) is not None]
+    stats = []
+    stats.append(("Rows in this view", f"{len(mem)}"))
+    stats.append(("With a published price", f"{len(priced)}"))
+    stats.append(("With a published gram weight", f"{len(weighted)}"))
+    stats.append(("Median price (priced rows)", money(median(priced)) if priced else "—"))
+    stats.append(("Median price ÷ metal (weighted rows)", f"{median(ratios):.2f}×" if ratios else "—"))
+    strip = "".join(f'<div class="stat"><div class="k">{esc(k)}</div><div class="v">{v}</div></div>' for k, v in stats)
+    rows = "".join(entry_row(e, i) for i, e in enumerate(mem, 1))
+    body = f"""
+<div class="page-head">
+  <div class="eyebrow">Category · {len(mem)} of {len(ENTRIES)} rows</div>
+  <h1>{esc(c['title'])}</h1>
+  <p>{esc(c['blurb'])}</p>
+  <p class="small muted">{sum(1 for e in mem if e['provenance'] == 'live')} of these {len(mem)} rows were re-read live on {esc(D['meta']['asOf'])}; the rest are labelled with their earlier capture date and flagged. <a href="categories.html">All categories →</a></p>
+</div>
+<div class="stats">{strip}</div>
+<div class="table-wrap tall"><table>
+<thead><tr>
+<th>#</th><th>Ring &amp; source</th><th>Karat</th><th class="num">Price</th><th>Grams</th>
+<th class="num">Fine gold (calc)</th><th class="num">Metal value (calc)</th><th>Price ÷ metal</th>
+<th>Solid gold?</th><th>Hallmark</th><th>Returns</th><th class="num">Checked</th><th>Flags</th>
+</tr></thead>
+<tbody>{rows}</tbody></table></div>
+<div class="note"><b class="title">Reading this view</b><span class="badge ok">live {esc(D['meta']['asOf'])}</span> was re-read from the seller's page in the {esc(D['meta']['asOf'])} pass · <span class="badge info">captured 2026-10-22</span> carries its earlier capture date and is listed on Flagged for Review. A blank cell is a value the seller's page does not state — not a zero and not an invitation to guess. The numbers in “fine gold” and “metal value” are arithmetic on the stated weight and karat, priced at the Kitco bid in the footer.</div>
+<p class="small muted"><a href="listings.html">See all {len(ENTRIES)} rows in one table →</a> · <a href="flagged.html">Open flags for these rows →</a> · <a href="calculator.html">Value a ring by weight →</a></p>
+"""
+    return shell("../", "categories", f"{c['title']} — verified listings",
+                 f"{len(mem)} verified gold engagement ring rows in the {c['title'].lower()} category, each with its price, karat, gram weight, hallmark claim, return policy and official source link.",
+                 body)
 
 def write(path, content):
     full = os.path.join(ROOT, path)
@@ -1029,6 +1129,9 @@ def write(path, content):
 
 write("index.html", index_page())
 write("site/listings.html", listings_page())
+write("site/categories.html", categories_page())
+for _c in categories():
+    write(f"site/category-{_c['key']}.html", category_page(_c))
 write("site/gold-price.html", gold_price_page())
 write("site/calculator.html", calculator_page())
 write("site/checklist.html", checklist_page())

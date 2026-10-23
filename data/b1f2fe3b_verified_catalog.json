@@ -2,11 +2,11 @@
   "meta": {
     "title": "GOLD5 Unified Cross-Session Verified Ring Catalog",
     "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
-    "asOf": "2026-10-22",
-    "noHallucinationsRule": "Every entry has >=1 official source URL and checkedOn=2026-10-22. Blank fields are null and flagged; derived fields are computed from verified inputs.",
-    "primarySpotUsdPerOz": 4026.9,
-    "primarySpotUsdPerGram": 129.47,
-    "primarySpotAsOf": "2026-10-22 7:26 p.m. ET",
+    "asOf": "2026-10-23",
+    "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
+    "primarySpotUsdPerOz": 4022.5,
+    "primarySpotUsdPerGram": 129.33,
+    "primarySpotAsOf": "2026-10-23 5:44 a.m. ET",
     "liveRecheckSpotUsdPerOz": 4026.9,
     "liveRecheckSpotUsdPerGram": 129.47,
     "liveRecheckAsOf": "2026-10-22 7:26 p.m. EDT",
@@ -51,7 +51,8 @@
         "FL-06",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
         "https://www.bluenile.com/engagement-rings",
@@ -103,7 +104,8 @@
         "FL-06",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
         "https://www.bluenile.com/engagement-rings",
@@ -155,7 +157,8 @@
         "FL-06",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
@@ -206,7 +209,8 @@
         "FL-21",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
         "https://www.bluenile.com/engagement-rings",
@@ -257,7 +261,8 @@
         "FL-21",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
@@ -308,7 +313,8 @@
         "FL-21",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
         "https://www.bluenile.com/engagement-rings",
@@ -357,9 +363,11 @@
         "FL-14",
         "FL-05",
         "FL-21",
+        "FL-28",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
         "https://www.bluenile.com/engagement-rings",
@@ -409,9 +417,11 @@
         "FL-05",
         "FL-21",
         "FL-06",
+        "FL-28",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
@@ -460,9 +470,11 @@
         "FL-14",
         "FL-07",
         "FL-21",
+        "FL-27",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
         "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
@@ -511,9 +523,11 @@
         "FL-14",
         "FL-07",
         "FL-21",
+        "FL-27",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
         "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
@@ -562,9 +576,11 @@
         "FL-14",
         "FL-07",
         "FL-21",
+        "FL-27",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
         "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
@@ -614,9 +630,11 @@
         "FL-07",
         "FL-21",
         "FL-08",
+        "FL-27",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
         "https://www.brilliantearth.com/engagement-rings/yellow-gold/",
@@ -666,7 +684,8 @@
         "FL-10",
         "FL-18"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
         "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
@@ -680,7 +699,7 @@
         "totalPennyweightDwt": 3.2151,
         "pureGoldGrams": 2.9165,
         "pureGoldTroyOz": 0.09377,
-        "rawGoldMeltUsdAtPrimarySpot": 377.6,
+        "rawGoldMeltUsdAtPrimarySpot": 377.19,
         "rawGoldMeltUsdAtRecheckSpot": 377.6,
         "priceToMeltRatio": 2.87
       }
@@ -716,7 +735,8 @@
         "FL-10",
         "FL-18"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
         "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
@@ -730,7 +750,7 @@
         "totalPennyweightDwt": 3.0865,
         "pureGoldGrams": 2.7998,
         "pureGoldTroyOz": 0.09002,
-        "rawGoldMeltUsdAtPrimarySpot": 362.49,
+        "rawGoldMeltUsdAtPrimarySpot": 362.1,
         "rawGoldMeltUsdAtRecheckSpot": 362.49,
         "priceToMeltRatio": 2.57
       }
@@ -766,7 +786,8 @@
         "FL-10",
         "FL-18"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
         "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
@@ -780,7 +801,7 @@
         "totalPennyweightDwt": 2.302,
         "pureGoldGrams": 2.0882,
         "pureGoldTroyOz": 0.06714,
-        "rawGoldMeltUsdAtPrimarySpot": 270.36,
+        "rawGoldMeltUsdAtPrimarySpot": 270.07,
         "rawGoldMeltUsdAtRecheckSpot": 270.36,
         "priceToMeltRatio": 2.16
       }
@@ -813,7 +834,8 @@
         "FL-14",
         "FL-11"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
         "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
@@ -827,7 +849,7 @@
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 173.7,
+        "rawGoldMeltUsdAtPrimarySpot": 173.51,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
         "priceToMeltRatio": 6.33
       }
@@ -860,7 +882,8 @@
         "FL-14",
         "FL-12"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
         "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
@@ -874,7 +897,7 @@
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 173.7,
+        "rawGoldMeltUsdAtPrimarySpot": 173.51,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
         "priceToMeltRatio": 17.39
       }
@@ -909,7 +932,8 @@
         "FL-14",
         "no-price"
       ],
-      "checkedOn": "2026-10-22",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
         "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
@@ -923,7 +947,7 @@
         "totalPennyweightDwt": 3.0222,
         "pureGoldGrams": 2.7415,
         "pureGoldTroyOz": 0.08814,
-        "rawGoldMeltUsdAtPrimarySpot": 354.94,
+        "rawGoldMeltUsdAtPrimarySpot": 354.56,
         "rawGoldMeltUsdAtRecheckSpot": 354.94,
         "priceToMeltRatio": null
       }
@@ -957,9 +981,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-26",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
         "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
@@ -1007,9 +1033,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-26",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
         "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
@@ -1057,9 +1085,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-18"
+        "FL-18",
+        "FL-26"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
         "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
@@ -1073,7 +1103,7 @@
         "totalPennyweightDwt": 2.3792,
         "pureGoldGrams": 2.1582,
         "pureGoldTroyOz": 0.06939,
-        "rawGoldMeltUsdAtPrimarySpot": 279.42,
+        "rawGoldMeltUsdAtPrimarySpot": 279.12,
         "rawGoldMeltUsdAtRecheckSpot": 279.42,
         "priceToMeltRatio": 3.47
       }
@@ -1107,9 +1137,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-26",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
         "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
@@ -1157,9 +1189,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-26",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
         "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
@@ -1207,9 +1241,11 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-26",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
         "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
@@ -1257,9 +1293,11 @@
         "FL-16",
         "FL-17",
         "FL-18",
+        "FL-26",
         "price-below-metal-value"
       ],
       "checkedOn": "2026-10-22",
+      "provenance": "prior",
       "sources": [
         "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
         "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
@@ -1273,7 +1311,7 @@
         "totalPennyweightDwt": 4.5011,
         "pureGoldGrams": 4.0831,
         "pureGoldTroyOz": 0.13127,
-        "rawGoldMeltUsdAtPrimarySpot": 528.64,
+        "rawGoldMeltUsdAtPrimarySpot": 528.07,
         "rawGoldMeltUsdAtRecheckSpot": 528.64,
         "priceToMeltRatio": 0.84
       }
@@ -1324,7 +1362,7 @@
         "totalPennyweightDwt": 3.7938,
         "pureGoldGrams": 4.425,
         "pureGoldTroyOz": 0.14227,
-        "rawGoldMeltUsdAtPrimarySpot": 572.9,
+        "rawGoldMeltUsdAtPrimarySpot": 572.29,
         "rawGoldMeltUsdAtRecheckSpot": 572.9,
         "priceToMeltRatio": 2.3
       }
@@ -1425,7 +1463,7 @@
         "totalPennyweightDwt": 4.5011,
         "pureGoldGrams": 4.0831,
         "pureGoldTroyOz": 0.13127,
-        "rawGoldMeltUsdAtPrimarySpot": 528.64,
+        "rawGoldMeltUsdAtPrimarySpot": 528.07,
         "rawGoldMeltUsdAtRecheckSpot": 528.64,
         "priceToMeltRatio": null
       }
@@ -1807,7 +1845,7 @@
         "totalPennyweightDwt": 0.8359,
         "pureGoldGrams": 0.7583,
         "pureGoldTroyOz": 0.02438,
-        "rawGoldMeltUsdAtPrimarySpot": 98.18,
+        "rawGoldMeltUsdAtPrimarySpot": 98.07,
         "rawGoldMeltUsdAtRecheckSpot": 98.18,
         "priceToMeltRatio": 4.06
       }
@@ -1852,7 +1890,7 @@
         "totalPennyweightDwt": 1.0931,
         "pureGoldGrams": 0.9916,
         "pureGoldTroyOz": 0.03188,
-        "rawGoldMeltUsdAtPrimarySpot": 128.38,
+        "rawGoldMeltUsdAtPrimarySpot": 128.24,
         "rawGoldMeltUsdAtRecheckSpot": 128.38,
         "priceToMeltRatio": 3.89
       }

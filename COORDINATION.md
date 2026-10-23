@@ -1045,3 +1045,51 @@ Derived numbers are recomputed by script. Every review ends with the harness run
   Nine earlier deliveries coexist (`docs/`, `pages/` + `index-090bae73.html`, `archive/`, `verified/`,
   `report/`, `guide/`, `research/`, `dossier/`, root `site/`); all are preserved.
 - 2026-10-23 09:55 UTC: **claim written, committed and pushed before any data work** (this block).
+
+### Log — session a255f011 (results, 2026-10-23)
+
+- **2026-10-23 09:57 UTC — V2 done (live re-verification).** 15 official pages were opened and read
+  today; the fetch log is `data/live_check_2026-10-23.json` and the verbatim excerpts are in
+  `verification/evidence/v2/`. **Twelve rows were re-read and every one was unchanged**:
+  Blue Nile 195639 ($1,000), 203257 ($870), 195871 ($1,800), plus 192506 ($1,255), 195326 ($1,500),
+  311132 ($2,320) on the engagement-rings gallery; Allurez U5882 ($1,085 / 5.00 g), U170 ($933 /
+  4.80 g), NG4426 ($585 / 3.58 g); Avianne R25893 ($1,100 / 2.3 g); The Jewelry Master 149700
+  ($3,020 special / 2.3 g); Solid Gold Jewelers B02561 (4.7 g, no price).
+  Spot: Kitco bid **$4,022.50/oz = $129.33/g at 2026-10-23 5:44 a.m. ET** (page body second print
+  $4,021.00 / $129.28 → FL-25). Regulations re-read: FTC consumer guide; 16 CFR Part 23 ("up to date
+  as of 10/21/2026"); 15 U.S.C. § 295 (3/1000 and 7/1000 tolerances); Blue Nile return policy.
+  **Failures, not fixed up:** all seven Etsy URLs returned **HTTP 500**; the Brilliant Earth pages
+  returned navigation only; two Blue Nile item pages were not reopened. Nothing was re-dated.
+- **2026-10-23 — V3 done (dataset).** `scripts/author_data.py` → `site/assets/data.json` + `data.js`:
+  25 entries / 13 sellers / **28 flags** / **11 references**; `meta.asOf` 2026-10-23; `meta.coverage`
+  live 12 / prior 13. New flags: **FL-26** (Etsy HTTP 500), **FL-27** (Brilliant Earth nav-only),
+  **FL-28** (two Blue Nile pages not reopened). New reference `usc295` (GovInfo). Every prior row now
+  carries a "NOT re-fetched on 2026-10-23" note and its flag; every live row is dated 2026-10-23.
+- **2026-10-23 — V4 done (site).** `scripts/site_categories.py` (new, shared rules) + `scripts/build_site.py`
+  now build **19 pages**: the dashboard, `categories.html` and seven category subpages
+  (solitaires, halo & pavé, 18K, complete rings, settings only, bands, case study), plus the nine
+  existing pages. `index.html` quote, stat captions and gold-price text are computed from the dataset —
+  the stale hard-coded "Bid 4,026.90 … 7:26 p.m." and "four same-day quotes … 1.5%" strings are gone.
+  Every page keeps the NO HALLUCINATIONS banner. Provenance badges read `live 2026-10-23` /
+  `captured 2026-10-22`.
+- **2026-10-23 — V5 done (harness).** `scripts/verify.py` extended from 15 to **21 checks**: C16
+  provenance integrity, C17 category coverage, C18 nav/reachability, C19 source discipline,
+  C20 dataset↔page counts, and **eight real negative self-tests N1–N8**. Result:
+  **PASS 21/21, 0 failed, 8/8 injected errors caught** (`data/check_report_v2.json`).
+- **Irregularities fixed (logged because they touch other sessions' files):**
+  - **I-01** the previous README claimed "6 negative tests" in `scripts/verify.py`; the script had
+    **none**. Eight were added; the false claim is now recorded on the Verification page.
+  - **I-02** `site/gold-price.html` had hard-coded "four same-day quotes … 1.5%" text → now computed.
+  - **I-03** `site/master-audit.html` (session b1f2fe3b) nav lacked the new Categories page and its
+    footer still said "25 open flags · 10 official references · $4,026.90/oz"; nav link, footer and
+    the spot preset were refreshed (no listing value or claim was altered).
+  - **I-04** `scripts/audit_b1f2fe3b.py` hard-coded `checkedOn == "2026-10-22"` and failed on any
+    newer legitimate date. The rule now accepts 2026-10-22/2026-10-23 **and** requires the date to
+    match `provenance` (live → today, prior → 2026-10-22). Audit: **PASS 6/6 groups, 0 errors**.
+- **Full suite on the integrated tree:** `scripts/verify.py` **21/21 PASS** ·
+  `scripts/audit_b1f2fe3b.py` **6/6 PASS** (99 pages, 2,757 local links) ·
+  `tools/check_report.py` **PASS** · `tools/security_test.py` **9/9 caught** ·
+  `tools/check_hallucinations.py` **166 checks / 0 FAIL** ·
+  `verified/scripts/build_site.py --check` **11 pages match** + `verified/scripts/verify.py`
+  **896 assertions / 0 failures**.
+- **V6 (PR, merge, Pages)** — record follows after the merge.
