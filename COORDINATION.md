@@ -1307,7 +1307,7 @@ the **final 2026-10-23 data**. No other session's file was edited; the earlier c
 |----|------|--------|-------|--------------------------|
 | V1 | Independent verification: recompute every derived value from raw inputs (independent of the project's own checkers), re-check evidence tokens, verify the rendered HTML | **done** | `arena-60a26527` | `scripts/independent_audit.py` (new), `docs/verification/independent-audit-2026-10-23.md` (new), `COORDINATION.md` (append-only section) |
 | V2 | Run the full project harness suite on the integrated tree; record results | **done** | `arena-60a26527` | read-only checks; regenerated artifacts reverted to their owners' committed state |
-| V3 | Record findings; PR → main, merge, confirm Pages deploy, log | **in progress** | `arena-60a26527` | `COORDINATION.md` (log), GitHub PR |
+| V3 | Record findings; PR → main, merge, confirm Pages deploy, log | **done** | `arena-60a26527` | `COORDINATION.md` (log), GitHub PR |
 
 **Files this session did NOT edit** (owned by other sessions, preserved byte-for-byte): the root
 dashboard / nav / table data and all generated site pages (final integration session `a255f011`),
@@ -1341,3 +1341,18 @@ dashboard / nav / table data and all generated site pages (final integration ses
 - Rule reminder (from the brief): after every review, re-run the checkers and inspect for
   unsupported claims. This audit is an independent cross-check, not a replacement for the owners'
   harnesses.
+- 2026-10-23 10:21 UTC — **V3 done: PR #39 merged and Pages deployed.**
+  - **PR #39** <https://github.com/karagemop466-tech/GOLD5/pull/39> (`arena/60a26527-gold5` → `main`),
+    **MERGED 2026-10-23T10:21:39Z** as merge commit **`0d5480a8702d3b0853c557bce9fa1772090653df`**
+    (fast-forward; the branch sat directly on `main`'s `30fddc1`, so no conflict). Flagged/unverified
+    items did not block the merge — there were none new from this audit.
+  - **CI:** `review` **pass** and `verify` **pass** on the PR head before merge.
+  - **Pages:** build `1307893525` → **`built`** at `2026-10-23T10:24:26Z`; config unchanged
+    (`legacy`, branch `main`, path `/`, `https_enforced: true`).
+  - **Live verification after deploy (fetch_page):** `/` serves "Data as of 2026-10-23", spot
+    **$4,022.50/oz · $129.33/g · 2026-10-23 5:44 a.m. ET**, NO HALLUCINATIONS panel, 6 timestamped
+    quotes, 27 open flags, checker failures 0, parallel-review note linking `/review/`.
+  - **All scopes released.** V1–V3 **done**; no open claims from this session.
+  - Note: `gh pr edit` failed (exit 1) with a GitHub Projects-classic deprecation error on
+    `projectCards`; the PR body was updated via `gh api … -X PATCH` instead. Recorded so the next
+    session does not mistake the `gh pr edit` failure for a failed merge.
