@@ -62,18 +62,22 @@ Rules: same no-hallucinations rule; blank beats wrong; per-row source URL + chec
 
 ## ⏱ ACTIVE CLAIM — session `852a3edf` (Arena branch `arena/852a3edf-gold5`)
 
-Claimed 2026-10-23 (UTC) after reviewing the prior integration record. Follow-up independent review;
-no listing or seller live verification is reopened. Initial exclusive scope: `COORDINATION.md`
-(claim/log), `README.md` (current-pass summary), and `docs/verification/review-852a3edf.md`.
-The canonical data and published pages remain read-only unless a specific defect is found. Use only
-stored, dated source evidence in this pass; do not assert a new live check.
+Claimed 2026-10-23 (UTC) after reviewing the PR #42 integration record. This is a follow-up
+independent review; no listing or seller live verification is reopened. Initial scope was
+`COORDINATION.md`, `README.md` (current-pass summary), and `docs/verification/review-852a3edf.md`.
+The baseline found stale Verification-page statements and overclaiming SEO text; scope expanded to
+the root site generator and its generated root pages. A later rebase brought in session `3bf55199`'s
+fresh 2026-10-23 spot pass; this session audits its stored live log without claiming to have fetched
+those sources itself. No product values are changed.
 
 | ID | Task | Status | Owner | File scope (exclusive) |
 |---|---|---|---|---|
 | H1 | Re-open board, inspect branch/repository state and identify latest published pass | **done** | `852a3edf` | `COORDINATION.md` |
 | H2 | Run anti-hallucination/security/build/link harnesses and reconcile public summary with canonical data and dated evidence | **in progress** | `852a3edf` | `docs/verification/review-852a3edf.md`, checker outputs |
 | H3 | Correct stale current-pass claims in README from canonical data; preserve dated history | **in progress** | `852a3edf` | `README.md` |
-| H4 | Final re-run of checks; log results, irregularities, and a recommendation to keep hunting for hallucinations | **in progress** | `852a3edf` | `COORDINATION.md`, review report, checker outputs |
+| H4 | Final re-run of checks; log results, irregularities, and a recommendation to keep hunting for hallucinations | **in progress** | `852a3edf` | `COORDINATION.md`, review report, generated checker outputs |
+| H5 | Reconcile the Verification page and builder with the 37-row P3 log and latest five-row P4 spot/listing log; preserve older passes as history, correct stale policy/fetch status, and link every log row to a registered official source | **in progress** | `852a3edf` | `scripts/build_site.py`, `site/verification.html`, `site/sellers.html`, `site/checklist.html`, `site/analysis.html` |
+| H6 | Remove overclaiming “verified solid-gold” SEO wording; align README and page summaries to canonical counts; add direct source/date status to product-derived and raw-value tables | **in progress** | `852a3edf` | `README.md`, `scripts/build_site.py`, `index.html`, `site/*.html` |
 
 Rules: preserve previous sessions' work; blank values remain blank and flagged; every data row keeps
 a source URL and date. No new prices or product specifications will be introduced without a live
@@ -214,6 +218,7 @@ older than 60 minutes with no commits may be taken over (handoff logged).
 - **PR #42** <https://github.com/karagemop466-tech/GOLD5/pull/42> is this record + the homepage
   count fix; it is merged immediately after this entry lands, and its result is its merge commit on
   main (Pages reconfirmed after it — COORDINATION-only + index text change, no data change).
+
 
 ## ⏱ PRIOR CLAIM (completed) — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
