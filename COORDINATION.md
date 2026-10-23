@@ -1032,3 +1032,30 @@ historical captures to verified prices. Network access in this session is restri
 GitHub and package registries; official merchant sources cannot be independently refreshed.
 The site will prominently disclose this, keep current values blank, link every candidate to
 its recorded official source, and publish limitations on a Flagged for Review page.
+
+### 0c967748 — review and test results
+- Claim was committed as `8cf0c5f` and pushed before implementation. First pre-push
+  pull reported that the new session branch did not yet exist remotely; creation push
+  succeeded. No conflict or other session's changes were discarded.
+- Read the prior board and all nine product datasets record-by-record via the new
+  deterministic ledger. 264 stored records → 91 **exact URLs**, not distinct products.
+  The dataset files and previous site suites remain unchanged.
+- Source probe: `curl -I --max-time 15 https://www.bluenile.com` failed with
+  `SSL_ERROR_SYSCALL`. Restricted network prevents independent current merchant and
+  government/standards verification. No field was upgraded; all current prices,
+  specifications, fine-gold values and official recheck dates are null.
+- Published R01–R04 in `review/flagged.html`, each with affected recorded seller source
+  links. Historical source and metadata claims are labeled as inherited, not confirmed.
+  Root summary now warns before all historical content. Current inventory, category
+  browser and calculation status are available without manual data entry.
+- Current ledger check PASS; 6/6 injected false/unsafe claims rejected. Existing checks:
+  root C1–C15 PASS; cross-site audit PASS (95 HTML pages, 3808 local links); verified
+  generated-site check PASS and 896 assertions / zero failures; legacy 166 checks /
+  zero failures; report check PASS; security mutations 9/9 caught; dossier 18/18,
+  1104 references / zero broken local links. Full console results: `review/test-results.txt`.
+  Regenerated out-of-scope artifacts were restored, preserving their owners' files.
+- These checks establish offline consistency, NOT official-source truth, current
+  prices, external URL availability, exhaustive market coverage, or physical purity.
+  Recommendation after every review: rerun checks and inspect for unsupported claims.
+- Evidence-refresh task status: **needs review** (published, nonblocking). UI/integration
+  implementation and offline verification: **done**. Deployment task remains in progress.

@@ -1,0 +1,19 @@
+{
+  "reviewDate": "2026-10-23",
+  "result": "PASS",
+  "inputRecords": 264,
+  "exactSourceUrls": 91,
+  "negativeTestsCaught": 6,
+  "negativeTestsTotal": 6,
+  "checks": [
+    "all stored rows accounted for",
+    "source URLs HTTPS; rendered text escaped",
+    "all current facts and derived values blank",
+    "no unsupported verified state or source-check date",
+    "all rows flagged and linked to origins",
+    "generated local links resolve",
+    "no scripts, frames, forms or inline event handlers",
+    "deterministic output comparison in check mode"
+  ],
+  "limitations": "Offline structural checks only. No source truth, external link availability, physical purity or current price verified."
+}
