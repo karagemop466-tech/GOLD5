@@ -12,9 +12,42 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-22 (UTC) — **session `b1f2fe3b` complete (all tasks B1–B6 done; PR #28 merged as `066fbe2`, GitHub Pages deployed and live-verified)**
+- Last updated: 2026-10-23 (UTC) — **session `77405ae3` claimed (see below); previous passes closed**
 
-## ⏱ ACTIVE CLAIM — session `93032b31` (Arena branch `arena/93032b31-gold5`)
+## ⏱ ACTIVE CLAIM — session `77405ae3` (Arena branch `arena/77405ae3-gold5`)
+
+Claimed at 2026-10-23 (UTC). Third final-integration / re-verification session for this brief.
+All earlier claims are complete or stale (every PR #1–#32 is merged or closed; the `93032b31` U7
+row below is stale — its PRs #10/#17 merged 2026-10-22, so the work finished and only its board row
+was left "in progress"). Scope is non-overlapping at the file level: sessions `638c9614`, `090bae73`,
+`37e8ff42`, `b1f2fe3b`, `93032b31`, `7cca80c9`, `60c4b9c3`, `84be683f` and `3e3fae49` keep their
+sections verbatim; their deliverables (`docs/`, `site/`, `pages/`, `report/`, `verified/`, `guide/`,
+`dossier/`, `archive/`) are read-only inputs for this pass.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| G1 | Re-open board, repo review, baseline run of all 7 harnesses, claim | **done** | 77405ae3 | `COORDINATION.md` |
+| G2 | **Live re-verification pass (2026-10-23)** of spot price + every URL in the canonical root dataset (`data/unified.json`) against the official page; results logged per URL | in progress | 77405ae3 | `data/live_check_77405ae3.json` (new) |
+| G3 | Fix/flag any drift found by G2 (never overwrite silently: correct + flag, or blank + flag); refresh derived values by script only | unclaimed | 77405ae3 | `tools/data_unified.py`, `data/unified.json`, `site/assets/data.js`, `index.html` + root pages (as integrator) |
+| G4 | Site pass: landing page + subpages review, full local link sweep, every table row has a source link | unclaimed | 77405ae3 | (read-only check; fixes scoped to G3 files) |
+| G5 | Final review pass: run every hallucination/security harness after the review, recommend hunting for hallucinations, record results | unclaimed | 77405ae3 | `data/check_status.json`, `data/pass_history_v2.json` |
+| G6 | Final integration: small frequent commits, `git pull --rebase` before each push, PR → `main`, merge, confirm GitHub Pages deploy, log PR + merge result here | unclaimed | 77405ae3 | `COORDINATION.md` |
+
+Rules for this pass: no-hallucinations rule above; every table row keeps its official source link;
+values not re-confirmed today are labelled with their original capture date; derived numbers are
+recomputed by script, never hand-edited; every review ends with a checker run logged here. A claim
+older than 60 minutes with no commits may be taken over (handoff logged).
+
+### Log — session 77405ae3
+- 2026-10-23: repo reviewed at `7cc612d` (main after PR #32). All 7 baseline harnesses **PASS**:
+  `scripts/verify.py` C1–C15 (0 errors) · `tools/check_hallucinations.py` 166 checks / 0 FAIL ·
+  `tools/check_report.py` PASS · `tools/security_test.py` 9/9 planted caught + clean-state PASS ·
+  `scripts/audit_b1f2fe3b.py` S1–S12 PASS (91 pages, 2507 links, 4/4 negatives) ·
+  `verified/scripts/build_site.py --check` + `verify.py` 896 assertions / 0 failures ·
+  `dossier/scripts/build.py` 18/18, 1104 refs, 0 broken.
+- 2026-10-23: **claim committed and pushed before starting G2** (this block).
+
+## ⏱ PRIOR CLAIM (completed) — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
 Claimed at 2026-10-22 23:30 UTC. Second final-integration session for this brief. Scope is
 **non-overlapping at the file level** with the earlier sessions — their `docs/`, `data/`, `tools/`,
