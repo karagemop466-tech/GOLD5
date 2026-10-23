@@ -59,7 +59,11 @@ cd verified && python3 scripts/verify.py   # session 84be683f suite (896 asserti
 4. **Brilliant Earth served EUR for the Freesia** (€835.00) on a mixed-currency page minutes after the
    Nadia page served USD normally, so BE-1343 now carries FL-08 and its $750 is labelled as the 5:44 a.m.
    reading. **No currency is ever converted in this project.**
-5. **A stale derived number was removed from prose.** A note used to hard-code "~$529" of metal value
+5. **Two sessions re-read the same spot page within the hour.** Session `3bf55199` independently
+   fetched the 4:10 p.m. ET Kitco page and arrived at the same $3,996.10 / $128.48. This pass keeps that
+   quote once, credits both reads in the prior chain, and adds what the other pass did not cover: the
+   seven Etsy listings, the price correction, the sold-out listing and the Brilliant Earth EUR render.
+6. **A stale derived number was removed from prose.** A note used to hard-code "~$529" of metal value
    computed at an older spot; the note now points at the computed column. The hallucination sweep
    re-derived every hand-written dollar figure in the dataset the same way — one was wrong, and it is fixed.
 
@@ -108,8 +112,15 @@ No frameworks, no external fonts, no third-party JavaScript, no network calls fr
 
 ## Evidence for this pass
 
-- `data/live_check_2026-10-23.json` — every URL attempted today, its status (`ok`, `nav_only`, `http_500`,
-  `not_refetched`), the value read, and the failure reason.
+- `data/live_check_2026-10-23.json` — every URL attempted in the 5:44 a.m. ET pass, its status (`ok`,
+  `nav_only`, `http_500`, `not_refetched`), the value read, and the failure reason.
+- `data/live_check_3bf55199.json` — the parallel 4:10 p.m. ET intraday re-check by session `3bf55199`
+  (Kitco $3,996.10 / $128.48 plus four listings re-confirmed unchanged). Its spot figures matched this
+  pass independently, which is why the merge kept one quote rather than two.
+- `data/live_check_463d0ea2.json` — **this pass**: 22 URLs attempted (20 read, 1 served EUR, 1 sold out,
+  0 failures), with the value read and the change against the 2026-10-22 dataset.
+- `data/evidence/p4_*.txt` — verbatim pass-4 excerpts for Kitco, Blue Nile, Allurez/Avianne/Jewelry
+  Master/Solid Gold Jewelers, Brilliant Earth and all seven Etsy listings.
 - `verification/evidence/v2/*.txt` — verbatim excerpts for Kitco, Blue Nile (products + returns),
   Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers, FTC, eCFR and 15 U.S.C. § 295.
 - `docs/verification/final-integration-2026-10-23.md` — the integration memo: what was checked, what
