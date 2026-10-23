@@ -1504,11 +1504,11 @@ history; every earlier deliverable (`docs/`, `site/`, `pages/`, `report/`, `veri
 | ID | Task | Status | Owner | File scope (exclusive) |
 |----|------|--------|-------|------------------------|
 | P4-1 | Re-open the board, read every prior claim, run the 9-harness baseline, claim scopes, push the claim before any edit | **done** | `arena-463d0ea2` | `COORDINATION.md` (this section only) |
-| P4-2 | **Live re-verification pass 4** — re-fetch the Kitco spot page and every product / seller / policy / reference URL in the canonical dataset; log one row per URL with status + value read | **in progress** | `arena-463d0ea2` | `data/live_check_463d0ea2.json` (new), `verification/evidence/v3/` (new) |
-| P4-3 | Apply drift by **script only** (never hand-edit generated HTML): refresh spot + all derived metal values, re-date rows actually re-read, blank + flag anything not confirmable; extend flags rather than deleting any | **unclaimed** | — | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `scripts/independent_audit.py`, `index.html`, `site/**`, `data/check_report_v2.json` |
-| P4-4 | Site pass: landing page + every subpage, full local link sweep, every table row carries its official source link, no third-party scripts | **unclaimed** | — | read-only checks; fixes only inside P4-3 scope |
-| P4-5 | Final review: run **every** harness after the review, log results, then deliberately **hunt for hallucinations** (unsourced `$`, converted EUR, stale dates, counts that drifted) and record what was checked | **unclaimed** | — | `data/check_status.json`, `data/pass_history_v2.json`, `coordination` log below |
-| P4-6 | Integration: small commits, `git pull --rebase` before each push, PR → `main`, merge without waiting, confirm the Pages deploy and re-fetch the live site | **unclaimed** | — | `COORDINATION.md` |
+| P4-2 | **Live re-verification pass 4** — re-fetch the Kitco spot page and every product / seller / policy / reference URL in the canonical dataset; log one row per URL with status + value read | **done — 22 URLs logged, 20 ok / 1 EUR / 1 sold out / 0 failed** | `arena-463d0ea2` | `data/live_check_463d0ea2.json` (new), `data/evidence/p4_*.txt` (new, 5 files) |
+| P4-3 | Apply drift by **script only** (never hand-edit generated HTML): refresh spot + all derived metal values, re-date rows actually re-read, blank + flag anything not confirmable; extend flags rather than deleting any | **done — `author_data.py` → `build_site.py`, no hand-edit** | `arena-463d0ea2` | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `scripts/independent_audit.py`, `index.html`, `site/**`, `data/check_report_v2.json` |
+| P4-4 | Site pass: landing page + every subpage, full local link sweep, every table row carries its official source link, no third-party scripts | **done — C5/C6/C7 + S8–S11 PASS** | `arena-463d0ea2` | read-only checks; fixes only inside P4-3 scope |
+| P4-5 | Final review: run **every** harness after the review, log results, then deliberately **hunt for hallucinations** (unsourced `$`, converted EUR, stale dates, counts that drifted) and record what was checked | **done — 9 harnesses PASS; 2 prose hallucinations found and fixed** | `arena-463d0ea2` | `data/check_status.json`, `data/pass_history_v2.json`, `coordination` log below |
+| P4-6 | Integration: small commits, `git pull --rebase` before each push, PR → `main`, merge without waiting, confirm the Pages deploy and re-fetch the live site | **in progress** | `arena-463d0ea2` | `COORDINATION.md` |
 
 **Rules carried forward (unchanged):** the no-hallucinations rule at the top of this file; every table
 row keeps a link to the official page that states the value; a value not re-read today keeps its
@@ -1529,3 +1529,54 @@ may be taken over and the handoff logged.
   `090bae73`, `37e8ff42`, `b1f2fe3b`, `93032b31`, `7cca80c9`, `60c4b9c3`, `84be683f`, `3e3fae49`,
   `0c967748`, `887435c2`, `a255f011`, `60a26527`, `77405ae3`); every earlier claim is closed or stale
   and no scope overlaps this one. Claimed P4-1…P4-6 and pushed this block before any edit.
+
+- 2026-10-23: **P4-2 done — live re-verification pass 4, 22 URLs attempted, log committed** to
+  `data/live_check_463d0ea2.json` (20 ok · 1 served EUR · 1 sold out · 0 fetch failures) with verbatim
+  excerpts in five new `data/evidence/p4_*.txt` files. Headlines: **Kitco moved intraday from
+  4,022.50/oz (5:44 a.m. ET) to 3,996.10/oz (4:10 p.m. ET)**, a 26.40 fall; all eight Blue Nile prices,
+  all three Allurez, Avianne, The Jewelry Master and Solid Gold Jewelers were unchanged; **all seven Etsy
+  listings opened** (pass 3 had HTTP 500 on every one).
+- 2026-10-23: **P4-3 done — drift applied by script only.**
+  1. Spot refreshed to 3,996.10/oz = 128.48/g @ 2026-10-23 4:10 p.m. ET; the morning quote moved to the
+     dated prior chain; purity table re-stated from the same capture; every derived metal value
+     recomputed by the build.
+  2. **ET-4366425533 corrected: 547.26 → 546.09** (Original Price 626.34, not 627.68). Superseded
+     figures kept as dated observations in the row's notes — corrected, not erased.
+  3. **ET-576343849 is sold out** ("Sorry, this item is sold out"). New optional `availability` field
+     renders a SOLD OUT badge; **new FL-29**; its 444.80 remains only as the 2026-10-22 observation
+     behind the below-metal case study.
+  4. **BE-1343 served EUR (835.00) in this pass** on a mixed-currency render — minutes after the Nadia
+     page served USD normally. Its USD 750 is now labelled as the 5:44 a.m. reading and the row carries
+     **FL-08**. No conversion was performed, here or anywhere.
+  5. **FL-26 resolved**; FL-19 and FL-25 rewritten for the new capture set; FL-08 extended.
+  6. All 25 rows now carry `checkedOn=2026-10-23` and `provenance=live`; none still depends on a
+     2026-10-22 figure.
+- 2026-10-23: **P4-4 done — site pass.** Every table row still links its official page (C5), all internal
+  links and anchors resolve across 19 pages (C6), 66 registered external URLs with no strays (C7),
+  7 category pages cover all 25 rows (C17), 12-item nav on every page (C18). The listing page now shows
+  the SOLD OUT badge; the Verification page gained a pass-4 fetch table, a pass-3 table, a 2026-10-22
+  archive table and a rewritten corrections list.
+- 2026-10-23: **P4-5 done — 9 harnesses PASS after the rebuild**: `scripts/verify.py` **21/21**
+  (C1–C20 + N1–N8) · `scripts/independent_audit.py` **11/11** · `scripts/audit_b1f2fe3b.py` **S1–S12**
+  (103 pages, 4,059 local links, 4/4 injected caught) · `scripts/review_current.py --check` **PASS** ·
+  `tools/check_hallucinations.py` **166 / 0 FAIL / 1 INFO** · `tools/check_report.py` **PASS** ·
+  `tools/security_test.py` **9/9 + clean** · `verified/scripts/verify.py` **896 / 0** ·
+  `dossier/scripts/build.py` **18/18, 1,104 refs, 0 broken**. R-06: `dossier/`, `verified/reports/`,
+  `data/b1f2fe3b_*` and `site/assets/catalog-b1f2fe3b.js` were reverted to their owners' committed
+  versions after the runs.
+  **Hallucination hunt — 2 real findings, both in prose, both fixed:**
+  (a) the ET-576343849 row note hard-coded "~\$529" of metal value and (b) **flag FL-01 hard-coded the
+  same figure**. Both were correct when typed and wrong the moment the spot moved — exactly the failure
+  mode this project exists to prevent. They now point at the computed metal-value column, and `verify.py`
+  C8 **caught both** during the rebuild (it is what surfaced them). Also fixed in this pass: a stale
+  `$627.68` typed into the Verification page's corrections list. Currency sweep: 11 `€` mentions, all
+  describing what Brilliant Earth displayed, **zero conversions**. Arithmetic: C4 + A1–A5 + A2b (60
+  raw-gold cells) all recompute. Dates: C16 rejects a pass-dated "prior" row. Counts: computed from the
+  dataset, not typed. **Recommendation for the next reviewer:** hunt in this order and add "no dollar
+  figure may appear in a flag or note unless an evidence file carries it" to the suite — that is
+  `independent_audit.py` A9's rule, which would have caught the FL-01 figure automatically.
+- 2026-10-23: **harness hardening (strengthened, not weakened).** `verify.py` **N2** previously selected
+  the first `provenance == "prior"` row; with no prior rows left it would have crashed and stopped
+  testing anything. It now builds a synthetic prior row from a copy and applies the C16 rule to it.
+  C16's message also handles the zero-prior case. A9's evidence corpus now resolves the new values
+  through the five `data/evidence/p4_*.txt` files.
