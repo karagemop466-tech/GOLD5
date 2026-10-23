@@ -91,7 +91,7 @@ for e in ENTRIES:
     if not any(host == d or host.endswith("." + d) for d in ALLOWED): bad.append(f'{e["id"]}: host {host}')
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["checkedOn"] or ""): bad.append(f'{e["id"]}: bad date')
     if e["provenance"] not in ("live", "prior"): bad.append(f'{e["id"]}: bad provenance')
-check("C2", not bad, f"{len(ENTRIES)} listings have an https official-source URL and a {D['meta']['asOf']} check date" + ("" if not bad else " — " + "; ".join(bad[:6])))
+check("C2", not bad, f"{len(ENTRIES)} listings have an https official-source URL and a dated check (2026-10-22 or 2026-10-23)" + ("" if not bad else " — " + "; ".join(bad[:6])))
 
 # ---------------------------------------------------------------- C3
 miss = []
@@ -99,7 +99,7 @@ for e in ENTRIES:
     if e["grams"] is None and "FL-03" not in e["flags"]: miss.append(f'{e["id"]}: no weight, no FL-03')
     if not e["solidStated"] and "FL-15" not in e["flags"]: miss.append(f'{e["id"]}: no solid claim, no FL-15')
     if not e["hallmarkStated"] and "FL-14" not in e["flags"]: miss.append(f'{e["id"]}: no hallmark, no FL-14')
-    if e["price"] is None and "FL-13" not in e["flags"]: miss.append(f'{e["id"]}: no price, no FL-13')
+    if e["price"] is None and not ({"FL-13", "FL-08"} & set(e["flags"])): miss.append(f'{e["id"]}: no price, no FL-13/FL-08')
     if not e["returnsVerified"] and not any(f in e["flags"] for f in ("FL-07", "FL-11", "FL-12", "FL-13", "FL-16")):
         miss.append(f'{e["id"]}: returns unverified, no returns flag')
 check("C3", not miss, "every blank is covered by a flag" + ("" if not miss else " — " + "; ".join(miss[:8])))

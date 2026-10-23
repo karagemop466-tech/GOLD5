@@ -1,0 +1,319 @@
+{
+  "pass": "P3",
+  "session": "77405ae3",
+  "runOn": "2026-10-23 (UTC); seq 34-37 (4 canonical reference URLs) fetched after the initial 33-check write and appended same day.",
+  "method": "Each URL requested fresh by the session's page fetcher on 2026-10-23 and the rendered text compared field-by-field with the stored dataset value (site/assets/data.json for the published site, data/unified.json for the unified set). seq = fetch order; clock times are only ever times printed by the source page itself. 'FETCH FAILED' means the seller's server refused the checker - the earlier capture is kept with its own date, never silently upgraded.",
+  "totals": {
+    "urlsRequested": 37,
+    "matched": 31,
+    "changed": 1,
+    "eurServed": 1,
+    "soft404": 1,
+    "fetchFailed": 1,
+    "notRefetched": 0
+  },
+  "changedFindings": [
+    "BE-1343HH: USD price unconfirmable today (EUR 1,350.00 served) -> blank + flag FL-08 extended.",
+    "BE returns policy now verified at https://www.brilliantearth.com/30-Day-Returns/ (the dataset's old /returns/ URL is a soft-404) -> FL-07 resolved, returnUrl corrected on all 4 BE rows.",
+    "Kitco spot refreshed: 4,022.50/oz bid and 129.33/g at Oct 23, 2026 5:44 NY (2026-10-22 quote retained as a dated prior quote).",
+    "Etsy refused every direct fetch (HTTP 500 x3); 7 Etsy rows stay on their 2026-10-22 captures."
+  ],
+  "checks": [
+    {
+      "seq": 1,
+      "id": "spot",
+      "url": "https://www.kitco.com/charts/gold",
+      "what": "Live gold bid, per-gram, purity table, summary line",
+      "result": "match-with-new-quote",
+      "detail": "Re-fetched 2026-10-23: live panel 'Oct 23, 2026 - 5:44 NY Time' Bid 4,022.50, Ask 4,024.50, gram 129.33, kilo 129,328.36, pennyweight 201.13; day range 3,986.10-4,040.20; 'Prices ... as of October 23, 2026 at 5:43 a.m. EDT'; body line 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30'; table row $4,021.00/oz, $129.28/g; purity table 24K 4,022.50 / 22K 3,687.43 / 18K 3,016.88 / 14K 2,346.32 / 10K 1,676.18, 'Updated Oct 23, 2026 - 5:44 AM NY Time'. Yesterday's 4,026.90 capture stays in the dataset as a dated prior quote."
+    },
+    {
+      "seq": 2,
+      "id": "bn-192506",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$1,255(Setting Price)', Metal 14K Yellow Gold, Stock 502250y14, Width 1.60mm, warranty text '$1,000 or more' present. Matches dataset exactly."
+    },
+    {
+      "seq": 3,
+      "id": "bn-195639",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$1,000(Setting Price)', 14K Yellow Gold, Stock 501130y14, Width 1.80mm. Matches dataset exactly."
+    },
+    {
+      "seq": 4,
+      "id": "bn-203257",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$870(Setting Price)', 14K Yellow Gold, Stock 500000y14, Width 1.90mm. Matches dataset exactly."
+    },
+    {
+      "seq": 5,
+      "id": "bn-195326",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$1,500(Setting Price)', 14K White Gold, Stock 501590w14, Width 2.00mm, Rhodium Finish Yes. Matches dataset."
+    },
+    {
+      "seq": 6,
+      "id": "bn-195871",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$1,800(Setting Price)', 14K Yellow Gold, Stock 501410y14, Width 2.50mm. Matches dataset."
+    },
+    {
+      "seq": 7,
+      "id": "bn-311132",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$2,320(Setting Price)', 18K Yellow Gold, Stock 505032y, Width 8.45mm. Matches dataset."
+    },
+    {
+      "seq": 8,
+      "id": "bn-203738",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
+      "what": "price/karat/stock/width + known self-contradiction",
+      "result": "match",
+      "detail": "'$2,210(Setting Price)', Metal 18K White Gold, Stock 502820w, Width 1.70mm. Self-contradiction STILL LIVE: title/specs say 18k White Gold while Product Details say 'crafted from warmly lustrous 14k yellow gold' (dataset flag metal-text-contradiction / F13 remains accurate)."
+    },
+    {
+      "seq": 9,
+      "id": "bn-203348",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
+      "what": "price/karat/stock/width",
+      "result": "match",
+      "detail": "'$1,145(Setting Price)', 14K Yellow Gold, Stock 502120y14, Width 2.40mm. Matches dataset (canonical 25-row site row)."
+    },
+    {
+      "seq": 10,
+      "id": "bn-returns",
+      "url": "https://www.bluenile.com/policies/returns",
+      "what": "30-day window + exclusions",
+      "result": "match",
+      "detail": "'30-DAY MONEY BACK GUARANTEE ... within 30 days from the shipment date'; exclusions re-confirmed verbatim: 'Personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance items and Final Sale items are not eligible'; two complimentary returns per customer per year; RMA required; missing grading report $150; one free resize within 6 months."
+    },
+    {
+      "seq": 11,
+      "id": "be-1343",
+      "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
+      "what": "price/karat/style/width/reviews",
+      "result": "match",
+      "detail": "'$750(Setting Only)', '(80)' reviews, Metal 14K Yellow Gold, Style BE1343-14KY, Width 2-1.2 mm, USD currency selector shown. Matches dataset."
+    },
+    {
+      "seq": 12,
+      "id": "be-nadia",
+      "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
+      "what": "price/karat/style/width/reviews",
+      "result": "match",
+      "detail": "'$1,250(Setting Only)', '(143)' reviews, 14K Yellow Gold, BE1D6013-14KY, 1.8mm band. Matches dataset."
+    },
+    {
+      "seq": 13,
+      "id": "be-freesia-hidden",
+      "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
+      "what": "USD price re-confirmation",
+      "result": "CHANGED - EUR served",
+      "detail": "Product page now serves 'EUR 1,350.00 (Setting Only)' (currency box shows DE flag / EUR CADAUD GBP); '(31)' reviews; Metal 14K Yellow Gold; BE1D3939-14KY; Width 2-1.3 mm re-confirmed. The $1,190 USD price read on 2026-10-22 could NOT be re-confirmed today -> price withdrawn to blank and flagged (FL-08 extended)."
+    },
+    {
+      "seq": 14,
+      "id": "be-secret",
+      "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
+      "what": "price/karat",
+      "result": "EUR again (prior USD unconfirmable)",
+      "detail": "Serves 'EUR 1,250.00 (Setting Only)', '(92)' reviews, 14K Yellow Gold, BE1D13065-14KY, Band Width 1.5 mm. Confirms yesterday's EUR serving (F14/FL-08): the $1,090 category-listing figure remains unconfirmable -> kept blank + flagged."
+    },
+    {
+      "seq": 15,
+      "id": "be-returns-broken",
+      "url": "https://www.brilliantearth.com/returns/",
+      "what": "dataset returnsUrl liveness",
+      "result": "SOFT-404",
+      "detail": "Renders Brilliant Earth's 404 page ('This page is a diamond in the rough'). Its own footer links the real policy at https://www.brilliantearth.com/30-Day-Returns/ -> dataset returnUrl corrected."
+    },
+    {
+      "seq": 16,
+      "id": "be-returns-real",
+      "url": "https://www.brilliantearth.com/30-Day-Returns/",
+      "what": "return window + exclusions",
+      "result": "match",
+      "detail": "'Free 30-Day Returns & 1-Year Resizes'; 'return or exchange it within 30 days ... original, unworn condition'; exclusions: outside 30 days, engraved ($40 engraving-removal fee noted), personalized, custom designed, altered in process, 'Rings that have been resized or modified', repaired/modified after purchase, Lifetime Diamond Upgrade orders. FL-07 (returns unverified) RESOLVED."
+    },
+    {
+      "seq": 17,
+      "id": "al-u5882",
+      "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
+      "what": "price/karat/weight/style",
+      "result": "match",
+      "detail": "'$1,085' (57% Savings vs '$2,497 Everyone Else'), Metal 14k Yellow Gold, Style number U5882, 'Gold Weight 5.00 Grams (Approximate)'. Matches dataset."
+    },
+    {
+      "seq": 18,
+      "id": "al-u170",
+      "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
+      "what": "price/karat/weight/style",
+      "result": "match",
+      "detail": "'$933' (32% Savings vs '$1,373'), 14k Yellow Gold, Style number U170, 'Gold Weight 4.80 grams (Approximate)'. Matches dataset."
+    },
+    {
+      "seq": 19,
+      "id": "al-ng4426",
+      "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
+      "what": "price/karat/weight/style",
+      "result": "match",
+      "detail": "'$585' (51% Savings vs '$1,194'), 14k Yellow Gold, Style number NG4426, 'Approximate Metal Weight 3.58 grams'. Matches dataset."
+    },
+    {
+      "seq": 20,
+      "id": "al-returns",
+      "url": "https://www.allurez.com/pages/return-policy",
+      "what": "30-day window + exclusions",
+      "result": "match",
+      "detail": "'Return or exchange within 30 days'; must arrive within 30 days of original shipment; unused/unaltered (no resize/alter); engraved non-refundable; Design Your Own exchange-only (same or higher value); custom-made non-refundable; $300 missing-certificate deduction; RMA required; refund within 7 business days."
+    },
+    {
+      "seq": 21,
+      "id": "av-r25893",
+      "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+      "what": "price/karat/weight/solid/returns",
+      "result": "match",
+      "detail": "'$1,100.00' (10% OFF code FALL10 not applied), title '14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw', Item Code R25893, Metal Type 14K Gold, Item Weight 2.3 grams, 'Returns of unworn and unaltered items accepted within 14 days', showroom 28 W 47th Street NY, phone (332)-244-4038. Matches dataset."
+    },
+    {
+      "seq": 22,
+      "id": "jm-149700",
+      "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
+      "what": "price/karat/weight/returns",
+      "result": "match",
+      "detail": "'Retail Price $6,041.00 Special Price $3,020.00', Style 149700, '14KT solid yellow gold' / Metal Type 14KT Gold, Metal Weight 2.3 Grams, in stock (Only 1 left), 'Money Back Guarantee ... return or exchange ... within a 30-day period - no questions asked' (some restrictions), 1-888-59-JEWEL. Matches dataset."
+    },
+    {
+      "seq": 23,
+      "id": "sgj-b02561",
+      "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+      "what": "karat/weight/no-price claim",
+      "result": "match",
+      "detail": "Heading '14ky, 4.7g, #B02561'; 'Call (309) 452-1612 for current pricing and availability'; 'Pricing and availability are subject to change.' No price and no return policy on the page -> price stays blank + flagged (FL-13). Matches dataset."
+    },
+    {
+      "seq": 24,
+      "id": "etsy-blocked",
+      "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
+      "what": "price re-confirmation",
+      "result": "FETCH FAILED (HTTP 500)",
+      "detail": "Etsy returned HTTP 500 on 2026-10-23 for direct fetches (3 attempts across listing URLs 4426190660 x2 and 4366425533). All 7 Etsy rows keep their verified 2026-10-22 captures, labelled with their original check date; a web search for the specific listing did not surface the item page either. NOT re-confirmed today - recorded as prior."
+    },
+    {
+      "seq": 25,
+      "id": "ftc-consumer",
+      "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+      "what": "karat system, solid gold, trademark rule, reporting links",
+      "result": "match",
+      "detail": "Article live: '18K gold is 18 parts gold mixed with six parts'; 'solid gold' means the item isn't hollow; 'If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it'; gold filled/overlay/RGP/electroplate/vermeil definitions; ReportFraud.ftc.gov, state AG, JVC mediation links all present."
+    },
+    {
+      "seq": 26,
+      "id": "cfr23",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
+      "what": "regulation TOC",
+      "result": "match",
+      "detail": "eCFR 'up to date as of 10/21/2026. Title 16 was last amended 10/19/2026'; Part 23 sections 23.0-23.28 + Appendix all listed (23.3 gold content, 23.4 vermeil, 23.10 quality marks)."
+    },
+    {
+      "seq": 27,
+      "id": "cfr23-3",
+      "url": "https://www.law.cornell.edu/cfr/text/16/23.3",
+      "what": "gold-content misrepresentation text",
+      "result": "match",
+      "detail": "Full rule text: unfair to misrepresent presence/quantity/karat fineness of gold; 'Gold' unqualified only if 24K; karat designation must immediately precede and be equally conspicuous; hollow items must not be called 'Solid ... Gold'; 1/20 gold filled / 1/40 overlay thresholds; electroplate rules."
+    },
+    {
+      "seq": 28,
+      "id": "cfr23-10",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.10",
+      "what": "quality marks + maker's mark",
+      "result": "match",
+      "detail": "Full section: quality-mark definition; part applicability disclosure; size/legibility; 'Disclosure of identity of manufacturers ... shall apply to the article the trademark or name of such person. [15 U.S.C. 297]'."
+    },
+    {
+      "seq": 29,
+      "id": "nist",
+      "url": "https://www.nist.gov/document/precious-metals-conversion-information-march2015pdf",
+      "what": "troy/pennyweight/gram factors",
+      "result": "match",
+      "detail": "Fetch followed the redirect to the NIST PDF: 1 troy ounce = 20 dwt = 480 gr = 31.103 476 8 g; 1 pennyweight = 1.555 173 84 g; Handbook 130 section 2.17 text present."
+    },
+    {
+      "seq": 30,
+      "id": "lbma",
+      "url": "https://www.lbma.org.uk/prices-and-data/lbma-gold-price",
+      "what": "benchmark administration",
+      "result": "match",
+      "detail": "Page live: LBMA Gold Price administered by ICE Benchmark Administration (IBA), IOSCO principles, fifteen direct participants listed."
+    },
+    {
+      "seq": 31,
+      "id": "etsy-pp",
+      "url": "https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program",
+      "what": "buyer cover terms",
+      "result": "match",
+      "detail": "Live: full refund when item doesn't arrive / arrives damaged / arrives 7+ days after max estimated delivery / differs significantly from description; 48-hour seller window before Etsy steps in; not buyer's remorse."
+    },
+    {
+      "seq": 32,
+      "id": "jvc",
+      "url": "https://jvclegal.org/mediation-services/",
+      "what": "mediation program",
+      "result": "match",
+      "detail": "Live: JVC mediation for jewelry purchase disputes, 'recognized by the Federal Trade Commission', free complaint tool, 2-week first reply."
+    },
+    {
+      "seq": 33,
+      "id": "reportfraud",
+      "url": "https://reportfraud.ftc.gov/",
+      "what": "FTC reporting site",
+      "result": "match",
+      "detail": "Live official .gov reporting site ('Report a scam, a company ...'; reports shared with 2,000+ law enforcers)."
+    },
+    {
+      "seq": 34,
+      "id": "usc297",
+      "url": "https://www.law.cornell.edu/uscode/text/15/297",
+      "what": "15 U.S.C. §297 full text — trademark beside quality mark; stamped-plated-article rules",
+      "result": "match",
+      "detail": "Fetched 2026-10-23 after the log was first written (canonical dataset reference). Cornell LII serves the full statute; §297(b): manufacturer/dealer must apply a registered trademark \"in a position as close as possible to that quality mark or stamp\" in type at least as large — matches the stored quote for reference usc297."
+    },
+    {
+      "seq": 35,
+      "id": "nist-troy-b8",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "what": "NIST SP 811 Appendix B.8 alphabetical conversion factors — troy ounce and pennyweight to grams",
+      "result": "match",
+      "detail": "Fetched 2026-10-23 (canonical dataset reference URL; seq 29 covered the unified set’s NIST PDF instead). Page title \"NIST Guide to the SI, Appendix B.8: Factors for Units Listed Alphabetically\"; rows: ounce (troy or apothecary) -> gram 3.110 348 E+01 and pennyweight -> gram 1.555 174 E+00 (exact 31.1034768 / 1.55517384 carried by the Kitco statement quoted in the reference)."
+    },
+    {
+      "seq": 36,
+      "id": "lbma-precious-metal-prices",
+      "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "what": "LBMA precious metal prices page — benchmark administration and timing",
+      "result": "match",
+      "detail": "Fetched 2026-10-23 (canonical dataset reference URL; seq 30 covered /lbma-gold-price instead). Text states the LBMA Gold Price is set twice daily in auctions administered by ICE Benchmark Administration (IBA) at 10:30 and 15:00 London time — matches the stored quote. Tabulated price history sits behind the MyLBMA portal/license; the methodology text itself is public and was verified."
+    },
+    {
+      "seq": 37,
+      "id": "ftc-credit",
+      "url": "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+      "what": "FTC article — credit-card rights, billing-error disputes, quality complaints",
+      "result": "match",
+      "detail": "Fetched 2026-10-23 (canonical dataset reference; full article in 3 chunks). Verbatim: \"Federal law says you have the right to get mistakes fixed promptly — for instance, if the issuer hasn’t billed you correctly or noted your payments properly.\" Section heading \"If You Have a Complaint About the Quality of Something You Bought\" present; FCBA dispute process (60-day letter, 30-day ack, 90-day resolution) documented."
+    }
+  ]
+}

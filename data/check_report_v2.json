@@ -3,7 +3,7 @@
  "passed": 21,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-23 10:01 UTC",
+ "ranAt": "2026-10-23 10:46 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
@@ -14,7 +14,7 @@
   {
    "id": "C2",
    "ok": true,
-   "detail": "25 listings have an https official-source URL and a 2026-10-23 check date"
+   "detail": "25 listings have an https official-source URL and a dated check (2026-10-22 or 2026-10-23)"
   },
   {
    "id": "C3",
@@ -44,7 +44,7 @@
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (233 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (237 allowed values)"
   },
   {
    "id": "C9",
@@ -84,7 +84,7 @@
   {
    "id": "C16",
    "ok": true,
-   "detail": "provenance: 12 live 2026-10-23 + 13 prior rows, each prior row dated, noted and flagged"
+   "detail": "provenance: 18 live 2026-10-23 + 7 prior rows, each prior row dated, noted and flagged"
   },
   {
    "id": "C17",

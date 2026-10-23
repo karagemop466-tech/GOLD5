@@ -363,11 +363,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-14",
         "FL-05",
         "FL-21",
-        "FL-28",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
         "https://www.bluenile.com/engagement-rings",
@@ -417,11 +416,10 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-05",
         "FL-21",
         "FL-06",
-        "FL-28",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
         "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
@@ -460,7 +458,7 @@ window.GOLD5_UNIFIED_CATALOG = {
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
       "returnPolicy": null,
-      "returnUrl": "https://www.brilliantearth.com/customer-care/return-policy/",
+      "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
       "status": "verified",
@@ -468,17 +466,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-03",
         "FL-15",
         "FL-14",
-        "FL-07",
         "FL-21",
-        "FL-27",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
         "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
-        "https://www.brilliantearth.com/customer-care/return-policy/"
+        "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
         "fineness": 0.5833,
@@ -513,7 +509,7 @@ window.GOLD5_UNIFIED_CATALOG = {
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
       "returnPolicy": null,
-      "returnUrl": "https://www.brilliantearth.com/customer-care/return-policy/",
+      "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
       "status": "verified",
@@ -521,17 +517,15 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-03",
         "FL-15",
         "FL-14",
-        "FL-07",
         "FL-21",
-        "FL-27",
         "no-gram-weight"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
         "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
-        "https://www.brilliantearth.com/customer-care/return-policy/"
+        "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
         "fineness": 0.5833,
@@ -560,31 +554,31 @@ window.GOLD5_UNIFIED_CATALOG = {
       "explicitSolidGoldStated": false,
       "grams": null,
       "gramsNote": null,
-      "priceUsd": 1190,
-      "priceLabel": "$1,190 setting only (center diamond extra)",
+      "priceUsd": null,
+      "priceLabel": "USD price not confirmable \u2014 product page served EUR \u20ac1,350.00 on 2026-10-23 (FL-08); prior USD $1,190 seen on the product page 2026-10-22 (dated observation only, no conversion)",
       "widthMm": 2.0,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
       "returnPolicy": null,
-      "returnUrl": "https://www.brilliantearth.com/customer-care/return-policy/",
+      "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
-      "status": "verified",
+      "status": "flagged",
       "flags": [
         "FL-03",
         "FL-15",
         "FL-14",
-        "FL-07",
         "FL-21",
-        "FL-27",
-        "no-gram-weight"
+        "FL-08",
+        "no-gram-weight",
+        "no-price"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
         "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
-        "https://www.brilliantearth.com/customer-care/return-policy/"
+        "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
         "fineness": 0.5833,
@@ -613,32 +607,31 @@ window.GOLD5_UNIFIED_CATALOG = {
       "explicitSolidGoldStated": false,
       "grams": null,
       "gramsNote": null,
-      "priceUsd": 1090,
-      "priceLabel": "$1,090 setting only \u2014 USD price from the Brilliant Earth category listing; the product page served EUR \u20ac1,250 (geo-currency) this pass",
+      "priceUsd": null,
+      "priceLabel": "USD price not confirmable \u2014 product page served EUR \u20ac1,250.00 on 2026-10-23 (FL-08); prior USD $1,090 seen via the yellow-gold category listing 2026-10-22 (dated observation only, no conversion)",
       "widthMm": 1.5,
       "hallmarkClaim": "Not stated on product page",
       "makerMark": null,
       "returnPolicy": null,
-      "returnUrl": "https://www.brilliantearth.com/customer-care/return-policy/",
+      "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
       "payment": null,
       "reviewScore": null,
-      "status": "verified",
+      "status": "flagged",
       "flags": [
         "FL-03",
         "FL-15",
         "FL-14",
-        "FL-07",
         "FL-21",
         "FL-08",
-        "FL-27",
-        "no-gram-weight"
+        "no-gram-weight",
+        "no-price"
       ],
-      "checkedOn": "2026-10-22",
-      "provenance": "prior",
+      "checkedOn": "2026-10-23",
+      "provenance": "live",
       "sources": [
         "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
         "https://www.brilliantearth.com/engagement-rings/yellow-gold/",
-        "https://www.brilliantearth.com/customer-care/return-policy/"
+        "https://www.brilliantearth.com/30-Day-Returns/"
       ],
       "computed": {
         "fineness": 0.5833,
