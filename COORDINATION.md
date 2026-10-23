@@ -1093,7 +1093,7 @@ product-price research pass.
 |----|------|--------|-------|------------|
 | R887-1 | Resolve misleading "today" gold-value wording and quote-count mismatch using the saved, dated observations | **done** | `887435c2` | generator + generated root landing/gold-price/flagged pages and data exports |
 | R887-2 | Run the repository's verification, source/evidence, link, and negative security passes | **done** | `887435c2` | read-only checks; generated reports restored to their owning sessions' committed state |
-| R887-3 | Publish the focused correction through the fixed branch, merge, and confirm Pages | in progress | `887435c2` | this section; GitHub PR/deploy record to be appended |
+| R887-3 | Publish the focused correction through the fixed branch, merge, and confirm Pages | **done** (PR #34 merged; Pages built) | `887435c2` | `COORDINATION.md`; GitHub PR #34 |
 
 ### Findings and change
 
@@ -1148,6 +1148,27 @@ product-price research pass.
   sections; `index.html` retained the new current-review warning and links while
   receiving this pass's dated-snapshot corrections. Post-rebase checks passed with
   95 audited HTML files and 3,808 local links; no current-evidence work was dropped.
+
+### Integration result — session `887435c2`
+
+- PR **#34** <https://github.com/karagemop466-tech/GOLD5/pull/34> —
+  `arena/887435c2-gold5` → `main`, **MERGED 2026-10-23T09:56:44Z** as
+  **`960d018a66dd4eeecc7799422dba395cea41e950`**.
+- Required branch workflows passed before merge: Verify run
+  <https://github.com/karagemop466-tech/GOLD5/actions/runs/39935499293> and
+  Current evidence boundaries run
+  <https://github.com/karagemop466-tech/GOLD5/actions/runs/39935499276>.
+- On the merged head, Verify run **39935535360** and Current evidence boundaries
+  run **39935535335** both completed successfully. GitHub Pages deployment
+  **39935534915** completed successfully (build, deploy and report-build-status
+  jobs all green) for the exact merge commit above.
+- GitHub Pages configuration reports `built`, source `main:/`, HTTPS enforced:
+  <https://karagemop466-tech.github.io/GOLD5/>. Latest main SHA at verification:
+  `960d018a66dd4eeecc7799422dba395cea41e950`.
+- No ring prices or other product facts were refreshed or altered. The dated
+  historical inventory and all existing flags remain; the current-evidence review
+  makes the limitation explicit. Site is live; request additional seller/source
+  verification through the Flagged for Review page when needed.
 
 ---
 
