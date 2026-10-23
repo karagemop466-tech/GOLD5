@@ -12,7 +12,7 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 23:44 UTC — **session `d49fe320` took over the stale H5 close-out; PR #50 is already merged; post-merge verification in progress**
+- Last updated: 2026-10-23 23:55 UTC — **session `d49fe320` completed D1 post-merge audit; H5 PR/Pages close-out is in progress; PR #50 remains the deployed baseline**
 
 ## ⏱ ACTIVE CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — stale H5 takeover / post-merge verification
 
@@ -25,12 +25,15 @@ No canonical product data, site navigation, or generated page owned by another s
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
-| D1 | Independent post-merge audit of PR #50: recheck deployed landing/category/listings/flags/verification views, verify source/link and no-hallucination controls, run the combined harnesses, and finish H5 record | **in progress** | `d49fe320` (handoff) | `COORDINATION.md`; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**`; GitHub PR/Pages operations |
+| D1 | Independent post-merge audit of PR #50: recheck deployed landing/category/listings/flags/verification views, verify source/link and no-hallucination controls, run the combined harnesses, and log source-scope findings | **done — live pages and official references re-read; all 9 suites passed twice; 5 change requests logged** | `d49fe320` (handoff) | `COORDINATION.md`; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**` |
 
 **No-hallucinations rule for D1:** live price/weight/purity/policy/date claims are never inferred. Record each fetched URL, timestamp, status, and only the observed excerpt; if a source is unavailable or ambiguous, record that fact and do not change the catalog. Recompute values only through repository code. The review ends with the documented anti-hallucination/security suites and a recommendation to keep hunting for unsupported claims.
 
 ### Log — session d49fe320 (in progress)
-- 2026-10-23 23:44 UTC: stale H5 handoff claimed. Verified PR #50 is merged, both required PR checks succeeded, Pages status is `built`, and no PRs are open. The independent live and harness passes are pending; no site/data edits are in scope.
+- 2026-10-23 23:44 UTC: stale H5 handoff claimed. Verified PR #50 is merged, both required PR checks succeeded, Pages status is `built`, and no PRs were open. The live/harness passes were pending at claim time; no site/data edits were in scope.
+- 2026-10-23 23:55 UTC: **D1 complete.** Re-fetched nine cache-busted production pages and directly re-read the official FTC, eCFR, GovInfo, NIST, Kitco and Solid Gold Jewelers pages; wrote [`data/live_check_d49fe320.json`](data/live_check_d49fe320.json) and [`verification/evidence/d49fe320/post-merge-audit.md`](verification/evidence/d49fe320/post-merge-audit.md). Re-ran all nine suites after the semantic-source review: every suite passed again; `scripts/verify.py` 22/22 (including 10/10 injected errors), independent audit 11/11, cross-site audit 6/6, current review 264/92/6, hallucinations 166/0/0/1, report 1,649/0, security 9/9, verified 896/0, dossier 18/18. Owner-scoped generated test outputs were restored.
+- **Five source-scope findings (requests, not edits):** (1) root checklist/seller prose overstates card acceptance and claims wire/Zelle/gift cards are not offered even though Solid Gold Jewelers says payment is not stated and its page says call for current price; the sold Etsy item is N/A. (2) checklist cites 16 CFR §23.18 for ring-metal weight although the official text covers diamond-weight representations. (3) checklist complaint-rating/count figures cite FTC guidance but should also link the BBB/ConsumerAffairs snapshots directly. (4) canonical §297 reference uses Cornell mirror despite an available official GovInfo text. (5) Kitco now shows $3,994.90/oz and $128.44/g at 7:42 p.m. EDT, newer than the clearly timestamped 4:10 p.m. snapshot. Full evidence and sources are in the two linked files above.
+- **Scope boundary:** these findings touch the completed H3-owned authoring/build/page files. Per the board's non-overlap rule, they are logged as change requests and were not edited in D1. The automated suites do not catch the two semantic prose mismatches; continue hunting for hallucinations and do not treat a green suite as semantic source verification. H5's PR/Pages close-out is still pending for this branch.
 
 
 ## ⏱ PRIOR CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`); H5 handed off to `d49fe320`

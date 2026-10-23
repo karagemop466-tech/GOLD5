@@ -1,0 +1,327 @@
+
+===== scripts/verify.py =====
+GOLD5 verify v2 — PASS: 22 passed, 0 failed — 2026-10-23 23:45 UTC
+  PASS C1 · 25 entries, 13 sellers, 30 flags, 11 references
+  PASS C2 · 25 listings have an https official-source URL and a dated check (data as of 2026-10-23)
+  PASS C3 · every blank and source conflict is covered by a flag
+  PASS C4 · spot, purity and 25 rows of derived values recompute
+  PASS C5 · 25 listing rows, each with its official source link
+  PASS C6 · all internal links and anchors resolve across 19 pages
+  PASS C7 · every external link (65 registered URLs) is recorded in the dataset
+  PASS C8 · every dollar figure on the site is dataset-sourced or computed (229 allowed values)
+  PASS C9 · every published price, weight and source URL is rendered in its row
+  PASS C10 · no placeholders or template leftovers
+  PASS C11 · site/assets/data.js matches data.json
+  PASS C12 · spot, prior spot and three raw-gold cells recompute on the gold-price page
+  PASS C13 · 19 pages parse as well-formed HTML
+  PASS C14 · the NO HALLUCINATIONS rule is on every page
+  PASS C15 · no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener
+  PASS C16 · provenance: 25 live 2026-10-23 + 0 prior rows, each prior row dated, noted and flagged
+  PASS C17 · 7 category pages cover all 25 rows, row counts match the rules, each links back
+  PASS C18 · consistent 12-item nav on all 19 pages and every page reachable from the dashboard
+  PASS C19 · https sources for every row, seller policy, flag reference and official reference; 11 references dated
+  PASS C20 · counts and row provenance labels match the dataset on all 25 listing rows
+  PASS C21 · 46-check evidence ledger covers every row and agrees with canonical observed values
+  PASS N1-N10 · 10/10 injected errors caught by the rules they target
+EXIT_CODE=0
+
+===== scripts/independent_audit.py =====
+=== GOLD5 independent audit (session arena-60a26527) ===
+  [PASS] A1 · spot $3996.1/oz / 31.1034768 = $128.4776/g vs recorded $128.48/g
+  [PASS] A2 · per-purity per-oz: 24K: 3995.70 vs 3996.1 ok; 22K: 3663.22 vs 3663.22 ok; 18K: 2997.07 vs 2997.08 ok; 14K: 2330.93 vs 2330.93 ok; 10K: 1665.17 vs 1665.17 ok
+  [PASS] A3 · fine gold recomputed for 7 rows (g × karat/24)
+  [PASS] A4 · metal value recomputed for 7 rows (fine gold × $128.48/g)
+  [PASS] A5 · price-to-metal ratio recomputed for 7 rows
+  [PASS] A6 · all dollar figures on 19 root pages trace to data/recomputation
+  [PASS] A2b · all 60 raw-gold cells (w × fineness × $128.48/g) appear on gold-price.html
+  [PASS] A7 · all entry source/return URLs are https
+  [PASS] A8 · all 25 entries have an official https source URL and a check date
+  [PASS] A9 · every recorded price/gram/karat token is backed by a verbatim capture for 25 entries
+  [PASS] A10 · landing page carries the no-hallucinations banner=True and asOf date=True
+
+=== RESULT: 11 passed, 0 failed ===
+EXIT_CODE=0
+
+===== scripts/audit_b1f2fe3b.py =====
+=== GOLD5 Cross-Site Security & Anti-Hallucination Audit (session b1f2fe3b) ===
+Status: PASS | Passed groups: 6 | Errors: 0 | Warnings: 0
+  [PASS] S1-S3/S6: All 38 unified entries have allowlisted HTTPS sources, valid 2026-10-22/2026-10-23 check dates consistent with provenance, flagged blanks, and verified melt ratios.
+  [PASS] S4: Spot quotes and NIST troy oz / pennyweight / gram conversions verified exact.
+  [PASS] S5: Karat fineness fractions & 15 U.S.C. § 295 (-3‰ / -7‰) tolerances verified.
+  [PASS] S7: All 11 data/rings.json entries verified verbatim against data/evidence/*.txt.
+  [PASS] S8-S11: 103 HTML pages audited (4186 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).
+  [PASS] S12: Negative self-test caught all 4/4 injected synthetic hallucinations (missing source, unflagged blank weight, unflagged sub-melt price, untrusted domain).
+EXIT_CODE=0
+
+===== scripts/review_current.py --check =====
+{
+  "reviewDate": "2026-10-23",
+  "result": "PASS",
+  "inputRecords": 264,
+  "exactSourceUrls": 92,
+  "negativeTestsCaught": 6,
+  "negativeTestsTotal": 6,
+  "checks": [
+    "all stored rows accounted for",
+    "source URLs HTTPS; rendered text escaped",
+    "all current facts and derived values blank",
+    "no unsupported verified state or source-check date",
+    "all rows flagged and linked to origins",
+    "generated local links resolve",
+    "no scripts, frames, forms or inline event handlers",
+    "deterministic output comparison in check mode"
+  ],
+  "limitations": "Offline structural checks only. No source truth, external link availability, physical purity or current price verified."
+}
+EXIT_CODE=0
+
+===== tools/check_hallucinations.py =====
+[INFO] C9: R09, R10 share identical weight/karat 2.3 g / 14K from different listings — confirm each seller's figure independently
+
+PASSED checks: 166   FAIL: 0   WARN: 0   INFO: 1
+EXIT_CODE=0
+
+===== tools/check_report.py =====
+
+GOLD5 report check — 2026-10-23 23:45 UTC
+checks run: 1649   FAIL: 0   WARN: 0   INFO: 0
+  ok: references: every quoted fragment found in its saved capture
+  ok: links: all local hrefs/srcs and anchors resolve
+  ok: flags: 27 flags cross-referenced in both directions
+  ok: flags: every amount quoted in a flag is documented in the evidence corpus
+  ok: disclosure: every page carries the no-hallucinations notice
+  ok: pass log: 6 pass(es) recorded
+
+RESULT: PASS
+EXIT_CODE=0
+
+===== tools/security_test.py =====
+GOLD5 security tests — planting errors to prove the checker catches them
+
+[CAUGHT] Invented price in the data (A01 $1,085 → $999)
+          FAIL: A01: price 999 has no token containing it
+          FAIL: A01: prose mentions an amount not on the captured page (999.00)
+          FAIL: A01: computed price/metal multiple 2.65x missing from the site
+[CAUGHT] Invented weight for a row that publishes none (A07 → 4.2 g)
+          FAIL: A07: weight 4.2 has no token containing '4.2'
+          FAIL: A07: computed fine gold 2.45 g missing from the site
+          FAIL: A07: computed metal value $317.20 missing from the site
+[CAUGHT] Row points at a flag that does not exist
+          FAIL: A01: references unknown flag G-MADE-UP
+[CAUGHT] Price text silently changed (A09 EUR page → fake $950.00)
+          FAIL: A09: prose mentions an amount not on the captured page (950.00)
+[CAUGHT] Evidence token removed (the 2.3 g claim)
+          FAIL: A05: weight 2.3 has no token containing '2.3'
+[CAUGHT] Product URL replaced with a non-official domain
+          FAIL: URL outside the official allowlist: https://example.com/fake-ring
+[CAUGHT] Hand-typed price in the HTML ($999.99)
+          FAIL: report/index.html: renders an amount that is not traceable to data ($999.99)
+[CAUGHT] Flag detail invents an amount ($20 restocking → $420)
+          FAIL: G-VERA-RETURN-FEES: flag text quotes an amount with no capture behind it (420.00)
+[CAUGHT] Reference quote that is not on the cited page
+          FAIL: R-FTC: quote fragment not found in ftc_buying_gold.txt: 'Nobody ever made a rule about karat marks'
+
+9/9 planted errors caught
+clean-state check: PASS
+EXIT_CODE=0
+
+===== verified/scripts/verify.py =====
+quote     assertions=  48 failures=0
+arith     assertions=   3 failures=0
+coverage  assertions=  46 failures=0
+money     assertions= 195 failures=0
+flags     assertions= 113 failures=0
+links     assertions= 478 failures=0
+checklist assertions=  12 failures=0
+build     assertions=   1 failures=0
+TOTAL assertions=896 failures=0
+EXIT_CODE=0
+
+===== dossier/scripts/build.py =====
+data checks so far: 15 pass / 0 fail
+rows: 58 | exports written
+pages: index + tables done
+pages: calculator + gold-price done
+pages: checklist + sellers done
+pages: research + verification done
+pages: repo-review + sources done
+pages: 23 | link scan: 1104 refs across 23 files | 0 broken
+checks: 18 pass / 0 fail  (of 18 )
+data checks so far: 15 pass / 0 fail
+rows: 58 | exports written
+pages: index + tables done
+pages: calculator + gold-price done
+pages: checklist + sellers done
+pages: research + verification done
+pages: repo-review + sources done
+pages: 23 | link scan: 1104 refs across 23 files | 0 broken
+checks: 18 pass / 0 fail  (of 18 )
+--- pass 2: re-running so the published pages carry the final check totals ---
+EXIT_CODE=0
+
+OVERALL=PASS
+FINAL_REVIEW_UTC=2026-10-23T23:55:11Z
+
+===== FINAL PASS AFTER LIVE/SEMANTIC REVIEW =====
+
+--- scripts/verify.py ---
+GOLD5 verify v2 — PASS: 22 passed, 0 failed — 2026-10-23 23:55 UTC
+  PASS C1 · 25 entries, 13 sellers, 30 flags, 11 references
+  PASS C2 · 25 listings have an https official-source URL and a dated check (data as of 2026-10-23)
+  PASS C3 · every blank and source conflict is covered by a flag
+  PASS C4 · spot, purity and 25 rows of derived values recompute
+  PASS C5 · 25 listing rows, each with its official source link
+  PASS C6 · all internal links and anchors resolve across 19 pages
+  PASS C7 · every external link (65 registered URLs) is recorded in the dataset
+  PASS C8 · every dollar figure on the site is dataset-sourced or computed (229 allowed values)
+  PASS C9 · every published price, weight and source URL is rendered in its row
+  PASS C10 · no placeholders or template leftovers
+  PASS C11 · site/assets/data.js matches data.json
+  PASS C12 · spot, prior spot and three raw-gold cells recompute on the gold-price page
+  PASS C13 · 19 pages parse as well-formed HTML
+  PASS C14 · the NO HALLUCINATIONS rule is on every page
+  PASS C15 · no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener
+  PASS C16 · provenance: 25 live 2026-10-23 + 0 prior rows, each prior row dated, noted and flagged
+  PASS C17 · 7 category pages cover all 25 rows, row counts match the rules, each links back
+  PASS C18 · consistent 12-item nav on all 19 pages and every page reachable from the dashboard
+  PASS C19 · https sources for every row, seller policy, flag reference and official reference; 11 references dated
+  PASS C20 · counts and row provenance labels match the dataset on all 25 listing rows
+  PASS C21 · 46-check evidence ledger covers every row and agrees with canonical observed values
+  PASS N1-N10 · 10/10 injected errors caught by the rules they target
+EXIT_CODE=0
+
+--- scripts/independent_audit.py ---
+=== GOLD5 independent audit (session arena-60a26527) ===
+  [PASS] A1 · spot $3996.1/oz / 31.1034768 = $128.4776/g vs recorded $128.48/g
+  [PASS] A2 · per-purity per-oz: 24K: 3995.70 vs 3996.1 ok; 22K: 3663.22 vs 3663.22 ok; 18K: 2997.07 vs 2997.08 ok; 14K: 2330.93 vs 2330.93 ok; 10K: 1665.17 vs 1665.17 ok
+  [PASS] A3 · fine gold recomputed for 7 rows (g × karat/24)
+  [PASS] A4 · metal value recomputed for 7 rows (fine gold × $128.48/g)
+  [PASS] A5 · price-to-metal ratio recomputed for 7 rows
+  [PASS] A6 · all dollar figures on 19 root pages trace to data/recomputation
+  [PASS] A2b · all 60 raw-gold cells (w × fineness × $128.48/g) appear on gold-price.html
+  [PASS] A7 · all entry source/return URLs are https
+  [PASS] A8 · all 25 entries have an official https source URL and a check date
+  [PASS] A9 · every recorded price/gram/karat token is backed by a verbatim capture for 25 entries
+  [PASS] A10 · landing page carries the no-hallucinations banner=True and asOf date=True
+
+=== RESULT: 11 passed, 0 failed ===
+EXIT_CODE=0
+
+--- scripts/audit_b1f2fe3b.py ---
+=== GOLD5 Cross-Site Security & Anti-Hallucination Audit (session b1f2fe3b) ===
+Status: PASS | Passed groups: 6 | Errors: 0 | Warnings: 0
+  [PASS] S1-S3/S6: All 38 unified entries have allowlisted HTTPS sources, valid 2026-10-22/2026-10-23 check dates consistent with provenance, flagged blanks, and verified melt ratios.
+  [PASS] S4: Spot quotes and NIST troy oz / pennyweight / gram conversions verified exact.
+  [PASS] S5: Karat fineness fractions & 15 U.S.C. § 295 (-3‰ / -7‰) tolerances verified.
+  [PASS] S7: All 11 data/rings.json entries verified verbatim against data/evidence/*.txt.
+  [PASS] S8-S11: 103 HTML pages audited (4186 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).
+  [PASS] S12: Negative self-test caught all 4/4 injected synthetic hallucinations (missing source, unflagged blank weight, unflagged sub-melt price, untrusted domain).
+EXIT_CODE=0
+
+--- scripts/review_current.py --check ---
+{
+  "reviewDate": "2026-10-23",
+  "result": "PASS",
+  "inputRecords": 264,
+  "exactSourceUrls": 92,
+  "negativeTestsCaught": 6,
+  "negativeTestsTotal": 6,
+  "checks": [
+    "all stored rows accounted for",
+    "source URLs HTTPS; rendered text escaped",
+    "all current facts and derived values blank",
+    "no unsupported verified state or source-check date",
+    "all rows flagged and linked to origins",
+    "generated local links resolve",
+    "no scripts, frames, forms or inline event handlers",
+    "deterministic output comparison in check mode"
+  ],
+  "limitations": "Offline structural checks only. No source truth, external link availability, physical purity or current price verified."
+}
+EXIT_CODE=0
+
+--- tools/check_hallucinations.py ---
+[INFO] C9: R09, R10 share identical weight/karat 2.3 g / 14K from different listings — confirm each seller's figure independently
+
+PASSED checks: 166   FAIL: 0   WARN: 0   INFO: 1
+EXIT_CODE=0
+
+--- tools/check_report.py ---
+
+GOLD5 report check — 2026-10-23 23:55 UTC
+checks run: 1649   FAIL: 0   WARN: 0   INFO: 0
+  ok: references: every quoted fragment found in its saved capture
+  ok: links: all local hrefs/srcs and anchors resolve
+  ok: flags: 27 flags cross-referenced in both directions
+  ok: flags: every amount quoted in a flag is documented in the evidence corpus
+  ok: disclosure: every page carries the no-hallucinations notice
+  ok: pass log: 6 pass(es) recorded
+
+RESULT: PASS
+EXIT_CODE=0
+
+--- tools/security_test.py ---
+GOLD5 security tests — planting errors to prove the checker catches them
+
+[CAUGHT] Invented price in the data (A01 $1,085 → $999)
+          FAIL: A01: price 999 has no token containing it
+          FAIL: A01: prose mentions an amount not on the captured page (999.00)
+          FAIL: A01: computed price/metal multiple 2.65x missing from the site
+[CAUGHT] Invented weight for a row that publishes none (A07 → 4.2 g)
+          FAIL: A07: weight 4.2 has no token containing '4.2'
+          FAIL: A07: computed fine gold 2.45 g missing from the site
+          FAIL: A07: computed metal value $317.20 missing from the site
+[CAUGHT] Row points at a flag that does not exist
+          FAIL: A01: references unknown flag G-MADE-UP
+[CAUGHT] Price text silently changed (A09 EUR page → fake $950.00)
+          FAIL: A09: prose mentions an amount not on the captured page (950.00)
+[CAUGHT] Evidence token removed (the 2.3 g claim)
+          FAIL: A05: weight 2.3 has no token containing '2.3'
+[CAUGHT] Product URL replaced with a non-official domain
+          FAIL: URL outside the official allowlist: https://example.com/fake-ring
+[CAUGHT] Hand-typed price in the HTML ($999.99)
+          FAIL: report/index.html: renders an amount that is not traceable to data ($999.99)
+[CAUGHT] Flag detail invents an amount ($20 restocking → $420)
+          FAIL: G-VERA-RETURN-FEES: flag text quotes an amount with no capture behind it (420.00)
+[CAUGHT] Reference quote that is not on the cited page
+          FAIL: R-FTC: quote fragment not found in ftc_buying_gold.txt: 'Nobody ever made a rule about karat marks'
+
+9/9 planted errors caught
+clean-state check: PASS
+EXIT_CODE=0
+
+--- verified/scripts/verify.py ---
+quote     assertions=  48 failures=0
+arith     assertions=   3 failures=0
+coverage  assertions=  46 failures=0
+money     assertions= 195 failures=0
+flags     assertions= 113 failures=0
+links     assertions= 478 failures=0
+checklist assertions=  12 failures=0
+build     assertions=   1 failures=0
+TOTAL assertions=896 failures=0
+EXIT_CODE=0
+
+--- dossier/scripts/build.py ---
+data checks so far: 15 pass / 0 fail
+rows: 58 | exports written
+pages: index + tables done
+pages: calculator + gold-price done
+pages: checklist + sellers done
+pages: research + verification done
+pages: repo-review + sources done
+pages: 23 | link scan: 1104 refs across 23 files | 0 broken
+checks: 18 pass / 0 fail  (of 18 )
+data checks so far: 15 pass / 0 fail
+rows: 58 | exports written
+pages: index + tables done
+pages: calculator + gold-price done
+pages: checklist + sellers done
+pages: research + verification done
+pages: repo-review + sources done
+pages: 23 | link scan: 1104 refs across 23 files | 0 broken
+checks: 18 pass / 0 fail  (of 18 )
+--- pass 2: re-running so the published pages carry the final check totals ---
+EXIT_CODE=0
+
+FINAL_OVERALL=PASS
