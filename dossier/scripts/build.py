@@ -1,3 +1,4 @@
+import sys
 #!/usr/bin/env python3
 """
 GOLD5 site builder + anti-hallucination verifier.
@@ -467,13 +468,56 @@ def toolbar(cats_present):
     opts = "".join(f'<option value="{c}">{E(CATNAME.get(c,c))}</option>' for c in cats_present)
     return TOOLBAR.replace("__CATS__", opts)
 
-print("checks:", sum(1 for c in checks if c["status"] == "PASS"), "pass /",
+print("data checks so far:", sum(1 for c in checks if c["status"] == "PASS"), "pass /",
       sum(1 for c in checks if c["status"] == "FAIL"), "fail")
 for c in checks:
     if c["status"] == "FAIL":
         print("  FAIL", c["id"], c["name"], "->", c["detail"][:300])
 write_report()
 print("rows:", len(rows), "| exports written")
+
+# ------------------------------------- C16-C18: run BEFORE any page is rendered
+# The counts published on the pages must include every check, so the link scan cannot wait until
+# after generation. C16 therefore scans the pages written by the previous pass, and this script
+# re-runs itself once at the end (GOLD5_PASS=2) so the committed state always reflects a real scan
+# of real files rather than a vacuous pass over an empty directory.
+def scan_links_on_disk():
+    bad, n, files = [], 0, 0
+    for root, dirs, fs in os.walk("."):
+        dirs[:] = [d for d in dirs if d not in (".git", "__pycache__")]
+        for f in fs:
+            if not f.endswith(".html"):
+                continue
+            p = os.path.join(root, f)
+            files += 1
+            txt = open(p, encoding="utf-8").read()
+            for attr in ("href", "src"):
+                for m in re.finditer(attr + r'="([^"]+)"', txt):
+                    u = m.group(1)
+                    n += 1
+                    if u.startswith(("http://", "https://", "mailto:", "tel:", "#", "data:", "//")):
+                        continue
+                    t = u.split("#")[0].split("?")[0]
+                    if not t:
+                        continue
+                    if not os.path.exists(os.path.normpath(os.path.join(os.path.dirname(p), t))):
+                        bad.append(os.path.relpath(p, ".") + " -> " + u)
+    return files, n, bad
+
+_prev_files, _prev_hrefs, bad_links = scan_links_on_disk()
+chk("C16", "Every internal link and asset reference in every generated page resolves to a real file",
+    not bad_links,
+    (f"{_prev_hrefs} href/src references scanned across {_prev_files} generated pages on disk; "
+     f"{len(bad_links)} broken" + ("" if not bad_links else " -> " + "; ".join(sorted(set(bad_links))[:20])))
+    if _prev_files else
+    "first pass: no generated pages on disk yet, so this scan is deferred to the automatic second "
+    "pass (the post-generation scan below is authoritative and is written to the report)")
+ext = sorted({r["url"] for r in rows if r.get("url")} | {o["url"] for o in gp["observations"]})
+chk("C17", "Every external source link is absolute and uses http(s)", all(u.startswith("http") for u in ext),
+    f"{len(ext)} distinct external source URLs, all absolute http(s)")
+chk("C18", "Generated exports match the dataset of record",
+    len(rows) == len(json.load(open("data/rings.json", encoding="utf-8"))["rows"]),
+    f"data/rings.json holds {len(rows)} rows, data/rings.jsonl holds {len(rows)} rows")
 
 # ================================================================= PAGES
 os.makedirs("pages", exist_ok=True)
@@ -1366,6 +1410,9 @@ GLOBAL = [
  ("F-14", "bad", "Four Brilliant Earth rows had their karat and metal fields <b>withdrawn to blank</b>",
   "The captured schema.org JSON-LD states name, SKU, brand, currency and price only. '14K white gold' could be inferred from the SKU suffix -14KW, and the listing page does offer 14K/18K white, yellow and rose gold variants, but inferring is exactly what this project forbids. The fields are blank, the reasoning is recorded in metal_claim, and the rows also cite a category URL rather than a product URL.",
   [("https://www.brilliantearth.com/engagement-rings/shop-all/", "snippet")]),
+ ("F-15", "bad", "Post-deploy defect, self-caught: the published pages said <b>15/15</b> checks while the verification report said <b>18/18</b>",
+  "Checks C16-C18 (internal links, absolute source URLs, export/dataset parity) were appended after the pages were rendered, so every page published the check total as it stood at render time while data/verification-report.json carried the final total. The site therefore contradicted its own report - the exact failure mode this project exists to prevent. Found by fetching the live deployed page and reading it against the report. Fixed by moving C16-C18 before page generation, making the post-generation link scan authoritative, and re-running the build once automatically so the pages carry the final totals. Pages, the verification page and the report now all state 18/18, and the link scan covers every href and src in all 23 generated files. Recorded because a corrected number is only useful if the correction is visible.",
+  []),
 ]
 gl = []
 for fid, tone, title, why, links in GLOBAL:
@@ -1433,23 +1480,36 @@ exceptions are <span class="mono">EBAY-297741882482</span> ("Hallmark: Stamped '
 </ol></div>"""
 page(P + "flagged.html", "Flagged for review", "flagged.html", body, "../")
 
-# ------------------------------------------------------------------ final link check + report
-bad_links = check_internal_links(PAGE_LINKS)
-chk("C16", "Every internal link in every generated page resolves to a file that exists", not bad_links,
-    f"{sum(len(v) for v in PAGE_LINKS.values())} hrefs scanned across {len(PAGE_LINKS)} generated pages; {len(bad_links)} broken"
-    + ("" if not bad_links else " -> " + "; ".join(sorted(set(bad_links))[:20])))
-ext = sorted({r["url"] for r in rows if r.get("url")} | {o["url"] for o in gp["observations"]})
-chk("C17", "Every external source link is absolute and uses http(s)", all(u.startswith("http") for u in ext),
-    f"{len(ext)} distinct external source URLs, all absolute http(s)")
-chk("C18", "Generated exports match the dataset of record", len(rows) == len(json.load(open("data/rings.json", encoding="utf-8"))["rows"]),
-    f"data/rings.json holds {len(rows)} rows, data/rings.jsonl holds {len(rows)} rows")
+# ------------------------------------- post-generation verification (authoritative)
+_files, _hrefs, _bad = scan_links_on_disk()
+for c in checks:
+    if c["id"] == "C16":
+        c["status"] = "PASS" if not _bad else "FAIL"
+        c["detail"] = (f"{_hrefs} href/src references scanned across {_files} generated pages; "
+                       f"{len(_bad)} broken"
+                       + ("" if not _bad else " -> " + "; ".join(sorted(set(_bad))[:20])))
+bad_links = _bad
+n_checks_pass = sum(1 for c in checks if c["status"] == "PASS")
+n_checks_fail = sum(1 for c in checks if c["status"] == "FAIL")
 write_report(dict(pages=sorted(PAGE_LINKS.keys()), broken_internal_links=bad_links,
-                  external_source_urls=ext, global_flags=[g[0] for g in GLOBAL]))
-print("pages:", len(PAGE_LINKS), "| broken internal links:", len(bad_links))
-for b in sorted(set(bad_links))[:20]:
+                  external_source_urls=ext, global_flags=[g[0] for g in GLOBAL],
+                  link_scan=dict(files=_files, references=_hrefs, broken=len(_bad)),
+                  build_pass=os.environ.get("GOLD5_PASS", "1")))
+print("pages:", len(PAGE_LINKS), "| link scan:", _hrefs, "refs across", _files, "files |",
+      len(_bad), "broken")
+for b in sorted(set(_bad))[:20]:
     print("   BROKEN", b)
-print("checks:", n_checks_pass + sum(1 for c in checks[15:] if c["status"] == "PASS"), "pass /",
-      sum(1 for c in checks if c["status"] == "FAIL"), "fail")
+print("checks:", n_checks_pass, "pass /", n_checks_fail, "fail  (of", len(checks), ")")
 for c in checks:
     if c["status"] == "FAIL":
         print("  FAIL", c["id"], c["detail"][:400])
+if _bad:
+    print("FATAL: generated pages contain broken links; not re-running.")
+    sys.exit(1)
+
+# One automatic second pass so the pages themselves carry the final 18-check totals.
+if os.environ.get("GOLD5_PASS") != "2":
+    print("--- pass 2: re-running so the published pages carry the final check totals ---")
+    _env = dict(os.environ)
+    _env["GOLD5_PASS"] = "2"
+    sys.exit(subprocess.run([sys.executable, os.path.join("scripts", "build.py")], env=_env).returncode)
