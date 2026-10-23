@@ -12,7 +12,99 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 23:57 UTC — **session `d49fe320` completed D1 and H5; PR #51 merged; Pages built on `f409976`; 5 source-scope requests remain logged**
+- Last updated: 2026-10-24 00:20 UTC — **session `6d10ac0a` claim open (V1–V6); session `d49fe320` complete (PRs #51–#52 merged); its 5 source-scope change requests CR-D49-01…05 are adopted by this pass; PRs #43–#52 history preserved**
+
+## ⏱ ACTIVE CLAIM — session `6d10ac0a` (Arena branch `arena/6d10ac0a-gold5`)
+
+Claimed **2026-10-23 23:45 UTC** (before `d49fe320` merged PRs #51–#52) and re-based onto
+`main@cf83c4f` at **2026-10-24 00:20 UTC**. `gh pr list --state open` returned **no open PRs** at claim
+time and again after the rebase. Arena fixes this session to its existing branch, so the requested
+`session-<id>/<task>` branch naming cannot be used; exclusive file scopes are used instead (the same
+deviation logged by sessions `bc4e36a1`, `d49fe320`, `ea49572b`, `3bf55199` and `77405ae3`).
+
+**Conflict handling:** `git pull --rebase origin main` collided with `d49fe320`'s board edits in this
+file only. It was resolved as a **union** — `d49fe320`'s D1/H5 sections, its five change requests and
+its closeout log are kept verbatim, and this claim block was re-applied on top. No other session's
+evidence, ledger or generated file was touched or discarded. `d49fe320` added only
+`data/live_check_d49fe320.json` and `verification/evidence/d49fe320/**`, which do not intersect this
+session's scope.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| V1 | Board re-read, line-by-line repo review, baseline run of all 9 harnesses, claim | **done** | `6d10ac0a` | `COORDINATION.md` |
+| V2 | **Live re-verification pass (2026-10-23 late UTC)**: re-read the Kitco spot and every canonical listing whose fields feed a published number or a flag; log per-URL results, verbatim excerpts, partial reads and failures; never upgrade an unconfirmed value | **done — 9 live re-reads + 2 partial reads + 5 logged failures** | `6d10ac0a` | `data/live_check_6d10ac0a.json`, `scripts/build_ledger_6d10ac0a.py`, `verification/evidence/6d10ac0a/**` |
+| V3 | Refresh the canonical spot quote and recompute every derived value **by script only**; correct/blank/flag drift; rebuild dashboard and category pages | **done — spot $3,994.90/oz $128.44/g; 8/8 re-read listings matched exactly; 25 rows / 31 flags rebuilt** | `6d10ac0a` | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html` |
+| V4 | Line-by-line provenance, arithmetic, money, link and hallucination/security review with negative tests after every review; publish a dated pass memo | **in progress** | `6d10ac0a` | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/6d10ac0a-*.md` |
+| V5 | Final integration: combined-tree re-verification, PR → `main`, merge without approval, confirm Pages deploy, record PR + merge result, close claim | unclaimed | `6d10ac0a` | `COORDINATION.md`; GitHub PR/Pages operations |
+| V6 | **Adopt `d49fe320`'s five logged change requests** (CR-D49-01…05) — they sit in this session's file scope: payment prose must distinguish stated vs unverified methods and publish the Solid Gold Jewelers gap; 16 CFR §23.18 must not be cited as a ring-metal-weight mandate; BBB/ConsumerAffairs figures need direct links or an explicit historical-snapshot label; 15 U.S.C. §297 should cite official GovInfo text or label Cornell as a mirror; CR-D49-05 (spot refresh) is already delivered by V2/V3 | unclaimed | `6d10ac0a` | `scripts/build_site.py`, `scripts/author_data.py`, `site/checklist.html`, `site/sellers.html`, `site/flagged.html`, `site/sources.html` (all generated) |
+
+**No-hallucinations contract for V1–V6:** no price, weight, karat, hallmark, maker's mark, seller claim,
+policy or date is inferred, estimated, averaged, currency-converted, copied from a search snippet or
+carried forward as if freshly read. Checks re-read in this session are labelled `readBy: 6d10ac0a` with
+this session's evidence file; the 37 checks not re-read today keep their `bc4e36a1` capture (same date,
+2026-10-23), their original evidence ids/paths and an explicit `readBy: bc4e36a1 (inherited)` label —
+never relabelled as this session's reads (enforced by the new checker rule **C22**). Blank beats wrong.
+Derived values are recomputed by script. Every review ends with the full harness suite plus a
+recommendation to keep hunting. Flagged and unverified items stay published and nonblocking.
+
+### Log — session 6d10ac0a (current integration)
+
+- **2026-10-23 23:45 UTC (V1):** repo reviewed at `main@368ddac` (after merged PR #50). All 9 baseline
+  harnesses **PASS**: `scripts/verify.py` 22/22 with 10/10 injected errors · `scripts/independent_audit.py`
+  11/11 · `scripts/audit_b1f2fe3b.py` 6/6 (38 unified rows, 103 pages, 4,186 local links, 4/4 negatives) ·
+  `scripts/review_current.py --check` PASS (264 records, 92 exact URLs, 6/6 negatives) ·
+  `tools/check_hallucinations.py` 166 PASS / 0 FAIL / 0 WARN / 1 INFO · `tools/check_report.py` PASS ·
+  `tools/security_test.py` 9/9 planted errors caught + clean PASS · `verified/scripts/verify.py`
+  896 assertions / 0 failures · `dossier/scripts/build.py` 18/18, 1,104 refs, 0 broken. Pages source
+  confirmed `main` path `/`, status `built`. Timestamp-only regenerations from the baseline run were
+  reverted so the claim commit touched nothing outside this board. Claim pushed before any data work.
+- **2026-10-23 23:47 UTC (V2, spot):** Kitco re-read: panel `Oct 23, 2026 - 19:43 NY Time`, bid
+  **$3,994.90/oz** (−28.20, −0.70%), ask $3,996.90, **gram $128.44**, kilo 128,440.99, dwt 199.75,
+  tola 1,498.09, tael 4,854.91, day range $3,975.10–$4,040.20; body text "The current price of gold is
+  $3,994.90 per troy ounce as of October 23, 2026, 7:42 p.m. ET, down $28.40 today."; purity table
+  24K $3,994.90 / 22K $3,662.12 / 18K $2,996.18 / 14K $2,330.23 / 10K $1,664.67. **−$1.20/oz** from the
+  canonical 4:10 p.m. ET capture. Session `d49fe320` independently observed the identical quote in its
+  read-only audit (CR-D49-05), so two sessions agree on these numbers.
+- **2026-10-23 23:50–00:05 UTC (V2, listings):** eight listing pages re-opened live and read field by
+  field — `BN-203738` ($2,210 setting; 18K White Gold title/spec vs "14k yellow gold" Product Details,
+  stock 502820w, 1.70 mm — conflict unchanged), `AL-5882` ($1,085; U5882; "Gold Weight 5.00 Grams
+  (Approximate)"), `AL-170` ($933; U170; 4.80 g), `AL-4426` ($585; NG4426; "Approximate Metal Weight
+  3.58 grams"; size surcharges +$39…+$99 not blended in), `AV-25893` ($1,100.00; R25893; "Item Weight
+  2.3 grams"; title says "Solid"; FALL10 promo not applied), `JM-149700` ($3,020.00 special / $6,041.00
+  retail; "Metal Weight: 2.3 Grams"; "pure 14KT solid yellow gold"), `SGJ-B02561` (**no price**; "14ky,
+  4.7g, #B02561"; "Call (309) 452-1612"; `Brand: M Michael` recorded as store taxonomy, **not** a
+  maker's-mark claim), `ET-576343849` (**sold out**; $420.00 / original $525.00; title 7 g vs
+  description "alternates between 6-7 g" so exact grams stay blank). **Every observed field matched the
+  canonical row exactly — no listing value changed.**
+- **Partial reads / failures published:** `ET-1151446373` (description retrieved: "Gold grams: 3.70 gr",
+  "Karat: 14 K (585)", "Material: Solid Gold (not gold plated or gold filled)"; **price block not
+  retrieved** → row keeps L21) and `BE-1343` (title confirms 14K Yellow Gold; retrieved chunk was
+  navigation only → USD stays blank under FL-08, €835 observation keeps L09). Five failures logged,
+  including a **mistyped-URL 404** on Avianne (handle retyped from a truncated printout instead of copied
+  from the dataset) and three fetch-proxy `SignatureDoesNotMatch` errors that succeeded on retry. None was
+  reported as a successful read.
+- **2026-10-24 00:12 UTC (V3):** canonical emission rebuilt by script only: spot primary
+  **$3,994.90/oz = $128.44/g** (19:43 NY panel / prices as of 7:42 p.m. ET), previous $3,996.10 quote
+  moved to dated history, purity table retaken from the same capture, all derived values recomputed
+  (fine gold, metal value, price-to-metal, raw-gold table, calculator defaults, unified catalog primary
+  spot). FL-19 and FL-25 details rewritten for the new capture; FL-28 records the second BN-203738 read;
+  **new FL-31** publishes this pass's provenance scope and is attached to the 17 rows not re-opened.
+  `scripts/author_data.py` now refuses to emit JSON unless each re-read price/weight/karat literally
+  appears in its own evidence excerpt and the spot + all five purity values appear in the spot excerpt.
+- **2026-10-24 00:12 UTC (V4, first suite run on the rebuilt tree):** `scripts/verify.py` **PASS 23/23**
+  including the new **C22 reader-attribution** rule and **14/14** injected errors (N11–N14 target
+  inherited-read impersonation, silent inheritance, ledger/row reader mismatch and a partial read dressed
+  as a full re-read); `scripts/independent_audit.py` **PASS 11/11** after A6 was taught that amounts quoted
+  verbatim inside ledger partial-read/failure records are source records (the $250 Brilliant Earth
+  gift-card banner) and not hand-typed page numbers; `scripts/audit_b1f2fe3b.py` **PASS 6/6** (38 unified
+  rows, 103 pages, 4,193 local links, 4/4 negatives); `scripts/review_current.py --check` **PASS**;
+  `tools/check_hallucinations.py` **166 PASS / 0 FAIL / 0 WARN / 1 INFO**; `tools/check_report.py`
+  **PASS**; `tools/security_test.py` **9/9 planted errors caught + clean PASS**.
+- **2026-10-24 00:20 UTC (rebase):** `git pull --rebase origin main` integrated `main@cf83c4f`
+  (PRs #51–#52, session `d49fe320`). Only `COORDINATION.md` conflicted; resolved as a union as described
+  above. Its five change requests CR-D49-01…05 fall inside this session's claimed scope and are adopted
+  as task **V6**; CR-D49-05 (newer Kitco quote) is already delivered by V2/V3 with independent
+  agreement between the two sessions' observations.
 
 ## ⏱ PRIOR CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — complete, PR #51 merged
 
