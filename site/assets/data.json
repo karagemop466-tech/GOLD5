@@ -40,6 +40,10 @@
    {
     "label": "Session b1f2fe3b — Master Cross-Session Audit & XRF Assay Calculator (38 unified rows)",
     "path": "site/master-audit.html"
+   },
+   {
+    "label": "Session 3e3fae49 — 58-row dossier at /dossier/ (18/18 anti-hallucination checks)",
+    "path": "dossier/index.html"
    }
   ],
   "counts": {
@@ -1816,7 +1820,7 @@
    "severity": "info",
    "status": "open",
    "title": "Gold spot moves all day — the snapshot is dated",
-   "detail": "The four same-day quotes range from $4,025.00 to $4,086.90 per ounce (about 1.5%). This site uses one timestamped Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+   "detail": "The timestamped quotes range from $4,025.00 to $4,086.90 per ounce (about 1.5%). This site uses one dated Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
    "entryIds": []
   },
   {

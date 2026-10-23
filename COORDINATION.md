@@ -29,7 +29,7 @@ below before touching anything.
 | U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | **done** | 93032b31 | `index.html` + 10 root pages, `site/assets/dashboard.css` |
 | U5 | Extend + run the hallucination/security harness (negative-tested) | **done** | 93032b31 | `scripts/verify.py` (rewritten for the unified schema) |
 | U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | **done** | 93032b31 | `guide/**` (new) — all 25 files preserved |
-| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | in progress | 93032b31 | `COORDINATION.md` |
+| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | **done** (see final integration result below) | 93032b31 | `COORDINATION.md` |
 
 Rules I follow for this pass: same no-hallucinations rule; **no value is carried over without either a
 fresh live fetch today or an explicit "captured earlier today by session X, not re-fetched" note**;
@@ -1077,3 +1077,68 @@ its recorded official source, and publish limitations on a Flagged for Review pa
   deploy still succeeded. No repository workflow change was needed for these notices.
 - Final task state: implementation, integration and deployment **done**; official-source
   refresh **needs review**, published as R01–R04. No invented values used to fill gaps.
+---
+
+## Review pass — session `887435c2` (Arena branch `arena/887435c2-gold5`)
+
+**Started 2026-10-23 UTC.** Scope: `COORDINATION.md`, `scripts/author_data.py`,
+`scripts/build_site.py`, and their generated root-dashboard outputs (`index.html`,
+`site/assets/data.json`, `site/assets/data.js`, `site/gold-price.html`,
+`site/flagged.html`, `site/verification.html`). The fixed Arena branch name is used;
+the requested `session-<id>/<task>` branch naming cannot be used on this platform.
+This is a focused integration review of the already-published catalog, not a new
+product-price research pass.
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| R887-1 | Resolve misleading "today" gold-value wording and quote-count mismatch using the saved, dated observations | **done** | `887435c2` | generator + generated root landing/gold-price/flagged pages and data exports |
+| R887-2 | Run the repository's verification, source/evidence, link, and negative security passes | **done** | `887435c2` | read-only checks; generated reports restored to their owning sessions' committed state |
+| R887-3 | Publish the focused correction through the fixed branch, merge, and confirm Pages | in progress | `887435c2` | this section; GitHub PR/deploy record to be appended |
+
+### Findings and change
+
+- The dashboard had called an October 22 gold-price capture "Today's gold price" on
+  October 23, and the gold-value page said "worth today". Its own header correctly
+  dated the data, but the prominent prose could mislead a buyer into treating a
+  prior snapshot as a live quote. The pages now call it a **dated snapshot** and say
+  explicitly that the values are not live. No price, weight, purity, policy, or
+  source value was changed.
+- The root quote summary said "four" while its linked table contained **five**
+  timestamped observations. The count now comes from the generated dataset; the
+  Flagged page no longer hard-codes the wrong count.
+- Regenerating the landing page exposed a source/generated mismatch: the archive
+  panel claimed eight preserved deliverables even though the existing page had
+  nine links, including `/dossier/`. Restored the dossier entry in the source
+  archive list so the generator keeps all nine links and the checker resolves
+  them; no deliverable was removed.
+- No ring prices are represented as current. The source dataset remains dated
+  **2026-10-22**, with the original source URLs and evidence unchanged. Buyers must
+  re-open the seller listing and obtain a fresh spot quote before purchase.
+- Official source links retained for manual review include Kitco's dated spot
+  observation (<https://www.kitco.com/charts/gold>), FTC jewelry guidance
+  (<https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry>),
+  and 16 CFR Part 23 (<https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23>).
+  Each product's exact seller URL remains on its listing row. This pass did **not**
+  re-fetch seller pages or upgrade any evidence date; no live-price claim is made.
+
+### Verification pass — 2026-10-23 UTC
+
+- `python3 scripts/verify.py`: **15/15 PASS**, 0 failures/warnings; 25 listings,
+  source-date coverage, blank/flag integrity, arithmetic, money traceability, local
+  links, generated export sync, and security rules checked.
+- `python3 tools/check_hallucinations.py`: **166 PASS, 0 FAIL, 0 WARN** (one
+  informational duplicate-weight review note).
+- `python3 scripts/audit_b1f2fe3b.py`: **6 groups PASS**, 0 errors/warnings;
+  91 HTML files, 2,507 resolved local links, 4/4 injected hallucinations caught.
+- `python3 tools/check_report.py`: **1,649 checks PASS**, 0 FAIL/WARN.
+- `python3 tools/security_test.py`: **9/9 planted errors caught**; clean-state check PASS.
+- `python3 dossier/scripts/build.py`: **18/18 PASS**, 23 pages, 0 broken links.
+- `python3 verified/scripts/build_site.py --check && python3 verified/scripts/verify.py`:
+  **896 assertions PASS**, 0 failures.
+- `git diff --check`: PASS. Generated reports belonging to other sessions were
+  reverted after their harnesses ran; source and generated root-site changes are
+  retained.
+- GitHub state at review: Pages configured on `main` at `/`, HTTPS enforced,
+  status `built`; the latest main `Verify` and Pages deployment runs succeeded
+  (main head `7cc612d9363f4b8bab047ddbcd2397451c90d5df`). There were no open PRs
+  before this correction.
