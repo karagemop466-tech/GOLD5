@@ -1059,3 +1059,21 @@ its recorded official source, and publish limitations on a Flagged for Review pa
   Recommendation after every review: rerun checks and inspect for unsupported claims.
 - Evidence-refresh task status: **needs review** (published, nonblocking). UI/integration
   implementation and offline verification: **done**. Deployment task remains in progress.
+
+### 0c967748 — merge and deployment record
+- PR **#33**: https://github.com/karagemop466-tech/GOLD5/pull/33 — **MERGED**
+  2026-10-23T09:53:52Z, merge commit `b4c68003cf1a9dc5ec431ac334bd4ce41c56596a`.
+  Both PR checks (Current evidence boundaries and Verify) passed before merge.
+- GitHub Pages build/deployment **39935190495** completed **SUCCESS**, including
+  build, report-build-status and deploy jobs, for that exact merge commit:
+  https://github.com/karagemop466-tech/GOLD5/actions/runs/39935190495
+- Published URL: https://karagemop466-tech.github.io/GOLD5/
+  Current inventory: https://karagemop466-tech.github.io/GOLD5/review/
+  Flags: https://karagemop466-tech.github.io/GOLD5/review/flagged.html
+- Deployment confirmed through the official GitHub API / workflow. Public-page browser
+  retrieval is not independently asserted (github.io is outside allowed egress).
+- GitHub-managed Pages workflow emitted a nonblocking Node 20 deprecation / forced
+  Node 24 notice for upload-artifact, and an ubuntu-latest migration notice. Build and
+  deploy still succeeded. No repository workflow change was needed for these notices.
+- Final task state: implementation, integration and deployment **done**; official-source
+  refresh **needs review**, published as R01–R04. No invented values used to fill gaps.
