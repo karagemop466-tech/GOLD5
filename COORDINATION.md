@@ -977,21 +977,40 @@ don't buy it"). Only two rows evidence a stamp at all.
 - **Post-merge checks:** `python3 dossier/scripts/build.py` → **18/18 PASS**, 23 pages, **0 broken
   internal links**; `verified/` CI scripts left untouched so the workflow stays green.
 
-### Integration result (PR → main)
+### Integration result — FINAL (recorded after deploy)
 
-- **PR:** https://github.com/karagemop466-tech/GOLD5/pull/29 — `arena/3e3fae49-gold5` → `main`
-- **Merged without approval** as instructed (flagged/unverified items do not block the merge; all 14
-  project-level findings and every row-level flag are published with source links on
-  `dossier/pages/flagged.html`).
-- **Pages:** `https://karagemop466-tech.github.io/GOLD5/` (root dashboard, unchanged) and this
-  session's suite at `https://karagemop466-tech.github.io/GOLD5/dossier/`.
-- **00:40 UTC** — `main` moved a third time (PR **#31**, session `b1f2fe3b` refreshing its own audit
-  reports). Re-merged at **`cb950b2`**. This session also learned a coordination lesson and recorded
-  it: running *another* session's checker regenerates *their* report artifacts
-  (`data/check_report_v2.json`, `data/pass_history_v2.json`, `data/b1f2fe3b_*.json`,
-  `docs/verification/consolidation-2026-10-22.md`), and a blanket `git add -A` then commits them,
-  which is what caused these repeated conflicts. **Theirs is taken for every file this session does
-  not own**, and after the verification run those regenerated artifacts are restored to the versions
-  their owners committed. Harnesses are still run and their output recorded here — only their
-  side-effect files are left alone. **Recommendation for future sessions (R-06): run other sessions'
-  checkers with their report writes suppressed, or revert those files before committing.**
+- **PR #29** <https://github.com/karagemop466-tech/GOLD5/pull/29> — `arena/3e3fae49-gold5` → `main`,
+  **MERGED 2026-10-22T23:59:56Z** as **`34a3275e315bb290e96685f5f999592cae525de2`** (merge commit,
+  **without approval**, as the brief instructs). Flagged and unverified items did not block the merge;
+  all of them are published with source links on `dossier/pages/flagged.html`.
+- **CI** (`Verify` workflow): **COMPLETED / SUCCESS** on the merged head.
+- **Pages:** build for `34a3275` → **`built`** at `2026-10-23T00:00:15Z`. Config unchanged:
+  `legacy`, branch `main`, path `/`, `https_enforced: true`, status `built`.
+- **Live verification:** fetched <https://karagemop466-tech.github.io/GOLD5/dossier/> — serves
+  correctly: the no-hallucination banner, 58 entries across 11 categories, the gold-price observation
+  table with publisher/timestamp/source per row, the category cards with sourced price ranges, and the
+  headline findings. The root dashboard is still the landing page and lists this suite in its
+  preserved-deliverables panel (**9** items, count and item list consistent).
+- **Post-deploy defect F-15, self-caught by that live fetch:** the published pages said **15/15**
+  checks while `dossier/data/verification-report.json` said **18/18**, because C16–C18 were appended
+  after the pages were rendered. Fixed in **PR #32**
+  <https://github.com/karagemop466-tech/GOLD5/pull/32> by moving C16–C18 before page generation,
+  making the post-generation link scan authoritative (**1104** `href`/`src` references across **23**
+  files, **0** broken), re-running the build once automatically (`GOLD5_PASS=2`), and making broken
+  links fatal. Published as flag **F-15** on `dossier/pages/flagged.html` — the register now runs
+  **F-01…F-15** — because a corrected number is only useful if the correction is visible.
+- **F-03 update:** the page-fetch proxy **recovered** at about 00:05 UTC and was used for the live
+  deploy check. The evidence tiers recorded at capture time are unchanged and remain accurate: 3 rows
+  `live`, 55 rows `snippet`. No row was silently upgraded.
+- **Final harness run after the fix — all green:**
+  `dossier/scripts/build.py` 18/18 PASS, 0 broken links · `scripts/verify.py` C1–C15 PASS ·
+  `scripts/audit_b1f2fe3b.py` S1–S12 PASS (91 HTML pages, 2507 local links, 4/4 injected
+  hallucinations caught) · `tools/check_hallucinations.py` 166 PASS / 0 FAIL · `tools/check_report.py`
+  PASS · `tools/security_test.py` 9/9 planted errors caught · `verified/scripts/build_site.py --check`
+  + `verified/scripts/verify.py` (CI) 896 assertions, 0 failures. Per **R-06**, the report artifacts
+  those harnesses regenerate for other sessions were reverted to their owners' committed versions;
+  only the results are recorded here.
+- **State left by this session:** `dossier/**` = this delivery (58 rows, 23 pages, 18 checks);
+  root `index.html` = one additive card, panel count 9; `README.md` = one additive section;
+  `COORDINATION.md` = main's board verbatim plus this section; `research/**` kept alongside
+  byte-identical `guide/research/**` pending **R-04**. No other session's file was modified.
