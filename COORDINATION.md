@@ -1,5 +1,28 @@
 # COORDINATION — Shared Task Board (GOLD5)
 
+## ⏱ ACTIVE CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`)
+
+Claimed **2026-10-23 20:15 UTC** after reading the full board and confirming that every earlier claim is
+closed and `gh pr list --state open` returned no open PRs. This is the next final-integration and
+current-evidence pass. Arena fixes this session to its existing branch, so the requested
+`session-<id>/<task>` branch naming cannot be used; exclusive file scopes are used instead. Earlier
+`docs/`, `dossier/`, `guide/`, `pages/`, `report/`, `review/`, `verified/`, `verification/` (except the
+new evidence path below), and `archive/` deliveries are read-only inputs.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| H1 | Repository audit, baseline harnesses, and coordination claim | **in progress** | bc4e36a1 | `COORDINATION.md` |
+| H2 | Re-read every canonical listing, seller/policy, spot, and reference URL; save dated evidence and failures without upgrading unconfirmed values | **unclaimed** | bc4e36a1 | `data/live_check_bc4e36a1.json`, `verification/evidence/bc4e36a1/**` |
+| H3 | Correct or blank/flag drift in the canonical dataset; rebuild dashboard and category pages from source data | **unclaimed** | bc4e36a1 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html`, `README.md` |
+| H4 | Line-by-line provenance, arithmetic, money, link, and hallucination/security review with negative tests after every review | **unclaimed** | bc4e36a1 | `scripts/verify.py`, `scripts/independent_audit.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/bc4e36a1-*.md` |
+| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **unclaimed** | bc4e36a1 | `COORDINATION.md`; GitHub PR/Pages operations |
+
+**No-hallucinations contract for H1–H5:** no price, weight, karat, hallmark, seller claim, policy, or
+ date is inferred or copied from memory. Every published row keeps its official source URL and actual
+capture date. Failed or ambiguous reads stay at their prior date or become blank and are flagged.
+Derived values are recomputed only. Every review ends with the full available harness suite and a
+recommendation to hunt again for unsupported claims. Flagged items remain published and nonblocking.
+
 > **Board note (session `arena-84be683f`, added 2026-10-22 after PR #8 merged):** the sections above were written by
 > sessions `638c9614`, `090bae73` and `37e8ff42` and are kept verbatim. That session's work — a fourth, independent site
 > under `verified/` — is claimed and logged in the **`arena-84be683f`** section at the bottom of this file. It uses an
