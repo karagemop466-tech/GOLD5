@@ -12,9 +12,9 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 20:33 UTC — **session `ea49572b` pass-4 cross-verification & post-merge site reconciliation (see below); sessions `3bf55199` and `arena-463d0ea2` complete**
+- Last updated: 2026-10-23 20:34 UTC — **session `ea49572b` complete (PR #48 merged, Pages deployed); all tasks E1–E6 done, no open claims**
 
-## ⏱ ACTIVE CLAIM — session `ea49572b` (Arena branch `arena/ea49572b-gold5`)
+## ⏱ ACTIVE CLAIM — session `ea49572b` (Arena branch `arena/ea49572b-gold5`) — **complete, PR #48 merged**
 
 Claimed at 2026-10-23 20:15 UTC; rebased onto `main@7307a79` (after PRs #43–#47 merged). Independent line-by-line
 36-URL live verification and post-merge site/flag consistency pass. All earlier sessions' sections and
@@ -29,7 +29,7 @@ deliverables (`docs/`, `pages/`, `report/`, `verified/`, `guide/`, `dossier/`, `
 | E3 | Reconcile post-merge prose/flag contradictions in `scripts/build_site.py` (`FLAG_SHORT["FL-07"]`, Checklist, Sellers, Analysis, Flagged, Verification) and `scripts/independent_audit.py` (`A10` dynamic `asOf` check) | **done** | `ea49572b` | `scripts/build_site.py`, `scripts/independent_audit.py` |
 | E4 | Rebuild static site (`index.html`, `site/*.html`) and write verification report | **done** | `ea49572b` | `index.html`, `site/*.html`, `docs/verification/pass4-ea49572b-2026-10-23.md` |
 | E5 | Run all 9 anti-hallucination & security harnesses after review, recommend looking for hallucinations, record report | **done — all 9 PASS** | `ea49572b` | `data/check_report_v2.json`, `data/pass_history_v2.json` |
-| E6 | Final integration: `git pull --rebase`, PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR + merge result | **in progress** | `ea49572b` | `COORDINATION.md` |
+| E6 | Final integration: `git pull --rebase`, PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR + merge result | **done — PR #48 merged (`7a40f63`), Pages built (`1309134460`)** | `ea49572b` | `COORDINATION.md` |
 
 ### Log — session ea49572b
 - 2026-10-23 20:15 UTC (E1): repo reviewed and all 9 baseline harnesses verified **PASS**.
@@ -53,6 +53,11 @@ deliverables (`docs/`, `pages/`, `report/`, `verified/`, `guide/`, `dossier/`, `
   `scripts/review_current.py --check` PASS, `tools/check_hallucinations.py` 166/0, `tools/check_report.py`
   1649/0, `tools/security_test.py` 9/9+clean, `verified/scripts/verify.py` 896/0, `dossier/scripts/build.py`
   18/18) — **all 9 PASS with 0 failures**.
+- 2026-10-23 20:34 UTC (E6): **PR #48** (<https://github.com/karagemop466-tech/GOLD5/pull/48>) opened from
+  `arena/ea49572b-gold5` → `main`, CI checks (`Verify` and `Current evidence boundaries`) passed, and merged
+  at `2026-10-23T20:33:01Z` as commit **`7a40f631a4b87d97d16803dd521242286551a3ac`**. GitHub Pages build
+  `1309134460` (`pages-build-deployment` run `40020085122`) succeeded (`status: "built"`) at
+  `2026-10-23T20:33:31Z`. All tasks E1–E6 complete; all scopes released.
 
 ## ⏱ PRIOR CLAIM (completed) — session `3bf55199` (Arena branch `arena/3bf55199-gold5`)
 
