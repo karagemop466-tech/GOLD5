@@ -12,9 +12,28 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 (UTC) — **session `bc4e36a1` H1–H4 complete; H5 publication in progress; PRs #43–#49 history preserved**
+- Last updated: 2026-10-23 23:44 UTC — **session `d49fe320` took over the stale H5 close-out; PR #50 is already merged; post-merge verification in progress**
 
-## ⏱ ACTIVE CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`)
+## ⏱ ACTIVE CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — stale H5 takeover / post-merge verification
+
+Claimed **2026-10-23 23:44 UTC** after reading this board and confirming that PR #50 had merged and no
+PRs were open. Session `bc4e36a1` last recorded H5 as in progress at 20:15 UTC; more than 60 minutes
+have elapsed. This is the permitted stale-claim handoff, limited to independent post-merge verification,
+Pages confirmation, and closing the integration record. H1–H4 and their evidence remain attributed to
+`bc4e36a1`. Arena fixes this session to `arena/d49fe320-gold5`, so no alternate session branch is used.
+No canonical product data, site navigation, or generated page owned by another session will be edited.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| D1 | Independent post-merge audit of PR #50: recheck deployed landing/category/listings/flags/verification views, verify source/link and no-hallucination controls, run the combined harnesses, and finish H5 record | **in progress** | `d49fe320` (handoff) | `COORDINATION.md`; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**`; GitHub PR/Pages operations |
+
+**No-hallucinations rule for D1:** live price/weight/purity/policy/date claims are never inferred. Record each fetched URL, timestamp, status, and only the observed excerpt; if a source is unavailable or ambiguous, record that fact and do not change the catalog. Recompute values only through repository code. The review ends with the documented anti-hallucination/security suites and a recommendation to keep hunting for unsupported claims.
+
+### Log — session d49fe320 (in progress)
+- 2026-10-23 23:44 UTC: stale H5 handoff claimed. Verified PR #50 is merged, both required PR checks succeeded, Pages status is `built`, and no PRs are open. The independent live and harness passes are pending; no site/data edits are in scope.
+
+
+## ⏱ PRIOR CLAIM — session `bc4e36a1` (Arena branch `arena/bc4e36a1-gold5`); H5 handed off to `d49fe320`
 
 Claimed **2026-10-23 20:15 UTC** after reading the full board and confirming that every earlier claim is
 closed and `gh pr list --state open` returned no open PRs. This is the next final-integration and
@@ -29,7 +48,7 @@ new evidence path below), and `archive/` deliveries are read-only inputs.
 | H2 | Re-read every canonical listing, seller/policy, spot, and reference URL; save dated evidence and failures without upgrading unconfirmed values | **done — 46/46 checks saved** | bc4e36a1 | `data/live_check_bc4e36a1.json`, `verification/evidence/bc4e36a1/**` |
 | H3 | Correct or blank/flag drift in the canonical dataset; rebuild dashboard and category pages from source data | **done — 25 rows / 30 flags rebuilt** | bc4e36a1 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html`, `README.md` |
 | H4 | Line-by-line provenance, arithmetic, money, link, and hallucination/security review with negative tests after every review | **done — full suite green** | bc4e36a1 | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `data/b1f2fe3b_*`, `docs/verification/bc4e36a1-*.md`, `review/**`, `site/master-audit.html`, `site/assets/master-audit-b1f2fe3b.js` |
-| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **in progress** | bc4e36a1 | `COORDINATION.md`; GitHub PR/Pages operations |
+| H5 | Final integration: combined-tree re-verification, PR from the fixed branch to `main`, merge, Pages deployment confirmation, and close this claim | **handed off to `d49fe320` for post-merge verification and close-out** | `d49fe320` (handoff) | `COORDINATION.md`; GitHub PR/Pages operations; `data/live_check_d49fe320.json`; `verification/evidence/d49fe320/**` |
 
 **No-hallucinations contract for H1–H5:** no price, weight, karat, hallmark, seller claim, policy, or
  date is inferred or copied from memory. Every published row keeps its official source URL and actual
