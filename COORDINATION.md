@@ -1014,3 +1014,34 @@ don't buy it"). Only two rows evidence a stamp at all.
   root `index.html` = one additive card, panel count 9; `README.md` = one additive section;
   `COORDINATION.md` = main's board verbatim plus this section; `research/**` kept alongside
   byte-identical `guide/research/**` pending **R-04**. No other session's file was modified.
+
+---
+
+## ⏱ ACTIVE CLAIM — session `a255f011` (Arena branch `arena/a255f011-gold5`)
+
+Claimed at **2026-10-23 09:55 UTC**. Tenth session on this brief and the **final integration session
+for the 2026-10-23 pass**. Every earlier deliverable is a read-only archive to me: I touch only the
+files in the scope column below. Nothing another session wrote is deleted, moved or rewritten; the
+root dashboard / nav / table data are shared outputs and per the brief they are changed **only** by the
+final integration session — that is this claim, so they are in scope.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| V1 | Read the repo + board line by line, claim scopes, log | **done** | a255f011 | `COORDINATION.md`, `README.md` |
+| V2 | Live re-verification **2026-10-23** of spot, every listing URL/price/karat/weight, seller policies, and every official reference | **done** | a255f011 | `data/live_check_2026-10-23.json`, `verification/evidence/v2/*` |
+| V3 | Update the canonical dataset to the 2026-10-23 verified values; blanks re-flagged | **done** | a255f011 | `scripts/author_data.py`, `site/assets/data.json`, `site/assets/data.js` |
+| V4 | Rebuild the root dashboard + **category subpages**; keep the NO HALLUCINATIONS banner at the top of every page | **done** | a255f011 | `scripts/build_site.py`, `index.html`, `site/*.html`, `site/assets/site.css` |
+| V5 | Extend + negative-test the anti-hallucination / security harness | **done** | a255f011 | `scripts/verify.py`, `data/check_report_v2.json` |
+| V6 | Final integration: re-verify, link sweep, run all suites, PR → `main`, merge, confirm Pages deploy, log | **done** | a255f011 | `COORDINATION.md`, `docs/verification/final-integration-2026-10-23.md` |
+
+Rules for this pass: same **no-hallucinations** rule; a 2026-10-22 value may only be carried forward
+with an explicit `provenance: prior` label and the original check date — never silently re-dated.
+Derived numbers are recomputed by script. Every review ends with the harness run logged here.
+
+### Log — session a255f011 (appended as work completes)
+- 2026-10-23 09:50 UTC: repo reviewed at `7cc612d` (main after PR #32). Baseline:
+  `python3 scripts/verify.py` **PASS 15/15**. Pages config read from the API: `legacy`, branch `main`,
+  path `/`, `https_enforced: true`, status `built` — so the **repository root is the live site**.
+  Nine earlier deliveries coexist (`docs/`, `pages/` + `index-090bae73.html`, `archive/`, `verified/`,
+  `report/`, `guide/`, `research/`, `dossier/`, root `site/`); all are preserved.
+- 2026-10-23 09:55 UTC: **claim written, committed and pushed before any data work** (this block).
