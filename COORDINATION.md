@@ -27,10 +27,10 @@ sections verbatim; their deliverables (`docs/`, `site/`, `pages/`, `report/`, `v
 | ID | Task | Status | Owner | File scope (exclusive) |
 |----|------|--------|-------|------------------------|
 | G1 | Re-open board, repo review, baseline run of all 7 harnesses, claim | **done** | 77405ae3 | `COORDINATION.md` |
-| G2 | **Live re-verification pass (2026-10-23)** of spot price + every URL in the canonical root dataset (`data/unified.json`) against the official page; results logged per URL | in progress | 77405ae3 | `data/live_check_77405ae3.json` (new) |
-| G3 | Fix/flag any drift found by G2 (never overwrite silently: correct + flag, or blank + flag); refresh derived values by script only | unclaimed | 77405ae3 | `tools/data_unified.py`, `data/unified.json`, `site/assets/data.js`, `index.html` + root pages (as integrator) |
-| G4 | Site pass: landing page + subpages review, full local link sweep, every table row has a source link | unclaimed | 77405ae3 | (read-only check; fixes scoped to G3 files) |
-| G5 | Final review pass: run every hallucination/security harness after the review, recommend hunting for hallucinations, record results | unclaimed | 77405ae3 | `data/check_status.json`, `data/pass_history_v2.json` |
+| G2 | **Live re-verification pass (2026-10-23)** of spot price + every URL in the canonical dataset against the official page; results logged per URL | **done — 37 URL checks logged** | 77405ae3 | `data/live_check_77405ae3.json` |
+| G3 | Fix/flag any drift found by G2 (never overwrite silently: correct + flag, or blank + flag); refresh derived values by script only | **done — refreshed by script, all 7 harnesses PASS** | 77405ae3 | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/verify.py`, `scripts/audit_b1f2fe3b.py`, `site/**`, `index.html`, `data/live_check_77405ae3.json` |
+| G4 | Site pass: landing page + subpages review, full local link sweep, every table row has a source link | **done — C5/C6/C7 + S8–S11 PASS** | 77405ae3 | (read-only check; fixes scoped to G3 files) |
+| G5 | Final review pass: run every hallucination/security harness after the review, recommend hunting for hallucinations, record results | in progress | 77405ae3 | `data/check_status.json`, `data/pass_history_v2.json` |
 | G6 | Final integration: small frequent commits, `git pull --rebase` before each push, PR → `main`, merge, confirm GitHub Pages deploy, log PR + merge result here | unclaimed | 77405ae3 | `COORDINATION.md` |
 
 Rules for this pass: no-hallucinations rule above; every table row keeps its official source link;
@@ -46,6 +46,52 @@ older than 60 minutes with no commits may be taken over (handoff logged).
   `verified/scripts/build_site.py --check` + `verify.py` 896 assertions / 0 failures ·
   `dossier/scripts/build.py` 18/18, 1104 refs, 0 broken.
 - 2026-10-23: **claim committed and pushed before starting G2** (this block).
+- 2026-10-23: **G2 done** — `data/live_check_77405ae3.json` records **37 live URL checks** (the 4
+  canonical reference URLs fetched after the first write were appended as seq 34–37): **31 matched**,
+  1 changed (BE-1343HH served EUR), 1 EUR-repeat (BE-SECRET), 1 soft-404 (`brilliantearth.com/returns/`),
+  1 fetch failure (Etsy HTTP 500 ×3 — the 2026-10-22 captures keep their own date, never upgraded).
+  Spot moved intraday: Kitco bid 4,022.50/oz · 129.33/g at Oct 23 5:44 NY vs yesterday's stored
+  4,026.90/129.47. Base log committed at `925ca86`; seq 34–37 appended with this pass.
+- 2026-10-23: **G3 done — corrections applied by script only** (`author_data.py` → `build_site.py` →
+  `audit_b1f2fe3b.py`, no hand-edits to generated files):
+  1. **Spot refreshed**: `spot.primary` = Kitco bid **4,022.50/oz · 129.33/g @ 2026-10-23 5:44 a.m. ET**
+     (quote stored); yesterday's 4,026.90/129.47 kept as `prior[0]`; purity per-oz table now
+     4,022.50 / 3,687.43 / 3,016.88 / 2,346.32 / 1,676.18 (same capture).
+  2. **Blanked + flagged (no inference)**: BE-1343HH and BE-SECRET `price = null` — both product pages
+     served EUR on 10-23 (€1,350.00 / €1,250.00). FL-08 extended to both entries; prior USD figures
+     ($1,190 product page / $1,090 category listing, both 2026-10-22) kept only as dated text
+     observations in `priceNote`, **never converted**.
+  3. **FL-07 resolved**: BE return policy verified live at
+     `https://www.brilliantearth.com/30-Day-Returns/` (30-day unworn; engraved $40 fee; personalized/
+     custom/altered/resized/modified/repairs excluded). All 4 BE entries + the BE seller record now
+     link the working URL; old `/customer-care/return-policy/` (redirect-to-home) and `/returns/`
+     (404) removed from the dataset links.
+  4. **Dates**: the 18 re-fetched rows carry `checkedOn=2026-10-23`; the 7 Etsy rows keep
+     `2026-10-22` with `provenance=prior` (Etsy refused every fetch); all 10 references re-fetched
+     10-23 (`method=live fetch (pass 3, session 77405ae3)`); `meta.asOf/lastPass/session` updated.
+  5. **FL-19 / FL-25** rewritten for the new capture range and today's intra-page spread
+     ($4,022.50 ticker vs $4,021.00 body vs $129.28/g table).
+  6. **Verification page**: new "Pass 3" section renders the dated fetch log from
+     `data/live_check_77405ae3.json` (totals + changed findings + 37-row table); the pass-2 section
+     and its corrections are preserved and relabelled; URLs outside the C7 dataset registry render as
+     checked plain text, never as stray links.
+  7. **Checkers extended (not weakened)**: `verify.py` C3 accepts FL-08 for blank prices, C2 wording
+     now states the two-date set; `audit_b1f2fe3b.py` S2 accepts `2026-10-22|2026-10-23` and the
+     catalog rule text was updated. `data/unified.json` + `tools/data_unified.py` were **left
+     untouched on purpose** — they are session 93032b31's dated pass-2 archive; their two stale items
+     (BE `/returns/` link, BE-1343HH USD) are corrected in the canonical dataset and documented in
+     FL-07/FL-08 + live-check seq 13/15/16.
+- 2026-10-23: **G4 done — full site pass after the rebuild, all 7 harnesses PASS**:
+  `scripts/verify.py` **15/15** (C5 every row has its source link · C6 full internal link sweep ·
+  C7 65 registered URLs, 0 stray) · `scripts/audit_b1f2fe3b.py` **6/6** (S2 shows "dated check dates
+  (2026-10-22/2026-10-23)"; S8–S11 91 pages, 2506 local links; S12 4/4 injected caught) ·
+  `tools/check_hallucinations.py` **166 PASS / 0 FAIL / 1 INFO** · `tools/check_report.py` **PASS** ·
+  `tools/security_test.py` **9/9 planted caught + clean-state PASS** · `verified/scripts/verify.py`
+  **896 assertions / 0 failures** · `dossier/scripts/build.py` **18/18, 1104 refs, 0 broken**.
+  Per **R-06** the dossier/verified report artifacts were reverted to their owners' committed
+  versions; the checker's own outputs (`data/check_report_v2.json`, `data/pass_history_v2.json`,
+  `docs/verification/consolidation-2026-10-22.md`, `data/b1f2fe3b_*`, `site/assets/catalog-*.js`)
+  are committed with this pass.
 
 ## ⏱ PRIOR CLAIM (completed) — session `93032b31` (Arena branch `arena/93032b31-gold5`)
 
