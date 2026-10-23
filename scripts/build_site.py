@@ -34,12 +34,13 @@ SEV_LABEL = {"high": ("bad", "High"), "medium": ("warn", "Medium"), "low": ("inf
 FLAG_SHORT = {
     "FL-01": "price < metal", "FL-02": "off-platform contact", "FL-03": "no gram weight",
     "FL-04": "reputation not checked", "FL-05": "returns excluded", "FL-06": "warranty threshold",
-    "FL-07": "returns unverified", "FL-08": "USD unconfirmed", "FL-09": "marketing compare price",
+    "FL-07": "returns verified", "FL-08": "USD unconfirmed", "FL-09": "marketing compare price",
     "FL-10": "exchange-only", "FL-11": "14-day / promo", "FL-12": "retail compare price",
     "FL-13": "no price / no returns", "FL-14": "no maker's mark", "FL-15": "solid not stated",
     "FL-16": "Etsy window varies", "FL-17": "promo price", "FL-18": "seller-stated weight",
     "FL-19": "spot moves", "FL-20": "stamp ≠ proof", "FL-21": "setting only",
     "FL-22": "excluded sellers", "FL-23": "archive", "FL-24": "resolved", "FL-25": "multiple spot prints",
+    "FL-26": "Etsy re-read", "FL-27": "BE re-read", "FL-28": "BN re-read", "FL-29": "sold out",
 }
 
 def esc(x):
@@ -603,7 +604,7 @@ def checklist_page():
          f"{sum(1 for e in ENTRIES if e['grams'] is not None and e['price'] is not None)} rows can be computed. One case-study band prices below metal (0.84×). Setting prices are excluded from that conclusion. <a href='analysis.html'>Analysis</a> · <a href='calculator.html'>Calculator</a>"),
         ("Return policy — in writing", "Get the window, the condition rules and the exclusions for resized, engraved or custom rings. Resizing can void a return; Blue Nile explicitly excludes items resized after purchase.",
          "FTC — get return policies in writing", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
-         f"{verified_returns} of {len(ENTRIES)} rows link a policy that was read and verified. Brilliant Earth’s policy URL redirects to its home page; Avianne, Jewelry Master and Solid Gold Jewelers do not publish full terms. Etsy windows vary — one is 7 days. <a href='flagged.html#FL-16'>FL-16</a>"),
+         f"{verified_returns} of {len(ENTRIES)} rows link a return policy that was read and verified (Blue Nile 30 days, Brilliant Earth 30 days at <code>/30-Day-Returns/</code>, Allurez 30 days, plus 3 Etsy shops). Avianne, Jewelry Master and Solid Gold Jewelers do not publish full policy pages; Etsy windows vary — one is 7 days. <a href='flagged.html#FL-07'>FL-07</a> · <a href='flagged.html#FL-16'>FL-16</a>"),
         ("Payment protection", "Use a credit card. Under federal law you have the right to dispute billing errors, and card networks give you a chargeback route. Avoid wire transfers, Zelle, gift cards and off-platform “deals”.",
          "FTC — credit cards & disputes", "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
          "Every seller reviewed checks out by card or Etsy checkout. Etsy Purchase Protection covers non-delivery, damage and material misdescription — not buyer’s remorse. Keep orders inside the platform."),
@@ -678,7 +679,7 @@ def sellers_page():
 <h2>Seller-specific findings</h2>
 <div class="cards">
   <div class="card"><div class="k">Blue Nile</div><div class="t">Strong policy, mixed reviews</div><div class="d">30-day guarantee with clear exclusions (resized/engraved/custom), two returns per year, $150 lost-certificate fee. BBB A+ but 121 complaints in 3 years; ConsumerAffairs 1.7/5. Lifetime warranty only at $1,000+.</div></div>
-  <div class="card"><div class="k">Brilliant Earth</div><div class="t">Returns stated, policy unavailable</div><div class="d">Every product page says “Free Shipping &amp; Returns” and “Free 1-Year Resizing”, but the return-policy URL redirects to the home page. Get the window and exclusions in writing. <a href="flagged.html#FL-07">FL-07</a></div></div>
+  <div class="card"><div class="k">Brilliant Earth</div><div class="t">30-day policy verified, EUR geo-routing</div><div class="d">Free 30-day returns &amp; exchanges and free 1-year resizing verified at <code>/30-Day-Returns/</code> (after legacy <code>/returns/</code> redirected); resized, modified and custom rings excluded ($40 engraving removal fee). Product pages can serve EUR by geo-routing. <a href="flagged.html#FL-07">FL-07</a> · <a href="flagged.html#FL-08">FL-08</a></div></div>
   <div class="card"><div class="k">Allurez</div><div class="t">Returns verified, exchange-only risk</div><div class="d">30 days to arrive, exclusions listed, $300 per missing certificate, buyer pays return shipping. Design Your Own rings are exchange-only — confirm whether a setting-only purchase counts. <a href="flagged.html#FL-10">FL-10</a></div></div>
   <div class="card"><div class="k">Avianne &amp; Co</div><div class="t">Short window</div><div class="d">14 days for unworn, unaltered items; a 10% FALL10 code is live. Full policy and resize exclusions were not captured. <a href="flagged.html#FL-11">FL-11</a></div></div>
   <div class="card"><div class="k">Jewelry Master</div><div class="t">30-day guarantee, restrictions unknown</div><div class="d">“Some restrictions apply” is all the page says. A $6,041 “retail price” is the seller’s own comparison and is not used in analysis. <a href="flagged.html#FL-12">FL-12</a></div></div>
@@ -797,7 +798,7 @@ def analysis_page():
   <li><b>The median complete ring asks {c_median:.1f}× its metal value.</b> That is normal once diamonds and labour are included; the useful screen is the low outlier, not the high one.</li>
   <li><b>One listing priced below metal</b> ({ratio(below[0]):.2f}× if below else "n/a") — the case study that shows why the screen exists.</li>
   <li><b>Maximum observed ratio is {ratio(maxe):.1f}×</b> ({esc(maxe['short'])}), a diamond solitaire. Metal value is the wrong yardstick for it; the certificate is the right one.</li>
-  <li><b>Return terms are the second-largest gap.</b> {sum(1 for e in ENTRIES if e['returnsVerified'])} of {len(ENTRIES)} rows have a policy that was actually read. Brilliant Earth’s policy page redirects; several sellers state only “returns accepted”.</li>
+  <li><b>Return terms are a gap outside the major retailers.</b> {sum(1 for e in ENTRIES if e['returnsVerified'])} of {len(ENTRIES)} rows have a policy that was read and verified (Blue Nile, Brilliant Earth at <code>/30-Day-Returns/</code>, Allurez, and 3 Etsy shops); the remaining {sum(1 for e in ENTRIES if not e['returnsVerified'])} state only summary terms on the listing or publish no return policy at all.</li>
 </ul>
 
 <div class="note gold"><b class="title">Method note</b>Price ÷ metal = price ÷ (grams × fineness × spot per gram). Fineness values are Kitco’s published percentages. Spot is the Kitco bid at {esc(SPOT['asOf'])}. The full arithmetic is re-run by <code>scripts/verify.py</code> on every pass. If a source changes, the derived numbers change with it.</div>
@@ -861,7 +862,8 @@ def flagged_page():
 <tr><td>Gram weight</td><td class="num">{sum(1 for e in ENTRIES if e['grams'] is None)} / {len(ENTRIES)}</td><td>Not published by the seller</td><td><a href="#FL-03">FL-03</a></td></tr>
 <tr><td>Maker’s mark</td><td class="num">{sum(1 for e in ENTRIES if not e['makerMarkStated'])} / {len(ENTRIES)}</td><td>No listing states one; no stamp photos</td><td><a href="#FL-14">FL-14</a></td></tr>
 <tr><td>“Solid gold” wording</td><td class="num">{sum(1 for e in ENTRIES if not e['solidStated'])} / {len(ENTRIES)}</td><td>Karat stated, solidity not stated</td><td><a href="#FL-15">FL-15</a></td></tr>
-<tr><td>Verified return policy</td><td class="num">{sum(1 for e in ENTRIES if not e['returnsVerified'])} / {len(ENTRIES)}</td><td>Policy page missing, redirecting or partial</td><td><a href="#FL-07">FL-07</a>, <a href="#FL-11">FL-11</a>, <a href="#FL-12">FL-12</a>, <a href="#FL-13">FL-13</a></td></tr>
+<tr><td>Published USD price (current pass)</td><td class="num">{sum(1 for e in ENTRIES if e['price'] is None)} / {len(ENTRIES)}</td><td>Call-for-pricing on SGJ-B02561; EUR geo-currency on BE-1343HH &amp; BE-SECRET</td><td><a href="#FL-08">FL-08</a>, <a href="#FL-13">FL-13</a></td></tr>
+<tr><td>Verified return policy</td><td class="num">{sum(1 for e in ENTRIES if not e['returnsVerified'])} / {len(ENTRIES)}</td><td>Policy page missing, summary-only or no-returns</td><td><a href="#FL-11">FL-11</a>, <a href="#FL-12">FL-12</a>, <a href="#FL-13">FL-13</a>, <a href="#FL-16">FL-16</a></td></tr>
 <tr><td>Independent reputation</td><td class="num">{sum(1 for s in D['sellers'] if not any(('BBB' in r['source'] or 'ConsumerAffairs' in r['source']) for r in s['reputation']))} / {len(SELLERS)} sellers</td><td>No independent complaint data captured</td><td><a href="#FL-04">FL-04</a></td></tr>
 </tbody></table></div>
 
@@ -1010,6 +1012,7 @@ See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.
         ("Brilliant Earth served EUR for the Freesia in pass 4", "The BE-1343 page returned a mixed-currency render (setting line in EUR 835.00, gift-card banner in USD) minutes after the Nadia page served USD normally. The $750 read at 5:44 a.m. ET is kept as a dated observation and the row now carries FL-08. No conversion was performed."),
         ("A stale computed figure was removed from a note", "The 7 g case-study note, and flag FL-01, used to hard-code a metal-value figure computed at an older spot. That is exactly how a stale derived number creeps into prose: it was correct when typed and wrong the moment the spot moved. Both now point at the computed metal-value column instead, so the site re-derives it every build. The hallucination sweep re-derived every other hand-written dollar figure in the dataset the same way."),
         ("Blue Nile, Allurez, Avianne, Jewelry Master, Solid Gold Jewelers", "Re-read in pass 4 and <b>unchanged</b>: $1,255 / $1,000 / $870 / $1,500 / $1,800 / $2,320 / $2,210 / $1,145 (all Setting Price); $1,085 / 5.00 g, $933 / 4.80 g, $585 / 3.58 g; $1,100 / 2.3 g (R25893); $3,020 special / 2.3 g; 4.7 g with no published price."),
+        ("Post-merge prose & flag-badge alignment (session ea49572b)", "After FL-07, FL-26, FL-27 and FL-28 were resolved, several prose blocks on Checklist, Sellers, Analysis, Flagged and Verification still stated that Brilliant Earth's return policy URL redirected to the home page or listed FL-07 as an open unverified-return flag. Updated <code>FLAG_SHORT</code> and all five pages to match the verified dataset."),
         ("Earlier 'six negative tests' claim was wrong", "An earlier README said the harness caught 6 injected errors, but <code>scripts/verify.py</code> contained no negative tests at all. Eight real negative self-tests (N1–N8) were added in a previous pass and all eight are caught; the N2 test was hardened in this pass so it no longer depends on a stale row existing."),
     ]
     corr_rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td class=\"small\">{b}</td></tr>" for a, b in corrections)
@@ -1055,7 +1058,8 @@ python3 tools/check_hallucinations.py   # archived /docs/ dataset (unchanged thi
 <ul class="bullets">
   <li><b>{sum(1 for e in ENTRIES if e['grams'] is None)} of {len(ENTRIES)} weights</b> — not published by the seller (FL-03).</li>
   <li><b>{sum(1 for e in ENTRIES if not e['makerMarkStated'])} of {len(ENTRIES)} maker’s marks</b> — none stated (FL-14).</li>
-  <li><b>{sum(1 for e in ENTRIES if not e['returnsVerified'])} of {len(ENTRIES)} return policies</b> — not fully readable (FL-07, FL-11, FL-12, FL-13).</li>
+  <li><b>{sum(1 for e in ENTRIES if e['price'] is None)} of {len(ENTRIES)} USD prices</b> — call-for-pricing on SGJ-B02561 (FL-13); EUR geo-currency on BE-1343HH &amp; BE-SECRET (FL-08).</li>
+  <li><b>{sum(1 for e in ENTRIES if not e['returnsVerified'])} of {len(ENTRIES)} return policies</b> — not backed by a full policy page or no-returns (FL-11, FL-12, FL-13, FL-16).</li>
   <li><b>{len(SELLERS)-1} of {len(SELLERS)} sellers</b> — no independent complaint data captured (FL-04).</li>
   <li><b>0 seller-stated XRF tests</b> — none of the listings offers a professional purity test (FL-20).</li>
 </ul>

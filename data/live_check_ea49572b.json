@@ -1,0 +1,531 @@
+{
+  "session": "ea49572b",
+  "checkedOn": "2026-10-23",
+  "method": "Direct live HTTP fetch via fetch_page tool across all 25 canonical listing URLs and all 11 official/policy reference URLs in site/assets/data.json.",
+  "summary": {
+    "totalCanonicalUrlsChecked": 36,
+    "listingUrlsChecked": 25,
+    "listingUrlsLiveHttp200": 25,
+    "referenceUrlsChecked": 11,
+    "referenceUrlsLiveHttp200": 11,
+    "hallucinationsInLockedDataset": 0,
+    "siteProseContradictionsFixed": 8
+  },
+  "spotGoldCheck": {
+    "url": "https://www.kitco.com/charts/gold",
+    "lockedDatasetQuote": {
+      "asOf": "2026-10-23 11:29 NY Time (15:29 UTC)",
+      "usdPerOz": 4022.50,
+      "usdPerGram": 129.33,
+      "kiloUsd": 129325.67,
+      "dayRangeUsd": [3975.10, 4040.20]
+    },
+    "livePass4Quote": {
+      "asOf": "2026-10-23 16:12 NY Time (20:12 UTC)",
+      "bidUsdPerOz": 3996.10,
+      "askUsdPerOz": 3998.10,
+      "usdPerGram": 128.48,
+      "kiloUsd": 128479.57,
+      "pennyweightUsd": 199.81,
+      "dayRangeUsd": [3975.10, 4040.20],
+      "purityPerOzUsd": {
+        "24K_9999": 3996.10,
+        "22K_9167": 3663.22,
+        "18K_7500": 2997.08,
+        "14K_5833": 2330.93,
+        "10K_4167": 1665.17
+      },
+      "troyOzGramsExact": 31.1034768,
+      "driftVsLockedSnapshotPct": -0.66
+    }
+  },
+  "listings": [
+    {
+      "id": "BN-192506",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-micropave-diamond-engagement-ring-in-14k-yellow-gold-1-10-ct-tw-item-192506",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "502250y14",
+        "priceUsd": 1255,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 1.60,
+        "weightGrams": null,
+        "stones": "26 round natural diamonds, 1/10 ct. tw., G-H, VS2-SI1"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-195639",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "501130y14",
+        "priceUsd": 1000,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 1.80,
+        "weightGrams": null
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-203257",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "500000y14",
+        "priceUsd": 870,
+        "karat": 14,
+        "color": "Yellow Gold (with platinum prongs)",
+        "widthMm": 1.90,
+        "weightGrams": null
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-195326",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "501590w14",
+        "priceUsd": 1500,
+        "karat": 14,
+        "color": "White Gold (Rhodium Finish: Yes)",
+        "widthMm": 2.00,
+        "weightGrams": null,
+        "stones": "18 round natural diamonds, 1/6 ct. tw., G-H, VS2-SI1"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-195871",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "501410y14",
+        "priceUsd": 1800,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 2.50,
+        "weightGrams": null,
+        "stones": "16 round natural diamonds, 1/4 ct. tw., G-H, VS2-SI1"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-311132",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/chunky-dome-solitaire-engagement-ring-in-18k-yellow-gold-item-311132",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "505032y",
+        "priceUsd": 2320,
+        "karat": 18,
+        "color": "Yellow Gold",
+        "widthMm": 8.45,
+        "weightGrams": null
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-203738",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/oval-and-marquise-diamond-cluster-engagement-ring-in-18k-white-gold-1-6-ct-tw-item-203738",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "502820w",
+        "priceUsd": 2210,
+        "karat": 18,
+        "color": "White Gold (Rhodium Finish: Yes; body prose still contradicts with '14k yellow gold', FL-09)",
+        "widthMm": 1.70,
+        "weightGrams": null,
+        "stones": "2 round (1/20 ct tw) + 4 marquise (1/10 ct tw) natural diamonds, G-H, VS2-SI1"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BN-203348",
+      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/low-dome-comfort-fit-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "502120y14",
+        "priceUsd": 1145,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 2.40,
+        "weightGrams": null
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BE-1343",
+      "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "BE1343-14KY",
+        "priceServedInPass4": "EUR 835.00 (USD $750 verified earlier on 2026-10-23 in live_check_77405ae3.json and on 2026-10-22)",
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 2.0,
+        "taperMm": "2-1.2 mm",
+        "weightGrams": null,
+        "reviews": 80
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BE-NADIA",
+      "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "BE1D6013-14KY",
+        "priceUsd": 1250,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 1.8,
+        "weightGrams": null,
+        "stones": "4 round (0.05 ct tw) + 2 marquise (0.06 ct tw), F/G, SI1/SI",
+        "reviews": 143,
+        "rating": 5.0
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BE-1343HH",
+      "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
+      "status": "live_verified_product_page_eur_routed",
+      "observed": {
+        "sku": "BE1D3939-14KY",
+        "priceUsd": null,
+        "priceServedInPass4": "EUR 1,350.00 (prior 2026-10-22 USD price $1,190; FL-08)",
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 2.0,
+        "taperMm": "2-1.3 mm",
+        "weightGrams": null,
+        "stones": "14 shared-prong round diamonds, 0.05 ct tw, F/G, SI1",
+        "reviews": 31
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "BE-SECRET",
+      "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
+      "status": "live_verified_product_page_usd_confirmed",
+      "observed": {
+        "sku": "BE1D13065-14KY",
+        "priceUsdInPass4": 1090,
+        "note": "Pass 4 received USD $1,090 (Setting Only) directly on the product page, confirming the 2026-10-22 category-listing USD price; locked dataset keeps price=null / priorPrice=1090 under FL-08 because earlier 2026-10-23 pass received EUR 1,250.00.",
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 1.5,
+        "weightGrams": null,
+        "stones": "13 scalloped pave round diamonds, 0.06 ct tw, F/G, SI1",
+        "reviews": 92,
+        "rating": 4.6
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "AL-170",
+      "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "U170",
+        "priceUsd": 933,
+        "comparisonPriceUsd": 1373,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 3.20,
+        "bottomWidthMm": 2.40,
+        "weightGrams": 4.80,
+        "weightQualifier": "Gold Weight 4.80 grams (Approximate)"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "AL-5882",
+      "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "U5882",
+        "priceUsd": 1085,
+        "comparisonPriceUsd": 2497,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": 2.90,
+        "bottomWidthMm": 2.30,
+        "weightGrams": 5.00,
+        "weightQualifier": "Gold Weight 5.00 Grams (Approximate)"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "AL-4426",
+      "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "NG4426",
+        "priceUsd": 585,
+        "comparisonPriceUsd": 1194,
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": null,
+        "weightGrams": 3.58,
+        "weightQualifier": "Approximate Metal Weight 3.58 grams"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "AV-25893",
+      "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "R25893",
+        "priceUsd": 1100,
+        "karat": 14,
+        "solidExplicit": true,
+        "color": "Yellow Gold",
+        "widthMm": 4.5,
+        "weightGrams": 2.3,
+        "weightScope": "item_total_with_0.41ctw_diamond",
+        "returnDays": 14
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "JM-149700",
+      "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "149700",
+        "priceUsd": 3020,
+        "retailPriceUsd": 6041,
+        "karat": 14,
+        "solidExplicit": true,
+        "color": "Yellow Gold",
+        "widthMm": null,
+        "weightGrams": 2.3,
+        "stones": "0.71ctw Brilliant Round Diamonds, SI1, G-H, Prong / Bezel",
+        "returnDays": 30
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "SGJ-B02561",
+      "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+      "status": "live_verified_product_page",
+      "observed": {
+        "sku": "B02561",
+        "priceUsd": null,
+        "priceNote": "Call (309) 452-1612 for current pricing and availability.",
+        "karat": 14,
+        "color": "Yellow Gold",
+        "widthMm": null,
+        "weightGrams": 4.7,
+        "brand": "M Michael"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-4426190660",
+      "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "RAKSHAKJEWELS",
+        "basePriceUsd": 1202.08,
+        "price10kUsd": 1686.02,
+        "price14kUsd": 1891.78,
+        "price18kUsd": 2109.58,
+        "originalPriceUsd": 2404.16,
+        "widthMm": 1.80,
+        "thicknessMm": 1.60,
+        "weightGrams": null,
+        "stones": "2.50 CT radiant canary yellow + 0.32 CTW round side lab-grown diamonds, IGI certified"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-4366425533",
+      "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "ForeverForLove (London, UK)",
+        "basePrice20261022Usd": 469.75,
+        "livePass4SaleNote": "New 40%-off markdown active on 2026-10-23 (base Silver 0.50 CT $375.80 from $626.34 original; 14K Yellow Gold $546.09-$2,404.96 across 0.50-3.00 CT)",
+        "widthMm": 1.50,
+        "thicknessMm": 1.40,
+        "weightGrams": null,
+        "returnDays": 30
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-1151446373",
+      "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "VeraByEden (Albany, NY / Vera Atolye, Istanbul)",
+        "basePrice10kUsd": 783.00,
+        "price14kUsd": 969.00,
+        "price18kUsd": 1233.00,
+        "originalPriceUsd": 1044.00,
+        "karat": 14,
+        "hallmark": "14 K (585)",
+        "weightGrams": 3.70,
+        "stones": "0.90 ct Ruby + 0.30 ct (12) F-G Diamonds",
+        "returnDays": 7,
+        "returnFees": "$20 delivery charge + 10% restocking fee"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-1566052947",
+      "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "VibrantStone (Los Angeles, CA)",
+        "basePriceUsd": 251.30,
+        "maxPriceUsd": 1742.30,
+        "originalBasePriceUsd": 359.00,
+        "karat": 14,
+        "widthRangeMm": "2mm - 8mm",
+        "weightGrams": null,
+        "returnDays": 21,
+        "returnFees": "Up to 30% restocking fee on altered/used/damaged or customized items"
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-1433905613",
+      "url": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "adelafinejewels (Paterson, NJ)",
+        "basePrice10kUsd": 674.70,
+        "basePrice14kUsd": 999.70,
+        "maxPrice14kUsd": 1368.90,
+        "originalBasePriceUsd": 1038.00,
+        "karat": 14,
+        "widthMm": 8.0,
+        "weightGrams": null,
+        "returnDays": 14
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-944684759",
+      "url": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
+      "status": "live_verified_product_page",
+      "observed": {
+        "seller": "CittaliFineJewelry (Great Neck, NY)",
+        "basePriceUsd": 195.75,
+        "maxPriceUsd": 1158.75,
+        "originalBasePriceUsd": 261.00,
+        "karat": 14,
+        "thicknessMm": 1.10,
+        "widthRangeMm": "2mm - 8mm",
+        "materialsListed": "Sterling Silver, Gold Vermeil, 10k, 14k, 18k Solid Gold",
+        "weightGrams": null,
+        "returnDays": 30
+      },
+      "matchesDataset": true
+    },
+    {
+      "id": "ET-576343849",
+      "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
+      "status": "live_verified_product_page_sold_out_detail",
+      "observed": {
+        "seller": "BUTTERFLYWINGVINTAGE (Phoenix, AZ)",
+        "priceUsd": 420.00,
+        "originalPriceUsd": 525.00,
+        "availability": "Sold out",
+        "karat": 14,
+        "hallmark": "marked 14K with a maker's mark (4th photo)",
+        "ringSize": 11,
+        "weightGrams": 6.5,
+        "weightQuote": "The weight on my postal scale alternates between 6-7 g.",
+        "rhodiumPlated": true,
+        "returns": "No refund for buyer's remorse or changed mind"
+      },
+      "matchesDataset": true
+    }
+  ],
+  "referenceAndPolicyUrls": [
+    {
+      "id": "REF-FTC-JEWELRY",
+      "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-16CFR23",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
+      "status": "live_200",
+      "note": "Displaying title 16, up to date as of 10/21/2026; last amended 10/19/2026"
+    },
+    {
+      "id": "REF-16CFR23-3",
+      "url": "https://www.law.cornell.edu/cfr/text/16/23.3",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-15USC295",
+      "url": "https://www.govinfo.gov/link/uscode/15/295",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-15USC297",
+      "url": "https://www.law.cornell.edu/uscode/text/15/297",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-KITCO",
+      "url": "https://www.kitco.com/charts/gold",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-LBMA",
+      "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-NIST",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-FTC-CC",
+      "url": "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-ETSY-PROT",
+      "url": "https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-JVC",
+      "url": "https://jvclegal.org/mediation-services/",
+      "status": "live_200"
+    },
+    {
+      "id": "REF-REPORTFRAUD",
+      "url": "https://reportfraud.ftc.gov/",
+      "status": "live_200"
+    },
+    {
+      "id": "POLICY-BLUENILE",
+      "url": "https://www.bluenile.com/policies/returns",
+      "status": "live_200"
+    },
+    {
+      "id": "POLICY-BRILLIANTEARTH",
+      "url": "https://www.brilliantearth.com/30-Day-Returns/",
+      "status": "live_200"
+    },
+    {
+      "id": "POLICY-ALLUREZ",
+      "url": "https://www.allurez.com/pages/return-policy",
+      "status": "live_200"
+    }
+  ]
+}

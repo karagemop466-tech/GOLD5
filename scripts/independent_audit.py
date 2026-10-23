@@ -294,8 +294,8 @@ def main():
     # A10 — disclosure
     idx = open(os.path.join(ROOT, "index.html"), encoding="utf-8", errors="replace").read()
     has_banner = "NO HALLUCINATIONS" in idx
-    has_asof = "2026-10-22" in idx
-    check("A10", has_banner and has_asof, f"landing page carries the no-hallucinations banner={has_banner} and asOf date={has_asof}")
+    has_asof = d["meta"]["asOf"] in idx
+    check("A10", has_banner and has_asof, f"landing page carries the no-hallucinations banner={has_banner} and asOf date={has_asof} ({d['meta']['asOf']})")
 
     fails = [r for r in results if not r[1]]
     print(f"\n=== RESULT: {len(results) - len(fails)} passed, {len(fails)} failed ===")

@@ -12,9 +12,49 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-23 20:20 UTC — **session `3bf55199` complete (PR #43 merged, Pages deployed); all tasks W1–W6 done, no open claims**
+- Last updated: 2026-10-23 20:33 UTC — **session `ea49572b` pass-4 cross-verification & post-merge site reconciliation (see below); sessions `3bf55199` and `arena-463d0ea2` complete**
 
-## ⏱ ACTIVE CLAIM — session `3bf55199` (Arena branch `arena/3bf55199-gold5`)
+## ⏱ ACTIVE CLAIM — session `ea49572b` (Arena branch `arena/ea49572b-gold5`)
+
+Claimed at 2026-10-23 20:15 UTC; rebased onto `main@7307a79` (after PRs #43–#47 merged). Independent line-by-line
+36-URL live verification and post-merge site/flag consistency pass. All earlier sessions' sections and
+deliverables (`docs/`, `pages/`, `report/`, `verified/`, `guide/`, `dossier/`, `archive/`, `review/`,
+`data/live_check_3bf55199.json`, `data/live_check_463d0ea2.json`, `data/evidence/p4*.txt`) are preserved
+100% intact.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| E1 | Re-open board, line-by-line repo review, baseline run of all 9 harnesses, claim scopes | **done** | `ea49572b` | `COORDINATION.md` |
+| E2 | **Live re-verification pass (2026-10-23, session `ea49572b`)** of all 25 product URLs + 11 official/regulatory/policy URLs; log per-URL results | **done — 36 URLs logged** | `ea49572b` | `data/live_check_ea49572b.json` |
+| E3 | Reconcile post-merge prose/flag contradictions in `scripts/build_site.py` (`FLAG_SHORT["FL-07"]`, Checklist, Sellers, Analysis, Flagged, Verification) and `scripts/independent_audit.py` (`A10` dynamic `asOf` check) | **done** | `ea49572b` | `scripts/build_site.py`, `scripts/independent_audit.py` |
+| E4 | Rebuild static site (`index.html`, `site/*.html`) and write verification report | **done** | `ea49572b` | `index.html`, `site/*.html`, `docs/verification/pass4-ea49572b-2026-10-23.md` |
+| E5 | Run all 9 anti-hallucination & security harnesses after review, recommend looking for hallucinations, record report | **done — all 9 PASS** | `ea49572b` | `data/check_report_v2.json`, `data/pass_history_v2.json` |
+| E6 | Final integration: `git pull --rebase`, PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR + merge result | **in progress** | `ea49572b` | `COORDINATION.md` |
+
+### Log — session ea49572b
+- 2026-10-23 20:15 UTC (E1): repo reviewed and all 9 baseline harnesses verified **PASS**.
+- 2026-10-23 20:24 UTC (E2): re-fetched all **25 canonical listing URLs** and **11 official/regulatory/policy URLs**
+  live via `fetch_page` and saved [`data/live_check_ea49572b.json`](data/live_check_ea49572b.json). Confirmed
+  Kitco live spot **`$3,996.10/oz` = `$128.48/g`**, all 8 Blue Nile settings, all 4 Brilliant Earth settings
+  (including `BE-SECRET` serving `$1,090` USD in this session's fetch while `BE-1343` and `BE-1343HH` served EUR),
+  all 3 Allurez settings, Avianne, The Jewelry Master, Solid Gold Jewelers, all 7 Etsy listings, and all 11
+  official/regulatory/policy URLs.
+- 2026-10-23 20:33 UTC (E3–E5): rebased cleanly onto `origin/main@7307a79` (preserving all work from `3bf55199`
+  PRs #43–#44 and `463d0ea2` PRs #45–#47) and fixed 6 post-merge prose/flag contradictions that remained on the
+  generated site:
+  1. `FLAG_SHORT`: changed `"FL-07"` from `"returns unverified"` to `"returns verified"` and added short labels for `"FL-26"`, `"FL-27"`, `"FL-28"`, `"FL-29"`.
+  2. `site/checklist.html` (Item 7): removed stale statement that Brilliant Earth's policy URL redirects to its home page; cited verified `/30-Day-Returns/` policy (`FL-07` resolved).
+  3. `site/sellers.html` (Brilliant Earth card): updated from `"Returns stated, policy unavailable"` to `"30-day policy verified, EUR geo-routing"` (`FL-07`, `FL-08`).
+  4. `site/analysis.html`: removed stale statement that Brilliant Earth's policy page redirects.
+  5. `site/flagged.html` ("Unverified by field"): added `Published USD price (current pass)` (`3 / 25`, `FL-08, FL-13`) and replaced resolved `FL-07` with `FL-16` on the `Verified return policy` row.
+  6. `site/verification.html` ("What is still unverified") & `scripts/independent_audit.py` (`A10`): removed resolved `FL-07` from unverified return policies, added the 3 blank USD prices bullet, and updated `A10` to check `d["meta"]["asOf"]` (`2026-10-23`) dynamically.
+  Re-ran all **9** verification/hallucination/security harnesses (`scripts/build_site.py --check`,
+  `scripts/verify.py` 21/21, `scripts/audit_b1f2fe3b.py` 6/6, `scripts/independent_audit.py` 11/11,
+  `scripts/review_current.py --check` PASS, `tools/check_hallucinations.py` 166/0, `tools/check_report.py`
+  1649/0, `tools/security_test.py` 9/9+clean, `verified/scripts/verify.py` 896/0, `dossier/scripts/build.py`
+  18/18) — **all 9 PASS with 0 failures**.
+
+## ⏱ PRIOR CLAIM (completed) — session `3bf55199` (Arena branch `arena/3bf55199-gold5`)
 
 Claimed at 2026-10-23 20:14 UTC. Continuation verification pass for this brief — refresh gold spot and re-verify listings line-by-line with fresh fetches, update derived values via script only, rebuild site, re-run all harnesses and publish. All earlier sessions' deliverables are read-only archives except where explicitly listed as shared-output scope for the final integration (per brief).
 
