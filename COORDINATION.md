@@ -29,7 +29,7 @@ below before touching anything.
 | U4 | Rebuild the root dashboard + category subpages from the unified dataset (clean, table-first) | **done** | 93032b31 | `index.html` + 10 root pages, `site/assets/dashboard.css` |
 | U5 | Extend + run the hallucination/security harness (negative-tested) | **done** | 93032b31 | `scripts/verify.py` (rewritten for the unified schema) |
 | U6 | Resolve the open PR #4 (session `3c8bb7ee`) without discarding its work | **done** | 93032b31 | `guide/**` (new) — all 25 files preserved |
-| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | in progress | 93032b31 | `COORDINATION.md` |
+| U7 | Final integration: merge, link check, PR → main, merge, confirm Pages deploy, log | **done** (see final integration result below) | 93032b31 | `COORDINATION.md` |
 
 Rules I follow for this pass: same no-hallucinations rule; **no value is carried over without either a
 fresh live fetch today or an explicit "captured earlier today by session X, not re-fetched" note**;
@@ -1015,6 +1015,140 @@ don't buy it"). Only two rows evidence a stamp at all.
   `COORDINATION.md` = main's board verbatim plus this section; `research/**` kept alongside
   byte-identical `guide/research/**` pending **R-04**. No other session's file was modified.
 
+## Session `0c967748` — current-evidence audit and final integration (2026-10-23)
+
+Arena fixes this session to `arena/0c967748-gold5`; no alternate branch will be created.
+Prior integration claims above have completed merge records and are stale (>60 minutes).
+No other open PR was returned by `gh pr list` at claim time.
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| Current-evidence ledger, source availability and row audit | in progress | 0c967748 | `review/**`, `scripts/review_current.py` |
+| Final integration: honest landing summary and CI guard | in progress | 0c967748 | `index.html`, `.github/workflows/current-review.yml`, `COORDINATION.md` |
+| PR, merge, Pages build confirmation | in progress | 0c967748 | GitHub operations; `COORDINATION.md` |
+
+Existing datasets and archived sites remain read-only. The current review will not upgrade
+historical captures to verified prices. Network access in this session is restricted to
+GitHub and package registries; official merchant sources cannot be independently refreshed.
+The site will prominently disclose this, keep current values blank, link every candidate to
+its recorded official source, and publish limitations on a Flagged for Review page.
+
+### 0c967748 — review and test results
+- Claim was committed as `8cf0c5f` and pushed before implementation. First pre-push
+  pull reported that the new session branch did not yet exist remotely; creation push
+  succeeded. No conflict or other session's changes were discarded.
+- Read the prior board and all nine product datasets record-by-record via the new
+  deterministic ledger. 264 stored records → 91 **exact URLs**, not distinct products.
+  The dataset files and previous site suites remain unchanged.
+- Source probe: `curl -I --max-time 15 https://www.bluenile.com` failed with
+  `SSL_ERROR_SYSCALL`. Restricted network prevents independent current merchant and
+  government/standards verification. No field was upgraded; all current prices,
+  specifications, fine-gold values and official recheck dates are null.
+- Published R01–R04 in `review/flagged.html`, each with affected recorded seller source
+  links. Historical source and metadata claims are labeled as inherited, not confirmed.
+  Root summary now warns before all historical content. Current inventory, category
+  browser and calculation status are available without manual data entry.
+- Current ledger check PASS; 6/6 injected false/unsafe claims rejected. Existing checks:
+  root C1–C15 PASS; cross-site audit PASS (95 HTML pages, 3808 local links); verified
+  generated-site check PASS and 896 assertions / zero failures; legacy 166 checks /
+  zero failures; report check PASS; security mutations 9/9 caught; dossier 18/18,
+  1104 references / zero broken local links. Full console results: `review/test-results.txt`.
+  Regenerated out-of-scope artifacts were restored, preserving their owners' files.
+- These checks establish offline consistency, NOT official-source truth, current
+  prices, external URL availability, exhaustive market coverage, or physical purity.
+  Recommendation after every review: rerun checks and inspect for unsupported claims.
+- Evidence-refresh task status: **needs review** (published, nonblocking). UI/integration
+  implementation and offline verification: **done**. Deployment task remains in progress.
+
+### 0c967748 — merge and deployment record
+- PR **#33**: https://github.com/karagemop466-tech/GOLD5/pull/33 — **MERGED**
+  2026-10-23T09:53:52Z, merge commit `b4c68003cf1a9dc5ec431ac334bd4ce41c56596a`.
+  Both PR checks (Current evidence boundaries and Verify) passed before merge.
+- GitHub Pages build/deployment **39935190495** completed **SUCCESS**, including
+  build, report-build-status and deploy jobs, for that exact merge commit:
+  https://github.com/karagemop466-tech/GOLD5/actions/runs/39935190495
+- Published URL: https://karagemop466-tech.github.io/GOLD5/
+  Current inventory: https://karagemop466-tech.github.io/GOLD5/review/
+  Flags: https://karagemop466-tech.github.io/GOLD5/review/flagged.html
+- Deployment confirmed through the official GitHub API / workflow. Public-page browser
+  retrieval is not independently asserted (github.io is outside allowed egress).
+- GitHub-managed Pages workflow emitted a nonblocking Node 20 deprecation / forced
+  Node 24 notice for upload-artifact, and an ubuntu-latest migration notice. Build and
+  deploy still succeeded. No repository workflow change was needed for these notices.
+- Final task state: implementation, integration and deployment **done**; official-source
+  refresh **needs review**, published as R01–R04. No invented values used to fill gaps.
+---
+
+## Review pass — session `887435c2` (Arena branch `arena/887435c2-gold5`)
+
+**Started 2026-10-23 UTC.** Scope: `COORDINATION.md`, `scripts/author_data.py`,
+`scripts/build_site.py`, and their generated root-dashboard outputs (`index.html`,
+`site/assets/data.json`, `site/assets/data.js`, `site/gold-price.html`,
+`site/flagged.html`, `site/verification.html`). The fixed Arena branch name is used;
+the requested `session-<id>/<task>` branch naming cannot be used on this platform.
+This is a focused integration review of the already-published catalog, not a new
+product-price research pass.
+
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| R887-1 | Resolve misleading "today" gold-value wording and quote-count mismatch using the saved, dated observations | **done** | `887435c2` | generator + generated root landing/gold-price/flagged pages and data exports |
+| R887-2 | Run the repository's verification, source/evidence, link, and negative security passes | **done** | `887435c2` | read-only checks; generated reports restored to their owning sessions' committed state |
+| R887-3 | Publish the focused correction through the fixed branch, merge, and confirm Pages | in progress | `887435c2` | this section; GitHub PR/deploy record to be appended |
+
+### Findings and change
+
+- The dashboard had called an October 22 gold-price capture "Today's gold price" on
+  October 23, and the gold-value page said "worth today". Its own header correctly
+  dated the data, but the prominent prose could mislead a buyer into treating a
+  prior snapshot as a live quote. The pages now call it a **dated snapshot** and say
+  explicitly that the values are not live. No price, weight, purity, policy, or
+  source value was changed.
+- The root quote summary said "four" while its linked table contained **five**
+  timestamped observations. The count now comes from the generated dataset; the
+  Flagged page no longer hard-codes the wrong count.
+- Regenerating the landing page exposed a source/generated mismatch: the archive
+  panel claimed eight preserved deliverables even though the existing page had
+  nine links, including `/dossier/`. Restored the dossier entry in the source
+  archive list so the generator keeps all nine links and the checker resolves
+  them; no deliverable was removed.
+- No ring prices are represented as current. The source dataset remains dated
+  **2026-10-22**, with the original source URLs and evidence unchanged. Buyers must
+  re-open the seller listing and obtain a fresh spot quote before purchase.
+- Official source links retained for manual review include Kitco's dated spot
+  observation (<https://www.kitco.com/charts/gold>), FTC jewelry guidance
+  (<https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry>),
+  and 16 CFR Part 23 (<https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23>).
+  Each product's exact seller URL remains on its listing row. This pass did **not**
+  re-fetch seller pages or upgrade any evidence date; no live-price claim is made.
+
+### Verification pass — 2026-10-23 UTC
+
+- `python3 scripts/verify.py`: **15/15 PASS**, 0 failures/warnings; 25 listings,
+  source-date coverage, blank/flag integrity, arithmetic, money traceability, local
+  links, generated export sync, and security rules checked.
+- `python3 tools/check_hallucinations.py`: **166 PASS, 0 FAIL, 0 WARN** (one
+  informational duplicate-weight review note).
+- `python3 scripts/audit_b1f2fe3b.py`: **6 groups PASS**, 0 errors/warnings;
+  95 HTML files, 3,808 resolved local links, 4/4 injected hallucinations caught.
+- `python3 tools/check_report.py`: **1,649 checks PASS**, 0 FAIL/WARN.
+- `python3 tools/security_test.py`: **9/9 planted errors caught**; clean-state check PASS.
+- `python3 dossier/scripts/build.py`: **18/18 PASS**, 23 pages, 0 broken links.
+- `python3 verified/scripts/build_site.py --check && python3 verified/scripts/verify.py`:
+  **896 assertions PASS**, 0 failures.
+- `git diff --check`: PASS. Generated reports belonging to other sessions were
+  reverted after their harnesses ran; source and generated root-site changes are
+  retained.
+- GitHub state at review: Pages configured on `main` at `/`, HTTPS enforced,
+  status `built`; the latest main `Verify` and Pages deployment runs succeeded
+  (main head `7cc612d9363f4b8bab047ddbcd2397451c90d5df`). There were no open PRs
+  before this correction.
+- While PR #34 was open, PR #33 (the new current-evidence audit) merged to `main`
+  as `b4c68003`. Rebased this branch on the new main before the next push. The
+  `COORDINATION.md` conflict was resolved as a union, retaining both sessions'
+  sections; `index.html` retained the new current-review warning and links while
+  receiving this pass's dated-snapshot corrections. Post-rebase checks passed with
+  95 audited HTML files and 3,808 local links; no current-evidence work was dropped.
+
 ---
 
 ## ⏱ ACTIVE CLAIM — session `a255f011` (Arena branch `arena/a255f011-gold5`)
@@ -1093,3 +1227,19 @@ Derived numbers are recomputed by script. Every review ends with the harness run
   `verified/scripts/build_site.py --check` **11 pages match** + `verified/scripts/verify.py`
   **896 assertions / 0 failures**.
 - **V6 (PR, merge, Pages)** — record follows after the merge.
+- **2026-10-23 09:59 UTC — merge conflict encountered and resolved (union + regeneration).**
+  `origin/main` advanced to `960d018` (PRs #33–#35 from sessions `0c967748` / `887435c2`, adding a
+  separate `review/` current-evidence suite and a CI job). Conflicts: `COORDINATION.md` (resolved as a
+  union — their 0c967748 section kept verbatim, this session's claim and log appended),
+  `scripts/build_site.py` (four hunks where their pass had replaced live values with "snapshot"
+  wording because their network was restricted; this pass **did** reach the sources, so the live-value
+  wording was kept and their caution sentence "These are dated observations, not live prices" was
+  added), and the generated pages `index.html`, `site/gold-price.html`, `site/verification.html`
+  (resolved by regenerating from `scripts/build_site.py` after the data rebuild). Their `review/**`
+  suite and `.github/workflows/current-review.yml` are kept unchanged, pass `python3
+  scripts/review_current.py --check`, and are now linked from the dashboard and the archive panel.
+  **No session's content was discarded.**
+- **Their caution is recorded, not overridden:** session `0c967748` could not reach merchant sources
+  from its sandbox and left all current fields blank; this session's `fetch_page` access did work on
+  2026-10-23, which is why 12 rows carry a 2026-10-23 date and 13 remain dated 2026-10-22. Both views
+  state the same rule: unconfirmed values stay blank.

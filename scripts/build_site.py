@@ -275,6 +275,9 @@ def index_page():
   </aside>
 </section>
 
+<div class="note blue"><b class="title">Parallel review (session 0c967748) — and why its current fields are blank</b>
+That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> 12 rows and the gold quote were re-read from the sellers and Kitco on 2026-10-23 and are dated; the other 13 rows are labelled <i>captured 2026-10-22</i> and itemised in FL-26/27/28. Both reviews apply the same rule — an unconfirmed value stays blank.</div>
+
 <section class="rule-panel">
   <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
   <p>Every price, weight, karat, hallmark claim and return policy on this site was read from the <b>linked official source page</b> on the check date shown. Nothing is estimated, averaged, filled in from a similar product, or copied from a search snippet without saying so.</p>
@@ -321,7 +324,7 @@ def index_page():
   <a class="card" href="site/categories.html"><div class="k">New · 7 views</div><div class="t">Categories</div><div class="d">Solitaires · halo &amp; pavé · 18K · complete rings · settings only · bands · case study.</div><div class="go">Open the category index →</div></a>
   <a class="card" href="site/listings.html"><div class="k">All entries</div><div class="t">Listings, line by line</div><div class="d">25 rows: price, karat, grams, hallmark claim, returns, check date, flags and the source page for each.</div><div class="go">Open the table →</div></a>
   <a class="card" href="site/analysis.html"><div class="k">Analysis</div><div class="t">Price vs. gold value</div><div class="d">The 8 rows that publish a weight, the median markup, the below-metal case, and data-completeness scores.</div><div class="go">Read the analysis →</div></a>
-  <a class="card" href="site/gold-price.html"><div class="k">Gold price</div><div class="t">Spot, purity, raw amounts</div><div class="d">{n_quotes} same-day quotes, Kitco purity values, and a table of what X grams of 10K–24K is worth today.</div><div class="go">See the numbers →</div></a>
+  <a class="card" href="site/gold-price.html"><div class="k">Gold price</div><div class="t">Spot, purity, raw amounts</div><div class="d">{n_quotes} quotes captured {date_str()}, Kitco purity values, and the calculated metal value for X grams of 10K–24K at that dated spot price.</div><div class="go">See the numbers →</div></a>
   <a class="card" href="site/calculator.html"><div class="k">Calculator</div><div class="t">Weight → gold value</div><div class="d">Enter grams, karat, spot and asking price. Get fine gold, metal value and the price/metal ratio — computed live.</div><div class="go">Open the calculator →</div></a>
   <a class="card" href="site/checklist.html"><div class="k">Checklist</div><div class="t">The 12-point buying test</div><div class="d">Each point linked to its official source, with what this dataset shows and what to demand from the seller.</div><div class="go">Work the checklist →</div></a>
   <a class="card" href="site/sellers.html"><div class="k">Sellers</div><div class="t">{len(SELLERS)} sellers compared</div><div class="d">Contact details, return terms, warranty, payment and reputation — with the policy links and open questions.</div><div class="go">Compare sellers →</div></a>
@@ -469,7 +472,7 @@ def gold_price_page():
     body = f"""
 <div class="page-head"><div class="eyebrow">Gold price · verified {esc(date_str())}</div>
 <h1>What gold is worth today — and what it means per gram</h1>
-<p>{1 + len(D["spot"]["prior"]) + len(D["spot"]["crossChecks"])} timestamped quotes across two days are recorded below with their exact timestamps. One is chosen for every calculation on this site: the Kitco spot bid at {esc(SPOT['asOf'])}. A spot price is not a retail price; jewellery carries fabrication, design and retail margin on top.</p></div>
+<p>These are dated observations, not live prices. {1 + len(D["spot"]["prior"]) + len(D["spot"]["crossChecks"])} timestamped quotes across two days are recorded below with their exact timestamps. One is chosen for every calculation on this site: the Kitco spot bid at {esc(SPOT['asOf'])}. A spot price is not a retail price; jewellery carries fabrication, design and retail margin on top.</p></div>
 
 <div class="hero">
   <div class="panel"><div class="eyebrow">Primary quote</div>
@@ -485,14 +488,14 @@ def gold_price_page():
   </div>
 </div>
 
-<h2>All quotes captured <span class="tag">same day</span></h2>
+<h2>Quotes captured <span class="tag">{esc(date_str())}</span></h2>
 <div class="table-wrap"><table><thead><tr><th>Source</th><th class="num">USD / oz</th><th class="num">USD / g</th><th class="num">As of</th><th>What the page said</th><th>Link</th></tr></thead><tbody>{''.join(qrows)}</tbody></table></div>
 
 <h2>Gold value by purity <span class="tag">Kitco table, same capture</span></h2>
 <div class="table-wrap"><table><thead><tr><th>Karat</th><th class="num">Fineness</th><th class="num">Value per troy oz</th><th class="num">Value per gram</th><th class="num">Fine gold per gram</th></tr></thead><tbody>{''.join(prows)}</tbody></table></div>
 <p class="small muted">Kitco publishes the percentages shown (24K 99.99%, 22K 91.67%, 18K 75.00%, 14K 58.33%, 10K 41.67%). They are used exactly as published. A 14K item is 58.33% gold by weight, not 14/24 rounded to taste. Kitco’s 24K line is the spot price itself; the “fine gold per gram” column applies the published 99.99% fineness, which is why it reads one cent below the spot per gram.</p>
 
-<h2>Raw gold amounts <span class="tag">what X grams of metal is worth at {money(SPOT['usdPerGram'])}/g</span></h2>
+<h2>Raw gold amounts <span class="tag">metal value at the {esc(date_str())} spot quote ({money(SPOT['usdPerGram'])}/g)</span></h2>
 <div class="table-wrap"><table><thead><tr><th>Weight of metal</th><th class="num">10K (41.67%)</th><th class="num">14K (58.33%)</th><th class="num">18K (75.00%)</th><th class="num">22K (91.67%)</th><th class="num">24K (99.99%)</th></tr></thead><tbody>{''.join(rrows)}</tbody></table></div>
 <p class="small muted">Each cell is <b>weight × fineness × {money(SPOT['usdPerGram'])}/g</b>, computed by the build script — not typed. Values are metal only: no stones, labour, tax or retail margin. Use the <a href="calculator.html">calculator</a> for a specific ring.</p>
 
