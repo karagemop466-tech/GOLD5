@@ -493,7 +493,7 @@ FLAGS = [
          detail="Allurez publishes 'approximate' gold weights; Avianne and Jewelry Master publish single figures; VeraByEden states 'Gold grams: 3.70 gr'. None of these has been independently weighed. Treat them as claims to be checked with a jeweler's scale and XRF on arrival.",
          entryIds=["AL-5882","AL-170","AL-4426","AV-25893","JM-149700","ET-1151446373","ET-576343849"]),
     dict(id="FL-19", severity="info", status="open", title="Gold spot moves all day — the snapshot is dated",
-         detail="The timestamped quotes range from $4,025.00 to $4,086.90 per ounce (about 1.5%). This site uses one dated Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+         detail="Quotes across the 2026-10-22 and 2026-10-23 captures range from $4,022.50 to $4,086.90 per ounce (about 1.6%). This site uses one timestamped Kitco bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
          entryIds=[]),
     dict(id="FL-20", severity="info", status="open", title="A 14K or 18K stamp is not proof of purity",
          detail="FTC guidance requires a karat mark plus a maker's mark, but a stamp is a disclosure, not an assay. The only way to know what the metal actually is: have an independent jeweler test it (XRF or another professional method) after delivery, before wearing or resizing. No US law requires the seller to accept a return based on your test, so confirm the return right first.",
@@ -512,7 +512,7 @@ FLAGS = [
          detail="Earlier flags said the Brilliant Earth karat appeared only in product URLs and that VeraByEden's 3.70 g came from a search snippet. Both were re-checked live: each Brilliant Earth product page states 14K Yellow Gold, and VeraByEden's description states 'Gold grams: 3.70 gr'. The old flags are closed, with the checks recorded on the Verification page.",
          entryIds=["BE-NADIA","BE-1343HH","BE-SECRET","ET-1151446373"]),
     dict(id="FL-25", severity="low", status="open", title="Kitco page shows several nearby numbers in one capture",
-         detail="The 2026-10-23 capture displays a bid of $4,022.50 and $129.33/g in the ticker, $4,021.00/oz and $129.28/g in the page's own price table, and a 24K purity line of $4,022.50. This project records the ticker bid and the corresponding per-gram figure, and labels every calculation with that timestamp.",
+         detail="The 2026-10-23 capture displayed a ticker bid of $4,022.50 and $129.33/g while the body text read $4,021.00/oz and the conversion table $129.28/g; the 2026-10-22 capture similarly showed $4,026.90/$129.47 in the ticker vs $4,027.50 in the body, $129.49/g in the table, and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
          entryIds=[]),
     dict(id="FL-26", severity="medium", status="open", title="Seven Etsy listings could not be re-fetched on 2026-10-23",
          detail="Every attempt to open the seven Etsy listing pages on 2026-10-23 returned HTTP 500. Their prices, weights and return windows are therefore the 2026-10-22 captures, are labelled 'captured' on every row, and are NOT asserted as current. Re-check each Etsy listing in a browser before relying on it.",
@@ -535,8 +535,13 @@ REFERENCES = [
     dict(id="cfr23", title="16 CFR Part 23 — Guides for the Jewelry, Precious Metals, and Pewter Industries",
          publisher="eCFR (Office of the Federal Register)", url="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
          quote="§ 23.3 Misrepresentation as to gold content. § 23.10 Additional guidance for the use of quality marks.",
-         usedFor="The regulation behind the FTC consumer guidance; gold-content and quality-mark rules.",
+         usedFor="The regulation behind the FTC consumer guidance; gold-content and quality-mark rules. eCFR displayed 'up to date as of 10/21/2026' on the 2026-10-23 fetch.",
          checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+    dict(id="usc295", title="15 U.S.C. § 295 — Standard of fineness of gold articles; deviation",
+         publisher="U.S. Code (GovInfo, U.S. Government Publishing Office)", url="https://www.govinfo.gov/link/uscode/15/295",
+         quote="...the actual fineness of such gold or alloy shall not be less by more than three one-thousandth parts than the fineness indicated by the mark stamped, branded, engraved, or printed upon any part of such article... and ... shall not be less by more than seven one-thousandth parts, in the case of any other such article...",
+         usedFor="The statutory assay tolerance an XRF reading is compared against: 3/1000 solder-free, 7/1000 for the whole article including solder.",
+         checkedOn="2026-10-23", method="live fetch (2026-10-23 pass)"),
     dict(id="cfr23-3", title="16 CFR § 23.3 — Misrepresentation as to gold content (Cornell LII mirror)",
          publisher="Cornell Legal Information Institute", url="https://www.law.cornell.edu/cfr/text/16/23.3",
          quote="Text of the gold-content misrepresentation rule.",
@@ -582,13 +587,13 @@ REFERENCES = [
 SPOT = dict(
     primary=dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
                  usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
-                 method="live fetch (pass 3, session 77405ae3)",
-                 quote="Bid 4,022.50 USD; gram 129.33. 'Prices ... as of October 23, 2026 at 5:44 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:44 a.m. ET.'"),
-    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (2026-10-22 capture)", url="https://www.kitco.com/charts/gold",
+                 method="live fetch (2026-10-23 pass)",
+                 quote="Live Gold Price — Oct 23, 2026 - 5:44 NY Time. Bid 4,022.50 USD (-1.50, -0.04%); Ask 4,024.50; gram 129.33 (-0.05); Kilo 129,328.36; pennyweight 201.13. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 5:43 a.m. EDT.' Body text: 'The current price of gold is $4,021.00 per troy ounce as of October 23, 2026, 5:43 a.m. ET, down $2.30 today.'"),
+    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4026.90, usdPerGram=129.47, asOf="2026-10-22 7:26 p.m. ET", kind="spot bid",
-                method="live fetch (pass 2)",
-                note="Previous day's primary quote, retained as prior history; was the primary for pass-2 builds."),
-                 dict(source="Kitco Metals Inc. — Live Gold Price (earlier capture)", url="https://www.kitco.com/charts/gold",
+                method="prior-session capture (session 7cca80c9)",
+                note="2026-10-22 close-of-day capture, recorded by the previous pass; superseded by the 2026-10-23 quote above."),
+           dict(source="Kitco Metals Inc. — Live Gold Price (earlier capture)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4025.00, usdPerGram=129.41, asOf="2026-10-22 7:10 p.m. ET", kind="spot bid",
                 method="prior-session capture (session 37e8ff42)",
                 note="Same Kitco page 16 minutes earlier; used by the archived sessions.")],
@@ -604,11 +609,11 @@ SPOT = dict(
                       usdPerOz=4086.90, usdPerGram=None, asOf="2026-10-22 morning", kind="spot",
                       method="prior-session capture",
                       note="Spot gold near $4,086.90 an ounce, down $53.40 (1.29%).")],
-    notes=["The 2026-10-23 capture showed $4,021.00/oz in the page body and $129.28/g in the conversion table; the ticker bid of $4,022.50 and $129.33/g are the figures recorded here.",
-           "Nearby numbers appear in one capture: on 2026-10-22 the body read $4,027.50, the table $129.49/g and a TradingView print $4,028.21 alongside the recorded $4,026.90/$129.47. Several nearby numbers on a live ticker are normal — the timestamp is part of the value."],
+    notes=["The 2026-10-23 capture shows the bid ticker at $4,022.50 with $129.33/g, the page's own 'Gold Price Today' table at $4,021.00/oz and $129.28/g, and the purity calculator's 24K line at $4,022.50. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value.",
+           "The 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
     purity=dict(fineness={"24K": 0.9999, "22K": 0.9167, "18K": 0.75, "14K": 0.5833, "10K": 0.4167},
                 perOz={"24K": 4022.50, "22K": 3687.43, "18K": 3016.88, "14K": 2346.32, "10K": 1676.18},
-                source="Kitco 'Gold Value by Purity' table, same page capture (5:44 a.m. ET, 2026-10-23)"),
+                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 5:44 a.m. ET page capture"),
 )
 
 
@@ -661,6 +666,9 @@ for _e in ENTRIES:
         if PRIOR_FLAG[_e["id"]] not in _e["flags"]:
             _e["flags"].append(PRIOR_FLAG[_e["id"]])
 
+_LIVE_N = sum(1 for _e in ENTRIES if _e["provenance"] == "live")
+_PRIOR_N = len(ENTRIES) - _LIVE_N
+
 DATA = dict(
     meta=dict(
         project="GOLD5 — Solid Gold Engagement Ring Research",
@@ -675,7 +683,7 @@ DATA = dict(
                           "filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed "
                           "from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py."),
         checker="python3 scripts/verify.py",
-        coverage=dict(live=12, prior=13, liveDate="2026-10-23", priorDate="2026-10-22"),
+        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate="2026-10-22"),
         archive=[dict(label="Session 638c9614 — research site at /docs/", path="docs/index.html"),
                  dict(label="Session 090bae73 — checklist guide", path="index-090bae73.html"),
                  dict(label="Session 37e8ff42 — dashboard snapshot", path="archive/session-37e8ff42/index.html"),

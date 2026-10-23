@@ -944,6 +944,59 @@ def verification_page():
 See the full report at <code>{esc(report.get('reportPath','data/check_report_v2.json'))}</code>.</div>"""
     else:
         rep_html = '<div class="note"><b class="title">Checker</b>Run <code>python3 scripts/verify.py</code> to produce the latest result. The command validates every row, every dollar figure and every internal link.</div>'
+    log = [
+        ("live", "2026-10-23", "https://www.kitco.com/charts/gold", "Spot bid 4,022.50; per gram 129.33; ask 4,024.50; purity table 24K 4,022.50 / 22K 3,687.43 / 18K 3,016.88 / 14K 2,346.32 / 10K 1,676.18; 5:44 a.m. ET"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639", "BN-195639: $1,000 Setting Price; stock 501130y14; 14K yellow; 1.80 mm; free overnight shipping / free returns"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257", "BN-203257: $870 Setting Price; stock 500000y14; 14K yellow; 1.90 mm"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871", "BN-195871: $1,800 Setting Price; stock 501410y14; 2.50 mm; 16 round; 1/4 ct. tw.; G-H / VS2-SI1"),
+        ("live", "2026-10-23", "https://www.bluenile.com/engagement-rings", "Gallery: BN-192506 $1,255; BN-195326 $1,500; BN-311132 $2,320 (Setting Price); 1,451 results"),
+        ("live", "2026-10-23", "https://www.bluenile.com/policies/returns", "30-day money-back; resized/engraved/custom/clearance excluded; two complimentary returns per year; RMA; $150 missing grading report; free resize +/- two sizes within 6 months"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-5882: $1,085; style U5882; 14k yellow; 5.00 g approximate; 2.9/2.3 mm"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold", "AL-170: $933; style U170; 4.80 g approximate; 3.20/2.40 mm"),
+        ("live", "2026-10-23", "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold", "AL-4426: $585; style NG4426; 3.58 g approximate"),
+        ("live", "2026-10-23", "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw", "AV-25893: $1,100.00; item R25893; 14K gold; 2.3 grams; 0.41 ctw; returns within 14 days"),
+        ("live", "2026-10-23", "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html", "JM-149700: Retail $6,041.00 / Special $3,020.00; 0.71 ctw; 14KT; 2.3 grams; 30-day Money Back Guarantee"),
+        ("live", "2026-10-23", "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/", "SGJ-B02561: '14ky, 4.7g, #B02561'; no price; Call (309) 452-1612 for current pricing"),
+        ("live", "2026-10-23", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry", "Karat + trademark rule ('if you don't see a trademark along with the karat mark, don't buy it'); solid gold means not hollow; plated/filled/vermeil definitions"),
+        ("live", "2026-10-23", "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23", "16 CFR Part 23, eCFR 'up to date as of 10/21/2026': §23.3 gold content, §23.4 vermeil, §23.10 quality marks, §23.18 weight representations"),
+        ("live", "2026-10-23", "https://www.govinfo.gov/link/uscode/15/295", "15 U.S.C. § 295: 3/1000 fineness tolerance on the tested part; 7/1000 for the whole article including solder"),
+        ("failed", "2026-10-23", "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", "HTTP 500 on every Etsy listing attempt today — no Etsy value was re-read; rows keep 2026-10-22 and are flagged FL-26")
+    ]
+    prior_log = [
+        ("2026-10-22", "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", "BE-1343: $750 setting only; 2 mm"),
+        ("2026-10-22", "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/", "BE-NADIA: $1,250 setting only; 1.8 mm; 143 reviews"),
+        ("2026-10-22", "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/", "BE-1343HH: $1,190 setting only; 14 accent diamonds 0.05 ct. tw."),
+        ("2026-10-22", "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/", "BE-SECRET: page served EUR EUR 1,250.00 - USD not confirmed (FL-08)"),
+        ("2026-10-22", "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", "ET-1151446373: 14K $969; 3.70 g; 7-day returns"),
+        ("2026-10-22", "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", "ET-576343849: sold at capture; $444.80 for 7 g 14K (case study, FL-01)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738", "BN-203738: $2,210 - not re-opened 2026-10-23 (FL-28)"),
+        ("2026-10-22", "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348", "BN-203348: $1,145; stock 502120y14; 2.40 mm - not re-opened 2026-10-23 (FL-28)"),
+        ("2026-10-22", "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8", "NIST SP 811 Appendix B.8 conversion factors (troy ounce)"),
+        ("2026-10-22", "https://www.law.cornell.edu/uscode/text/15/297", "15 U.S.C. § 297(b): trademark must be applied beside the quality mark"),
+        ("2026-10-22", "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges", "Federal right to dispute billing errors; credit-card protection"),
+    ]
+    def _logrow(u, what, date=None, status=None):
+        badge = ""
+        if status == "live":
+            badge = ' <span class="badge ok">live</span>'
+        elif status == "failed":
+            badge = ' <span class="badge bad">failed</span>'
+        return (f"<tr><td class=\"small\">{badge}{'<b>' + date + '</b><br>' if date else ''}"
+                f"<a href=\"{esc(u)}\" target=\"_blank\" rel=\"noopener\">{esc(u[:88])}{'…' if len(u)>88 else ''} ↗</a></td>"
+                f"<td class=\"small\">{esc(what)}</td></tr>")
+    log_rows = "".join(_logrow(u, what, d, st) for st, d, u, what in log)
+    prior_rows = "".join(_logrow(u, what, d) for d, u, what in prior_log)
+    corrections = [
+        ("Blue Nile × six settings re-read", "Six Blue Nile rows were re-read live on 2026-10-23 (three product pages, three gallery prices). <b>Every price was unchanged</b> from 2026-10-22 — $1,000 / $870 / $1,800 / $1,255 / $1,500 / $2,320."),
+        ("Allurez × three re-read", "AL-5882 $1,085 / 5.00 g, AL-170 $933 / 4.80 g and AL-4426 $585 / 3.58 g are unchanged. The old /product/ URL form now returns 404; the dataset already used the working /products/ URLs."),
+        ("Avianne, Jewelry Master, Solid Gold Jewelers", "All three pages re-read unchanged: $1,100 / 2.3 g (R25893), $3,020 special / 2.3 g, and 4.7 g with no published price (call for pricing)."),
+        ("Spot moved down", "Kitco bid moved from <b>$4,026.90/oz</b> (2026-10-22 7:26 p.m. ET, $129.47/g) to <b>$4,022.50/oz</b> (2026-10-23 5:44 a.m. ET, $129.33/g). Every metal value on the site is recomputed at the new quote; yesterday's quote is retained as dated history (FL-25)."),
+        ("Etsy unreachable", "All seven Etsy listing URLs returned <b>HTTP 500</b> on 2026-10-23. Their values keep the 2026-10-22 date, are labelled captured, and FL-26 was opened. Nothing was refreshed from memory or inference."),
+        ("Brilliant Earth pages returned navigation only", "The four Brilliant Earth product pages did not render their product block for the collector today. No value was read; FL-27 was opened and the rows keep their 2026-10-22 date."),
+        ("Two Blue Nile pages not reopened", "BN-203738 ($2,210) and BN-203348 ($1,145) were not individually re-opened today; their six siblings were and were unchanged, but that is not evidence for these two. FL-28 opened; rows keep the 2026-10-22 date."),
+        ("Earlier 'six negative tests' claim was wrong", "The previous README said the harness caught 6 injected errors, but <code>scripts/verify.py</code> contained no negative tests at all. Eight real negative self-tests (N1–N8) were added in this pass and all eight are caught. The old claim is recorded here rather than quietly deleted."),
+    ]
+    corr_rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td class=\"small\">{b}</td></tr>" for a, b in corrections)
     body = f"""
 <div class="page-head"><div class="eyebrow">Verification · pass of {esc(date_str())}</div>
 <h1>How every value was checked</h1>
