@@ -1,10 +1,10 @@
 # GOLD5 — Solid Gold Engagement Ring Research
 
-A research repo and static dashboard for buying a **gold engagement ring** that can actually be
+A research repository and static dashboard for buying a **gold engagement ring** that can actually be
 verified: karat, an explicit "solid gold" statement (not plated / vermeil / filled / overlay / tone),
 a hallmark with a **maker's mark** next to the karat stamp, weight in grams, a real seller with real
-contact details, a price compared with the gold it contains, a written return policy that covers
-resizing, credit-card payment, and an independent jeweller / XRF check on arrival.
+contact details, a sourced price, a written return policy, credit-card payment, and an independent
+jeweller / XRF check on arrival.
 
 **Live site:** <https://karagemop466-tech.github.io/GOLD5/> (GitHub Pages from `main`, path `/`)
 
@@ -13,146 +13,162 @@ resizing, credit-card payment, and an independent jeweller / XRF check on arriva
 **No price, weight, karat, hallmark, policy or date is recorded without a link to the official source
 page and the date it was read.** If a value cannot be confirmed it is **left blank and published on
 [Flagged for Review](https://karagemop466-tech.github.io/GOLD5/site/flagged.html)** — never guessed,
-estimated, averaged, copied from a search snippet, or carried forward as if it were current.
+estimated, averaged, copied from a search snippet, converted from another currency, or carried forward
+as if it were current. A seller's statement is labeled as a statement, not as an independent assay.
 
-Three mechanisms enforce it:
+The current canonical build enforces this in four ways:
 
-1. **Provenance on every row.** Each entry carries `checkedOn` and `provenance`.
-   `live` = re-fetched and read during a pass on the date shown; `prior` = read on `2026-10-22` and
-   **not** re-read since (a `prior` row must be labelled *captured 2026-10-22*, carry an explicit
-   "not re-fetched" note, and be itemised in FL-26/27/28 — the checker enforces all three). After pass 4
-   on 2026-10-23 **no row is `prior`**: all 25 carry a 2026-10-23 read, and the rows where the value
-   changed say so on the row and in the flags (FL-08, FL-26, FL-29).
-2. **Arithmetic is computed, never typed.** Fine gold = grams × karat fineness; metal value = fine gold
-   × the timestamped Kitco bid. The checker re-derives every figure from the inputs.
-3. **After every review pass, run the harnesses.** The pass is not finished until they are green:
+1. **Field-level provenance.** All 25 canonical rows were re-read on `2026-10-23`. Each row carries
+   `checkedOn`, `provenance`, an official URL, and an evidence ID/path. No canonical row is silently
+   carried as a prior capture. Historical quotes and observations remain explicitly dated.
+2. **A 46-check evidence ledger.** `data/live_check_bc4e36a1.json` contains 25 listing checks, 9
+   policy/contact checks, 11 official-reference checks and 1 Kitco spot check. The authoring script
+   compares observed price, grams, karat, solidity, hallmark, maker-mark and return fields with every
+   canonical row before emitting JSON. Human-readable excerpts are in `verification/evidence/bc4e36a1/`.
+3. **Computed arithmetic and visible conflicts.** Fine gold = exact grams × published fineness; metal
+   value = fine gold × the timestamped Kitco bid. No exact weight is inferred from the sold listing's
+   6–7 g range. BN-203738's 18K title/specification versus 14K Product Details conflict is shown as
+   **FL-30**, not silently resolved.
+4. **Security and hallucination hunting after every review.** The canonical checker, independent
+   audit, cross-site audit, current-evidence review, report checker, hallucination checker, planted
+   security tests, verified archive and dossier are all run before publication. Suspicious values stay
+   on Flagged for Review; a green script is not proof of a seller's physical claims.
 
-```bash
-python3 scripts/verify.py              # 21 checks (C1–C20 + N1–N8 negative self-tests)
-python3 scripts/audit_b1f2fe3b.py      # 6 cross-site security/anti-hallucination groups
-python3 tools/check_report.py          # /report/ + verification/data.json
-python3 tools/check_hallucinations.py  # archived /docs/ dataset
-cd verified && python3 scripts/verify.py   # session 84be683f suite (896 assertions)
-```
-
-## Status — 2026-10-23 pass 4 (session `arena-463d0ea2`)
+## Status — 2026-10-23 field-level pass (session `bc4e36a1`)
 
 | | |
 |---|---|
-| Listings | **25** rows from **13** sellers (21 engagement-ring rows, 3 bands, 1 sold case study); **22** priced, **8** with a published gram weight |
-| Re-read live | **25 of 25** rows carry a **2026-10-23** read from the seller's own page — 23 of them in pass 4, the other 2 earlier the same day |
-| Carried over | **0** rows still depend on a 2026-10-22 figure; none were silently re-dated |
-| Spot used | Kitco bid **$3,996.10/oz = $128.48/g** at **2026-10-23 4:10 p.m. ET** (page body prints $3,995.50 / $128.46 — FL-25). The morning quote ($4,022.50 / $129.33) is kept as dated history |
-| Flags | **29** (24 open, 5 resolved — FL-07, FL-24, FL-26, FL-27, FL-28). New: **FL-29** (one listing sold out); FL-26 resolved |
-| Official references | **11** (FTC consumer guide, 16 CFR Part 23, 15 U.S.C. § 295 and § 297, NIST, LBMA, Etsy Purchase Protection, JVC, ReportFraud, FTC credit cards) |
-| Harness | `scripts/verify.py` **PASS — 21/21, 0 failed, 8/8 negative self-tests**; plus the other 8 harnesses, all PASS |
+| Canonical listings | **25** rows from **13** sellers: 21 engagement-ring rows, 3 bands, 1 sold case study |
+| Displayed prices | **22** rows, including the clearly labeled sold-listing display; 3 price cells remain blank (2 EUR-only Brilliant Earth pages and Solid Gold Jewelers) |
+| Exact weights | **7** rows; **18** are blank or have only an unsupported range. No range is converted into an exact weight |
+| Documentation | **9** explicit solid-gold statements, **2** karat-stamp claims, **1** seller-stated maker's mark, **21** read return policies |
+| Spot used | Kitco panel bid **$3,996.10/oz = $128.48/g**, source panel `16:12 NY`, prices stated as of **2026-10-23 4:10 p.m. ET**. Separate body text showed **$3,995.50/oz = $128.46/g** and is disclosed, not mixed into calculations |
+| Flags | **30** total: **24 open**, **6 resolved**. Resolved flags remain visible for the audit trail |
+| Evidence | **46/46** current checks read; all 25 canonical listings have official links and evidence paths |
+| Canonical checker | **PASS — 22/22**, including **10/10** injected-error tests |
 
-**What changed in pass 4.**
+### Material corrections in this pass
 
-1. **The spot was re-read in the afternoon and fell $26.40/oz.** Every fine-gold, metal-value and
-   price-to-metal figure on the site was recomputed by the build script at $128.48/g. Both the morning
-   and afternoon quotes are published with their timestamps.
-2. **All seven Etsy listings opened** (pass 3 had been refused with HTTP 500). One price was **wrong and
-   is corrected**: ET-4366425533 is **$546.09**, not $547.26. The old figure stays in the audit trail.
-3. **One listing is sold out.** ET-576343849 (the 7 g case-study band) now shows "Sorry, this item is
-   sold out"; it carries a **SOLD OUT** badge and FL-29, and its $444.80 is labelled a dated observation.
-4. **Brilliant Earth served EUR for the Freesia** (€835.00) on a mixed-currency page minutes after the
-   Nadia page served USD normally, so BE-1343 now carries FL-08 and its $750 is labelled as the 5:44 a.m.
-   reading. **No currency is ever converted in this project.**
-5. **Two sessions re-read the same spot page within the hour.** Session `3bf55199` independently
-   fetched the 4:10 p.m. ET Kitco page and arrived at the same $3,996.10 / $128.48. This pass keeps that
-   quote once, credits both reads in the prior chain, and adds what the other pass did not cover: the
-   seven Etsy listings, the price correction, the sold-out listing and the Brilliant Earth EUR render.
-6. **A stale derived number was removed from prose.** A note used to hard-code "~$529" of metal value
-   computed at an older spot; the note now points at the computed column. The hallucination sweep
-   re-derived every hand-written dollar figure in the dataset the same way — one was wrong, and it is fixed.
-
-## The thesis holds
-
-**A 14K or 18K stamp does not prove purity, and in this dataset no listing is documented well enough to
-buy without asking the seller for more.** 0 of 25 rows state a maker's mark; 17 publish no gram weight;
-16 never say "solid gold"; 7 have no verified return policy; no listing offers an XRF test. The dashboard
-leads with that finding rather than with a "best buy".
+- Kitco calculations use the new `$3,996.10/oz` / `$128.48/g` panel quote; prior quotes remain dated
+  history. Every derived metal value is regenerated.
+- Brilliant Earth `BE-1343` serves **€835** and `BE-1343HH` serves **€1,350**; their USD cells are blank.
+  `BE-NADIA` is **$1,250** and `BE-SECRET` is now directly **$1,090** USD. No EUR-to-USD conversion is made.
+- Etsy `ET-4366425533` is **$546.09–$2,404.96** for 14K options; the unrelated header compare-at value
+  is blank. Other variant compare-at values are retained only when they belong to the same displayed
+  base variant.
+- Etsy `ET-576343849` is explicitly **sold out** and displays **$420** (original **$525**). Its title
+  says 7 g but the description says a postal scale alternates between **6–7 g**, so exact grams,
+  fine-gold weight, metal value and the former below-metal conclusion are withdrawn. The seller's
+  14K/maker's-mark statement is recorded as a claim only.
+- Return and warranty wording was corrected from the official Blue Nile, Brilliant Earth and Allurez
+  policy pages, including Brilliant Earth's `$40` engraving-removal charge and Allurez's new-stone
+  cost exclusion.
+- The unified 38-row export and Master Audit now use the primary spot for their primary-spot columns;
+  the older recheck quote is separately labeled history.
 
 ## What the site contains
 
 | Page | Contents |
 |---|---|
-| `index.html` | Dashboard: NO HALLUCINATIONS panel, spot with timestamp, bottom-line verdict, stat cards, price/metal findings, category cards and the best-documented rows |
-| `site/categories.html` | **Category index** (new): seven views over the same 25 rows with counts, price ranges and links |
-| `site/category-*.html` | **Category subpages** (new): solitaires, halo & pavé, 18K, complete rings, settings only, bands, case study — same table layout and source links, no value changed |
-| `site/listings.html` | All 25 rows: price, karat, grams, fine gold, metal value, price ÷ metal, solid-gold wording, hallmark + maker's mark, return policy, check date + provenance badge, flags — and a SOLD OUT badge on the one listing that is no longer buyable |
-| `site/gold-price.html` | Timestamped 2026-10-23 quote, dated prior-day quotes, per-purity values (10K–24K), raw-gold table by weight |
-| `site/calculator.html` | Live gold calculator: grams × karat × spot → fine gold, metal value, price ÷ metal, verdict |
-| `site/checklist.html` | The 12-point buying checklist, each point tied to an official source and to what the dataset shows |
-| `site/sellers.html` | 13 sellers: contact, returns, warranty, payment, reputation, flags |
-| `site/analysis.html` | Median markups, the below-metal case, documentation ranking, completeness scorecard, seller concentration |
-| `site/flagged.html` | All 29 flags (24 open, 5 resolved), each with detail, affected rows and links |
-| `site/sources.html` | Every source used, with what it was used for and the check date |
-| `site/verification.html` | Method, today's fetch log, the earlier captures, corrections made, checker result, unverified list |
-| `site/master-audit.html` | Session b1f2fe3b's cross-session audit + XRF/stone-deduction calculator (dated 2026-10-22, preserved) |
+| `index.html` | Clean landing dashboard: prominent no-hallucinations rule, current spot, findings, documentation gaps, category links and source-backed weighted rows |
+| `site/categories.html` | Category index: seven labeled views over the same 25 rows with counts, price ranges and links |
+| `site/category-*.html` | Solitaires, halo & pavé, 18K, complete rings, settings only, bands and the sold case study; same readable table and official links |
+| `site/listings.html` | All 25 rows: displayed price/basis, karat, exact grams or blank reason, fine-gold and metal-value calculations, solidity, hallmark/maker statements, returns, check date, evidence and flags |
+| `site/gold-price.html` | Timestamped current and historical quotes, Kitco purity values and computed raw-gold table |
+| `site/calculator.html` | Browser-only grams × karat × spot calculator; only exact-weight rows can be pre-filled |
+| `site/checklist.html` | The 12-point buying checklist with official guidance and current dataset gaps |
+| `site/sellers.html` | 13 sellers: contact, return terms, warranty, payment, reputation and flags |
+| `site/analysis.html` | Recomputed ratios, medians, an empty-safe below-metal screen, completeness and seller concentration |
+| `site/flagged.html` | All 30 flags, affected rows, source links, resolved corrections and remaining review work |
+| `site/sources.html` | Source registry grouped by official guidance, gold price, seller policy, reputation and listing |
+| `site/verification.html` | Ledger-driven 46-check log, excerpts, evidence files, corrections, checker commands and unresolved fields |
+| `site/master-audit.html` | Updated unified 38-row cross-session audit and XRF/stone-deduction calculator; primary and historical spot labels are distinct |
 
-**Prices change** — re-check before buying. The original 2026-10-22 quotes are retained as dated
-history and are never used in a calculation.
+## Build and verification pipeline
 
-## Build pipeline
-
+```text
+scripts/author_data.py        -> site/assets/data.json       (ledger-validated canonical data)
+scripts/site_categories.py    -> category rules shared by builder and checker
+scripts/build_site.py         -> index.html + canonical site/*.html + data.js
+scripts/audit_b1f2fe3b.py     -> unified 38-row catalog + cross-site audit report
+scripts/review_current.py     -> deterministic offline current-evidence review
+scripts/verify.py             -> data/check_report_v2.json   (22 checks, exit 1 on failure)
+scripts/independent_audit.py  -> independent arithmetic/evidence/money audit
 ```
-scripts/author_data.py        ->  site/assets/data.json       (single source of truth)
-scripts/site_categories.py    ->  category rules shared by builder and checker
-scripts/build_site.py         ->  index.html + site/*.html    (static, stdlib only)
-scripts/verify.py             ->  data/check_report_v2.json   (21 checks, exit 1 on failure)
-```
+
+Run the canonical rebuild and every review harness from the repository root:
 
 ```bash
-python3 scripts/author_data.py && python3 scripts/build_site.py && python3 scripts/verify.py
+python3 scripts/author_data.py
+python3 scripts/build_site.py
+python3 scripts/verify.py
+python3 scripts/independent_audit.py
+python3 scripts/audit_b1f2fe3b.py
+python3 scripts/review_current.py --check
+python3 tools/check_hallucinations.py
+python3 tools/check_report.py
+python3 tools/security_test.py
+(cd verified && python3 scripts/verify.py)
+python3 dossier/scripts/build.py
 ```
 
-No frameworks, no external fonts, no third-party JavaScript, no network calls from the site.
+Latest results from this pass:
+
+| Harness | Result |
+|---|---|
+| `scripts/verify.py` | **PASS 22/22**, C1–C21 plus N1–N10; 19 pages, 65 registered external URLs |
+| `scripts/independent_audit.py` | **PASS 11/11**; all 25 rows' price/gram/karat tokens backed by evidence |
+| `scripts/audit_b1f2fe3b.py` | **PASS 6/6 groups**; 38 unified rows, 103 HTML pages, 4,186 local links, 4/4 injected errors caught |
+| `scripts/review_current.py --check` | **PASS**; 264 records, 92 exact source URLs, 6/6 negative tests |
+| `tools/check_hallucinations.py` | **166 passed, 0 FAIL, 0 WARN**; one informational duplicate-weight note retained for review |
+| `tools/check_report.py` | **PASS**, 1,649 checks, 0 failures/warnings |
+| `tools/security_test.py` | **9/9 planted errors caught**, clean-state PASS |
+| `verified/scripts/verify.py` | **896 assertions, 0 failures** |
+| `dossier/scripts/build.py` | **18/18 checks**, 58 rows, 23 pages, 1,104 references, 0 broken links |
+
+The archived informational note concerns two different historical listings that both state 2.3 g / 14K;
+it is not hidden or converted into a failure. Continue checking it against each seller's own evidence.
 
 ## Evidence for this pass
 
-- `data/live_check_2026-10-23.json` — every URL attempted in the 5:44 a.m. ET pass, its status (`ok`,
-  `nav_only`, `http_500`, `not_refetched`), the value read, and the failure reason.
-- `data/live_check_3bf55199.json` — the parallel 4:10 p.m. ET intraday re-check by session `3bf55199`
-  (Kitco $3,996.10 / $128.48 plus four listings re-confirmed unchanged). Its spot figures matched this
-  pass independently, which is why the merge kept one quote rather than two.
-- `data/live_check_463d0ea2.json` — **this pass**: 22 URLs attempted (20 read, 1 served EUR, 1 sold out,
-  0 failures), with the value read and the change against the 2026-10-22 dataset.
-- `data/evidence/p4_*.txt` — verbatim pass-4 excerpts for Kitco, Blue Nile, Allurez/Avianne/Jewelry
-  Master/Solid Gold Jewelers, Brilliant Earth and all seven Etsy listings.
-- `verification/evidence/v2/*.txt` — verbatim excerpts for Kitco, Blue Nile (products + returns),
-  Allurez, Avianne, The Jewelry Master, Solid Gold Jewelers, FTC, eCFR and 15 U.S.C. § 295.
-- `docs/verification/final-integration-2026-10-23.md` — the integration memo: what was checked, what
-  changed, what could not be re-checked, and every checker result.
-- `COORDINATION.md` — the shared board: this session's claim, each task's status, the sources used and
-  the irregularities logged.
+- `data/live_check_bc4e36a1.json` — canonical 46-check ledger, observed fields, official URLs,
+  excerpts and nine explicit corrections.
+- `verification/evidence/bc4e36a1/README.md` — scope and no-hallucinations method.
+- `verification/evidence/bc4e36a1/retailers.md` — Blue Nile, Brilliant Earth, Allurez, Avianne,
+  Jewelry Master, Solid Gold Jewelers and policy/contact excerpts.
+- `verification/evidence/bc4e36a1/etsy.md` — all seven Etsy listing reads, variants, returns and the
+  sold-out detail page.
+- `verification/evidence/bc4e36a1/spot-and-references.md` — Kitco and all 11 official/trusted references.
+- `data/live_check_77405ae3.json` and other dated ledgers — preserved history, not silently treated as
+  the current pass.
+- `data/live_check_463d0ea2.json` and `data/live_check_ea49572b.json` — later parallel pass-4 reads;
+  their evidence is retained alongside this ledger. They independently confirm the $1,090 BE-SECRET
+  USD read, the Etsy price/availability changes and the BE-1343/BE-1343HH EUR renders. Where a later
+  record proposed an unsupported exact sold-band weight, the canonical row remains blank.
+- `data/evidence/p4_*.txt`, `docs/verification/pass4-2026-10-23.md` and
+  `docs/verification/pass4-ea49572b-2026-10-23.md` — the parallel sessions' verbatim excerpts and memos.
+- `docs/verification/consolidation-2026-10-23.md` — generated canonical checker report.
+- `COORDINATION.md` — shared task board, claims, integration results, irregularities and publication record.
 
-## Archived deliverables (preserved, not modified)
+## Refreshing data safely
 
-| Session | Delivery | Where |
-|---|---|---|
-| `638c9614` | 11 rings + sellers/spot/flags, evidence transcripts, checker + builder | `data/`, `docs/`, `tools/` |
-| `090bae73` | 14-page checklist-format guide | `index-090bae73.html`, `pages/`, `guide/`, `assets/` |
-| `37e8ff42` | First root dashboard (14 listings, 8 pages) | `archive/session-37e8ff42/` |
-| `93032b31` | 24-row pass-2 dashboard | `archive/session-93032b31/` |
-| `84be683f` | Generated 11-page site + its own builder/checker and CI | `verified/` |
-| `60c4b9c3` | Report site, evidence and security tests | `report/`, `verification/` |
-| `b1f2fe3b` | Master cross-session audit (38 rows), statutory memos, 12-check audit | `site/master-audit.html`, `scripts/audit_b1f2fe3b.py`, `data/b1f2fe3b_*.json` |
-| `3e3fae49` | 58-row dossier site with its own 18-check build | `dossier/` |
-| `7cca80c9` | 25-row consolidated dashboard and 15-check harness (base of this pass) | root `index.html`, `site/`, `scripts/` |
-| `a255f011` | **This pass**: 2026-10-23 re-verification, 28 flags, category pages, 21-check harness | root site, `scripts/`, `verification/evidence/v2/` |
+1. Re-open each official listing and policy page. Record the exact URL, date, observed fields and
+   excerpt in a new or updated evidence ledger before changing canonical values.
+2. Never infer a missing price, weight, hallmark, return window or currency conversion. Leave it blank,
+   add the appropriate flag, and publish the manual-review link.
+3. Update `scripts/author_data.py` only from that evidence. Its ledger comparison must pass before it
+   can emit JSON. Keep sold, setting-only, from/variant and complete-ring price bases distinct.
+4. Rebuild all derived outputs, run every harness above, inspect the diff for stale claims, and run the
+   security/hallucination checks again after any correction.
+5. Commit small logical changes, run `git pull --rebase` before each push, update `COORDINATION.md`,
+   and record the PR/merge/Pages result. Flagged research items do not block merging; a broken site does.
 
-## Refreshing data
+## Archived deliverables (preserved)
 
-1. Re-open each listing and policy page; record the value, the exact quote, the URL and the date in
-   `scripts/author_data.py`. Never overwrite a value with an estimate.
-2. Re-read an entry only if you actually see the value on the page; otherwise leave its old date and
-   add it to FL-26/27/28.
-3. `python3 scripts/author_data.py && python3 scripts/build_site.py && python3 scripts/verify.py`.
-4. Commit the regenerated `index.html`, `site/*.html`, `site/assets/data.json`, `site/assets/data.js`,
-   `data/check_report_v2.json` and the report in `docs/verification/`.
-5. Log the pass in `COORDINATION.md`.
+Earlier deliveries remain in `docs/`, `dossier/`, `report/`, `verified/`, `guide/`, `review/` and
+`archive/` with their own evidence and checkers. They are historical or parallel views, not a reason
+to overwrite the canonical evidence trail. The current-evidence `review/` output is regenerated when
+its enumerated input URLs change; its blank-current-fields methodology remains intentionally separate.
 
 ---
 

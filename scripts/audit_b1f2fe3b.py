@@ -83,7 +83,8 @@ def make_metrics(karat, grams, price, usd_per_g, fineness_map):
     pure_dwt = round(grams / DWT_TO_GRAMS, 4) if grams is not None else None
     melt_usd = round(pure_g * usd_per_g, 2) if pure_g is not None else None
     melt_usd_recheck = round(pure_g * 129.47, 2) if pure_g is not None else None
-    ratio = round(price / melt_usd_recheck, 2) if (price is not None and melt_usd_recheck and melt_usd_recheck > 0) else None
+    ratio = round(price / melt_usd, 2) if (price is not None and melt_usd and melt_usd > 0) else None
+    ratio_recheck = round(price / melt_usd_recheck, 2) if (price is not None and melt_usd_recheck and melt_usd_recheck > 0) else None
     nom_ppt = round((karat / 24.0) * 1000, 2) if karat else None
     min_ppt_no_solder = round(nom_ppt - 3.0, 2) if nom_ppt is not None else None
     min_ppt_with_solder = round(nom_ppt - 7.0, 2) if nom_ppt is not None else None
@@ -98,6 +99,7 @@ def make_metrics(karat, grams, price, usd_per_g, fineness_map):
         "rawGoldMeltUsdAtPrimarySpot": melt_usd,
         "rawGoldMeltUsdAtRecheckSpot": melt_usd_recheck,
         "priceToMeltRatio": ratio,
+        "priceToMeltRatioAtRecheckSpot": ratio_recheck,
     }
 
 
@@ -125,10 +127,10 @@ def build_unified_catalog(root_data):
         comp = make_metrics(e.get("karat"), grams, price, usd_per_g, fineness_map)
         if comp.get("priceToMeltRatio") is not None and comp["priceToMeltRatio"] < 1.0 and "price-below-metal-value" not in flags:
             flags.append("price-below-metal-value")
-        srcs = list(filter(None, [e["url"], e.get("priceSourceUrl"), e.get("returnUrl")]))
+        srcs = list(dict.fromkeys(filter(None, [e["url"], e.get("priceSourceUrl"), e.get("returnUrl")])))
         unified_entries.append({
             "id": e["id"],
-            "originSession": "7cca80c9+37e8ff42+638c9614",
+            "originSession": "7cca80c9+37e8ff42+638c9614+bc4e36a1",
             "name": e["name"],
             "sellerId": e["sellerId"],
             "sellerName": seller_names.get(e["sellerId"], e["sellerId"]),
@@ -144,8 +146,11 @@ def build_unified_catalog(root_data):
             "priceLabel": e.get("priceNote") or e.get("priceLabel") or e.get("priceBasis"),
             "widthMm": e.get("widthMm"),
             "hallmarkClaim": e.get("hallmarkQuote") or e.get("hallmark") or "Not stated on product page",
-            "makerMark": e.get("makerMark"),
-            "returnPolicy": e.get("returnText") or e.get("returnPolicy"),
+            "makerMark": e.get("makerMark") or ("Seller states a maker's mark; see the quoted listing evidence" if e.get("makerMarkStated") else None),
+            "metalConflict": e.get("metalConflict"),
+            "evidenceId": e.get("evidenceId"),
+            "evidencePath": e.get("evidencePath"),
+            "returnPolicy": e.get("returns") or e.get("returnText") or e.get("returnPolicy"),
             "returnUrl": e.get("returnUrl"),
             "payment": e.get("payment"),
             "reviewScore": e.get("reviewScore"),
@@ -310,7 +315,7 @@ def build_unified_catalog(root_data):
             "totalEntries": len(unified_entries),
             "entriesWithVerifiedGrams": sum(1 for x in unified_entries if x["grams"] is not None),
             "entriesWithExplicitSolidGold": sum(1 for x in unified_entries if x["explicitSolidGoldStated"]),
-            "entriesWithVerifiedHallmarkAndMakerMark": 0,
+            "entriesWithVerifiedHallmarkAndMakerMark": sum(1 for x in unified_entries if x.get("makerMark") and x.get("hallmarkClaim") and "not stated" not in x["hallmarkClaim"].lower()),
         },
         "entries": unified_entries,
     }
@@ -349,6 +354,8 @@ def validate_entry_list(entries):
             errs.append(f"S3: {eid} has blank grams without no-gram-weight/F-WEIGHT flag")
         if e.get("priceUsd") is None and not ({"no-price", "FL-13", "F-SGJ-PRICE", "G-PRICE-EUR", "G-PRICE-BLANK-CALL", "G-PRICE-BLANK-SOLD", "F-010"} & flags):
             errs.append(f"S3: {eid} has blank priceUsd without no-price flag")
+        if e.get("metalConflict") and "FL-30" not in flags:
+            errs.append(f"S3: {eid} has a metal conflict without FL-30")
         comp = e.get("computed") or {}
         if e.get("grams") is not None and e.get("karat") and e.get("priceUsd") is not None:
             ratio = comp.get("priceToMeltRatio")
@@ -376,6 +383,7 @@ def run_audit():
 
     # S4: Spot & NIST Metrology math
     spot_checks = [
+        ("Kitco current panel", root_data["spot"]["primary"]["usdPerOz"], root_data["spot"]["primary"]["usdPerGram"]),
         ("Kitco 7:10pm EDT primary", 4025.00, 129.41),
         ("Kitco 7:26pm EDT re-check", 4026.90, 129.47),
         ("APMEX 11:02am ET cross-check", 4077.60, 131.10),

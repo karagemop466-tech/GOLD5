@@ -1,25 +1,25 @@
 {
  "ok": true,
- "passed": 21,
+ "passed": 22,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-23 20:31 UTC",
+ "ranAt": "2026-10-23 20:45 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 29 flags, 11 references"
+   "detail": "25 entries, 13 sellers, 30 flags, 11 references"
   },
   {
    "id": "C2",
    "ok": true,
-   "detail": "25 listings have an https official-source URL and a dated check (2026-10-22 or 2026-10-23)"
+   "detail": "25 listings have an https official-source URL and a dated check (data as of 2026-10-23)"
   },
   {
    "id": "C3",
    "ok": true,
-   "detail": "every blank is covered by a flag"
+   "detail": "every blank and source conflict is covered by a flag"
   },
   {
    "id": "C4",
@@ -39,12 +39,12 @@
   {
    "id": "C7",
    "ok": true,
-   "detail": "every external link (66 registered URLs) is recorded in the dataset"
+   "detail": "every external link (65 registered URLs) is recorded in the dataset"
   },
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (233 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (229 allowed values)"
   },
   {
    "id": "C9",
@@ -84,7 +84,7 @@
   {
    "id": "C16",
    "ok": true,
-   "detail": "provenance: all 25 rows carry checkedOn=2026-10-23 and provenance=live"
+   "detail": "provenance: 25 live 2026-10-23 + 0 prior rows, each prior row dated, noted and flagged"
   },
   {
    "id": "C17",
@@ -107,9 +107,14 @@
    "detail": "counts and row provenance labels match the dataset on all 25 listing rows"
   },
   {
-   "id": "N1-N8",
+   "id": "C21",
    "ok": true,
-   "detail": "8/8 injected errors caught by the rules they target"
+   "detail": "46-check evidence ledger covers every row and agrees with canonical observed values"
+  },
+  {
+   "id": "N1-N10",
+   "ok": true,
+   "detail": "10/10 injected errors caught by the rules they target"
   }
  ]
 }

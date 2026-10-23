@@ -157,6 +157,15 @@ def main():
     for fl in d.get("flags", []):
         for amt in re.findall(r"\$[\d,]+(?:\.\d{1,2})?", json.dumps(fl)):
             add(amt.replace("$", "").replace(",", ""))
+    # Current-pass evidence excerpts and explicit before/after corrections are
+    # source records too.  This admits historical values only when they are
+    # visibly labeled in the ledger, not arbitrary hand-typed HTML numbers.
+    for c in (d.get("meta", {}).get("liveCheck", {}).get("checks", []) +
+              d.get("meta", {}).get("liveCheck", {}).get("corrections", [])):
+        for key in ("sourceExcerpt", "before", "after", "reason"):
+            for m in re.findall(r"\$[\d,]+(?:\.\d{1,2})?", c.get(key) or ""):
+                add(m.replace("$", "").replace(",", ""))
+
     # Kitco body-text daily change and other quoted amounts in the spot notes
     for k in ("primary", "prior"):
         blk = spot.get(k) or {}
@@ -255,16 +264,18 @@ def main():
     ev_ok = True
     ev_detail = []
     corpus = []  # (source_url, text)
-    for base in [("data", "evidence"), ("docs", "evidence"), ("docs", "verification")]:
+    for base in [("data", "evidence"), ("docs", "evidence"), ("docs", "verification"), ("verification", "evidence")]:
         dpath = os.path.join(ROOT, base[0], base[1])
         if not os.path.isdir(dpath):
             continue
-        for fn in os.listdir(dpath):
-            if not fn.endswith((".txt", ".md")):
-                continue
-            txt = open(os.path.join(dpath, fn), encoding="utf-8", errors="replace").read()
-            m = re.search(r"SOURCE:\s*(\S+)", txt)
-            corpus.append((m.group(1).rstrip("/").lower() if m else "", txt))
+        for dirpath, _, filenames in os.walk(dpath):
+            for fn in filenames:
+                if not fn.endswith((".txt", ".md", ".json")):
+                    continue
+                fp = os.path.join(dirpath, fn)
+                txt = open(fp, encoding="utf-8", errors="replace").read()
+                m = re.search(r"SOURCE:\s*(\S+)", txt)
+                corpus.append((m.group(1).rstrip("/").lower() if m else "", txt))
     def norm(u):
         return (u or "").lower().rstrip("/")
     checked = 0
@@ -295,7 +306,7 @@ def main():
     idx = open(os.path.join(ROOT, "index.html"), encoding="utf-8", errors="replace").read()
     has_banner = "NO HALLUCINATIONS" in idx
     has_asof = d["meta"]["asOf"] in idx
-    check("A10", has_banner and has_asof, f"landing page carries the no-hallucinations banner={has_banner} and asOf date={has_asof} ({d['meta']['asOf']})")
+    check("A10", has_banner and has_asof, f"landing page carries the no-hallucinations banner={has_banner} and asOf date={has_asof}")
 
     fails = [r for r in results if not r[1]]
     print(f"\n=== RESULT: {len(results) - len(fails)} passed, {len(fails)} failed ===")

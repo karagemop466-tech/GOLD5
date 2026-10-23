@@ -6,13 +6,15 @@ scripts/build_site.py and scripts/verify.py. This script exists so the provenanc
 comments below travel with the data.
 
 PROVENANCE KEY
-  live   = re-fetched and read by session 7cca80c9 on 2026-10-22 (this pass)
-  prior  = captured live by session 37e8ff42 / 638c9614 on 2026-10-22 (same day)
-No value below is estimated or inferred. Blank = null and flagged.
+  live   = re-fetched and read by session bc4e36a1 on 2026-10-23 (this pass)
+  prior  = an older dated observation, never presented as current
+No value below is estimated or inferred. Blank = null and flagged. The build also
+compares every listing with data/live_check_bc4e36a1.json before emitting JSON.
 """
 import json, os
 
-OUT = os.path.join(os.path.dirname(__file__), "..", "site", "assets", "data.json")
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+OUT = os.path.join(ROOT, "site", "assets", "data.json")
 
 BN_RETURNS = ("30 days from shipment date, original unworn condition, full refund or exchange. "
               "NOT eligible: personalized jewelry, custom orders, engraved items, items resized after "
@@ -21,9 +23,10 @@ BN_RETURNS = ("30 days from shipment date, original unworn condition, full refun
               "grading report is not returned. One free resize (up or down two sizes) within 6 months "
               "if the design permits.")
 BE_RETURNS = ("Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at "
-              "brilliantearth.com/30-Day-Returns/ on 2026-10-23: returns accepted within 30 days of receipt, unworn "
-              "and in original condition. Not eligible for return or exchange: engraved items (a $40 fee applies), "
-              "personalized, custom, altered, resized or modified items, and repairs.")
+              "brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item "
+              "being available for shipment or pickup, unworn and in original condition. Engraved rings may be "
+              "returned with a $40 engraving-removal charge; personalized/custom and other published exclusions "
+              "apply. Phone return instructions and a free FedEx label are published.")
 AL_RETURNS = ("Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or "
               "altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, "
               "appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be "
@@ -36,8 +39,8 @@ def e(**kw):
         karat=14, metalColor="Yellow Gold", price=None, compareAt=None, priceBasis="setting",
         priceNote=None, priceSourceUrl=None, grams=None, gramsText=None, gramsNote=None,
         widthMm=None, solidStated=False, solidQuote=None, hallmarkStated=False, hallmarkQuote=None,
-        makerMarkStated=False, returns=None, returnUrl=None, returnsVerified=False,
-        url=None, sources=[], checkedOn="2026-10-23", provenance="live", flags=[], notes=[],
+        makerMarkStated=False, metalConflict=None, returns=None, returnUrl=None, returnsVerified=False,
+        evidenceId=None, evidencePath=None, url=None, sources=[], checkedOn="2026-10-23", provenance="live", flags=[], notes=[],
         availability=None,
     )
     base.update(kw)
@@ -46,23 +49,21 @@ def e(**kw):
     return base
 
 ENTRIES = [
-    # ---------------- Blue Nile settings (all prices re-read 2026-10-22 this pass) ----------------
+    # ---------------- Blue Nile settings (all prices re-read 2026-10-23 this pass) ----------------
     e(id="BN-192506", name="Petite Hidden Halo Solitaire Plus Diamond Engagement Ring, 14K Yellow Gold",
       short="Petite Hidden Halo Solitaire Plus", sellerId="bluenile", karat=14, metalColor="Yellow Gold",
       price=1255, priceBasis="setting", priceNote="$1,255 setting price (center diamond extra); stock 502250y14",
       url="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
-      priceSourceUrl="https://www.bluenile.com/engagement-rings",
       returns=BN_RETURNS, returnUrl="https://www.bluenile.com/policies/returns", returnsVerified=True,
-      notes=["Price re-read on the Blue Nile engagement-rings listing page this pass.",
+      notes=["Direct product page re-read live on 2026-10-23; setting price and product specifications recorded.",
              "Lifetime warranty applies only to items priced $1,000 or more."],
       flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21", "FL-06"]),
     e(id="BN-195639", name="Petite Solitaire Engagement Ring, 14k Yellow Gold",
       short="Petite Solitaire", sellerId="bluenile", karat=14, metalColor="Yellow Gold",
       price=1000, priceBasis="setting", priceNote="$1,000 setting price (center diamond extra)",
       url="https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
-      priceSourceUrl="https://www.bluenile.com/engagement-rings",
       returns=BN_RETURNS, returnUrl="https://www.bluenile.com/policies/returns", returnsVerified=True,
-      notes=["Price re-read on the Blue Nile engagement-rings listing page this pass."],
+      notes=["Direct product page re-read live on 2026-10-23; setting price and product specifications recorded."],
       flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21", "FL-06"]),
     e(id="BN-203257", name="Classic Four Prong Solitaire Engagement Ring, 14K Yellow Gold",
       short="Classic Four Prong Solitaire", sellerId="bluenile", karat=14, metalColor="Yellow Gold",
@@ -75,9 +76,8 @@ ENTRIES = [
       short="Riviera Pavé 1/6 ct. tw.", sellerId="bluenile", karat=14, metalColor="White Gold",
       price=1500, priceBasis="setting", priceNote="$1,500 setting price (center diamond extra)",
       url="https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
-      priceSourceUrl="https://www.bluenile.com/engagement-rings",
       returns=BN_RETURNS, returnUrl="https://www.bluenile.com/policies/returns", returnsVerified=True,
-      notes=["Price re-read on the Blue Nile engagement-rings listing page this pass."],
+      notes=["Direct product page re-read live on 2026-10-23; setting price and product specifications recorded."],
       flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21"]),
     e(id="BN-195871", name="French Pavé Diamond Engagement Ring, 14k Yellow Gold (1/4 ct. tw.)",
       short="French Pavé 1/4 ct. tw.", sellerId="bluenile", karat=14, metalColor="Yellow Gold",
@@ -90,18 +90,17 @@ ENTRIES = [
       short="Criss Cross Solitaire (James Allen)", sellerId="bluenile", karat=18, metalColor="Yellow Gold",
       price=2320, priceBasis="setting", priceNote="$2,320 setting price (center diamond extra)",
       url="https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
-      priceSourceUrl="https://www.bluenile.com/engagement-rings",
       returns=BN_RETURNS, returnUrl="https://www.bluenile.com/policies/returns", returnsVerified=True,
-      notes=["Price re-read on the Blue Nile engagement-rings listing page this pass."],
+      notes=["Direct product page re-read live on 2026-10-23; setting price and product specifications recorded."],
       flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21"]),
-    e(id="BN-203738", name="Floral Marquise Diamond Engagement Ring, 18k White Gold",
-      short="Floral Marquise", sellerId="bluenile", karat=18, metalColor="White Gold",
-      price=2210, priceBasis="setting", priceNote="$2,210 setting price (center diamond extra)",
+    e(id="BN-203738", name="Floral Marquise Diamond Engagement Ring — metal description conflict",
+      short="Floral Marquise — metal conflict", sellerId="bluenile", karat=18, metalColor="White Gold (title/specification)",
+      price=2210, priceBasis="setting", priceNote="$2,210 setting price (center diamond extra); metal description is internally conflicting (FL-30)",
       url="https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
-      priceSourceUrl="https://www.bluenile.com/engagement-rings",
+      metalConflict="Title and specification say 18K White Gold; Product Details say 14K Yellow Gold.",
       returns=BN_RETURNS, returnUrl="https://www.bluenile.com/policies/returns", returnsVerified=True,
-      notes=["Price re-read on the Blue Nile engagement-rings listing page this pass."],
-      flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21"]),
+      notes=["Direct product page re-read live: $2,210 Setting Price; title/specification 18K White Gold; Product Details 14K Yellow Gold (FL-30)."],
+      flags=["FL-03", "FL-15", "FL-14", "FL-05", "FL-21", "FL-30"]),
     e(id="BN-203348", name="Classic Simple Solitaire Engagement Ring, 14K Yellow Gold",
       short="Classic Simple Solitaire", sellerId="bluenile", karat=14, metalColor="Yellow Gold",
       price=1145, priceBasis="setting", priceNote="$1,145 setting price (center diamond extra); stock 502120y14",
@@ -113,13 +112,12 @@ ENTRIES = [
     # ---------------- Brilliant Earth settings ----------------
     e(id="BE-1343", name="Freesia 2mm Solitaire Ring, 14K Yellow Gold (BE1343-14KY)",
       short="Freesia 2mm Solitaire", sellerId="brilliantearth", karat=14, metalColor="Yellow Gold",
-      price=750, priceBasis="setting",
-      priceNote="$750 setting only (center diamond extra) — read on the product page 2026-10-23 5:44 a.m. ET; the same page served EUR €835.00 (Setting Only) later that day, so the USD figure is a dated observation, not a converted or re-confirmed price (FL-08)",
+      price=None, priceBasis="setting",
+      priceNote="USD price not confirmable — direct product page served EUR €835 setting only on 2026-10-23 (FL-08); prior USD $750 is a dated observation only, no conversion",
       url="https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
       widthMm=2.0, returns=BE_RETURNS, returnUrl="https://www.brilliantearth.com/30-Day-Returns/", returnsVerified=True,
-      notes=["Product page re-read this pass: $750 (Setting Only), style BE1343-14KY, metal 14K Yellow Gold, width 2-1.2 mm.",
-             "Listing shows 80 reviews at 4.8/5.",
-             "Pass 4 (2026-10-23, session arena-463d0ea2): the same product page returned a mixed-currency render — the setting line read €835.00 (Setting Only) with a EUR/GBP currency selector, while the page's gift-card banner read USD. The USD figure could therefore not be re-confirmed in pass 4 and is NOT asserted as current (FL-08). No conversion was performed."],
+      notes=["Direct product page re-read live: €835 Setting Only, style BE1343-14KY, 14K Yellow Gold, width 2–1.2 mm; current USD price blank (FL-08).",
+             "Prior $750 USD and 80 reviews at 4.8/5 are dated observations, not current claims."],
       flags=["FL-03", "FL-15", "FL-14", "FL-21", "FL-08"]),
     e(id="BE-NADIA", name="Nadia Diamond Ring, 14K Yellow Gold (BE1D6013)",
       short="Nadia Diamond Ring", sellerId="brilliantearth", karat=14, metalColor="Yellow Gold",
@@ -134,18 +132,15 @@ ENTRIES = [
       priceNote="USD price not confirmable — product page served EUR €1,350.00 on 2026-10-23 (FL-08); prior USD $1,190 seen on the product page 2026-10-22 (dated observation only, no conversion)",
       url="https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
       widthMm=2.0, returns=BE_RETURNS, returnUrl="https://www.brilliantearth.com/30-Day-Returns/", returnsVerified=True,
-      notes=["Product page re-read this pass: $1,190 (Setting Only), style BE1D3939-14KY, 14K Yellow Gold, 2-1.3 mm, 14 accent diamonds 0.05 ct. tw."],
+      notes=["Direct product page re-read live: €1,350 Setting Only, style BE1D3939-14KY, 14K Yellow Gold, 2–1.3 mm, 14 accent diamonds 0.05 ct. tw.; USD remains blank (FL-08). Prior $1,190 USD is a dated observation only."],
       flags=["FL-03", "FL-15", "FL-14", "FL-21", "FL-08"]),
     e(id="BE-SECRET", name="Secret Halo 1.5mm Diamond Ring, 14K Yellow Gold (BE1D13065)",
       short="Secret Halo 1.5mm", sellerId="brilliantearth", karat=14, metalColor="Yellow Gold",
-      price=None, priceBasis="setting",
-      priceNote="USD price not confirmable — product page served EUR €1,250.00 on 2026-10-23 (FL-08); prior USD $1,090 seen via the yellow-gold category listing 2026-10-22 (dated observation only, no conversion)",
+      price=1090, priceBasis="setting", priceNote="$1,090 USD setting only (center diamond extra), read directly on the product page 2026-10-23; an earlier €1,250 EUR response is dated history, not converted",
       url="https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
-      priceSourceUrl="https://www.brilliantearth.com/engagement-rings/yellow-gold/",
       widthMm=1.5, returns=BE_RETURNS, returnUrl="https://www.brilliantearth.com/30-Day-Returns/", returnsVerified=True,
-      notes=["Karat, width and returns re-confirmed on the product page 2026-10-23 (14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw.).",
-             "USD price NOT confirmable: the product page was served in EUR (€1,250.00) on 2026-10-23 as well. The $1,090 figure is a dated 2026-10-22 category-listing observation only — kept as text, never converted."],
-      flags=["FL-03", "FL-15", "FL-14", "FL-21", "FL-08"]),
+      notes=["Direct product page re-read live: $1,090 USD Setting Only; 14K Yellow Gold; 1.5 mm; 13 accent diamonds 0.06 ct. tw. This direct USD observation replaces the prior EUR-only blank; the earlier €1,250 EUR response remains dated history and FL-08 no longer applies to this row."],
+      flags=["FL-03", "FL-15", "FL-14", "FL-21"]),
 
     # ---------------- Allurez settings (weights published) ----------------
     e(id="AL-5882", name="Filigree Designed Solitaire Engagement Ring Setting, 14K Yellow Gold (U5882)",
@@ -207,44 +202,43 @@ ENTRIES = [
       returns="No return policy shown on the product page.",
       returnUrl="https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
       notes=["Product page re-read this pass: '14ky, 4.7g, #B02561', brand M Michael, no price shown, call for pricing."],
-      flags=["FL-13", "FL-15", "FL-14"]),
+      flags=["FL-13", "FL-15", "FL-14", "FL-18"]),
 
     # ---------------- Etsy listings ----------------
     e(id="ET-4426190660", name="2.50 CT Radiant Canary Lab-Grown Diamond Ring, IGI Certified, 14K Yellow Gold",
-      checkedOn="2026-10-22", provenance="prior",
+      checkedOn="2026-10-23", provenance="live",
       short="2.50 CT Radiant Lab Diamond", sellerId="etsy-rakshakjewels", karat=14, metalColor="Yellow Gold",
-      price=1891.78, compareAt=2404.16, priceBasis="complete",
-      priceNote="14K Yellow Gold option $1,891.78 (50% off from $2,404.16+); 10K $1,686.02; 18K $2,109.58; list starts at $1,202.08 for 925 silver",
+      price=1891.78, compareAt=None, priceBasis="complete",
+      priceNote="14K Yellow Gold option $1,891.78; 10K $1,686.02; 18K $2,109.58; list starts at $1,202.08 for 925 silver. The header compare-at belongs to another variant, so compareAt is blank.",
       url="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
       widthMm=1.8, solidStated=True,
       solidQuote="Description: 'Metal Options: Available in 10K/14K/18K Solid Gold (White, Yellow, Rose Gold) & Platinum'",
-      returns="'Returns & exchanges accepted' on the listing; the return window is not stated on the captured page.",
-      returnUrl="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
+      returns="Returns & exchanges accepted within 14 days; buyer pays return shipping; original condition required.",
+      returnUrl="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", returnsVerified=True,
       notes=["Listing re-read this pass: $1,202.08+ base (925 silver), 14K Yellow Gold $1,891.78, 2.50 ct radiant yellow lab-grown diamond (VVS2), 0.32 ctw side stones, band 1.80 mm, IGI certificate offered.",
              "Shop is Etsy 'Star Seller' with a 5/5 listing rating."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-4366425533", name="Emerald Cut E/VVS2 IGI Lab-Grown Diamond Hidden Halo Ring, 14K Gold",
       short="Emerald Cut Hidden Halo", sellerId="etsy-foreverforlove", karat=14, metalColor="Yellow / White / Rose Gold",
-      price=546.09, compareAt=626.34, priceBasis="from",
-      priceNote="14K options from $546.09 (0.50 CT) up to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 925 silver starts at $375.80",
+      price=546.09, compareAt=None, priceBasis="from", stoneIncluded=True,
+      priceNote="14K options $546.09–$2,404.96 by center-diamond size; list starts at $375.80 for 925 silver. No 14K-specific compare-at price was published, so compareAt is blank.",
       url="https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
       solidStated=True, solidQuote="Description: 'Made with genuine 14k real gold – never plated or filled'",
       hallmarkStated=True, hallmarkQuote="Description: 'Metal stamp: Yes' (no maker's mark stated, no photo)",
-      returns="'Returns & exchanges accepted within 30 days' per the prior capture of the listing tab; description states a 30-day full refund/exchange and a lifetime warranty on manufacturer defects.",
+      returns="Returns & exchanges accepted within 30 days; buyer pays return shipping; description states a full refund/exchange and a lifetime warranty on manufacturer defects.",
       returnUrl="https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown", returnsVerified=True,
-      checkedOn="2026-10-22", provenance="prior", notes=["Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-             "Ships from the UK; duties included for US orders per listing description.",
-             "Superseded observation kept for the audit trail: the 2026-10-22 capture recorded $547.26 for the 14K option and an 'Original Price' of $627.68. Both were corrected on 2026-10-23 to $546.09 and $626.34 after reading the listing's own material selector."],
+      notes=["Listing re-read live on 2026-10-23: 14K options $546.09–$2,404.96; silver header $375.80+; Metal stamp: Yes; 30-day returns.",
+             "Ships from the UK; duties included for US orders per listing description."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-1151446373", name="14K Solid Gold Ruby + 0.30 CT Diamond Halo Ring",
-      checkedOn="2026-10-22", provenance="prior",
+      checkedOn="2026-10-23", provenance="live",
       short="Ruby + Diamond Halo", sellerId="etsy-verabyden", karat=14, metalColor="Yellow / White / Rose Gold",
-      price=969.0, compareAt=1044.0, priceBasis="complete",
-      priceNote="14K option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00",
+      price=969.0, compareAt=None, priceBasis="complete",
+      priceNote="14K option $969.00; 10K $783.00; 18K $1,233.00. The $1,044 header compare-at belongs to the base variant, so compareAt is blank for the 14K row.",
       url="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
       grams=3.7, gramsText="3.70 g", gramsNote="Seller's description: 'Gold grams: 3.70 gr' — verified on the listing page this pass",
       solidStated=True, solidQuote="Description: 'Material: Solid Gold (not gold plated or gold filled)' and 'Karat: 14 K (585)'",
-      returns="Returns & exchanges accepted within 7 days; buyer pays return shipping (listing page, this pass).",
+      returns="Returns within 7 days after receipt; buyer pays return shipping; $20 delivery charge and 10% restocking fee; personalized, colored-enamel, letter and name-specific items excluded.",
       returnUrl="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", returnsVerified=True,
       notes=["Listing re-read this pass: $783.00+ (10K), 14K $969.00, 0.30 ct diamond + 0.90 ct ruby, 3.70 g gold, 585 stated.",
              "Return window is 7 days — shortest of the sellers reviewed.",
@@ -257,43 +251,45 @@ ENTRIES = [
       priceNote="From $251.30 (2 mm, 30% off $359.00); 3 mm $363.30+, 4 mm $496.30+, 5 mm $643.30+, 6 mm $797.30+, 7 mm $944.30+, 8 mm $1,091.30–$1,742.30",
       url="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
       solidStated=True, solidQuote="Title: '14k Solid Yellow Gold Domed Wedding Band'",
-      returns="Shop return terms are shown in the Etsy tab on the listing; the window was not captured.",
-      returnUrl="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
-      checkedOn="2026-10-22", provenance="prior", notes=["Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass."],
+      returns="Returns & exchanges accepted within 21 days; buyer pays return shipping. Customized bands may not be returnable; altered/used/damaged items may incur fees up to 30% or be ineligible; items exchanged once cannot then be returned.",
+      returnUrl="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", returnsVerified=True,
+      notes=["Listing re-read live: from $251.30; 14K solid yellow gold; 21-day return window and custom/fee exclusions confirmed; no gram weight published."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-1433905613", name="14K Solid Gold 8 mm Polished Comfort-Fit Dome Band (reference band)",
       short="Comfort-Fit Dome Band 8 mm", sellerId="etsy-adelafinejewels", category="band", karat=14, metalColor="White Gold",
-      price=999.7, compareAt=1038.0, priceBasis="from",
-      priceNote="14K options $999.70–$1,368.90 by size (10K $674.70–$963.95); 35% off",
+      price=999.7, compareAt=None, priceBasis="from",
+      priceNote="14K options $999.70–$1,368.90 by size (10K $674.70–$963.95); 35% off. The $1,038 header compare-at is for the 10K base variant, so compareAt is blank for 14K.",
       url="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
       widthMm=8.0, solidStated=True, solidQuote="Title: '14K Solid Gold 8mm White Gold Polished ... Wedding Band'",
-      returns="Shop return terms are shown in the Etsy tab on the listing; the window was not captured.",
-      returnUrl="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
-      checkedOn="2026-10-22", provenance="prior", notes=["Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass.",
-             "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark is recorded."],
+      returns="Returns & exchanges accepted within 14 days; buyer pays return transportation; personalized products are non-refundable.",
+      returnUrl="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished", returnsVerified=True,
+      notes=["Listing re-read live: 14K options $999.70–$1,368.90; 14-day return window and personalized-item exclusion confirmed; no gram weight published.",
+             "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark or maker's mark is recorded."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
     e(id="ET-944684759", name="14K White Gold Flat Polished Band, 2–6 mm (reference band)",
       short="Flat Polished Band 2–6 mm", sellerId="etsy-cittali", category="band", karat=14, metalColor="White Gold",
       price=195.75, compareAt=261.0, priceBasis="from",
-      priceNote="From $195.75 (2 mm, 25% off $261.00); 3 mm $337.50+, 4 mm $369.00+, 5 mm $429.75+, 6 mm $524.25–$1,158.75",
+      priceNote="Listing titled 14K White Gold displays from $195.75 (2 mm, 25% off $261.00); 3 mm $337.50+, 4 mm $369.00+, 5 mm $429.75+, 6 mm $524.25–$1,158.75. Description also lists other materials, so reconfirm the selected metal at checkout.",
       url="https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
       solidStated=True, solidQuote="Description lists '10k, 14k, 18k Solid Gold' options for this design",
-      returns="'Returns & exchanges accepted within 30 days' per the prior capture; buyer pays return shipping.",
+      returns="Returns & exchanges accepted within 30 days; buyer pays return shipping; original condition required.",
       returnUrl="https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished", returnsVerified=True,
-      checkedOn="2026-10-22", provenance="prior", notes=["Listing captured earlier the same day by session 37e8ff42; not re-fetched this pass."],
+      notes=["Listing re-read live: from $195.75; 30-day return window confirmed; description lists multiple materials for the design, so selected metal must be reconfirmed at checkout."],
       flags=["FL-03", "FL-16", "FL-17", "FL-14"]),
-    e(id="ET-576343849", name="14K Solid White Gold 7 g Band, Size 11 — case study (sold at check)",
-      short="7 g Band — case study", sellerId="etsy-butterflywingvintage", category="case-study", karat=14, metalColor="White Gold",
-      price=444.8, compareAt=556.0, priceBasis="complete", availability="SOLD OUT — confirmed 2026-10-23",
-      priceNote="$444.80 was the 2026-10-22 listing price (original $556.00); the page now reads 'Sorry, this item is sold out' / 'Sold', so the price is history, not an offer (FL-29)",
-      url="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
-      grams=7.0, gramsText="7 g", gramsNote="Listing title: '7g Solid Gold'",
-      solidStated=True, solidQuote="Title: 'Fine 14K Solid White Gold Ring - 7g Solid Gold'",
-      hallmarkStated=True, hallmarkQuote="Title: 'Marked 14K' (karat stamp claim only; no maker's mark stated)",
-      returns="n/a — item sold at check.", returnUrl="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g",
-      checkedOn="2026-10-22", provenance="prior", notes=["Price and weight come from the listing title/search evidence captured earlier the same day; the item is sold, so this row is retained only as a price-vs-metal case study.",
-             "7 g of 14K contains about 4.08 g fine gold; the computed metal-value column shows what that gold was worth at the dated spot, which at 2026-10-23 prices exceeded the asking price — the classic below-metal red flag this project screens for (FL-01). No derived figure is typed into this note; it is computed in the table."],
-      flags=["FL-01", "FL-16", "FL-17", "FL-18"]),
+    e(id="ET-576343849", name="14K Solid White Gold Band, Size 11 — sold case study (exact weight unresolved)",
+      short="Sold band — weight unresolved", sellerId="etsy-butterflywingvintage", category="case-study", karat=14, metalColor="White Gold",
+      price=420.0, compareAt=525.0, priceBasis="complete", availability="SOLD OUT — confirmed 2026-10-23",
+      priceNote="$420.00 displayed on the sold-out detail page (original $525.00); this is a sold-listing case study, not a current offer",
+      url="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
+      grams=None, gramsText="Not exact: title says 7 g; description says postal scale alternates between 6–7 g", gramsNote="No exact seller-stated weight; numeric grams and metal value intentionally blank",
+      solidStated=True, solidQuote="Title and description: 'Fine Solid 14K White Gold Wedding/Engagement Band'",
+      hallmarkStated=True, hallmarkQuote="Description: 'marked 14K with a maker's mark' and directs the buyer to the fourth photo", makerMarkStated=True,
+      returns="n/a — item sold; seller FAQ says no refund for buyer's remorse or changed mind.",
+      returnUrl="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
+      notes=["Sold-out detail page re-read live: $420.00 displayed, original $525.00; not a current offer.",
+             "Exact weight and the old below-metal calculation are withdrawn: the title says 7 g but the description says the postal scale alternates between 6–7 g. No range is converted into an exact number (FL-01).",
+             "The seller explicitly claims both a 14K stamp and a maker's mark; this remains a seller statement, not an independent assay."],
+      flags=["FL-01", "FL-03", "FL-16", "FL-17", "FL-18", "FL-29"]),
 ]
 
 # ---- sellers -------------------------------------------------------------
@@ -316,10 +312,10 @@ SELLERS = [
          website="https://www.brilliantearth.com/", contact=["800.691.0952"],
          contactUrl="https://www.brilliantearth.com/contact/",
          returns=BE_RETURNS, returnsUrl="https://www.brilliantearth.com/30-Day-Returns/", returnsVerified=True,
-         warranty="Product pages advertise a 'Free Lifetime Warranty' and 'Free 1-Year Resizing'; terms not captured.",
-         warrantyUrl="https://www.brilliantearth.com/shop-online/#manufacturing_warranty",
+         warranty="Free lifetime manufacturing-defect warranty on fine jewelry; wear, gemstone loss, product loss and theft excluded. US/CAN/AUS/UK return labels are free; elsewhere a $50 deposit applies and is refunded for warrantied repairs. Unauthorized repair voids coverage.",
+         warrantyUrl="https://www.brilliantearth.com/customer-service/warranty/#manufacturing_warranty",
          payment="Credit card; Affirm monthly payments (0% APR available), Wells Fargo 12-month financing and layaway are advertised.",
-         reputation=[dict(source="Product page reviews (Freesia 2mm)", value="4.8/5 from 80 reviews", url="https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", method="live 2026-10-22")],
+         reputation=[dict(source="Product page reviews (Freesia 2mm)", value="4.8/5 from 80 reviews", url="https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/", method="prior-session capture (2026-10-22)")],
          flags=["FL-04"],
          sources=["https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
                   "https://www.brilliantearth.com/30-Day-Returns/"],
@@ -328,7 +324,7 @@ SELLERS = [
          website="https://www.allurez.com/", contact=["1-800-554-3509", "service@allurez.com"],
          contactUrl="https://www.allurez.com/pages/contact",
          returns=AL_RETURNS, returnsUrl="https://www.allurez.com/pages/return-policy", returnsVerified=True,
-         warranty="Free 1-year limited warranty on all products (sizing, missing-stone replacement, prong tightening, polishing, rhodium plating); extended plans sold separately.",
+         warranty="Complimentary 1-year limited manufacturing-defect warranty for qualifying US purchases after February 2024. Ring sizing is offered except full eternity rings. Missing stones may be replaced, but the new stone's cost is not covered. Wear, loss and unauthorized repair excluded; after one year repair fees plus a $39 shipping charge apply.",
          warrantyUrl="https://www.allurez.com/pages/warranty",
          payment="Credit card; Affirm, Klarna, Shop Pay Installments, Flex Pay and Allurez Layaway (10% down) advertised.",
          reputation=[], flags=["FL-09", "FL-10"],
@@ -368,11 +364,11 @@ SELLERS = [
     dict(id="etsy-rakshakjewels", name="RAKSHAKJEWELS (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/RAKSHAKJEWELS", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/RAKSHAKJEWELS",
-         returns="'Returns & exchanges accepted' — window not stated on the captured page.",
-         returnsUrl="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", returnsVerified=False,
+         returns="Returns & exchanges accepted within 14 days; buyer pays return shipping; original condition required.",
+         returnsUrl="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", returnsVerified=True,
          warranty="Not stated on the listing.", warrantyUrl=None,
          payment="Etsy checkout (cards, PayPal, Klarna); Etsy Purchase Protection applies to eligible orders.",
-         reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 listing rating", url="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", method="live 2026-10-22")],
+         reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 listing rating", url="https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond", method="prior-session capture (2026-10-22)")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond"],
          notes=["Listing re-read this pass."]),
     dict(id="etsy-foreverforlove", name="ForeverForLove (Etsy shop)", type="Etsy shop",
@@ -385,37 +381,37 @@ SELLERS = [
          payment="Etsy checkout; Klarna advertised; Etsy Purchase Protection applies.",
          reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 listing rating", url="https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown", method="prior-session capture")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown"],
-         notes=["Captured earlier the same day by session 37e8ff42."]),
+         notes=["Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."]),
     dict(id="etsy-verabyden", name="VeraByEden (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/VeraByEden", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/VeraByEden",
-         returns="Returns & exchanges accepted within 7 days; buyer pays return shipping.",
+         returns="Returns within 7 days after receipt; buyer pays return shipping; $20 delivery charge and 10% restocking fee; personalized, colored-enamel, letter and name-specific items excluded.",
          returnsUrl="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", returnsVerified=True,
          warranty="Not stated on the listing.", warrantyUrl=None,
          payment="Etsy checkout; Klarna advertised; Etsy Purchase Protection applies.",
-         reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 rating", url="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", method="live 2026-10-22")],
+         reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 rating", url="https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant", method="prior-session capture (2026-10-22)")],
          flags=["FL-02", "FL-04", "FL-16"], sources=["https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant"],
          notes=["Return window (7 days) and gold weight (3.70 g) re-read this pass."]),
     dict(id="etsy-vibrantstone", name="VibrantStone (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/VibrantStone", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/VibrantStone",
-         returns="Per-shop terms shown in the Etsy tab; window not captured.",
-         returnsUrl="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", returnsVerified=False,
+         returns="Returns & exchanges accepted within 21 days; buyer pays return shipping (original shipping is advertised free). Customized/personalized returns may incur fees; altered, used or damaged items may incur up to 30% fees or be ineligible; an exchanged item cannot be returned.",
+         returnsUrl="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", returnsVerified=True,
          warranty="Not stated.", warrantyUrl=None,
          payment="Etsy checkout; Etsy Purchase Protection applies.",
          reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 listing rating", url="https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band", method="prior-session capture")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band"],
-         notes=["Captured earlier the same day by session 37e8ff42."]),
+         notes=["Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."]),
     dict(id="etsy-adelafinejewels", name="adelafinejewels (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/adelafinejewels", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/adelafinejewels",
-         returns="Per-shop terms shown in the Etsy tab; window not captured.",
-         returnsUrl="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished", returnsVerified=False,
+         returns="Returns & exchanges accepted within 14 days; buyer pays return transportation (free US original shipping); personalized products are non-refundable.",
+         returnsUrl="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished", returnsVerified=True,
          warranty="Not stated.", warrantyUrl=None,
          payment="Etsy checkout; Etsy Purchase Protection applies.",
          reputation=[dict(source="Etsy listing badge", value="Star Seller; 5/5 listing rating", url="https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished", method="prior-session capture")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished"],
-         notes=["Captured earlier the same day by session 37e8ff42."]),
+         notes=["Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."]),
     dict(id="etsy-cittali", name="CittaliFineJewelry (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/CittaliFineJewelry", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/CittaliFineJewelry",
@@ -425,31 +421,31 @@ SELLERS = [
          payment="Etsy checkout; Klarna advertised; Etsy Purchase Protection applies.",
          reputation=[dict(source="Etsy listing", value="4.9/5 item average", url="https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished", method="prior-session capture")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished"],
-         notes=["Captured earlier the same day by session 37e8ff42."]),
+         notes=["Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."]),
     dict(id="etsy-butterflywingvintage", name="BUTTERFLYWINGVINTAGE (Etsy shop)", type="Etsy shop",
          website="https://www.etsy.com/shop/BUTTERFLYWINGVINTAGE", contact=["Contact via Etsy Messages"],
          contactUrl="https://www.etsy.com/shop/BUTTERFLYWINGVINTAGE",
-         returns="n/a — the case-study item is sold.", returnsUrl="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", returnsVerified=False,
+         returns="n/a — item sold; seller FAQ says no refund for buyer's remorse or changed mind.", returnsUrl="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1", returnsVerified=False,
          warranty="Not stated.", warrantyUrl=None,
          payment="n/a — item sold.",
          reputation=[dict(source="Etsy listing", value="5/5 with 802 shop reviews", url="https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g", method="prior-session capture")],
          flags=["FL-04", "FL-16"], sources=["https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g"],
-         notes=["Captured earlier the same day by session 37e8ff42; the item is sold."]),
+         notes=["Sold-out detail page and seller FAQ re-read live on 2026-10-23; the item is sold and not a current offer."]),
 ]
 
 # ---- flags ---------------------------------------------------------------
 FLAGS = [
-    dict(id="FL-01", severity="high", status="open", title="Price is BELOW the computed gold metal value",
-         detail="A 7 g 14K band listed at $444.80 contains about 4.08 g of fine gold, which at the dated Kitco spot was worth more than the asking price — the row's computed metal-value column shows that figure and it exceeds the price, so this project does not retype it here where it would silently drift as spot moves. For a legitimate seller a below-metal price is not economic, and it is the classic fraud signal. The listing is now sold (FL-29), so it is kept only as a case study. Do not treat any below-metal price as a bargain.",
+    dict(id="FL-01", severity="high", status="resolved", title="Resolved: the below-metal case study relied on an unsupported exact weight",
+         detail="The sold Etsy listing's title says 7 g, but its description says a postal scale alternates between 6–7 g. The current sold-out detail page displays $420.00 (original $525.00), not a current offer. Exact grams, fine-gold weight, metal value and the former below-metal conclusion are therefore withdrawn. No range is converted into an exact number; ask for a calibrated weight and independent assay before drawing any conclusion.",
          entryIds=["ET-576343849"]),
     dict(id="FL-02", severity="high", status="open", title="Listing photos solicit off-platform contact",
          detail="VeraByEden listing image 11 is a chat screenshot showing an address (2355 Westwood Boulevard #153, Los Angeles CA) and the text 'Share your contact information with us on Etsy Message.' Off-platform payment or contact can void Etsy Purchase Protection. Keep any purchase on Etsy and pay through Etsy checkout.",
          entryIds=["ET-1151446373"]),
-    dict(id="FL-03", severity="medium", status="open", title="Gram weight is not published (17 of 25 rows)",
-         detail="Without a weight you cannot compute gold content or compare price with metal value. These cells are left blank — never estimated. Ask the seller in writing for the weight in grams before buying, then verify it on arrival.",
+    dict(id="FL-03", severity="medium", status="open", title="Exact gram weight is not published for 18 of 25 rows",
+         detail="Without an exact weight you cannot compute gold content or compare price with metal value. These cells are left blank — never estimated. The sold case study has only a 6–7 g scale range, so it is included here as well. Ask the seller in writing for the weight in grams before buying, then verify it on arrival.",
          entryIds=["BN-192506","BN-195639","BN-203257","BN-195326","BN-195871","BN-311132","BN-203738","BN-203348",
                    "BE-1343","BE-NADIA","BE-1343HH","BE-SECRET","ET-4426190660","ET-4366425533","ET-1566052947",
-                   "ET-1433905613","ET-944684759"]),
+                   "ET-1433905613","ET-944684759","ET-576343849"]),
     dict(id="FL-04", severity="medium", status="open", title="Independent seller reputation not captured for most sellers",
          detail="Only Blue Nile has independent complaint data captured (BBB and ConsumerAffairs). Brilliant Earth shows on-site review scores; Allurez, Avianne, Jewelry Master, Solid Gold Jewelers and the Etsy shops have no independent complaint data in this dataset. Do the check yourself: search the business name plus 'complaint' or 'review', confirm a real phone/address, and look for a BBB profile.",
          entryIds=[]),
@@ -459,12 +455,12 @@ FLAGS = [
     dict(id="FL-06", severity="low", status="open", title="Blue Nile lifetime warranty starts at $1,000; some settings fall below it",
          detail="The limited lifetime warranty covers gold and platinum items with a purchase price of $1,000 or more. Of the Blue Nile settings recorded here, the $870 Classic Four Prong falls below that threshold (the $1,000 Petite Solitaire sits exactly at it), so it does not qualify for the lifetime warranty under the stated terms.",
          entryIds=["BN-203257","BN-195639","BN-192506","BN-203348"]),
-    dict(id="FL-07", severity="medium", status="resolved", title="Resolved in pass 3: Brilliant Earth return policy verified (30-day window, exclusions published)",
-         detail="Verified live 2026-10-23 at https://www.brilliantearth.com/30-Day-Returns/ (page title: 'Brilliant Earth Returns & Exchanges | 30 Day Return Policy | Free Return Shipping'): returns within 30 days of receipt, unworn and in original condition; engraved items ($40 fee), personalized, custom, altered, resized or modified items and repairs are excluded. The previously linked brilliantearth.com/customer-care/return-policy/ redirects to the home page and brilliantearth.com/returns/ returns 404 — all four Brilliant Earth entries now link the working policy URL.",
+    dict(id="FL-07", severity="medium", status="resolved", title="Resolved: Brilliant Earth return policy re-read and wording corrected",
+         detail="Verified live 2026-10-23 at https://www.brilliantearth.com/30-Day-Returns/: free returns/exchanges run for 30 days from the item being available for shipment or pickup, with original/unworn condition required. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. All four Brilliant Earth entries link this working official policy.",
          entryIds=["BE-1343","BE-NADIA","BE-1343HH","BE-SECRET"]),
-    dict(id="FL-08", severity="medium", status="open", title="Brilliant Earth: USD prices not confirmable — product pages serve EUR (geo-currency)",
-         detail="On 2026-10-23 the BE-1343HH and BE-SECRET product pages served EUR instead of USD (€1,350.00 and €1,250.00, Setting Only) because of geo-currency, so both price cells are BLANK. In pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) the same thing happened to the BE-1343 Freesia page, which returned a mixed render: the setting line read €835.00 (Setting Only) with a EUR/GBP selector while the gift-card banner read USD; the Nadia page, fetched minutes later, served USD $1,250 normally. BE-1343 therefore keeps the $750 that was actually read on the page at 5:44 a.m. ET on 2026-10-23, labelled as a dated observation and NOT asserted as current. Prior USD captures kept as text only: $1,190 (BE-1343HH, 2026-10-22) and $1,090 (BE-SECRET, 2026-10-22). No currency conversion is performed anywhere in this project — a figure shown in EUR is never turned into dollars.",
-         entryIds=["BE-1343","BE-1343HH","BE-SECRET"]),
+    dict(id="FL-08", severity="low", status="open", title="Two Brilliant Earth pages serve EUR; current USD price is blank",
+         detail="On 2026-10-23 BE-1343 served €835 and BE-1343HH served €1,350, both Setting Only. Their USD price cells are blank — no conversion, no guess. BE-NADIA directly served $1,250 USD and BE-SECRET directly served $1,090 USD, so those two rows are not in this flag. Prior USD observations remain dated notes only.",
+         entryIds=["BE-1343","BE-1343HH"]),
     dict(id="FL-09", severity="low", status="open", title="Allurez shows an 'Everyone Else' comparison price — not used",
          detail="Allurez pages display a '% Savings' figure against an 'Everyone Else' price ($2,497 / $1,373 / $1,194 on the three rings here). That comparison is the seller's own marketing claim and is not independently verified. Only the actual selling price is used in this project.",
          entryIds=["AL-5882","AL-170","AL-4426"]),
@@ -480,56 +476,59 @@ FLAGS = [
     dict(id="FL-13", severity="medium", status="open", title="Solid Gold Jewelers: no price and no return policy published",
          detail="The product page states '14ky, 4.7g, #B02561' and asks buyers to call (309) 452-1612 for current pricing and availability. No price and no return policy appear on the page, so both are left blank. Get price, return terms and the hallmark in writing.",
          entryIds=["SGJ-B02561"]),
-    dict(id="FL-14", severity="medium", status="open", title="No listing states a maker's mark (0 of 25)",
-         detail="FTC guidance: near the karat mark, look for the name or U.S. registered trademark of the company that stands behind it — 'If you don't see a trademark along with the karat mark, don't buy it.' Two listings claim a karat stamp ('Metal stamp: Yes'; 'Marked 14K'), but none states a maker's mark and no listing shows a photo of the stamps. Ask for a close-up photo of both marks and verify them on arrival.",
+    dict(id="FL-14", severity="medium", status="open", title="Maker's mark is not stated for 24 of 25 listings",
+         detail="FTC guidance says to look near the karat mark for the name or U.S. registered trademark of the company behind it. The sold ET-576343849 description says 'marked 14K with a maker's mark' and points to a photo; that is a seller claim, not an independent assay. The other 24 listings do not state a maker's mark. Ask for close-up photos of both marks and verify them on arrival.",
          entryIds=[]),
     dict(id="FL-15", severity="medium", status="open", title="Listing does not explicitly say 'solid gold' (16 of 25)",
          detail="A karat mark alone does not say whether an item is solid or plated/hollow. FTC guidance defines 'solid gold' as not hollow. Brilliant Earth, Blue Nile and Allurez listings name the metal and karat but do not use the words 'solid gold'; Solid Gold Jewelers shows only '14ky'. These are left unflagged as solid and require written confirmation from the seller. The 9 Etsy/Avianne/Jewelry Master listings that do say solid are recorded with their exact wording.",
          entryIds=["BN-192506","BN-195639","BN-203257","BN-195326","BN-195871","BN-311132","BN-203738","BN-203348",
                    "BE-1343","BE-NADIA","BE-1343HH","BE-SECRET","AL-5882","AL-170","AL-4426","SGJ-B02561"]),
     dict(id="FL-16", severity="low", status="open", title="Etsy return windows vary by shop — one is only 7 days",
-         detail="VeraByEden accepts returns within 7 days; ForeverForLove and Cittali state 30 days; several listings only say 'Returns & exchanges accepted' with the window in a tab that was not captured. Etsy Purchase Protection covers non-delivery, damage, late delivery and materially different items, but not buyer's remorse. Check the specific shop policy before ordering.",
+         detail="VeraByEden accepts returns within 7 days; RAKSHAKJEWELS and adelafinejewels state 14 days; VibrantStone states 21 days; ForeverForLove and Cittali state 30 days. Fees, personalization exclusions and the sold listing's no-remorse-refund statement still apply. Etsy Purchase Protection covers qualifying non-delivery, damage, late delivery and materially different items, not ordinary buyer's remorse. Check the specific shop policy before ordering.",
          entryIds=["ET-4426190660","ET-4366425533","ET-1151446373","ET-1566052947","ET-1433905613","ET-944684759","ET-576343849"]),
     dict(id="FL-17", severity="low", status="open", title="Etsy prices are promo-dependent and vary by material, size and carat",
-         detail="Every Etsy listing in this set was discounted at check time (25–50% off) and prices change by material (silver/10K/14K/18K), ring size, band width and center-stone carat. The recorded price is the 14K option shown on the check date. Re-check the live price before buying.",
+         detail="Etsy listings in this set showed discounts at check time and prices change by material (silver/10K/14K/18K), ring size, band width and center-stone carat. Where a header compare-at price belonged to another material or variant, compareAt is blank rather than borrowed. The recorded price is labeled by its actual option or listing basis on the check date. Re-check the live price before buying.",
          entryIds=["ET-4426190660","ET-4366425533","ET-1151446373","ET-1566052947","ET-1433905613","ET-944684759","ET-576343849"]),
     dict(id="FL-18", severity="low", status="open", title="Gram weights are seller-stated, not independently verified",
-         detail="Allurez publishes 'approximate' gold weights; Avianne and Jewelry Master publish single figures; VeraByEden states 'Gold grams: 3.70 gr'. None of these has been independently weighed. Treat them as claims to be checked with a jeweler's scale and XRF on arrival.",
-         entryIds=["AL-5882","AL-170","AL-4426","AV-25893","JM-149700","ET-1151446373","ET-576343849"]),
+         detail="Allurez publishes approximate gold weights; Avianne, Jewelry Master and Solid Gold Jewelers publish single figures; VeraByEden states 'Gold grams: 3.70 gr'. The sold ET-576343849 page gives only a 6–7 g scale range and is not assigned an exact weight. None has been independently weighed. Treat them as claims to be checked with a jeweler's scale and XRF on arrival.",
+         entryIds=["AL-5882","AL-170","AL-4426","AV-25893","JM-149700","SGJ-B02561","ET-1151446373","ET-576343849"]),
     dict(id="FL-19", severity="info", status="open", title="Gold spot moves all day — the snapshot is dated",
-         detail="Quotes across the 2026-10-22 and 2026-10-23 captures range from $3,996.10 to $4,086.90 per ounce (about 2.2%). Within 2026-10-23 alone the bid fell from $4,022.50 (5:44 a.m. ET) to $3,996.10 (4:10 p.m. ET), a $26.40 move. This site uses one timestamped Kitco bid for every calculation and shows the timestamp; every metal value moves when it is refreshed. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+         detail="The current 2026-10-23 Kitco panel shows $3,996.10/oz and $128.48/g, while nearby body text shows $3,995.50/oz and $128.46/g; earlier captures are retained as dated history. This site uses one labeled panel bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
          entryIds=[]),
     dict(id="FL-20", severity="info", status="open", title="A 14K or 18K stamp is not proof of purity",
          detail="FTC guidance requires a karat mark plus a maker's mark, but a stamp is a disclosure, not an assay. The only way to know what the metal actually is: have an independent jeweler test it (XRF or another professional method) after delivery, before wearing or resizing. No US law requires the seller to accept a return based on your test, so confirm the return right first.",
          entryIds=[]),
     dict(id="FL-21", severity="info", status="open", title="Setting prices exclude the center diamond",
-         detail="Blue Nile and Brilliant Earth prices recorded here are 'Setting Price' / 'Setting Only'. The center stone is sold separately, so price-to-metal ratios are only computed for complete rings. Do not compare a $750 setting with a complete $1,100 ring as if they were the same purchase.",
+         detail="Blue Nile and Brilliant Earth prices recorded here are 'Setting Price' / 'Setting Only'. The center stone is sold separately, so price-to-metal ratios are only computed for complete rings. Do not compare a setting with a complete ring as if they were the same purchase.",
          entryIds=["BN-192506","BN-195639","BN-203257","BN-195326","BN-195871","BN-311132","BN-203738","BN-203348",
                    "BE-1343","BE-NADIA","BE-1343HH","BE-SECRET","AL-5882","AL-170","AL-4426"]),
     dict(id="FL-22", severity="low", status="open", title="Retailers excluded rather than guessed",
          detail="Walmart's search results render client-side and served no product cards or prices; two listings found by search (Pompeii3 and marquise-jewelers) were dead. No values were recorded for them. Exclusion is deliberate: blank beats invented.",
          entryIds=[]),
     dict(id="FL-23", severity="info", status="open", title="Earlier sessions' work is preserved in this repo",
-         detail="Six earlier sessions delivered to this repository. Their sites remain available: 638c9614 at /docs/, 090bae73 at /index-090bae73.html (+ /pages/), 37e8ff42's dashboard at /archive/session-37e8ff42/, 93032b31's 24-row dashboard at /archive/session-93032b31/, 84be683f at /verified/, 60c4b9c3 at /report/ (evidence in /verification/), and the /guide/ checklist site. This consolidated site merges their verified listings and flags; nothing was discarded.",
+         detail="Earlier sessions delivered to this repository. Their sites remain available: 638c9614 at /docs/, 090bae73 at /index-090bae73.html (+ /pages/), 37e8ff42's dashboard at /archive/session-37e8ff42/, 93032b31's 24-row dashboard at /archive/session-93032b31/, 84be683f at /verified/, 60c4b9c3 at /report/ (evidence in /verification/), and the /guide/ checklist site. This consolidated site merges their verified listings and flags; nothing was discarded.",
          entryIds=[]),
-    dict(id="FL-24", severity="info", status="resolved", title="Resolved this pass: karat-in-URL and grams-via-snippet flags",
+    dict(id="FL-24", severity="info", status="resolved", title="Resolved: karat-in-URL and grams-via-snippet flags",
          detail="Earlier flags said the Brilliant Earth karat appeared only in product URLs and that VeraByEden's 3.70 g came from a search snippet. Both were re-checked live: each Brilliant Earth product page states 14K Yellow Gold, and VeraByEden's description states 'Gold grams: 3.70 gr'. The old flags are closed, with the checks recorded on the Verification page.",
          entryIds=["BE-NADIA","BE-1343HH","BE-SECRET","ET-1151446373"]),
     dict(id="FL-25", severity="low", status="open", title="Kitco page shows several nearby numbers in one capture",
-         detail="Each capture of the Kitco page contains several nearby numbers. Pass 4 (2026-10-23 4:10 p.m. ET) read a ticker bid of $3,996.10 with $128.48/g, a body sentence of $3,995.50/oz 'down $27.80 today', and a unit table of $128.46/g; the earlier 2026-10-23 capture read $4,022.50/$129.33/g with a body of $4,021.00 and a table of $129.28/g; the 2026-10-22 capture read $4,026.90/$129.47 with a body of $4,027.50, a table of $129.49/g and a TradingView print of $4,028.21. This project always records the ticker bid with its timestamp and never mixes the nearby numbers.",
+         detail="The 2026-10-23 capture displayed a panel bid of $3,996.10 and $128.48/g, an ask of $3,998.10, and separate body text of $3,995.50/oz and $128.46/g. The project uses the panel bid and its per-gram figure for every calculation, preserves the body figures as a labeled discrepancy, and never mixes quotes from different timestamps.",
          entryIds=[]),
-    dict(id="FL-26", severity="medium", status="resolved", title="Resolved in pass 4: all seven Etsy listings re-opened on 2026-10-23",
-         detail="Pass 3 (2026-10-23 morning) got HTTP 500 from every Etsy listing page, so those seven rows kept their 2026-10-22 capture date. Pass 4 (2026-10-23 late afternoon, session arena-463d0ea2) opened all seven successfully and read the 14K option from each listing's own material selector: ET-4426190660 $1,891.78 (unchanged), ET-4366425533 $546.09 (corrected from $547.26), ET-1151446373 $969.00 (unchanged), ET-1566052947 $251.30 (unchanged), ET-1433905613 $999.70 (unchanged), ET-944684759 $195.75 (unchanged), ET-576343849 sold out (FL-29). All seven rows now carry checkedOn=2026-10-23. Etsy remains an intermittent source — if a listing will not load, treat its price as unverified rather than assuming it.",
+    dict(id="FL-26", severity="medium", status="resolved", title="Resolved: all seven Etsy listing pages were read live on 2026-10-23",
+         detail="An earlier collector returned HTTP 500 for the Etsy pages. This pass opened all seven official listing URLs directly and recorded field-level evidence in data/live_check_bc4e36a1.json (L19–L25). Current prices, stated options and available return terms replace the prior-session labels; the sold listing remains explicitly sold out.",
          entryIds=["ET-4426190660","ET-4366425533","ET-1151446373","ET-1566052947","ET-1433905613","ET-944684759","ET-576343849"]),
-    dict(id="FL-29", severity="medium", status="open", title="ET-576343849 (the 7 g case-study band) is sold out",
-         detail="Re-opened on 2026-10-23 in pass 4, the listing returns 'Sorry, this item is sold out' and 'Sold' instead of a buy box. The row keeps the $444.80 price only as a dated 2026-10-22 observation for the price-versus-metal case study, and the site marks it SOLD OUT. It cannot be bought, so it is not a candidate; the same shop may have comparable bands, but nothing about those is recorded here.",
-         entryIds=["ET-576343849"]),
-    dict(id="FL-27", severity="medium", status="resolved", title="Resolved: Brilliant Earth fetch failure was collector-specific — all four pages read on 2026-10-23",
-         detail="One 2026-10-23 collector (session a255f011) got only the site navigation from the Brilliant Earth product URLs and could not read values. A second 2026-10-23 fetch by session 77405ae3 did read all four product pages the same day (field-level record in data/live_check_77405ae3.json): Freesia $750 and Nadia $1,250 matched, and the two hidden-halo pages served EUR (FL-08), so their USD prices are blank. All four rows therefore carry checkedOn=2026-10-23. The nav-only failure is recorded here so both observations stay visible.",
+    dict(id="FL-27", severity="medium", status="resolved", title="Resolved: all four Brilliant Earth pages were read live",
+         detail="A previous collector saw navigation only. The 2026-10-23 direct reads are recorded in data/live_check_bc4e36a1.json (L09–L12): BE-1343 serves €835, BE-NADIA $1,250 USD, BE-1343HH €1,350, and BE-SECRET $1,090 USD. EUR is not converted; the two USD blanks are flagged FL-08.",
          entryIds=["BE-1343","BE-NADIA","BE-1343HH","BE-SECRET"]),
-    dict(id="FL-28", severity="low", status="resolved", title="Resolved: both remaining Blue Nile pages were re-read on 2026-10-23",
-         detail="Session a255f011 did not re-open BN-203738 (Floral Marquise 18K) and BN-203348 (Classic Simple Solitaire) in its 2026-10-23 pass. Session 77405ae3's fetcher read both product pages the same day and the values matched the stored dataset ($2,210 and $1,145; stock 502120y14; 14K yellow; 2.40 mm) — record in data/live_check_77405ae3.json (seq 8–9). Both rows are dated 2026-10-23.",
+    dict(id="FL-28", severity="low", status="resolved", title="Resolved: both remaining Blue Nile pages were re-read",
+         detail="The 2026-10-23 direct reads are recorded in data/live_check_bc4e36a1.json (L07–L08): BN-203738 displays $2,210 with an explicit 18K/14K metal conflict, and BN-203348 displays $1,145, 14K Yellow Gold, stock 502120y14 and 2.40 mm. Both rows carry the current check date.",
          entryIds=["BN-203738","BN-203348"]),
+    dict(id="FL-29", severity="medium", status="open", title="ET-576343849 is sold out — not a current offer",
+         detail="The 2026-10-23 sold-out detail page says 'Sorry, this item is sold out' / 'Sold' and displays $420.00 (original $525.00). It cannot be purchased; the price is a labeled sold-listing display only. Earlier $444.80/$556.00 observations remain historical archive material. The title's 7 g and the description's alternating 6–7 g scale range are not an exact weight, so no metal-value conclusion is drawn (FL-01 resolved).",
+         entryIds=["ET-576343849"]),
+    dict(id="FL-30", severity="high", status="open", title="Blue Nile BN-203738 has an internal metal-description conflict",
+         detail="The official page title and specification say 18K White Gold, while Product Details say 14K Yellow Gold. Both statements are preserved on the listing row; neither is silently selected as the truth. Confirm the exact metal, karat and return terms in writing before purchase. No gram weight is published, so no metal-value calculation is made for this row.",
+         entryIds=["BN-203738"]),
 ]
 
 # ---- official / trusted references --------------------------------------
@@ -538,68 +537,68 @@ REFERENCES = [
          publisher="U.S. Federal Trade Commission", url="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
          quote="Near the karat quality mark, look for the name or the U.S. registered trademark of the company that will stand behind the mark... If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it.",
          usedFor="Karat marks, maker's mark rule, solid vs plated/hollow definitions, returns in writing, where to report problems.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="cfr23", title="16 CFR Part 23 — Guides for the Jewelry, Precious Metals, and Pewter Industries",
          publisher="eCFR (Office of the Federal Register)", url="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
          quote="§ 23.3 Misrepresentation as to gold content. § 23.10 Additional guidance for the use of quality marks.",
          usedFor="The regulation behind the FTC consumer guidance; gold-content and quality-mark rules. eCFR displayed 'up to date as of 10/21/2026' on the 2026-10-23 fetch.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="usc295", title="15 U.S.C. § 295 — Standard of fineness of gold articles; deviation",
          publisher="U.S. Code (GovInfo, U.S. Government Publishing Office)", url="https://www.govinfo.gov/link/uscode/15/295",
          quote="...the actual fineness of such gold or alloy shall not be less by more than three one-thousandth parts than the fineness indicated by the mark stamped, branded, engraved, or printed upon any part of such article... and ... shall not be less by more than seven one-thousandth parts, in the case of any other such article...",
          usedFor="The statutory assay tolerance an XRF reading is compared against: 3/1000 solder-free, 7/1000 for the whole article including solder.",
-         checkedOn="2026-10-23", method="live fetch (2026-10-23 pass)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="cfr23-3", title="16 CFR § 23.3 — Misrepresentation as to gold content (Cornell LII mirror)",
          publisher="Cornell Legal Information Institute", url="https://www.law.cornell.edu/cfr/text/16/23.3",
          quote="Text of the gold-content misrepresentation rule.",
          usedFor="Readable mirror of § 23.3.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="usc297", title="15 U.S.C. § 297 — Stamping plated articles; identifying trademark",
          publisher="U.S. Code (Cornell LII)", url="https://www.law.cornell.edu/uscode/text/15/297",
          quote="...shall apply or cause to be applied to that article a trademark... in a position as close as possible to that quality mark or stamp.",
          usedFor="Statutory basis for a maker's mark next to the quality mark (National Stamping Act).",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="nist-troy", title="NIST SP 811, Appendix B.8 — Factors for units listed alphabetically",
          publisher="National Institute of Standards and Technology", url="https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
-         quote="Appendix B conversion factors (troy ounce). Kitco also states on its page: 'A troy ounce is 31.1034768 grams.'",
-         usedFor="Troy ounce to gram conversion used by the calculator (31.1034768 g/ozt).",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         quote="NIST Appendix B.8 displays ounce (troy or apothecary) → gram as 3.110348 E+01 (rounded). Kitco separately states the more precise constant: 'A troy ounce is 31.1034768 grams.'",
+         usedFor="Troy-ounce conversion disclosure. Calculations retain Kitco's stated 31.1034768 g/ozt constant; NIST's displayed factor is rounded.",
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; evidence R06)"),
     dict(id="lbma", title="LBMA Precious Metal Prices — benchmark administration",
          publisher="London Bullion Market Association", url="https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
          quote="The LBMA Gold Price is set twice daily in auctions independently operated and administered by ICE Benchmark Administration Limited (IBA) and commencing at 10:30 and 15:00 London time.",
          usedFor="Why a timestamped benchmark matters; the London benchmark is set twice daily, while retail spot pages update continuously.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="ftc-credit", title="FTC Consumer Advice — Using Credit Cards and Disputing Charges",
          publisher="U.S. Federal Trade Commission", url="https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
          quote="Federal law says you have the right to get mistakes fixed promptly... If you have a complaint about the quality of something you bought...",
          usedFor="Why a credit card is safer than an irreversible payment method, and how billing disputes work.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="etsy-pp", title="Etsy Purchase Protection Program",
          publisher="Etsy", url="https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program",
          quote="Full refund for eligible orders that don't arrive, arrive damaged, arrive 7+ days after the estimated delivery window, or differ significantly from the description.",
          usedFor="Marketplace protection limits (not buyer's remorse).",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="jvc", title="Jewelers Vigilance Committee — mediation services",
          publisher="Jewelers Vigilance Committee", url="https://jvclegal.org/mediation-services/",
          quote="Dispute mediation between buyers and jewelers (linked from the FTC article).",
          usedFor="Where to escalate a jewelry dispute.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
     dict(id="reportfraud", title="FTC — ReportFraud.ftc.gov",
          publisher="U.S. Federal Trade Commission", url="https://reportfraud.ftc.gov/",
          quote="Report fraud, scams and bad business practices.",
          usedFor="Reporting a seller.",
-         checkedOn="2026-10-23", method="live fetch (pass 3, session 77405ae3)"),
+         checkedOn="2026-10-23", method="live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"),
 ]
 
 SPOT = dict(
     primary=dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
                  usdPerOz=3996.10, usdPerGram=128.48, asOf="2026-10-23 4:10 p.m. ET", kind="spot bid",
-                 method="live fetch (pass 4, session arena-463d0ea2)",
-                 quote="Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81; tola 1,498.54. Day's range 3,975.10–4,040.20. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"),
-    prior=[dict(source="Kitco Metals Inc. — Live Gold Price (earlier the same day)", url="https://www.kitco.com/charts/gold",
+                 method="live fetch (2026-10-23 4:10 p.m. ET panel; integrated sessions 3bf55199 + bc4e36a1)",
+                 quote="Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"),
+    prior=[dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
-                method="live fetch (pass 3, session 77405ae3)",
-                note="Earlier 2026-10-23 capture; superseded by the 4:10 p.m. ET quote above. Kept so the intraday move is visible."),
+                method="live fetch (2026-10-23 5:44 a.m. ET pass, session 77405ae3)",
+                note="Previous 2026-10-23 quote (5:44 a.m. ET); superseded by 4:10 p.m. ET quote above. Bid fell $26.40/oz intraday."),
            dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4026.90, usdPerGram=129.47, asOf="2026-10-22 7:26 p.m. ET", kind="spot bid",
                 method="prior-session capture (session 7cca80c9)",
@@ -620,8 +619,8 @@ SPOT = dict(
                       usdPerOz=4086.90, usdPerGram=None, asOf="2026-10-22 morning", kind="spot",
                       method="prior-session capture",
                       note="Spot gold near $4,086.90 an ounce, down $53.40 (1.29%).")],
-    notes=["The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, the purity calculator's 24K line at $3,996.10, and the same page's own note that a troy ounce is 31.1034768 grams. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value (FL-25).",
-           "The earlier 2026-10-23 5:44 a.m. ET quote ($4,022.50 / $129.33) and the 2026-10-22 quotes are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
+    notes=["The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, and the purity calculator's 24K line at $3,996.10. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value. Intraday move from $4,022.50 at 5:44 a.m. ET to $3,996.10 at 4:10 p.m. ET was -$26.40/oz (-0.66%).",
+           "Earlier quotes (5:44 a.m. ET and 2026-10-22) are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
     purity=dict(fineness={"24K": 0.9999, "22K": 0.9167, "18K": 0.75, "14K": 0.5833, "10K": 0.4167},
                 perOz={"24K": 3996.10, "22K": 3663.22, "18K": 2997.08, "14K": 2330.93, "10K": 1665.17},
                 source="Kitco 'Gold Value by Purity' table, same 2026-10-23 4:10 p.m. ET page capture"),
@@ -629,82 +628,36 @@ SPOT = dict(
 
 
 # ---- 2026-10-23 provenance pass -------------------------------------------
-# LIVE_2026_10_23: rows actually re-fetched and read on 2026-10-23 (the value was
-# visible on the page in this pass). Everything else keeps its 2026-10-22 capture
-# date and is labelled "prior"; nothing is silently re-dated.
-LIVE_2026_10_23 = {
-    "BN-192506": "price re-read on the Blue Nile engagement-rings gallery ($1,255, Setting Price)",
-    "BN-195639": "$1,000 Setting Price; stock 501130y14; 14K Yellow Gold; 1.80 mm",
-    "BN-203257": "$870 Setting Price; stock 500000y14; 14K Yellow Gold; 1.90 mm",
-    "BN-195326": "price re-read on the Blue Nile engagement-rings gallery ($1,500, Setting Price)",
-    "BN-195871": "$1,800 Setting Price; stock 501410y14; 14K Yellow Gold; 2.50 mm",
-    "BN-311132": "price re-read on the Blue Nile engagement-rings gallery ($2,320, Setting Price)",
-    "AL-5882": "$1,085; 14k yellow gold; gold weight 5.00 g (approximate); style U5882",
-    "AL-170": "$933; 14k yellow gold; gold weight 4.80 g (approximate); style U170",
-    "AL-4426": "$585; 14k yellow gold; approximate metal weight 3.58 g; style NG4426",
-    "AV-25893": "$1,100.00; item code R25893; 14K gold; 2.3 grams; returns within 14 days",
-    "JM-149700": "Retail $6,041.00 / Special $3,020.00; 14KT gold; metal weight 2.3 grams; 30-day return",
-    "SGJ-B02561": "14ky, 4.7 g, #B02561; no price — 'Call (309) 452-1612 for current pricing and availability'",
-    # Added by session 77405ae3 (its fetcher read these pages the same day; see data/live_check_77405ae3.json):
-    "BN-203738": "$2,210 Setting Price on the Blue Nile engagement-rings gallery; 18K White Gold",
-    "BN-203348": "$1,145; stock 502120y14; 14K Yellow Gold; 2.40 mm",
-    "BE-1343": "$750 Setting Only; style BE1343-14KY; 14K Yellow Gold; width 2–1.2 mm; 80 reviews at 4.8/5",
-    "BE-NADIA": "$1,250 Setting Only; 14K Yellow Gold; 1.8 mm; 143 reviews",
-    "BE-1343HH": "product page served EUR (€1,350.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 2–1.3 mm, 14 accent diamonds 0.05 ct. tw.",
-    "BE-SECRET": "product page served EUR (€1,250.00, Setting Only) — USD not confirmable, price BLANK (FL-08); 14K Yellow Gold, 1.5 mm, 13 accent diamonds 0.06 ct. tw.",
-    # Added by session arena-463d0ea2 (pass 4, 2026-10-23 late afternoon): the Etsy listing
-    # pages that returned HTTP 500 in pass 3 were served normally in pass 4, so all seven were
-    # read from the seller's own page. One of them was sold out at read time (FL-29).
-    "ET-4426190660": "14K Yellow Gold option $1,891.78 (50% off from $2,404.16+); 10K $1,686.02; 18K $2,109.58; 925 silver base $1,202.08; band 1.80 mm; 'Low in stock, only 1 left'; Star Seller",
-    "ET-4366425533": "14K Yellow Gold option now $546.09 (2026-10-22 capture: $547.26), range to $2,404.96 by carat; 'Original Price' $626.34+; 40% off; 30-day returns, buyer pays return shipping; ships from the United Kingdom",
-    "ET-1151446373": "14K Yellow Gold option $969.00 (25% off from $1,044.00); 10K $783.00; 18K $1,233.00; 'Returns & exchanges accepted'",
-    "ET-1566052947": "2mm option $251.30 (30% off from $359.00); width and ring size change the price; 'Returns & exchanges accepted'",
-    "ET-1433905613": "14K Gold option $999.70 (35% off from $1,038.00); 10K $674.70; ships in 1-3 business days",
-    "ET-944684759": "2mm option $195.75 (25% off from $261.00); width and ring size change the price; 30-day returns, buyer pays return shipping; ships from Great Neck, NY",
-    "ET-576343849": "listing shows 'Sorry, this item is sold out' and 'Sold' — the price is NOT currently purchasable and is kept only as the dated 2026-10-22 observation (FL-29); the page still shows '7g Solid Gold' and 'Marked 14K'",
-}
-
-# Rows whose value CHANGED against the 2026-10-22 capture. They are corrected here and
-# flagged; nothing is silently overwritten.
-CHANGED_2026_10_23 = {
-    "ET-4366425533": "price corrected: the 14K option read $546.09, not $547.26",
-    "ET-576343849": "availability changed: the listing is sold out, so the price is no longer purchasable (FL-29)",
-    "BE-1343": "currency changed: the product page served EUR (€835.00) in this pass, so the USD figure is a dated earlier-same-day capture only (FL-08)",
-}
-# Rows re-read in pass 4 (session arena-463d0ea2). Provenance stays "live 2026-10-23" for
-# every row; this set only drives which note wording is written.
-PASS4 = {"BN-192506", "BN-195639", "BN-203257", "BN-195326", "BN-195871", "BN-311132",
-         "BN-203738", "BN-203348", "BE-1343", "BE-NADIA", "AL-5882", "AL-170", "AL-4426",
-         "AV-25893", "JM-149700", "SGJ-B02561", "ET-4426190660", "ET-4366425533",
-         "ET-1151446373", "ET-1566052947", "ET-1433905613", "ET-944684759", "ET-576343849"}
-PRIOR_FLAG = {}
-for _id in ("BE-1343", "BE-NADIA", "BE-1343HH", "BE-SECRET"):
-    PRIOR_FLAG[_id] = "FL-27"
-for _id in ("ET-4426190660", "ET-4366425533", "ET-1151446373", "ET-1566052947",
-            "ET-1433905613", "ET-944684759", "ET-576343849"):
-    PRIOR_FLAG[_id] = "FL-26"
-for _id in ("BN-203738", "BN-203348"):
-    PRIOR_FLAG[_id] = "FL-28"
-
+# The field-level read ledger is an input to the canonical build.  Every listing
+# must have one current official-source check; the observed values are compared
+# before any JSON is emitted.  This prevents a stale provenance loop or a hand
+# edit from silently reintroducing a price, weight, or policy conclusion.
+LEDGER_PATH = os.path.join(ROOT, "data", "live_check_bc4e36a1.json")
+with open(LEDGER_PATH, encoding="utf-8") as _lf:
+    LIVE_CHECK = json.load(_lf)
+if LIVE_CHECK.get("checkedOn") != "2026-10-23" or LIVE_CHECK.get("coverage", {}).get("total") != 46:
+    raise ValueError("The current 46-check evidence ledger is required for this build")
+_LISTING_CHECKS = {c["entryId"]: c for c in LIVE_CHECK["checks"] if c.get("kind") == "listing"}
+if set(_LISTING_CHECKS) != {x["id"] for x in ENTRIES} or len(_LISTING_CHECKS) != len(ENTRIES):
+    raise ValueError("Evidence ledger listing coverage does not match canonical entries")
+_OBSERVED_FIELDS = ("price", "grams", "karat", "solidStated", "hallmarkStated", "makerMarkStated", "returnsVerified")
 for _e in ENTRIES:
-    if _e["id"] in LIVE_2026_10_23:
-        _e["checkedOn"] = "2026-10-23"
-        _e["provenance"] = "live"
-        if _e["id"] in CHANGED_2026_10_23:
-            _suffix = " — " + CHANGED_2026_10_23[_e["id"]] + "."
-        elif _e["id"] in ("BE-1343HH", "BE-SECRET"):
-            _suffix = ""
-        else:
-            _suffix = " — unchanged from the 2026-10-22 capture."
-        _pass = " (pass 4, session arena-463d0ea2)" if _e["id"] in PASS4 else ""
-        _e["notes"].append("Re-read live on 2026-10-23" + _pass + ": " + LIVE_2026_10_23[_e["id"]] + _suffix)
-    else:
-        _e["checkedOn"] = "2026-10-22"
-        _e["provenance"] = "prior"
-        _e["notes"].append("NOT re-fetched on 2026-10-23 (see " + PRIOR_FLAG[_e["id"]] +
-                           "): this value carries its 2026-10-22 capture date and is not asserted as current.")
-        if PRIOR_FLAG[_e["id"]] not in _e["flags"]:
-            _e["flags"].append(PRIOR_FLAG[_e["id"]])
+    _c = _LISTING_CHECKS[_e["id"]]
+    if _c.get("status") != "read" or _c.get("checkedOn") != "2026-10-23":
+        raise ValueError(f"Listing {_e['id']} lacks a current read check")
+    if _c.get("url") != _e.get("url"):
+        raise ValueError(f"Official URL mismatch for {_e['id']}: ledger vs canonical")
+    _o = _c.get("observed") or {}
+    for _field in _OBSERVED_FIELDS:
+        if _o.get(_field) != _e.get(_field):
+            raise ValueError(f"Observed {_field} mismatch for {_e['id']}: {_o.get(_field)!r} vs {_e.get(_field)!r}")
+    if _o.get("metalConflict") != _e.get("metalConflict"):
+        raise ValueError(f"Metal-conflict disclosure mismatch for {_e['id']}")
+    _e["checkedOn"] = _c["checkedOn"]
+    _e["provenance"] = "live"
+    _e["evidenceId"] = _c["id"]
+    _e["evidencePath"] = _c["evidencePath"]
+    _e["notes"].append(f"Current official-source read: {_c['id']} ({_c['result']}); evidence excerpt and URL are linked on the Verification page.")
 
 _LIVE_N = sum(1 for _e in ENTRIES if _e["provenance"] == "live")
 _PRIOR_N = len(ENTRIES) - _LIVE_N
@@ -713,19 +666,19 @@ DATA = dict(
     meta=dict(
         project="GOLD5 — Solid Gold Engagement Ring Research",
         asOf="2026-10-23",
-        lastPass="2026-10-23 pass 4 (session arena-463d0ea2): spot refreshed to the 4:10 p.m. ET quote, all seven Etsy listings re-read, one price corrected, one sold-out listing flagged",
-        session="arena-463d0ea2",
+        lastPass="2026-10-23 (bc4e36a1 field-level live verification; integrated Kitco refresh from 3bf55199)",
+        session="bc4e36a1",
         title="Gold engagement rings, verified line by line",
-        subtitle=("25 listings from 13 sellers · all 25 rows were re-read from the seller's own page on 2026-10-23 "
-                  "(23 of them in pass 4) · every value tied to the source page that states it · blanks are flagged, "
-                  "never guessed · one listing confirmed sold out"),
+        subtitle="25 listings from 13 sellers · all 25 rows re-read live on 2026-10-23 · every value tied to the official source page that states it · blanks and source conflicts are flagged, never guessed",
         noHallucinations=("NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site "
                           "was read from the linked official source page on the date shown next to it. If a value could not be "
                           "confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated or "
                           "filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed "
                           "from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py."),
         checker="python3 scripts/verify.py",
-        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate="2026-10-22" if _PRIOR_N else None),
+        evidenceLedger="data/live_check_bc4e36a1.json",
+        liveCheck=LIVE_CHECK,
+        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate=None),
         archive=[dict(label="Session 638c9614 — research site at /docs/", path="docs/index.html"),
                  dict(label="Session 090bae73 — checklist guide", path="index-090bae73.html"),
                  dict(label="Session 37e8ff42 — dashboard snapshot", path="archive/session-37e8ff42/index.html"),
