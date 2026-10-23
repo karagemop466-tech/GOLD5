@@ -1288,3 +1288,56 @@ Derived numbers are recomputed by script. Every review ends with the harness run
     Earth rows), FL-28 (2 Blue Nile rows), plus the 17 missing weights, 0 maker's marks and 11
     unverified return policies. They are on `/site/flagged.html` with source links.
   - **All scopes released.** No open claims from this session; V1–V6 are **done**.
+
+---
+
+## Task board — session `arena-60a26527` (independent verification pass, 2026-10-23)
+
+**Session ID = `arena-60a26527`** (branch `arena/60a26527-gold5`, the branch the platform binds this
+session to; the `session-<id>/<task>` naming cannot be used because the platform forbids other
+branches — same deviation logged by every earlier session).
+
+This session started on the pre-refresh `main` (`7cc612d`, PR #32) and, mid-pass, `main` advanced to
+`30fddc1` (PRs #33–#38 from sessions `0c967748`, `887435c2`, `a255f011`, including the 2026-10-23
+live refresh). The branch was re-synced to `origin/main` (`30fddc1`) and the audit re-run against
+the **final 2026-10-23 data**. No other session's file was edited; the earlier claim draft (based on
+`7cc612d`) was superseded by this section.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|--------------------------|
+| V1 | Independent verification: recompute every derived value from raw inputs (independent of the project's own checkers), re-check evidence tokens, verify the rendered HTML | **done** | `arena-60a26527` | `scripts/independent_audit.py` (new), `docs/verification/independent-audit-2026-10-23.md` (new), `COORDINATION.md` (append-only section) |
+| V2 | Run the full project harness suite on the integrated tree; record results | **done** | `arena-60a26527` | read-only checks; regenerated artifacts reverted to their owners' committed state |
+| V3 | Record findings; PR → main, merge, confirm Pages deploy, log | **in progress** | `arena-60a26527` | `COORDINATION.md` (log), GitHub PR |
+
+**Files this session did NOT edit** (owned by other sessions, preserved byte-for-byte): the root
+dashboard / nav / table data and all generated site pages (final integration session `a255f011`),
+`dossier/**` (`3e3fae49`), `report/**` + `verification/**` (`60c4b9c3`), `verified/**` (`84be683f`),
+`data/**` + `tools/**` (`638c9614` / `37e8ff42`), `docs/**` (`638c9614`), `pages/**` + `assets/**`
++ `index-090bae73.html` (`090bae73`), `review/**` (`0c967748`), `scripts/review_current.py`
++ `scripts/site_categories.py` + `scripts/verify.py` + `scripts/author_data.py` +
+`scripts/build_site.py` + `scripts/audit_b1f2fe3b.py` (`a255f011` / earlier).
+
+### Log — session `arena-60a26527`
+- 2026-10-23 ~09:53 UTC: repo reviewed at `7cc612d` (= then-`origin/main`). Claimed V1–V3; committed
+  and pushed the claim (`d944483`) before any edit.
+- 2026-10-23 ~10:0x UTC: discovered `main` had advanced to `30fddc1` (PRs #33–#38) while this session
+  was working — a parallel 2026-10-23 refresh by sessions `0c967748`, `887435c2`, `a255f011`. Read
+  their board sections; `a255f011` is the final integration session for the 2026-10-23 pass and has
+  released all scopes (V1–V6 done, PR #37 merged, Pages deployed). Re-synced the branch to
+  `origin/main` (`30fddc1`); re-ran the audit against the final data.
+- 2026-10-23: **V1 done — independent audit (11 checks, all PASS, 0 FAIL)** on the 2026-10-23 data:
+  spot `$4,022.50/oz → $129.33/g`; per-purity per-oz; 60 raw-gold cells; fine-gold / metal-value /
+  ratio for all 8 weighted rows; **all dollar figures on all 19 root pages trace to data or
+  recomputation**; all URLs https; all 25 entries sourced + dated; all price/gram/karat tokens
+  backed by a verbatim capture; NO HALLUCINATIONS banner present. **No hallucination found.** The
+  prior `ET-944684759` `priceNote` finding (from the pre-refresh draft) is **resolved** by the
+  2026-10-23 refresh. Report: `docs/verification/independent-audit-2026-10-23.md`.
+- 2026-10-23: **V2 done — full harness suite PASS on the integrated tree**: `scripts/verify.py`
+  21/21 · `scripts/review_current.py --check` PASS · `scripts/audit_b1f2fe3b.py` 6/6 groups (103
+  pages, 4,057 links) · `tools/check_report.py` PASS · `tools/check_hallucinations.py` 166/0 FAIL ·
+  `tools/security_test.py` 9/9 caught · `dossier/scripts/build.py` 18/18 · `verified/` 896/0.
+  Regenerated report artifacts (other sessions' files) reverted; only this session's two new files
+  remain in the diff.
+- Rule reminder (from the brief): after every review, re-run the checkers and inspect for
+  unsupported claims. This audit is an independent cross-check, not a replacement for the owners'
+  harnesses.
