@@ -47,7 +47,7 @@ recommendation to hunt again for unsupported claims. Flagged items remain publis
   blank; BN-203738's metal conflict is FL-30; sold ET-576343849 retains $420/$525 but has no exact
   grams. Rebuilt the 19-page canonical site and 7 category views.
 - **H4:** `scripts/verify.py` PASS 22/22 with 10/10 injected errors; independent audit PASS 11/11;
-  cross-site audit PASS 6/6 (38 unified rows, 103 HTML pages, 4,179 local links, 4/4 injected errors);
+  cross-site audit PASS 6/6 (38 unified rows, 103 HTML pages, 4,186 local links, 4/4 injected errors);
   current review PASS (264 records, 92 exact URLs, 6/6 negative tests); hallucinations 166 PASS /
   0 FAIL / 0 WARN / 1 INFO; report 1,649 checks PASS; security 9/9 planted errors caught; verified
   archive 896 assertions PASS; dossier 18/18 PASS. The duplicate 2.3 g historical note remains open
@@ -61,9 +61,16 @@ recommendation to hunt again for unsupported claims. Flagged items remain publis
   pass-4 evidence and PR history remain, canonical values come from the 46-check ledger, and generated
   HTML was rebuilt rather than edited by hand. The duplicate active-claim block was removed. FL-29 is
   sold-out; FL-30 is the distinct BN-203738 metal conflict. No other session's evidence was discarded.
-- **H5:** Final full-suite rerun, diff review, commit/rebase/push, PR → `main`, merge and Pages
-  confirmation are still being completed in this session. No unresolved research flag is being hidden
-  to make the merge green; broken links or harness failures would block publication.
+- **Final gate before publication:** all nine suites PASS on the rebased tree: canonical 22/22 with
+  10/10 injected errors; independent 11/11; cross-site 6/6 (38 unified rows, 103 HTML pages, 4,186
+  local links, 4/4 injected errors); current review 264 records / 92 exact URLs / 6/6 negative tests;
+  hallucinations 166 PASS / 0 FAIL / 0 WARN / 1 INFO; report 1,649 checks; security 9/9 planted errors;
+  verified 896 assertions; dossier 18/18 with 1,104 references and 0 broken links. Dossier and verified
+  timestamp-only regeneration was restored so those parallel archives remain intact.
+- **H5:** Commit/rebase/push, PR → `main`, merge and Pages confirmation are still being completed in
+  this session. No unresolved research flag is being hidden to make the merge green; broken links or
+  harness failures would block publication. Continue hunting unsupported claims after launch, especially
+  seller-stated marks, variant prices, currency renders and exact weights.
 
 
 ## ⏱ ACTIVE CLAIM — session `ea49572b` (Arena branch `arena/ea49572b-gold5`) — **complete, PR #48 merged**

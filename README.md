@@ -118,7 +118,7 @@ Latest results from this pass:
 |---|---|
 | `scripts/verify.py` | **PASS 22/22**, C1–C21 plus N1–N10; 19 pages, 65 registered external URLs |
 | `scripts/independent_audit.py` | **PASS 11/11**; all 25 rows' price/gram/karat tokens backed by evidence |
-| `scripts/audit_b1f2fe3b.py` | **PASS 6/6 groups**; 38 unified rows, 103 HTML pages, 4,179 local links, 4/4 injected errors caught |
+| `scripts/audit_b1f2fe3b.py` | **PASS 6/6 groups**; 38 unified rows, 103 HTML pages, 4,186 local links, 4/4 injected errors caught |
 | `scripts/review_current.py --check` | **PASS**; 264 records, 92 exact source URLs, 6/6 negative tests |
 | `tools/check_hallucinations.py` | **166 passed, 0 FAIL, 0 WARN**; one informational duplicate-weight note retained for review |
 | `tools/check_report.py` | **PASS**, 1,649 checks, 0 failures/warnings |
