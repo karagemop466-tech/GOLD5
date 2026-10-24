@@ -160,9 +160,17 @@ def main():
     # Current-pass evidence excerpts and explicit before/after corrections are
     # source records too.  This admits historical values only when they are
     # visibly labeled in the ledger, not arbitrary hand-typed HTML numbers.
+    # Partial reads and logged fetch failures are evidence records too: a promo
+    # banner quoted verbatim from an official page (e.g. Brilliant Earth's gift-card
+    # offer) is a source record, explicitly labelled as a promotion and never used as
+    # a product price.  Same rule as the excerpts above — admitted only when the
+    # amount is visible in the ledger, never for arbitrary hand-typed HTML numbers.
     for c in (d.get("meta", {}).get("liveCheck", {}).get("checks", []) +
-              d.get("meta", {}).get("liveCheck", {}).get("corrections", [])):
-        for key in ("sourceExcerpt", "before", "after", "reason"):
+              d.get("meta", {}).get("liveCheck", {}).get("corrections", []) +
+              d.get("meta", {}).get("liveCheck", {}).get("partialReads", []) +
+              d.get("meta", {}).get("liveCheck", {}).get("failures", [])):
+        for key in ("sourceExcerpt", "before", "after", "reason",
+                    "retrieved", "notRetrieved", "effect", "result", "handling"):
             for m in re.findall(r"\$[\d,]+(?:\.\d{1,2})?", c.get(key) or ""):
                 add(m.replace("$", "").replace(",", ""))
 

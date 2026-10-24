@@ -6,10 +6,17 @@ scripts/build_site.py and scripts/verify.py. This script exists so the provenanc
 comments below travel with the data.
 
 PROVENANCE KEY
-  live   = re-fetched and read by session bc4e36a1 on 2026-10-23 (this pass)
+  live   = read from the official page on the data date (2026-10-23)
   prior  = an older dated observation, never presented as current
+  readBy = the session that actually performed the read:
+             6d10ac0a                    -> re-opened live in this pass
+             bc4e36a1 (inherited)        -> read earlier the same day (2026-10-23) by
+                                            session bc4e36a1; carried forward unchanged
+                                            with its original evidence id and path
 No value below is estimated or inferred. Blank = null and flagged. The build also
-compares every listing with data/live_check_bc4e36a1.json before emitting JSON.
+compares every listing with data/live_check_6d10ac0a.json (which inherits
+data/live_check_bc4e36a1.json) before emitting JSON, and refuses to write if an
+observed value disagrees with the canonical row.
 """
 import json, os
 
@@ -493,7 +500,7 @@ FLAGS = [
          detail="Allurez publishes approximate gold weights; Avianne, Jewelry Master and Solid Gold Jewelers publish single figures; VeraByEden states 'Gold grams: 3.70 gr'. The sold ET-576343849 page gives only a 6–7 g scale range and is not assigned an exact weight. None has been independently weighed. Treat them as claims to be checked with a jeweler's scale and XRF on arrival.",
          entryIds=["AL-5882","AL-170","AL-4426","AV-25893","JM-149700","SGJ-B02561","ET-1151446373","ET-576343849"]),
     dict(id="FL-19", severity="info", status="open", title="Gold spot moves all day — the snapshot is dated",
-         detail="The current 2026-10-23 Kitco panel shows $3,996.10/oz and $128.48/g, while nearby body text shows $3,995.50/oz and $128.46/g; earlier captures are retained as dated history. This site uses one labeled panel bid for every calculation and shows the timestamp. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+         detail="Three Kitco captures exist for 2026-10-23 alone: $4,022.50/oz at 5:44 a.m. ET, $3,996.10/oz at 4:10 p.m. ET and the current $3,994.90/oz ($128.44/g) from the 19:43 NY panel whose prices are stated as of 7:42 p.m. ET. That is a $27.60/oz intraday swing on one day. This site uses one labeled panel bid for every calculation, shows its timestamp, and keeps the superseded quotes as dated history. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
          entryIds=[]),
     dict(id="FL-20", severity="info", status="open", title="A 14K or 18K stamp is not proof of purity",
          detail="FTC guidance requires a karat mark plus a maker's mark, but a stamp is a disclosure, not an assay. The only way to know what the metal actually is: have an independent jeweler test it (XRF or another professional method) after delivery, before wearing or resizing. No US law requires the seller to accept a return based on your test, so confirm the return right first.",
@@ -512,7 +519,7 @@ FLAGS = [
          detail="Earlier flags said the Brilliant Earth karat appeared only in product URLs and that VeraByEden's 3.70 g came from a search snippet. Both were re-checked live: each Brilliant Earth product page states 14K Yellow Gold, and VeraByEden's description states 'Gold grams: 3.70 gr'. The old flags are closed, with the checks recorded on the Verification page.",
          entryIds=["BE-NADIA","BE-1343HH","BE-SECRET","ET-1151446373"]),
     dict(id="FL-25", severity="low", status="open", title="Kitco page shows several nearby numbers in one capture",
-         detail="The 2026-10-23 capture displayed a panel bid of $3,996.10 and $128.48/g, an ask of $3,998.10, and separate body text of $3,995.50/oz and $128.46/g. The project uses the panel bid and its per-gram figure for every calculation, preserves the body figures as a labeled discrepancy, and never mixes quotes from different timestamps.",
+         detail="The current 2026-10-23 capture (19:43 NY panel, prices stated as of 7:42 p.m. ET) displays a panel bid of $3,994.90 and $128.44/g, an ask of $3,996.90, a body sentence repeating $3,994.90/oz, an embedded OANDA XAUUSD widget close of 3,995.810 at 19:43:05 UTC-4, and two different kilo prints — $128,440.99 in the ticker against $128,439.02 in the page's own unit table. The superseded 4:10 p.m. ET capture had its own internal split ($3,996.10 panel vs $3,995.50 body text) and is kept in history. The project uses the panel bid and its per-gram figure for every calculation, publishes the extra prints as a labeled discrepancy, and never mixes quotes from different timestamps or sources.",
          entryIds=[]),
     dict(id="FL-26", severity="medium", status="resolved", title="Resolved: all seven Etsy listing pages were read live on 2026-10-23",
          detail="An earlier collector returned HTTP 500 for the Etsy pages. This pass opened all seven official listing URLs directly and recorded field-level evidence in data/live_check_bc4e36a1.json (L19–L25). Current prices, stated options and available return terms replace the prior-session labels; the sold listing remains explicitly sold out.",
@@ -521,8 +528,13 @@ FLAGS = [
          detail="A previous collector saw navigation only. The 2026-10-23 direct reads are recorded in data/live_check_bc4e36a1.json (L09–L12): BE-1343 serves €835, BE-NADIA $1,250 USD, BE-1343HH €1,350, and BE-SECRET $1,090 USD. EUR is not converted; the two USD blanks are flagged FL-08.",
          entryIds=["BE-1343","BE-NADIA","BE-1343HH","BE-SECRET"]),
     dict(id="FL-28", severity="low", status="resolved", title="Resolved: both remaining Blue Nile pages were re-read",
-         detail="The 2026-10-23 direct reads are recorded in data/live_check_bc4e36a1.json (L07–L08): BN-203738 displays $2,210 with an explicit 18K/14K metal conflict, and BN-203348 displays $1,145, 14K Yellow Gold, stock 502120y14 and 2.40 mm. Both rows carry the current check date.",
+         detail="The 2026-10-23 direct reads are recorded in data/live_check_bc4e36a1.json (L07–L08): BN-203738 displays $2,210 with an explicit 18K/14K metal conflict, and BN-203348 displays $1,145, 14K Yellow Gold, stock 502120y14 and 2.40 mm. Both rows carry the current check date. BN-203738 was re-read a second time on 2026-10-23 by session 6d10ac0a (ledger L07, verification/evidence/6d10ac0a/retailers.md): $2,210 Setting Price, stock 502820w, 18K White Gold in the title and specification, 14k yellow gold in Product Details — the conflict is unchanged and still published, not resolved.",
          entryIds=["BN-203738","BN-203348"]),
+    dict(id="FL-31", severity="info", status="open", title="Provenance scope of the 2026-10-23 pass (session 6d10ac0a)",
+         detail="This pass re-opened 9 of the 46 canonical checks live: the Kitco spot plus eight listing pages (BN-203738, AL-5882, AL-170, AL-4426, AV-25893, JM-149700, SGJ-B02561, ET-576343849). Every re-read field matched the canonical row exactly, so the only value that changed is the timestamped spot quote and the numbers derived from it. The other 37 checks — 17 listings, 9 seller policy/contact pages and 11 official references — were read earlier the same day (2026-10-23) by session bc4e36a1 and are carried forward unchanged with their original evidence ids and paths, labelled readBy 'bc4e36a1 (inherited)' rather than being presented as this session's reads. Rows carrying this flag were therefore not re-opened by session 6d10ac0a; their values still come from an official page read on 2026-10-23. Two pages (ET-1151446373, BE-1343) were only partially retrieved this pass and are logged as partial reads; they upgraded nothing.",
+         entryIds=["BN-192506","BN-195639","BN-203257","BN-195326","BN-195871","BN-311132","BN-203348",
+                   "BE-1343","BE-NADIA","BE-1343HH","BE-SECRET",
+                   "ET-4426190660","ET-4366425533","ET-1151446373","ET-1566052947","ET-1433905613","ET-944684759"]),
     dict(id="FL-29", severity="medium", status="open", title="ET-576343849 is sold out — not a current offer",
          detail="The 2026-10-23 sold-out detail page says 'Sorry, this item is sold out' / 'Sold' and displays $420.00 (original $525.00). It cannot be purchased; the price is a labeled sold-listing display only. Earlier $444.80/$556.00 observations remain historical archive material. The title's 7 g and the description's alternating 6–7 g scale range are not an exact weight, so no metal-value conclusion is drawn (FL-01 resolved).",
          entryIds=["ET-576343849"]),
@@ -592,13 +604,18 @@ REFERENCES = [
 
 SPOT = dict(
     primary=dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
-                 usdPerOz=3996.10, usdPerGram=128.48, asOf="2026-10-23 4:10 p.m. ET", kind="spot bid",
-                 method="live fetch (2026-10-23 4:10 p.m. ET panel; integrated sessions 3bf55199 + bc4e36a1)",
-                 quote="Live Gold Price — Oct 23, 2026 - 16:12 NY Time. Bid 3,996.10 USD (-26.90, -0.67%); Ask 3,998.10; gram 128.48 (-0.86); Kilo 128,479.57; pennyweight 199.81. 'Prices provided by Kitco Metals Inc. ... as of October 23, 2026 at 4:10 p.m. EDT.' Body text: 'The current price of gold is $3,995.50 per troy ounce as of October 23, 2026, 4:10 p.m. ET, down $27.80 today.'"),
+                 usdPerOz=3994.90, usdPerGram=128.44, asOf="2026-10-23 7:42 p.m. ET", kind="spot bid",
+                 panelTime="Oct 23, 2026 - 19:43 NY Time",
+                 method="live fetch (2026-10-23 19:43 NY panel; session 6d10ac0a)",
+                 quote="Live Gold Price — Oct 23, 2026 - 19:43 NY Time. Bid 3,994.90 USD (-28.20, -0.70%); Ask 3,996.90; ounce 3,994.90 (-28.20); gram 128.44 (-0.91); Kilo 128,440.99 (-906.65); pennyweight 199.75 (-1.41); tola 1,498.09 (-10.58); tael 4,854.91 (-34.27); Day's Range 3975.10 - 4040.20. 'Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 23, 2026 at 7:42 p.m. EDT.' Body text: 'The current price of gold is $3,994.90 per troy ounce as of October 23, 2026, 7:42 p.m. ET, down $28.40 today.' The same page also embeds an OANDA XAUUSD widget printing a close of 3,995.810 at 19:43:05 UTC-4 and a kilo figure of 128,439.02 in its unit table against 128,440.99 in the ticker; those extra prints are disclosed (FL-25) and are not used in any calculation."),
     prior=[dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
+                usdPerOz=3996.10, usdPerGram=128.48, asOf="2026-10-23 4:10 p.m. ET", kind="spot bid",
+                method="live fetch (2026-10-23 16:12 NY panel; integrated sessions 3bf55199 + bc4e36a1)",
+                note="Previous 2026-10-23 quote (4:10 p.m. ET); superseded by the 7:42 p.m. ET quote above. Bid fell $1.20/oz between the two captures. Its own body text showed $3,995.50/oz and $128.46/g."),
+           dict(source="Kitco Metals Inc. — Live Gold Price", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4022.50, usdPerGram=129.33, asOf="2026-10-23 5:44 a.m. ET", kind="spot bid",
                 method="live fetch (2026-10-23 5:44 a.m. ET pass, session 77405ae3)",
-                note="Previous 2026-10-23 quote (5:44 a.m. ET); superseded by 4:10 p.m. ET quote above. Bid fell $26.40/oz intraday."),
+                note="Earlier 2026-10-23 quote (5:44 a.m. ET); superseded by the two later captures above. Bid fell $26.40/oz intraday to 4:10 p.m. ET and $27.60/oz to 7:42 p.m. ET."),
            dict(source="Kitco Metals Inc. — Live Gold Price (previous session)", url="https://www.kitco.com/charts/gold",
                 usdPerOz=4026.90, usdPerGram=129.47, asOf="2026-10-22 7:26 p.m. ET", kind="spot bid",
                 method="prior-session capture (session 7cca80c9)",
@@ -619,11 +636,12 @@ SPOT = dict(
                       usdPerOz=4086.90, usdPerGram=None, asOf="2026-10-22 morning", kind="spot",
                       method="prior-session capture",
                       note="Spot gold near $4,086.90 an ounce, down $53.40 (1.29%).")],
-    notes=["The 2026-10-23 4:10 p.m. ET capture shows the bid ticker at $3,996.10 with $128.48/g, the page's own 'Gold Price Today' table at $3,995.50/oz and $128.46/g, and the purity calculator's 24K line at $3,996.10. The ticker bid and its per-gram figure are the numbers used for every calculation; the timestamp is part of the value. Intraday move from $4,022.50 at 5:44 a.m. ET to $3,996.10 at 4:10 p.m. ET was -$26.40/oz (-0.66%).",
-           "Earlier quotes (5:44 a.m. ET and 2026-10-22) are retained only as dated history and are labelled prior-day. They are not used in any calculation on this site."],
+    notes=["The 2026-10-23 7:42 p.m. ET capture shows the bid ticker at $3,994.90 with $128.44/g, a body sentence repeating $3,994.90/oz 'as of October 23, 2026, 7:42 p.m. ET, down $28.40 today', the purity calculator's 24K line at $3,994.90, an embedded OANDA widget close of 3,995.810, and two different kilo prints (128,440.99 ticker vs 128,439.02 unit table). The ticker bid and its own per-gram figure are the numbers used for every calculation; the timestamp is part of the value and the extra prints are disclosed, not mixed in (FL-25). Intraday moves: -$1.20/oz from the 4:10 p.m. ET capture ($3,996.10) and -$27.60/oz from the 5:44 a.m. ET capture ($4,022.50).",
+           "Earlier quotes (4:10 p.m. ET, 5:44 a.m. ET and 2026-10-22) are retained only as dated history and are labelled prior. They are not used in any calculation on this site.",
+           "This quote was read by session 6d10ac0a and is the only canonical value that changed in this pass: all eight re-read listing pages matched their recorded price, weight, karat, solidity, hallmark, maker's-mark and return fields exactly."],
     purity=dict(fineness={"24K": 0.9999, "22K": 0.9167, "18K": 0.75, "14K": 0.5833, "10K": 0.4167},
-                perOz={"24K": 3996.10, "22K": 3663.22, "18K": 2997.08, "14K": 2330.93, "10K": 1665.17},
-                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 4:10 p.m. ET page capture"),
+                perOz={"24K": 3994.90, "22K": 3662.12, "18K": 2996.18, "14K": 2330.23, "10K": 1664.67},
+                source="Kitco 'Gold Value by Purity' table, same 2026-10-23 7:42 p.m. ET page capture (session 6d10ac0a)"),
 )
 
 
@@ -632,53 +650,100 @@ SPOT = dict(
 # must have one current official-source check; the observed values are compared
 # before any JSON is emitted.  This prevents a stale provenance loop or a hand
 # edit from silently reintroducing a price, weight, or policy conclusion.
-LEDGER_PATH = os.path.join(ROOT, "data", "live_check_bc4e36a1.json")
+SESSION = "6d10ac0a"
+INHERITED_BY = "bc4e36a1 (inherited)"
+LEDGER_PATH = os.path.join(ROOT, "data", "live_check_6d10ac0a.json")
 with open(LEDGER_PATH, encoding="utf-8") as _lf:
     LIVE_CHECK = json.load(_lf)
+if LIVE_CHECK.get("session") != SESSION:
+    raise ValueError("The ledger must belong to this session; rebuild it with scripts/build_ledger_6d10ac0a.py")
 if LIVE_CHECK.get("checkedOn") != "2026-10-23" or LIVE_CHECK.get("coverage", {}).get("total") != 46:
     raise ValueError("The current 46-check evidence ledger is required for this build")
 _LISTING_CHECKS = {c["entryId"]: c for c in LIVE_CHECK["checks"] if c.get("kind") == "listing"}
 if set(_LISTING_CHECKS) != {x["id"] for x in ENTRIES} or len(_LISTING_CHECKS) != len(ENTRIES):
     raise ValueError("Evidence ledger listing coverage does not match canonical entries")
 _OBSERVED_FIELDS = ("price", "grams", "karat", "solidStated", "hallmarkStated", "makerMarkStated", "returnsVerified")
+
+
+def _money_tokens(value):
+    """Literal spellings a verbatim excerpt must contain for a recorded amount."""
+    out = {f"{value:,.2f}", f"{value:,.0f}" if float(value).is_integer() else None, f"{value}"}
+    return {t for t in out if t}
+
+
 for _e in ENTRIES:
     _c = _LISTING_CHECKS[_e["id"]]
     if _c.get("status") != "read" or _c.get("checkedOn") != "2026-10-23":
         raise ValueError(f"Listing {_e['id']} lacks a current read check")
     if _c.get("url") != _e.get("url"):
         raise ValueError(f"Official URL mismatch for {_e['id']}: ledger vs canonical")
+    if _c.get("readBy") not in (SESSION, INHERITED_BY):
+        raise ValueError(f"Listing {_e['id']} has no reader attribution")
     _o = _c.get("observed") or {}
     for _field in _OBSERVED_FIELDS:
         if _o.get(_field) != _e.get(_field):
             raise ValueError(f"Observed {_field} mismatch for {_e['id']}: {_o.get(_field)!r} vs {_e.get(_field)!r}")
     if _o.get("metalConflict") != _e.get("metalConflict"):
         raise ValueError(f"Metal-conflict disclosure mismatch for {_e['id']}")
+    _excerpt = _c.get("sourceExcerpt") or ""
+    # A value this pass re-read must literally appear in the verbatim excerpt it cites.
+    if _c.get("readBy") == SESSION:
+        if _o.get("price") is not None and not any(t in _excerpt for t in _money_tokens(_o["price"])):
+            raise ValueError(f"Re-read price for {_e['id']} is not present in its own evidence excerpt")
+        if _o.get("grams") is not None and not any(t in _excerpt for t in (f"{_o['grams']:.2f}", f"{_o['grams']}")):
+            raise ValueError(f"Re-read weight for {_e['id']} is not present in its own evidence excerpt")
+        if not any(t in _excerpt for t in (f"{_o.get('karat')}K", f"{_o.get('karat')}k", f"{_o.get('karat')}KT")):
+            raise ValueError(f"Re-read karat for {_e['id']} is not present in its own evidence excerpt")
     _e["checkedOn"] = _c["checkedOn"]
     _e["provenance"] = "live"
+    _e["readBy"] = _c["readBy"]
     _e["evidenceId"] = _c["id"]
     _e["evidencePath"] = _c["evidencePath"]
-    _e["notes"].append(f"Current official-source read: {_c['id']} ({_c['result']}); evidence excerpt and URL are linked on the Verification page.")
+    if _c["readBy"] == SESSION:
+        _e["notes"].append(f"Re-read live by session {SESSION} on {_c['checkedOn']}: {_c['id']} ({_c['result']}); verbatim excerpt and official URL are linked on the Verification page.")
+    else:
+        _e["notes"].append(f"Official-source read {_c['id']} ({_c['result']}) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session {SESSION} (FL-31).")
+        if "FL-31" not in _e["flags"]:
+            _e["flags"].append("FL-31")
 
+_REREAD = sum(1 for _e in ENTRIES if _e.get("readBy") == SESSION)
+_INHERITED = len(ENTRIES) - _REREAD
 _LIVE_N = sum(1 for _e in ENTRIES if _e["provenance"] == "live")
 _PRIOR_N = len(ENTRIES) - _LIVE_N
+
+# The spot quote must be literally present in the spot evidence excerpt re-read this pass.
+_SPOT_CHECK = next(c for c in LIVE_CHECK["checks"] if c.get("kind") == "spot")
+if _SPOT_CHECK.get("readBy") != SESSION:
+    raise ValueError("The spot check must be re-read by this session before its quote becomes primary")
+for _token in (f"{SPOT['primary']['usdPerOz']:,.2f}", f"{SPOT['primary']['usdPerGram']:,.2f}"):
+    if _token not in (_SPOT_CHECK.get("sourceExcerpt") or ""):
+        raise ValueError(f"Canonical spot value {_token} is not present in the spot evidence excerpt")
+for _k, _v in SPOT["purity"]["perOz"].items():
+    if f"{_v:,.2f}" not in (_SPOT_CHECK.get("sourceExcerpt") or ""):
+        raise ValueError(f"Purity value {_k} ${_v:,.2f} is not present in the spot evidence excerpt")
 
 DATA = dict(
     meta=dict(
         project="GOLD5 — Solid Gold Engagement Ring Research",
         asOf="2026-10-23",
-        lastPass="2026-10-23 (bc4e36a1 field-level live verification; integrated Kitco refresh from 3bf55199)",
-        session="bc4e36a1",
+        lastPass="2026-10-23 (session 6d10ac0a: spot re-read + 8 listing re-reads, 37 same-day checks inherited from bc4e36a1)",
+        session=SESSION,
         title="Gold engagement rings, verified line by line",
-        subtitle="25 listings from 13 sellers · all 25 rows re-read live on 2026-10-23 · every value tied to the official source page that states it · blanks and source conflicts are flagged, never guessed",
+        subtitle="25 listings from 13 sellers · every row read from its official page on 2026-10-23 — 8 listings plus the spot quote re-read by this pass, 37 checks inherited from the same day's earlier ledger and labelled as such · every value tied to the official source page that states it · blanks and source conflicts are flagged, never guessed",
         noHallucinations=("NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site "
-                          "was read from the linked official source page on the date shown next to it. If a value could not be "
-                          "confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated or "
-                          "filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed "
-                          "from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py."),
+                          "was read from the linked official source page on the date shown next to it, and the session that read it is "
+                          "named. If a value could not be confirmed, it is left BLANK and published on the Flagged for Review page — "
+                          "never inferred, estimated, currency-converted or filled in from a similar listing. Derived numbers "
+                          "(fine-gold grams, metal value, price/metal) are computed from verified inputs and recomputed by the "
+                          "checker. After every review pass, run python3 scripts/verify.py."),
         checker="python3 scripts/verify.py",
-        evidenceLedger="data/live_check_bc4e36a1.json",
+        evidenceLedger="data/live_check_6d10ac0a.json",
         liveCheck=LIVE_CHECK,
-        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate=None),
+        coverage=dict(live=_LIVE_N, prior=_PRIOR_N, liveDate="2026-10-23", priorDate=None,
+                      reread=_REREAD, inherited=_INHERITED,
+                      rereadSession=SESSION, inheritedSession="bc4e36a1",
+                      partialReads=len(LIVE_CHECK.get("partialReads", [])),
+                      failuresLogged=len(LIVE_CHECK.get("failures", []))),
         archive=[dict(label="Session 638c9614 — research site at /docs/", path="docs/index.html"),
                  dict(label="Session 090bae73 — checklist guide", path="index-090bae73.html"),
                  dict(label="Session 37e8ff42 — dashboard snapshot", path="archive/session-37e8ff42/index.html"),

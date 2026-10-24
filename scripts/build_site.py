@@ -42,6 +42,7 @@ FLAG_SHORT = {
     "FL-22": "excluded sellers", "FL-23": "archive", "FL-24": "resolved", "FL-25": "multiple spot prints",
     "FL-26": "Etsy re-read resolved", "FL-27": "BE re-read resolved", "FL-28": "BN re-read resolved",
     "FL-29": "sold out", "FL-30": "metal description conflict",
+    "FL-31": "inherited same-day read",
 }
 
 def esc(x):
@@ -413,6 +414,10 @@ def entry_row(e, i):
     ret = f'<div class="src" style="max-width:190px">{esc(first)}</div><div>{source_link(e["returnUrl"], "policy ↗")}</div>'
     prov = (f'<span class="badge ok">live {e["checkedOn"]}</span>' if e["provenance"] == "live"
             else f'<span class="badge info">captured {e["checkedOn"]}</span>')
+    reader = e.get("readBy")
+    if reader:
+        prov += (f'<div class="src">re-read this pass by <b>{esc(reader)}</b></div>' if reader == D["meta"]["session"]
+                 else f'<div class="src">read {esc(e["checkedOn"])} by <b>bc4e36a1</b> · inherited, not re-opened this pass</div>')
     conflict = f'<div class="src" style="max-width:210px;color:#a33"><b>Source conflict:</b> {esc(e["metalConflict"])}</div>' if e.get("metalConflict") else ""
     return f"""<tr id="{esc(e['id'])}" data-seller="{esc(e['sellerId'])}" data-cat="{esc(e['category'])}" data-karat="{e['karat']}" data-weight="{'1' if e['grams'] is not None else '0'}" data-price="{e['price'] if e['price'] is not None else ''}" data-ratio="{r if r is not None else ''}" data-fine="{f'{fine_g(e):.6f}' if e['grams'] is not None else ''}" data-mv="{f'{metal_value(e):.6f}' if e['grams'] is not None else ''}" data-name="{esc(e['name'].lower())}">
 <td class="num">{i}</td>
@@ -989,14 +994,27 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
     ledger = D["meta"]["liveCheck"]
     checks = ledger["checks"]
     kind_labels = {"listing": "Listing", "policy": "Policy / contact", "reference": "Official reference", "spot": "Gold spot"}
+    session_id = D["meta"]["session"]
     log_rows = []
     for c in checks:
         evidence = c.get("evidencePath")
         ev_link = f'<br><a class="src-link" href="../{esc(evidence)}">saved excerpt ↗</a>' if evidence else ""
-        log_rows.append(f"""<tr id="{esc(c['id'])}"><td class="num"><b>{esc(c['id'])}</b><div class="src">{esc(kind_labels.get(c.get('kind'), c.get('kind','')))}</div></td>
-<td><b>{esc(c['subject'])}</b><div class="src">{esc(c.get('entryId') or c.get('referenceId') or '')} · {esc(c['checkedOn'])} · {esc(c['result'])}</div></td>
+        reader = c.get("readBy", "")
+        reader_html = (f'<span class="badge ok">re-read by {esc(session_id)}</span>' if reader == session_id
+                       else f'<span class="badge gray">inherited · {esc(reader)}</span>')
+        inherited_fields = "".join(f'<div class="src">field inherited, not re-read: {esc(x)}</div>' for x in c.get("inheritedFields", []))
+        log_rows.append(f"""<tr id="{esc(c['id'])}"><td class="num"><b>{esc(c['id'])}</b><div class="src">{esc(kind_labels.get(c.get('kind'), c.get('kind','')))}</div><div style="margin-top:4px">{reader_html}</div></td>
+<td><b>{esc(c['subject'])}</b><div class="src">{esc(c.get('entryId') or c.get('referenceId') or '')} · {esc(c['checkedOn'])} · {esc(c['result'])}</div>{inherited_fields}</td>
 <td class="small"><a href="{esc(c['url'])}" target="_blank" rel="noopener" class="src-link">official source ↗</a>{ev_link}<div style="margin-top:5px;max-width:650px">{esc(c['sourceExcerpt'])}</div></td></tr>""")
-    correction_rows = "".join(f"""<tr><td><b>{esc(c['id'])} · {esc(c['subject'])}</b></td><td class="small"><b>Before:</b> {esc(c['before'])}<br><b>After:</b> {esc(c['after'])}<br><span class="muted">{esc(c['reason'])}</span></td></tr>""" for c in ledger.get("corrections", []))
+    correction_rows = "".join(f"""<tr><td><b>{esc(c['id'])} · {esc(c['subject'])}</b><div class="src">session {esc(c.get('session',''))}</div></td><td class="small"><b>Before:</b> {esc(c['before'])}<br><b>After:</b> {esc(c['after'])}<br><span class="muted">{esc(c['reason'])}</span></td></tr>""" for c in ledger.get("corrections", []))
+    partial_rows = "".join(f"""<tr><td><b>{esc(p['entryId'])}</b><div class="src">canonical check {esc(p['canonicalCheck'])}</div></td>
+<td class="small"><a href="{esc(p['url'])}" target="_blank" rel="noopener" class="src-link">official source ↗</a> · {esc(p['checkedOn'])}
+<div style="margin-top:5px"><b>Retrieved:</b> {esc(p['retrieved'])}</div>
+<div><b>Not retrieved:</b> {esc(p['notRetrieved'])}</div>
+<div class="muted">{esc(p['effect'])}</div>
+<div><a class="src-link" href="../{esc(p['evidencePath'])}">saved excerpt ↗</a></div></td></tr>""" for p in ledger.get("partialReads", []))
+    failure_rows = "".join(f"""<tr><td class="num"><b>{esc(f['seq'])}</b><div class="src">{esc(f['kind'])}</div></td><td class="small"><b>Target:</b> {esc(f['url'])}<br><b>Result:</b> {esc(f['result'])}<br><span class="muted">{esc(f['handling'])}</span></td></tr>""" for f in ledger.get("failures", []))
+    evidence_dirs = sorted({os.path.dirname(c["evidencePath"]) for c in checks if c.get("evidencePath")})
     coverage = ledger["coverage"]
     live = D["meta"]["coverage"]["live"]
     prior = D["meta"]["coverage"]["prior"]
@@ -1018,21 +1036,36 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
 
 <div class="stats">
   <div class="stat gold"><div class="k">Evidence checks</div><div class="v">{len(checks)}</div><div class="d">{coverage['listing']} listings · {coverage['policy']} policy/contact · {coverage['reference']} references · {coverage['spot']} spot</div></div>
+  <div class="stat"><div class="k">Re-read live this pass</div><div class="v">{coverage.get('rereadThisPass', 0)} / {len(checks)}</div><div class="d">by session {esc(D['meta']['session'])}: {coverage['spot']} spot + 8 listing pages</div></div>
+  <div class="stat"><div class="k">Inherited, same date</div><div class="v">{coverage.get('inheritedSameDate', 0)} / {len(checks)}</div><div class="d">read 2026-10-23 by bc4e36a1; kept with their original evidence ids</div></div>
   <div class="stat"><div class="k">Live listing rows</div><div class="v">{live} / {len(ENTRIES)}</div><div class="d">all dated {esc(date_str())}; prior rows: {prior}</div></div>
+  <div class="stat"><div class="k">Partial reads logged</div><div class="v">{coverage.get('partialReads', 0)}</div><div class="d">pages that yielded no value; nothing upgraded</div></div>
+  <div class="stat"><div class="k">Failures logged</div><div class="v">{coverage.get('failuresLogged', 0)}</div><div class="d">published, not silently dropped</div></div>
   <div class="stat"><div class="k">Open flags</div><div class="v">{sum(1 for f in D['flags'] if f['status']=='open')}</div><div class="d">published, not hidden</div></div>
   <div class="stat"><div class="k">Resolved flags retained</div><div class="v">{sum(1 for f in D['flags'] if f['status']=='resolved')}</div><div class="d">audit trail, not current claims</div></div>
 </div>
 
-<div class="note blue"><b class="title">Ledger and saved excerpts</b>The canonical input is <a href="../{esc(D['meta']['evidenceLedger'])}"><code>{esc(D['meta']['evidenceLedger'])}</code></a>. It contains {len(checks)} checks and {len(ledger.get('corrections', []))} corrections. The human-readable excerpts are in <code>verification/evidence/bc4e36a1/</code>; each row below links to its file. Fetch timestamps are asserted only when the source itself displayed one.</div>
+<div class="note blue"><b class="title">Ledger and saved excerpts</b>The canonical input is <a href="../{esc(D['meta']['evidenceLedger'])}"><code>{esc(D['meta']['evidenceLedger'])}</code></a>. It contains {len(checks)} checks and {len(ledger.get('corrections', []))} corrections, and it inherits <a href="../data/live_check_bc4e36a1.json"><code>data/live_check_bc4e36a1.json</code></a> (same date, session bc4e36a1) for the {coverage.get('inheritedSameDate', 0)} checks this pass did not re-open. The human-readable excerpts live in {', '.join(f'<code>{esc(d)}/</code>' for d in evidence_dirs)}; each row below links to its own file and names the session that read it. Fetch timestamps are asserted only when the source itself displayed one.</div>
+
+<div class="note"><b class="title">What this pass changed — and what it deliberately did not</b>The spot quote moved ($3,996.10 → <b>$3,994.90/oz</b>, $128.48 → <b>$128.44/g</b>, 19:43 NY panel / prices as of 7:42 p.m. ET), so every derived number — fine gold, metal value, price-to-metal ratios, the purity table and the calculator defaults — was recomputed by script. All eight listing pages re-opened this pass matched their recorded price, weight, karat, solidity, hallmark, maker's-mark and return fields <b>exactly</b>, so no listing value was changed. The 17 listings, 9 policy pages and 11 references this pass did not re-open keep their 2026-10-23 bc4e36a1 captures and are labelled <span class="badge gray">inherited</span> below and on their rows (FL-31) — they are not presented as this session's reads.</div>
 
 <div class="note gold"><b class="title">Parallel pass-4 evidence preserved</b>Later independent reads remain available rather than being overwritten: <a href="../data/live_check_463d0ea2.json">pass-4 listing/spot ledger</a> · <a href="../data/live_check_ea49572b.json">36-URL reconciliation ledger</a> · <a href="../docs/verification/pass4-2026-10-23.md">pass-4 memo</a> · <a href="../docs/verification/pass4-ea49572b-2026-10-23.md">36-URL memo</a> · <a href="../data/evidence/p4_etsy_all_seven.txt">Etsy excerpts</a> · <a href="../data/evidence/p4_brilliantearth.txt">Brilliant Earth excerpts</a>. The canonical ledger above governs current values; conflicting observations stay labeled by date and no unsupported sold-band midpoint is used.</div>
 
-<h2>All {len(checks)} checks in this pass</h2>
-<p class="small muted">Every check below has status <b>{esc(checks[0]['status'])}</b> in the ledger. “Corrected” and “blanked” describe a data correction, not a failed fetch. The previous Etsy HTTP-500 and Brilliant Earth navigation-only results are retained as resolved flags, not presented as the current state.</p>
+<h2>All {len(checks)} checks behind the current data</h2>
+<p class="small muted">{coverage.get('rereadThisPass', 0)} were re-opened live by session {esc(session_id)} on {esc(date_str())}; {coverage.get('inheritedSameDate', 0)} were read earlier the same day by session bc4e36a1 and are inherited unchanged — each row below names its reader. Every check has status <b>{esc(checks[0]['status'])}</b> in the ledger. “Corrected” and “blanked” describe a data correction, not a failed fetch; failed and partial reads are listed separately below. The previous Etsy HTTP-500 and Brilliant Earth navigation-only results are retained as resolved flags, not presented as the current state.</p>
 <div class="table-wrap tall"><table><thead><tr><th>Check / kind</th><th>Subject / result</th><th>Official URL + excerpt + saved evidence</th></tr></thead><tbody>{''.join(log_rows)}</tbody></table></div>
 
-<h2>Corrections made this pass</h2>
+<h2>Corrections recorded in the ledger</h2>
+<p class="small muted">Each correction names the session that made it. Inherited corrections are retained for the audit trail rather than being rewritten.</p>
 <div class="table-wrap"><table><thead><tr><th>Correction</th><th>Before → after → reason</th></tr></thead><tbody>{correction_rows}</tbody></table></div>
+
+<h2>Partial reads this pass — pages that yielded no value</h2>
+<p class="small muted">These pages were opened by session {esc(session_id)} but the retrieved content did not contain the field that matters (the price). They are published instead of being passed over: the canonical rows keep the earlier same-day capture, their original evidence id, and — where the value was never confirmable in USD — their blank cell and flag.</p>
+<div class="table-wrap"><table><thead><tr><th>Listing</th><th>Retrieved / not retrieved / effect on the data</th></tr></thead><tbody>{partial_rows}</tbody></table></div>
+
+<h2>Fetch failures logged this pass</h2>
+<p class="small muted">A failed read is never reported as a successful one. Proxy errors, 404s and pages this pass did not open are all recorded here with how each was handled.</p>
+<div class="table-wrap"><table><thead><tr><th># / kind</th><th>Target, result and handling</th></tr></thead><tbody>{failure_rows}</tbody></table></div>
 
 <h2>The checker</h2>
 {rep_html}

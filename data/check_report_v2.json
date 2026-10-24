@@ -1,15 +1,15 @@
 {
  "ok": true,
- "passed": 22,
+ "passed": 23,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-23 20:45 UTC",
+ "ranAt": "2026-10-24 00:12 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 30 flags, 11 references"
+   "detail": "25 entries, 13 sellers, 31 flags, 11 references"
   },
   {
    "id": "C2",
@@ -44,7 +44,7 @@
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (229 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (251 allowed values)"
   },
   {
    "id": "C9",
@@ -112,9 +112,14 @@
    "detail": "46-check evidence ledger covers every row and agrees with canonical observed values"
   },
   {
-   "id": "N1-N10",
+   "id": "C22",
    "ok": true,
-   "detail": "10/10 injected errors caught by the rules they target"
+   "detail": "reader attribution: 8 rows re-read by 6d10ac0a, 17 inherited from bc4e36a1 and labelled, partial reads and failures published"
+  },
+  {
+   "id": "N1-N14",
+   "ok": true,
+   "detail": "14/14 injected errors caught by the rules they target"
   }
  ]
 }
