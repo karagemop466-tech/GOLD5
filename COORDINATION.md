@@ -12,9 +12,9 @@
 > hallucination/security check for that session's data:
 > `python3 scripts/verify.py` (root site) and `python3 tools/check_hallucinations.py` (docs/ site).
 
-- Last updated: 2026-10-24 00:50 UTC — **session `6d10ac0a`: PR [#53](https://github.com/karagemop466-tech/GOLD5/pull/53) merged as `0e00793`, Pages `built`; post-merge read of the deployed pages found one overstated reader claim (correction `C-18`), fixed and turned into checker rules N17/N18 in follow-up PR #54; CR-D49-01…05 all adopted; CR-6D-01 logged for another session's file; PRs #43–#53 history preserved**
+- Last updated: 2026-10-24 01:00 UTC — **session `6d10ac0a` claim CLOSED: V1–V6 done, PRs [#53](https://github.com/karagemop466-tech/GOLD5/pull/53) (merged `0e00793`) and [#54](https://github.com/karagemop466-tech/GOLD5/pull/54) (merged `087eee3`) both live on Pages; CR-D49-01…05 adopted; corrections C-10…C-18 recorded; CR-6D-01 left open for another session's file; no PRs open; PRs #43–#54 history preserved**
 
-## ⏱ ACTIVE CLAIM — session `6d10ac0a` (Arena branch `arena/6d10ac0a-gold5`)
+## ⏱ PRIOR CLAIM — session `6d10ac0a` (Arena branch `arena/6d10ac0a-gold5`) — **complete, PRs #53 + #54 merged, Pages live**
 
 Claimed **2026-10-23 23:45 UTC** (before `d49fe320` merged PRs #51–#52) and re-based onto
 `main@cf83c4f` at **2026-10-24 00:20 UTC**. `gh pr list --state open` returned **no open PRs** at claim
@@ -35,7 +35,7 @@ session's scope.
 | V2 | **Live re-verification pass (2026-10-23 late UTC)**: re-read the Kitco spot and every canonical listing whose fields feed a published number or a flag; log per-URL results, verbatim excerpts, partial reads and failures; never upgrade an unconfirmed value | **done — 9 live re-reads + 2 partial reads + 5 logged failures** | `6d10ac0a` | `data/live_check_6d10ac0a.json`, `scripts/build_ledger_6d10ac0a.py`, `verification/evidence/6d10ac0a/**` |
 | V3 | Refresh the canonical spot quote and recompute every derived value **by script only**; correct/blank/flag drift; rebuild dashboard and category pages | **done — spot $3,994.90/oz $128.44/g; 8/8 re-read listings matched exactly; 25 rows / 32 flags rebuilt** | `6d10ac0a` | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html` |
 | V4 | Line-by-line provenance, arithmetic, money, link and hallucination/security review with negative tests after every review; publish a dated pass memo | **done — verify.py PASS 23/23 (C1–C22, N1–N16); all 10 harnesses green on the combined tree; memo `docs/verification/6d10ac0a-live-reverification-2026-10-23.md`; checker blind spot found and closed (C-17)** | `6d10ac0a` | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `data/check_report_v2.json`, `data/pass_history_v2.json`, `docs/verification/6d10ac0a-*.md` |
-| V5 | Final integration: combined-tree re-verification, PR → `main`, merge without approval, confirm Pages deploy, record PR + merge result, close claim | **done — PR [#53](https://github.com/karagemop466-tech/GOLD5/pull/53) merged `2026-10-24T00:31:07Z` as `0e00793`; `review` + `verify` passed; Pages run `40045372643` succeeded, status `built`; deployed pages read cache-busted; post-merge finding `C-18` fixed in follow-up PR #54** | `6d10ac0a` | `COORDINATION.md`; GitHub PR/Pages operations |
+| V5 | Final integration: combined-tree re-verification, PR → `main`, merge without approval, confirm Pages deploy, record PR + merge result, close claim | **done — PR [#53](https://github.com/karagemop466-tech/GOLD5/pull/53) merged `2026-10-24T00:31:07Z` as `0e00793` (Pages run `40045372643` success) and follow-up PR [#54](https://github.com/karagemop466-tech/GOLD5/pull/54) merged `2026-10-24T00:54:57Z` as `087eee3` (Pages run `40047319801` success); `review` + `verify` passed on both head and merge commits; Pages API `built`, branch `main`, path `/`; deployed pages read cache-busted after each merge; claim closed by PR #55** | `6d10ac0a` | `COORDINATION.md`; GitHub PR/Pages operations |
 | V6 | **Adopt `d49fe320`'s five logged change requests** (CR-D49-01…05) — they sit in this session's file scope: payment prose must distinguish stated vs unverified methods and publish the Solid Gold Jewelers gap; 16 CFR §23.18 must not be cited as a ring-metal-weight mandate; BBB/ConsumerAffairs figures need direct links or an explicit historical-snapshot label; 15 U.S.C. §297 should cite official GovInfo text or label Cornell as a mirror; CR-D49-05 (spot refresh) is already delivered by V2/V3 | **done — all five adopted from live re-reads of the official text; new FL-32 (32 flags total, 26 open) published on `site/flagged.html`; corrections C-14/C-15/C-16 recorded; scope reads SR-01/SR-02 published on `site/verification.html`** | `6d10ac0a` | `scripts/build_site.py`, `scripts/author_data.py`, `site/checklist.html`, `site/sellers.html`, `site/flagged.html`, `site/sources.html` (all generated) |
 
 **No-hallucinations contract for V1–V6:** no price, weight, karat, hallmark, maker's mark, seller claim,
@@ -205,6 +205,37 @@ recommendation to keep hunting. Flagged and unverified items stay published and 
   4,201 links), `review_current --check` **PASS** (92 exact URLs), hallucinations **166/0/0/1 INFO**,
   report **PASS** (1,649), security **9/9 + clean PASS**. **Lesson: a green checker proves only what the
   checker looks at — the post-merge read of the deployed pages is part of the pass.**
+- **2026-10-24 00:54:57 UTC (V5 — follow-up PR #54 merged, Pages confirmed):** PR
+  [#54](https://github.com/karagemop466-tech/GOLD5/pull/54) (`C-18` landing/category reader claims,
+  `N17`/`N18`) merged as `087eee3fd4d7a267d6230d6078e02b3f0cd5e65a`. `review` and `verify` passed on the
+  head commit (runs `40047074074`, `40047074029`) and on the merge commit (`40047320235`, `40047320052`);
+  Pages build run [40047319801](https://github.com/karagemop466-tech/GOLD5/actions/runs/40047319801)
+  succeeded and the Pages API reports **`built`** (branch `main`, path `/`, HTTPS enforced).
+- **2026-10-24 00:58 UTC (V5 — deployed pages re-read after the second merge):** cache-busted read of
+  `https://karagemop466-tech.github.io/GOLD5/?v=087eee3` confirms the correction is live and correctly
+  rendered (no escaped markup): *"All 25 of 25 rows carry a 2026-10-23 read of the seller's own page:
+  **8 were re-read live in this pass** (session 6d10ac0a) and **17 are inherited same-day** reads from
+  session bc4e36a1, labelled as inherited on the row, in the listing table and in the ledger."* The
+  parallel-review note now names both sessions; spot shows **$3,994.90/oz · $128.44/g · 2026-10-23 7:42
+  p.m. ET** labelled `session 6d10ac0a`; 26 open flags; 0 checker failures. `gh pr list --state open`
+  returns **no open PRs**.
+- **Claim closed — final state (session `6d10ac0a`):** dataset `site/assets/data.json` = **25 entries,
+  13 sellers, 32 flags (26 open / 6 resolved), 11 references**; ledger `data/live_check_6d10ac0a.json` =
+  **46 checks (10 re-read this pass, 36 inherited same-day) + 2 partial reads + 2 citation-scope reads +
+  5 logged failures + 18 corrections (C-01…C-09 inherited, C-10…C-18 this pass)**; canonical checker
+  **PASS 23/23 (C1–C22, N1–N18, 18/18 injected errors caught)**; all ten harnesses green on the merged
+  tree; memo `docs/verification/6d10ac0a-live-reverification-2026-10-23.md`; evidence
+  `verification/evidence/6d10ac0a/**` (6 files, verbatim excerpts incl. § 23.18 and 15 U.S.C. § 297).
+  Nothing outside the claimed file scopes was edited except this board; timestamp-only regenerations in
+  `dossier/**` and `verified/reports/**` were reverted. **CR-6D-01 remains open** for whoever next owns
+  `site/master-audit.html`.
+- **Final recommendation — keep hunting for hallucinations.** The specific next reads: the 9 inherited
+  policy/contact pages, the 11 official references, the two partial-read prices (`ET-1151446373`,
+  `BE-1343`), and a live re-check of Blue Nile's BBB/ConsumerAffairs numbers. Two structural lessons from
+  this pass, both now enforced by rules rather than by care: **a citation that overstates what an official
+  source says is a hallucination** (`C-15`, `C-16`, scope reads `SR-01`/`SR-02`), and **a green checker
+  proves only what the checker looks at** — the single-quoted-attribute blind spot (`C-17`) and the
+  landing/category reader claims (`C-18`) were both found by reading output, not by reading code.
 
 ## ⏱ PRIOR CLAIM — session `d49fe320` (Arena branch `arena/d49fe320-gold5`) — complete, PR #51 merged
 
