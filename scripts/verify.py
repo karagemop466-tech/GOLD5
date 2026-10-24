@@ -12,6 +12,7 @@ Checks, in order:
   C8  every dollar figure on the site is either in the dataset or computed from it
   C9  every published price/gram appears in the listings HTML; blanks say why
   C10 no placeholders (TODO, undefined, NaN, lorem, 0000)
+  C22 reader attribution (which session actually read each source; inherited reads labelled)
   C11 site/assets/data.js is byte-equivalent (as JSON) to data.json
   C12 published spot and raw-gold values recompute on the gold-price page
   C13 every generated page parses as well-formed HTML
@@ -198,12 +199,21 @@ for e in ENTRIES: registry.update([e["url"], e.get("priceSourceUrl"), e.get("ret
 for s in D["sellers"]:
     registry.update([s.get("website"), s.get("contactUrl"), s.get("returnsUrl"), s.get("warrantyUrl")])
     for r in s["reputation"]: registry.add(r["url"])
-for r in REFS: registry.add(r["url"])
+for r in REFS:
+    registry.add(r["url"])
+    if r.get("mirrorUrl"):
+        registry.add(r["mirrorUrl"])   # a named mirror of the same official text
 for q in [SPOT] + D["spot"]["prior"] + D["spot"]["crossChecks"]: registry.add(q["url"])
+# Every official URL recorded in the evidence ledger is part of the dataset too:
+# canonical checks, partial reads and citation-scope reads.
+_LEDGER = D["meta"].get("liveCheck", {})
+for _c in (_LEDGER.get("checks", []) + _LEDGER.get("partialReads", []) + _LEDGER.get("scopeReads", [])):
+    if _c.get("url"): registry.add(_c["url"])
+    if _c.get("priorUrl"): registry.add(_c["priorUrl"])
 registry.discard(None)
 bad7 = []
 for page in PAGE_PATHS:
-    for href in re.findall(r'href="([^"]+)"', read_page(page)):
+    for href in re.findall(r'href=["\']([^"\']+)["\']', read_page(page)):
         href = htmllib.unescape(href)
         if href.startswith(("http://", "https://")) and href.split("#")[0] not in {u.split("#")[0] for u in registry}:
             bad7.append(f"{page}: {href}")
@@ -322,15 +332,17 @@ check("C14", not bad14, "the NO HALLUCINATIONS rule is on every page" + ("" if n
 bad15 = []
 for page in PAGE_PATHS:
     t = read_page(page)
-    if re.search(r'href="http://', t): bad15.append(f"{page}: http:// link")
-    if re.search(r'href="\s*javascript:', t, re.I): bad15.append(f"{page}: javascript: href")
+    # Attribute values are matched in BOTH quote styles: a single-quoted href or
+    # target is exactly where an insecure link or a missing rel=noopener used to hide.
+    if re.search(r'href=["\']http://', t): bad15.append(f"{page}: http:// link")
+    if re.search(r'href=["\']\s*javascript:', t, re.I): bad15.append(f"{page}: javascript: href")
     if re.search(r'<(iframe|object|embed)\b', t, re.I): bad15.append(f"{page}: embedded frame/object")
-    if re.search(r'<script[^>]+src="(https?:)?//', t, re.I): bad15.append(f"{page}: third-party script")
-    for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', t):
-        if 'rel="noopener' not in tag: bad15.append(f"{page}: _blank without rel=noopener")
+    if re.search(r'<script[^>]+src=["\'](https?:)?//', t, re.I): bad15.append(f"{page}: third-party script")
+    for tag in re.findall(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', t):
+        if not re.search(r'rel=["\'][^"\']*noopener', tag): bad15.append(f"{page}: _blank without rel=noopener")
     if re.search(r'\son(click|load|error|mouseover)\s*=', t, re.I): bad15.append(f"{page}: inline event handler")
     if re.search(r'<form[^>]*\baction=', t, re.I): bad15.append(f"{page}: form posts somewhere")
-    if re.search(r'type="password"', t, re.I): bad15.append(f"{page}: password field")
+    if re.search(r'type=["\']password["\']', t, re.I): bad15.append(f"{page}: password field")
 check("C15", not bad15, "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener" + ("" if not bad15 else " — " + "; ".join(sorted(set(bad15))[:8])))
 
 
@@ -531,6 +543,106 @@ def ledger_errors(ledger, rows):
 bad21 = ledger_errors(D["meta"].get("liveCheck", {}), ENTRIES)
 check("C21", not bad21, "46-check evidence ledger covers every row and agrees with canonical observed values" + ("" if not bad21 else " — " + "; ".join(bad21[:8])))
 
+# ---------------------------------------------------------------- C22 reader attribution
+# A same-day pass may inherit checks another session read. What it must never do is
+# present an inherited read as its own. Every row, every ledger check and both pages
+# therefore name the session that actually opened the source.
+INHERITED_BY = "bc4e36a1 (inherited)"
+
+
+def reader_errors(ledger, rows):
+    bad = []
+    sess = D["meta"].get("session")
+    checks = {c.get("entryId"): c for c in ledger.get("checks", []) if c.get("kind") == "listing"}
+    all_checks = ledger.get("checks", [])
+    for e in rows:
+        rb = e.get("readBy")
+        if rb not in (sess, INHERITED_BY):
+            bad.append(f'{e["id"]}: missing or unknown readBy {rb!r}')
+            continue
+        c = checks.get(e["id"])
+        if not c or c.get("readBy") != rb:
+            bad.append(f'{e["id"]}: row readBy does not match its ledger check')
+        if rb == INHERITED_BY and "FL-31" not in e.get("flags", []):
+            bad.append(f'{e["id"]}: inherited row does not carry FL-31')
+        if rb == sess and "FL-31" in e.get("flags", []):
+            bad.append(f'{e["id"]}: re-read row must not carry FL-31')
+        if not any(n.startswith("Re-read live by session") or n.startswith("Official-source read") for n in e.get("notes", [])):
+            bad.append(f'{e["id"]}: no note stating who read the source')
+    inherited_ids = {e["id"] for e in rows if e.get("readBy") == INHERITED_BY}
+    fl31 = next((f for f in D["flags"] if f["id"] == "FL-31"), None)
+    if fl31 is None:
+        bad.append("FL-31 (pass provenance scope) is not published")
+    elif set(fl31.get("entryIds", [])) != inherited_ids:
+        bad.append("FL-31 entryIds do not match the inherited rows exactly")
+    cov = D["meta"].get("coverage", {})
+    if cov.get("reread") != sum(1 for e in rows if e.get("readBy") == sess):
+        bad.append("meta.coverage.reread does not match the rows")
+    if cov.get("inherited") != len(inherited_ids):
+        bad.append("meta.coverage.inherited does not match the rows")
+    n_sess = sum(1 for c in all_checks if c.get("readBy") == sess)
+    n_inh = sum(1 for c in all_checks if c.get("readBy") == INHERITED_BY)
+    if n_sess + n_inh != len(all_checks):
+        bad.append("ledger has checks without reader attribution")
+    if ledger.get("coverage", {}).get("rereadThisPass") != n_sess:
+        bad.append("ledger coverage.rereadThisPass does not match its checks")
+    if ledger.get("coverage", {}).get("inheritedSameDate") != n_inh:
+        bad.append("ledger coverage.inheritedSameDate does not match its checks")
+    spot_c = next((c for c in all_checks if c.get("kind") == "spot"), None)
+    if not spot_c or spot_c.get("readBy") != sess:
+        bad.append("primary spot quote is not backed by a check re-read by this session")
+    for p in ledger.get("partialReads", []):
+        c = checks.get(p.get("entryId"))
+        if not c:
+            bad.append(f'partial read for unknown listing {p.get("entryId")}')
+            continue
+        if c.get("readBy") == sess:
+            bad.append(f'{p.get("entryId")}: partial read presented as a full re-read')
+        if p.get("canonicalCheck") != c.get("id"):
+            bad.append(f'{p.get("entryId")}: partial read points at the wrong canonical check')
+        if not p.get("notRetrieved") or not p.get("effect"):
+            bad.append(f'{p.get("entryId")}: partial read does not state what was missing')
+    lis = read_page("site/listings.html")
+    ver = read_page("site/verification.html")
+    for e in rows:
+        m = re.search(r'<tr id="' + re.escape(e["id"]) + r'"([^>]*)>(.*?)</tr>', lis, re.S)
+        if not m:
+            bad.append(f'{e["id"]}: absent from listings page')
+            continue
+        if e.get("readBy") == sess:
+            if f're-read this pass by <b>{sess}</b>' not in m.group(2):
+                bad.append(f'{e["id"]}: re-read attribution not printed on its row')
+        elif "inherited, not re-opened this pass" not in m.group(2):
+            bad.append(f'{e["id"]}: inherited attribution not printed on its row')
+    for c in all_checks:
+        m = re.search(r'<tr id="' + re.escape(str(c.get("id"))) + r'">(.*?)</tr>', ver, re.S)
+        if not m:
+            bad.append(f'{c.get("id")}: absent from the verification log')
+            continue
+        want = (f're-read by {sess}' if c.get("readBy") == sess else f'inherited · {INHERITED_BY}')
+        if want not in m.group(1):
+            bad.append(f'{c.get("id")}: verification log does not badge its reader')
+    for fl in ledger.get("failures", []):
+        if str(fl.get("seq")) not in ver:
+            bad.append(f'logged failure {fl.get("seq")} is not published on the verification page')
+    for sr in ledger.get("scopeReads", []):
+        if not sr.get("finding") or not sr.get("sourceExcerpt") or not sr.get("changeRequest"):
+            bad.append(f'scope read {sr.get("id")}: missing excerpt, finding or change-request id')
+        if str(sr.get("id")) not in ver or sr.get("changeRequest", "").split(" ")[0] not in ver:
+            bad.append(f'scope read {sr.get("id")} is not published with its change request on the verification page')
+    if ledger.get("coverage", {}).get("scopeReads") != len(ledger.get("scopeReads", [])):
+        bad.append("ledger coverage.scopeReads does not match its scope reads")
+    # A reference whose canonical URL was re-pointed to an official source must say so
+    for r in REFS:
+        if r.get("mirrorUrl") and "mirror" not in (r.get("method") or "").lower():
+            bad.append(f'{r["id"]}: cites a mirror URL without labelling it as a mirror')
+    return bad
+
+
+bad22 = reader_errors(D["meta"].get("liveCheck", {}), ENTRIES)
+_reread_rows = sum(1 for e in ENTRIES if e.get("readBy") == D["meta"]["session"])
+check("C22", not bad22, f"reader attribution: {_reread_rows} rows re-read by {D['meta']['session']}, {len(ENTRIES) - _reread_rows} inherited from bc4e36a1 and labelled, partial reads and failures published" + ("" if not bad22 else " — " + "; ".join(bad22[:8])))
+
 # ---------------------------------------------------------------- negative self-tests
 # Each mutation must be caught by the rule it targets. If a mutation is NOT
 # caught, that is itself a failure: the harness may not silently pass.
@@ -573,11 +685,42 @@ def _neg_tests():
     e10 = copy.deepcopy(next(x for x in ENTRIES if x.get("metalConflict")))
     e10["flags"] = [f for f in e10["flags"] if f != "FL-30"]
     out.append(("N10 undisclosed metal conflict", bool(blank_flag_errors([e10]))))
+    # N11 an inherited read claimed as this session's own (actual C22 predicate)
+    inh = next(x for x in ENTRIES if x.get("readBy") == INHERITED_BY)
+    e11 = copy.deepcopy(inh)
+    e11["readBy"] = D["meta"]["session"]
+    out.append(("N11 inherited read claimed as re-read", bool(reader_errors(D["meta"]["liveCheck"], [e11]))))
+    # N12 dropping the inherited-provenance flag from a row (actual C22 predicate)
+    e12 = copy.deepcopy(inh)
+    e12["flags"] = [f for f in e12["flags"] if f != "FL-31"]
+    out.append(("N12 silent inheritance (FL-31 removed)", bool(reader_errors(D["meta"]["liveCheck"], [e12]))))
+    # N13 ledger check attributed to this session while the row says inherited (actual C22 predicate)
+    ledger13 = copy.deepcopy(D["meta"]["liveCheck"])
+    c13 = next(c for c in ledger13["checks"] if c.get("entryId") == inh["id"])
+    c13["readBy"] = D["meta"]["session"]
+    out.append(("N13 ledger/row reader mismatch", bool(reader_errors(ledger13, [inh]))))
+    # N14 a partial read dressed up as a full re-read (actual C22 predicate)
+    ledger14 = copy.deepcopy(D["meta"]["liveCheck"])
+    reread_id = next(x["id"] for x in ENTRIES if x.get("readBy") == D["meta"]["session"])
+    ledger14["partialReads"] = list(ledger14.get("partialReads", [])) + [
+        dict(entryId=reread_id, canonicalCheck="L01", notRetrieved="", effect="")]
+    out.append(("N14 partial read claimed as full re-read", bool(reader_errors(ledger14, ENTRIES))))
+    # N16 a citation-scope read must stay published with the request it answers (actual C22 predicate)
+    ledger16 = copy.deepcopy(D["meta"]["liveCheck"])
+    if ledger16.get("scopeReads"):
+        ledger16["scopeReads"][0]["changeRequest"] = "CR-UNPUBLISHED-99 (not on the page)"
+        out.append(("N16 scope read detached from its change request", bool(reader_errors(ledger16, ENTRIES))))
+    # N15 single-quoted attributes must not slip past C7/C15 (blind spot found this pass)
+    tag15 = "<a href='http://insecure.example/ring' target='_blank'>listing</a>"
+    out.append(("N15 single-quoted insecure link without rel=noopener",
+                bool(re.search(r'href=["\']http://', tag15)) and
+                bool(re.findall(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', tag15)) and
+                not re.search(r'rel=["\'][^"\']*noopener', tag15)))
     return out
 
 neg = _neg_tests()
 caught = sum(1 for _, ok in neg if ok)
-check("N1-N10", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+check("N1-N16", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
 
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)
@@ -593,7 +736,7 @@ hist_path = os.path.join(ROOT, "data/pass_history_v2.json")
 hist = json.load(open(hist_path)) if os.path.exists(hist_path) else []
 hist.append(dict(ranAt=now, passed=passed, fail=len(failed), warn=0,
                  checks={c: ("PASS" if o else "FAIL") for c, o, _ in results},
-                 note="final integration 2026-10-23 (session bc4e36a1)"))
+                 note=f"final integration pass (session {D['meta']['session']})"))
 json.dump(hist, open(hist_path, "w"), indent=1)
 
 md = [f"# Verification report — consolidated GOLD5 site", "",
@@ -613,7 +756,11 @@ md += ["", "## What each check means", "",
        "- C18 navigation: the same 12-item nav everywhere and no orphan page",
        "- C19 source discipline: https for every listing, policy, flag reference and official reference",
        "- C20 dataset ↔ page counts and per-row provenance labels",
-       "- N1–N10 negative self-tests: injected errors must be caught, or the harness fails", ""]
+       "- C22 reader attribution: every row, ledger check and page names the session that actually read the source;\n"
+       "  inherited same-day reads keep FL-31, partial reads and fetch failures stay published",
+       "- N1–N16 negative self-tests: injected errors must be caught, or the harness fails\n"
+       "  (N15 covers the single-quoted-attribute blind spot in the link/security scans;\n"
+       "   N16 covers a citation-scope read detached from the change request it answers)", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
 open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-23.md"), "w").write("\n".join(md))
 

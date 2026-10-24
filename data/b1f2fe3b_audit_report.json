@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-10-23 20:45 UTC",
+  "runAt": "2026-10-24 00:22 UTC",
   "session": "b1f2fe3b",
   "status": "PASS",
   "passedCount": 6,
@@ -10,9 +10,9 @@
     "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
     "asOf": "2026-10-23",
     "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
-    "primarySpotUsdPerOz": 3996.1,
-    "primarySpotUsdPerGram": 128.48,
-    "primarySpotAsOf": "2026-10-23 4:10 p.m. ET",
+    "primarySpotUsdPerOz": 3994.9,
+    "primarySpotUsdPerGram": 128.44,
+    "primarySpotAsOf": "2026-10-23 7:42 p.m. ET",
     "liveRecheckSpotUsdPerOz": 4026.9,
     "liveRecheckSpotUsdPerGram": 129.47,
     "liveRecheckAsOf": "2026-10-22 7:26 p.m. EDT",
@@ -28,7 +28,7 @@
     "S4: Spot quotes and NIST troy oz / pennyweight / gram conversions verified exact.",
     "S5: Karat fineness fractions & 15 U.S.C. \u00a7 295 (-3\u2030 / -7\u2030) tolerances verified.",
     "S7: All 11 data/rings.json entries verified verbatim against data/evidence/*.txt.",
-    "S8-S11: 103 HTML pages audited (4186 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).",
+    "S8-S11: 103 HTML pages audited (4201 local links resolved, balanced <table> tags, no external scripts, front-page no-hallucinations pledge present).",
     "S12: Negative self-test caught all 4/4 injected synthetic hallucinations (missing source, unflagged blank weight, unflagged sub-melt price, untrusted domain)."
   ],
   "errors": [],

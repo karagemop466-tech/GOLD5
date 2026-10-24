@@ -4,9 +4,9 @@
     "generatedBy": "scripts/audit_b1f2fe3b.py (session b1f2fe3b)",
     "asOf": "2026-10-23",
     "noHallucinationsRule": "Every entry has >=1 official source URL and a check date (2026-10-22 or 2026-10-23) consistent with its provenance. Blank fields are null and flagged; derived fields are computed from verified inputs.",
-    "primarySpotUsdPerOz": 3996.1,
-    "primarySpotUsdPerGram": 128.48,
-    "primarySpotAsOf": "2026-10-23 4:10 p.m. ET",
+    "primarySpotUsdPerOz": 3994.9,
+    "primarySpotUsdPerGram": 128.44,
+    "primarySpotAsOf": "2026-10-23 7:42 p.m. ET",
     "liveRecheckSpotUsdPerOz": 4026.9,
     "liveRecheckSpotUsdPerGram": 129.47,
     "liveRecheckAsOf": "2026-10-22 7:26 p.m. EDT",
@@ -52,6 +52,7 @@
         "FL-05",
         "FL-21",
         "FL-06",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -108,6 +109,7 @@
         "FL-05",
         "FL-21",
         "FL-06",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -164,6 +166,7 @@
         "FL-05",
         "FL-21",
         "FL-06",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -219,6 +222,7 @@
         "FL-14",
         "FL-05",
         "FL-21",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -274,6 +278,7 @@
         "FL-14",
         "FL-05",
         "FL-21",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -329,6 +334,7 @@
         "FL-14",
         "FL-05",
         "FL-21",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -372,7 +378,7 @@
       "makerMark": null,
       "metalConflict": "Title and specification say 18K White Gold; Product Details say 14K Yellow Gold.",
       "evidenceId": "L07",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
       "returnUrl": "https://www.bluenile.com/policies/returns",
       "payment": null,
@@ -441,6 +447,7 @@
         "FL-05",
         "FL-21",
         "FL-06",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -496,6 +503,7 @@
         "FL-14",
         "FL-21",
         "FL-08",
+        "FL-31",
         "no-gram-weight",
         "no-price"
       ],
@@ -551,6 +559,7 @@
         "FL-15",
         "FL-14",
         "FL-21",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -606,6 +615,7 @@
         "FL-14",
         "FL-21",
         "FL-08",
+        "FL-31",
         "no-gram-weight",
         "no-price"
       ],
@@ -661,6 +671,7 @@
         "FL-15",
         "FL-14",
         "FL-21",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -704,7 +715,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L13",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
@@ -731,7 +742,7 @@
         "totalPennyweightDwt": 3.2151,
         "pureGoldGrams": 2.9165,
         "pureGoldTroyOz": 0.09377,
-        "rawGoldMeltUsdAtPrimarySpot": 374.71,
+        "rawGoldMeltUsdAtPrimarySpot": 374.6,
         "rawGoldMeltUsdAtRecheckSpot": 377.6,
         "priceToMeltRatio": 2.9,
         "priceToMeltRatioAtRecheckSpot": 2.87
@@ -758,7 +769,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L14",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
@@ -785,7 +796,7 @@
         "totalPennyweightDwt": 3.0865,
         "pureGoldGrams": 2.7998,
         "pureGoldTroyOz": 0.09002,
-        "rawGoldMeltUsdAtPrimarySpot": 359.72,
+        "rawGoldMeltUsdAtPrimarySpot": 359.61,
         "rawGoldMeltUsdAtRecheckSpot": 362.49,
         "priceToMeltRatio": 2.59,
         "priceToMeltRatioAtRecheckSpot": 2.57
@@ -812,7 +823,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L15",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
       "returnUrl": "https://www.allurez.com/pages/return-policy",
       "payment": null,
@@ -839,7 +850,7 @@
         "totalPennyweightDwt": 2.302,
         "pureGoldGrams": 2.0882,
         "pureGoldTroyOz": 0.06714,
-        "rawGoldMeltUsdAtPrimarySpot": 268.29,
+        "rawGoldMeltUsdAtPrimarySpot": 268.21,
         "rawGoldMeltUsdAtRecheckSpot": 270.36,
         "priceToMeltRatio": 2.18,
         "priceToMeltRatioAtRecheckSpot": 2.16
@@ -866,7 +877,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L16",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "Returns of unworn and unaltered items accepted within 14 days. Full policy page not captured; resize/custom exclusions not confirmed.",
       "returnUrl": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
       "payment": null,
@@ -889,7 +900,7 @@
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 172.37,
+        "rawGoldMeltUsdAtPrimarySpot": 172.32,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
         "priceToMeltRatio": 6.38,
         "priceToMeltRatioAtRecheckSpot": 6.33
@@ -916,7 +927,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L17",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "30-day return or exchange under the 'Money Back Guarantee (some restrictions apply)'; the specific restrictions are not stated on the page.",
       "returnUrl": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
       "payment": null,
@@ -939,9 +950,9 @@
         "totalPennyweightDwt": 1.4789,
         "pureGoldGrams": 1.3416,
         "pureGoldTroyOz": 0.04313,
-        "rawGoldMeltUsdAtPrimarySpot": 172.37,
+        "rawGoldMeltUsdAtPrimarySpot": 172.32,
         "rawGoldMeltUsdAtRecheckSpot": 173.7,
-        "priceToMeltRatio": 17.52,
+        "priceToMeltRatio": 17.53,
         "priceToMeltRatioAtRecheckSpot": 17.39
       }
     },
@@ -966,7 +977,7 @@
       "makerMark": null,
       "metalConflict": null,
       "evidenceId": "L18",
-      "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+      "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
       "returnPolicy": "No return policy shown on the product page.",
       "returnUrl": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
       "payment": null,
@@ -977,6 +988,7 @@
         "FL-15",
         "FL-14",
         "FL-18",
+        "FL-32",
         "no-price"
       ],
       "checkedOn": "2026-10-23",
@@ -992,7 +1004,7 @@
         "totalPennyweightDwt": 3.0222,
         "pureGoldGrams": 2.7415,
         "pureGoldTroyOz": 0.08814,
-        "rawGoldMeltUsdAtPrimarySpot": 352.23,
+        "rawGoldMeltUsdAtPrimarySpot": 352.12,
         "rawGoldMeltUsdAtRecheckSpot": 354.94,
         "priceToMeltRatio": null,
         "priceToMeltRatioAtRecheckSpot": null
@@ -1030,6 +1042,7 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -1083,6 +1096,7 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -1136,7 +1150,8 @@
         "FL-16",
         "FL-17",
         "FL-14",
-        "FL-18"
+        "FL-18",
+        "FL-31"
       ],
       "checkedOn": "2026-10-23",
       "provenance": "live",
@@ -1151,9 +1166,9 @@
         "totalPennyweightDwt": 2.3792,
         "pureGoldGrams": 2.1582,
         "pureGoldTroyOz": 0.06939,
-        "rawGoldMeltUsdAtPrimarySpot": 277.29,
+        "rawGoldMeltUsdAtPrimarySpot": 277.2,
         "rawGoldMeltUsdAtRecheckSpot": 279.42,
-        "priceToMeltRatio": 3.49,
+        "priceToMeltRatio": 3.5,
         "priceToMeltRatioAtRecheckSpot": 3.47
       }
     },
@@ -1189,6 +1204,7 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -1242,6 +1258,7 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -1295,6 +1312,7 @@
         "FL-16",
         "FL-17",
         "FL-14",
+        "FL-31",
         "no-gram-weight"
       ],
       "checkedOn": "2026-10-23",
@@ -1337,7 +1355,7 @@
       "makerMark": "Seller states a maker's mark; see the quoted listing evidence",
       "metalConflict": null,
       "evidenceId": "L25",
-      "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+      "evidencePath": "verification/evidence/6d10ac0a/etsy-and-brilliant-earth.md",
       "returnPolicy": "n/a \u2014 item sold; seller FAQ says no refund for buyer's remorse or changed mind.",
       "returnUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
       "payment": null,
@@ -1417,9 +1435,9 @@
         "totalPennyweightDwt": 3.7938,
         "pureGoldGrams": 4.425,
         "pureGoldTroyOz": 0.14227,
-        "rawGoldMeltUsdAtPrimarySpot": 568.52,
+        "rawGoldMeltUsdAtPrimarySpot": 568.35,
         "rawGoldMeltUsdAtRecheckSpot": 572.9,
-        "priceToMeltRatio": 2.31,
+        "priceToMeltRatio": 2.32,
         "priceToMeltRatioAtRecheckSpot": 2.3
       }
     },
@@ -1520,7 +1538,7 @@
         "totalPennyweightDwt": 4.5011,
         "pureGoldGrams": 4.0831,
         "pureGoldTroyOz": 0.13127,
-        "rawGoldMeltUsdAtPrimarySpot": 524.6,
+        "rawGoldMeltUsdAtPrimarySpot": 524.43,
         "rawGoldMeltUsdAtRecheckSpot": 528.64,
         "priceToMeltRatio": null,
         "priceToMeltRatioAtRecheckSpot": null
@@ -1910,7 +1928,7 @@
         "totalPennyweightDwt": 0.8359,
         "pureGoldGrams": 0.7583,
         "pureGoldTroyOz": 0.02438,
-        "rawGoldMeltUsdAtPrimarySpot": 97.43,
+        "rawGoldMeltUsdAtPrimarySpot": 97.4,
         "rawGoldMeltUsdAtRecheckSpot": 98.18,
         "priceToMeltRatio": 4.1,
         "priceToMeltRatioAtRecheckSpot": 4.06
@@ -1956,7 +1974,7 @@
         "totalPennyweightDwt": 1.0931,
         "pureGoldGrams": 0.9916,
         "pureGoldTroyOz": 0.03188,
-        "rawGoldMeltUsdAtPrimarySpot": 127.4,
+        "rawGoldMeltUsdAtPrimarySpot": 127.36,
         "rawGoldMeltUsdAtRecheckSpot": 128.38,
         "priceToMeltRatio": 3.92,
         "priceToMeltRatioAtRecheckSpot": 3.89
