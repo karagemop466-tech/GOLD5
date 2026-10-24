@@ -80,6 +80,13 @@ The current canonical build enforces this in four ways:
   in the evidence ledger (canonical checks, partial reads, citation-scope reads).
 - **FL-13 widened**: the Solid Gold Jewelers gap now covers *no price, no return policy and no payment
   method* on one quote-by-phone listing.
+- **Gate false negative repaired** (`C-19`, found after the merge): `tools/check_report.py` accepted
+  *any* `.md` in `docs/verification/` as documentation for an amount quoted in a flag, so this pass'
+  memo — which quotes the `$420.00` sold-listing price — silently "documented" the security suite's
+  planted `$420` and `tools/security_test.py` dropped to **8/9** while the gate still said PASS. The
+  corpus is now the captures **this suite cites** plus the root level of its capture folders
+  (non-recursive: other sessions' subdirectories and uncited memos are out), and a tenth planted error
+  proves the boundary. Clean state **PASS**, **10/10** caught.
 - **Landing and category reader claims corrected** (`C-18`, found by reading the deployed pages after
   PR #53 merged): the front page said "All 25 of 25 rows were re-read from the sellers' own pages" and
   every category page said "N of these N rows were re-read live", although this pass opened **8**
@@ -166,7 +173,7 @@ Latest results from this pass:
 | `scripts/review_current.py --check` | **PASS**; 264 records, 92 exact source URLs, 6/6 negative tests |
 | `tools/check_hallucinations.py` | **166 passed, 0 FAIL, 0 WARN**; one informational duplicate-weight note retained for review |
 | `tools/check_report.py` | **PASS**, 1,649 checks, 0 failures/warnings |
-| `tools/security_test.py` | **9/9 planted errors caught**, clean-state PASS |
+| `tools/security_test.py` | **10/10 planted errors caught**, clean-state PASS |
 | `verified/scripts/build_site.py --check` | **OK**, 11 pages match `verified/data/*.json` |
 | `verified/scripts/verify.py` | **896 assertions, 0 failures** |
 | `dossier/scripts/build.py` | **18/18 checks**, 58 rows, 23 pages, 1,104 references, 0 broken links |
