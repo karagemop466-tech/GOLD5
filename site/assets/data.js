@@ -1158,6 +1158,14 @@ window.GOLD5_DATA = {
      "reason": "True about the date, false about the reader: the same overstatement class as CR-D49-01. Found by reading the deployed pages after the merge instead of trusting a green checker, so it is recorded as a correction and turned into a rule rather than only copy-edited."
     },
     {
+     "id": "C-19",
+     "session": "6d10ac0a",
+     "subject": "Cross-suite gate repair — tools/check_report.py amount corpus (found post-merge)",
+     "before": "The no-hallucination gate's rule 'every amount quoted in a flag is documented in the evidence corpus' built its corpus from ALL .txt/.md files in verification/evidence/, data/evidence/ and docs/verification/ — including narrative memos from other suites. When this pass' memo quoted the $420.00 sold-listing price, the security suite's planted $420 flag amount went from CAUGHT to MISSED: tools/security_test.py reported 8/9 while check_report.py still reported PASS",
+     "after": "The corpus is now (1) the capture files this suite's own rows, references, sellers and spot cite, plus (2) the root level of its capture folders, read non-recursively — session subdirectories belong to other suites and a memo nobody cites is prose, not a capture. A tenth planted error now proves the boundary: an amount 'documented' only by an uncited memo must still be caught. Clean state PASS (1,649 checks) and 10/10 planted errors caught",
+     "reason": "Corpus bleed is a false negative in the project's main hallucination gate, so it was repaired rather than logged only: no other session holds an open claim (gh pr list --state open is empty and every board claim is closed), and the alternative — deleting the $420.00 quote from this pass' memo to make someone else's test pass — would have degraded real evidence to satisfy a checker. The edit is recorded here and on the board because tools/ is outside this session's claimed file scope."
+    },
+    {
      "id": "C-13",
      "session": "6d10ac0a",
      "subject": "Listing values — no change attestation",

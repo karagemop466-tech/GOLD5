@@ -115,7 +115,7 @@ Session `d49fe320` logged five source-scope change requests after merging PRs #5
 | `scripts/review_current.py --check` | **PASS** — 264 records, 92 exact source URLs, 6/6 negative tests, deterministic output |
 | `tools/check_hallucinations.py` | **166 passed, 0 FAIL, 0 WARN, 1 INFO** — the INFO note concerns two *different* listings that both state `2.3 g / 14K` (`AV-25893`, `JM-149700`); it is a real coincidence, kept open for review |
 | `tools/check_report.py` | **PASS** — 1,649 checks, 0 FAIL / 0 WARN / 0 INFO |
-| `tools/security_test.py` | **9/9 planted errors caught**, clean-state PASS |
+| `tools/security_test.py` | **10/10 planted errors caught**, clean-state PASS |
 | `verified/scripts/build_site.py --check` | **OK** — 11 pages match `verified/data/*.json` |
 | `verified/scripts/verify.py` | **896 assertions, 0 failures** |
 | `dossier/scripts/build.py` | **18/18 checks**, 58 rows, 23 pages, 1,104 references, 0 broken links |
@@ -173,6 +173,20 @@ Fixed and turned into a rule:
 - The fix also removed an escaping defect introduced by the first attempt at the new sentence: the helper returns HTML, so its dynamic parts are escaped inside it and the call site no longer double-escapes (`&lt;b&gt;` was rendering literally).
 
 **Lesson recorded:** a green checker proves what the checker looks at. The post-merge read of the deployed pages is part of the pass, not a formality — it is what caught this.
+
+### A second post-merge find: the main gate had a false negative (`C-19`)
+
+Re-running the full suite on the merged tree dropped `tools/security_test.py` from **9/9** to **8/9** — the planted error *"Flag detail invents an amount ($20 restocking → $420)"* was **MISSED**, while `tools/check_report.py` still reported **PASS** on 1,649 checks. The exit code was masked at first by piping the run through `tail`, which is why the suite was re-run un-piped.
+
+Cause: the gate's rule *"every amount quoted in a flag is documented in the evidence corpus"* built its corpus from every `.txt`/`.md` file in `verification/evidence/`, `data/evidence/` **and `docs/verification/`**. That last folder mixes this suite's own capture files (`etsy.md`, `bluenile.md`, `sellers.md` — cited by its rows) with narrative memos from *every* session. This pass' memo quotes the `$420.00` sold-listing price of `ET-576343849`, so an amount belonging to a different suite "documented" the planted `$420`. **Corpus bleed: prose from anywhere in the repo could launder a hallucinated amount.**
+
+Fix, in both directions:
+
+- `tools/check_report.py` — the corpus is now **(1)** the capture files this suite's own listings, references, sellers and spot quote (resolved exactly as the evidence-match rule resolves them, including `docs/verification/etsy.md`, which *is* a cited capture and carries the legitimate `2,410.13` variant range) plus **(2)** the root level of its capture folders, read **non-recursively** so other sessions' subdirectories stay out. A cited capture that cannot be found is now itself a FAIL.
+- `tools/security_test.py` — a **tenth** planted error, *"Amount documented only by an uncited memo (corpus bleed)"*, writes a probe memo containing `$7,777.77`, plants that amount in a flag detail, requires the gate to catch it, then deletes the probe. The boundary is now proven rather than assumed.
+- Result: `tools/check_report.py` clean state **PASS** (1,649 checks, 0 FAIL/WARN/INFO) and `tools/security_test.py` **10/10 planted errors caught**, clean-state PASS.
+
+**Scope note, recorded rather than hidden:** `tools/` is outside this session's claimed file scope (it belongs to the `638c9614`/`37e8ff42` lineage). It was edited anyway because a false negative in the project's main hallucination gate is exactly what this pass exists to find, no other session holds an open claim (`gh pr list --state open` is empty, every board claim is closed), and the alternative — deleting a true `$420.00` quote from this pass' memo so someone else's test would pass — would have degraded real evidence to satisfy a checker. Logged on the board as `C-19` with this reasoning.
 
 ## 12. Merge record
 

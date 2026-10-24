@@ -408,12 +408,47 @@ def check_flags(d):
 
 
 def check_flag_amounts(d):
+    """An amount quoted in a flag must be documented in a CAPTURE belonging to this suite.
+
+    The corpus used to include the narrative memos in docs/verification/ and every file
+    under verification/evidence/. Both are corpus bleed: a memo restating a number, or
+    another session's capture of an unrelated listing that happens to contain the same
+    digits, silently "documents" an amount this suite never captured, and a planted
+    hallucination stops being caught. Found live on 2026-10-24 (session 6d10ac0a): a new
+    pass memo quoted a $420.00 sold-listing price from a different suite, and the security
+    suite's planted $420 flag amount went from CAUGHT to MISSED.
+
+    So the corpus is only (1) the capture files this suite's own rows, references, sellers
+    and spot quote, and (2) the root level of its capture folders, read non-recursively.
+    Session subdirectories under verification/evidence/ belong to other suites, and a memo
+    that no row cites is prose, not a capture.
+    """
+    # 1. the capture files this suite's own rows, references, sellers and spot quote
+    cited = []
+    for r in d.get("listings", []):
+        if r.get("evidence"):
+            cited.append(r["evidence"])
+        cited.extend(r.get("evidenceExtra") or [])
+    for group in ("references", "sellers"):
+        for r in d.get(group, []) or []:
+            if isinstance(r, dict) and r.get("evidence"):
+                cited.append(r["evidence"])
+    if isinstance(d.get("spot"), dict) and d["spot"].get("evidence"):
+        cited.append(d["spot"]["evidence"])
     corpus = ""
-    for folder in (EVID, os.path.join(ROOT, "data", "evidence"), os.path.join(ROOT, "docs", "verification")):
+    for name in sorted(set(cited)):
+        txt = read_evidence(name)
+        if txt is None:
+            fail(f"flag amounts: cited capture not found: {name}")
+            continue
+        corpus += "\n" + txt
+    # 2. this suite's own capture folders, read NON-recursively: the session
+    #    subdirectories under verification/evidence/ belong to other suites
+    for folder in (EVID, os.path.join(ROOT, "data", "evidence")):
         if not os.path.isdir(folder):
             continue
         for name in sorted(os.listdir(folder)):
-            if name.endswith((".txt", ".md")):
+            if name.endswith((".txt", ".md")) and os.path.isfile(os.path.join(folder, name)):
                 with open(os.path.join(folder, name), encoding="utf-8") as f:
                     corpus += "\n" + f.read()
     corpus_nums = nums_in(corpus)

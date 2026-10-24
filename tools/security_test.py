@@ -100,6 +100,36 @@ def t_html():
         shutil.move(INDEX + ".bak", INDEX)
 
 
+BLEED_PROBE = os.path.join(ROOT, "docs", "verification", "_corpus_bleed_probe.md")
+BLEED_AMOUNT = "$7,777.77"
+
+
+def t_bleed_memo(d):
+    for f in d["flags"]:
+        if f["id"] == "G-VERA-RETURN-FEES":
+            f["detail"] = f["detail"] + f" A {BLEED_AMOUNT} restocking fee applies."
+
+
+def t_corpus_bleed():
+    """An amount "documented" only by a memo nobody cites must still be caught.
+
+    Added 2026-10-24 (session 6d10ac0a) after a real pass memo quoting another suite's
+    $420.00 sold-listing price silently documented the planted $420 above and flipped it
+    from CAUGHT to MISSED. The gate now builds its amount corpus from the captures this
+    suite cites; this test keeps that boundary proven rather than assumed. The probe memo
+    is written and deleted by the test itself.
+    """
+    os.makedirs(os.path.dirname(BLEED_PROBE), exist_ok=True)
+    with open(BLEED_PROBE, "w", encoding="utf-8") as fh:
+        fh.write("# probe — written by tools/security_test.py and deleted again immediately\n\n"
+                 f"An unrelated narrative memo quoting {BLEED_AMOUNT} from another suite's listing.\n")
+    try:
+        return with_data(t_bleed_memo, "bleed")
+    finally:
+        if os.path.exists(BLEED_PROBE):
+            os.remove(BLEED_PROBE)
+
+
 TESTS = [
     ("Invented price in the data (A01 $1,085 → $999)", lambda: with_data(t_price, "price")),
     ("Invented weight for a row that publishes none (A07 → 4.2 g)", lambda: with_data(t_weight, "weight")),
@@ -110,6 +140,7 @@ TESTS = [
     ("Hand-typed price in the HTML ($999.99)", lambda: t_html()),
     ("Flag detail invents an amount ($20 restocking → $420)", lambda: with_data(t_flag_amount, "flagamount")),
     ("Reference quote that is not on the cited page", lambda: with_data(t_ref_quote, "refquote")),
+    ("Amount documented only by an uncited memo (corpus bleed)", lambda: t_corpus_bleed()),
 ]
 
 
