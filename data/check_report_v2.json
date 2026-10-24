@@ -3,13 +3,13 @@
  "passed": 23,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-24 00:12 UTC",
+ "ranAt": "2026-10-24 00:25 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 31 flags, 11 references"
+   "detail": "25 entries, 13 sellers, 32 flags, 11 references"
   },
   {
    "id": "C2",
@@ -39,7 +39,7 @@
   {
    "id": "C7",
    "ok": true,
-   "detail": "every external link (65 registered URLs) is recorded in the dataset"
+   "detail": "every external link (67 registered URLs) is recorded in the dataset"
   },
   {
    "id": "C8",
@@ -117,9 +117,9 @@
    "detail": "reader attribution: 8 rows re-read by 6d10ac0a, 17 inherited from bc4e36a1 and labelled, partial reads and failures published"
   },
   {
-   "id": "N1-N14",
+   "id": "N1-N16",
    "ok": true,
-   "detail": "14/14 injected errors caught by the rules they target"
+   "detail": "16/16 injected errors caught by the rules they target"
   }
  ]
 }

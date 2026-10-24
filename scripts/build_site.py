@@ -42,7 +42,7 @@ FLAG_SHORT = {
     "FL-22": "excluded sellers", "FL-23": "archive", "FL-24": "resolved", "FL-25": "multiple spot prints",
     "FL-26": "Etsy re-read resolved", "FL-27": "BE re-read resolved", "FL-28": "BN re-read resolved",
     "FL-29": "sold out", "FL-30": "metal description conflict",
-    "FL-31": "inherited same-day read",
+    "FL-31": "inherited same-day read", "FL-32": "payment not verified",
 }
 
 def esc(x):
@@ -617,8 +617,37 @@ def calculator_page():
     return shell("../", "calculator", "Gold ring calculator — weight, karat, metal value",
                  "Free gold ring calculator: enter grams, karat and spot price to compute fine gold, metal value and price-to-metal ratio. Pre-filled with verified listings.", body)
 
+def _payment_groups():
+    """Payment methods exactly as the seller records state them — no inference.
+
+    Four buckets, because "the seller states no method" and "this record has no
+    payment data at all" are different facts and must not be merged:
+      card        — the record names a credit card
+      etsy        — the record names Etsy checkout
+      not_stated  — the record says the method is not stated
+      no_record   — the record carries no payment data (its listing is sold out)
+    """
+    card, etsy, not_stated, no_record = [], [], [], []
+    for s_ in D["sellers"]:
+        txt = (s_.get("payment") or "").lower()
+        if txt.startswith("n/a") or not txt.strip():
+            no_record.append(s_["name"])
+        elif "etsy checkout" in txt:
+            etsy.append(s_["name"])
+        elif "credit card" in txt:
+            card.append(s_["name"])
+        else:
+            not_stated.append(s_["name"])
+    return card, etsy, not_stated, no_record
+
+
+def _n_etsy_shops():
+    return sum(1 for s_ in D["sellers"] if "(etsy shop)" in s_["name"].lower())
+
+
 def checklist_page():
     verified_returns = sum(1 for e in ENTRIES if e["returnsVerified"])
+    _pay_card, _pay_etsy, _pay_none, _pay_norec = _payment_groups()
     items = [
         ("Gold purity (karat)", "Confirm 10K, 14K or 18K in the listing text <i>and</i> on the stamp. Higher karat = more gold, but also softer metal.",
          "FTC — karat marks", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
@@ -629,12 +658,12 @@ def checklist_page():
         ("Hallmark + maker’s mark", "Look for the karat stamp <b>plus</b> the maker’s/manufacturer’s name or registered trademark next to it. Ask for a close-up photo. If the trademark is missing, the FTC says don’t buy.",
          "FTC · 16 CFR 23.10 · 15 U.S.C. § 297", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
          f"<b>{sum(1 for e in ENTRIES if e['makerMarkStated'])} of {len(ENTRIES)}</b> listings state a maker’s mark (the sold listing's seller claim); {sum(1 for e in ENTRIES if not e['makerMarkStated'])} do not. {sum(1 for e in ENTRIES if e['hallmarkStated'])} claim a karat stamp. This remains a major documentation gap. <a href='flagged.html#FL-14'>FL-14</a>"),
-        ("Weight in grams", "The seller must state the ring’s weight in grams. Without it, neither you nor the calculator can compute gold content. A price alone tells you nothing about how much gold you get.",
-         "16 CFR 23.18 — weight representations", "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23#23.18",
-         f"{sum(1 for e in ENTRIES if e['grams'] is not None)} of {len(ENTRIES)} listings publish a weight. The other {len(ENTRIES)-sum(1 for e in ENTRIES if e['grams'] is not None)} are blank and flagged. All published weights are seller claims, not independent measurements. <a href='flagged.html#FL-03'>FL-03</a> · <a href='flagged.html#FL-18'>FL-18</a>"),
+        ("Weight in grams", "Ask the seller to state the ring’s weight in grams <b>in writing</b>. Without it, neither you nor the calculator can compute gold content, and a price alone tells you nothing about how much gold you get. <i>This is our buying criterion — no U.S. rule requires a seller to publish a ring’s alloy weight.</i>",
+         "Project criterion · FTC — get the facts in writing", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+         f"{sum(1 for e in ENTRIES if e['grams'] is not None)} of {len(ENTRIES)} listings publish a weight. The other {len(ENTRIES)-sum(1 for e in ENTRIES if e['grams'] is not None)} are blank and flagged. All published weights are seller claims, not independent measurements. <a href='flagged.html#FL-03'>FL-03</a> · <a href='flagged.html#FL-18'>FL-18</a><br><b>Citation scope corrected this pass:</b> <a href='https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.18' target='_blank' rel='noopener'>16 CFR § 23.18 ↗</a> (re-read live 2026-10-23) is titled “Misrepresentation of weight and ‘total weight’” and covers <b>diamond</b> weight — “It is unfair or deceptive to misrepresent the weight of a diamond”, and “point” claims must also state decimal carats. It does <b>not</b> mandate a gold-alloy gram disclosure, so it is no longer cited as the basis for this row. It still matters here: {sum(1 for e in ENTRIES if e['priceBasis']=='setting')} of {len(ENTRIES)} rows are settings whose price excludes the center stone, which is exactly where a diamond-weight claim can mislead."),
         ("Seller reputation", "Search the business name with “complaint” and “review”. Verify a real phone number and address. Don’t rely on the seller’s own testimonials.",
          "FTC — before you buy", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
-         f"Only 1 of {len(SELLERS)} sellers has independent complaint data captured here (Blue Nile: BBB A+, 121 complaints in 3 years; ConsumerAffairs 1.7/5 from 172 reviews). The rest are blank on the Sellers page — not “clean”, just unchecked. <a href='flagged.html#FL-04'>FL-04</a>"),
+         f"Only 1 of {len(SELLERS)} sellers has independent complaint data captured here — Blue Nile: <a href='https://www.bbb.org/us/wa/seattle/profile/jewelry-stores/blue-nile-inc-1296-15026564' target='_blank' rel='noopener'>BBB profile ↗</a> A+ accredited, 121 complaints in 3 years, 22 in 12 months, BBB reviews averaging 1/5 (25 reviews); <a href='https://www.consumeraffairs.com/retail/blue-nile.html' target='_blank' rel='noopener'>ConsumerAffairs ↗</a> 1.7/5 from 172 reviews. Both are <b>prior-session snapshots, not re-read on {esc(date_str())}</b> — ratings and complaint counts move, so re-check them before buying; the same links and their capture labels are on the <a href='sellers.html'>Sellers</a> page. The other {len(SELLERS)-1} sellers are blank there — not “clean”, just unchecked. <a href='flagged.html#FL-04'>FL-04</a>"),
         ("Price vs. gold value", "Compute fine gold and metal value, then compare. A complete ring priced <i>below</i> its metal value is the classic fraud signal. A high markup over metal is normal for diamond rings.",
          "LBMA benchmark · Kitco spot", "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
          f"{sum(1 for e in ENTRIES if e['grams'] is not None and e['price'] is not None)} rows can be computed. {sum(1 for e in ENTRIES if ratio(e) is not None and ratio(e) < 1)} currently compute below metal; the old sold-band conclusion is withdrawn because its exact weight was unsupported. Setting prices are excluded from that conclusion. <a href='analysis.html'>Analysis</a> · <a href='calculator.html'>Calculator</a>"),
@@ -643,7 +672,7 @@ def checklist_page():
          f"{verified_returns} of {len(ENTRIES)} rows link a policy that was read and verified. Brilliant Earth’s working policy is now linked; Avianne, Jewelry Master and Solid Gold Jewelers still lack full terms, and the sold listing has no ordinary return offer. Etsy windows vary — one is 7 days. <a href='flagged.html#FL-16'>FL-16</a>"),
         ("Payment protection", "Use a credit card. Under federal law you have the right to dispute billing errors, and card networks give you a chargeback route. Avoid wire transfers, Zelle, gift cards and off-platform “deals”.",
          "FTC — credit cards & disputes", "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
-         "Every seller reviewed checks out by card or Etsy checkout. Etsy Purchase Protection covers non-delivery, damage and material misdescription — not buyer’s remorse. Keep orders inside the platform."),
+         f"<b>What the seller records actually say:</b> a credit card is named by {len(_pay_card)} of {len(SELLERS)} seller records ({esc(', '.join(_pay_card))}); Etsy checkout is named by {len(_pay_etsy)} of the {_n_etsy_shops()} Etsy shop records; {len(_pay_none)} record ({esc(', '.join(_pay_none))}) states <b>no payment method at all</b> — its page only says to call for pricing; and {len(_pay_norec)} record ({esc(', '.join(_pay_norec))}) carries no payment data because its only catalogued ring is sold out. Every record is accounted for: {len(_pay_card)} + {len(_pay_etsy)} + {len(_pay_none)} + {len(_pay_norec)} = {len(SELLERS)}. These are checkout options advertised on the sellers’ own pages on their capture dates, not independently confirmed facts, and no source says wire, Zelle or gift cards are refused by any of them. FTC guidance gives <i>you</i> dispute rights; it does not verify a merchant’s methods. <a href='flagged.html#FL-32'>FL-32</a> · <a href='flagged.html#FL-13'>FL-13</a><br>Etsy Purchase Protection covers non-delivery, damage and material misdescription — not buyer’s remorse. Keep orders inside the platform."),
         ("Documentation", "Save the listing, the receipt, the description, the return policy and every message where the seller claims purity or weight. Screenshot prices: they change.",
          "FTC — report problems", "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
          "This repository keeps a dated evidence trail for every row, including the exact quote. Do the same for your purchase: a seller’s written claim is what you can act on later."),
@@ -687,6 +716,13 @@ def checklist_page():
                  "A 12-point gold engagement ring buying checklist with official FTC, eCFR and NIST sources and what each check reveals in a 25-listing dataset.", body)
 
 def sellers_page():
+    _pay_card_l, _pay_etsy_l, _pay_none_l, _pay_norec_l = _payment_groups()
+    _pay_n_card, _pay_n_etsy = len(_pay_card_l), len(_pay_etsy_l)
+    _pay_card_txt = ", ".join(_pay_card_l)
+    _pay_etsy_txt = ", ".join(_pay_etsy_l)
+    _pay_none_txt = ", ".join(_pay_none_l)
+    _pay_norec_txt = ", ".join(_pay_norec_l)
+    _pay_n_shops = _n_etsy_shops()
     rows = []
     for s in D["sellers"]:
         contact = "<br>".join(esc(c) for c in s["contact"])
@@ -719,17 +755,17 @@ def sellers_page():
   <div class="card"><div class="k">Allurez</div><div class="t">Returns verified, exchange-only risk</div><div class="d">30 days to arrive, exclusions listed, $300 per missing certificate, buyer pays return shipping. Design Your Own rings are exchange-only — confirm whether a setting-only purchase counts. <a href="flagged.html#FL-10">FL-10</a></div></div>
   <div class="card"><div class="k">Avianne &amp; Co</div><div class="t">Short window</div><div class="d">14 days for unworn, unaltered items; a 10% FALL10 code is live. Full policy and resize exclusions were not captured. <a href="flagged.html#FL-11">FL-11</a></div></div>
   <div class="card"><div class="k">Jewelry Master</div><div class="t">30-day guarantee, restrictions unknown</div><div class="d">“Some restrictions apply” is all the page says. A $6,041 “retail price” is the seller’s own comparison and is not used in analysis. <a href="flagged.html#FL-12">FL-12</a></div></div>
-  <div class="card"><div class="k">Solid Gold Jewelers</div><div class="t">No price, no returns</div><div class="d">The page lists “14ky, 4.7g, #B02561” and tells you to call for pricing. No return policy is shown. Get both in writing before sending money. <a href="flagged.html#FL-13">FL-13</a></div></div>
+  <div class="card"><div class="k">Solid Gold Jewelers</div><div class="t">No price, no returns, no payment method</div><div class="d">The page lists “14ky, 4.7g, #B02561” and tells you to call for pricing. No return policy and no payment method are shown — a quote-by-phone sale with no card-dispute route on record. Get price, returns and the payment method in writing before sending money. <a href="flagged.html#FL-13">FL-13</a> · <a href="flagged.html#FL-32">FL-32</a></div></div>
   <div class="card"><div class="k">Etsy shops</div><div class="t">Individually run policies</div><div class="d">Windows now read as 7, 14, 21 or 30 days depending on the shop; fees and personalization exclusions differ. The sold listing has no ordinary return offer. Etsy Purchase Protection helps with qualifying non-delivery/damage/misdescription, not change of mind. <a href="flagged.html#FL-16">FL-16</a></div></div>
   <div class="card"><div class="k">Vetting a new seller</div><div class="t">Five-minute check</div><div class="d">Search name + “complaint”; look for a BBB profile; call the number; check the address; get the return policy in writing; never pay off-platform. <a href="https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry" target="_blank" rel="noopener">FTC steps ↗</a></div></div>
 </div>
 
 <h2>Payment methods seen</h2>
 <div class="table-wrap compact"><table><thead><tr><th>Method</th><th>Protection</th><th>Where it appears</th></tr></thead><tbody>
-<tr><td><b>Credit card</b></td><td><span class="badge ok">recommended</span> Federal billing-error dispute rights + card-network chargebacks</td><td>Every seller reviewed</td></tr>
-<tr><td>Etsy checkout</td><td><span class="badge ok">recommended</span> Etsy Purchase Protection on eligible orders</td><td>All 7 Etsy listings</td></tr>
+<tr><td><b>Credit card</b></td><td><span class="badge ok">recommended</span> Federal billing-error dispute rights + card-network chargebacks</td><td>Named by {_pay_n_card} of {len(SELLERS)} seller records: {esc(_pay_card_txt)}{'' if not _pay_none_txt else f' · <b>no method stated:</b> {_pay_none_txt} (<a href="flagged.html#FL-13">FL-13</a>, <a href="flagged.html#FL-32">FL-32</a>)'}</td></tr>
+<tr><td>Etsy checkout</td><td><span class="badge ok">recommended</span> Etsy Purchase Protection on eligible orders</td><td>Named by {_pay_n_etsy} of the {_pay_n_shops} Etsy shop records: {esc(_pay_etsy_txt)}. Klarna is named on several of them; the RAKSHAKJEWELS record names cards and PayPal on the Etsy checkout itself{'' if not _pay_norec_txt else f'. The {_pay_n_shops - _pay_n_etsy} remaining shop record ({esc(_pay_norec_txt)}) carries no payment data — its only catalogued ring is sold out (<a href="flagged.html#FL-29">FL-29</a>)'}</td></tr>
 <tr><td>Affirm / Klarna / Shop Pay</td><td><span class="badge warn">financing, not protection</span> Consumer protections depend on the underlying card</td><td>Brilliant Earth, Allurez, Avianne, Blue Nile, some Etsy shops</td></tr>
-<tr><td>Wire, Zelle, gift card, off-platform</td><td><span class="badge bad">avoid</span> Irreversible; may void marketplace protection</td><td>Not offered by these sellers — treat any request as a red flag</td></tr>
+<tr><td>Wire, Zelle, gift card, off-platform</td><td><span class="badge bad">avoid</span> Irreversible; may void marketplace protection</td><td><b>No seller record states these methods.</b> That is an absence of evidence, not proof they are refused — treat any request to pay this way as a red flag and confirm the method in writing first (<a href="flagged.html#FL-32">FL-32</a>)</td></tr>
 </tbody></table></div>
 <p class="small muted">Source for card dispute rights: <a href="https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges" target="_blank" rel="noopener">FTC — Using Credit Cards and Disputing Charges ↗</a>.</p>
 """
@@ -1013,6 +1049,10 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
 <div><b>Not retrieved:</b> {esc(p['notRetrieved'])}</div>
 <div class="muted">{esc(p['effect'])}</div>
 <div><a class="src-link" href="../{esc(p['evidencePath'])}">saved excerpt ↗</a></div></td></tr>""" for p in ledger.get("partialReads", []))
+    scope_rows = "".join(f"""<tr><td><b>{esc(sr['id'])}</b><div class="src">{esc(sr.get('kind',''))}</div><div class="src">{esc(sr.get('changeRequest',''))}</div></td>
+<td class="small"><b>{esc(sr['subject'])}</b><div><a href="{esc(sr['url'])}" target="_blank" rel="noopener" class="src-link">official source ↗</a> · {esc(sr['checkedOn'])} · re-read by {esc(sr['readBy'])} · <a class="src-link" href="../{esc(sr['evidencePath'])}">saved excerpt ↗</a></div>
+<div style="margin-top:5px;max-width:760px">{esc(sr['sourceExcerpt'])}</div>
+<div class="muted" style="margin-top:5px"><b>Finding:</b> {esc(sr['finding'])}</div></td></tr>""" for sr in ledger.get("scopeReads", []))
     failure_rows = "".join(f"""<tr><td class="num"><b>{esc(f['seq'])}</b><div class="src">{esc(f['kind'])}</div></td><td class="small"><b>Target:</b> {esc(f['url'])}<br><b>Result:</b> {esc(f['result'])}<br><span class="muted">{esc(f['handling'])}</span></td></tr>""" for f in ledger.get("failures", []))
     evidence_dirs = sorted({os.path.dirname(c["evidencePath"]) for c in checks if c.get("evidencePath")})
     coverage = ledger["coverage"]
@@ -1040,6 +1080,7 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
   <div class="stat"><div class="k">Inherited, same date</div><div class="v">{coverage.get('inheritedSameDate', 0)} / {len(checks)}</div><div class="d">read 2026-10-23 by bc4e36a1; kept with their original evidence ids</div></div>
   <div class="stat"><div class="k">Live listing rows</div><div class="v">{live} / {len(ENTRIES)}</div><div class="d">all dated {esc(date_str())}; prior rows: {prior}</div></div>
   <div class="stat"><div class="k">Partial reads logged</div><div class="v">{coverage.get('partialReads', 0)}</div><div class="d">pages that yielded no value; nothing upgraded</div></div>
+  <div class="stat"><div class="k">Citation-scope reads</div><div class="v">{coverage.get('scopeReads', 0)}</div><div class="d">official texts re-read to answer another session's change requests</div></div>
   <div class="stat"><div class="k">Failures logged</div><div class="v">{coverage.get('failuresLogged', 0)}</div><div class="d">published, not silently dropped</div></div>
   <div class="stat"><div class="k">Open flags</div><div class="v">{sum(1 for f in D['flags'] if f['status']=='open')}</div><div class="d">published, not hidden</div></div>
   <div class="stat"><div class="k">Resolved flags retained</div><div class="v">{sum(1 for f in D['flags'] if f['status']=='resolved')}</div><div class="d">audit trail, not current claims</div></div>
@@ -1062,6 +1103,10 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
 <h2>Partial reads this pass — pages that yielded no value</h2>
 <p class="small muted">These pages were opened by session {esc(session_id)} but the retrieved content did not contain the field that matters (the price). They are published instead of being passed over: the canonical rows keep the earlier same-day capture, their original evidence id, and — where the value was never confirmable in USD — their blank cell and flag.</p>
 <div class="table-wrap"><table><thead><tr><th>Listing</th><th>Retrieved / not retrieved / effect on the data</th></tr></thead><tbody>{partial_rows}</tbody></table></div>
+
+<h2>Official-source scope reads this pass</h2>
+<p class="small muted">Sources re-opened live because session <b>d49fe320</b>'s post-merge audit (PR #52) logged change requests saying this site's <i>citation scope</i> overstated what an official source says. An over-broad citation is a hallucination too, so each request was answered with a fresh read of the official text rather than a rewording from memory.</p>
+<div class="table-wrap"><table><thead><tr><th>Read / change request</th><th>Subject, verbatim excerpt and finding</th></tr></thead><tbody>{scope_rows}</tbody></table></div>
 
 <h2>Fetch failures logged this pass</h2>
 <p class="small muted">A failed read is never reported as a successful one. Proxy errors, 404s and pages this pass did not open are all recorded here with how each was handled.</p>

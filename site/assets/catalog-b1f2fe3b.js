@@ -988,6 +988,7 @@ window.GOLD5_UNIFIED_CATALOG = {
         "FL-15",
         "FL-14",
         "FL-18",
+        "FL-32",
         "no-price"
       ],
       "checkedOn": "2026-10-23",

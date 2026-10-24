@@ -199,12 +199,21 @@ for e in ENTRIES: registry.update([e["url"], e.get("priceSourceUrl"), e.get("ret
 for s in D["sellers"]:
     registry.update([s.get("website"), s.get("contactUrl"), s.get("returnsUrl"), s.get("warrantyUrl")])
     for r in s["reputation"]: registry.add(r["url"])
-for r in REFS: registry.add(r["url"])
+for r in REFS:
+    registry.add(r["url"])
+    if r.get("mirrorUrl"):
+        registry.add(r["mirrorUrl"])   # a named mirror of the same official text
 for q in [SPOT] + D["spot"]["prior"] + D["spot"]["crossChecks"]: registry.add(q["url"])
+# Every official URL recorded in the evidence ledger is part of the dataset too:
+# canonical checks, partial reads and citation-scope reads.
+_LEDGER = D["meta"].get("liveCheck", {})
+for _c in (_LEDGER.get("checks", []) + _LEDGER.get("partialReads", []) + _LEDGER.get("scopeReads", [])):
+    if _c.get("url"): registry.add(_c["url"])
+    if _c.get("priorUrl"): registry.add(_c["priorUrl"])
 registry.discard(None)
 bad7 = []
 for page in PAGE_PATHS:
-    for href in re.findall(r'href="([^"]+)"', read_page(page)):
+    for href in re.findall(r'href=["\']([^"\']+)["\']', read_page(page)):
         href = htmllib.unescape(href)
         if href.startswith(("http://", "https://")) and href.split("#")[0] not in {u.split("#")[0] for u in registry}:
             bad7.append(f"{page}: {href}")
@@ -323,15 +332,17 @@ check("C14", not bad14, "the NO HALLUCINATIONS rule is on every page" + ("" if n
 bad15 = []
 for page in PAGE_PATHS:
     t = read_page(page)
-    if re.search(r'href="http://', t): bad15.append(f"{page}: http:// link")
-    if re.search(r'href="\s*javascript:', t, re.I): bad15.append(f"{page}: javascript: href")
+    # Attribute values are matched in BOTH quote styles: a single-quoted href or
+    # target is exactly where an insecure link or a missing rel=noopener used to hide.
+    if re.search(r'href=["\']http://', t): bad15.append(f"{page}: http:// link")
+    if re.search(r'href=["\']\s*javascript:', t, re.I): bad15.append(f"{page}: javascript: href")
     if re.search(r'<(iframe|object|embed)\b', t, re.I): bad15.append(f"{page}: embedded frame/object")
-    if re.search(r'<script[^>]+src="(https?:)?//', t, re.I): bad15.append(f"{page}: third-party script")
-    for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', t):
-        if 'rel="noopener' not in tag: bad15.append(f"{page}: _blank without rel=noopener")
+    if re.search(r'<script[^>]+src=["\'](https?:)?//', t, re.I): bad15.append(f"{page}: third-party script")
+    for tag in re.findall(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', t):
+        if not re.search(r'rel=["\'][^"\']*noopener', tag): bad15.append(f"{page}: _blank without rel=noopener")
     if re.search(r'\son(click|load|error|mouseover)\s*=', t, re.I): bad15.append(f"{page}: inline event handler")
     if re.search(r'<form[^>]*\baction=', t, re.I): bad15.append(f"{page}: form posts somewhere")
-    if re.search(r'type="password"', t, re.I): bad15.append(f"{page}: password field")
+    if re.search(r'type=["\']password["\']', t, re.I): bad15.append(f"{page}: password field")
 check("C15", not bad15, "no http://, javascript:, frames, third-party scripts, inline handlers or posting forms; every new-tab link is rel=noopener" + ("" if not bad15 else " — " + "; ".join(sorted(set(bad15))[:8])))
 
 
@@ -614,6 +625,17 @@ def reader_errors(ledger, rows):
     for fl in ledger.get("failures", []):
         if str(fl.get("seq")) not in ver:
             bad.append(f'logged failure {fl.get("seq")} is not published on the verification page')
+    for sr in ledger.get("scopeReads", []):
+        if not sr.get("finding") or not sr.get("sourceExcerpt") or not sr.get("changeRequest"):
+            bad.append(f'scope read {sr.get("id")}: missing excerpt, finding or change-request id')
+        if str(sr.get("id")) not in ver or sr.get("changeRequest", "").split(" ")[0] not in ver:
+            bad.append(f'scope read {sr.get("id")} is not published with its change request on the verification page')
+    if ledger.get("coverage", {}).get("scopeReads") != len(ledger.get("scopeReads", [])):
+        bad.append("ledger coverage.scopeReads does not match its scope reads")
+    # A reference whose canonical URL was re-pointed to an official source must say so
+    for r in REFS:
+        if r.get("mirrorUrl") and "mirror" not in (r.get("method") or "").lower():
+            bad.append(f'{r["id"]}: cites a mirror URL without labelling it as a mirror')
     return bad
 
 
@@ -683,11 +705,22 @@ def _neg_tests():
     ledger14["partialReads"] = list(ledger14.get("partialReads", [])) + [
         dict(entryId=reread_id, canonicalCheck="L01", notRetrieved="", effect="")]
     out.append(("N14 partial read claimed as full re-read", bool(reader_errors(ledger14, ENTRIES))))
+    # N16 a citation-scope read must stay published with the request it answers (actual C22 predicate)
+    ledger16 = copy.deepcopy(D["meta"]["liveCheck"])
+    if ledger16.get("scopeReads"):
+        ledger16["scopeReads"][0]["changeRequest"] = "CR-UNPUBLISHED-99 (not on the page)"
+        out.append(("N16 scope read detached from its change request", bool(reader_errors(ledger16, ENTRIES))))
+    # N15 single-quoted attributes must not slip past C7/C15 (blind spot found this pass)
+    tag15 = "<a href='http://insecure.example/ring' target='_blank'>listing</a>"
+    out.append(("N15 single-quoted insecure link without rel=noopener",
+                bool(re.search(r'href=["\']http://', tag15)) and
+                bool(re.findall(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', tag15)) and
+                not re.search(r'rel=["\'][^"\']*noopener', tag15)))
     return out
 
 neg = _neg_tests()
 caught = sum(1 for _, ok in neg if ok)
-check("N1-N14", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+check("N1-N16", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
 
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)
@@ -725,7 +758,9 @@ md += ["", "## What each check means", "",
        "- C20 dataset ↔ page counts and per-row provenance labels",
        "- C22 reader attribution: every row, ledger check and page names the session that actually read the source;\n"
        "  inherited same-day reads keep FL-31, partial reads and fetch failures stay published",
-       "- N1–N14 negative self-tests: injected errors must be caught, or the harness fails", ""]
+       "- N1–N16 negative self-tests: injected errors must be caught, or the harness fails\n"
+       "  (N15 covers the single-quoted-attribute blind spot in the link/security scans;\n"
+       "   N16 covers a citation-scope read detached from the change request it answers)", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
 open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-23.md"), "w").write("\n".join(md))
 

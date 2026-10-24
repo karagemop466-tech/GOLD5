@@ -1,16 +1,16 @@
 # Verification report — consolidated GOLD5 site
 
-- Run: 2026-10-24 00:12 UTC
+- Run: 2026-10-24 00:25 UTC
 - Data as of: 2026-10-23
 - Result: **PASS** — 23 checks passed, 0 failed
 
-- PASS · **C1** — 25 entries, 13 sellers, 31 flags, 11 references
+- PASS · **C1** — 25 entries, 13 sellers, 32 flags, 11 references
 - PASS · **C2** — 25 listings have an https official-source URL and a dated check (data as of 2026-10-23)
 - PASS · **C3** — every blank and source conflict is covered by a flag
 - PASS · **C4** — spot, purity and 25 rows of derived values recompute
 - PASS · **C5** — 25 listing rows, each with its official source link
 - PASS · **C6** — all internal links and anchors resolve across 19 pages
-- PASS · **C7** — every external link (65 registered URLs) is recorded in the dataset
+- PASS · **C7** — every external link (67 registered URLs) is recorded in the dataset
 - PASS · **C8** — every dollar figure on the site is dataset-sourced or computed (251 allowed values)
 - PASS · **C9** — every published price, weight and source URL is rendered in its row
 - PASS · **C10** — no placeholders or template leftovers
@@ -26,7 +26,7 @@
 - PASS · **C20** — counts and row provenance labels match the dataset on all 25 listing rows
 - PASS · **C21** — 46-check evidence ledger covers every row and agrees with canonical observed values
 - PASS · **C22** — reader attribution: 8 rows re-read by 6d10ac0a, 17 inherited from bc4e36a1 and labelled, partial reads and failures published
-- PASS · **N1-N14** — 14/14 injected errors caught by the rules they target
+- PASS · **N1-N16** — 16/16 injected errors caught by the rules they target
 
 ## What each check means
 
@@ -43,4 +43,6 @@
 - C20 dataset ↔ page counts and per-row provenance labels
 - C22 reader attribution: every row, ledger check and page names the session that actually read the source;
   inherited same-day reads keep FL-31, partial reads and fetch failures stay published
-- N1–N14 negative self-tests: injected errors must be caught, or the harness fails
+- N1–N16 negative self-tests: injected errors must be caught, or the harness fails
+  (N15 covers the single-quoted-attribute blind spot in the link/security scans;
+   N16 covers a citation-scope read detached from the change request it answers)

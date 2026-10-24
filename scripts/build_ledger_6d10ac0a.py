@@ -162,6 +162,29 @@ REREADS = {
             "on the product page itself."
         ),
     ),
+    "R05": dict(  # 15 U.S.C. 297 — re-pointed from the Cornell mirror to the official GovInfo text
+        url="https://www.govinfo.gov/link/uscode/15/297",
+        evidencePath=f"{EV}/references.md",
+        result="corrected",
+        observed=None,
+        sourceExcerpt=(
+            "Official U.S. Government Publishing Office text; the link resolved to "
+            "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec297.pdf. "
+            "'§ 297. Stamping plated articles'. (a) rolled gold plate / gold plate / gold filled / electroplate articles "
+            "may not be stamped with any word or mark usually employed to indicate the fineness of gold 'unless such word "
+            "or mark be accompanied by other words, plainly indicating that such article or part thereof is made of rolled "
+            "gold plate, gold plate, or gold electroplate, or is gold filled, as the case may be'. (b) Identifying trademark: "
+            "a manufacturer or dealer subject to section 294 who applies a quality mark indicating gold or silver content "
+            "'shall — (A) Apply or cause to be applied to that article a trademark of such persons, which has been duly "
+            "registered or applied for registration under the laws of the United States ... or the name of such person', and "
+            "each identifying trademark or name 'shall be applied to that article by the same means as that used in applying "
+            "the quality mark or stamp appearing thereon, in type or lettering at least as large as that used in such quality "
+            "mark or stamp, and in a position as close as possible to that quality mark or stamp.' "
+            "(June 13, 1906, ch. 3289, § 4, 34 Stat. 261; Pub. L. 87-354, § 1, Oct. 4, 1961, 75 Stat. 775; "
+            "Pub. L. 91-366, § 1(e), July 31, 1970, 84 Stat. 691.) The Cornell LII page for the same section remains a mirror "
+            "and is named as such in the reference note."
+        ),
+    ),
     "L25": dict(  # ET-576343849
         evidencePath=f"{EV}/etsy-and-brilliant-earth.md",
         result="unchanged",
@@ -203,6 +226,44 @@ PARTIAL_READS = [
          notRetrieved="The retrieved content chunk contained only site navigation; no price was read.",
          effect="Corroboration of the 14K Yellow Gold title only. The EUR-serving observation (€835) and the blank USD cell "
                 "stay exactly as flagged under FL-08 with bc4e36a1's 2026-10-23 read L09. No EUR→USD conversion was made."),
+]
+
+SCOPE_READS = [
+    dict(id="SR-01", kind="citation-scope",
+         subject="16 CFR § 23.18 — Misrepresentation of weight and “total weight.”",
+         url="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23/section-23.18",
+         checkedOn="2026-10-23", readBy=SESSION,
+         evidencePath=f"{EV}/references.md",
+         changeRequest="CR-D49-02 (session d49fe320)",
+         sourceExcerpt=(
+             "eCFR page state: 'This content is from the eCFR and is authoritative but unofficial. Displaying title 16, "
+             "up to date as of 10/21/2026. Title 16 was last amended 10/19/2026.' Authority: 15 U.S.C. 45, 46. "
+             "Source: 83 FR 40667, Aug. 16, 2018. Text: '(a) It is unfair or deceptive to misrepresent the weight of a "
+             "diamond. (b) It is unfair or deceptive to use the word “point” or any abbreviation in any representation, "
+             "advertising, marking, or labeling to describe the weight of a diamond, unless the weight is also stated as "
+             "decimal parts of a carat (e.g., 25 points or .25 carat). A carat is a standard unit of weight for a diamond "
+             "and is equivalent to 200 milligrams (1/5 gram). A point is one one-hundredth (1/100) of a carat.'"
+         ),
+         finding=("§ 23.18 governs DIAMOND weight representations. It does not require disclosure of a ring's gold-alloy "
+                  "gram weight, so the checklist no longer cites it as the basis for the grams criterion; it is cited for "
+                  "what it actually says, and the grams criterion is labelled as this project's buying rule.")),
+    dict(id="SR-02", kind="payment-scope",
+         subject="Solid Gold Jewelers product page + FTC credit-card guidance (payment methods)",
+         url="https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
+         checkedOn="2026-10-23", readBy=SESSION,
+         evidencePath=f"{EV}/references.md",
+         changeRequest="CR-D49-01 (session d49fe320)",
+         sourceExcerpt=(
+             "Re-read under ledger check L18: the page states '14ky, 4.7g, #B02561', 'Pricing and availability are subject "
+             "to change.' and 'Call (309) 452-1612 for current pricing and availability.' No payment method is stated "
+             "anywhere on the page. Session d49fe320 separately recorded that FTC credit-card guidance establishes consumer "
+             "dispute rights and does not verify which methods any merchant accepts "
+             "(https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges)."
+         ),
+         finding=("The site's prose claimed 'Every seller reviewed checks out by card' and that wire/Zelle/gift cards are "
+                  "'Not offered by these sellers'. Neither statement is supported: 12 of 13 seller records state a method, "
+                  "Solid Gold Jewelers states none, and no source confirms that any method is refused. Prose corrected and "
+                  "published as FL-32.")),
 ]
 
 FAILURES = [
@@ -253,6 +314,9 @@ def main() -> int:
         c = by_id[cid]
         c["readBy"] = SESSION
         c["rereadOn"] = "2026-10-23"
+        if over.get("url"):
+            c["priorUrl"] = c.get("url")
+            c["url"] = over["url"]
         c["evidencePath"] = over["evidencePath"]
         c["result"] = over["result"]
         c["sourceExcerpt"] = over["sourceExcerpt"]
@@ -294,9 +358,11 @@ def main() -> int:
         rereadThisPass=sum(1 for c in checks if c["readBy"] == SESSION),
         inheritedSameDate=sum(1 for c in checks if c["readBy"] == INHERITED_BY),
         partialReads=len(PARTIAL_READS),
+        scopeReads=len(SCOPE_READS),
         failuresLogged=len(FAILURES),
     )
     ledger["partialReads"] = PARTIAL_READS
+    ledger["scopeReads"] = SCOPE_READS
     ledger["failures"] = FAILURES
 
     # Corrections inherited from bc4e36a1 keep their author; this pass appends its own.
@@ -321,6 +387,40 @@ def main() -> int:
                    "evidence ids and paths",
              reason="Prevents this pass from implying it opened pages it did not open. Two further pages (ET-1151446373, "
                     "BE-1343) were only partially retrieved and are logged as partialReads; they upgraded nothing."),
+        dict(id="C-14", session=SESSION, subject="15 U.S.C. § 297 citation (CR-D49-04)",
+             before="Reference R05 cited the Cornell Legal Information Institute mirror "
+                    "https://www.law.cornell.edu/uscode/text/15/297",
+             after="Reference R05 cites the official GovInfo U.S. Code text https://www.govinfo.gov/link/uscode/15/297 "
+                   "(resolved to the GPO 2024 edition PDF), re-read live this pass; Cornell is named as a mirror in the "
+                   "reference note",
+             reason="Official-source preference. The statutory maker's-mark language was re-read verbatim from GPO text "
+                    "before the citation was changed."),
+        dict(id="C-15", session=SESSION, subject="16 CFR § 23.18 citation scope (CR-D49-02)",
+             before="The checklist cited § 23.18 as the source for asking a seller for a ring's metal weight in grams",
+             after="§ 23.18 is cited only for diamond-weight misrepresentation (carat/point claims); the grams criterion is "
+                   "labelled as this project's buying rule, with FTC 'get it in writing' guidance as its consumer source",
+             reason="Re-read of the official eCFR text (scopeReads SR-01) shows the section covers diamond weight, not the "
+                    "gold alloy weight of a ring. A citation that overstates a rule is itself a hallucination."),
+        dict(id="C-16", session=SESSION, subject="Payment prose (CR-D49-01)",
+             before="'Every seller reviewed checks out by card or Etsy checkout' and wire/Zelle/gift cards "
+                    "'Not offered by these sellers'",
+             after="Counts taken from the seller records and printed with every record accounted for: a credit card is "
+                   "named by 5 of 13 records, Etsy checkout by 6 of the 7 Etsy shop records, 1 record (Solid Gold Jewelers) "
+                   "states no payment method at all, and 1 record (the sold-out Etsy listing) carries no payment data. "
+                   "Advertised checkout options are labelled as seller statements; absence of a statement is not evidence "
+                   "that a method is refused. Published as FL-32 and linked to the row-level FL-13 gap",
+             reason="The prose asserted more than any source states. FTC credit-card guidance establishes consumer dispute "
+                    "rights, not merchant checkout methods."),
+        dict(id="C-17", session=SESSION, subject="Checker blind spot — single-quoted HTML attributes",
+             before="verify.py's link registry (C7) and security scan (C15) matched double-quoted attributes only, so a "
+                    "single-quoted href or target could carry an unregistered external link or omit rel=noopener unnoticed",
+             after="Both scans accept either quote style; C7's registry now also covers each reference's named mirror URL "
+                   "and every official URL recorded in the evidence ledger (canonical checks, partial reads and "
+                   "citation-scope reads). Negative test N15 proves the single-quoted case is caught; C22 gained a "
+                   "scope-read publication requirement proved by N16",
+             reason="Found while adding the § 23.18 scope-read link to the checklist: the new link was invisible to C7, "
+                    "which reported PASS while an unregistered URL was live on the page. A checker that cannot see part of "
+                    "the page is itself a hallucination risk, so the gap is recorded as a correction, not just fixed."),
         dict(id="C-13", session=SESSION, subject="Listing values — no change attestation",
              before="AL-5882 $1,085/5.00 g · AL-170 $933/4.80 g · AL-4426 $585/3.58 g · AV-25893 $1,100.00/2.3 g · "
                     "JM-149700 $3,020.00 (retail $6,041.00)/2.3 g · SGJ-B02561 no price/4.7 g · BN-203738 $2,210/18K-vs-14K "
@@ -350,6 +450,13 @@ def main() -> int:
         problems.append(f"kind counts {kinds}")
     if len(checks) != 46:
         problems.append(f"{len(checks)} checks, expected 46")
+    for sr in SCOPE_READS:
+        if not str(sr.get("url", "")).startswith("https://"):
+            problems.append(f'{sr.get("id")}: non-https scope-read url')
+        if not sr.get("sourceExcerpt") or not sr.get("finding"):
+            problems.append(f'{sr.get("id")}: scope read without excerpt or finding')
+        if not os.path.exists(os.path.join(ROOT, sr.get("evidencePath", ""))):
+            problems.append(f'{sr.get("id")}: missing evidence file {sr.get("evidencePath")}')
     for pr in PARTIAL_READS:
         if pr["entryId"] in {c.get("entryId") for c in checks if c["readBy"] == SESSION}:
             problems.append(f'{pr["entryId"]}: listed as both a full re-read and a partial read')
