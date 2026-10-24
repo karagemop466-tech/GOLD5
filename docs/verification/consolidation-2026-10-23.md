@@ -1,6 +1,6 @@
 # Verification report — consolidated GOLD5 site
 
-- Run: 2026-10-24 00:25 UTC
+- Run: 2026-10-24 00:48 UTC
 - Data as of: 2026-10-23
 - Result: **PASS** — 23 checks passed, 0 failed
 
@@ -26,7 +26,7 @@
 - PASS · **C20** — counts and row provenance labels match the dataset on all 25 listing rows
 - PASS · **C21** — 46-check evidence ledger covers every row and agrees with canonical observed values
 - PASS · **C22** — reader attribution: 8 rows re-read by 6d10ac0a, 17 inherited from bc4e36a1 and labelled, partial reads and failures published
-- PASS · **N1-N16** — 16/16 injected errors caught by the rules they target
+- PASS · **N1-N18** — 18/18 injected errors caught by the rules they target
 
 ## What each check means
 
@@ -45,4 +45,6 @@
   inherited same-day reads keep FL-31, partial reads and fetch failures stay published
 - N1–N16 negative self-tests: injected errors must be caught, or the harness fails
   (N15 covers the single-quoted-attribute blind spot in the link/security scans;
-   N16 covers a citation-scope read detached from the change request it answers)
+   N16 covers a citation-scope read detached from the change request it answers;
+   N17 covers a landing page claiming reads this pass did not perform;
+   N18 covers a category page claiming re-reads this pass inherited)

@@ -1150,6 +1150,14 @@ window.GOLD5_DATA = {
      "reason": "Found while adding the § 23.18 scope-read link to the checklist: the new link was invisible to C7, which reported PASS while an unregistered URL was live on the page. A checker that cannot see part of the page is itself a hallucination risk, so the gap is recorded as a correction, not just fixed."
     },
     {
+     "id": "C-18",
+     "session": "6d10ac0a",
+     "subject": "Landing and category page reader claims (found post-merge on PR #53)",
+     "before": "index.html said 'All 25 of 25 rows were re-read from the sellers' own pages on 2026-10-23' and every category page said 'N of these N rows were re-read live on 2026-10-23', although this pass opened only 8 listings and 17 rows are inherited same-day reads; two of the seven category views (halo-pave 0 of 7, bands 0 of 3) contained no row this pass opened at all",
+     "after": "The landing page prints the split — 8 rows re-read live by 6d10ac0a, 17 inherited same-day from bc4e36a1 and labelled — and each category page prints its own split, including 'None of these N rows was opened in this pass' for the three views made entirely of inherited rows. C22 now enforces both sentences and rejects a blanket 'every row was re-read' claim, proved by negative tests N17 and N18",
+     "reason": "True about the date, false about the reader: the same overstatement class as CR-D49-01. Found by reading the deployed pages after the merge instead of trusting a green checker, so it is recorded as a correction and turned into a rule rather than only copy-edited."
+    },
+    {
      "id": "C-13",
      "session": "6d10ac0a",
      "subject": "Listing values — no change attestation",

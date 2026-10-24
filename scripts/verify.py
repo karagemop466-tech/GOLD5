@@ -550,6 +550,59 @@ check("C21", not bad21, "46-check evidence ledger covers every row and agrees wi
 INHERITED_BY = "bc4e36a1 (inherited)"
 
 
+def landing_reader_claims(cov, idx_text, n_entries):
+    """The landing page must state the reader split the ledger actually records.
+
+    Found post-merge on PR #53: the page said "All 25 of 25 rows were re-read from the
+    sellers' own pages" while the ledger recorded 8 re-reads this pass and 17 inherited
+    same-day reads. True about the date, false about the reader — the same class of
+    overstatement as CR-D49-01, so it is now a rule rather than a copy edit.
+    """
+    bad = []
+    reread, inherited = cov.get("reread", 0), cov.get("inherited", 0)
+    if reread and f"{reread} were re-read live in this pass" not in idx_text:
+        bad.append("landing page does not say how many rows this pass actually re-read")
+    if inherited and f"{inherited} are inherited" not in idx_text:
+        bad.append("landing page does not say how many rows are inherited same-day reads")
+    if reread and reread < n_entries and re.search(rf"All {n_entries} of {n_entries} rows were re-read", idx_text):
+        bad.append("landing page claims every row was re-read although the ledger records inherited reads")
+    return bad
+
+
+def category_reader_errors(rows):
+    """Each category page must attribute its rows' reads to the session that opened them.
+
+    Found post-merge on PR #53: every category page said "N of these N rows were re-read
+    live on 2026-10-23" using the row's dated provenance, which is true of inherited
+    same-day reads too. Three of the seven views contained no row this pass opened at all.
+    """
+    sess = D["meta"].get("session")
+    bad = []
+    for c in SC.categories():
+        mem = SC.category_members(c, rows)
+        path = f"site/category-{c['key']}.html"
+        if not os.path.exists(os.path.join(ROOT, path)):
+            continue
+        txt = read_page(path)
+        rr = sum(1 for e in mem if e.get("readBy") == sess)
+        inh = len(mem) - rr
+        if rr and inh:
+            if f"{rr} of these {len(mem)} rows" not in txt or f"the other {inh}" not in txt:
+                bad.append(f"{path}: does not print its {rr} re-read / {inh} inherited split")
+        elif rr == len(mem) and mem:
+            want = ("The row in this view was re-read live" if len(mem) == 1
+                    else f"All {len(mem)} rows in this view were re-read live")
+            if want not in txt:
+                bad.append(f"{path}: does not state that every row was re-read this pass")
+        elif mem:
+            if f"None of these {len(mem)} rows was opened in this pass" not in txt:
+                bad.append(f"{path}: does not state that no row was opened this pass")
+        # a blanket "every row in this view was re-read live" claim is false when any row is inherited
+        if inh and re.search(rf"(All )?{len(mem)} of these {len(mem)} rows were re-read live", txt):
+            bad.append(f"{path}: claims every row was re-read live although {inh} are inherited")
+    return bad
+
+
 def reader_errors(ledger, rows):
     bad = []
     sess = D["meta"].get("session")
@@ -602,6 +655,8 @@ def reader_errors(ledger, rows):
             bad.append(f'{p.get("entryId")}: partial read points at the wrong canonical check')
         if not p.get("notRetrieved") or not p.get("effect"):
             bad.append(f'{p.get("entryId")}: partial read does not state what was missing')
+    bad.extend(landing_reader_claims(D["meta"].get("coverage", {}), read_page("index.html"), len(rows)))
+    bad.extend(category_reader_errors(rows))
     lis = read_page("site/listings.html")
     ver = read_page("site/verification.html")
     for e in rows:
@@ -705,6 +760,17 @@ def _neg_tests():
     ledger14["partialReads"] = list(ledger14.get("partialReads", [])) + [
         dict(entryId=reread_id, canonicalCheck="L01", notRetrieved="", effect="")]
     out.append(("N14 partial read claimed as full re-read", bool(reader_errors(ledger14, ENTRIES))))
+    # N18 a category page must not claim re-reads this pass inherited (actual C22 predicate)
+    rows18 = copy.deepcopy(ENTRIES)
+    inh18 = [e for e in rows18 if e.get("readBy") == INHERITED_BY]
+    if inh18:
+        inh18[0]["readBy"] = D["meta"]["session"]
+        out.append(("N18 category reader split disagreeing with the rows", bool(category_reader_errors(rows18))))
+    # N17 the landing page must not claim reads this pass did not perform (actual C22 predicate)
+    cov17 = dict(D["meta"]["coverage"])
+    if cov17.get("reread") and cov17.get("reread") < len(ENTRIES):
+        lying = f"All {len(ENTRIES)} of {len(ENTRIES)} rows were re-read from the sellers' own pages on 2026-10-23."
+        out.append(("N17 landing page claims every row was re-read this pass", bool(landing_reader_claims(cov17, lying, len(ENTRIES)))))
     # N16 a citation-scope read must stay published with the request it answers (actual C22 predicate)
     ledger16 = copy.deepcopy(D["meta"]["liveCheck"])
     if ledger16.get("scopeReads"):
@@ -720,7 +786,7 @@ def _neg_tests():
 
 neg = _neg_tests()
 caught = sum(1 for _, ok in neg if ok)
-check("N1-N16", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+check("N1-N18", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
 
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)
@@ -760,7 +826,9 @@ md += ["", "## What each check means", "",
        "  inherited same-day reads keep FL-31, partial reads and fetch failures stay published",
        "- N1–N16 negative self-tests: injected errors must be caught, or the harness fails\n"
        "  (N15 covers the single-quoted-attribute blind spot in the link/security scans;\n"
-       "   N16 covers a citation-scope read detached from the change request it answers)", ""]
+       "   N16 covers a citation-scope read detached from the change request it answers;\n"
+       "   N17 covers a landing page claiming reads this pass did not perform;\n"
+       "   N18 covers a category page claiming re-reads this pass inherited)", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
 open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-23.md"), "w").write("\n".join(md))
 

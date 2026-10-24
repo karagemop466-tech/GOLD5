@@ -210,11 +210,21 @@ def basis_label(e):
     return "complete ring"
 
 def coverage_note():
-    live = D["meta"]["coverage"]["live"]
-    prior = D["meta"]["coverage"]["prior"]
+    """State who read what. 'All rows carry today's date' is not the same claim as
+    'this pass opened every page', and the two must never be blurred."""
+    cov = D["meta"]["coverage"]
+    live, prior = cov["live"], cov["prior"]
+    reread, inherited = cov.get("reread", 0), cov.get("inherited", 0)
+    r_sess, i_sess = cov.get("rereadSession", ""), cov.get("inheritedSession", "")
+    if prior == 0 and reread and inherited:
+        return (f"All {live} of {len(ENTRIES)} rows carry a {esc(date_str())} read of the seller's own page: "
+                f"<b>{reread} were re-read live in this pass</b> (session {esc(r_sess)}) and <b>{inherited} are inherited "
+                f"same-day</b> reads from session {esc(i_sess)}, labelled as inherited on the row, in the listing table and "
+                f"in the ledger. No row is carried forward as an unmarked prior capture, and no inherited row is "
+                f"presented as this pass's read.")
     if prior == 0:
-        return f"All {live} of {len(ENTRIES)} rows were re-read from the sellers' own pages on {date_str()}; no row is carried forward as an unmarked prior capture."
-    return f"{live} of {len(ENTRIES)} rows were re-read on {date_str()}; {prior} retain an older, explicitly labeled capture date and are itemised on Flagged for Review."
+        return f"All {live} of {len(ENTRIES)} rows were re-read from the sellers' own pages on {esc(date_str())}; no row is carried forward as an unmarked prior capture."
+    return f"{live} of {len(ENTRIES)} rows were re-read on {esc(date_str())}; {prior} retain an older, explicitly labeled capture date and are itemised on Flagged for Review."
 
 def seller_cell(e):
     s = seller(e)
@@ -287,7 +297,7 @@ def index_page():
       <a class="btn gold" href="site/calculator.html">Value a ring by weight</a>
       <a class="btn ghost" href="site/checklist.html">12-point checklist</a>
     </div>
-    <p class="tiny muted" style="margin-top:14px">{esc(coverage_note())} No value anywhere on this site is inferred.</p>
+    <p class="tiny muted" style="margin-top:14px">{coverage_note()} No value anywhere on this site is inferred.</p>
   </div>
   <aside class="hero-side">
     <div>
@@ -300,7 +310,7 @@ def index_page():
 </section>
 
 <div class="note blue"><b class="title">Parallel review (session 0c967748) — and why its current fields are blank</b>
-That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> {D["meta"]["coverage"]["live"]} rows and the gold quote were re-read from the sellers and Kitco on 2026-10-23 and are dated. {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Both reviews apply the same rule — an unconfirmed value stays blank.</div>
+That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> {D["meta"]["coverage"]["reread"]} rows and the gold quote were re-read live by session {D["meta"]["coverage"]["rereadSession"]} from the sellers and Kitco on 2026-10-23, and the other {D["meta"]["coverage"]["inherited"]} rows were read the same day by session {D["meta"]["coverage"]["inheritedSession"]} and are labelled as inherited — every row is dated, none is presented as read by a session that did not open it. {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Both reviews apply the same rule — an unconfirmed value stays blank.</div>
 
 <section class="rule-panel">
   <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
@@ -1149,6 +1159,25 @@ def median(vals):
     m = n // 2
     return vals[m] if n % 2 else (vals[m - 1] + vals[m]) / 2
 
+def _cat_reader_note(mem):
+    """Who actually opened these rows' pages — never 're-read live' for an inherited row."""
+    sess = D["meta"]["session"]
+    rr = sum(1 for e in mem if e.get("readBy") == sess)
+    inh = len(mem) - rr
+    i_sess = D["meta"]["coverage"].get("inheritedSession", "")
+    date = esc(D["meta"]["asOf"])
+    if rr and inh:
+        return (f"{rr} of these {len(mem)} rows {'was' if rr == 1 else 'were'} re-read live on {date} by session "
+                f"{esc(sess)}; the other {inh} {'is a' if inh == 1 else 'are'} same-day "
+                f"{'read' if inh == 1 else 'reads'} inherited from session {esc(i_sess)} and "
+                f"{'is' if inh == 1 else 'are'} labelled as inherited on each row. None is carried as an older capture")
+    if rr:
+        return (f"{'The row in this view was' if len(mem) == 1 else f'All {len(mem)} rows in this view were'} re-read "
+                f"live on {date} by session {esc(sess)}; none is carried as an older capture")
+    return (f"None of these {len(mem)} rows was opened in this pass: all are same-day reads inherited from session "
+            f"{esc(i_sess)} on {date} and labelled as inherited on each row")
+
+
 def categories_page():
     cards = []
     for c in categories():
@@ -1193,7 +1222,7 @@ def category_page(c):
   <div class="eyebrow">Category · {len(mem)} of {len(ENTRIES)} rows</div>
   <h1>{esc(c['title'])}</h1>
   <p>{esc(c['blurb'])}</p>
-  <p class="small muted">{sum(1 for e in mem if e['provenance'] == 'live')} of these {len(mem)} rows were re-read live on {esc(D['meta']['asOf'])}; {("none are carried as prior captures" if not any(e['provenance'] != 'live' for e in mem) else "the rest retain explicit prior labels and flags")}. <a href="categories.html">All categories →</a></p>
+  <p class="small muted">{_cat_reader_note(mem)}. <a href="categories.html">All categories →</a></p>
 </div>
 <div class="stats">{strip}</div>
 <div class="table-wrap tall"><table>
