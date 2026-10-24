@@ -153,6 +153,34 @@ python3 tools/check_hallucinations.py && python3 tools/check_report.py && python
 python3 dossier/scripts/build.py
 ```
 
-## 11. Merge record
+## 11. Post-merge verification of the deployed pages (PR #53)
 
-Filled in after the pull request is merged — see `COORDINATION.md`, session `6d10ac0a`, task **V5**.
+PR [#53](https://github.com/karagemop466-tech/GOLD5/pull/53) merged as `0e00793` at `2026-10-24T00:31:07Z`; the required `review` and `verify` checks passed on both the head commit and the merge commit, the Pages build run `40045372643` succeeded and the Pages API reports `built` (branch `main`, path `/`, HTTPS enforced).
+
+The deployed pages were then read cache-busted (`?v=0e00793`) rather than trusted:
+
+- **`/site/checklist.html`** — the § 23.18 citation-scope correction, the BBB/ConsumerAffairs direct links with their "prior-session snapshot" label, and the payment sentence with its `5 + 6 + 1 + 1 = 13` arithmetic and `FL-32` / `FL-13` links are all live as written.
+- **`/`** — the new spot is live (`$3,994.90` per oz · `$128.44/g` · `2026-10-23 7:42 p.m. ET`, labelled `session 6d10ac0a`), 26 open flags, 0 checker failures.
+- **One transient fetch-proxy signature error** on the first attempt at the landing page; the identical official URL was re-issued and loaded. Same class as `F2` — an infrastructure error, never reported as a source failure.
+
+**Reading the deployed landing page found a real overstatement (`C-18`).** It said *"All 25 of 25 rows were re-read from the sellers' own pages on 2026-10-23"*, and all seven category pages said *"N of these N rows were re-read live on 2026-10-23"* — while this pass opened **8** listings and **17** rows are inherited same-day reads. Two of the seven category views contained **no row this pass opened at all** — `halo-pave` (0 of 7) and `bands` (0 of 3) — and the other five mixed re-reads with inherited rows (`solitaires` 6/11, `settings-only` 4/15, `complete-rings` 4/6, `18k` 1/2, `case-study` 1/1). The claim was true about the *date* and false about the *reader*: the same class of overstatement as CR-D49-01, and invisible to every harness because the sentences were built from `provenance`/`coverage.live` rather than from `readBy`.
+
+Fixed and turned into a rule:
+
+- `index.html` now prints the split — **8 re-read live in this pass (session `6d10ac0a`), 17 inherited same-day from session `bc4e36a1` and labelled** — and the parallel-review note names both sessions instead of implying this pass read all 25.
+- Each category page prints its **own** split, including *"None of these N rows was opened in this pass"* for views made entirely of inherited rows, with correct pluralisation.
+- `C22` gained two predicates — `landing_reader_claims()` and `category_reader_errors()` — which reject a blanket "every row was re-read" claim whenever the ledger records inherited reads. Negative tests **N17** (landing page claiming reads this pass did not perform) and **N18** (category split disagreeing with the rows' readers) prove them → **18/18**.
+- The fix also removed an escaping defect introduced by the first attempt at the new sentence: the helper returns HTML, so its dynamic parts are escaped inside it and the call site no longer double-escapes (`&lt;b&gt;` was rendering literally).
+
+**Lesson recorded:** a green checker proves what the checker looks at. The post-merge read of the deployed pages is part of the pass, not a formality — it is what caught this.
+
+## 12. Merge record
+
+| Item | Value |
+|---|---|
+| PR #53 | <https://github.com/karagemop466-tech/GOLD5/pull/53> — `arena/6d10ac0a-gold5` → `main`, **merged** `2026-10-24T00:31:07Z` as `0e00793dbea45450039ee0124731d294ffb93e55` |
+| Checks on #53 | `review` pass, `verify` pass (runs `40045179511`, `40045179519`); post-merge runs on `0e00793`: `Verify` `40045372780` success, `Current evidence boundaries` `40045372710` success |
+| Pages | build run `40045372643` success; API status **`built`**, branch `main`, path `/`, HTTPS enforced → <https://karagemop466-tech.github.io/GOLD5/> |
+| PR #54 | Post-merge correction `C-18` (landing + category reader claims, `N17`/`N18`) — see §11 |
+
+Recorded on the board in `COORDINATION.md`, session `6d10ac0a`, task **V5**.

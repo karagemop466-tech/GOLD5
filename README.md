@@ -52,7 +52,7 @@ The current canonical build enforces this in four ways:
 | Spot used | Kitco panel bid **$3,994.90/oz = $128.44/g**, source panel `Oct 23, 2026 - 19:43 NY Time`, prices stated as of **2026-10-23 7:42 p.m. ET**. The page's own third print (OANDA `XAUUSD 3,995.810`) and a kilo figure that disagrees with itself are disclosed as **FL-25**, not mixed into calculations |
 | Flags | **32** total: **26 open**, **6 resolved**. Resolved flags remain visible for the audit trail |
 | Evidence | **46/46** current checks recorded (10 re-read this pass, 36 inherited same-day) + 2 citation-scope reads; all 25 canonical listings have official links and evidence paths |
-| Canonical checker | **PASS — 23/23**, including **16/16** injected-error tests |
+| Canonical checker | **PASS — 23/23**, including **18/18** injected-error tests |
 
 ### Material corrections in this pass (session `6d10ac0a`)
 
@@ -80,6 +80,13 @@ The current canonical build enforces this in four ways:
   in the evidence ledger (canonical checks, partial reads, citation-scope reads).
 - **FL-13 widened**: the Solid Gold Jewelers gap now covers *no price, no return policy and no payment
   method* on one quote-by-phone listing.
+- **Landing and category reader claims corrected** (`C-18`, found by reading the deployed pages after
+  PR #53 merged): the front page said "All 25 of 25 rows were re-read from the sellers' own pages" and
+  every category page said "N of these N rows were re-read live", although this pass opened **8**
+  listings and **17** rows are inherited same-day reads. Both now print the real split, and `C22`
+  rejects a blanket "every row was re-read" claim whenever the ledger records inherited reads
+  (`N17`, `N18`). True about the date, false about the reader — the same overstatement class as
+  CR-D49-01.
 - No canonical value drifted: all **8** re-read listings matched their recorded price, grams, karat,
   solidity, hallmark, maker-mark and return fields exactly (`C-13` attestation).
 
@@ -153,7 +160,7 @@ Latest results from this pass:
 
 | Harness | Result |
 |---|---|
-| `scripts/verify.py` | **PASS 23/23**, C1–C22 plus N1–N16; 19 pages, 67 registered external URLs |
+| `scripts/verify.py` | **PASS 23/23**, C1–C22 plus N1–N18; 19 pages, 67 registered external URLs |
 | `scripts/independent_audit.py` | **PASS 11/11**; all 25 rows' price/gram/karat tokens backed by evidence |
 | `scripts/audit_b1f2fe3b.py` | **PASS 6/6 groups**; 38 unified rows, 103 HTML pages, 4,201 local links, 4/4 injected errors caught |
 | `scripts/review_current.py --check` | **PASS**; 264 records, 92 exact source URLs, 6/6 negative tests |
