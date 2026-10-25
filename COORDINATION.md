@@ -2053,3 +2053,40 @@ may be taken over and the handoff logged.
   **Next hunt order:** (1) re-read the four Brilliant Earth rows in a USD session if one is ever available,
   (2) capture the Etsy sale end-times so a price cannot silently expire, (3) add A9's rule to `verify.py`
   itself so a typed dollar figure in prose fails the build rather than only the independent audit.
+
+---
+
+## Task board — session `arena-3dfe4d85` (pass 5, 2026-10-25)
+
+**Session ID = `arena-3dfe4d85`** — the platform binds this session to branch `arena/3dfe4d85-gold5`
+and forbids creating other branches, so the `session-<id>/<task>` branch naming in the brief cannot
+be used (same deviation logged by every prior session). The session ID in the tables and logs below
+is authoritative.
+
+**Started from `main@9ac41ef` (PR #56 merged).** `gh pr list --state open` returned **no open PRs**
+at claim time; `git branch -a` shows only `main` and this session's branch, so no other session is
+active and these scopes do not overlap anyone. All earlier sections are read-only history; every
+earlier deliverable (`site/`, `docs/`, `pages/`, `report/`, `verified/`, `guide/`, `dossier/`,
+`archive/`, `review/`, `data/`) is an **input** for this pass, not a file to rewrite by hand.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| D1 | Re-open the board, read every prior claim, line-by-line repo review, baseline run of all harnesses, claim pushed before any data edit | **claimed** | `arena-3dfe4d85` | `COORDINATION.md` (this section only) |
+| D2 | **Live re-verification pass (2026-10-25)**: re-fetch the Kitco spot page and every listing / policy / reference URL in the canonical dataset; one log row per URL with status + verbatim excerpt; failures and partial reads published, never hidden | unclaimed | `arena-3dfe4d85` | `data/live_check_3dfe4d85.json` (new), `data/evidence/3dfe4d85_*.txt` (new), `verification/evidence/3dfe4d85/**` (new) |
+| D3 | Apply drift by **script only** (never hand-edit generated HTML): new ledger builder overlaying the 2026-10-23 ledger; refresh spot + every derived metal value; re-date rows actually re-read; blank + flag anything not confirmable; extend flags, never delete | unclaimed | `arena-3dfe4d85` | `scripts/build_ledger_3dfe4d85.py` (new), `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html` |
+| D4 | Line-by-line provenance, arithmetic, money, link and hallucination/security review; run **every** harness after the review and deliberately hunt for hallucinations; publish a dated pass memo; update harness rules only where the 2026-10-25 pass requires it | unclaimed | `arena-3dfe4d85` | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/review_current.py`, other harness configs as required, `docs/verification/3dfe4d85-*.md` (new), `data/check_report_v2.json`, `data/pass_history_v2.json` |
+| D5 | Final integration: combined-tree re-verification, `git pull --rebase` before push, PR → `main`, merge without waiting, confirm Pages deploy, re-fetch live site with a cache buster, record PR + merge result here, close claim | unclaimed | `arena-3dfe4d85` | `COORDINATION.md`; GitHub PR/Pages operations |
+
+**No-hallucinations contract for D1–D5:** no price, weight, karat, hallmark, maker's mark, seller
+claim, policy or date is inferred, estimated, averaged, currency-converted, copied from a search
+snippet or carried forward as if freshly read. Checks re-read in this session are labelled
+`readBy: 3dfe4d85` with this session's evidence file; checks not re-read keep their original capture
+date, original evidence id/path and an explicit inherited label — never relabelled as this session's
+reads. Blank beats wrong. Derived values are recomputed by script. Every review pass ends with the
+full harness suite plus a recommendation to keep hunting for hallucinations. Flagged and unverified
+items stay published and nonblocking.
+
+### Log — session arena-3dfe4d85
+
+- **2026-10-25 03:13 UTC (D1):** repo reviewed at `main@9ac41ef` (after merged PR #56). No open PRs;
+  no other active session branch. This claim block pushed before any data edit, per protocol.
