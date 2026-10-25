@@ -2111,3 +2111,42 @@ artifacts owned by other sessions (`dossier/**`, `verified/reports/**`, `data/b1
 R01–R11 when the fetch path is healthy; (2) re-read the four Brilliant Earth pages from a USD origin —
 `FL-08` and the two `prior` rows stay open until then; (3) `CR-6D-01` and any file owned by a session
 that has since closed remain untouched by this pass.
+
+- **2026-10-25 03:57 UTC (D5 — integration done).**
+  - **PR:** [#57](https://github.com/karagemop466-tech/GOLD5/pull/57) opened from `arena/3dfe4d85-gold5` →
+    `main` with the sources table, the three Etsy corrections, the Brilliant Earth EUR finding, the
+    19 inherited checks and every open flag listed. CI on the head commit: `verify` **success**,
+    `review` **success**.
+  - **Merged without waiting for approval:** `gh pr merge 57 --merge` → merge commit
+    **`c204e8fc1ba8ea869d5b01ae43fdf40b964f8e1e`** at `2026-10-25T03:55:59Z`. No conflicts (no other
+    session pushed during the pass).
+  - **GitHub Pages:** build status **`built`** for exactly `c204e8f` (created 2026-10-25T03:56:00Z),
+    source `main` path `/`, `https_enforced: true`; checks on the merge commit: `deploy` **success**,
+    `build` **success**, `report-build-status` **success**, `verify` **success**, `review` **success**.
+  - **Live site re-read, not assumed:** <https://karagemop466-tech.github.io/GOLD5/?v=c204e8f> (cache-busted
+    per the pass-4 lesson) serves the pass-5 content — banner `Data as of 2026-10-25`, the
+    `23 were re-read live … 2 are inherited` split, spot `$3,994.90 · $128.44/g · 2026-10-24 11:12 p.m. ET`,
+    `9 timestamped quotes, 2026-10-22 / 2026-10-23 / 2026-10-24`, `Open flags 26`, `Checker failures 0`,
+    and the parallel-review note. The published `site/flagged.html` at the merge commit carries **FL-33**
+    ("Provenance scope of the 2026-10-25 pass") with 26 open flags, and `site/listings.html` renders
+    `BE-NADIA` with the labelled prior USD note plus the corrected `ET-1433905613` price `$984.32`.
+  - **Post-merge full-suite confirmation on the merged tree:** `verify.py` **23/23 + N1–N20 20/20** ·
+    `independent_audit.py` **11/11** · `audit_b1f2fe3b.py` **PASS S1–S12 (4/4 negatives)** ·
+    `review_current.py --check` **exit 0** · `tools/check_hallucinations.py` **166/0/0/1** ·
+    `tools/check_report.py` **PASS** · `tools/security_test.py` **10/10 + clean** ·
+    `verified/` **11 pages match + 896 assertions/0** · `dossier/` **18/18, 0 broken**. Other sessions'
+    regenerated outputs (`dossier/**`, `verified/reports/**`, `data/b1f2fe3b_*`,
+    `site/assets/catalog-b1f2fe3b.js`) reverted again after the runs.
+  - **State left for the next session:** 25 rows / 13 sellers / **33 flags (26 open, 7 resolved)** /
+    11 references; ledger `data/live_check_3dfe4d85.json` (46 checks: 26 live 2026-10-25, 20 inherited
+    2026-10-23); spot chain $3,994.90 (2026-10-24 11:12 p.m. ET) ← $3,994.90 (2026-10-23 7:42 p.m. ET) ←
+    $3,996.10 ← $4,022.50 ← 2026-10-22 pair. Still open by design: 19 inherited checks to re-attempt when
+    the fetch path is healthy, the four Brilliant Earth USD reads, no maker's mark on 24 of 25 rows, no
+    weight on 18 rows, and `CR-6D-01` (left for another session's file).
+  - **Recommendation, repeated because it is the point of this project:** after every review — including a
+    one-line edit — run the hallucination/security passes (`python3 scripts/verify.py`,
+    `python3 scripts/independent_audit.py`, `python3 tools/check_hallucinations.py`,
+    `python3 tools/security_test.py`) and keep hunting; before buying, take the ring to an independent
+    jeweller for **XRF** or another professional purity test and rely on the seller's written terms, not
+    the stamp.
+  - **All D1–D5 scopes released. No open claims from session `arena-3dfe4d85`.**
