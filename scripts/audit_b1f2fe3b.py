@@ -327,8 +327,23 @@ def build_unified_catalog(root_data):
     return catalog
 
 
-def validate_entry_list(entries):
-    """Pure validator used both on real catalog and negative self-tests."""
+LEGACY_DATES = {"2026-10-22", "2026-10-23"}
+
+
+def validate_entry_list(entries, root_asof=None):
+    """Pure validator used both on real catalog and negative self-tests.
+
+    2026-10-25 (session 3dfe4d85): the canonical dataset advances with every verification
+    pass, so the accepted check dates are the two legacy capture dates plus the current
+    canonical data date (meta.asOf). The invariant is unchanged — a live row must carry a
+    date that is in the accepted set, a row dated the newest accepted date must be marked
+    live, and a prior row must keep a date older than the canonical data date — but the
+    rule no longer freezes the calendar of one session.
+    """
+    allowed = set(LEGACY_DATES)
+    if root_asof:
+        allowed.add(root_asof)
+    newest = max(allowed)
     errs = []
     for e in entries:
         eid = e.get("id", "?")
@@ -343,12 +358,16 @@ def validate_entry_list(entries):
         # 2026-10-23 (integration session a255f011): the canonical dataset now carries
         # two legitimate check dates - rows re-read today and rows kept from the
         # 2026-10-22 capture (which must be labelled provenance=prior and flagged).
-        if e.get("checkedOn") not in ("2026-10-22", "2026-10-23"):
+        if e.get("checkedOn") not in allowed:
             errs.append(f"S2: {eid} missing/invalid checkedOn date {e.get('checkedOn')!r}")
-        if e.get("checkedOn") == "2026-10-23" and e.get("provenance") != "live":
-            errs.append(f"S2: {eid} is dated 2026-10-23 but not marked live")
-        if e.get("provenance") == "prior" and e.get("checkedOn") != "2026-10-22":
-            errs.append(f"S2: {eid} is marked prior but not dated 2026-10-22")
+        if e.get("checkedOn") == newest and e.get("provenance") != "live":
+            errs.append(f"S2: {eid} is dated the canonical data date {newest} but not marked live")
+        if e.get("provenance") == "prior" and not (root_asof and e.get("checkedOn") < root_asof) \
+                and e.get("checkedOn") not in LEGACY_DATES:
+            errs.append(f"S2: {eid} is marked prior but not dated before the canonical data date")
+        if root_asof and e.get("provenance") == "live" and e.get("checkedOn") not in (root_asof,) \
+                and e.get("checkedOn") not in LEGACY_DATES:
+            errs.append(f"S2: {eid} is marked live but dated {e.get('checkedOn')!r}, outside the accepted capture dates")
         flags = set(e.get("flags") or [])
         if e.get("grams") is None and not ({"no-gram-weight", "FL-03", "F-WEIGHT", "G-NO-WEIGHT", "F-004"} & flags) and e.get("status") != "flagged":
             errs.append(f"S3: {eid} has blank grams without no-gram-weight/F-WEIGHT flag")
@@ -373,12 +392,13 @@ def run_audit():
     catalog = build_unified_catalog(root_data)
 
     # S1-S3 & S6 on unified catalog
-    cat_errs = validate_entry_list(catalog["entries"])
+    root_asof = (root_data.get("meta", {}) or {}).get("asOf")
+    cat_errs = validate_entry_list(catalog["entries"], root_asof=root_asof)
     if cat_errs:
         errors.extend(cat_errs)
     else:
         passed.append(
-            f"S1-S3/S6: All {len(catalog['entries'])} unified entries have allowlisted HTTPS sources, valid 2026-10-22/2026-10-23 check dates consistent with provenance, flagged blanks, and verified melt ratios."
+            f"S1-S3/S6: All {len(catalog['entries'])} unified entries have allowlisted HTTPS sources, valid check dates ({', '.join(sorted(set(LEGACY_DATES) | ({root_asof} if root_asof else set())))}) consistent with provenance, flagged blanks, and verified melt ratios."
         )
 
     # S4: Spot & NIST Metrology math
@@ -497,7 +517,7 @@ def run_audit():
     fake_4 = copy.deepcopy(catalog["entries"][0])
     fake_4["id"] = "fake-4"
     fake_4["url"] = "https://cheap-gold-scam.example/ring"  # violation 4: untrusted domain
-    neg_errs = validate_entry_list([fake_entries[0], fake_2, fake_3, fake_4])
+    neg_errs = validate_entry_list([fake_entries[0], fake_2, fake_3, fake_4], root_asof=root_asof)
     if len(neg_errs) < 4:
         errors.append(f"S12: Negative self-test failed to catch all 4 synthetic hallucinations (caught {len(neg_errs)})")
     else:

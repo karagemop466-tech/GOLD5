@@ -209,6 +209,11 @@ def basis_label(e):
         return "from / variant price"
     return "complete ring"
 
+quote_days = " and ".join(sorted({(q.get("asOf") or "")[:10] for q in
+                                  ([D["spot"]["primary"]] + D["spot"]["prior"] + D["spot"]["crossChecks"])
+                                  if q.get("asOf")}))
+
+
 def coverage_note():
     """State who read what. 'All rows carry today's date' is not the same claim as
     'this pass opened every page', and the two must never be blurred."""
@@ -224,7 +229,12 @@ def coverage_note():
                 f"presented as this pass's read.")
     if prior == 0:
         return f"All {live} of {len(ENTRIES)} rows were re-read from the sellers' own pages on {esc(date_str())}; no row is carried forward as an unmarked prior capture."
-    return f"{live} of {len(ENTRIES)} rows were re-read on {esc(date_str())}; {prior} retain an older, explicitly labeled capture date and are itemised on Flagged for Review."
+    return (f"{live} of {len(ENTRIES)} rows carry a {esc(date_str())} read of the seller's own page: "
+            f"<b>{reread} were re-read live in this pass</b> (session {esc(r_sess)}) and <b>{inherited} are inherited</b> "
+            f"prior-dated observations from session {esc(i_sess)} — each labelled on the row, in the listing table and in the "
+            f"ledger. The {prior} {'row' if prior == 1 else 'rows'} whose latest confirmed read predates this pass "
+            f"{'is' if prior == 1 else 'are'} itemised on Flagged for Review; "
+            f"no inherited value is presented as this pass's read.")
 
 def seller_cell(e):
     s = seller(e)
@@ -310,7 +320,7 @@ def index_page():
 </section>
 
 <div class="note blue"><b class="title">Parallel review (session 0c967748) — and why its current fields are blank</b>
-That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> {D["meta"]["coverage"]["reread"]} rows and the gold quote were re-read live by session {D["meta"]["coverage"]["rereadSession"]} from the sellers and Kitco on 2026-10-23, and the other {D["meta"]["coverage"]["inherited"]} rows were read the same day by session {D["meta"]["coverage"]["inheritedSession"]} and are labelled as inherited — every row is dated, none is presented as read by a session that did not open it. {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Both reviews apply the same rule — an unconfirmed value stays blank.</div>
+That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> on {esc(date_str())} session {esc(D["meta"]["coverage"]["rereadSession"])} re-opened the Kitco quote and every one of the {len(ENTRIES)} listing pages, and re-read the Blue Nile returns and warranty pages; {D["meta"]["coverage"]["reread"]} rows now carry today's read and {D["meta"]["coverage"]["inherited"]} are inherited prior-dated observations (every Brilliant Earth page served EUR only, so their USD figures stay {esc(D["meta"]["coverage"].get("priorDate") or "")} reads, labelled as such). {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Three Etsy prices had genuinely moved since {esc(D["meta"]["coverage"].get("priorDate") or "")} and were corrected from this pass's own captures; the seller pages were not re-reachable for the remaining {esc(str(D["meta"]["liveCheck"]["coverage"]["inheritedFromEarlierPass"]))} ledger checks, so those checks keep their earlier date and label instead of being upgraded. Both reviews apply the same rule — an unconfirmed value stays blank.</div>
 
 <section class="rule-panel">
   <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
@@ -335,7 +345,7 @@ That session had no access to official merchant sources, so it refused to refres
 
 {verdict}
 
-<h2>Gold price <span class="tag">{n_quotes} timestamped quotes, 2026-10-22 and 2026-10-23</span></h2>
+<h2>Gold price <span class="tag">{n_quotes} timestamped quotes, {quote_days}</span></h2>
 <div class="table-wrap"><table>
 <thead><tr><th>Source</th><th class="num">USD / troy oz</th><th class="num">USD / gram</th><th class="num">As of</th><th>Link</th></tr></thead>
 <tbody>{''.join(spot_rows)}</tbody></table></div>
@@ -426,8 +436,14 @@ def entry_row(e, i):
             else f'<span class="badge info">captured {e["checkedOn"]}</span>')
     reader = e.get("readBy")
     if reader:
-        prov += (f'<div class="src">re-read this pass by <b>{esc(reader)}</b></div>' if reader == D["meta"]["session"]
-                 else f'<div class="src">read {esc(e["checkedOn"])} by <b>bc4e36a1</b> · inherited, not re-opened this pass</div>')
+        if reader == D["meta"]["session"]:
+            prov += f'<div class="src">re-read this pass by <b>{esc(reader)}</b></div>'
+        else:
+            _partial = e["id"] in {p.get("entryId") for p in D["meta"]["liveCheck"].get("partialReads", [])}
+            _lbl = (f'<div class="src">read {esc(e["checkedOn"])} by <b>{esc(reader.replace(" (inherited)", ""))}</b> · inherited and labelled prior — opened again this pass, but the page served EUR, so no current USD value (FL-08, FL-33)</div>'
+                    if _partial else
+                    f'<div class="src">read {esc(e["checkedOn"])} by <b>{esc(reader.replace(" (inherited)", ""))}</b> · inherited, not re-opened this pass</div>')
+            prov += _lbl
     conflict = f'<div class="src" style="max-width:210px;color:#a33"><b>Source conflict:</b> {esc(e["metalConflict"])}</div>' if e.get("metalConflict") else ""
     return f"""<tr id="{esc(e['id'])}" data-seller="{esc(e['sellerId'])}" data-cat="{esc(e['category'])}" data-karat="{e['karat']}" data-weight="{'1' if e['grams'] is not None else '0'}" data-price="{e['price'] if e['price'] is not None else ''}" data-ratio="{r if r is not None else ''}" data-fine="{f'{fine_g(e):.6f}' if e['grams'] is not None else ''}" data-mv="{f'{metal_value(e):.6f}' if e['grams'] is not None else ''}" data-name="{esc(e['name'].lower())}">
 <td class="num">{i}</td>
@@ -527,10 +543,10 @@ def gold_price_page():
     <div style="font-size:44px;font-weight:700;letter-spacing:-.02em;margin:6px 0 2px">{money(SPOT['usdPerOz'])}<span style="font-size:16px;font-weight:400"> / troy oz</span></div>
     <div class="muted">{money(SPOT['usdPerGram'])} per gram · {esc(SPOT['asOf'])} · Kitco spot bid</div>
     <blockquote>{esc(SPOT['quote'])}<cite>Kitco Live Gold Price — <a href="{esc(SPOT['url'])}" target="_blank" rel="noopener">kitco.com/charts/gold</a>, fetched {esc(date_str())}</cite></blockquote>
-    <p class="small muted">The same 2026-10-23 capture also showed $3,995.50/oz in the page's own “Gold Price Today” table and $128.46/g in its conversion table. That small gap is normal intraday updating — the ticker bid ($3,996.10) is the figure recorded here, and the timestamp is part of the value.</p>
+    <p class="small muted">The same capture prints a second kilo figure in the page's own unit table against the ticker's, and the purity table carries its own earlier update stamp; the embedded chart widget printed no close value at all this time (on 2026-10-23 it printed one). Those extra prints are disclosed under <a href="flagged.html#FL-25">FL-25</a> and used nowhere — the ticker bid and its own per-gram figure are the numbers every calculation uses, and the timestamp is part of the value.</p>
   </div>
   <div class="panel"><div class="eyebrow">Why a timestamp matters</div>
-    <p class="small">The {len(quotes)} timestamped quotes on this page (2026-10-22 and 2026-10-23) range from {money(min(q["usdPerOz"] for q in quotes))} to {money(max(q["usdPerOz"] for q in quotes))} per ounce — a spread of {gq_pct:.1f}%. Using the highest instead of the current bid would move every metal value by about that much.</p>
+    <p class="small">The {len(quotes)} timestamped quotes on this page ({quote_days}) range from {money(min(q["usdPerOz"] for q in quotes))} to {money(max(q["usdPerOz"] for q in quotes))} per ounce — a spread of {gq_pct:.1f}%. Using the highest instead of the current bid would move every metal value by about that much.</p>
     <p class="small">The LBMA benchmark is set twice daily (10:30 and 15:00 London time) by auction, while retail spot pages update continuously. Neither is “the” price — both are snapshots. Record the time with the number.</p>
     {source_link('https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices', 'LBMA benchmark page ↗')}
   </div>
@@ -964,7 +980,8 @@ def flagged_page():
 
 def sources_page():
     reg = {}
-    def add(url, typ, label, checked="2026-10-23"):
+    def add(url, typ, label, checked=None):
+        checked = checked or date_str()
         if not url:
             return
         if url not in reg:
@@ -1087,7 +1104,7 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
 <div class="stats">
   <div class="stat gold"><div class="k">Evidence checks</div><div class="v">{len(checks)}</div><div class="d">{coverage['listing']} listings · {coverage['policy']} policy/contact · {coverage['reference']} references · {coverage['spot']} spot</div></div>
   <div class="stat"><div class="k">Re-read live this pass</div><div class="v">{coverage.get('rereadThisPass', 0)} / {len(checks)}</div><div class="d">by session {esc(D['meta']['session'])}: {coverage['spot']} spot + 8 listing pages</div></div>
-  <div class="stat"><div class="k">Inherited, same date</div><div class="v">{coverage.get('inheritedSameDate', 0)} / {len(checks)}</div><div class="d">read 2026-10-23 by bc4e36a1; kept with their original evidence ids</div></div>
+  <div class="stat"><div class="k">Inherited, labelled</div><div class="v">{coverage.get('inheritedFromEarlierPass', 0)} / {len(checks)}</div><div class="d">read {esc(D['meta']['liveCheck'].get('inherits', {}).get('checkedOn', ''))} by sessions {esc(D['meta']['liveCheck'].get('inherits', {}).get('session', ''))}; kept byte-identical with their original evidence ids, never relabelled</div></div>
   <div class="stat"><div class="k">Live listing rows</div><div class="v">{live} / {len(ENTRIES)}</div><div class="d">all dated {esc(date_str())}; prior rows: {prior}</div></div>
   <div class="stat"><div class="k">Partial reads logged</div><div class="v">{coverage.get('partialReads', 0)}</div><div class="d">pages that yielded no value; nothing upgraded</div></div>
   <div class="stat"><div class="k">Citation-scope reads</div><div class="v">{coverage.get('scopeReads', 0)}</div><div class="d">official texts re-read to answer another session's change requests</div></div>
@@ -1096,14 +1113,15 @@ The machine-readable report is <code>{esc(report.get('reportPath','data/check_re
   <div class="stat"><div class="k">Resolved flags retained</div><div class="v">{sum(1 for f in D['flags'] if f['status']=='resolved')}</div><div class="d">audit trail, not current claims</div></div>
 </div>
 
-<div class="note blue"><b class="title">Ledger and saved excerpts</b>The canonical input is <a href="../{esc(D['meta']['evidenceLedger'])}"><code>{esc(D['meta']['evidenceLedger'])}</code></a>. It contains {len(checks)} checks and {len(ledger.get('corrections', []))} corrections, and it inherits <a href="../data/live_check_bc4e36a1.json"><code>data/live_check_bc4e36a1.json</code></a> (same date, session bc4e36a1) for the {coverage.get('inheritedSameDate', 0)} checks this pass did not re-open. The human-readable excerpts live in {', '.join(f'<code>{esc(d)}/</code>' for d in evidence_dirs)}; each row below links to its own file and names the session that read it. Fetch timestamps are asserted only when the source itself displayed one.</div>
+<div class="note blue"><b class="title">Ledger and saved excerpts</b>The canonical input is <a href="../{esc(D['meta']['evidenceLedger'])}"><code>{esc(D['meta']['evidenceLedger'])}</code></a>. It contains {len(checks)} checks and {len(ledger.get('corrections', []))} corrections, and it carries forward the ledger chain <a href="../data/live_check_6d10ac0a.json"><code>data/live_check_6d10ac0a.json</code></a> → <a href="../data/live_check_bc4e36a1.json"><code>data/live_check_bc4e36a1.json</code></a> ({esc(ledger.get('inherits', {}).get('checkedOn', ''))}) for the {coverage.get('inheritedFromEarlierPass', 0)} checks this pass could not re-open — each inherited check keeps its own date, evidence path and reader label, plus an inheritedNote explaining the gap. The human-readable excerpts live in {', '.join(f'<code>{esc(d)}/</code>' for d in evidence_dirs)}; each row below links to its own file and names the session that read it. Fetch timestamps are asserted only when the source itself displayed one.</div>
 
-<div class="note"><b class="title">What this pass changed — and what it deliberately did not</b>The spot quote moved ($3,996.10 → <b>$3,994.90/oz</b>, $128.48 → <b>$128.44/g</b>, 19:43 NY panel / prices as of 7:42 p.m. ET), so every derived number — fine gold, metal value, price-to-metal ratios, the purity table and the calculator defaults — was recomputed by script. All eight listing pages re-opened this pass matched their recorded price, weight, karat, solidity, hallmark, maker's-mark and return fields <b>exactly</b>, so no listing value was changed. The 17 listings, 9 policy pages and 11 references this pass did not re-open keep their 2026-10-23 bc4e36a1 captures and are labelled <span class="badge gray">inherited</span> below and on their rows (FL-31) — they are not presented as this session's reads.</div>
+<div class="note"><b class="title">What this pass changed — and what it deliberately did not</b>Every one of the {len(ENTRIES)} listing pages and the Kitco quote was opened again on {esc(date_str())}: 21 rows matched their recorded fields exactly, {len(ledger.get('corrections', []))} ledger corrections were applied from this pass's own captures ({'; '.join(esc(c['id'] + ': ' + c['subject'] + ' — ' + c['before'] + ' → ' + c['after']) for c in ledger.get('corrections', []))}), and every derived number (fine gold, metal value, ratios, purity table, calculator defaults) was recomputed by script. Four Brilliant Earth pages served EUR only, so no USD price was refreshed there — two rows revert to labelled prior-dated reads and two keep blank USD cells; nothing was converted. {coverage.get('inheritedFromEarlierPass', 0)} ledger checks (2 superseded BE listing reads, 7 policy/contact pages, 11 references) could not be re-opened because the fetch proxy failed mid-pass; they are labelled <span class="badge gray">inherited</span> below and on their rows (FL-33), keep their {esc(ledger.get('inherits', {}).get('checkedOn', ''))} dates, and are not presented as this session's reads. {len(ledger.get('failures', []))} failure records and {len(ledger.get('partialReads', []))} partial reads are published in full — including URLs that were not attempted after the outage began, which are recorded as not attempted rather than as failed fetches.</div>
 
+<div class="note gold"><b class="title">This pass's own record</b>The dated pass memo — every URL, result, correction, failure and hunt step — is at <a href="../docs/verification/3dfe4d85-live-reverification-2026-10-25.md">docs/verification/3dfe4d85-live-reverification-2026-10-25.md</a>, with verbatim excerpts in <code>verification/evidence/3dfe4d85/</code> and the machine-readable log at <a href="../data/live_check_3dfe4d85.json"><code>data/live_check_3dfe4d85.json</code></a>.</div>
 <div class="note gold"><b class="title">Parallel pass-4 evidence preserved</b>Later independent reads remain available rather than being overwritten: <a href="../data/live_check_463d0ea2.json">pass-4 listing/spot ledger</a> · <a href="../data/live_check_ea49572b.json">36-URL reconciliation ledger</a> · <a href="../docs/verification/pass4-2026-10-23.md">pass-4 memo</a> · <a href="../docs/verification/pass4-ea49572b-2026-10-23.md">36-URL memo</a> · <a href="../data/evidence/p4_etsy_all_seven.txt">Etsy excerpts</a> · <a href="../data/evidence/p4_brilliantearth.txt">Brilliant Earth excerpts</a>. The canonical ledger above governs current values; conflicting observations stay labeled by date and no unsupported sold-band midpoint is used.</div>
 
 <h2>All {len(checks)} checks behind the current data</h2>
-<p class="small muted">{coverage.get('rereadThisPass', 0)} were re-opened live by session {esc(session_id)} on {esc(date_str())}; {coverage.get('inheritedSameDate', 0)} were read earlier the same day by session bc4e36a1 and are inherited unchanged — each row below names its reader. Every check has status <b>{esc(checks[0]['status'])}</b> in the ledger. “Corrected” and “blanked” describe a data correction, not a failed fetch; failed and partial reads are listed separately below. The previous Etsy HTTP-500 and Brilliant Earth navigation-only results are retained as resolved flags, not presented as the current state.</p>
+<p class="small muted">{coverage.get('rereadThisPass', 0)} were re-opened live by session {esc(session_id)} on {esc(date_str())}; {coverage.get('inheritedFromEarlierPass', 0)} were read on {esc(ledger.get('inherits', {}).get('checkedOn', ''))} by sessions {esc(ledger.get('inherits', {}).get('session', ''))} and are inherited unchanged — each row below names its reader and, when older, carries its inheritedNote. Every check has status <b>{esc(checks[0]['status'])}</b> in the ledger. “Corrected” and “blanked” describe a data correction, not a failed fetch; failed and partial reads are listed separately below. The previous Etsy HTTP-500 and Brilliant Earth navigation-only results are retained as resolved flags, not presented as the current state.</p>
 <div class="table-wrap tall"><table><thead><tr><th>Check / kind</th><th>Subject / result</th><th>Official URL + excerpt + saved evidence</th></tr></thead><tbody>{''.join(log_rows)}</tbody></table></div>
 
 <h2>Corrections recorded in the ledger</h2>
@@ -1168,14 +1186,14 @@ def _cat_reader_note(mem):
     date = esc(D["meta"]["asOf"])
     if rr and inh:
         return (f"{rr} of these {len(mem)} rows {'was' if rr == 1 else 'were'} re-read live on {date} by session "
-                f"{esc(sess)}; the other {inh} {'is a' if inh == 1 else 'are'} same-day "
+                f"{esc(sess)}; the other {inh} {'is a' if inh == 1 else 'are'} "
                 f"{'read' if inh == 1 else 'reads'} inherited from session {esc(i_sess)} and "
-                f"{'is' if inh == 1 else 'are'} labelled as inherited on each row. None is carried as an older capture")
+                f"{'is' if inh == 1 else 'are'} labelled as inherited on each row, with its capture date printed next to it")
     if rr:
         return (f"{'The row in this view was' if len(mem) == 1 else f'All {len(mem)} rows in this view were'} re-read "
                 f"live on {date} by session {esc(sess)}; none is carried as an older capture")
-    return (f"None of these {len(mem)} rows was opened in this pass: all are same-day reads inherited from session "
-            f"{esc(i_sess)} on {date} and labelled as inherited on each row")
+    return (f"None of these {len(mem)} rows was opened in this pass: all are reads inherited from session "
+            f"{esc(i_sess)} (captured {esc(D['meta']['coverage'].get('priorDate') or date)}) and labelled as inherited on each row")
 
 
 def categories_page():
@@ -1232,7 +1250,7 @@ def category_page(c):
 <th>Solid gold?</th><th>Hallmark</th><th>Returns</th><th class="num">Checked</th><th>Flags</th>
 </tr></thead>
 <tbody>{rows}</tbody></table></div>
-<div class="note"><b class="title">Reading this view</b><span class="badge ok">live {esc(D['meta']['asOf'])}</span> was re-read from the seller's page in this pass. A blank cell is a value the seller's page does not state — not a zero and not an invitation to guess. The numbers in “fine gold” and “metal value” are arithmetic on the stated weight and karat, priced at the Kitco bid in the footer.</div>
+<div class="note"><b class="title">Reading this view</b><span class="badge ok">live {esc(D['meta']['asOf'])}</span> was re-read from the seller's page in this pass; a row labelled <span class="badge gray">prior</span> was opened this pass but its latest confirmed value keeps the older date printed on the row. A blank cell is a value the seller's page does not state — not a zero and not an invitation to guess. The numbers in “fine gold” and “metal value” are arithmetic on the stated weight and karat, priced at the Kitco bid in the footer.</div>
 <p class="small muted"><a href="listings.html">See all {len(ENTRIES)} rows in one table →</a> · <a href="flagged.html">Open flags for these rows →</a> · <a href="calculator.html">Value a ring by weight →</a></p>
 """
     return shell("../", "categories", f"{c['title']} — verified listings",

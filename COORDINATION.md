@@ -2053,3 +2053,61 @@ may be taken over and the handoff logged.
   **Next hunt order:** (1) re-read the four Brilliant Earth rows in a USD session if one is ever available,
   (2) capture the Etsy sale end-times so a price cannot silently expire, (3) add A9's rule to `verify.py`
   itself so a typed dollar figure in prose fails the build rather than only the independent audit.
+
+---
+
+## Task board — session `arena-3dfe4d85` (pass 5, 2026-10-25)
+
+**Session ID = `arena-3dfe4d85`** — the platform binds this session to branch `arena/3dfe4d85-gold5`
+and forbids creating other branches, so the `session-<id>/<task>` branch naming in the brief cannot
+be used (same deviation logged by every prior session). The session ID in the tables and logs below
+is authoritative.
+
+**Started from `main@9ac41ef` (PR #56 merged).** `gh pr list --state open` returned **no open PRs**
+at claim time; `git branch -a` shows only `main` and this session's branch, so no other session is
+active and these scopes do not overlap anyone. All earlier sections are read-only history; every
+earlier deliverable (`site/`, `docs/`, `pages/`, `report/`, `verified/`, `guide/`, `dossier/`,
+`archive/`, `review/`, `data/`) is an **input** for this pass, not a file to rewrite by hand.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| D1 | Re-open the board, read every prior claim, line-by-line repo review, baseline run of all harnesses, claim pushed before any data edit | **done** | `arena-3dfe4d85` | `COORDINATION.md` (this section only) |
+| D2 | **Live re-verification pass (2026-10-25)**: re-fetch the Kitco spot page and every listing / policy / reference URL in the canonical dataset; one log row per URL with status + verbatim excerpt; failures and partial reads published, never hidden | **done — 26/46 re-read live, 20 inherited + labelled, 2 partial reads, 21 fetch records** | `arena-3dfe4d85` | `data/live_check_3dfe4d85.json` (new), `data/evidence/3dfe4d85_*.txt` (new), `verification/evidence/3dfe4d85/**` (new) |
+| D3 | Apply drift by **script only** (never hand-edit generated HTML): new ledger builder overlaying the 2026-10-23 ledger; refresh spot + every derived metal value; re-date rows actually re-read; blank + flag anything not confirmable; extend flags, never delete | **done — 3 Etsy corrections + BE rows demoted to prior; 19 pages rebuilt** | `arena-3dfe4d85` | `scripts/build_ledger_3dfe4d85.py` (new), `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html` |
+| D4 | Line-by-line provenance, arithmetic, money, link and hallucination/security review; run **every** harness after the review and deliberately hunt for hallucinations; publish a dated pass memo; update harness rules only where the 2026-10-25 pass requires it | **done — all 9 harnesses PASS; memo published** | `arena-3dfe4d85` | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/review_current.py`, other harness configs as required, `docs/verification/3dfe4d85-*.md` (new), `data/check_report_v2.json`, `data/pass_history_v2.json` |
+| D5 | Final integration: combined-tree re-verification, `git pull --rebase` before push, PR → `main`, merge without waiting, confirm Pages deploy, re-fetch live site with a cache buster, record PR + merge result here, close claim | unclaimed | `arena-3dfe4d85` | `COORDINATION.md`; GitHub PR/Pages operations |
+
+**No-hallucinations contract for D1–D5:** no price, weight, karat, hallmark, maker's mark, seller
+claim, policy or date is inferred, estimated, averaged, currency-converted, copied from a search
+snippet or carried forward as if freshly read. Checks re-read in this session are labelled
+`readBy: 3dfe4d85` with this session's evidence file; checks not re-read keep their original capture
+date, original evidence id/path and an explicit inherited label — never relabelled as this session's
+reads. Blank beats wrong. Derived values are recomputed by script. Every review pass ends with the
+full harness suite plus a recommendation to keep hunting for hallucinations. Flagged and unverified
+items stay published and nonblocking.
+
+### Log — session arena-3dfe4d85
+
+- **2026-10-25 03:13 UTC (D1):** repo reviewed at `main@9ac41ef` (after merged PR #56). No open PRs;
+  no other active session branch. This claim block pushed before any data edit, per protocol.
+
+| ID | Task | Status | Owner | Result / sources |
+|----|------|--------|-------|------------------|
+| D1 | Board re-read, repo review, 9-harness baseline, claim pushed before any edit | **done** | `arena-3dfe4d85` | baseline at `main@9ac41ef`: `scripts/verify.py` **23/23** + 18/18 negatives · `scripts/independent_audit.py` **11/11** · `scripts/audit_b1f2fe3b.py` **S1–S12, 4/4** · `scripts/review_current.py --check` **PASS** · `tools/check_hallucinations.py` **166/0/0/1** · `tools/check_report.py` **PASS** · `tools/security_test.py` **9/9+clean** (already 10/10 in this tree) · `verified/scripts/verify.py` **896/0** · `dossier/scripts/build.py` **18/18**; timestamp-only regenerations reverted before the claim commit |
+| D2 | Live re-verification pass 2026-10-25 (spot + every listing + policies + references) | **done — 26 checks re-read live, 20 inherited and labelled, 2 partial reads, 21 per-URL fetch records** | `arena-3dfe4d85` | Kitco `Oct 24 23:14 NY` panel $3,994.90/oz · $128.44/g; 8/8 Blue Nile unchanged (18K/14K conflict observed a 3rd time, still FL-30); 4/4 Brilliant Earth served **EUR only** (€835.00 / €1,400.00 / €1,350.00 / €1,250.00); Allurez ×3, Avianne, Jewelry Master, Solid Gold Jewelers unchanged; Etsy 7/7 opened — **3 price drifts found** (546.09→546.18 · 251.30→246.35 · 999.70→984.32) and sale countdowns captured (15:11:39 · 3 days · 1 day · 0:29:08 ×2); BN returns + warranty re-confirmed verbatim (warranty header "Effective Oct 11, 2026"). Fetch proxy then failed for every URL (`SignatureDoesNotMatch`): 7 policy + 11 reference checks NOT re-read, kept dated 2026-10-23 with `inheritedNote`; pages never attempted are recorded as **not attempted**. Evidence: `verification/evidence/3dfe4d85/` (7 files) + `data/live_check_3dfe4d85.json` |
+| D3 | Drift applied by script only; site rebuilt | **done** | `arena-3dfe4d85` | `scripts/build_ledger_3dfe4d85.py` (new) overlays the 10-23 ledger; `scripts/author_data.py` rewritten for the 2026-10-25 model (spot primary + prior chain, 3 Etsy corrections, BE-NADIA/BE-SECRET demoted to labelled `prior`, FL-08 widened to 4 rows, FL-31 resolved → new **FL-33** scope flag, 33 flags total, references annotated "NOT re-opened 2026-10-25"); `scripts/build_site.py` regenerated 19 pages + `index.html` with pass-5 narratives, per-row reader badges, the 21-record failure table and a link to the dated memo. No hand-edit of generated HTML |
+| D4 | Line-by-line provenance / arithmetic / money / link / hallucination + security review with negatives; dated memo | **done** | `arena-3dfe4d85` | `scripts/verify.py` **PASS 23/23** and negatives **20/20** (added **N19** inherited check re-dated as current → rejected; **N20** `inheritedNote` stripped → rejected; C16/C21/C22 generalised to accept labelled inherited reads *only* with their own date + note + `prior` row label; memo path now `consolidation-<asOf>.md`). `independent_audit.py` **11/11** (A1 recomputes 3,994.90 ÷ 31.1034768 = 128.4390 vs 128.44; A2b all 60 raw-gold cells; A6 all 287 `$` tokens traceable; A9 every price/gram/karat token of all 25 rows present in a verbatim capture). `audit_b1f2fe3b.py` **PASS S1–S12, 4/4 negatives** — `S2`'s frozen date pair replaced by "legacy dates + current canonical date" so a moving calendar can't break the gate (rule kept strict: live ⇒ data date, prior ⇒ older, no invented dates); its negative test now shares the accepted-date set so it stays **4/4**, not 8/4. `review_current.py --check` **PASS**; `tools/check_hallucinations.py` **166 PASS / 0 FAIL / 1 INFO**; `tools/check_report.py` **PASS**; `tools/security_test.py` **10/10 + clean**; `verified/scripts/verify.py` **896/0**; `dossier/scripts/build.py` **18/18**. Memo: `docs/verification/3dfe4d85-live-reverification-2026-10-25.md` (per-URL results, corrections, hunt order, recommendation to keep hunting). One real copy defect found and fixed: a landing sentence inherited from the 10-23 pass claiming the sellers' pages were read "on 2026-10-23" for rows read today; the reader split is now 23 live / 2 prior with the correct dates |
+| D5 | Final integration: PR → `main`, merge, Pages confirm, live re-fetch, close claim | **in progress** | `arena-3dfe4d85` | small commits; `git pull --rebase origin main` before push; PR body lists sources + flagged items; merge without waiting; Pages status + cache-busted live read recorded below |
+
+**Files touched outside the original claim (justified, no other session active):** `scripts/audit_b1f2fe3b.py`
+— a *strengthening* generalisation of one date rule so the cross-site audit survives a new pass date;
+its 4 planted-error negatives were re-verified. `README.md` — the status block, which describes the
+canonical build and would otherwise misreport it. `data/check_report_v2.json`, `data/pass_history_v2.json`,
+`docs/verification/consolidation-2026-10-25.md` — harness outputs owned by this pass. Regenerated
+artifacts owned by other sessions (`dossier/**`, `verified/reports/**`, `data/b1f2fe3b_*`,
+`site/assets/catalog-b1f2fe3b.js`) were **reverted** after every harness run, per R-06.
+
+**Open questions left for the next session (do not block anything):** (1) re-attempt P03–P09 and
+R01–R11 when the fetch path is healthy; (2) re-read the four Brilliant Earth pages from a USD origin —
+`FL-08` and the two `prior` rows stay open until then; (3) `CR-6D-01` and any file owned by a session
+that has since closed remain untouched by this pass.
