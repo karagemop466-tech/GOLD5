@@ -19,18 +19,23 @@ as if it were current. A seller's statement is labeled as a statement, not as an
 The current canonical build enforces this in four ways:
 
 1. **Field-level provenance, with the reader named.** All 25 canonical rows carry `checkedOn`,
-   `provenance`, `readBy`, an official URL and an evidence ID/path, all dated `2026-10-23`. **8 rows
-   were re-read live in this pass** (session `6d10ac0a`) and **17 rows are inherited same-day** from
-   session `bc4e36a1`; every inherited row says so on the page, in the listing table and in the
-   ledger. No row is silently carried as a fresh read, and historical quotes stay explicitly dated.
-2. **A 46-check evidence ledger.** `data/live_check_6d10ac0a.json` (deterministically overlaid on
-   `data/live_check_bc4e36a1.json` by `scripts/build_ledger_6d10ac0a.py`) contains 25 listing checks,
-   9 policy/contact checks, 11 official-reference checks and 1 Kitco spot check — **10 re-read this
-   pass, 36 inherited same-day**, plus 2 partial reads, 2 citation-scope reads and 5 logged fetch
-   failures. The authoring script compares observed price, grams, karat, solidity, hallmark,
-   maker-mark and return fields with every canonical row before emitting JSON. Human-readable excerpts
-   are in `verification/evidence/6d10ac0a/` (this pass) and `verification/evidence/bc4e36a1/`
-   (inherited checks).
+   `provenance`, `readBy`, an official URL and an evidence ID/path. In the current build (data date
+   `2026-10-25`) **23 rows were re-read live** by session `3dfe4d85` and **2 rows** (`BE-NADIA`,
+   `BE-SECRET`) are labelled `prior` — their pages were opened again on 2026-10-25 but served EUR, so
+   their USD figures stay the dated 2026-10-23 reads of session `bc4e36a1`. Every inherited row says so
+   on the page, in the listing table and in the ledger; `C16`, `C20`, `C21` and `C22` reject any
+   inherited read that is re-dated, unlabelled or presented as this pass's work.
+2. **A 46-check evidence ledger.** `data/live_check_3dfe4d85.json` (deterministically overlaid on
+   `data/live_check_6d10ac0a.json`, itself built on `data/live_check_bc4e36a1.json`, by
+   `scripts/build_ledger_3dfe4d85.py`) contains 25 listing checks, 9 policy/contact checks, 11
+   official-reference checks and 1 Kitco spot check — **26 re-read live on 2026-10-25, 20 inherited
+   from 2026-10-23 with an explicit `inheritedNote`**, plus 2 partial reads, 2 citation-scope reads and
+   **21 per-URL failure records** (proxy failures and pages not attempted after the outage began,
+   recorded as not attempted). The authoring script compares observed price, grams, karat, solidity,
+   hallmark, maker-mark and return fields with every canonical row, requires every re-read value to
+   appear literally in its own verbatim excerpt, and refuses to emit JSON otherwise. Human-readable
+   excerpts are in `verification/evidence/3dfe4d85/` (this pass) and the earlier sessions' directories
+   for inherited checks.
 3. **Computed arithmetic and visible conflicts.** Fine gold = exact grams × published fineness; metal
    value = fine gold × the timestamped Kitco bid. No exact weight is inferred from the sold listing's
    6–7 g range. BN-203738's 18K title/specification versus 14K Product Details conflict is shown as
@@ -40,21 +45,53 @@ The current canonical build enforces this in four ways:
    security tests, verified archive and dossier are all run before publication. Suspicious values stay
    on Flagged for Review; a green script is not proof of a seller's physical claims.
 
-## Status — 2026-10-23 field-level pass (session `6d10ac0a`, inheriting session `bc4e36a1`)
+## Status — 2026-10-25 re-verification pass (session `3dfe4d85`, inheriting `6d10ac0a` / `bc4e36a1`)
 
 | | |
 |---|---|
 | Canonical listings | **25** rows from **13** sellers: 21 engagement-ring rows, 3 bands, 1 sold case study |
-| Displayed prices | **22** rows, including the clearly labeled sold-listing display; 3 price cells remain blank (2 EUR-only Brilliant Earth pages and Solid Gold Jewelers) |
+| Displayed prices | **22** rows, including the clearly labeled sold-listing display; 3 price cells remain blank (2 EUR-only Brilliant Earth pages and Solid Gold Jewelers). Two of the 22 (Brilliant Earth `BE-NADIA`, `BE-SECRET`) are labelled **prior** — dated 2026-10-23 USD reads that could not be confirmed on 2026-10-25 |
 | Exact weights | **7** rows; **18** are blank or have only an unsupported range. No range is converted into an exact weight |
 | Documentation | **9** explicit solid-gold statements, **2** karat-stamp claims, **1** seller-stated maker's mark, **21** read return policies |
-| Reader attribution | **8** rows re-read live by `6d10ac0a`, **17** inherited same-day from `bc4e36a1` and labelled; **2** partial reads (Etsy `ET-1151446373`, Brilliant Earth `BE-1343`) publish what was *not* retrieved; **5** fetch failures logged |
-| Spot used | Kitco panel bid **$3,994.90/oz = $128.44/g**, source panel `Oct 23, 2026 - 19:43 NY Time`, prices stated as of **2026-10-23 7:42 p.m. ET**. The page's own third print (OANDA `XAUUSD 3,995.810`) and a kilo figure that disagrees with itself are disclosed as **FL-25**, not mixed into calculations |
-| Flags | **32** total: **26 open**, **6 resolved**. Resolved flags remain visible for the audit trail |
-| Evidence | **46/46** current checks recorded (10 re-read this pass, 36 inherited same-day) + 2 citation-scope reads; all 25 canonical listings have official links and evidence paths |
-| Canonical checker | **PASS — 23/23**, including **18/18** injected-error tests |
+| Reader attribution | **23** rows re-read live on 2026-10-25 by `3dfe4d85`, **2** labelled prior (opened again, EUR-only); **2** partial reads (Brilliant Earth `BE-NADIA`, `BE-SECRET`) publish exactly what was and was not retrieved; **21** per-URL fetch records logged (recovered retries, failures, and pages not attempted after the proxy outage) |
+| Spot used | Kitco panel bid **$3,994.90/oz = $128.44/g**, re-read 2026-10-25 from the panel stamped `Oct 24, 2026 - 23:14 NY Time`, prices stated as of **2026-10-24 11:12 p.m. ET** — identical values to the Friday close because spot had not reopened. The purity table's own `Updated Oct 23, 2026 • 5:00 PM NY Time` stamp, the double kilo print and the chart widget that rendered no close value at all are disclosed as **FL-25**, not mixed into calculations |
+| Flags | **33** total: **26 open**, **7 resolved**. `FL-31` (2026-10-23 provenance scope) was closed and replaced by `FL-33` (this pass's scope). Resolved flags remain visible for the audit trail |
+| Evidence | **46/46** checks recorded for the data date (26 re-read live 2026-10-25, 20 inherited from 2026-10-23 and labelled); + 2 citation-scope reads; all 25 canonical listings have official links and evidence paths |
+| Canonical checker | **PASS — 23/23**, including **20/20** injected-error tests (`N19`/`N20` now police inherited-check re-dating and note-stripping) |
 
-### Material corrections in this pass (session `6d10ac0a`)
+### Material corrections in this pass (session `3dfe4d85`, 2026-10-25)
+
+- **Three real price drifts found and corrected by re-reading the official pages** — Etsy
+  `ET-4366425533` $546.09 → **$546.18** (14K variant start; top of range $2,404.96 → $2,405.36),
+  `ET-1566052947` $251.30 → **$246.35** (promo deepening 30% → 35% off), `ET-1433905613`
+  $999.70 → **$984.32** (14K range $984.32–$1,347.84, 35% → 36% off). The superseded figures remain
+  visible as dated observations; nothing was averaged between the two readings.
+- **Etsy sale countdowns captured** (`15:11:39`, `3 days`, `1 day`, `0:29:08` ×2) — closing the
+  explicit request from the previous pass that a price not be allowed to expire silently. They are
+  recorded as relative timers because no absolute expiry instant is published.
+- **Brilliant Earth currency behaviour widened**: on 2026-10-25 **all four** product pages served EUR
+  (€835.00 / €1,400.00 / €1,350.00 / €1,250.00) with a EUR banner next to a `USD$250 GIFT CARD` promo
+  image on the same page. `FL-08` now covers all four rows, and the two rows with USD figures
+  (`BE-NADIA`, `BE-SECRET`) were **demoted to labelled prior-dated observations** instead of being
+  carried forward as current. No conversion, no guess.
+- **Spot re-based on a newer timestamp with identical values** (`C-23`): the Friday close is still the
+  live quote on a Sunday read, so every derived number was recomputed and stayed the same — which is
+  exactly the case where a stale quote could masquerade as a fresh one, so the timestamp moved into the
+  prior chain and the 2026-10-23 capture is now history, not the primary.
+- **19 checks could not be re-read** because the fetch proxy began failing for every URL
+  (`SignatureDoesNotMatch`): 7 policy/contact pages and 11 references, plus the two superseded BE
+  listing reads. They keep their 2026-10-23 dates, evidence ids/paths and reader labels, carry an
+  `inheritedNote`, and are covered by the new `FL-33`. Pages never attempted after the outage is
+  recorded as **not attempted**, not as a failed fetch.
+- **Harness generality, not laxness**: `verify.py` `C16`/`C21`/`C22` and `audit_b1f2fe3b.py` `S2` were
+  taught that a later pass can inherit older reads (accepted-date set, `inheritedNote` required, prior
+  rows must be older than the data date, page badges must name the reading session), and two new
+  negative tests prove an inherited check cannot be silently re-dated or un-labelled.
+  `tools/security_test.py` also grew to **10/10** planted-error coverage and stays green.
+- **Verification memo path is now date-driven** (`docs/verification/consolidation-<asOf>.md`) so every
+  pass keeps its own dated report instead of overwriting the previous one.
+
+### Material corrections in the 2026-10-23 evening pass (session `6d10ac0a`)
 
 - **Spot refreshed**: Kitco calculations use the `$3,994.90/oz` / `$128.44/g` panel quote (19:43 NY,
   as of 7:42 p.m. ET). The previous same-day quote is retained as dated history. Every derived
@@ -97,7 +134,7 @@ The current canonical build enforces this in four ways:
 - No canonical value drifted: all **8** re-read listings matched their recorded price, grams, karat,
   solidity, hallmark, maker-mark and return fields exactly (`C-13` attestation).
 
-### Material corrections in the previous pass (session `bc4e36a1`)
+### Material corrections in the 2026-10-23 daytime pass (session `bc4e36a1`)
 
 - Kitco calculations used the then-new `$3,996.10/oz` / `$128.48/g` panel quote; prior quotes remain
   dated history. Every derived metal value was regenerated.

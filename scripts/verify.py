@@ -20,7 +20,8 @@ Checks, in order:
   C15 security: https-only links, rel=noopener, no frames/scripts/posting forms
 
 Writes data/check_report_v2.json, appends data/pass_history_v2.json and a
-human-readable report to docs/verification/consolidation-2026-10-23.md.
+human-readable report to docs/verification/consolidation-<asOf>.md (the data date
+names the file, so the report of every pass stays separate and dated).
 Exit code 1 if any check fails.
 """
 import json, os, re, sys, glob, html as htmllib, datetime
@@ -882,7 +883,8 @@ md += ["", "## What each check means", "",
        "   N17 covers a landing page claiming reads this pass did not perform;\n"
        "   N18 covers a category page claiming re-reads this pass inherited)", ""]
 os.makedirs(os.path.join(ROOT, "docs/verification"), exist_ok=True)
-open(os.path.join(ROOT, "docs/verification/consolidation-2026-10-23.md"), "w").write("\n".join(md))
+MEMO = f"docs/verification/consolidation-{D['meta']['asOf']}.md"
+open(os.path.join(ROOT, MEMO), "w").write("\n".join(md))
 
 print(f"GOLD5 verify v2 — {'PASS' if not failed else 'FAIL'}: {passed} passed, {len(failed)} failed — {now}")
 for c, o, d in results:
