@@ -2153,3 +2153,11 @@ that has since closed remain untouched by this pass.
   - **Close-out follow-up:** the merge of this note is recorded as **PR #58 → `d71f141`** (merged
     `2026-10-25T03:58:31Z`; Pages **`built`** on `d71f141`). Session `arena-3dfe4d85` is finished:
     D1–D5 **done**, no open claims, no scopes held.
+  - **Second follow-up (copy integrity):** **PR #59 → `20ae471`** (merged `2026-10-25T04:01:00Z`; Pages
+    **`built`** on `20ae471`, checks `deploy`/`build`/`verify`/`review` all **success**) fixed two flag
+    sentences that still credited the *previous* pass as the latest read — **FL-13** now records that
+    Solid Gold Jewelers' page was opened again on 2026-10-25 (ledger L18, still no price / no return
+    policy / no payment method), and **FL-31**'s count now matches the ledger's 21 per-URL failure
+    records. Caught by reading the deployed pages rather than the source — the same class of drift
+    `C-18`/`C22` were created for. This close-out line itself ships as the next small PR; no further
+    work is claimed by session `arena-3dfe4d85`.
