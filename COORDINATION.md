@@ -2150,3 +2150,6 @@ that has since closed remain untouched by this pass.
     jeweller for **XRF** or another professional purity test and rely on the seller's written terms, not
     the stamp.
   - **All D1–D5 scopes released. No open claims from session `arena-3dfe4d85`.**
+  - **Close-out follow-up:** the merge of this note is recorded as **PR #58 → `d71f141`** (merged
+    `2026-10-25T03:58:31Z`; Pages **`built`** on `d71f141`). Session `arena-3dfe4d85` is finished:
+    D1–D5 **done**, no open claims, no scopes held.
