@@ -365,8 +365,8 @@ def provenance_errors(rows):
                 bad.append(f'{e["id"]}: prior row not older than the pass date')
             if not any(n.startswith(f"NOT re-fetched on {ASOF}") for n in e.get("notes", [])):
                 bad.append(f'{e["id"]}: prior row has no explicit not-refetched note')
-            if not ({"FL-26", "FL-27", "FL-28"} & set(e.get("flags", []))):
-                bad.append(f'{e["id"]}: prior row carries none of FL-26/27/28')
+            if not ({"FL-26", "FL-27", "FL-28", "FL-33"} & set(e.get("flags", []))):
+                bad.append(f'{e["id"]}: prior row carries none of FL-26/27/28/FL-33')
     return bad
 
 bad16 = provenance_errors(ENTRIES)
@@ -378,6 +378,11 @@ if cov:
         bad16.append(f'meta.coverage says {cov} but data has {prov_counts}')
     if cov.get("liveDate") != ASOF:
         bad16.append("meta.coverage.liveDate does not match meta.asOf")
+    _prior_date = cov.get("priorDate")
+    if _prior_date:
+        for e in ENTRIES:
+            if e.get("provenance") == "prior" and e.get("checkedOn") != _prior_date:
+                bad16.append(f'{e["id"]}: prior row dated {e.get("checkedOn")} but coverage.priorDate is {_prior_date}')
 check("C16", not bad16, f"provenance: {prov_counts['live']} live {ASOF} + {prov_counts['prior']} prior rows, each prior row dated, noted and flagged" + ("" if not bad16 else " — " + "; ".join(bad16[:6])))
 
 # ---------------------------------------------------------------- C17 category coverage
@@ -493,6 +498,8 @@ def ledger_errors(ledger, rows):
         bad.append("ledger session does not match canonical session")
     if ledger.get("checkedOn") != ASOF:
         bad.append("ledger date does not match data date")
+    sess = D["meta"].get("session")
+    inh_date = (ledger.get("inherits") or {}).get("checkedOn")
     if len(checks) != ledger.get("coverage", {}).get("total") or len(checks) != 46:
         bad.append(f"ledger has {len(checks)} checks, expected 46")
     ids = [c.get("id") for c in checks]
@@ -502,8 +509,22 @@ def ledger_errors(ledger, rows):
     listing_seen = set()
     for c in checks:
         kinds[c.get("kind")] = kinds.get(c.get("kind"), 0) + 1
-        if c.get("status") != "read" or c.get("checkedOn") != ASOF:
-            bad.append(f'{c.get("id")}: not a current read')
+        rb = c.get("readBy") or ""
+        inherited_check = rb.endswith("(inherited)")
+        if c.get("status") != "read":
+            bad.append(f'{c.get("id")}: not a read-status check')
+        if inherited_check:
+            # A pass may inherit an older official read, but only fully labelled:
+            # its own capture date, an inherits chain, an inheritedNote, and — for
+            # listing rows — a canonical row whose provenance says prior.
+            if c.get("checkedOn") == ASOF:
+                bad.append(f'{c.get("id")}: inherited read dated as this pass')
+            if not (c.get("inheritedNote") and c.get("firstCapturedBy")):
+                bad.append(f'{c.get("id")}: inherited read lacks inheritedNote or firstCapturedBy')
+            if inh_date and c.get("checkedOn") != inh_date:
+                bad.append(f'{c.get("id")}: inherited read not dated with the ledger inherits chain date')
+        elif c.get("checkedOn") != ASOF or rb != sess:
+            bad.append(f'{c.get("id")}: not a current read by this session')
         if not str(c.get("url", "")).startswith("https://"):
             bad.append(f'{c.get("id")}: non-https evidence URL')
         if not c.get("sourceExcerpt"):
@@ -526,6 +547,10 @@ def ledger_errors(ledger, rows):
             for field in ("price", "grams", "karat", "solidStated", "hallmarkStated", "makerMarkStated", "returnsVerified", "metalConflict"):
                 if obs.get(field) != e.get(field):
                     bad.append(f'{eid}: observed {field} differs from canonical value')
+            if inherited_check and e.get("provenance") != "prior":
+                bad.append(f'{eid}: canonical row is not labelled prior although its check is inherited')
+            if not inherited_check and e.get("provenance") == "prior":
+                bad.append(f'{eid}: row labelled prior although its check is a current read')
         elif c.get("kind") == "reference":
             ref = next((r for r in REFS if r["id"] == c.get("referenceId")), None)
             if not ref or ref["url"] != c.get("url"):
@@ -547,7 +572,9 @@ check("C21", not bad21, "46-check evidence ledger covers every row and agrees wi
 # A same-day pass may inherit checks another session read. What it must never do is
 # present an inherited read as its own. Every row, every ledger check and both pages
 # therefore name the session that actually opened the source.
-INHERITED_BY = "bc4e36a1 (inherited)"
+INHERITED_BY = "bc4e36a1 (inherited)"          # kept: earlier passes' wording in N-tests
+INHERITED_LABELS = ("bc4e36a1 (inherited)", "6d10ac0a (inherited)")
+SCOPE_FLAG = "FL-33"
 
 
 def landing_reader_claims(cov, idx_text, n_entries):
@@ -606,41 +633,45 @@ def category_reader_errors(rows):
 def reader_errors(ledger, rows):
     bad = []
     sess = D["meta"].get("session")
+    inherited_labels = tuple(sorted({c.get("readBy") for c in ledger.get("checks", [])
+                                     if str(c.get("readBy", "")).endswith("(inherited)")})) or INHERITED_LABELS
+    partial_ids = {p.get("entryId") for p in ledger.get("partialReads", [])}
     checks = {c.get("entryId"): c for c in ledger.get("checks", []) if c.get("kind") == "listing"}
     all_checks = ledger.get("checks", [])
     for e in rows:
         rb = e.get("readBy")
-        if rb not in (sess, INHERITED_BY):
+        if rb != sess and rb not in inherited_labels:
             bad.append(f'{e["id"]}: missing or unknown readBy {rb!r}')
             continue
         c = checks.get(e["id"])
         if not c or c.get("readBy") != rb:
             bad.append(f'{e["id"]}: row readBy does not match its ledger check')
-        if rb == INHERITED_BY and "FL-31" not in e.get("flags", []):
-            bad.append(f'{e["id"]}: inherited row does not carry FL-31')
-        if rb == sess and "FL-31" in e.get("flags", []):
-            bad.append(f'{e["id"]}: re-read row must not carry FL-31')
-        if not any(n.startswith("Re-read live by session") or n.startswith("Official-source read") for n in e.get("notes", [])):
+        if rb != sess and SCOPE_FLAG not in e.get("flags", []):
+            bad.append(f'{e["id"]}: inherited row does not carry {SCOPE_FLAG}')
+        if rb == sess and SCOPE_FLAG in e.get("flags", []):
+            bad.append(f'{e["id"]}: re-read row must not carry {SCOPE_FLAG}')
+        if not any(n.startswith("Re-read live by session") or n.startswith("NOT re-fetched on")
+                   or n.startswith("Official-source read") for n in e.get("notes", [])):
             bad.append(f'{e["id"]}: no note stating who read the source')
-    inherited_ids = {e["id"] for e in rows if e.get("readBy") == INHERITED_BY}
-    fl31 = next((f for f in D["flags"] if f["id"] == "FL-31"), None)
-    if fl31 is None:
-        bad.append("FL-31 (pass provenance scope) is not published")
-    elif set(fl31.get("entryIds", [])) != inherited_ids:
-        bad.append("FL-31 entryIds do not match the inherited rows exactly")
+    inherited_ids = {e["id"] for e in rows if e.get("readBy") in inherited_labels}
+    scopeflag = next((f for f in D["flags"] if f["id"] == SCOPE_FLAG), None)
+    if scopeflag is None:
+        bad.append(f"{SCOPE_FLAG} (pass provenance scope) is not published")
+    elif set(scopeflag.get("entryIds", [])) != inherited_ids:
+        bad.append(f"{SCOPE_FLAG} entryIds do not match the inherited rows exactly")
     cov = D["meta"].get("coverage", {})
     if cov.get("reread") != sum(1 for e in rows if e.get("readBy") == sess):
         bad.append("meta.coverage.reread does not match the rows")
     if cov.get("inherited") != len(inherited_ids):
         bad.append("meta.coverage.inherited does not match the rows")
     n_sess = sum(1 for c in all_checks if c.get("readBy") == sess)
-    n_inh = sum(1 for c in all_checks if c.get("readBy") == INHERITED_BY)
+    n_inh = sum(1 for c in all_checks if str(c.get("readBy", "")).endswith("(inherited)"))
     if n_sess + n_inh != len(all_checks):
         bad.append("ledger has checks without reader attribution")
     if ledger.get("coverage", {}).get("rereadThisPass") != n_sess:
         bad.append("ledger coverage.rereadThisPass does not match its checks")
-    if ledger.get("coverage", {}).get("inheritedSameDate") != n_inh:
-        bad.append("ledger coverage.inheritedSameDate does not match its checks")
+    if ledger.get("coverage", {}).get("inheritedFromEarlierPass") != n_inh:
+        bad.append("ledger coverage.inheritedFromEarlierPass does not match its checks")
     spot_c = next((c for c in all_checks if c.get("kind") == "spot"), None)
     if not spot_c or spot_c.get("readBy") != sess:
         bad.append("primary spot quote is not backed by a check re-read by this session")
@@ -649,12 +680,15 @@ def reader_errors(ledger, rows):
         if not c:
             bad.append(f'partial read for unknown listing {p.get("entryId")}')
             continue
-        if c.get("readBy") == sess:
+        if c.get("readBy") == sess and c.get("checkedOn") == ledger.get("checkedOn"):
             bad.append(f'{p.get("entryId")}: partial read presented as a full re-read')
         if p.get("canonicalCheck") != c.get("id"):
             bad.append(f'{p.get("entryId")}: partial read points at the wrong canonical check')
-        if not p.get("notRetrieved") or not p.get("effect"):
-            bad.append(f'{p.get("entryId")}: partial read does not state what was missing')
+        for req in ("notRetrieved", "effect", "retrieved"):
+            if not p.get(req):
+                bad.append(f'{p.get("entryId")}: partial read does not state {req}')
+        if p.get("readBy") != sess:
+            bad.append(f'{p.get("entryId")}: partial read is not attributed to this session')
     bad.extend(landing_reader_claims(D["meta"].get("coverage", {}), read_page("index.html"), len(rows)))
     bad.extend(category_reader_errors(rows))
     lis = read_page("site/listings.html")
@@ -667,14 +701,18 @@ def reader_errors(ledger, rows):
         if e.get("readBy") == sess:
             if f're-read this pass by <b>{sess}</b>' not in m.group(2):
                 bad.append(f'{e["id"]}: re-read attribution not printed on its row')
-        elif "inherited, not re-opened this pass" not in m.group(2):
-            bad.append(f'{e["id"]}: inherited attribution not printed on its row')
+        else:
+            row_html = m.group(2)
+            if "inherited" not in row_html or e["checkedOn"] not in row_html:
+                bad.append(f'{e["id"]}: inherited attribution or its capture date not printed on its row')
+            if e["id"] in partial_ids and "prior" not in row_html:
+                bad.append(f'{e["id"]}: partially-read row is not labelled prior on the row')
     for c in all_checks:
         m = re.search(r'<tr id="' + re.escape(str(c.get("id"))) + r'">(.*?)</tr>', ver, re.S)
         if not m:
             bad.append(f'{c.get("id")}: absent from the verification log')
             continue
-        want = (f're-read by {sess}' if c.get("readBy") == sess else f'inherited · {INHERITED_BY}')
+        want = (f're-read by {sess}' if c.get("readBy") == sess else f'inherited · {c.get("readBy")}')
         if want not in m.group(1):
             bad.append(f'{c.get("id")}: verification log does not badge its reader')
     for fl in ledger.get("failures", []):
@@ -696,7 +734,7 @@ def reader_errors(ledger, rows):
 
 bad22 = reader_errors(D["meta"].get("liveCheck", {}), ENTRIES)
 _reread_rows = sum(1 for e in ENTRIES if e.get("readBy") == D["meta"]["session"])
-check("C22", not bad22, f"reader attribution: {_reread_rows} rows re-read by {D['meta']['session']}, {len(ENTRIES) - _reread_rows} inherited from bc4e36a1 and labelled, partial reads and failures published" + ("" if not bad22 else " — " + "; ".join(bad22[:8])))
+check("C22", not bad22, f"reader attribution: {_reread_rows} rows re-read by {D['meta']['session']}, {len(ENTRIES) - _reread_rows} inherited reads labelled with the sessions that made them, partial reads and failures published" + ("" if not bad22 else " — " + "; ".join(bad22[:8])))
 
 # ---------------------------------------------------------------- negative self-tests
 # Each mutation must be caught by the rule it targets. If a mutation is NOT
@@ -741,14 +779,15 @@ def _neg_tests():
     e10["flags"] = [f for f in e10["flags"] if f != "FL-30"]
     out.append(("N10 undisclosed metal conflict", bool(blank_flag_errors([e10]))))
     # N11 an inherited read claimed as this session's own (actual C22 predicate)
-    inh = next(x for x in ENTRIES if x.get("readBy") == INHERITED_BY)
+    sess_now = D["meta"]["session"]
+    inh = next(x for x in ENTRIES if x.get("readBy") != sess_now)
     e11 = copy.deepcopy(inh)
     e11["readBy"] = D["meta"]["session"]
     out.append(("N11 inherited read claimed as re-read", bool(reader_errors(D["meta"]["liveCheck"], [e11]))))
     # N12 dropping the inherited-provenance flag from a row (actual C22 predicate)
     e12 = copy.deepcopy(inh)
-    e12["flags"] = [f for f in e12["flags"] if f != "FL-31"]
-    out.append(("N12 silent inheritance (FL-31 removed)", bool(reader_errors(D["meta"]["liveCheck"], [e12]))))
+    e12["flags"] = [f for f in e12["flags"] if f not in ("FL-31", "FL-33")]
+    out.append(("N12 silent inheritance (scope flag removed)", bool(reader_errors(D["meta"]["liveCheck"], [e12]))))
     # N13 ledger check attributed to this session while the row says inherited (actual C22 predicate)
     ledger13 = copy.deepcopy(D["meta"]["liveCheck"])
     c13 = next(c for c in ledger13["checks"] if c.get("entryId") == inh["id"])
@@ -757,19 +796,21 @@ def _neg_tests():
     # N14 a partial read dressed up as a full re-read (actual C22 predicate)
     ledger14 = copy.deepcopy(D["meta"]["liveCheck"])
     reread_id = next(x["id"] for x in ENTRIES if x.get("readBy") == D["meta"]["session"])
+    _c01 = next(c for c in ledger14["checks"] if c.get("id") == "L01")
     ledger14["partialReads"] = list(ledger14.get("partialReads", [])) + [
-        dict(entryId=reread_id, canonicalCheck="L01", notRetrieved="", effect="")]
+        dict(entryId=reread_id, canonicalCheck=_c01["id"], readBy=D["meta"]["session"],
+             notRetrieved="", effect="")]
     out.append(("N14 partial read claimed as full re-read", bool(reader_errors(ledger14, ENTRIES))))
     # N18 a category page must not claim re-reads this pass inherited (actual C22 predicate)
     rows18 = copy.deepcopy(ENTRIES)
-    inh18 = [e for e in rows18 if e.get("readBy") == INHERITED_BY]
+    inh18 = [e for e in rows18 if e.get("readBy") != D["meta"]["session"]]
     if inh18:
         inh18[0]["readBy"] = D["meta"]["session"]
         out.append(("N18 category reader split disagreeing with the rows", bool(category_reader_errors(rows18))))
     # N17 the landing page must not claim reads this pass did not perform (actual C22 predicate)
     cov17 = dict(D["meta"]["coverage"])
     if cov17.get("reread") and cov17.get("reread") < len(ENTRIES):
-        lying = f"All {len(ENTRIES)} of {len(ENTRIES)} rows were re-read from the sellers' own pages on 2026-10-23."
+        lying = f"All {len(ENTRIES)} of {len(ENTRIES)} rows were re-read from the sellers' own pages on {ASOF}."
         out.append(("N17 landing page claims every row was re-read this pass", bool(landing_reader_claims(cov17, lying, len(ENTRIES)))))
     # N16 a citation-scope read must stay published with the request it answers (actual C22 predicate)
     ledger16 = copy.deepcopy(D["meta"]["liveCheck"])
@@ -782,11 +823,22 @@ def _neg_tests():
                 bool(re.search(r'href=["\']http://', tag15)) and
                 bool(re.findall(r'<a\b[^>]*target=["\']_blank["\'][^>]*>', tag15)) and
                 not re.search(r'rel=["\'][^"\']*noopener', tag15)))
+    # N19 an inherited check re-dated to this pass (would silently upgrade a 2-day-old read)
+    ledger19 = copy.deepcopy(D["meta"]["liveCheck"])
+    c19 = next(c for c in ledger19["checks"] if str(c.get("readBy", "")).endswith("(inherited)"))
+    c19["checkedOn"] = ASOF
+    out.append(("N19 inherited check re-dated as current", bool(ledger_errors(ledger19, ENTRIES))))
+    # N20 an inherited check stripped of its inheritedNote
+    ledger20 = copy.deepcopy(D["meta"]["liveCheck"])
+    c20 = next(c for c in ledger20["checks"] if str(c.get("readBy", "")).endswith("(inherited)"))
+    c20.pop("inheritedNote", None)
+    out.append(("N20 inherited check without its note", bool(ledger_errors(ledger20, ENTRIES))))
     return out
+
 
 neg = _neg_tests()
 caught = sum(1 for _, ok in neg if ok)
-check("N1-N18", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
+check("N1-N20", caught == len(neg), f"{caught}/{len(neg)} injected errors caught by the rules they target (N1–N20)" + ("" if caught == len(neg) else " — MISSED: " + ", ".join(n for n, ok in neg if not ok)))
 
 # ---------------------------------------------------------------- report
 passed = sum(1 for _, ok, _ in results if ok)

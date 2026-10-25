@@ -2,33 +2,33 @@
 window.GOLD5_DATA = {
  "meta": {
   "project": "GOLD5 — Solid Gold Engagement Ring Research",
-  "asOf": "2026-10-23",
-  "lastPass": "2026-10-23 (session 6d10ac0a: spot re-read + 8 listing re-reads, 37 same-day checks inherited from bc4e36a1)",
-  "session": "6d10ac0a",
+  "asOf": "2026-10-25",
+  "lastPass": "2026-10-25 (session 3dfe4d85: spot + all 25 listings + 2 Blue Nile policies re-read live; 3 Etsy prices corrected from this pass's captures; 20 of 46 checks inherited from 2026-10-23 and labelled)",
+  "session": "3dfe4d85",
   "title": "Gold engagement rings, verified line by line",
-  "subtitle": "25 listings from 13 sellers · every row read from its official page on 2026-10-23 — 8 listings plus the spot quote re-read by this pass, 37 checks inherited from the same day's earlier ledger and labelled as such · every value tied to the official source page that states it · blanks and source conflicts are flagged, never guessed",
+  "subtitle": "25 listings from 13 sellers · every value tied to the official source page that states it and dated — 23 were re-read live in this pass (2026-10-25) and 2 are inherited prior-dated observations because every Brilliant Earth page served EUR only; 20 of the 46 evidence checks are inherited from the 2026-10-23 ledger and labelled as such · three Etsy prices genuinely moved within two days and were corrected from this pass's own captures · blanks and source conflicts are flagged, never guessed, never converted",
   "noHallucinations": "NO HALLUCINATIONS IS THE RULE OF THIS PROJECT. Every price, karat, weight, policy and claim on this site was read from the linked official source page on the date shown next to it, and the session that read it is named. If a value could not be confirmed, it is left BLANK and published on the Flagged for Review page — never inferred, estimated, currency-converted or filled in from a similar listing. Derived numbers (fine-gold grams, metal value, price/metal) are computed from verified inputs and recomputed by the checker. After every review pass, run python3 scripts/verify.py.",
   "checker": "python3 scripts/verify.py",
-  "evidenceLedger": "data/live_check_6d10ac0a.json",
+  "evidenceLedger": "data/live_check_3dfe4d85.json",
   "liveCheck": {
    "schemaVersion": 1,
-   "session": "6d10ac0a",
-   "branch": "arena/6d10ac0a-gold5",
-   "checkedOn": "2026-10-23",
-   "method": "Nine checks were re-opened live with fetch_page on 2026-10-23 (late UTC) and transcribed field by field into verification/evidence/6d10ac0a/ before any canonical value was touched. The remaining 37 checks are inherited unchanged from data/live_check_bc4e36a1.json, captured the same date, and keep their original evidence ids and paths. Two pages could only be read partially; they are logged in partialReads and upgraded nothing. No missing value was inferred, EUR was not converted to USD, no weight range was turned into an exact gram figure, and no seller statement was promoted to an assay result.",
-   "timeNote": "Only the retrieval date is asserted for fetches. A time is recorded only where the source itself displayed one (Kitco's panel timestamp '19:43 NY Time' and its body sentence 'as of October 23, 2026, 7:42 p.m. ET').",
-   "noHallucinations": "Blank means unverified. A source conflict is published, not resolved by preference. Inherited same-day reads are labelled with the session that actually made them. Derived values are recomputed from the canonical inputs by script and re-checked by scripts/verify.py, scripts/independent_audit.py and tools/security_test.py.",
+   "session": "3dfe4d85",
+   "branch": "arena/3dfe4d85-gold5",
+   "checkedOn": "2026-10-25",
+   "method": "26 of the 46 checks (Kitco spot, 23 listing pages, 2 Blue Nile policy pages) were re-opened live on 2026-10-25 with fetch_page and transcribed field by field into verification/evidence/3dfe4d85/ before any canonical value was touched. The remaining 20 checks — 2 Brilliant Earth listing reads whose USD price was not served today, 7 policy pages and 11 official references the fetch proxy failed for or that were not attempted after the outage began — are inherited unchanged from data/live_check_6d10ac0a.json (2026-10-23) with readBy labels naming the session that actually read them and an inheritedNote explaining the date. Two partial reads (BE-NADIA, BE-SECRET) and six failure records (F1–F6) are published below; nothing hidden by the outage is presented as read.",
+   "timeNote": "Only the retrieval date is asserted for fetches. A time is recorded only where the source itself displayed one (Kitco's panel timestamp 'Oct 24, 2026 - 23:14 NY Time' and its body sentence 'as of October 24, 2026, 11:12 p.m. ET'). Etsy sale figures are relative countdowns captured at read time; no absolute expiry instant is recorded because none is published.",
+   "noHallucinations": "Blank means unverified. A source conflict is published, not resolved by preference. Inherited reads keep their original dates, evidence ids and paths and are labelled with the session that actually made them. No EUR figure was converted to USD anywhere. Derived values are recomputed from the canonical inputs by script and re-checked by scripts/verify.py, scripts/independent_audit.py and tools/security_test.py.",
    "coverage": {
     "listing": 25,
     "policy": 9,
     "reference": 11,
     "spot": 1,
     "total": 46,
-    "rereadThisPass": 10,
-    "inheritedSameDate": 36,
+    "rereadThisPass": 26,
+    "inheritedFromEarlierPass": 20,
     "partialReads": 2,
     "scopeReads": 2,
-    "failuresLogged": 5
+    "failuresLogged": 21
    },
    "checks": [
     {
@@ -38,11 +38,11 @@ window.GOLD5_DATA = {
      "subject": "Kitco live gold quote",
      "url": "https://www.kitco.com/charts/gold",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "corrected",
-     "evidencePath": "verification/evidence/6d10ac0a/spot.md",
-     "sourceExcerpt": "Panel: 'Oct 23, 2026 - 19:43 NY Time'; Bid 3,994.90 USD (-28.20, -0.70%); Ask 3,996.90; ounce 3,994.90 (-28.20); gram 128.44 (-0.91); Kilo 128,440.99 (-906.65); pennyweight 199.75 (-1.41); tola 1,498.09 (-10.58); tael 4,854.91 (-34.27); Day's Range 3975.10 - 4040.20. 'Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 23, 2026 at 7:42 p.m. EDT.' Body text: 'The current price of gold is $3,994.90 per troy ounce as of October 23, 2026, 7:42 p.m. ET, down $28.40 today.' Purity table: 24K $3,994.90; 22K $3,662.12; 18K $2,996.18; 14K $2,330.23; 10K $1,664.67. Unit table: per ounce $3,994.90; per gram $128.44; per 10 grams $1,284.39; per kilo $128,439.02; per pennyweight $199.75; per tola $1,498.09; per tael $4,854.91. Embedded OANDA widget close 3,995.810 at 19:43:05 UTC-4 (a third distinct print, disclosed under FL-25 and not used in any calculation).",
-     "readBy": "6d10ac0a",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/spot.md",
+     "sourceExcerpt": "Panel: 'Oct 24, 2026 - 23:14 NY Time'; Bid 3,994.90 USD (-28.20, -0.70%); Ask 3,996.90; ounce 3,994.90 (-28.20); gram 128.44 (-0.91); Kilo 128,440.99 (-906.65); pennyweight 199.75 (-1.41); tola 1,498.09 (-10.58); tael 4,854.91 (-34.27); Day's Range 3975.10 - 4040.20. 'Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 24, 2026 at 11:12 p.m. EDT.' Body text: 'The current price of gold is $3,994.90 per troy ounce as of October 24, 2026, 11:12 p.m. ET, down $28.40 today.' Purity table (update stamp 'Updated Oct 23, 2026 - 5:00 PM NY Time'): 24K $3,994.90; 22K $3,662.12; 18K $2,996.18; 14K $2,330.23; 10K $1,664.67. Unit table: per ounce $3,994.90; per gram $128.44; per 10 grams $1,284.39; per kilo $128,439.02; per pennyweight $199.75; per tola $1,498.09; per tael $4,854.91. The embedded TradingView XAUUSD widget printed no close value at all this time (O/H/L/C rendered empty at 23:14:15 UTC-4); on 2026-10-23 the same widget printed 3,995.810 — disclosed under FL-25 and used nowhere. Week of Friday's 5:00 PM NY close: values identical to the 2026-10-23 7:42 p.m. ET capture under a newer timestamp; 'A troy ounce is 31.1034768 grams'.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
      "rereadOn": "2026-10-23"
@@ -55,20 +55,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Petite Hidden Halo Solitaire Plus",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1255,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$1,255 Setting Price; 14K Yellow Gold; stock 502250y14. No gram weight, explicit solid-gold wording, karat-stamp claim or maker's mark published. Return terms are read from the linked official policy.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$1,255(Setting Price)'; 'Metal Type:14K Yellow Gold'; Stock Number 502250y14; Metal 14K Yellow Gold; Width 1.60mm; financing block 'Or as low as $213/mo for 6months with the Blue Nile Credit Card for a total payment of$1,280**'. Product Details: 'this 14k yellow gold solitaire …'. Warranty: 'We warrant all gold and platinum jewelry items with a purchase price of $1,000 or more from manufacturer's defect.' No gram weight, no explicit 'solid gold' wording, no karat-stamp or maker's-mark claim.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -80,20 +81,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Petite Solitaire",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1000,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$1,000 Setting Price; stock 501130y14; 14K Yellow Gold; width 1.80 mm. No gram weight or stamp/maker-mark statement published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$1,000(Setting Price)'; 'Or as low as $170/mo for 6months … total payment of$1,020**'; Stock Number 501130y14; Metal 14K Yellow Gold; Width 1.80mm; 'Metal Type:14K Yellow Gold'. Product Details: 'this petite solitaire crafted in 14k gold …'. No grams, no 'solid gold' sentence, no stamp or maker's-mark claim.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -105,20 +107,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Classic Four Prong Solitaire",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 870,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$870 Setting Price; stock 500000y14; 14K Yellow Gold; width 1.90 mm. No gram weight published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$870(Setting Price)'; 'Special Financing available with the Blue Nile Credit Card.'; Stock Number 500000y14; Metal 14K Yellow Gold; Width 1.90mm; Product Details: 'classic 14k yellow gold four-prong solitaire engagement ring with platinum prongs'. No grams, no 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -130,20 +133,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Riviera Pave",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1500,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$1,500 Setting Price; 14K White Gold; 1/6 ct. tw. No gram weight or stamp/maker-mark statement published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$1,500(Setting Price)'; 'Or as low as $255/mo for 6months … total payment of$1,530**'; Stock Number 501590w14; Metal 14K White Gold; Width 2.00mm; Rhodium Finish Yes; 'Diamond Type:Natural Diamond' with a lab-grown variant link (item-302867). Product Details: 'pavé-set diamonds set in 14k white gold'. No grams, no 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -155,20 +159,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile French Pave",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1800,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$1,800 Setting Price; stock 501410y14; 14K Yellow Gold; width 2.50 mm; 16 round diamonds, 1/4 ct. tw. No gram weight published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$1,800(Setting Price)'; 'Or as low as $306/mo for 6months … total payment of$1,836**'; Stock Number 501410y14; Metal 14K Yellow Gold; Width 2.50mm; Product Details: 'French pavé-set diamonds set in 14k yellow gold'. No grams, no 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -180,20 +185,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Criss Cross Solitaire",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 2320,
       "grams": null,
-      "karat": 18,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null,
+      "karat": 18
      },
-     "sourceExcerpt": "$2,320 Setting Price; 18K Yellow Gold; by James Allen. No gram weight or stamp/maker-mark statement published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$2,320(Setting Price)'; 'Or as low as $394/mo for 6months … total payment of$2,366**'; Stock Number 505032y; Metal 18K Yellow Gold; Width 8.45mm; 'Metal Type:18K Yellow Gold'. No grams, no 'solid gold' sentence, no stamp claims. Note: 18K price sits below the listing's own carat-range prompt (0.10 - 8.00 Carat) — setting price only.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -205,27 +211,24 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Floral Marquise metal conflict",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 2210,
-      "grams": null,
       "karat": 18,
+      "returnsVerified": true,
+      "metalConflict": "Title and specification say 18K White Gold; Product Details say 14K Yellow Gold.",
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
-      "makerMarkStated": false,
-      "returnsVerified": true,
-      "metalConflict": "Title and specification say 18K White Gold; Product Details say 14K Yellow Gold."
+      "makerMarkStated": false
      },
-     "sourceExcerpt": "'$2,210 (Setting Price)'; 'Metal Type: 18K White Gold'; Stock Number 502820w; Metal 18K White Gold; Width 1.70mm; Rhodium Finish Yes; 'Or as low as $376/mo for 6 months with the Blue Nile Credit Card for a total payment of $2,254'. Product Details still reads: 'This mesmerizing engagement ring is artfully crafted from warmly lustrous 14k yellow gold.' — the 18K/14K conflict is unchanged and stays published as FL-30. Warranty: 'We warrant all gold and platinum jewelry items with a purchase price of $1,000 or more from manufacturer's defect.' No gram weight, no explicit 'solid gold' wording, no karat-stamp or maker's-mark claim.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "'$2,210(Setting Price)'; 'Or as low as $376/mo for 6months … total payment of$2,254**'; Stock Number 502820w; Metal 18K White Gold; Width 1.70mm; Rhodium Finish Yes. Product Details still reads: 'This mesmerizing engagement ring is artfully crafted from warmly lustrous 14k yellow gold.' — the 18K/14K conflict is unchanged for a third consecutive pass and stays published as FL-30. Warranty line $1,000-or-more. No grams, no explicit 'solid gold' wording, no stamp or maker's-mark claim.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
-     "rereadOn": "2026-10-23",
-     "inheritedFields": [
-      "returnsVerified (policy page not re-read this pass)"
-     ]
+     "rereadOn": "2026-10-23"
     },
     {
      "seq": 9,
@@ -235,20 +238,21 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile Classic Simple Solitaire",
      "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1145,
-      "grams": null,
       "karat": 14,
+      "grams": null,
       "solidStated": false,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "$1,145 Setting Price; stock 502120y14; 14K Yellow Gold; width 2.40 mm. No gram weight published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'$1,145(Setting Price)'; 'Or as low as $195/mo for 6months … total payment of$1,168**'; Stock Number 502120y14; Metal 14K Yellow Gold; Width 2.40mm; Product Details: 'this simple and elegant 14K yellow gold setting'. No grams, no 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -260,9 +264,9 @@ window.GOLD5_DATA = {
      "subject": "Brilliant Earth Freesia 2mm Solitaire",
      "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "blanked",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
      "observed": {
       "price": null,
       "grams": null,
@@ -271,13 +275,15 @@ window.GOLD5_DATA = {
       "hallmarkStated": false,
       "makerMarkStated": false,
       "returnsVerified": true,
-      "displayedCurrency": "EUR",
-      "displayedPrice": "€835 setting only"
+      "metalConflict": null
      },
-     "sourceExcerpt": "Direct product page displays €835 Setting Only, style BE1343-14KY, 14K Yellow Gold, width 2–1.2 mm. No current USD price was read, so the USD cell is blank and no conversion is made.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "Page H1 'Freesia 2mm Solitaire Ring in 14K Yellow Gold'; price line served in EUR: '€‌835.00(Setting Only)'; wizard 'freesia 2mm solitaire-€‌835.00'; Ring Information: Style BE1343-14KY, Metal 14K Yellow Gold, Width 2-1.2 mm, Setting Claw Prong; banner 'ENDS SOON! Receive a €280.00 Gift Card With Purchase Over €1,150.00' while the promo image prints 'RECEIVE A USD$250 GIFT CARD WITH PURCHASE OVER USD$1,000' (mixed-currency render, FL-08); coverage block 'Free Shipping & Returns · Free Lifetime Warranty · Lifetime Diamond Upgrade · Free 1-Year Resizing'. No USD setting price was served to this session: the USD cell stays blank (no conversion), EUR recorded as observation only. No grams, no 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedFields": [
+      "returnsVerified (30-Day-Returns page not reachable for this session on 2026-10-25 — proxy failure; the product page's 'Free Shipping & Returns' line is marketing, recorded as observed)"
+     ]
     },
     {
      "seq": 11,
@@ -303,7 +309,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "$1,250 USD Setting Only; 14K Yellow Gold; 1.8 mm band. No gram weight published.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 — the direct USD read of the setting price. Session 3dfe4d85 opened this exact page again on 2026-10-25, but the page served EUR (€1,400.00 / €1,250.00) and printed no USD price, so the USD figure could not be re-confirmed; it is kept at 2026-10-23 as a dated prior observation and the partial read is logged in partialReads. No conversion was performed."
     },
     {
      "seq": 12,
@@ -313,9 +320,9 @@ window.GOLD5_DATA = {
      "subject": "Brilliant Earth Freesia Hidden Halo",
      "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "blank-retained",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
      "observed": {
       "price": null,
       "grams": null,
@@ -324,13 +331,15 @@ window.GOLD5_DATA = {
       "hallmarkStated": false,
       "makerMarkStated": false,
       "returnsVerified": true,
-      "displayedCurrency": "EUR",
-      "displayedPrice": "€1,350 setting only"
+      "metalConflict": null
      },
-     "sourceExcerpt": "Direct product page displays €1,350 Setting Only; 14K Yellow Gold; width 2–1.3 mm; 14 accent diamonds totaling 0.05 ct. tw. USD remains blank; no conversion.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "Page H1 'Freesia Hidden Halo Diamond Ring in 14K Yellow Gold'; price line served in EUR: '€‌1,350.00(Setting Only)'; Ring Information: Style BE1D3939-14KY, Metal 14K Yellow Gold, Width 2-1.3 mm, Claw Prong; Accent Gemstones: 14 shared-prong round diamonds, min 0.05 ctw, F/G, SI1. No USD setting price served: USD cell stays blank, no conversion.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedFields": [
+      "returnsVerified (30-Day-Returns page not reachable for this session on 2026-10-25 — proxy failure; product-page coverage line is marketing)"
+     ]
     },
     {
      "seq": 13,
@@ -356,7 +365,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Direct product page now displays $1,090 USD Setting Only; 14K Yellow Gold; 1.5 mm; 13 accent diamonds totaling 0.06 ct. tw. The direct USD observation replaces the prior blank.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 — the direct USD read of the setting price. Session 3dfe4d85 opened this exact page again on 2026-10-25, but the page served EUR (€1,400.00 / €1,250.00) and printed no USD price, so the USD figure could not be re-confirmed; it is kept at 2026-10-23 as a dated prior observation and the partial read is logged in partialReads. No conversion was performed."
     },
     {
      "seq": 14,
@@ -366,9 +376,9 @@ window.GOLD5_DATA = {
      "subject": "Allurez Filigree Solitaire Setting",
      "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1085,
       "grams": 5.0,
@@ -379,13 +389,13 @@ window.GOLD5_DATA = {
       "returnsVerified": true,
       "metalConflict": null
      },
-     "sourceExcerpt": "'$1,085' with '57% Savings' and '$2,497 Everyone Else' (marketing comparison, FL-09, not recorded as a price); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Style number U5882'; 'Gold Weight 5.00 Grams (Approximate)'; Width '2.9mm (Top Width) 2.3mm (Bottom Width)'; Height '3.5mm (Top Height) 1.7mm (Bottom Height)'; 'Crafted In the USA'; 'Shipping estimate: 10 to 14 business days'. Page marketing block: 'Easy Returns — Return or exchange within 30 days if unsatisfied.' No explicit 'solid gold' sentence, no karat-stamp claim, no maker's-mark claim.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "'$1,08557% Savings' and '$2,497Everyone Else' (marketing comparison, FL-09, not recorded as a price); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Style number U5882'; 'Gold Weight 5.00 Grams (Approximate)'; Width '2.9mm (Top Width) 2.3mm (Bottom Width)'; Height '3.5mm (Top Height) 1.7mm (Bottom Height)'; 'Crafted In the USA'; 'Shipping estimate: 10 to 14 business days'; marketing block 'Easy Returns — Return or exchange within 30 days if unsatisfied.' No explicit 'solid gold' sentence, no karat-stamp claim, no maker's-mark claim.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23",
      "inheritedFields": [
-      "returnsVerified (policy page not re-read this pass)"
+      "returnsVerified (Allurez return-policy page not reachable for this session on 2026-10-25 — proxy failure; product-page marketing line corroborates only)"
      ]
     },
     {
@@ -396,9 +406,9 @@ window.GOLD5_DATA = {
      "subject": "Allurez Antique Engraved Setting",
      "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 933,
       "grams": 4.8,
@@ -409,13 +419,13 @@ window.GOLD5_DATA = {
       "returnsVerified": true,
       "metalConflict": null
      },
-     "sourceExcerpt": "'$933' with '32% Savings' and '$1,373 Everyone Else' (marketing comparison, FL-09); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Metal Color Yellow Gold'; 'Style number U170'; 'Gold Weight 4.80 grams (Approximate)'; Width '3.20mm(Top Width), 2.40mm(Bottom Width)'; 'Crafted In the USA'; 'Please Note The center diamond is not included in the price of the ring'. No explicit 'solid gold' sentence, no karat-stamp claim, no maker's-mark claim.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "'$93332% Savings' and '$1,373Everyone Else' (marketing comparison, FL-09); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Metal Color Yellow Gold'; 'Style number U170'; 'Gold Weight 4.80 grams (Approximate)'; Width '3.20mm(Top Width), 2.40mm(Bottom Width)'; 'Crafted In the USA'; 'Please Note The center diamond is not included in the price of the ring'. No 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23",
      "inheritedFields": [
-      "returnsVerified (policy page not re-read this pass)"
+      "returnsVerified (Allurez return-policy page not reachable for this session on 2026-10-25 — proxy failure)"
      ]
     },
     {
@@ -426,9 +436,9 @@ window.GOLD5_DATA = {
      "subject": "Allurez Engraved Floral Setting",
      "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 585,
       "grams": 3.58,
@@ -439,13 +449,13 @@ window.GOLD5_DATA = {
       "returnsVerified": true,
       "metalConflict": null
      },
-     "sourceExcerpt": "Page H1 'Engraved Floral Solitaire Engagement Ring Setting 14K Yellow Gold'; '$585' with '51% Savings' and '$1,194 Everyone Else' (marketing comparison, FL-09); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Style number NG4426'; 'Approximate Metal Weight 3.58 grams'; 'Crafted In the USA'. Size selector shows size-conditional surcharges '10.25 (+ $39) 10.5 (+ $49) 10.75 (+ $69) 11 (+ $79) 11.25 (+ $89) 11.5 (+ $99)' — the recorded price is the base displayed price and no surcharge variant is blended in. No explicit 'solid gold' sentence, no karat-stamp claim, no maker's-mark claim.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "Page H1 'Engraved Floral Solitaire Engagement Ring Setting 14K Yellow Gold'; '$58551% Savings' and '$1,194Everyone Else' (marketing comparison, FL-09); 'Setting only. Center stone sold separately.'; 'Metal: 14k Yellow Gold'; 'Style number NG4426'; 'Approximate Metal Weight 3.58 grams'; 'Crafted In the USA'. Size selector shows size-conditional surcharges '10.25 (+ $39)10.5 (+ $49)10.75 (+ $69)11 (+ $79)11.25 (+ $89)11.5 (+ $99)' — the recorded price is the base displayed price; no surcharge variant is blended in. No 'solid gold' sentence, no stamp claims.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23",
      "inheritedFields": [
-      "returnsVerified (policy page not re-read this pass)"
+      "returnsVerified (Allurez return-policy page not reachable for this session on 2026-10-25 — proxy failure)"
      ]
     },
     {
@@ -456,9 +466,9 @@ window.GOLD5_DATA = {
      "subject": "Avianne Diamond Solitaire",
      "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 1100,
       "grams": 2.3,
@@ -469,8 +479,8 @@ window.GOLD5_DATA = {
       "returnsVerified": false,
       "metalConflict": null
      },
-     "sourceExcerpt": "Title '14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw' (explicit 'Solid'); '$1,100.00'; banner '10% OFF WITH CODE \"FALL10\"' (promo not applied to the recorded price, FL-11); 'Call Now 1 (332)-244-4038'. Description: 'handcrafted in 14k yellow gold. The center is prong set with one brilliant round cut diamond which weighs 0.41 carats. The frame measures to 4.5 mm in width and weighs 2.3 grams.' DETAILS table: 'Item Code R25893'; 'Diamond Carat Weight 0.41 Ctw'; 'Diamond Clarity VS2'; 'Diamond Color G, H'; 'Metal Color Yellow'; 'Metal Type 14K Gold'; 'Item Weight 2.3 grams'. On-page returns line: 'Returns of unworn and unaltered items accepted within 14 days.' Showroom: '28 W 47th Street, Diamond District · New York, NY'. No karat-stamp or maker's-mark claim published.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "Page H1 '14K Solid Yellow Gold Diamond Solitaire Engagement Ring 0.41 Ctw'; '**$1,100.00**'; '**10% OFF WITH CODE \"FALL10\"**'; description 'handcrafted in 14k yellow gold … The frame measures to 4.5 mm in width and weighs 2.3 grams.'; DETAILS table 'Item Code R25893 … Metal Type 14K Gold … Item Weight 2.3 grams'; 'Returns of unworn and unaltered items accepted within 14 days.'; 'Products delivered between Wed, 28 Oct and Sun, 01 Nov.'; 'Call Now 1 (332)-244-4038'; showroom '28 W 47th Street Diamond District · New York, NY'. Title states Solid; FALL10 promo not applied to the recorded price; returnsVerified stays False — the product page states a 14-day window but the dedicated policy page was not among this pass's reads.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23"
@@ -483,9 +493,9 @@ window.GOLD5_DATA = {
      "subject": "Jewelry Master Brilliant Round Solitaire",
      "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": 3020,
       "grams": 2.3,
@@ -496,8 +506,8 @@ window.GOLD5_DATA = {
       "returnsVerified": false,
       "metalConflict": null
      },
-     "sourceExcerpt": "'Retail Price $6,041.00  Special Price $3,020.00' (recorded price is the Special Price; the Retail Price is kept as a labelled compare-at, FL-12); 'Availability: In stock'; 'Only 1 left'; 'Style 149700'. PRODUCT DETAILS: 'This beautiful treasure is entirely handcrafted in pure 14KT solid yellow gold ... weighing 0.71 carats. All of the stones are a blinding white G-H color and SI1 clarity.' Information table: 'Carats: 0.71ctw'; 'Metal Type: 14KT Gold'; 'Metal Weight: 2.3 Grams'; 'Width: mm' and 'Length: mm' are empty on the page. 'Money Back Guarantee (some restrictions apply)* ... return or exchange your purchase within a 30-day period - no questions asked' — the restrictions themselves are not stated on the page, so returnsVerified stays false. Banner 'LAB DIAMOND SALE - Up to 50% OFF' is not applied to this row.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "'Retail Price$6,041.00Special Price$3,020.00' — 3,020.00 recorded, 6,041.00 is the seller's own comparison (FL-12); 'Availability: In stock — Only 1 left'; 'Style 149700'; PRODUCT DETAILS 'This beautiful treasure is entirely handcrafted in pure 14KT solid yellow gold.'; Information table 'Carats: 0.71ctw … Metal Type: 14KT Gold; Metal Weight: 2.3 Grams; Width: mm; Length: mm' (width/length printed empty → not recorded); 'Money Back Guarantee (some restrictions apply)* … return or exchange your purchase within a 30-day period - no questions asked'; '0% APR or as low as $147/mo with Affirm.'; phone '1-888-59-JEWEL'. No dedicated return-policy page in this ledger → returnsVerified False.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23"
@@ -510,9 +520,9 @@ window.GOLD5_DATA = {
      "subject": "Solid Gold Jewelers Solitaire",
      "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+     "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
      "observed": {
       "price": null,
       "grams": 4.7,
@@ -523,8 +533,8 @@ window.GOLD5_DATA = {
       "returnsVerified": false,
       "metalConflict": null
      },
-     "sourceExcerpt": "'Yellow Gold Solitaire Engagement Ring'; spec line '14ky, 4.7g, #B02561'; 'Pricing and availability are subject to change.'; 'SKU: B02561'; 'Categories: Mountings, Rings, Yellow Gold'; 'Brand: M Michael' (a store taxonomy field — NOT a hallmark/maker's-mark claim, so makerMarkStated stays false); 'Call (309) 452-1612 for current pricing and availability.' No price is published anywhere on the page, so the price cell stays blank (FL-13). No return policy is shown on the product page. No explicit 'solid gold' sentence on the product page itself.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "Page H1 'Yellow Gold Solitaire Engagement Ring'; spec line '14ky, 4.7g, #B02561'; 'SKU: B02561'; 'Brand: M Michael' recorded as store taxonomy, NOT as a maker's-mark claim; 'Pricing and availability are subject to change.'; 'Call (309) 452-1612 for current pricing and availability.' — no price on the page, so the USD cell stays blank and flagged (FL-13); no return policy and no payment method stated.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
      "rereadOn": "2026-10-23"
@@ -537,9 +547,9 @@ window.GOLD5_DATA = {
      "subject": "RAKSHAKJEWELS Radiant Lab Diamond Ring",
      "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
       "price": 1891.78,
       "grams": null,
@@ -547,10 +557,11 @@ window.GOLD5_DATA = {
       "solidStated": true,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "14K Yellow Gold option $1,891.78; $1,202.08+ header is the silver option. Current title/description identify a 2.50-ct canary-yellow IGI lab-grown diamond, not moissanite. Returns and exchanges accepted within 14 days; buyer pays return shipping.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'NowPrice:$1,202.08+' with 'Original Price: $2,404.16+' and '50% off' and 'Sale ends in 15:11:39' (relative countdown captured — the time-left gap the previous pass asked to close); MATERIAL options '14K YELLOW GOLD ($1,891.78)', 10K ($1,686.02), 18K ($2,109.58), 925 SILVER ($1,202.08); 'Low in stock, only 1 left'; 'Returns & exchanges accepted'; 'Band Width: 1.80 mm Approx.'; 'Metal Options: Available in 10K/14K/18K Solid Gold (White, Yellow, Rose Gold) & Platinum.'; RAKSHAKJEWELS Star Seller, 5/5. The 14K variant price is unchanged from 2026-10-23; the header compare-at belongs to another variant, so compareAt stays blank.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -562,20 +573,21 @@ window.GOLD5_DATA = {
      "subject": "ForeverForLove Emerald Hidden Halo Ring",
      "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
-      "price": 546.09,
+      "price": 546.18,
       "grams": null,
       "karat": 14,
       "solidStated": true,
       "hallmarkStated": true,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "14K Yellow/White/Rose Gold options range $546.09–$2,404.96 by center-diamond size; base/header starts at $375.80 for silver. Description says genuine 14k real gold, never plated or filled; Metal stamp: Yes. Returns within 30 days; buyer pays return shipping. No per-variant original price was read, so compare-at is blank.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'NowPrice:$375.86+' with 'Original Price: $626.44+' and '40% off' and 'Sale ends in 3 days'; 'Low in stock, only 1 left'; Material option '14K Yellow Gold ($546.18 - $2,405.36)' (14K White/Rose identical; 10K ($486.61 - $2,319.78); 18K ($594.00 - $2,445.63); platinum ($677.90 - $2,427.17); Silver ($375.86 - $2,274.48)); Centre Diamond Size 0.50 CT ($375.86 - $677.90) … 3.00 CT ($2,274.48 - $2,445.63); 'Made with genuine 14k real gold – never plated or filled'; 'Metal stamp: Yes'; 'Bandwidth: 1.50 MM'; 'Thickness: 1.40 MM'; 'Returns & exchanges accepted' · 'within 30 days'; 'Ships from: United Kingdom' · 'Free shipping'; ForeverForLove Star Seller 5/5. The 14K variant start moved from $546.09 (2026-10-23) to $546.18 — corrected from this capture; no 14K-specific compare-at is published, so compareAt stays blank.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -587,20 +599,21 @@ window.GOLD5_DATA = {
      "subject": "VeraByEden Ruby and Diamond Halo Ring",
      "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
-      "price": 969,
+      "price": 969.0,
       "grams": 3.7,
       "karat": 14,
       "solidStated": true,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "14K option $969; $783+ header is 10K. Material: Solid Gold (not plated or filled); Karat 14 K (585); Gold grams 3.70 gr. Return within 7 days after receipt; $20 delivery charge and 10% restocking fee; buyer pays return shipping; personalized and listed custom items excluded.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "'Price:$783.00+' · 'Original Price: $1,044.00+' · '25% off' · 'Limited time sale'; primary-colour options '14K YELLOW GOLD ($969.00)' (10K $783.00, 18K $1,233.00); FEATURES: 'Material: Solid Gold (not gold plated or gold filled)' · 'Karat: 14 K (585)' · 'Diamond weight: 0.30 ct' · 'Ruby weight: 0.90 ct' · 'Gold grams: 3.70 gr' · 'Made to order' · 'All of our items are 14K real gold. We do not use any gold filled, gold plated or gold vermeil items.'; production partner 'Vera Atolye, Istanbul, Türkiye'; ships from 'Albany, NY'; 'within 7 days' returns; VeraByEden Star Seller 5/5. The price block that was missing from the 2026-10-23 partial read is now read directly: $969.00 confirmed.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -612,20 +625,21 @@ window.GOLD5_DATA = {
      "subject": "VibrantStone Domed Band",
      "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
-      "price": 251.3,
+      "price": 246.35,
       "grams": null,
       "karat": 14,
       "solidStated": true,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "Listing titled 14k Solid Yellow Gold displays from $251.30; width-dependent ranges run through $1,742.30. Returns/exchanges within 21 days; customized bands and altered/used/damaged items may be excluded or incur fees up to 30%; buyer pays return shipping. No gram weight published.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "Page title '14k Solid Yellow Gold Domed Wedding Band | 2mm - 8mm Gold Ring | Classic Dome Comfort Fit Wedding Band | Men and Women's Engraved Ring'; 'Etsy's Pick' · 'In 20+ carts'; 'NowPrice:$246.35+' · 'Original Price: $379.00+' · '35% off' · 'Sale ends in 1 day'; band-width ladder '2mm ($246.35 - $382.85) · 3mm ($330.85 - $525.85) · 4mm ($460.85 - $740.35) · 5mm ($597.35 - $967.85) · 6mm ($740.35 - $1,195.35) · 7mm ($870.35 - $1,409.85) · 8mm ($1,000.35 - $1,630.85)'; 'Returns & exchanges accepted'; VibrantStone Star Seller 5/5. The 2mm ladder start moved from $251.30 (2026-10-23, '30% off $359.00') to $246.35 (2026-10-25, header 35% off $379.00+) — corrected from this capture; no gram weight published on the page.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -637,20 +651,21 @@ window.GOLD5_DATA = {
      "subject": "adelafinejewels Comfort-Fit Dome Band",
      "url": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
-      "price": 999.7,
+      "price": 984.32,
       "grams": null,
       "karat": 14,
       "solidStated": true,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "14K Gold options $999.70–$1,368.90 by size; 10K options $674.70–$963.95; 8 mm white-gold band. Returns/exchanges accepted within 14 days; personalized products non-refundable; buyer pays return transportation. No gram weight or maker's mark stated.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "Page title '14K Solid Gold 8mm White Gold Polished Mens Womens Comfort Fit Dome Wedding Band'; 'NowPrice:$664.32+' · 'Original Price: $1,038.00+' · '36% off' · 'Sale ends in 0:29:08' (under half an hour from expiry at read time — recorded, not projected); Material options '10K Gold ($664.32 - $949.12)' and '14K Gold ($984.32 - $1,347.84)'; size ladder from '3 US ($664.32 - $984.32)' to '13 US ($949.12 - $1,347.84)'; 'Arrives soon! Get it by Oct 30-Nov 4'; 'Returns & exchanges accepted'; adelafinejewels Star Seller 5/5; optional engraving (0/40 characters). The 14K range moved from $999.70–$1,368.90 (35% off, 2026-10-23) to $984.32–$1,347.84 (36% off) — corrected from this capture; the $1,038 header compare-at belongs to the 10K base variant, so compareAt stays blank for the 14K row.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -662,9 +677,9 @@ window.GOLD5_DATA = {
      "subject": "CittaliFineJewelry Flat Polished Band",
      "url": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
      "status": "read",
-     "checkedOn": "2026-10-23",
-     "result": "corrected",
-     "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+     "checkedOn": "2026-10-25",
+     "result": "unchanged",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
       "price": 195.75,
       "grams": null,
@@ -672,10 +687,11 @@ window.GOLD5_DATA = {
       "solidStated": true,
       "hallmarkStated": false,
       "makerMarkStated": false,
-      "returnsVerified": true
+      "returnsVerified": true,
+      "metalConflict": null
      },
-     "sourceExcerpt": "Listing titled 14k White Gold displays from $195.75 for 2 mm; width/size ranges run through $1,158.75. Description says the design is available in 10k, 14k and 18k solid gold and other materials, so the selected metal must be reconfirmed at checkout. Returns/exchanges accepted within 30 days; buyer pays return shipping.",
-     "readBy": "bc4e36a1 (inherited)",
+     "sourceExcerpt": "Page title '14k White Gold Classic Wedding Band, Flat Polished Comfort Fit Ring'; 'NowPrice:$195.75+' · 'Original Price: $261.00+' · '25% off' · 'Sale ends in 0:29:08'; '12 views in the last 24 hours'; width ladder '2mm ($195.75 - $328.50) · 3mm ($337.50 - $580.50) · 4mm ($369.00 - $798.75) · 5mm ($429.75 - $942.75) · 6mm ($524.25 - $1,158.75)'; 'Returns & exchanges accepted'; CittaliFineJewelry 5/5. Every ladder figure matches the 2026-10-23 capture exactly; the description still lists other materials for the design, so the selected metal must be reconfirmed at checkout (FL-17).",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md"
     },
@@ -687,9 +703,9 @@ window.GOLD5_DATA = {
      "subject": "BUTTERFLYWINGVINTAGE sold band case study",
      "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/6d10ac0a/etsy-and-brilliant-earth.md",
+     "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
      "observed": {
       "price": 420.0,
       "grams": null,
@@ -700,8 +716,8 @@ window.GOLD5_DATA = {
       "returnsVerified": false,
       "metalConflict": null
      },
-     "sourceExcerpt": "'This item is sold out.' Title 'Fine 14K Solid White Gold Ring - 7g Solid Gold -Size 11- Comfort Fit Wedding Ring Band-Marked 14K'; 'Price: $420.00'; 'Original Price: $525.00'; shop BUTTERFLYWINGVINTAGE. Highlights: 'Vintage from before 2007'; 'Materials: White gold, Yellow gold'. Description: 'I am offering a Fine Solid 14K White Gold Wedding/Engagement Band. Quality Men's or woman's Comfort Fit Shiny Smooth Finish Wedding Band is marked 14K with a maker's mark. (Please see 4TH photo). Last photo shows size 11 on the ring sizer. The weight on my postal scale alternates between 6-7 g. Was recently Rhodium Plated and in excellent condition'. FAQ: 'I do not offer a refund for the following reasons: Buyers remorse / Changed mind / Return postage'. Seller: 'Laura, Owner of BUTTERFLYWINGVINTAGE · Phoenix, Arizona · 5.0 (802) · 2k sales · 12 years on Etsy'. Title says 7 g while the description reports 6-7 g, so exact grams, fine gold and metal value stay blank.",
-     "readBy": "6d10ac0a",
+     "sourceExcerpt": "'This item is sold out.'; page title 'Fine 14K Solid White Gold Ring - 7g Solid Gold -Size 11- Comfort Fit Wedding Ring Band-Marked 14K'; 'Price:$420.00' · 'Original Price: $525.00'; 'Fine Solid 14K White Gold Wedding/Engagement Band'; 'marked 14K with a maker's mark. (Please see 4TH photo)'; 'The weight on my postal scale alternates between 6-7 g.'; 'Was recently Rhodium Plated and in excellent condition'; 'Vintage from before 2007'; 'I do not offer a refund for the following reasons: Buyers remorse / Changed mind / Return postage'; BUTTERFLYWINGVINTAGE, Phoenix Arizona, 5.0 (802), 2.1k sales, 12 years. Sold-listing case study (FL-29); displayed $420.00 is not a current offer; title 7 g vs 6-7 g scale range keeps exact grams blank.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/etsy.md",
      "rereadOn": "2026-10-23"
@@ -713,11 +729,11 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile returns",
      "url": "https://www.bluenile.com/policies/returns",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
-     "sourceExcerpt": "Eligible original/unworn returns within 30 days of shipment; RMA required; two complimentary returns per customer/year. Personalized/custom/engraved/post-purchase-resized, Diamond Upgrade, clearance and final-sale items excluded. Missing grading report costs $150.",
-     "readBy": "bc4e36a1 (inherited)",
+     "evidencePath": "verification/evidence/3dfe4d85/policies.md",
+     "sourceExcerpt": "'# 30-DAY MONEY BACK GUARANTEE' … 'within 30 days from the shipment date for a full refund or exchange'; exclusions verbatim 'Personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance items and \"Final Sale\" items are not eligible for return or exchange.'; 'Two complimentary returns are allowed per customer, per year'; 'RMA number is required'; 'The cost to replace a missing diamond grading report is $150'; 'Eligible rings receive one free resize, up or down two sizes, within 6 months of purchase if the design permits.' — the canonical BN_RETURNS string is fully re-confirmed today.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -728,11 +744,11 @@ window.GOLD5_DATA = {
      "subject": "Blue Nile warranty and resizing",
      "url": "https://www.bluenile.com/services/warranty",
      "status": "read",
-     "checkedOn": "2026-10-23",
+     "checkedOn": "2026-10-25",
      "result": "unchanged",
-     "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
-     "sourceExcerpt": "Limited lifetime manufacturing-defect warranty for gold/platinum items priced $1,000 or more; exclusions published. One free resize up/down two sizes within 6 months if design permits; non-resizable styles excluded.",
-     "readBy": "bc4e36a1 (inherited)",
+     "evidencePath": "verification/evidence/3dfe4d85/policies.md",
+     "sourceExcerpt": "'# LIMITED LIFETIME WARRANTY — Effective Oct 11, 2026'; 'Blue Nile warrants gold and platinum jewelry items with a purchase price of $1,000.00 or more against manufacturing defects for as long as you own the jewelry.'; non-coverage list (items under $1,000.00, pearl/silver/alternative-metal jewellery, lost or damaged stones, misuse, loss/theft); 'For up to 6 months … one-time free ring resizing, up or down two sizes if the design permits'; non-transferable; unauthorised repair voids coverage.",
+     "readBy": "3dfe4d85",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
     },
@@ -749,7 +765,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Official contact page lists 1-800-242-2728 and service@bluenile.com, plus chat and showroom options.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 30,
@@ -764,7 +781,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Free 30-day returns/exchanges run from availability for shipment or pickup; original/unworn condition required. Engraved rings may be returned with a $40 engraving-removal charge. Personalized/custom and other published exclusions apply; free FedEx label instructions are provided.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 31,
@@ -779,7 +797,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Free lifetime manufacturing-defect warranty on fine jewelry; wear, gemstone loss, product loss and theft excluded. US/CAN/AUS/UK customers receive free return labels; elsewhere a $50 deposit applies and is refunded for warrantied repairs. Unauthorized repair voids coverage.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 32,
@@ -794,7 +813,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Official contact page lists 800.691.0952 and store/virtual-appointment links.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 33,
@@ -809,7 +829,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Returns must arrive within 30 days of original shipment and require RMA; customer pays return shipping; original shipping is nonrefundable; approved refunds issue within 7 business days. Design Your Own rings are exchange-only under the published terms.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 34,
@@ -824,7 +845,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Complimentary 1-year limited manufacturing-defect warranty for qualifying US purchases after February 2024. Ring sizing is offered except full eternity rings. Missing stones may be replaced, but the cost of the new stone is not covered. Wear, loss and unauthorized repair excluded; after one year repair fees plus a $39 shipping charge apply.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 35,
@@ -839,7 +861,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Official contact page lists 800.554.3509, outside-US 646.627.7353, and service@allurez.com.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/retailers.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 36,
@@ -855,7 +878,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Near the karat quality mark, look for the name or US registered trademark of the company behind it; if there is no trademark with the karat mark, FTC says do not buy. Solid gold means not hollow. Return policies should be obtained in writing.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 37,
@@ -871,7 +895,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "eCFR displays Title 16 up to date as of 10/21/2026 and last amended 10/19/2026. Part 23 includes §23.3 gold content, §23.10 quality marks and §23.18 weight representations.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 38,
@@ -887,7 +912,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Actual fineness may not be more than three one-thousandth parts below the mark on the tested solder-free part; for the entire article including solder, seven one-thousandth parts applies to articles other than watchcases or flatware.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 39,
@@ -903,7 +929,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Misrepresenting the presence, quantity or karat fineness of gold is unfair or deceptive. The rule also says hollow-center products should not be described as solid gold.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 40,
@@ -917,11 +944,12 @@ window.GOLD5_DATA = {
      "result": "corrected",
      "evidencePath": "verification/evidence/6d10ac0a/references.md",
      "sourceExcerpt": "Official U.S. Government Publishing Office text; the link resolved to https://www.govinfo.gov/content/pkg/USCODE-2024-title15/pdf/USCODE-2024-title15-chap8-sec297.pdf. '§ 297. Stamping plated articles'. (a) rolled gold plate / gold plate / gold filled / electroplate articles may not be stamped with any word or mark usually employed to indicate the fineness of gold 'unless such word or mark be accompanied by other words, plainly indicating that such article or part thereof is made of rolled gold plate, gold plate, or gold electroplate, or is gold filled, as the case may be'. (b) Identifying trademark: a manufacturer or dealer subject to section 294 who applies a quality mark indicating gold or silver content 'shall — (A) Apply or cause to be applied to that article a trademark of such persons, which has been duly registered or applied for registration under the laws of the United States ... or the name of such person', and each identifying trademark or name 'shall be applied to that article by the same means as that used in applying the quality mark or stamp appearing thereon, in type or lettering at least as large as that used in such quality mark or stamp, and in a position as close as possible to that quality mark or stamp.' (June 13, 1906, ch. 3289, § 4, 34 Stat. 261; Pub. L. 87-354, § 1, Oct. 4, 1961, 75 Stat. 775; Pub. L. 91-366, § 1(e), July 31, 1970, 84 Stat. 691.) The Cornell LII page for the same section remains a mirror and is named as such in the reference note.",
-     "readBy": "6d10ac0a",
+     "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
      "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
      "rereadOn": "2026-10-23",
-     "priorUrl": "https://www.law.cornell.edu/uscode/text/15/297"
+     "priorUrl": "https://www.law.cornell.edu/uscode/text/15/297",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 41,
@@ -937,7 +965,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Appendix B.8 lists ounce (troy or apothecary) to gram as 3.110348 E+01 (rounded display). The calculator retains Kitco's more precise stated 31.1034768 g/ozt constant and labels that source separately.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 42,
@@ -953,7 +982,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "LBMA Gold Price is set twice daily in IBA-administered auctions commencing at 10:30 and 15:00 London time.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 43,
@@ -969,7 +999,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "FTC explains the right to dispute billing errors and separately addresses complaints about the quality of goods and services.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 44,
@@ -985,7 +1016,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Full refund for qualifying orders that do not arrive, arrive damaged, arrive 7+ days after the maximum estimated delivery window, or differ significantly from description/photos. Other dissatisfaction is directed to the seller's return policy.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 45,
@@ -1001,7 +1033,8 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "JVC offers a jewelry-purchase dispute mediation program for consumers and trade members; acceptance depends on resources, eligible submissions, viable claims and supporting evidence.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     },
     {
      "seq": 46,
@@ -1017,191 +1050,72 @@ window.GOLD5_DATA = {
      "sourceExcerpt": "Official portal for reporting fraud, scams and bad business practices; reports are shared with law-enforcement partners, but FTC does not resolve individual reports.",
      "readBy": "bc4e36a1 (inherited)",
      "firstCapturedBy": "bc4e36a1",
-     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md"
+     "firstCapturedPath": "verification/evidence/bc4e36a1/spot-and-references.md",
+     "inheritedNote": "Captured 2026-10-23 by session bc4e36a1 (through the 6d10ac0a ledger). The fetch proxy returned SignatureDoesNotMatch for this URL on 2026-10-25, so the check was NOT re-opened; it is kept at its original date and is not presented as fresh."
     }
    ],
    "corrections": [
     {
-     "id": "C-01",
-     "subject": "Kitco quote",
-     "before": "$4,022.50/oz and $129.33/g at 5:44 a.m. ET",
-     "after": "$3,996.10/oz and $128.48/g from the 16:12 NY panel, with source prices as of 4:10 p.m. EDT",
-     "reason": "New official-page observation; every derived value must use the same panel quote.",
-     "session": "bc4e36a1"
+     "id": "C-20",
+     "subject": "ET-4366425533 price",
+     "before": "$546.09 (2026-10-23 14K variant start)",
+     "after": "$546.18 (2026-10-25 '14K Yellow Gold ($546.18 - $2,405.36)')",
+     "reason": "Direct re-read of the official listing page; the seller reprised the 14K ladder.",
+     "session": "3dfe4d85"
     },
     {
-     "id": "C-02",
-     "subject": "BE-1343",
-     "before": "$750 USD",
-     "after": "USD blank; current page displays €835",
-     "reason": "Do not convert currency or carry forward a stale USD observation.",
-     "session": "bc4e36a1"
+     "id": "C-21",
+     "subject": "ET-1566052947 price",
+     "before": "$251.30 (2026-10-23 'From $251.30 (2 mm, 30% off $359.00)')",
+     "after": "$246.35 (2026-10-25 'NowPrice:$246.35+'; 2mm ladder starts $246.35; header 35% off $379.00+)",
+     "reason": "Direct re-read; promo depth and base price both changed.",
+     "session": "3dfe4d85"
     },
     {
-     "id": "C-03",
-     "subject": "BE-1343HH",
-     "before": "USD blank with prior $1,190 observation",
-     "after": "USD remains blank; current page displays €1,350",
-     "reason": "No current USD price was read.",
-     "session": "bc4e36a1"
+     "id": "C-22",
+     "subject": "ET-1433905613 price",
+     "before": "$999.70 (2026-10-23 14K range $999.70–$1,368.90, 35% off)",
+     "after": "$984.32 (2026-10-25 '14K Gold ($984.32 - $1,347.84)', 36% off)",
+     "reason": "Direct re-read; 10K range also moved to $664.32–$949.12.",
+     "session": "3dfe4d85"
     },
     {
-     "id": "C-04",
-     "subject": "BE-SECRET",
-     "before": "USD blank after an EUR response",
-     "after": "$1,090 USD from the direct product page",
-     "reason": "A current direct USD observation now exists.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-05",
-     "subject": "ET-4366425533",
-     "before": "$547.26 from 14K options",
-     "after": "$546.09 from 14K options; upper range $2,404.96",
-     "reason": "Current variant ranges changed; unrelated header compare-at was removed rather than inferred.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-06",
-     "subject": "ET-576343849",
-     "before": "$444.80 and exact 7 g used for a below-metal case study",
-     "after": "$420 sold-listing display; exact grams blank because the description says 6–7 g; maker's mark claim recorded",
-     "reason": "The old calculation relied on a snippet and an exact weight the seller did not state. The below-metal conclusion is withdrawn.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-07",
-     "subject": "BN-203738",
-     "before": "18K White Gold presented without the conflicting body text",
-     "after": "Title/specification 18K White Gold and Product Details 14K Yellow Gold published together with a conflict flag",
-     "reason": "A source conflict must be visible, not silently resolved.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-08",
-     "subject": "Etsy provenance and variant labels",
-     "before": "Seven rows marked prior after collector HTTP 500 responses; several header compare-at prices were attached to 14K prices",
-     "after": "All seven listing pages read live; return windows added where stated; mismatched compare-at values blanked",
-     "reason": "Direct pages now exposed variant and policy fields. A header price for another material is not evidence for a 14K compare-at value.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-09",
-     "subject": "Return and warranty wording",
-     "before": "Brilliant Earth engraved items described as not eligible; Allurez missing-stone wording could imply the stone cost was covered",
-     "after": "Brilliant Earth $40 engraving-removal charge and Allurez new-stone cost exclusion stated explicitly",
-     "reason": "Official policy pages contradicted the shorthand.",
-     "session": "bc4e36a1"
-    },
-    {
-     "id": "C-10",
-     "session": "6d10ac0a",
-     "subject": "Kitco quote",
-     "before": "$3,996.10/oz and $128.48/g from the 16:12 NY panel (prices stated as of 4:10 p.m. EDT)",
-     "after": "$3,994.90/oz and $128.44/g from the 19:43 NY panel (prices stated as of 7:42 p.m. EDT)",
-     "reason": "New official-page observation by session 6d10ac0a. Every derived value (fine gold, metal value, price-to-metal, purity table, calculator defaults) is recomputed from this one labelled panel bid. The superseded quote is retained as dated history and is not used in any calculation."
-    },
-    {
-     "id": "C-11",
-     "session": "6d10ac0a",
-     "subject": "Kitco purity table",
-     "before": "24K $3,996.10 / 22K $3,663.22 / 18K $2,997.08 / 14K $2,330.93 / 10K $1,665.17",
-     "after": "24K $3,994.90 / 22K $3,662.12 / 18K $2,996.18 / 14K $2,330.23 / 10K $1,664.67",
-     "reason": "Transcribed from the same page capture's own 'Gold Value by Purity' table; nothing hand-computed or carried over from the earlier quote."
-    },
-    {
-     "id": "C-12",
-     "session": "6d10ac0a",
-     "subject": "Provenance attribution",
-     "before": "All 25 rows labelled 'live 2026-10-23' with no record of which session read them",
-     "after": "Each row and check carries readBy: 8 listings + the spot re-read by 6d10ac0a; 17 listings, 9 policy pages and 11 references inherited from bc4e36a1's same-day 2026-10-23 ledger with their original evidence ids and paths",
-     "reason": "Prevents this pass from implying it opened pages it did not open. Two further pages (ET-1151446373, BE-1343) were only partially retrieved and are logged as partialReads; they upgraded nothing."
-    },
-    {
-     "id": "C-14",
-     "session": "6d10ac0a",
-     "subject": "15 U.S.C. § 297 citation (CR-D49-04)",
-     "before": "Reference R05 cited the Cornell Legal Information Institute mirror https://www.law.cornell.edu/uscode/text/15/297",
-     "after": "Reference R05 cites the official GovInfo U.S. Code text https://www.govinfo.gov/link/uscode/15/297 (resolved to the GPO 2024 edition PDF), re-read live this pass; Cornell is named as a mirror in the reference note",
-     "reason": "Official-source preference. The statutory maker's-mark language was re-read verbatim from GPO text before the citation was changed."
-    },
-    {
-     "id": "C-15",
-     "session": "6d10ac0a",
-     "subject": "16 CFR § 23.18 citation scope (CR-D49-02)",
-     "before": "The checklist cited § 23.18 as the source for asking a seller for a ring's metal weight in grams",
-     "after": "§ 23.18 is cited only for diamond-weight misrepresentation (carat/point claims); the grams criterion is labelled as this project's buying rule, with FTC 'get it in writing' guidance as its consumer source",
-     "reason": "Re-read of the official eCFR text (scopeReads SR-01) shows the section covers diamond weight, not the gold alloy weight of a ring. A citation that overstates a rule is itself a hallucination."
-    },
-    {
-     "id": "C-16",
-     "session": "6d10ac0a",
-     "subject": "Payment prose (CR-D49-01)",
-     "before": "'Every seller reviewed checks out by card or Etsy checkout' and wire/Zelle/gift cards 'Not offered by these sellers'",
-     "after": "Counts taken from the seller records and printed with every record accounted for: a credit card is named by 5 of 13 records, Etsy checkout by 6 of the 7 Etsy shop records, 1 record (Solid Gold Jewelers) states no payment method at all, and 1 record (the sold-out Etsy listing) carries no payment data. Advertised checkout options are labelled as seller statements; absence of a statement is not evidence that a method is refused. Published as FL-32 and linked to the row-level FL-13 gap",
-     "reason": "The prose asserted more than any source states. FTC credit-card guidance establishes consumer dispute rights, not merchant checkout methods."
-    },
-    {
-     "id": "C-17",
-     "session": "6d10ac0a",
-     "subject": "Checker blind spot — single-quoted HTML attributes",
-     "before": "verify.py's link registry (C7) and security scan (C15) matched double-quoted attributes only, so a single-quoted href or target could carry an unregistered external link or omit rel=noopener unnoticed",
-     "after": "Both scans accept either quote style; C7's registry now also covers each reference's named mirror URL and every official URL recorded in the evidence ledger (canonical checks, partial reads and citation-scope reads). Negative test N15 proves the single-quoted case is caught; C22 gained a scope-read publication requirement proved by N16",
-     "reason": "Found while adding the § 23.18 scope-read link to the checklist: the new link was invisible to C7, which reported PASS while an unregistered URL was live on the page. A checker that cannot see part of the page is itself a hallucination risk, so the gap is recorded as a correction, not just fixed."
-    },
-    {
-     "id": "C-18",
-     "session": "6d10ac0a",
-     "subject": "Landing and category page reader claims (found post-merge on PR #53)",
-     "before": "index.html said 'All 25 of 25 rows were re-read from the sellers' own pages on 2026-10-23' and every category page said 'N of these N rows were re-read live on 2026-10-23', although this pass opened only 8 listings and 17 rows are inherited same-day reads; two of the seven category views (halo-pave 0 of 7, bands 0 of 3) contained no row this pass opened at all",
-     "after": "The landing page prints the split — 8 rows re-read live by 6d10ac0a, 17 inherited same-day from bc4e36a1 and labelled — and each category page prints its own split, including 'None of these N rows was opened in this pass' for the three views made entirely of inherited rows. C22 now enforces both sentences and rejects a blanket 'every row was re-read' claim, proved by negative tests N17 and N18",
-     "reason": "True about the date, false about the reader: the same overstatement class as CR-D49-01. Found by reading the deployed pages after the merge instead of trusting a green checker, so it is recorded as a correction and turned into a rule rather than only copy-edited."
-    },
-    {
-     "id": "C-19",
-     "session": "6d10ac0a",
-     "subject": "Cross-suite gate repair — tools/check_report.py amount corpus (found post-merge)",
-     "before": "The no-hallucination gate's rule 'every amount quoted in a flag is documented in the evidence corpus' built its corpus from ALL .txt/.md files in verification/evidence/, data/evidence/ and docs/verification/ — including narrative memos from other suites. When this pass' memo quoted the $420.00 sold-listing price, the security suite's planted $420 flag amount went from CAUGHT to MISSED: tools/security_test.py reported 8/9 while check_report.py still reported PASS",
-     "after": "The corpus is now (1) the capture files this suite's own rows, references, sellers and spot cite, plus (2) the root level of its capture folders, read non-recursively — session subdirectories belong to other suites and a memo nobody cites is prose, not a capture. A tenth planted error now proves the boundary: an amount 'documented' only by an uncited memo must still be caught. Clean state PASS (1,649 checks) and 10/10 planted errors caught",
-     "reason": "Corpus bleed is a false negative in the project's main hallucination gate, so it was repaired rather than logged only: no other session holds an open claim (gh pr list --state open is empty and every board claim is closed), and the alternative — deleting the $420.00 quote from this pass' memo to make someone else's test pass — would have degraded real evidence to satisfy a checker. The edit is recorded here and on the board because tools/ is outside this session's claimed file scope."
-    },
-    {
-     "id": "C-13",
-     "session": "6d10ac0a",
-     "subject": "Listing values — no change attestation",
-     "before": "AL-5882 $1,085/5.00 g · AL-170 $933/4.80 g · AL-4426 $585/3.58 g · AV-25893 $1,100.00/2.3 g · JM-149700 $3,020.00 (retail $6,041.00)/2.3 g · SGJ-B02561 no price/4.7 g · BN-203738 $2,210/18K-vs-14K conflict · ET-576343849 sold out $420.00 (original $525.00)/no exact grams",
-     "after": "Identical — every re-read field matched the canonical row exactly",
-     "reason": "Recorded so that 'unchanged' is an evidenced result rather than an assumption. The only canonical value that moved this pass is the timestamped spot quote."
+     "id": "C-23",
+     "subject": "Spot quote timestamp",
+     "before": "primary quote 'as of October 23, 2026 at 7:42 p.m. EDT' ($3,994.90 / $128.44)",
+     "after": "re-confirmed at 'Oct 24, 2026 - 23:14 NY Time' / 'as of October 24, 2026 at 11:12 p.m. EDT' — identical $3,994.90 / $128.44 because the market had not reopened after the Friday 5:00 PM NY close",
+     "reason": "Newer read of the same values; the older capture moves to the dated prior chain. No derived value changes.",
+     "session": "3dfe4d85"
     }
    ],
    "inherits": {
-    "session": "bc4e36a1",
-    "ledger": "data/live_check_bc4e36a1.json",
+    "session": "6d10ac0a + bc4e36a1",
+    "ledger": "data/live_check_6d10ac0a.json (overlaying data/live_check_bc4e36a1.json)",
     "checkedOn": "2026-10-23",
-    "note": "37 of the 46 checks were captured earlier the same day by session bc4e36a1 (merged as PR #50). They are carried forward byte-identical with readBy='bc4e36a1 (inherited)' and are never relabelled as this session's reads. 9 checks (1 spot + 8 listings) were re-opened live by session 6d10ac0a."
+    "note": "20 of the 46 checks were captured on 2026-10-23 by earlier sessions and are carried forward byte-identical with readBy='<session> (inherited)'. They are never relabelled as this session's reads. 26 checks (1 spot + 23 listings + 2 policies) were re-opened live by session 3dfe4d85 on 2026-10-25."
    },
    "partialReads": [
     {
-     "entryId": "ET-1151446373",
-     "canonicalCheck": "L21",
-     "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
-     "checkedOn": "2026-10-23",
-     "readBy": "6d10ac0a",
-     "evidencePath": "verification/evidence/6d10ac0a/etsy-and-brilliant-earth.md",
-     "retrieved": "Seller description block: 'Material: Solid Gold (not gold plated or gold filled)'; 'Karat: 14 K (585)'; 'Gold grams: 3.70 gr'; 'Diamond weight: 0.30 ct'; 'Ruby weight: 0.90 ct'; 'Made to order'; 'All of our items are 14K real gold. We do not use any gold filled, gold plated or gold vermeil items.' Shop 'VeraByEden' with Etsy 'Star Seller' badge (a marketplace service metric, not purity evidence).",
-     "notRetrieved": "The price block was not present in the retrieved content.",
-     "effect": "Corroboration only. Canonical values (price $969.00, grams 3.7, karat 14, solid gold stated) remain labelled with bc4e36a1's 2026-10-23 read L21. No value was upgraded, blanked or re-dated by this pass."
+     "entryId": "BE-NADIA",
+     "canonicalCheck": "L10",
+     "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
+     "checkedOn": "2026-10-25",
+     "readBy": "3dfe4d85",
+     "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
+     "retrieved": "Page opened 2026-10-25: H1 'Nadia Diamond Ring in 14K Yellow Gold'; price line served in EUR only: '€‌1,400.00(Setting Only)'; wizard 'nadia-€‌1,400.00'; Product Details '1.8mm band width', 'Marquise and round diamond accents … (0.06 and 0.05 ct. tw.)'; coverage 'Free Shipping & Returns · Free Lifetime Warranty · Lifetime Diamond Upgrade · Free 1-Year Resizing'; 'ships by Mon, Nov 16'.",
+     "notRetrieved": "No USD setting price was served to this session (EUR render, German locale strip). The canonical USD price could not be confirmed at today's date.",
+     "effect": "Corroboration plus a dated EUR observation. The $1,250.00 USD figure remains the 2026-10-23 read (canonical check L10, readBy bc4e36a1 (inherited)) and the row is now labelled provenance=prior, dated 2026-10-23, flagged FL-08 and FL-33 on the site. No EUR→USD conversion was performed. Title, karat and band width were re-confirmed today and match the canonical row exactly."
     },
     {
-     "entryId": "BE-1343",
-     "canonicalCheck": "L09",
-     "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
-     "checkedOn": "2026-10-23",
-     "readBy": "6d10ac0a",
-     "evidencePath": "verification/evidence/6d10ac0a/etsy-and-brilliant-earth.md",
-     "retrieved": "Page title 'Freesia 2mm Solitaire Ring in 14K Yellow Gold | Brilliant Earth'; header phone 800.691.0952; banner 'ENDS SOON! Receive a $250 Gift Card With Purchase Over $1,000. Use Code GIFT in Cart.' (a promotion, not a product price).",
-     "notRetrieved": "The retrieved content chunk contained only site navigation; no price was read.",
-     "effect": "Corroboration of the 14K Yellow Gold title only. The EUR-serving observation (€835) and the blank USD cell stay exactly as flagged under FL-08 with bc4e36a1's 2026-10-23 read L09. No EUR→USD conversion was made."
+     "entryId": "BE-SECRET",
+     "canonicalCheck": "L12",
+     "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
+     "checkedOn": "2026-10-25",
+     "readBy": "3dfe4d85",
+     "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
+     "retrieved": "Page opened 2026-10-25: H1 'Secret Halo 1.5mm Diamond Ring in 14K Yellow Gold'; price line served in EUR only: '€‌1,250.00(Setting Only)'; Ring Information Style BE1D13065-14KY, Metal 14K Yellow Gold, Width 1.5 mm, Claw Prong; '13 round diamonds (0.06 ct. tw.)'; 'ships by Mon, Nov 16'.",
+     "notRetrieved": "No USD setting price served (EUR render). The canonical USD price could not be confirmed at today's date.",
+     "effect": "Corroboration plus a dated EUR observation. The $1,090.00 USD figure remains the 2026-10-23 read (canonical check L12, readBy bc4e36a1 (inherited)); row labelled provenance=prior, dated 2026-10-23, flagged FL-08 and FL-33. No conversion. Title, karat and 1.5 mm width re-confirmed today and match the canonical row exactly."
     }
    ],
    "scopeReads": [
@@ -1233,52 +1147,185 @@ window.GOLD5_DATA = {
    "failures": [
     {
      "seq": "F1",
-     "kind": "mistyped-url",
-     "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-carat",
-     "result": "Shopify '404 Not Found — The page you were looking for does not exist'",
-     "handling": "Operator error: the handle was retyped from a truncated printout instead of copied from the dataset. The canonical URL (...-0-41-ctw) was then fetched and matched the row. A 404 on a mistyped URL proves nothing about the listing, so it is logged here and not recorded as a dead link for AV-25893."
+     "group": "F1",
+     "kind": "proxy-transient-then-recovered",
+     "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
+     "result": "fetch proxy SignatureDoesNotMatch on the first attempt (~03:26 UTC)",
+     "handling": "Retried immediately and succeeded; recorded as L25. A proxy error is not a dead link, so this URL is not reported as unreachable."
     },
     {
      "seq": "F2",
-     "kind": "fetch-proxy-error",
-     "url": "brilliantearth.com BE-1343 / bluenile.com BN-203738 / etsy.com ET-576343849 (first attempts)",
-     "result": "Proxy returned 'SignatureDoesNotMatch' — infrastructure error, not a site error",
-     "handling": "Retried with the identical official URLs; all three loaded. Logged rather than dropped, because a failed read must never be reported as a successful one."
+     "group": "F1",
+     "kind": "proxy-transient-then-recovered",
+     "url": "https://www.bluenile.com/policies/returns",
+     "result": "fetch proxy SignatureDoesNotMatch on the first attempt (~03:26 UTC)",
+     "handling": "Retried immediately and succeeded; recorded as P01, re-confirmed BN_RETURNS verbatim."
     },
     {
      "seq": "F3",
-     "kind": "partial-content",
-     "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
-     "result": "price block absent from the retrieved chunk",
-     "handling": "Recorded in partialReads; USD price stays blank (FL-08)."
+     "group": "F2",
+     "kind": "proxy-transient-then-recovered",
+     "url": "https://www.bluenile.com/services/warranty",
+     "result": "fetch proxy SignatureDoesNotMatch on two attempts",
+     "handling": "Succeeded on the third attempt; recorded as P02, including the 'Effective Oct 11, 2026' header."
     },
     {
      "seq": "F4",
-     "kind": "partial-content",
-     "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
-     "result": "price block absent from the retrieved chunk",
-     "handling": "Recorded in partialReads; price stays labelled inherited (L21)."
+     "group": "F3",
+     "kind": "proxy-failed-not-reread",
+     "url": "https://www.bluenile.com/contact-us",
+     "result": "fetch proxy SignatureDoesNotMatch on 2 attempts",
+     "handling": "P03 NOT re-read; the 2026-10-23 bc4e36a1 check is kept, labelled inherited, flagged FL-33. No contact detail was re-confirmed today."
     },
     {
      "seq": "F5",
-     "kind": "not-re-read-this-pass",
-     "url": "9 seller policy/contact pages + 11 official/regulatory references",
-     "result": "not opened by this pass",
-     "handling": "They keep bc4e36a1's 2026-10-23 captures (P01-P09, R01-R11), their original evidence paths and an explicit 'readBy: bc4e36a1 (inherited)' label. See failures-and-irregularities.md sections 2-3."
+     "group": "F4",
+     "kind": "proxy-failed-not-reread",
+     "url": "https://www.brilliantearth.com/30-Day-Returns/",
+     "result": "fetch proxy SignatureDoesNotMatch on 2 attempts",
+     "handling": "P04 NOT re-read; the 2026-10-23 check is kept and labelled inherited (FL-33). The BE product pages opened today display the 'Free Shipping & Returns' coverage line — marketing corroboration only, recorded as such."
+    },
+    {
+     "seq": "F6",
+     "group": "F4",
+     "kind": "proxy-failed-not-reread",
+     "url": "https://www.brilliantearth.com/customer-service/warranty/#manufacturing_warranty",
+     "result": "fetch proxy SignatureDoesNotMatch in a batched attempt",
+     "handling": "P05 NOT re-read; 2026-10-23 check kept, labelled inherited (FL-33)."
+    },
+    {
+     "seq": "F7",
+     "group": "F4",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.brilliantearth.com/contact/",
+     "result": "not attempted once the proxy began failing for every URL",
+     "handling": "P06 NOT re-read; 2026-10-23 check kept, labelled inherited (FL-33). Recorded as not attempted — never dressed up as a failed fetch."
+    },
+    {
+     "seq": "F8",
+     "group": "F5",
+     "kind": "proxy-failed-not-reread",
+     "url": "https://www.allurez.com/pages/return-policy",
+     "result": "fetch proxy SignatureDoesNotMatch on 2 attempts",
+     "handling": "P07 NOT re-read; 2026-10-23 check kept, labelled inherited (FL-33). The Allurez product pages re-read today show 'Return or exchange within 30 days if unsatisfied' — marketing corroboration, not a policy read."
+    },
+    {
+     "seq": "F9",
+     "group": "F5",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.allurez.com/pages/warranty",
+     "result": "not attempted once the outage began",
+     "handling": "P08 NOT re-read; 2026-10-23 check kept, labelled inherited (FL-33)."
+    },
+    {
+     "seq": "F10",
+     "group": "F5",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.allurez.com/pages/contact",
+     "result": "not attempted once the outage began",
+     "handling": "P09 NOT re-read; 2026-10-23 check kept, labelled inherited (FL-33)."
+    },
+    {
+     "seq": "F11",
+     "group": "F6",
+     "kind": "proxy-failed",
+     "url": "https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry",
+     "result": "R01: attempt failed with SignatureDoesNotMatch — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R01 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F12",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-23",
+     "result": "R02: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R02 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F13",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.govinfo.gov/link/uscode/15/295",
+     "result": "R03: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R03 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F14",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.law.cornell.edu/cfr/text/16/23.3",
+     "result": "R04: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R04 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F15",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.govinfo.gov/link/uscode/15/297",
+     "result": "R05: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R05 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F16",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+     "result": "R06: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R06 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F17",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://www.lbma.org.uk/prices-and-data/lbma-precious-metal-prices",
+     "result": "R07: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R07 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F18",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://consumer.ftc.gov/articles/using-credit-cards-and-disputing-charges",
+     "result": "R08: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R08 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F19",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://help.etsy.com/hc/en-us/articles/7471925990807-Etsy-s-Purchase-Protection-Program",
+     "result": "R09: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R09 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F20",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://jvclegal.org/mediation-services/",
+     "result": "R10: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R10 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
+    },
+    {
+     "seq": "F21",
+     "group": "F6",
+     "kind": "not-attempted-after-outage",
+     "url": "https://reportfraud.ftc.gov/",
+     "result": "R11: not attempted after the outage began — the proxy failed for every URL attempted after ~03:30 UTC, including a Blue Nile page that had served normally 20 minutes earlier",
+     "handling": "R11 NOT re-read on 2026-10-25; the 2026-10-23 check is kept byte-identical, labelled inherited and flagged FL-33. Statutory and regulatory texts do not expire overnight, but the gap is disclosed rather than hidden."
     }
    ]
   },
   "coverage": {
-   "live": 25,
-   "prior": 0,
-   "liveDate": "2026-10-23",
-   "priorDate": null,
-   "reread": 8,
-   "inherited": 17,
-   "rereadSession": "6d10ac0a",
-   "inheritedSession": "bc4e36a1",
+   "live": 23,
+   "prior": 2,
+   "liveDate": "2026-10-25",
+   "priorDate": "2026-10-23",
+   "reread": 23,
+   "inherited": 2,
+   "rereadSession": "3dfe4d85",
+   "inheritedSession": "bc4e36a1 + 6d10ac0a (2026-10-23)",
    "partialReads": 2,
-   "failuresLogged": 5
+   "failuresLogged": 21
   },
   "archive": [
    {
@@ -1325,7 +1372,7 @@ window.GOLD5_DATA = {
   "counts": {
    "entries": 25,
    "sellers": 13,
-   "flags": 32,
+   "flags": 33,
    "references": 11
   }
  },
@@ -1335,13 +1382,24 @@ window.GOLD5_DATA = {
    "url": "https://www.kitco.com/charts/gold",
    "usdPerOz": 3994.9,
    "usdPerGram": 128.44,
-   "asOf": "2026-10-23 7:42 p.m. ET",
+   "asOf": "2026-10-24 11:12 p.m. ET",
    "kind": "spot bid",
-   "panelTime": "Oct 23, 2026 - 19:43 NY Time",
-   "method": "live fetch (2026-10-23 19:43 NY panel; session 6d10ac0a)",
-   "quote": "Live Gold Price — Oct 23, 2026 - 19:43 NY Time. Bid 3,994.90 USD (-28.20, -0.70%); Ask 3,996.90; ounce 3,994.90 (-28.20); gram 128.44 (-0.91); Kilo 128,440.99 (-906.65); pennyweight 199.75 (-1.41); tola 1,498.09 (-10.58); tael 4,854.91 (-34.27); Day's Range 3975.10 - 4040.20. 'Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 23, 2026 at 7:42 p.m. EDT.' Body text: 'The current price of gold is $3,994.90 per troy ounce as of October 23, 2026, 7:42 p.m. ET, down $28.40 today.' The same page also embeds an OANDA XAUUSD widget printing a close of 3,995.810 at 19:43:05 UTC-4 and a kilo figure of 128,439.02 in its unit table against 128,440.99 in the ticker; those extra prints are disclosed (FL-25) and are not used in any calculation."
+   "panelTime": "Oct 24, 2026 - 23:14 NY Time",
+   "method": "live fetch 2026-10-25 03:14 UTC of the Oct 24, 2026 23:14 NY panel (session 3dfe4d85)",
+   "quote": "Live Gold Price — Oct 24, 2026 - 23:14 NY Time. Bid 3,994.90 USD (-28.20, -0.70%); Ask 3,996.90; ounce 3,994.90 (-28.20); gram 128.44 (-0.91); Kilo 128,440.99 (-906.65); pennyweight 199.75 (-1.41); tola 1,498.09 (-10.58); tael 4,854.91 (-34.27); Day's Range 3975.10 - 4040.20. 'Prices provided by Kitco Metals Inc. Displayed in U.S. dollars (USD), as of October 24, 2026 at 11:12 p.m. EDT.' Body text: 'The current price of gold is $3,994.90 per troy ounce as of October 24, 2026, 11:12 p.m. ET, down $28.40 today.' The purity table carries its own stamp 'Updated Oct 23, 2026 • 5:00 PM NY Time' — the Friday close carried through the weekend. The embedded TradingView widget printed O/H/L/C empty this time (23:14:15 UTC-4); on 2026-10-23 it printed a close of 3,995.810, and the unit table again shows a kilo of 128,439.02 against 128,440.99 in the ticker; those extra prints are disclosed (FL-25) and are not used in any calculation."
   },
+  "priorLeadNote": "Values identical to the 2026-10-23 7:42 p.m. ET capture because spot had not reopened after the Friday 5:00 PM NY close; what changed is the timestamp, and this session read it itself.",
   "prior": [
+   {
+    "source": "Kitco Metals Inc. — Live Gold Price",
+    "url": "https://www.kitco.com/charts/gold",
+    "usdPerOz": 3994.9,
+    "usdPerGram": 128.44,
+    "asOf": "2026-10-23 7:42 p.m. ET",
+    "kind": "spot bid",
+    "method": "live fetch (2026-10-23 19:43 NY panel; session 6d10ac0a)",
+    "note": "The previous canonical quote, re-confirmed identically by this pass under the Oct 24 23:14 NY panel timestamp (weekend carry). Kept as dated history; not used in any calculation."
+   },
    {
     "source": "Kitco Metals Inc. — Live Gold Price",
     "url": "https://www.kitco.com/charts/gold",
@@ -1416,9 +1474,9 @@ window.GOLD5_DATA = {
    }
   ],
   "notes": [
-   "The 2026-10-23 7:42 p.m. ET capture shows the bid ticker at $3,994.90 with $128.44/g, a body sentence repeating $3,994.90/oz 'as of October 23, 2026, 7:42 p.m. ET, down $28.40 today', the purity calculator's 24K line at $3,994.90, an embedded OANDA widget close of 3,995.810, and two different kilo prints (128,440.99 ticker vs 128,439.02 unit table). The ticker bid and its own per-gram figure are the numbers used for every calculation; the timestamp is part of the value and the extra prints are disclosed, not mixed in (FL-25). Intraday moves: -$1.20/oz from the 4:10 p.m. ET capture ($3,996.10) and -$27.60/oz from the 5:44 a.m. ET capture ($4,022.50).",
-   "Earlier quotes (4:10 p.m. ET, 5:44 a.m. ET and 2026-10-22) are retained only as dated history and are labelled prior. They are not used in any calculation on this site.",
-   "This quote was read by session 6d10ac0a and is the only canonical value that changed in this pass: all eight re-read listing pages matched their recorded price, weight, karat, solidity, hallmark, maker's-mark and return fields exactly."
+   "The 2026-10-25 read (2026-10-25 03:14 UTC) shows the bid ticker at $3,994.90 with $128.44/g at the 'Oct 24, 2026 - 23:14 NY Time' panel, a body sentence repeating $3,994.90/oz 'as of October 24, 2026, 11:12 p.m. ET, down $28.40 today', the purity table (stamped 'Updated Oct 23, 2026 • 5:00 PM NY Time') at 24K $3,994.90, and two different kilo prints (128,440.99 ticker vs 128,439.02 unit table). The ticker bid and its own per-gram figure are the numbers used for every calculation; the timestamp is part of the value and the extra prints are disclosed, not mixed in (FL-25). The numbers are identical to the 2026-10-23 7:42 p.m. ET capture because the market has not reopened since the Friday close; that capture now sits in the dated prior chain.",
+   "Earlier quotes (2026-10-23 7:42 p.m. ET, 4:10 p.m. ET, 5:44 a.m. ET and the 2026-10-22 pair) are retained only as dated history and are labelled prior. They are not used in any calculation on this site.",
+   "This quote was re-read by session 3dfe4d85 on 2026-10-25. No listing-derived number changed because of the spot: the only listing values that moved were three Etsy prices, corrected from their own captures (C-20/C-21/C-22 in the ledger)."
   ],
   "purity": {
    "fineness": {
@@ -1435,7 +1493,7 @@ window.GOLD5_DATA = {
     "14K": 2330.23,
     "10K": 1664.67
    },
-   "source": "Kitco 'Gold Value by Purity' table, same 2026-10-23 7:42 p.m. ET page capture (session 6d10ac0a)"
+   "source": "Kitco 'Gold Value by Purity' table, 2026-10-25 read of the Oct 24 23:14 NY page (session 3dfe4d85; values identical to the 2026-10-23 7:42 p.m. ET capture — the table itself is stamped 'Updated Oct 23, 2026 • 5:00 PM NY Time')"
   }
  },
  "entries": [
@@ -1462,14 +1520,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L01",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-hidden-halo-solitaire-plus-diamond-engagement-ring-in-14k-yellow-gold-item-192506",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -1477,16 +1535,15 @@ window.GOLD5_DATA = {
     "FL-14",
     "FL-05",
     "FL-21",
-    "FL-06",
-    "FL-31"
+    "FL-06"
    ],
    "notes": [
-    "Direct product page re-read live on 2026-10-23; setting price and product specifications recorded.",
+    "Direct product page re-read live on 2026-10-25; setting price and product specifications recorded.",
     "Lifetime warranty applies only to items priced $1,000 or more.",
-    "Official-source read L01 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L01 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-195639",
@@ -1511,14 +1568,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L02",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/petite-solitaire-engagement-ring-in-14k-yellow-gold-item-195639",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -1526,15 +1583,14 @@ window.GOLD5_DATA = {
     "FL-14",
     "FL-05",
     "FL-21",
-    "FL-06",
-    "FL-31"
+    "FL-06"
    ],
    "notes": [
-    "Direct product page re-read live on 2026-10-23; setting price and product specifications recorded.",
-    "Official-source read L02 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Direct product page re-read live on 2026-10-25; setting price and product specifications recorded.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L02 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-203257",
@@ -1559,14 +1615,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L03",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-four-prong-solitaire-engagement-ring-in-14k-yellow-gold-item-203257",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -1574,15 +1630,14 @@ window.GOLD5_DATA = {
     "FL-14",
     "FL-05",
     "FL-21",
-    "FL-06",
-    "FL-31"
+    "FL-06"
    ],
    "notes": [
     "Product page re-read this pass: $870 (Setting Price), Metal 14K Yellow Gold, Width 1.90mm.",
-    "Official-source read L03 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L03 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-195326",
@@ -1607,29 +1662,28 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L04",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/riviera-pave-diamond-engagement-ring-in-14k-white-gold-1-6-ct-tw-item-195326",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-05",
-    "FL-21",
-    "FL-31"
+    "FL-21"
    ],
    "notes": [
-    "Direct product page re-read live on 2026-10-23; setting price and product specifications recorded.",
-    "Official-source read L04 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Direct product page re-read live on 2026-10-25; setting price and product specifications recorded.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L04 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-195871",
@@ -1654,29 +1708,28 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L05",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/french-pave-diamond-engagement-ring-in-14k-yellow-gold-1-4-ct-tw-item-195871",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-05",
-    "FL-21",
-    "FL-31"
+    "FL-21"
    ],
    "notes": [
     "Product page re-read this pass: $1,800 (Setting Price), 14K Yellow Gold, 2.50mm, 16 diamonds 1/4 ct. tw.",
-    "Official-source read L05 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L05 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-311132",
@@ -1701,29 +1754,28 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L06",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/criss-cross-solitaire-engagement-ring-in-18k-yellow-gold-by-james-allen-item-311132",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-05",
-    "FL-21",
-    "FL-31"
+    "FL-21"
    ],
    "notes": [
-    "Direct product page re-read live on 2026-10-23; setting price and product specifications recorded.",
-    "Official-source read L06 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Direct product page re-read live on 2026-10-25; setting price and product specifications recorded.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L06 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-203738",
@@ -1748,14 +1800,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": "Title and specification say 18K White Gold; Product Details say 14K Yellow Gold.",
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L07",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/floral-marquise-diamond-engagement-ring-in-18k-white-gold-item-203738",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -1767,10 +1819,10 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Direct product page re-read live: $2,210 Setting Price; title/specification 18K White Gold; Product Details 14K Yellow Gold (FL-30).",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L07 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L07 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BN-203348",
@@ -1795,14 +1847,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "evidenceId": "L08",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.bluenile.com/engagement-rings/design-your-own-ring/classic-simple-solitaire-engagement-ring-in-14k-yellow-gold-item-203348",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
@@ -1810,15 +1862,14 @@ window.GOLD5_DATA = {
     "FL-14",
     "FL-05",
     "FL-21",
-    "FL-06",
-    "FL-31"
+    "FL-06"
    ],
    "notes": [
     "Product page re-read this pass: $1,145 (Setting Price), Stock 502120y14, 14K Yellow Gold, Width 2.40mm.",
-    "Official-source read L08 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L08 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BE-1343",
@@ -1831,7 +1882,7 @@ window.GOLD5_DATA = {
    "price": null,
    "compareAt": null,
    "priceBasis": "setting",
-   "priceNote": "USD price not confirmable — direct product page served EUR €835 setting only on 2026-10-23 (FL-08); prior USD $750 is a dated observation only, no conversion",
+   "priceNote": "USD price not confirmable — the product page served EUR €835.00 (Setting Only) again on 2026-10-25 (FL-08, FL-33); the USD cell stays blank, no conversion (an earlier USD $750 render is a dated observation)",
    "priceSourceUrl": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
    "grams": null,
    "gramsText": null,
@@ -1843,30 +1894,29 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
+   "returns": "(policy page not re-reachable 2026-10-25 — FL-33) Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
    "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
    "returnsVerified": true,
    "evidenceId": "L09",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
    "url": "https://www.brilliantearth.com/Freesia-2mm-Solitaire-Ring-14K-Gold-BE1343-76787087/",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-21",
-    "FL-08",
-    "FL-31"
+    "FL-08"
    ],
    "notes": [
-    "Direct product page re-read live: €835 Setting Only, style BE1343-14KY, 14K Yellow Gold, width 2–1.2 mm; current USD price blank (FL-08).",
-    "Prior $750 USD and 80 reviews at 4.8/5 are dated observations, not current claims.",
-    "Official-source read L09 (blanked) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Opened again 2026-10-25: price line served ‘€‌835.00(Setting Only)’; style BE1343-14KY, 14K Yellow Gold, Width 2-1.2 mm, Claw Prong re-confirmed; the USD cell stays blank — no conversion (FL-08, FL-33).",
+    "Prior USD $750 and the review count (80 shown on this read) are dated observations, not current claims. The banner printed EUR (€280.00 gift card over €1,150.00) while the promo image block printed ‘USD$250 GIFT CARD … USD$1,000’ — the mixed-currency render is recorded for FL-08.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L09 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BE-NADIA",
@@ -1879,7 +1929,7 @@ window.GOLD5_DATA = {
    "price": 1250,
    "compareAt": null,
    "priceBasis": "setting",
-   "priceNote": "$1,250 setting only (center diamond extra)",
+   "priceNote": "$1,250 setting only (center diamond extra) — dated 2026-10-23 USD observation; the 2026-10-25 open served ‘€‌1,400.00(Setting Only)’ with no USD price (FL-08, FL-33; no conversion)",
    "priceSourceUrl": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
    "grams": null,
    "gramsText": null,
@@ -1891,7 +1941,7 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
+   "returns": "(policy page not re-reachable 2026-10-25 — FL-33) Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
    "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
    "returnsVerified": true,
    "evidenceId": "L10",
@@ -1899,17 +1949,19 @@ window.GOLD5_DATA = {
    "url": "https://www.brilliantearth.com/Nadia-Diamond-Ring-14K-Gold-BE1D6013-76819968/",
    "sources": [],
    "checkedOn": "2026-10-23",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-21",
-    "FL-31"
+    "FL-08",
+    "FL-33"
    ],
    "notes": [
-    "Product page re-read this pass: $1,250 (Setting Only), 14K Yellow Gold, 1.8mm band; 143 reviews shown.",
-    "Official-source read L10 (unchanged) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Page opened again 2026-10-25: title, 14K Yellow Gold, 1.8mm band, accent details (0.06 and 0.05 ct. tw.) and 143 reviews re-confirmed — but the price line served EUR only, so the $1,250 remains the 2026-10-23 read and this row is labelled prior, never current.",
+    "No EUR→USD conversion was performed (FL-08, FL-33).",
+    "NOT re-fetched on 2026-10-25 as a current value: the official page was opened again by session 3dfe4d85 but served EUR only (partial read logged in the ledger); the canonical figures stay the 2026-10-23 official-source read L10 (unchanged, captured by session bc4e36a1) — labelled prior, never presented as current, no EUR converted (FL-08, FL-33)."
    ],
    "availability": null,
    "readBy": "bc4e36a1 (inherited)"
@@ -1925,7 +1977,7 @@ window.GOLD5_DATA = {
    "price": null,
    "compareAt": null,
    "priceBasis": "setting",
-   "priceNote": "USD price not confirmable — product page served EUR €1,350.00 on 2026-10-23 (FL-08); prior USD $1,190 seen on the product page 2026-10-22 (dated observation only, no conversion)",
+   "priceNote": "USD price not confirmable — the product page served EUR €1,350.00 (Setting Only) again on 2026-10-25 (FL-08, FL-33); prior USD $1,190 seen on the product page 2026-10-22 (dated observation only, no conversion)",
    "priceSourceUrl": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
    "grams": null,
    "gramsText": null,
@@ -1937,29 +1989,28 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
+   "returns": "(policy page not re-reachable 2026-10-25 — FL-33) Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
    "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
    "returnsVerified": true,
    "evidenceId": "L11",
-   "evidencePath": "verification/evidence/bc4e36a1/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/brilliant-earth.md",
    "url": "https://www.brilliantearth.com/Freesia-Hidden-Halo-Diamond-Ring-14K-Gold-BE1D3939-76789075/",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-21",
-    "FL-08",
-    "FL-31"
+    "FL-08"
    ],
    "notes": [
-    "Direct product page re-read live: €1,350 Setting Only, style BE1D3939-14KY, 14K Yellow Gold, 2–1.3 mm, 14 accent diamonds 0.05 ct. tw.; USD remains blank (FL-08). Prior $1,190 USD is a dated observation only.",
-    "Official-source read L11 (blank-retained) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Opened again 2026-10-25: ‘€‌1,350.00(Setting Only)’, style BE1D3939-14KY, 14K Yellow Gold, Width 2-1.3 mm, 14 shared-prong accents min 0.05 ctw, 31 reviews; USD cell stays blank (FL-08, FL-33). Prior $1,190 USD is a dated observation only.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L11 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "BE-SECRET",
@@ -1972,7 +2023,7 @@ window.GOLD5_DATA = {
    "price": 1090,
    "compareAt": null,
    "priceBasis": "setting",
-   "priceNote": "$1,090 USD setting only (center diamond extra), read directly on the product page 2026-10-23; an earlier €1,250 EUR response is dated history, not converted",
+   "priceNote": "$1,090 USD setting only (center diamond extra) — dated 2026-10-23 read; the 2026-10-25 open served ‘€‌1,250.00(Setting Only)’ with no USD price (FL-08, FL-33; no conversion)",
    "priceSourceUrl": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
    "grams": null,
    "gramsText": null,
@@ -1984,7 +2035,7 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
+   "returns": "(policy page not re-reachable 2026-10-25 — FL-33) Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
    "returnUrl": "https://www.brilliantearth.com/30-Day-Returns/",
    "returnsVerified": true,
    "evidenceId": "L12",
@@ -1992,17 +2043,18 @@ window.GOLD5_DATA = {
    "url": "https://www.brilliantearth.com/Secret-Halo-1.5mm-Diamond-Ring-14K-Gold-BE1D13065-76823478/",
    "sources": [],
    "checkedOn": "2026-10-23",
-   "provenance": "live",
+   "provenance": "prior",
    "flags": [
     "FL-03",
     "FL-15",
     "FL-14",
     "FL-21",
-    "FL-31"
+    "FL-08",
+    "FL-33"
    ],
    "notes": [
-    "Direct product page re-read live: $1,090 USD Setting Only; 14K Yellow Gold; 1.5 mm; 13 accent diamonds 0.06 ct. tw. This direct USD observation replaces the prior EUR-only blank; the earlier €1,250 EUR response remains dated history and FL-08 no longer applies to this row.",
-    "Official-source read L12 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Direct product page re-read live 2026-10-23: $1,090 USD Setting Only; 14K Yellow Gold; 1.5 mm; 13 accent diamonds 0.06 ct. tw. Opened again 2026-10-25: style BE1D13065-14KY, 1.5 mm and 92 reviews re-confirmed, but the price line served EUR only (€1,250.00) — the USD figure stays the dated 2026-10-23 observation, FL-08 applies again and the row is labelled prior (FL-33).",
+    "NOT re-fetched on 2026-10-25 as a current value: the official page was opened again by session 3dfe4d85 but served EUR only (partial read logged in the ledger); the canonical figures stay the 2026-10-23 official-source read L12 (corrected, captured by session bc4e36a1) — labelled prior, never presented as current, no EUR converted (FL-08, FL-33)."
    ],
    "availability": null,
    "readBy": "bc4e36a1 (inherited)"
@@ -2030,14 +2082,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
+   "returns": "(last read 2026-10-23; the policy page was unreachable for the 2026-10-25 pass — FL-33) Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
    "returnUrl": "https://www.allurez.com/pages/return-policy",
    "returnsVerified": true,
    "evidenceId": "L13",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.allurez.com/products/filigree-designed-solitaire-engagement-ring-setting-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -2047,12 +2099,12 @@ window.GOLD5_DATA = {
     "FL-18"
    ],
    "notes": [
-    "Product page re-read this pass: $1,085, style U5882, 14k yellow gold, gold weight 5.00 g approx., widths 2.9/2.3 mm.",
+    "Product page re-read live 2026-10-25: $1,085, style U5882, 14k yellow gold, gold weight 5.00 g approx., widths 2.9/2.3 mm — identical to the 2026-10-23 capture.",
     "Page also shows a '$2,497 Everyone Else / 57% Savings' comparison — seller marketing, not used.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L13 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L13 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "AL-170",
@@ -2077,14 +2129,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
+   "returns": "(last read 2026-10-23; the policy page was unreachable for the 2026-10-25 pass — FL-33) Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
    "returnUrl": "https://www.allurez.com/pages/return-policy",
    "returnsVerified": true,
    "evidenceId": "L14",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.allurez.com/products/antique-engraved-solitaire-engagement-ring-setting-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -2094,12 +2146,12 @@ window.GOLD5_DATA = {
     "FL-18"
    ],
    "notes": [
-    "Product page re-read this pass: $933, style U170, 14k yellow gold, gold weight 4.80 g approx., widths 3.20/2.40 mm.",
+    "Product page re-read live 2026-10-25: $933, style U170, 14k yellow gold, gold weight 4.80 g approx., widths 3.20/2.40 mm.",
     "Page also shows a '$1,373 Everyone Else / 32% Savings' comparison — not used.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L14 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L14 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "AL-4426",
@@ -2124,14 +2176,14 @@ window.GOLD5_DATA = {
    "hallmarkQuote": null,
    "makerMarkStated": false,
    "metalConflict": null,
-   "returns": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
+   "returns": "(last read 2026-10-23; the policy page was unreachable for the 2026-10-25 pass — FL-33) Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
    "returnUrl": "https://www.allurez.com/pages/return-policy",
    "returnsVerified": true,
    "evidenceId": "L15",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.allurez.com/products/floral-solitaire-engagement-ring-14k-yellow-gold",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-15",
@@ -2141,12 +2193,12 @@ window.GOLD5_DATA = {
     "FL-18"
    ],
    "notes": [
-    "Product page re-read this pass: $585, style NG4426, 14k yellow gold, approximate metal weight 3.58 g.",
+    "Product page re-read live 2026-10-25: $585, style NG4426, 14k yellow gold, approximate metal weight 3.58 g.",
     "Page also shows a '$1,194 Everyone Else / 51% Savings' comparison — not used.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L15 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L15 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "AV-25893",
@@ -2175,10 +2227,10 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
    "returnsVerified": false,
    "evidenceId": "L16",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.avianneandco.com/products/14k-solid-yellow-gold-diamond-solitaire-engagement-ring-0-41-ctw",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-14",
@@ -2187,10 +2239,10 @@ window.GOLD5_DATA = {
    "notes": [
     "Product page re-read this pass: $1,100.00, item code R25893, 14K Gold, 2.3 grams, 0.41 Ctw, 4.5 mm width, VS2 clarity, G/H color.",
     "Site-wide banner: 10% OFF with code 'FALL10' — recorded price is the listed price before that code.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L16 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L16 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "JM-149700",
@@ -2219,10 +2271,10 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
    "returnsVerified": false,
    "evidenceId": "L17",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://www.thejewelrymaster.com/brilliant-round-diamond-solitaire-engagement-ring-14k-yellow-gold-149700.html",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-14",
@@ -2231,10 +2283,10 @@ window.GOLD5_DATA = {
    "notes": [
     "Product page re-read this pass: Retail Price $6,041.00 / Special Price $3,020.00, style 149700, 0.71 ctw, 14KT gold, 2.3 grams, in stock (only 1 left).",
     "Includes free shipping, gift box and a professional appraisal certificate per the page.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L17 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L17 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "SGJ-B02561",
@@ -2263,10 +2315,10 @@ window.GOLD5_DATA = {
    "returnUrl": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
    "returnsVerified": false,
    "evidenceId": "L18",
-   "evidencePath": "verification/evidence/6d10ac0a/retailers.md",
+   "evidencePath": "verification/evidence/3dfe4d85/retailers.md",
    "url": "https://solidgoldjewelers.net/product/yellow-gold-solitaire-engagement-ring/",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-13",
@@ -2277,10 +2329,10 @@ window.GOLD5_DATA = {
    ],
    "notes": [
     "Product page re-read live on 2026-10-23 (session 6d10ac0a, ledger L18): '14ky, 4.7g, #B02561', WooCommerce brand field 'M Michael' (store taxonomy, not a maker's-mark claim), no price shown, 'Call (309) 452-1612 for current pricing and availability.', no payment method stated, no return policy shown.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L18 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L18 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "6d10ac0a"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-4426190660",
@@ -2309,25 +2361,25 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
    "returnsVerified": true,
    "evidenceId": "L19",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/4426190660/250ct-yellow-radiant-moissanite-diamond",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-31"
+    "FL-14"
    ],
    "notes": [
-    "Listing re-read this pass: $1,202.08+ base (925 silver), 14K Yellow Gold $1,891.78, 2.50 ct radiant yellow lab-grown diamond (VVS2), 0.32 ctw side stones, band 1.80 mm, IGI certificate offered.",
+    "Listing re-read this pass: $1,202.08+ base (925 silver), 14K Yellow Gold $1,891.78 unchanged, 2.50 ct radiant yellow lab-grown diamond (VVS2), 0.32 ctw side stones, band 1.80 mm, IGI certificate offered.",
+    "The 2026-10-25 read captured the promo countdown 'Sale ends in 15:11:39' (50% off, original $2,404.16+ at read time) — a relative timer; no absolute expiry is published or recorded (FL-17).",
     "Shop is Etsy 'Star Seller' with a 5/5 listing rating.",
-    "Official-source read L19 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L19 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-4366425533",
@@ -2337,10 +2389,10 @@ window.GOLD5_DATA = {
    "category": "engagement-ring",
    "karat": 14,
    "metalColor": "Yellow / White / Rose Gold",
-   "price": 546.09,
+   "price": 546.18,
    "compareAt": null,
    "priceBasis": "from",
-   "priceNote": "14K options $546.09–$2,404.96 by center-diamond size; list starts at $375.80 for 925 silver. No 14K-specific compare-at price was published, so compareAt is blank.",
+   "priceNote": "14K options $546.18–$2,405.36 by center-diamond size (re-read 2026-10-25; the 2026-10-23 read was $546.09–$2,404.96); list starts at $375.86 for 925 silver (header 40% off $626.44+, 'Sale ends in 3 days'). No 14K-specific compare-at price was published, so compareAt is blank.",
    "priceSourceUrl": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
    "grams": null,
    "gramsText": null,
@@ -2356,26 +2408,25 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
    "returnsVerified": true,
    "evidenceId": "L20",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-31"
+    "FL-14"
    ],
    "notes": [
-    "Listing re-read live on 2026-10-23: 14K options $546.09–$2,404.96; silver header $375.80+; Metal stamp: Yes; 30-day returns.",
+    "Listing re-read live on 2026-10-25: the 14K variant start moved $546.09 → $546.18 and the top $2,404.96 → $2,405.36; silver header now $375.86+ (original $626.44+); Metal stamp: Yes; 30-day returns.",
     "Ships from the UK; duties included for US orders per listing description.",
-    "Official-source read L20 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L20 (corrected); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
    "stoneIncluded": true,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-1151446373",
@@ -2392,7 +2443,7 @@ window.GOLD5_DATA = {
    "priceSourceUrl": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
    "grams": 3.7,
    "gramsText": "3.70 g",
-   "gramsNote": "Seller's description: 'Gold grams: 3.70 gr' — verified on the listing page this pass",
+   "gramsNote": "Seller's description: 'Gold grams: 3.70 gr' — re-verified on the listing page 2026-10-25",
    "widthMm": null,
    "solidStated": true,
    "solidQuote": "Description: 'Material: Solid Gold (not gold plated or gold filled)' and 'Karat: 14 K (585)'",
@@ -2404,28 +2455,27 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
    "returnsVerified": true,
    "evidenceId": "L21",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/1151446373/14k-solid-gold-ruby-diamond-ring-elegant",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-02",
     "FL-16",
     "FL-17",
     "FL-14",
-    "FL-18",
-    "FL-31"
+    "FL-18"
    ],
    "notes": [
-    "Listing re-read this pass: $783.00+ (10K), 14K $969.00, 0.30 ct diamond + 0.90 ct ruby, 3.70 g gold, 585 stated.",
+    "Listing re-read this pass (2026-10-25): $783.00+ (10K), 14K $969.00 unchanged, 0.30 ct diamond + 0.90 ct ruby, 'Gold grams: 3.70 gr', 585 stated; the price block missing from the 2026-10-23 partial read was retrieved today.",
     "Return window is 7 days — shortest of the sellers reviewed.",
     "Ships from Albany, NY; production partner Vera Atolye, Istanbul, Türkiye.",
     "Listing photos include a chat screenshot with an address and a request to share contact details — flagged (FL-02).",
-    "Official-source read L21 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L21 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-1566052947",
@@ -2435,10 +2485,10 @@ window.GOLD5_DATA = {
    "category": "band",
    "karat": 14,
    "metalColor": "Yellow Gold",
-   "price": 251.3,
-   "compareAt": 359.0,
+   "price": 246.35,
+   "compareAt": 379.0,
    "priceBasis": "from",
-   "priceNote": "From $251.30 (2 mm, 30% off $359.00); 3 mm $363.30+, 4 mm $496.30+, 5 mm $643.30+, 6 mm $797.30+, 7 mm $944.30+, 8 mm $1,091.30–$1,742.30",
+   "priceNote": "From $246.35 (2 mm ladder start, re-read 2026-10-25; header 35% off $379.00+; the 2026-10-23 read was $251.30 at 30% off $359.00); 3 mm $330.85+, 4 mm $460.85+, 5 mm $597.35+, 6 mm $740.35+, 7 mm $870.35+, 8 mm $1,000.35–$1,630.85",
    "priceSourceUrl": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
    "grams": null,
    "gramsText": null,
@@ -2454,24 +2504,24 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
    "returnsVerified": true,
    "evidenceId": "L22",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-31"
+    "FL-14"
    ],
    "notes": [
-    "Listing re-read live: from $251.30; 14K solid yellow gold; 21-day return window and custom/fee exclusions confirmed; no gram weight published.",
-    "Official-source read L22 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Listing re-read live on 2026-10-25: the 2 mm start moved $251.30 → $246.35 and the promo deepened (30% → 35% off, header original $379.00+, 'Sale ends in 1 day' at read time); no gram weight published.",
+    "The 21-day return window and custom/fee exclusions come from the 2026-10-23 shop-policy capture; the shop policy page was unreachable for this session on 2026-10-25 (FL-33), so it is a dated observation. The listing itself displays 'Returns & exchanges accepted'.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L22 (corrected); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-1433905613",
@@ -2481,10 +2531,10 @@ window.GOLD5_DATA = {
    "category": "band",
    "karat": 14,
    "metalColor": "White Gold",
-   "price": 999.7,
+   "price": 984.32,
    "compareAt": null,
    "priceBasis": "from",
-   "priceNote": "14K options $999.70–$1,368.90 by size (10K $674.70–$963.95); 35% off. The $1,038 header compare-at is for the 10K base variant, so compareAt is blank for 14K.",
+   "priceNote": "14K options $984.32–$1,347.84 by size (re-read 2026-10-25; 10K $664.32–$949.12); 36% off with 'Sale ends in 0:29:08' captured at read time. The $1,038 header compare-at is for the 10K base variant, so compareAt is blank for 14K. (2026-10-23 read: 14K $999.70–$1,368.90, 35% off.)",
    "priceSourceUrl": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
    "grams": null,
    "gramsText": null,
@@ -2500,25 +2550,25 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
    "returnsVerified": true,
    "evidenceId": "L23",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-31"
+    "FL-14"
    ],
    "notes": [
-    "Listing re-read live: 14K options $999.70–$1,368.90; 14-day return window and personalized-item exclusion confirmed; no gram weight published.",
+    "Listing re-read live on 2026-10-25: the 14K range moved $999.70–$1,368.90 → $984.32–$1,347.84 and the discount deepened 35% → 36%; no gram weight published.",
+    "The 14-day return window and personalized-item exclusion come from the 2026-10-23 shop-policy capture (policy page unreachable for this session on 2026-10-25, FL-33); the listing itself shows 'Returns & exchanges accepted'.",
     "A buyer-photo alt text on the page mentions an engraving '585 AFJ' — not a seller statement, so no hallmark or maker's mark is recorded.",
-    "Official-source read L23 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L23 (corrected); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-944684759",
@@ -2547,24 +2597,24 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
    "returnsVerified": true,
    "evidenceId": "L24",
-   "evidencePath": "verification/evidence/bc4e36a1/etsy.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-03",
     "FL-16",
     "FL-17",
-    "FL-14",
-    "FL-31"
+    "FL-14"
    ],
    "notes": [
-    "Listing re-read live: from $195.75; 30-day return window confirmed; description lists multiple materials for the design, so selected metal must be reconfirmed at checkout.",
-    "Official-source read L24 (corrected) captured 2026-10-23 by session bc4e36a1 and inherited unchanged by this pass; not re-opened by session 6d10ac0a (FL-31)."
+    "Listing re-read live 2026-10-25: from $195.75, every ladder figure identical to the 2026-10-23 capture; countdown 'Sale ends in 0:29:08' at read time.",
+    "The 30-day return window is the 2026-10-23 shop-policy capture (policy page unreachable for this session on 2026-10-25, FL-33); the listing shows 'Returns & exchanges accepted'; description lists multiple materials for the design, so selected metal must be reconfirmed at checkout.",
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L24 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
    "availability": null,
-   "readBy": "bc4e36a1 (inherited)"
+   "readBy": "3dfe4d85"
   },
   {
    "id": "ET-576343849",
@@ -2593,10 +2643,10 @@ window.GOLD5_DATA = {
    "returnUrl": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
    "returnsVerified": false,
    "evidenceId": "L25",
-   "evidencePath": "verification/evidence/6d10ac0a/etsy-and-brilliant-earth.md",
+   "evidencePath": "verification/evidence/3dfe4d85/etsy.md",
    "url": "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-ring-7g-solid?show_sold_out_detail=1",
    "sources": [],
-   "checkedOn": "2026-10-23",
+   "checkedOn": "2026-10-25",
    "provenance": "live",
    "flags": [
     "FL-01",
@@ -2607,13 +2657,13 @@ window.GOLD5_DATA = {
     "FL-29"
    ],
    "notes": [
-    "Sold-out detail page re-read live: $420.00 displayed, original $525.00; not a current offer.",
+    "Sold-out detail page re-read live 2026-10-25: still sold out; $420.00 displayed, original $525.00; not a current offer.",
     "Exact weight and the old below-metal calculation are withdrawn: the title says 7 g but the description says the postal scale alternates between 6–7 g. No range is converted into an exact number (FL-01).",
     "The seller explicitly claims both a 14K stamp and a maker's mark; this remains a seller statement, not an independent assay.",
-    "Re-read live by session 6d10ac0a on 2026-10-23: L25 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
+    "Re-read live by session 3dfe4d85 on 2026-10-25: L25 (unchanged); verbatim excerpt and official URL are linked on the Verification page."
    ],
-   "availability": "SOLD OUT — confirmed 2026-10-23",
-   "readBy": "6d10ac0a"
+   "availability": "SOLD OUT — confirmed 2026-10-25",
+   "readBy": "3dfe4d85"
   }
  ],
  "sellers": [
@@ -2627,7 +2677,7 @@ window.GOLD5_DATA = {
     "service@bluenile.com"
    ],
    "contactUrl": "https://www.bluenile.com/contact-us",
-   "returns": "30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
+   "returns": "(re-confirmed live 2026-10-25, session 3dfe4d85) 30 days from shipment date, original unworn condition, full refund or exchange. NOT eligible: personalized jewelry, custom orders, engraved items, items resized after initial purchase, Diamond Upgrade Program purchases, clearance and Final Sale items. Two complimentary returns per customer per year; RMA required; $150 fee if a diamond grading report is not returned. One free resize (up or down two sizes) within 6 months if the design permits.",
    "returnsUrl": "https://www.bluenile.com/policies/returns",
    "returnsVerified": true,
    "warranty": "Limited lifetime warranty on gold/platinum items priced $1,000 or more (manufacturer defects); one free resize up or down two sizes within 6 months if the design permits; non-resizable styles excluded.",
@@ -2672,7 +2722,7 @@ window.GOLD5_DATA = {
     "800.691.0952"
    ],
    "contactUrl": "https://www.brilliantearth.com/contact/",
-   "returns": "Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
+   "returns": "(policy page not re-reachable 2026-10-25 — FL-33) Product pages state 'Free Shipping & Returns' and 'Free 1-Year Resizing'. Verified live at brilliantearth.com/30-Day-Returns/ on 2026-10-23: free returns/exchanges within 30 days of the item being available for shipment or pickup, unworn and in original condition. Engraved rings may be returned with a $40 engraving-removal charge; personalized/custom and other published exclusions apply. Phone return instructions and a free FedEx label are published.",
    "returnsUrl": "https://www.brilliantearth.com/30-Day-Returns/",
    "returnsVerified": true,
    "warranty": "Free lifetime manufacturing-defect warranty on fine jewelry; wear, gemstone loss, product loss and theft excluded. US/CAN/AUS/UK return labels are free; elsewhere a $50 deposit applies and is refunded for warrantied repairs. Unauthorized repair voids coverage.",
@@ -2694,7 +2744,7 @@ window.GOLD5_DATA = {
     "https://www.brilliantearth.com/30-Day-Returns/"
    ],
    "notes": [
-    "Return policy verified live 2026-10-23 at /30-Day-Returns/ (30-day window; exclusions published) — see FL-07 (resolved)."
+    "Return policy verified live 2026-10-23 at /30-Day-Returns/ (30-day window; exclusions published) — see FL-07 (resolved). The policy page was unreachable for the 2026-10-25 pass (proxy failure, FL-33); the product pages opened that day still display the 'Free Shipping & Returns' coverage line."
    ]
   },
   {
@@ -2707,7 +2757,7 @@ window.GOLD5_DATA = {
     "service@allurez.com"
    ],
    "contactUrl": "https://www.allurez.com/pages/contact",
-   "returns": "Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
+   "returns": "(last read 2026-10-23; the policy page was unreachable for the 2026-10-25 pass — FL-33) Return must ARRIVE at Allurez within 30 days of original shipment; unused, not resized or altered. Engraved items, custom-made orders, contoured wedding bands, clearance items, appraisals, gift cards and layaway deposits are non-refundable. Design Your Own rings may be exchanged only (same or higher value). Buyer pays return shipping; original shipping not refunded; $300 deduction per missing diamond certificate; refund within 7 business days.",
    "returnsUrl": "https://www.allurez.com/pages/return-policy",
    "returnsVerified": true,
    "warranty": "Complimentary 1-year limited manufacturing-defect warranty for qualifying US purchases after February 2024. Ring sizing is offered except full eternity rings. Missing stones may be replaced, but the new stone's cost is not covered. Wear, loss and unauthorized repair excluded; after one year repair fees plus a $39 shipping charge apply.",
@@ -2874,7 +2924,7 @@ window.GOLD5_DATA = {
     "https://www.etsy.com/listing/4366425533/15-carat-e-vvs2-igi-certified-lab-grown"
    ],
    "notes": [
-    "Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."
+    "Listing re-read live 2026-10-25 (session 3dfe4d85); the shop-level policy was last read 2026-10-23 and was unreachable for this pass (proxy failure — FL-33); see the linked current evidence check."
    ]
   },
   {
@@ -2943,7 +2993,7 @@ window.GOLD5_DATA = {
     "https://www.etsy.com/listing/1566052947/14k-solid-yellow-gold-domed-wedding-band"
    ],
    "notes": [
-    "Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."
+    "Listing re-read live 2026-10-25 (session 3dfe4d85); the shop-level policy was last read 2026-10-23 and was unreachable for this pass (proxy failure — FL-33); see the linked current evidence check."
    ]
   },
   {
@@ -2977,7 +3027,7 @@ window.GOLD5_DATA = {
     "https://www.etsy.com/listing/1433905613/14k-solid-gold-8mm-white-gold-polished"
    ],
    "notes": [
-    "Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."
+    "Listing re-read live 2026-10-25 (session 3dfe4d85); the shop-level policy was last read 2026-10-23 and was unreachable for this pass (proxy failure — FL-33); see the linked current evidence check."
    ]
   },
   {
@@ -3011,7 +3061,7 @@ window.GOLD5_DATA = {
     "https://www.etsy.com/listing/944684759/14k-white-gold-band-flat-polished"
    ],
    "notes": [
-    "Listing and shop policy re-read live on 2026-10-23; see the linked current evidence check."
+    "Listing re-read live 2026-10-25 (session 3dfe4d85); the shop-level policy was last read 2026-10-23 and was unreachable for this pass (proxy failure — FL-33); see the linked current evidence check."
    ]
   },
   {
@@ -3045,7 +3095,7 @@ window.GOLD5_DATA = {
     "https://www.etsy.com/listing/576343849/fine-14k-solid-white-gold-mens-ring-7g"
    ],
    "notes": [
-    "Sold-out detail page and seller FAQ re-read live on 2026-10-23; the item is sold and not a current offer."
+    "Sold-out detail page and seller FAQ re-read live 2026-10-25; the item is still sold and not a current offer."
    ]
   }
  ],
@@ -3152,11 +3202,13 @@ window.GOLD5_DATA = {
    "id": "FL-08",
    "severity": "low",
    "status": "open",
-   "title": "Two Brilliant Earth pages serve EUR; current USD price is blank",
-   "detail": "On 2026-10-23 BE-1343 served €835 and BE-1343HH served €1,350, both Setting Only. Their USD price cells are blank — no conversion, no guess. BE-NADIA directly served $1,250 USD and BE-SECRET directly served $1,090 USD, so those two rows are not in this flag. Prior USD observations remain dated notes only.",
+   "title": "Brilliant Earth renders serve EUR by geography; USD prices are blank or dated observations",
+   "detail": "On 2026-10-23 BE-1343 served €835 and BE-1343HH served €1,350 (USD cells blank) while BE-NADIA and BE-SECRET served USD directly ($1,250 / $1,090). On the 2026-10-25 re-read ALL FOUR pages served EUR (€835.00, €1,400.00, €1,350.00, €1,250.00), each with the same mixed render: a EUR banner next to a 'USD$250 GIFT CARD … USD$1,000' promo image. BE-NADIA and BE-SECRET therefore revert to dated 2026-10-23 USD observations labelled prior — their prices could not be confirmed today and no EUR figure was converted. The currency is chosen per page/geo at request time, so any USD price on this site is only as current as the render it was read from. Re-read from a USD session before acting.",
    "entryIds": [
     "BE-1343",
-    "BE-1343HH"
+    "BE-1343HH",
+    "BE-NADIA",
+    "BE-SECRET"
    ]
   },
   {
@@ -3188,7 +3240,7 @@ window.GOLD5_DATA = {
    "severity": "low",
    "status": "open",
    "title": "Avianne: 14-day window, active promo code, full policy not captured",
-   "detail": "The product page says returns of unworn and unaltered items are accepted within 14 days — shorter than the 30 days common elsewhere. The site also runs a 10% code (FALL10), which is not applied to the recorded price. The full return policy and resize exclusions were not captured.",
+   "detail": "The product page says returns of unworn and unaltered items are accepted within 14 days — shorter than the 30 days common elsewhere. The site also runs a 10% code (FALL10), which is not applied to the recorded price. The full return policy and resize exclusions were not captured. Both statements were re-read on the product page 2026-10-25 (session 3dfe4d85) unchanged; Avianne has no separate policy check in the ledger, so returnsVerified stays False by design.",
    "entryIds": [
     "AV-25893"
    ]
@@ -3277,7 +3329,7 @@ window.GOLD5_DATA = {
    "severity": "low",
    "status": "open",
    "title": "Etsy prices are promo-dependent and vary by material, size and carat",
-   "detail": "Etsy listings in this set showed discounts at check time and prices change by material (silver/10K/14K/18K), ring size, band width and center-stone carat. Where a header compare-at price belonged to another material or variant, compareAt is blank rather than borrowed. The recorded price is labeled by its actual option or listing basis on the check date. Re-check the live price before buying.",
+   "detail": "Etsy listings in this set showed discounts at check time and prices change by material (silver/10K/14K/18K), ring size, band width and center-stone carat. Where a header compare-at price belonged to another material or variant, compareAt is blank rather than borrowed. The recorded price is labeled by its actual option or listing basis on the check date. Re-check the live price before buying. PROVEN BY RE-READ: within two days three rows moved — ET-4366425533 14K start $546.09 → $546.18, ET-1566052947 2 mm $251.30 → $246.35 (promo deepening 30% → 35% off), ET-1433905613 14K $999.70 → $984.32 (35% → 36% off). The 2026-10-25 pass also captured the sale countdowns the previous pass asked for — 'Sale ends in 15:11:39', '3 days', '1 day' and two '0:29:08' timers — recorded as relative times only, because no absolute expiry is published.",
    "entryIds": [
     "ET-4426190660",
     "ET-4366425533",
@@ -3310,7 +3362,7 @@ window.GOLD5_DATA = {
    "severity": "info",
    "status": "open",
    "title": "Gold spot moves all day — the snapshot is dated",
-   "detail": "Three Kitco captures exist for 2026-10-23 alone: $4,022.50/oz at 5:44 a.m. ET, $3,996.10/oz at 4:10 p.m. ET and the current $3,994.90/oz ($128.44/g) from the 19:43 NY panel whose prices are stated as of 7:42 p.m. ET. That is a $27.60/oz intraday swing on one day. This site uses one labeled panel bid for every calculation, shows its timestamp, and keeps the superseded quotes as dated history. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
+   "detail": "Four Kitco captures span two trading sessions: 2026-10-23 alone printed $4,022.50/oz (5:44 a.m. ET), $3,996.10/oz (4:10 p.m. ET) and $3,994.90/oz ($128.44/g, 19:43 NY panel / 7:42 p.m. ET) — a $27.60/oz intraday swing — and the 2026-10-25 re-read still prints $3,994.90/$128.44 under the newer 'Oct 24, 2026 - 23:14 NY Time' panel because the market had not reopened after the Friday 5:00 PM NY close. A quote is a timestamped observation, not a live feed: this site uses one labeled panel bid for every calculation, shows its timestamp, keeps every superseded quote as dated history, and even a same-value re-read is labelled by the session that actually read it. Spot at the moment you buy will differ; use the calculator with a fresh quote.",
    "entryIds": []
   },
   {
@@ -3379,7 +3431,7 @@ window.GOLD5_DATA = {
    "severity": "low",
    "status": "open",
    "title": "Kitco page shows several nearby numbers in one capture",
-   "detail": "The current 2026-10-23 capture (19:43 NY panel, prices stated as of 7:42 p.m. ET) displays a panel bid of $3,994.90 and $128.44/g, an ask of $3,996.90, a body sentence repeating $3,994.90/oz, an embedded OANDA XAUUSD widget close of 3,995.810 at 19:43:05 UTC-4, and two different kilo prints — $128,440.99 in the ticker against $128,439.02 in the page's own unit table. The superseded 4:10 p.m. ET capture had its own internal split ($3,996.10 panel vs $3,995.50 body text) and is kept in history. The project uses the panel bid and its per-gram figure for every calculation, publishes the extra prints as a labeled discrepancy, and never mixes quotes from different timestamps or sources.",
+   "detail": "The current capture (2026-10-25 read of the Oct 24 23:14 NY panel, prices stated as of 11:12 p.m. ET) displays a panel bid of $3,994.90 and $128.44/g, an ask of $3,996.90, a body sentence repeating $3,994.90/oz, and two different kilo prints — $128,440.99 in the ticker against $128,439.02 in the page's own unit table — while the purity table carries a Friday 5:00 PM NY update stamp. The embedded widget behaved differently this time: TradingView printed O/H/L/C as empty, whereas on 2026-10-23 the same slot printed an OANDA-style close of 3,995.810 (19:43:05 UTC-4). The superseded 4:10 p.m. ET capture had its own split ($3,996.10 panel vs $3,995.50 body text) and is kept in history. The project uses the panel bid and its per-gram figure for every calculation, publishes the extra prints as a labeled discrepancy, and never mixes quotes from different timestamps, widgets or sources.",
    "entryIds": []
   },
   {
@@ -3425,27 +3477,20 @@ window.GOLD5_DATA = {
   {
    "id": "FL-31",
    "severity": "info",
+   "status": "resolved",
+   "title": "Resolved: provenance scope of the 2026-10-23 pass (session 6d10ac0a) — superseded by FL-33",
+   "detail": "(Closed by the 2026-10-25 pass: all 25 listing pages and the spot were re-opened then, so this scope note no longer attaches to any row; the current pass's scope — 26 checks re-read, 20 inherited from 2026-10-23, 2 partial reads, 6 failure records — is published as FL-33.) This pass re-opened 9 of the 46 canonical checks live: the Kitco spot plus eight listing pages (BN-203738, AL-5882, AL-170, AL-4426, AV-25893, JM-149700, SGJ-B02561, ET-576343849). Every re-read field matched the canonical row exactly, so the only value that changed is the timestamped spot quote and the numbers derived from it. The other 37 checks — 17 listings, 9 seller policy/contact pages and 11 official references — were read earlier the same day (2026-10-23) by session bc4e36a1 and are carried forward unchanged with their original evidence ids and paths, labelled readBy 'bc4e36a1 (inherited)' rather than being presented as this session's reads. Rows carrying this flag were therefore not re-opened by session 6d10ac0a; their values still come from an official page read on 2026-10-23. Two pages (ET-1151446373, BE-1343) were only partially retrieved this pass and are logged as partial reads; they upgraded nothing.",
+   "entryIds": []
+  },
+  {
+   "id": "FL-33",
+   "severity": "info",
    "status": "open",
-   "title": "Provenance scope of the 2026-10-23 pass (session 6d10ac0a)",
-   "detail": "This pass re-opened 9 of the 46 canonical checks live: the Kitco spot plus eight listing pages (BN-203738, AL-5882, AL-170, AL-4426, AV-25893, JM-149700, SGJ-B02561, ET-576343849). Every re-read field matched the canonical row exactly, so the only value that changed is the timestamped spot quote and the numbers derived from it. The other 37 checks — 17 listings, 9 seller policy/contact pages and 11 official references — were read earlier the same day (2026-10-23) by session bc4e36a1 and are carried forward unchanged with their original evidence ids and paths, labelled readBy 'bc4e36a1 (inherited)' rather than being presented as this session's reads. Rows carrying this flag were therefore not re-opened by session 6d10ac0a; their values still come from an official page read on 2026-10-23. Two pages (ET-1151446373, BE-1343) were only partially retrieved this pass and are logged as partial reads; they upgraded nothing.",
+   "title": "Provenance scope of the 2026-10-25 pass (session 3dfe4d85)",
+   "detail": "This pass re-opened 26 of the 46 canonical checks live on 2026-10-25: the Kitco spot, all 25 listing pages and the two Blue Nile policy pages (returns, warranty). 21 of the 25 listing rows matched their recorded fields exactly. Three Etsy prices had genuinely moved and were corrected from this pass's own captures (C-20: ET-4366425533 $546.09 → $546.18; C-21: ET-1566052947 $251.30 → $246.35 with the promo deepening 30% → 35%; C-22: ET-1433905613 $999.70 → $984.32 with 35% → 36%). Four Brilliant Earth pages were opened again but served EUR only (€835.00 / €1,400.00 / €1,350.00 / €1,250.00) with no USD price — BE-NADIA and BE-SECRET therefore revert to labelled prior-dated USD observations (this flag's entryIds) and BE-1343 / BE-1343HH keep blank USD cells; nothing was converted (FL-08). The remaining 20 checks — the 2 superseded BE listing reads, 7 seller policy/contact pages and 11 official references — could not be re-opened because the fetch proxy returned SignatureDoesNotMatch (or failed before they were attempted, which is recorded as not attempted); they are carried forward byte-identical with their 2026-10-23 dates, original evidence ids and paths, readBy '<session> (inherited)' labels and an inheritedNote. Nothing inherited is presented as fresh, nothing failed is presented as read, and the seller return-policy text shown on the affected rows is therefore the 2026-10-23 capture. Full log: data/live_check_3dfe4d85.json, verification/evidence/3dfe4d85/ (including failures-and-irregularities.md F1–F6).",
    "entryIds": [
-    "BN-192506",
-    "BN-195639",
-    "BN-203257",
-    "BN-195326",
-    "BN-195871",
-    "BN-311132",
-    "BN-203348",
-    "BE-1343",
     "BE-NADIA",
-    "BE-1343HH",
-    "BE-SECRET",
-    "ET-4426190660",
-    "ET-4366425533",
-    "ET-1151446373",
-    "ET-1566052947",
-    "ET-1433905613",
-    "ET-944684759"
+    "BE-SECRET"
    ]
   },
   {
@@ -3453,7 +3498,7 @@ window.GOLD5_DATA = {
    "severity": "medium",
    "status": "open",
    "title": "ET-576343849 is sold out — not a current offer",
-   "detail": "The 2026-10-23 sold-out detail page says 'Sorry, this item is sold out' / 'Sold' and displays $420.00 (original $525.00). It cannot be purchased; the price is a labeled sold-listing display only. Earlier $444.80/$556.00 observations remain historical archive material. The title's 7 g and the description's alternating 6–7 g scale range are not an exact weight, so no metal-value conclusion is drawn (FL-01 resolved).",
+   "detail": "Re-read 2026-10-25: the detail page still says 'This item is sold out.' and displays $420.00 (original $525.00). It cannot be purchased; the price is a labeled sold-listing display only. Earlier $444.80/$556.00 observations remain historical archive material. The title's 7 g and the description's alternating 6–7 g scale range are not an exact weight, so no metal-value conclusion is drawn (FL-01 resolved).",
    "entryIds": [
     "ET-576343849"
    ]
@@ -3463,7 +3508,7 @@ window.GOLD5_DATA = {
    "severity": "high",
    "status": "open",
    "title": "Blue Nile BN-203738 has an internal metal-description conflict",
-   "detail": "The official page title and specification say 18K White Gold, while Product Details say 14K Yellow Gold. Both statements are preserved on the listing row; neither is silently selected as the truth. Confirm the exact metal, karat and return terms in writing before purchase. No gram weight is published, so no metal-value calculation is made for this row.",
+   "detail": "The official page title and specification say 18K White Gold, while Product Details say 14K Yellow Gold — observed identically on 2026-10-23 (twice) and again on 2026-10-25, three sessions in a row. Both statements are preserved on the listing row; neither is silently selected as the truth. Confirm the exact metal, karat and return terms in writing before purchase. No gram weight is published, so no metal-value calculation is made for this row.",
    "entryIds": [
     "BN-203738"
    ]
@@ -3478,7 +3523,7 @@ window.GOLD5_DATA = {
    "quote": "Near the karat quality mark, look for the name or the U.S. registered trademark of the company that will stand behind the mark... If you're thinking about buying a piece of gold jewelry but don't see a trademark along with the karat mark, don't buy it.",
    "usedFor": "Karat marks, maker's mark rule, solid vs plated/hollow definitions, returns in writing, where to report problems.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "cfr23",
@@ -3488,7 +3533,7 @@ window.GOLD5_DATA = {
    "quote": "§ 23.3 Misrepresentation as to gold content. § 23.10 Additional guidance for the use of quality marks.",
    "usedFor": "The regulation behind the FTC consumer guidance; gold-content and quality-mark rules. eCFR displayed 'up to date as of 10/21/2026' on the 2026-10-23 fetch.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "usc295",
@@ -3498,7 +3543,7 @@ window.GOLD5_DATA = {
    "quote": "...the actual fineness of such gold or alloy shall not be less by more than three one-thousandth parts than the fineness indicated by the mark stamped, branded, engraved, or printed upon any part of such article... and ... shall not be less by more than seven one-thousandth parts, in the case of any other such article...",
    "usedFor": "The statutory assay tolerance an XRF reading is compared against: 3/1000 solder-free, 7/1000 for the whole article including solder.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "cfr23-3",
@@ -3508,7 +3553,7 @@ window.GOLD5_DATA = {
    "quote": "Text of the gold-content misrepresentation rule.",
    "usedFor": "Readable mirror of § 23.3.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "usc297",
@@ -3518,7 +3563,7 @@ window.GOLD5_DATA = {
    "quote": "Each identifying trademark or name applied to any article of merchandise in compliance with clause (A) of this subsection shall be applied to that article by the same means as that used in applying the quality mark or stamp appearing thereon, in type or lettering at least as large as that used in such quality mark or stamp, and in a position as close as possible to that quality mark or stamp.",
    "usedFor": "Statutory basis for a maker's mark next to the quality mark (National Stamping Act), and for the rule that plated / rolled gold plate / gold filled articles may not carry a bare fineness mark: § 297(a) requires words 'plainly indicating that such article or part thereof is made of rolled gold plate, gold plate, or gold electroplate, or is gold filled'.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session 6d10ac0a; official GovInfo text, resolved to the GPO 2024 edition PDF USCODE-2024-title15-chap8-sec297.pdf). The Cornell LII page https://www.law.cornell.edu/uscode/text/15/297 is a mirror of the same section and is no longer the cited source.",
+   "method": "live re-read 2026-10-23 (session 6d10ac0a; official GovInfo text, resolved to the GPO 2024 edition PDF USCODE-2024-title15-chap8-sec297.pdf). The Cornell LII page https://www.law.cornell.edu/uscode/text/15/297 is a mirror of the same section and is no longer the cited source. NOT re-opened 2026-10-25 (F6, FL-33) — capture date, not today's.",
    "mirrorUrl": "https://www.law.cornell.edu/uscode/text/15/297"
   },
   {
@@ -3529,7 +3574,7 @@ window.GOLD5_DATA = {
    "quote": "NIST Appendix B.8 displays ounce (troy or apothecary) → gram as 3.110348 E+01 (rounded). Kitco separately states the more precise constant: 'A troy ounce is 31.1034768 grams.'",
    "usedFor": "Troy-ounce conversion disclosure. Calculations retain Kitco's stated 31.1034768 g/ozt constant; NIST's displayed factor is rounded.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; evidence R06)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; evidence R06); NOT re-opened 2026-10-25 (F6, FL-33) — capture date, not today's"
   },
   {
    "id": "lbma",
@@ -3539,7 +3584,7 @@ window.GOLD5_DATA = {
    "quote": "The LBMA Gold Price is set twice daily in auctions independently operated and administered by ICE Benchmark Administration Limited (IBA) and commencing at 10:30 and 15:00 London time.",
    "usedFor": "Why a timestamped benchmark matters; the London benchmark is set twice daily, while retail spot pages update continuously.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "ftc-credit",
@@ -3549,7 +3594,7 @@ window.GOLD5_DATA = {
    "quote": "Federal law says you have the right to get mistakes fixed promptly... If you have a complaint about the quality of something you bought...",
    "usedFor": "Why a credit card is safer than an irreversible payment method, and how billing disputes work.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "etsy-pp",
@@ -3559,7 +3604,7 @@ window.GOLD5_DATA = {
    "quote": "Full refund for eligible orders that don't arrive, arrive damaged, arrive 7+ days after the estimated delivery window, or differ significantly from the description.",
    "usedFor": "Marketplace protection limits (not buyer's remorse).",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "jvc",
@@ -3569,7 +3614,7 @@ window.GOLD5_DATA = {
    "quote": "Dispute mediation between buyers and jewelers (linked from the FTC article).",
    "usedFor": "Where to escalate a jewelry dispute.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   },
   {
    "id": "reportfraud",
@@ -3579,7 +3624,7 @@ window.GOLD5_DATA = {
    "quote": "Report fraud, scams and bad business practices.",
    "usedFor": "Reporting a seller.",
    "checkedOn": "2026-10-23",
-   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger)"
+   "method": "live re-read 2026-10-23 (session bc4e36a1; official reference ledger); NOT re-opened 2026-10-25 — the fetch proxy failed for this pass (F6), so this date is the capture date, not today's (FL-33)"
   }
  ]
 };

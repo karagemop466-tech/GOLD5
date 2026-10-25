@@ -3,18 +3,18 @@
  "passed": 23,
  "fail": 0,
  "warn": 0,
- "ranAt": "2026-10-24 01:04 UTC",
+ "ranAt": "2026-10-25 03:51 UTC",
  "reportPath": "data/check_report_v2.json",
  "checks": [
   {
    "id": "C1",
    "ok": true,
-   "detail": "25 entries, 13 sellers, 32 flags, 11 references"
+   "detail": "25 entries, 13 sellers, 33 flags, 11 references"
   },
   {
    "id": "C2",
    "ok": true,
-   "detail": "25 listings have an https official-source URL and a dated check (data as of 2026-10-23)"
+   "detail": "25 listings have an https official-source URL and a dated check (data as of 2026-10-25)"
   },
   {
    "id": "C3",
@@ -44,7 +44,7 @@
   {
    "id": "C8",
    "ok": true,
-   "detail": "every dollar figure on the site is dataset-sourced or computed (251 allowed values)"
+   "detail": "every dollar figure on the site is dataset-sourced or computed (287 allowed values)"
   },
   {
    "id": "C9",
@@ -84,7 +84,7 @@
   {
    "id": "C16",
    "ok": true,
-   "detail": "provenance: 25 live 2026-10-23 + 0 prior rows, each prior row dated, noted and flagged"
+   "detail": "provenance: 23 live 2026-10-25 + 2 prior rows, each prior row dated, noted and flagged"
   },
   {
    "id": "C17",
@@ -114,12 +114,12 @@
   {
    "id": "C22",
    "ok": true,
-   "detail": "reader attribution: 8 rows re-read by 6d10ac0a, 17 inherited from bc4e36a1 and labelled, partial reads and failures published"
+   "detail": "reader attribution: 23 rows re-read by 3dfe4d85, 2 inherited reads labelled with the sessions that made them, partial reads and failures published"
   },
   {
-   "id": "N1-N18",
+   "id": "N1-N20",
    "ok": true,
-   "detail": "18/18 injected errors caught by the rules they target"
+   "detail": "20/20 injected errors caught by the rules they target (N1\u2013N20)"
   }
  ]
 }
