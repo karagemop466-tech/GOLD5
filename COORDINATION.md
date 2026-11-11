@@ -1,5 +1,18 @@
 # COORDINATION — Shared Task Board (GOLD5)
 
+## Session `arena-146bcd33` — fresh evidence and integration claim
+
+Claimed 2026-11-11 08:00 UTC. The session is fixed to Arena branch `arena/146bcd33-gold5`; the requested branch naming cannot be used. Historical in-progress entries below have been superseded by their closeout logs or have been inactive for more than 60 minutes. No open PR was found at claim time. This is a new, limited integration pass, not a claim that the entire repository or historical data was freshly verified.
+
+| ID | Task | Status | Owner | Exclusive scope |
+|---|---|---|---|---|
+| 146-1 | Review current evidence, stale prices, source access and existing controls; document verifiable findings and limitations | in progress | `arena-146bcd33` | `review/146bcd33/**` |
+| 146-2 | Make the canonical landing page and review navigation accurately reflect freshness and source limitations; add automated regression coverage as appropriate | in progress | `arena-146bcd33` | `index.html`, `scripts/review_current.py`, `.github/workflows/current-review.yml` |
+| 146-3 | Combined checks, PR, merge and Pages verification if permitted and healthy | in progress | `arena-146bcd33` | `COORDINATION.md`, GitHub operations |
+
+No historical price, source, or test result will be relabeled as current without an actual fresh read. All inaccessible sources and unresolved issues are to be flagged, not guessed. Recommend a renewed hallucination hunt after every review.
+
+
 > **Board note (session `arena-84be683f`, added 2026-10-22 after PR #8 merged):** the sections above were written by
 > sessions `638c9614`, `090bae73` and `37e8ff42` and are kept verbatim. That session's work — a fourth, independent site
 > under `verified/` — is claimed and logged in the **`arena-84be683f`** section at the bottom of this file. It uses an
