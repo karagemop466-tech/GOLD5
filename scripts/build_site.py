@@ -114,13 +114,15 @@ def shell(prefix, active, title, desc, body):
 <a class="skip" href="#main">Skip to content</a>
 <div class="rulebar"><div class="wrap">
   <span><b>NO HALLUCINATIONS</b> — every value has a dated source link; anything unconfirmed is blank and flagged, never guessed.</span>
-  <span>Data as of <b>{esc(date_str())}</b> · <a href="{prefix}site/verification.html">How this was verified →</a></span>
+  <span>Historical snapshot <b>{esc(date_str())}</b> · <a href="{prefix}site/verification.html">How it was recorded →</a></span>
 </div></div>
 <header class="masthead"><div class="wrap">
   <a class="brand" href="{home}"><span class="brand-mark">G5</span><span class="brand-name">GOLD5<small>Solid gold engagement ring research</small></span></a>
   <nav class="nav" aria-label="Main">{nav(prefix, active)}</nav>
 </div></header>
 <main id="main"><div class="wrap">
+<div class="note" role="note"><b class="title">Historical snapshot — not current purchase information</b>
+Prices, spot quotes, availability, specifications and policies on this page are dated {esc(date_str())} or earlier, not freshly verified. They can change; do not use them as current. See the <a href="{prefix}review/146bcd33/index.html">2026-11-11 partial source review and flags</a> and <a href="{prefix}review/index.html">full recorded-candidate inventory</a>. A passed offline check does not authenticate a listing or confirm current prices. After each review, run the hallucination/security checks and keep looking for errors.</div>
 {body}
 </div></main>
 <footer class="site"><div class="wrap">
@@ -307,7 +309,7 @@ def index_page():
       <a class="btn gold" href="site/calculator.html">Value a ring by weight</a>
       <a class="btn ghost" href="site/checklist.html">12-point checklist</a>
     </div>
-    <p class="tiny muted" style="margin-top:14px">{coverage_note()} No value anywhere on this site is inferred.</p>
+    <p class="tiny muted" style="margin-top:14px">{coverage_note()} Derived figures are calculations, not independent verification of purity.</p>
   </div>
   <aside class="hero-side">
     <div>
@@ -320,7 +322,7 @@ def index_page():
 </section>
 
 <div class="note blue"><b class="title">Parallel review (session 0c967748) — and why its current fields are blank</b>
-That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> on {esc(date_str())} session {esc(D["meta"]["coverage"]["rereadSession"])} re-opened the Kitco quote and every one of the {len(ENTRIES)} listing pages, and re-read the Blue Nile returns and warranty pages; {D["meta"]["coverage"]["reread"]} rows now carry today's read and {D["meta"]["coverage"]["inherited"]} are inherited prior-dated observations (every Brilliant Earth page served EUR only, so their USD figures stay {esc(D["meta"]["coverage"].get("priorDate") or "")} reads, labelled as such). {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Three Etsy prices had genuinely moved since {esc(D["meta"]["coverage"].get("priorDate") or "")} and were corrected from this pass's own captures; the seller pages were not re-reachable for the remaining {esc(str(D["meta"]["liveCheck"]["coverage"]["inheritedFromEarlierPass"]))} ledger checks, so those checks keep their earlier date and label instead of being upgraded. Both reviews apply the same rule — an unconfirmed value stays blank.</div>
+That session had no access to official merchant sources, so it refused to refresh anything and published a separate <a href="review/index.html">current-evidence review</a> (R01–R04) with every current price and specification left blank. <b>This pass did have access:</b> on {esc(date_str())} session {esc(D["meta"]["coverage"]["rereadSession"])} re-opened the Kitco quote and every one of the {len(ENTRIES)} listing pages, and re-read the Blue Nile returns and warranty pages; {D["meta"]["coverage"]["reread"]} rows carry that pass's read and {D["meta"]["coverage"]["inherited"]} are inherited prior-dated observations (every Brilliant Earth page served EUR only, so their USD figures stay {esc(D["meta"]["coverage"].get("priorDate") or "")} reads, labelled as such). {("No prior listing rows remain in the canonical set." if D["meta"]["coverage"]["prior"] == 0 else "Prior rows remain explicitly labeled and itemised on Flagged for Review.")} Three Etsy prices had genuinely moved since {esc(D["meta"]["coverage"].get("priorDate") or "")} and were corrected from this pass's own captures; the seller pages were not re-reachable for the remaining {esc(str(D["meta"]["liveCheck"]["coverage"]["inheritedFromEarlierPass"]))} ledger checks, so those checks keep their earlier date and label instead of being upgraded. Both reviews apply the same rule — an unconfirmed value stays blank.</div>
 
 <section class="rule-panel">
   <h2>⚠ NO HALLUCINATIONS — the rule that governs this entire project</h2>
@@ -330,7 +332,7 @@ That session had no access to official merchant sources, so it refused to refres
     <li><b>Every row has a source link</b> to the exact page the value came from.</li>
     <li><b>Derived numbers are calculated</b> from verified inputs: fine gold = grams × karat fineness; value = fine gold × spot.</li>
     <li><b>Priorities:</b> official government/standards sources for rules; the seller's own page for its price and policy.</li>
-    <li><b>After every review pass</b> run <span class="run">python3 scripts/verify.py</span> — it re-checks sources, arithmetic, links and every dollar figure on the site.</li>
+    <li><b>After every review pass</b> run <span class="run">python3 scripts/verify.py</span> — it checks recorded provenance, arithmetic and local links, but does not independently verify live sources or guarantee that every error is detected.</li>
   </ul>
   <p style="margin-top:10px"><a class="btn ghost" href="site/verification.html">Read the method and this pass's log</a></p>
 </section>
@@ -387,8 +389,8 @@ That session had no access to official merchant sources, so it refused to refres
 
 <div class="note blue" style="margin-top:26px"><b class="title">Earlier sessions' work is preserved</b>{len(D["meta"]["archive"])} earlier deliverables are preserved in this repository and remain published alongside this consolidated dashboard: <ul class="bullets" style="margin-bottom:0">{archive}</ul></div>
 """
-    return shell("", "home", "Gold engagement rings, verified line by line",
-                 "25 verified solid-gold engagement ring listings, gold spot price, calculator, checklist, seller policies and flagged irregularities. No hallucinations: every value has a dated source link.", body)
+    return shell("", "home", "Gold engagement ring research — historical dashboard",
+                 "Historical ring research, dated gold prices, calculator, checklist and flagged irregularities. Unconfirmed values must be left blank, never guessed.", body)
 
 
 # ---------------------------------------------------------------- categories
