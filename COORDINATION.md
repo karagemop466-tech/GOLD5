@@ -2161,3 +2161,50 @@ that has since closed remain untouched by this pass.
     records. Caught by reading the deployed pages rather than the source — the same class of drift
     `C-18`/`C22` were created for. This close-out line itself ships as the next small PR; no further
     work is claimed by session `arena-3dfe4d85`.
+
+---
+
+## Task board — session `arena-cc4fdc3b` (pass 6, 2026-11-11)
+
+**Session ID = `arena-cc4fdc3b`** — the platform binds this session to branch
+`arena/cc4fdc3b-gold5` and forbids creating other branches, so the
+`session-<id>/<task>` branch naming in the brief cannot be used (the same deviation
+logged by every prior session). The session ID in the tables below is authoritative.
+
+**Started from `main@a76054f` (PR #60 merged).** `gh pr list --state open` returned
+**no open PRs** at claim time and `git branch -a` shows only `main` and this session's
+branch, so no other session is active and these scopes overlap nobody. All earlier
+sections are read-only history; every earlier deliverable (`site/`, `docs/`, `pages/`,
+`report/`, `verified/`, `guide/`, `dossier/`, `archive/`, `review/`, `data/`) is an
+**input** for this pass, never a file to rewrite by hand.
+
+**Why a new pass is required:** the canonical dataset is dated **2026-10-25**; today is
+**2026-11-11**. The gold spot quote on the site ($3,994.90/oz) is 17 days old and the
+market has moved, so every derived metal value on the site is stale until this pass
+re-reads the spot page and recomputes. Listing prices must be re-read on the same day
+so a price and the spot it is compared with are never mixed across dates.
+
+| ID | Task | Status | Owner | File scope (exclusive) |
+|----|------|--------|-------|------------------------|
+| P1 | Re-open the board, read every prior claim, line-by-line repo review, baseline run of all harnesses, claim pushed before any data edit | **done** | `arena-cc4fdc3b` | `COORDINATION.md` (this section only) |
+| P2 | **Live re-verification pass (2026-11-11)**: re-fetch the Kitco spot page and every listing / policy / reference URL in the canonical dataset; one log row per URL with status + verbatim excerpt; failures and partial reads published, never hidden | **in progress** | `arena-cc4fdc3b` | `data/live_check_cc4fdc3b.json` (new), `scripts/build_ledger_cc4fdc3b.py` (new), `verification/evidence/cc4fdc3b/**` (new) |
+| P3 | Apply drift by **script only** (never hand-edit generated HTML); overlay the 2026-10-25 ledger; refresh spot + every derived metal value; re-date rows actually re-read; blank + flag anything not confirmable; extend flags, never delete | unclaimed | `arena-cc4fdc3b` | `scripts/author_data.py`, `scripts/build_site.py`, `scripts/site_categories.py`, `site/**`, `index.html` |
+| P4 | Line-by-line provenance, arithmetic, money, link and hallucination/security review; run **every** harness after the review and deliberately hunt for hallucinations; publish a dated pass memo | unclaimed | `arena-cc4fdc3b` | `scripts/verify.py`, `scripts/independent_audit.py`, `scripts/audit_b1f2fe3b.py`, `scripts/review_current.py`, `docs/verification/cc4fdc3b-*.md` (new), `data/check_report_v2.json`, `data/pass_history_v2.json` |
+| P5 | Final integration: combined-tree re-verification, `git pull --rebase` before push, PR → `main`, merge without waiting, confirm Pages deploy, re-fetch the live site with a cache buster, record PR + merge result here, close claim | unclaimed | `arena-cc4fdc3b` | `COORDINATION.md`; GitHub PR/Pages operations |
+
+**No-hallucinations contract for P1–P5:** no price, weight, karat, hallmark, maker's
+mark, seller claim, policy or date is inferred, estimated, averaged, currency-converted,
+copied from a search snippet or carried forward as if freshly read. Checks re-read in
+this session are labelled `readBy: cc4fdc3b` with this session's evidence file; checks
+not re-read keep their original capture date, original evidence id/path and an explicit
+inherited label — never relabelled as this session's reads. Blank beats wrong. Derived
+values are recomputed by script. Every review pass ends with the full harness suite plus
+a recommendation to keep hunting for hallucinations. Flagged and unverified items stay
+published and nonblocking.
+
+### Log — session arena-cc4fdc3b
+
+- **2026-11-11 (P1):** repo reviewed at `main@a76054f` (after merged PR #60). No open PRs;
+  no other active session branch. Claim pushed before any data edit, per protocol.
+- **2026-11-11 (P1 harness baseline before any edit):** see the P4 row for the full suite
+  result recorded during this pass.
